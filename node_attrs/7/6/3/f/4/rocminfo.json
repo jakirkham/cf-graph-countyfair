@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "automerge": true
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,13 +12,16 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
+  },
+  "os_version": {
+   "linux_64": "cos7"
   }
  },
  "feedstock_name": "rocminfo",
  "hash_type": "sha256",
  "linux_64_meta_yaml": {
   "about": {
-   "home": "https://github.com/RadeonOpenCompute/rocminfo",
+   "home": "https://github.com/ROCm/rocminfo",
    "license": "NCSA",
    "license_family": "MIT",
    "license_file": "License.txt",
@@ -31,33 +37,33 @@
   },
   "package": {
    "name": "rocminfo",
-   "version": "2.7.0"
+   "version": "6.0.2"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "cmake",
-    "make",
+    "sysroot_linux-64 2.17",
     "cdt_stub",
-    "cdt_stub"
+    "cdt_stub",
+    "cmake",
+    "make"
    ],
    "host": [
-    "rocr-runtime 2.7.0",
-    "elfutils"
+    "rocr-runtime 6.0.2"
    ],
    "run": [
-    "rocr-runtime 2.7.0",
-    "elfutils"
+    "rocr-runtime 6.0.2"
    ]
   },
   "source": {
-   "sha256": "5f7ec4665c4100e69c4216cee3974f03d1017311f9d297ef7c9cf3b58e7edb0f",
-   "url": "https://github.com/RadeonOpenCompute/rocminfo/archive/roc-2.7.0.tar.gz"
+   "sha256": "e616d364a48de18eaee661bdce999d095086905f49777663ca99312f40a63da1",
+   "url": "https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-6.0.2.tar.gz"
   },
   "test": {
    "commands": [
-    "test -f $PREFIX/bin/rocminfo"
+    "test -f $PREFIX/bin/rocminfo",
+    "test -f $PREFIX/bin/rocm_agent_enumerator"
    ]
   }
  },
@@ -69,20 +75,19 @@
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
-    "make"
+    "make",
+    "sysroot_linux-64"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "elfutils",
     "rocr-runtime"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "elfutils",
     "rocr-runtime"
    ]
   },
@@ -93,7 +98,7 @@
  },
  "meta_yaml": {
   "about": {
-   "home": "https://github.com/RadeonOpenCompute/rocminfo",
+   "home": "https://github.com/ROCm/rocminfo",
    "license": "NCSA",
    "license_family": "MIT",
    "license_file": "License.txt",
@@ -109,33 +114,33 @@
   },
   "package": {
    "name": "rocminfo",
-   "version": "2.7.0"
+   "version": "6.0.2"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "cmake",
-    "make",
+    "sysroot_linux-64 2.17",
     "cdt_stub",
-    "cdt_stub"
+    "cdt_stub",
+    "cmake",
+    "make"
    ],
    "host": [
-    "rocr-runtime 2.7.0",
-    "elfutils"
+    "rocr-runtime 6.0.2"
    ],
    "run": [
-    "rocr-runtime 2.7.0",
-    "elfutils"
+    "rocr-runtime 6.0.2"
    ]
   },
   "source": {
-   "sha256": "5f7ec4665c4100e69c4216cee3974f03d1017311f9d297ef7c9cf3b58e7edb0f",
-   "url": "https://github.com/RadeonOpenCompute/rocminfo/archive/roc-2.7.0.tar.gz"
+   "sha256": "e616d364a48de18eaee661bdce999d095086905f49777663ca99312f40a63da1",
+   "url": "https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-6.0.2.tar.gz"
   },
   "test": {
    "commands": [
-    "test -f $PREFIX/bin/rocminfo"
+    "test -f $PREFIX/bin/rocminfo",
+    "test -f $PREFIX/bin/rocm_agent_enumerator"
    ]
   }
  },
@@ -153,7 +158,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/rocminfo.json"
  },
- "raw_meta_yaml": "{% set name = \"rocminfo\" %}\n{% set version = \"2.7.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/RadeonOpenCompute/rocminfo/archive/roc-{{ version }}.tar.gz\n  sha256: 5f7ec4665c4100e69c4216cee3974f03d1017311f9d297ef7c9cf3b58e7edb0f\n\nbuild:\n  number: 0\n  skip: True  # [not linux]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make\n    - {{ cdt('numactl-devel') }}\n    - {{ cdt('pciutils-devel') }}\n  host:\n    - rocr-runtime {{ version }}\n    - elfutils\n  run:\n    - rocr-runtime {{ version }}\n    - {{ pin_compatible(\"elfutils\", max_pin=\"x.x\") }}\n\ntest:\n  commands:\n    # Can't run this command without an AMD GPU\n    - test -f $PREFIX/bin/rocminfo\n\nabout:\n  home: https://github.com/RadeonOpenCompute/rocminfo\n  license: NCSA\n  license_family: MIT\n  license_file: License.txt\n  summary: 'ROCm Application for Reporting System Info'\n\nextra:\n  recipe-maintainers:\n    - isuruf\n",
+ "raw_meta_yaml": "{% set name = \"rocminfo\" %}\n{% set version = \"6.0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-{{ version }}.tar.gz\n  sha256: e616d364a48de18eaee661bdce999d095086905f49777663ca99312f40a63da1\n\nbuild:\n  number: 0\n  skip: True  # [not linux]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - sysroot_linux-64 2.17  # [linux64]\n    - {{ cdt('numactl-devel') }}\n    - {{ cdt('pciutils-devel') }}\n    - cmake\n    - make\n  host:\n    - rocr-runtime {{ version }}\n  run:\n    - rocr-runtime {{ version }}\n\ntest:\n  commands:\n    # Can't run this command without an AMD GPU\n    - test -f $PREFIX/bin/rocminfo\n    - test -f $PREFIX/bin/rocm_agent_enumerator\n\nabout:\n  home: https://github.com/ROCm/rocminfo\n  license: NCSA\n  license_family: MIT\n  license_file: License.txt\n  summary: 'ROCm Application for Reporting System Info'\n\nextra:\n  recipe-maintainers:\n    - isuruf\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -161,9 +166,9 @@
    "cdt_stub",
    "cmake",
    "cxx_compiler_stub",
-   "elfutils",
    "make",
-   "rocr-runtime"
+   "rocr-runtime",
+   "sysroot_linux-64"
   ]
  },
  "requirements": {
@@ -174,7 +179,8 @@
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
-    "make"
+    "make",
+    "sysroot_linux-64"
    ]
   },
   "host": {
@@ -182,7 +188,6 @@
    "elements": [
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "elfutils",
     "rocr-runtime"
    ]
   },
@@ -191,7 +196,6 @@
    "elements": [
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "elfutils",
     "rocr-runtime"
    ]
   },
@@ -209,21 +213,20 @@
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
-    "make"
+    "make",
+    "sysroot_linux-64 2.17"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "elfutils",
-    "rocr-runtime 2.7.0"
+    "rocr-runtime 6.0.2"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "elfutils",
-    "rocr-runtime 2.7.0"
+    "rocr-runtime 6.0.2"
    ]
   },
   "test": {
@@ -231,8 +234,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/RadeonOpenCompute/rocminfo/archive/roc-2.7.0.tar.gz",
- "version": "2.7.0",
+ "url": "https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-6.0.2.tar.gz",
+ "version": "6.0.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/rocminfo.json"
  }
