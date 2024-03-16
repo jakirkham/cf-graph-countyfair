@@ -25,11 +25,12 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
+    "rxm7706",
     "mxr-conda"
    ]
   },
@@ -39,12 +40,14 @@
   },
   "requirements": {
    "host": [
-    "pip",
-    "python >=3.6"
+    "python >=3.6,<3.12",
+    "setuptools =33.1.1",
+    "pip"
    ],
    "run": [
-    "python >=3.6",
-    "django >=1.11,<3.0"
+    "python >=3.6,<3.12",
+    "django >=1.11,<5.0",
+    "six"
    ]
   },
   "source": {
@@ -55,7 +58,11 @@
    "commands": [
     "python -c \"from django.conf import settings; settings.configure(); import followit\"",
     "python -c \"import importlib.util; assert importlib.util.find_spec('followit')\"",
-    "python followit/tests/runtests.py"
+    "python followit/tests/runtests.py",
+    "pip check"
+   ],
+   "requires": [
+    "pip"
    ],
    "source_files": [
     "followit/tests/__init__.py",
@@ -76,19 +83,23 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "django",
-    "python"
+    "python",
+    "six"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
@@ -100,11 +111,12 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
+    "rxm7706",
     "mxr-conda"
    ]
   },
@@ -114,12 +126,14 @@
   },
   "requirements": {
    "host": [
-    "pip",
-    "python >=3.6"
+    "python >=3.6,<3.12",
+    "setuptools =33.1.1",
+    "pip"
    ],
    "run": [
-    "python >=3.6",
-    "django >=1.11,<3.0"
+    "python >=3.6,<3.12",
+    "django >=1.11,<5.0",
+    "six"
    ]
   },
   "source": {
@@ -130,7 +144,11 @@
    "commands": [
     "python -c \"from django.conf import settings; settings.configure(); import followit\"",
     "python -c \"import importlib.util; assert importlib.util.find_spec('followit')\"",
-    "python followit/tests/runtests.py"
+    "python followit/tests/runtests.py",
+    "pip check"
+   ],
+   "requires": [
+    "pip"
    ],
    "source_files": [
     "followit/tests/__init__.py",
@@ -156,13 +174,15 @@
  "pr_info": {
   "__lazy_json__": "pr_info/django-followit.json"
  },
- "raw_meta_yaml": "{% set name = \"django-followit\" %}\n{% set version = \"0.6.0\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/django-followit-{{ version }}.tar.gz\n  sha256: 07a9ba15c85f5545c4da48bc63f74314a10265fdd3b123c990422d82bb8d5280\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - pip\n    - python >=3.6\n  run:\n    - python >=3.6\n    - django >=1.11,<3.0\n\ntest:\n  source_files:\n    - followit/tests/__init__.py\n    - followit/tests/manage.py\n    - followit/tests/models.py\n    - followit/tests/runtests.py\n    - followit/tests/settings.py\n    - followit/tests/tests.py\n  commands:\n    - python -c \"from django.conf import settings; settings.configure(); import followit\"\n    - python -c \"import importlib.util; assert importlib.util.find_spec('followit')\"\n    - python followit/tests/runtests.py\nabout:\n  home: https://github.com/ASKBOT/django-followit\n  summary: A Django application that allows users to follow django model objects\n  license: BSD-3-Clause\n  license_file: followit/LICENSE\n\nextra:\n  recipe-maintainers:\n    - mxr-conda\n",
+ "raw_meta_yaml": "{% set name = \"django-followit\" %}\n{% set version = \"0.6.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/django-followit-{{ version }}.tar.gz\n  sha256: 07a9ba15c85f5545c4da48bc63f74314a10265fdd3b123c990422d82bb8d5280\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 1\n\nrequirements:\n  host:\n    - python >=3.6,<3.12\n    - setuptools =33.1.1\n    - pip\n  run:\n    - python >=3.6,<3.12\n    - django >=1.11,<5.0\n    - six\n\ntest:\n  source_files:\n    - followit/tests/__init__.py\n    - followit/tests/manage.py\n    - followit/tests/models.py\n    - followit/tests/runtests.py\n    - followit/tests/settings.py\n    - followit/tests/tests.py\n  commands:\n    - python -c \"from django.conf import settings; settings.configure(); import followit\"\n    - python -c \"import importlib.util; assert importlib.util.find_spec('followit')\"\n    - python followit/tests/runtests.py\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/ASKBOT/django-followit\n  summary: A Django application that allows users to follow django model objects\n  license: BSD-3-Clause\n  license_file: followit/LICENSE\n\nextra:\n  recipe-maintainers:\n    - rxm7706\n    - mxr-conda\n",
  "req": {
   "__set__": true,
   "elements": [
    "django",
    "pip",
-   "python"
+   "python",
+   "setuptools",
+   "six"
   ]
  },
  "requirements": {
@@ -174,19 +194,23 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "django",
-    "python"
+    "python",
+    "six"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
@@ -199,19 +223,23 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6"
+    "python >=3.6,<3.12",
+    "setuptools =33.1.1"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "django >=1.11,<3.0",
-    "python >=3.6"
+    "django >=1.11,<5.0",
+    "python >=3.6,<3.12",
+    "six"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "url": "https://pypi.io/packages/source/d/django-followit/django-followit-0.6.0.tar.gz",
