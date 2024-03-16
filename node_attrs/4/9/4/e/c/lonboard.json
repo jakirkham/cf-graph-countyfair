@@ -26,7 +26,11 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   "script": [
+    "PYTHON -m pip install . -vv --no-deps --no-build-isolation",
+    "npm install",
+    "npm run build"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -35,9 +39,12 @@
   },
   "package": {
    "name": "lonboard",
-   "version": "0.3.0"
+   "version": "0.6.0"
   },
   "requirements": {
+   "build": [
+    "nodejs"
+   ],
    "host": [
     "python >=3.8,<4.0",
     "poetry-core",
@@ -45,24 +52,22 @@
    ],
    "run": [
     "python >=3.8.0,<4.0.0",
-    "anywidget >=0.6.3,<0.7.0",
-    "pyarrow >=13.0.0,<14.0.0",
+    "anywidget >=0.9.0",
+    "pyarrow >=14.0.1",
     "geopandas >=0.13",
+    "pandas >=2.0.0",
     "palettable >=3.3.3,<4.0.0",
     "matplotlib-base >=3.7.0,<4.0.0",
     "shapely >=2.0.0,<3.0.0"
    ]
   },
   "source": {
-   "sha256": "94abdeb81bf1bd60c0d82df09056751667a1075bd75b0d914d1d459be152d370",
-   "url": "https://pypi.io/packages/source/l/lonboard/lonboard-0.3.0.tar.gz"
+   "sha256": "399c5d42851a35c6d31df5c0846a4b47af214d1fa8b83871d26d4a4d8e42e58e",
+   "url": "https://github.com/developmentseed/lonboard/archive/refs/tags/v0.6.0.tar.gz"
   },
   "test": {
    "commands": [
     "pip check"
-   ],
-   "imports": [
-    "lonboard"
    ],
    "requires": [
     "pip"
@@ -72,7 +77,9 @@
  "linux_64_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "nodejs"
+   ]
   },
   "host": {
    "__set__": true,
@@ -89,6 +96,7 @@
     "geopandas",
     "matplotlib-base",
     "palettable",
+    "pandas",
     "pyarrow",
     "python",
     "shapely"
@@ -111,7 +119,11 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   "script": [
+    "PYTHON -m pip install . -vv --no-deps --no-build-isolation",
+    "npm install",
+    "npm run build"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -120,9 +132,12 @@
   },
   "package": {
    "name": "lonboard",
-   "version": "0.3.0"
+   "version": "0.6.0"
   },
   "requirements": {
+   "build": [
+    "nodejs"
+   ],
    "host": [
     "python >=3.8,<4.0",
     "poetry-core",
@@ -130,24 +145,22 @@
    ],
    "run": [
     "python >=3.8.0,<4.0.0",
-    "anywidget >=0.6.3,<0.7.0",
-    "pyarrow >=13.0.0,<14.0.0",
+    "anywidget >=0.9.0",
+    "pyarrow >=14.0.1",
     "geopandas >=0.13",
+    "pandas >=2.0.0",
     "palettable >=3.3.3,<4.0.0",
     "matplotlib-base >=3.7.0,<4.0.0",
     "shapely >=2.0.0,<3.0.0"
    ]
   },
   "source": {
-   "sha256": "94abdeb81bf1bd60c0d82df09056751667a1075bd75b0d914d1d459be152d370",
-   "url": "https://pypi.io/packages/source/l/lonboard/lonboard-0.3.0.tar.gz"
+   "sha256": "399c5d42851a35c6d31df5c0846a4b47af214d1fa8b83871d26d4a4d8e42e58e",
+   "url": "https://github.com/developmentseed/lonboard/archive/refs/tags/v0.6.0.tar.gz"
   },
   "test": {
    "commands": [
     "pip check"
-   ],
-   "imports": [
-    "lonboard"
    ],
    "requires": [
     "pip"
@@ -168,14 +181,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/lonboard.json"
  },
- "raw_meta_yaml": "{% set name = \"lonboard\" %}\n{% set version = \"0.3.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/lonboard-{{ version }}.tar.gz\n  sha256: 94abdeb81bf1bd60c0d82df09056751667a1075bd75b0d914d1d459be152d370\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8,<4.0\n    - poetry-core\n    - pip\n  run:\n    - python >=3.8.0,<4.0.0\n    - anywidget >=0.6.3,<0.7.0\n    - pyarrow >=13.0.0,<14.0.0\n    - geopandas >=0.13\n    - palettable >=3.3.3,<4.0.0\n    - matplotlib-base >=3.7.0,<4.0.0\n    - shapely >=2.0.0,<3.0.0\n\ntest:\n  imports:\n    - lonboard\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/developmentseed/lonboard\n  summary: Python library for fast, interactive geospatial vector data visualization in Jupyter.\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - giswqs\n",
+ "raw_meta_yaml": "{% set name = \"lonboard\" %}\n{% set version = \"0.6.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/developmentseed/lonboard/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 399c5d42851a35c6d31df5c0846a4b47af214d1fa8b83871d26d4a4d8e42e58e\n  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/lonboard-{{ version }}.tar.gz\n  # sha256: 1cfb38c52b26c4f61be7565b76fb0500e44c118651be06748189234a6ec0422f\n\nbuild:\n  noarch: python\n  script: \n    -  {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n    - npm install\n    - npm run build \n  number: 0\n\nrequirements:\n  build:\n    - nodejs\n  host:\n    - python >=3.8,<4.0\n    - poetry-core\n    - pip\n  run:\n    - python >=3.8.0,<4.0.0\n    - anywidget >=0.9.0\n    - pyarrow >=14.0.1\n    - geopandas >=0.13\n    - pandas >=2.0.0\n    - palettable >=3.3.3,<4.0.0\n    - matplotlib-base >=3.7.0,<4.0.0\n    - shapely >=2.0.0,<3.0.0\n\ntest:\n  # imports:\n  #   - lonboard\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/developmentseed/lonboard\n  summary: Python library for fast, interactive geospatial vector data visualization in Jupyter.\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - giswqs\n",
  "req": {
   "__set__": true,
   "elements": [
    "anywidget",
    "geopandas",
    "matplotlib-base",
+   "nodejs",
    "palettable",
+   "pandas",
    "pip",
    "poetry-core",
    "pyarrow",
@@ -186,7 +201,9 @@
  "requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "nodejs"
+   ]
   },
   "host": {
    "__set__": true,
@@ -203,6 +220,7 @@
     "geopandas",
     "matplotlib-base",
     "palettable",
+    "pandas",
     "pyarrow",
     "python",
     "shapely"
@@ -219,7 +237,9 @@
  "total_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "nodejs"
+   ]
   },
   "host": {
    "__set__": true,
@@ -232,11 +252,12 @@
   "run": {
    "__set__": true,
    "elements": [
-    "anywidget >=0.6.3,<0.7.0",
+    "anywidget >=0.9.0",
     "geopandas >=0.13",
     "matplotlib-base >=3.7.0,<4.0.0",
     "palettable >=3.3.3,<4.0.0",
-    "pyarrow >=13.0.0,<14.0.0",
+    "pandas >=2.0.0",
+    "pyarrow >=14.0.1",
     "python >=3.8.0,<4.0.0",
     "shapely >=2.0.0,<3.0.0"
    ]
@@ -248,8 +269,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/l/lonboard/lonboard-0.3.0.tar.gz",
- "version": "0.3.0",
+ "url": "https://github.com/developmentseed/lonboard/archive/refs/tags/v0.6.0.tar.gz",
+ "version": "0.6.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/lonboard.json"
  }
