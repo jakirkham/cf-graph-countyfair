@@ -28,65 +28,104 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "ellisonbg",
-    "jakevdp"
+    "jakevdp",
+    "joelostblom",
+    "jonmmease",
+    "binste",
+    "mattijn"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "altair",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip",
+      "hatchling"
+     ],
+     "run": [
+      "packaging",
+      "python >=3.8",
+      "importlib-metadata",
+      "typing-extensions >=4.0.1",
+      "jinja2",
+      "jsonschema >=3.0",
+      "numpy",
+      "pandas >=0.25",
+      "toolz"
+     ]
+    },
+    "script": "build_base.sh",
+    "test": {
+     "commands": [
+      "pip check",
+      "python -m pytest --pyargs --doctest-modules altair"
+     ],
+     "imports": [
+      "altair",
+      "altair.expr",
+      "altair.utils",
+      "altair.vegalite"
+     ],
+     "requires": [
+      "pytest",
+      "sphinx",
+      "docutils",
+      "vega_datasets >=0.9.0",
+      "anywidget >=0.9.0",
+      "recommonmark",
+      "ipython",
+      "pip"
+     ],
+     "source_files": [
+      "altair"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "altair-all",
+    "requirements": {
+     "host": [
+      "python >=3.8"
+     ],
+     "run": [
+      "vl-convert-python >=1.1.0",
+      "pyarrow >=11",
+      "vegafusion >=1.5.0",
+      "vegafusion-python-embed",
+      "altair",
+      "altair_tiles >=0.3.0"
+     ],
+     "test": {
+      "imports": [
+       "altair",
+       "vegafusion",
+       "vl_convert",
+       "altair_tiles"
+      ]
+     }
+    }
+   }
+  ],
   "package": {
-   "name": "altair",
+   "name": "altair-split",
    "version": "5.2.0"
-  },
-  "requirements": {
-   "host": [
-    "python >=3.8",
-    "pip",
-    "hatchling"
-   ],
-   "run": [
-    "packaging",
-    "python >=3.8",
-    "importlib-metadata",
-    "typing-extensions >=4.0.1",
-    "jinja2",
-    "jsonschema >=3.0",
-    "numpy",
-    "pandas >=0.25",
-    "toolz"
-   ]
   },
   "source": {
    "sha256": "2ad7f0c8010ebbc46319cc30febfb8e59ccf84969a201541c207bc3a4fa6cf81",
    "url": "https://pypi.io/packages/source/a/altair/altair-5.2.0.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "pip check",
-    "python -m pytest --pyargs --doctest-modules altair"
-   ],
-   "imports": [
-    "altair",
-    "altair.expr",
-    "altair.utils",
-    "altair.vegalite"
-   ],
-   "requires": [
-    "pytest",
-    "sphinx",
-    "docutils",
-    "vega_datasets",
-    "recommonmark",
-    "ipython",
-    "pip",
-    "anywidget"
-   ],
-   "source_files": [
-    "altair"
-   ]
   }
  },
  "linux_64_requirements": {
@@ -105,15 +144,21 @@
   "run": {
    "__set__": true,
    "elements": [
+    "altair",
+    "altair_tiles",
     "importlib-metadata",
     "jinja2",
     "jsonschema",
     "numpy",
     "packaging",
     "pandas",
+    "pyarrow",
     "python",
     "toolz",
-    "typing-extensions"
+    "typing-extensions",
+    "vegafusion",
+    "vegafusion-python-embed",
+    "vl-convert-python"
    ]
   },
   "test": {
@@ -139,72 +184,112 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "ellisonbg",
-    "jakevdp"
+    "jakevdp",
+    "joelostblom",
+    "jonmmease",
+    "binste",
+    "mattijn"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "altair",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip",
+      "hatchling"
+     ],
+     "run": [
+      "packaging",
+      "python >=3.8",
+      "importlib-metadata",
+      "typing-extensions >=4.0.1",
+      "jinja2",
+      "jsonschema >=3.0",
+      "numpy",
+      "pandas >=0.25",
+      "toolz"
+     ]
+    },
+    "script": "build_base.sh",
+    "test": {
+     "commands": [
+      "pip check",
+      "python -m pytest --pyargs --doctest-modules altair"
+     ],
+     "imports": [
+      "altair",
+      "altair.expr",
+      "altair.utils",
+      "altair.vegalite"
+     ],
+     "requires": [
+      "pytest",
+      "sphinx",
+      "docutils",
+      "vega_datasets >=0.9.0",
+      "anywidget >=0.9.0",
+      "recommonmark",
+      "ipython",
+      "pip"
+     ],
+     "source_files": [
+      "altair"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "altair-all",
+    "requirements": {
+     "host": [
+      "python >=3.8"
+     ],
+     "run": [
+      "vl-convert-python >=1.1.0",
+      "pyarrow >=11",
+      "vegafusion >=1.5.0",
+      "vegafusion-python-embed",
+      "altair",
+      "altair_tiles >=0.3.0"
+     ],
+     "test": {
+      "imports": [
+       "altair",
+       "vegafusion",
+       "vl_convert",
+       "altair_tiles"
+      ]
+     }
+    }
+   }
+  ],
   "package": {
-   "name": "altair",
+   "name": "altair-split",
    "version": "5.2.0"
-  },
-  "requirements": {
-   "host": [
-    "python >=3.8",
-    "pip",
-    "hatchling"
-   ],
-   "run": [
-    "packaging",
-    "python >=3.8",
-    "importlib-metadata",
-    "typing-extensions >=4.0.1",
-    "jinja2",
-    "jsonschema >=3.0",
-    "numpy",
-    "pandas >=0.25",
-    "toolz"
-   ]
   },
   "source": {
    "sha256": "2ad7f0c8010ebbc46319cc30febfb8e59ccf84969a201541c207bc3a4fa6cf81",
    "url": "https://pypi.io/packages/source/a/altair/altair-5.2.0.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "pip check",
-    "python -m pytest --pyargs --doctest-modules altair"
-   ],
-   "imports": [
-    "altair",
-    "altair.expr",
-    "altair.utils",
-    "altair.vegalite"
-   ],
-   "requires": [
-    "pytest",
-    "sphinx",
-    "docutils",
-    "vega_datasets",
-    "recommonmark",
-    "ipython",
-    "pip",
-    "anywidget"
-   ],
-   "source_files": [
-    "altair"
-   ]
   }
  },
- "name": "altair",
+ "name": "altair-split",
  "outputs_names": {
   "__set__": true,
   "elements": [
-   "altair"
+   "altair",
+   "altair-all"
   ]
  },
  "parsing_error": false,
@@ -214,10 +299,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/altair.json"
  },
- "raw_meta_yaml": "{% set name = \"altair\" %}\n{% set version = \"5.2.0\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/altair-{{ version }}.tar.gz\n  sha256: 2ad7f0c8010ebbc46319cc30febfb8e59ccf84969a201541c207bc3a4fa6cf81\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n    - hatchling\n  run:\n    - packaging\n    - python >=3.8\n    - importlib-metadata\n    - typing-extensions >=4.0.1\n    - jinja2\n    - jsonschema >=3.0\n    - numpy\n    - pandas >=0.25\n    - toolz\n\ntest:\n  source_files:\n    - altair\n  requires:\n    - pytest\n    - sphinx\n    - docutils\n    - vega_datasets\n    - recommonmark\n    - ipython\n    - pip\n    - anywidget\n  commands:\n    - pip check\n    - python -m pytest --pyargs --doctest-modules altair\n  imports:\n    - altair\n    - altair.expr\n    - altair.utils\n    - altair.vegalite\n\nabout:\n  home: http://altair-viz.github.io\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: 'Altair: A declarative statistical visualization library for Python'\n\nextra:\n  recipe-maintainers:\n    - ellisonbg\n    - jakevdp\n",
+ "raw_meta_yaml": "{% set name = \"altair-split\" %}\n{% set version = \"5.2.0\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/a/altair/altair-{{ version }}.tar.gz\n  sha256: 2ad7f0c8010ebbc46319cc30febfb8e59ccf84969a201541c207bc3a4fa6cf81\n\nbuild:\n  number: 1\n  noarch: python\n\noutputs:\n  - name: altair\n    script: build_base.sh\n    build:\n      noarch: python\n    requirements:\n      host:\n        - python >=3.8\n        - pip\n        - hatchling\n      run:\n        - packaging\n        - python >=3.8\n        - importlib-metadata\n        - typing-extensions >=4.0.1\n        - jinja2\n        - jsonschema >=3.0\n        - numpy\n        - pandas >=0.25\n        - toolz\n    test:\n      source_files:\n        - altair\n      requires:\n        - pytest\n        - sphinx\n        - docutils\n        - vega_datasets >=0.9.0\n        - anywidget >=0.9.0\n        - recommonmark\n        - ipython\n        - pip\n      commands:\n        - pip check\n        - python -m pytest --pyargs --doctest-modules altair\n      imports:\n        - altair\n        - altair.expr\n        - altair.utils\n        - altair.vegalite\n\n  - name: altair-all\n    build:\n      noarch: python\n    requirements:\n      host:\n        - python >=3.8\n      run:\n        - vl-convert-python >=1.1.0\n        - pyarrow >=11\n        - vegafusion >=1.5.0\n        - vegafusion-python-embed\n        - {{ pin_subpackage('altair', exact=True) }}\n        - altair_tiles >=0.3.0\n      test:\n        imports:\n          - altair\n          - vegafusion\n          - vl_convert\n          - altair_tiles\n\nabout:\n  home: http://altair-viz.github.io\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: 'Altair: A declarative statistical visualization library for Python'\n\nextra:\n  recipe-maintainers:\n    - ellisonbg\n    - jakevdp\n    - joelostblom\n    - jonmmease\n    - binste\n    - mattijn\n",
  "req": {
   "__set__": true,
   "elements": [
+   "altair",
+   "altair_tiles",
    "hatchling",
    "importlib-metadata",
    "jinja2",
@@ -226,9 +313,13 @@
    "packaging",
    "pandas",
    "pip",
+   "pyarrow",
    "python",
    "toolz",
-   "typing-extensions"
+   "typing-extensions",
+   "vegafusion",
+   "vegafusion-python-embed",
+   "vl-convert-python"
   ]
  },
  "requirements": {
@@ -247,15 +338,21 @@
   "run": {
    "__set__": true,
    "elements": [
+    "altair",
+    "altair_tiles",
     "importlib-metadata",
     "jinja2",
     "jsonschema",
     "numpy",
     "packaging",
     "pandas",
+    "pyarrow",
     "python",
     "toolz",
-    "typing-extensions"
+    "typing-extensions",
+    "vegafusion",
+    "vegafusion-python-embed",
+    "vl-convert-python"
    ]
   },
   "test": {
@@ -289,28 +386,34 @@
   "run": {
    "__set__": true,
    "elements": [
+    "altair",
+    "altair_tiles >=0.3.0",
     "importlib-metadata",
     "jinja2",
     "jsonschema >=3.0",
     "numpy",
     "packaging",
     "pandas >=0.25",
+    "pyarrow >=11",
     "python >=3.8",
     "toolz",
-    "typing-extensions >=4.0.1"
+    "typing-extensions >=4.0.1",
+    "vegafusion >=1.5.0",
+    "vegafusion-python-embed",
+    "vl-convert-python >=1.1.0"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "anywidget",
+    "anywidget >=0.9.0",
     "docutils",
     "ipython",
     "pip",
     "pytest",
     "recommonmark",
     "sphinx",
-    "vega_datasets"
+    "vega_datasets >=0.9.0"
    ]
   }
  },
