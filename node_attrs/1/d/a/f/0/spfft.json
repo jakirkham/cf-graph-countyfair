@@ -41,7 +41,7 @@
   },
   "package": {
    "name": "spfft",
-   "version": "1.0.6"
+   "version": "1.1.0"
   },
   "requirements": {
    "build": [
@@ -68,8 +68,8 @@
    ]
   },
   "source": {
-   "sha256": "d179ccdce65890587d0cbf72dc2e5ec0b200ffc56e723ed01a2f5063de6a8630",
-   "url": "https://github.com/eth-cscs/SpFFT/archive/refs/tags/v1.0.6.tar.gz"
+   "sha256": "d4673b3135aebfa1c440723226fe976d518ff881285b3d4787f1aa8210eac81e",
+   "url": "https://github.com/eth-cscs/SpFFT/archive/refs/tags/v1.1.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -141,7 +141,7 @@
   },
   "package": {
    "name": "spfft",
-   "version": "1.0.6"
+   "version": "1.1.0"
   },
   "requirements": {
    "build": [
@@ -184,8 +184,8 @@
    ]
   },
   "source": {
-   "sha256": "d179ccdce65890587d0cbf72dc2e5ec0b200ffc56e723ed01a2f5063de6a8630",
-   "url": "https://github.com/eth-cscs/SpFFT/archive/refs/tags/v1.0.6.tar.gz"
+   "sha256": "d4673b3135aebfa1c440723226fe976d518ff881285b3d4787f1aa8210eac81e",
+   "url": "https://github.com/eth-cscs/SpFFT/archive/refs/tags/v1.1.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -225,7 +225,7 @@
   },
   "package": {
    "name": "spfft",
-   "version": "1.0.6"
+   "version": "1.1.0"
   },
   "requirements": {
    "build": [
@@ -252,8 +252,8 @@
    ]
   },
   "source": {
-   "sha256": "d179ccdce65890587d0cbf72dc2e5ec0b200ffc56e723ed01a2f5063de6a8630",
-   "url": "https://github.com/eth-cscs/SpFFT/archive/refs/tags/v1.0.6.tar.gz"
+   "sha256": "d4673b3135aebfa1c440723226fe976d518ff881285b3d4787f1aa8210eac81e",
+   "url": "https://github.com/eth-cscs/SpFFT/archive/refs/tags/v1.1.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -305,7 +305,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/spfft.json"
  },
- "raw_meta_yaml": "{% set name = \"spfft\" %}\n{% set version = \"1.0.6\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/eth-cscs/SpFFT/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: d179ccdce65890587d0cbf72dc2e5ec0b200ffc56e723ed01a2f5063de6a8630\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  run_exports:\n    - {{ pin_compatible('spfft', max_pin='x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}\n    - make\n    - cmake >=3.11.0\n  host:\n    - {{ mpi }}\n    - fftw\n    - libgomp      # [linux]\n    - llvm-openmp  # [osx]\n  run:\n    - {{ mpi }}\n\ntest:\n  commands:\n    - test -f \"${PREFIX}/lib/libspfft${SHLIB_EXT}\"\n\nabout:\n  home: https://github.com/eth-cscs/SpFFT.git\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Sparse 3D FFT library\n  description: |\n    SpFFT is A 3D FFT library for sparse frequency domain data written in C++ with support for MPI, OpenMP, CUDA and ROCm.\n\n    Inspired by the need of some computational material science applications with spherical cutoff data in frequency domain, SpFFT provides Fast Fourier Transformations of sparse frequency domain data. For distributed computations with MPI, slab decomposition in space domain and pencil decomposition in frequency domain (sparse data within a pencil / column must be on one rank) is used.\n  doc_url: https://spfft.readthedocs.io/en/latest/?badge=latest\n  dev_url: https://github.com/eth-cscs/SpFFT\n\nextra:\n  recipe-maintainers:\n    - AdhocMan\n    - ltalirz\n",
+ "raw_meta_yaml": "{% set name = \"spfft\" %}\n{% set version = \"1.1.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/eth-cscs/SpFFT/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: d4673b3135aebfa1c440723226fe976d518ff881285b3d4787f1aa8210eac81e\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  run_exports:\n    - {{ pin_subpackage('spfft', max_pin='x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}\n    - make\n    - cmake >=3.11.0\n  host:\n    - {{ mpi }}\n    - fftw\n    - libgomp      # [linux]\n    - llvm-openmp  # [osx]\n  run:\n    - {{ mpi }}\n\ntest:\n  commands:\n    - test -f \"${PREFIX}/lib/libspfft${SHLIB_EXT}\"\n\nabout:\n  home: https://github.com/eth-cscs/SpFFT.git\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Sparse 3D FFT library\n  description: |\n    SpFFT is A 3D FFT library for sparse frequency domain data written in C++ with support for MPI, OpenMP, CUDA and ROCm.\n\n    Inspired by the need of some computational material science applications with spherical cutoff data in frequency domain, SpFFT provides Fast Fourier Transformations of sparse frequency domain data. For distributed computations with MPI, slab decomposition in space domain and pencil decomposition in frequency domain (sparse data within a pencil / column must be on one rank) is used.\n  doc_url: https://spfft.readthedocs.io/en/latest/?badge=latest\n  dev_url: https://github.com/eth-cscs/SpFFT\n\nextra:\n  recipe-maintainers:\n    - AdhocMan\n    - ltalirz\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -388,8 +388,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/eth-cscs/SpFFT/archive/refs/tags/v1.0.6.tar.gz",
- "version": "1.0.6",
+ "url": "https://github.com/eth-cscs/SpFFT/archive/refs/tags/v1.1.0.tar.gz",
+ "version": "1.1.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/spfft.json"
  }
