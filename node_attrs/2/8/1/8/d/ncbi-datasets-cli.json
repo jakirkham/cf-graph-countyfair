@@ -16,13 +16,17 @@
    "branch_name": "main",
    "tooling_branch_name": "main"
   },
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "None"
+  },
   "test": "native_and_emulated"
  },
  "feedstock_name": "ncbi-datasets-cli",
  "hash_type": "sha256",
  "linux_64_meta_yaml": {
   "about": {
-   "description": "NCBI Datasets is a new resource that lets you easily gather data from across NCBI databases.\n",
+   "description": "NCBI Datasets is a resource that lets you easily gather data from across NCBI databases.\n",
    "doc_url": "https://www.ncbi.nlm.nih.gov/datasets/docs/",
    "home": "https://www.ncbi.nlm.nih.gov/datasets",
    "license": "Public Domain",
@@ -30,7 +34,7 @@
    "summary": "NCBI Datasets command-line clients"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "python RECIPE_DIR/build.py 16.10.0"
   },
   "extra": {
@@ -79,9 +83,9 @@
    "elements": []
   }
  },
- "meta_yaml": {
+ "linux_aarch64_meta_yaml": {
   "about": {
-   "description": "NCBI Datasets is a new resource that lets you easily gather data from across NCBI databases.\n",
+   "description": "NCBI Datasets is a resource that lets you easily gather data from across NCBI databases.\n",
    "doc_url": "https://www.ncbi.nlm.nih.gov/datasets/docs/",
    "home": "https://www.ncbi.nlm.nih.gov/datasets",
    "license": "Public Domain",
@@ -89,11 +93,72 @@
    "summary": "NCBI Datasets command-line clients"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "python RECIPE_DIR/build.py 16.10.0"
   },
   "extra": {
    "recipe-maintainers": [
+    "BradHolmes",
+    "wra3"
+   ]
+  },
+  "package": {
+   "name": "ncbi-datasets-cli",
+   "version": "16.10.0"
+  },
+  "requirements": {
+   "run": [
+    "ca-certificates"
+   ]
+  },
+  "source": {
+   "sha256": "a6337e91e3192a7e70bc48d54af2aa3c32bb0e60b7192735ada9745b44433ff2",
+   "url": "https://github.com/ncbi/datasets/archive/refs/tags/v16.10.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "datasets version",
+    "dataformat version"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": []
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "ca-certificates"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "meta_yaml": {
+  "about": {
+   "description": "NCBI Datasets is a resource that lets you easily gather data from across NCBI databases.\n",
+   "doc_url": "https://www.ncbi.nlm.nih.gov/datasets/docs/",
+   "home": "https://www.ncbi.nlm.nih.gov/datasets",
+   "license": "Public Domain",
+   "license_file": "LICENSE.md",
+   "summary": "NCBI Datasets command-line clients"
+  },
+  "build": {
+   "number": "2",
+   "script": "python RECIPE_DIR/build.py 16.10.0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "BradHolmes",
+    "wra3",
     "BradHolmes",
     "wra3",
     "BradHolmes",
@@ -113,6 +178,7 @@
     "ca-certificates",
     "ca-certificates",
     "ca-certificates",
+    "ca-certificates",
     "ca-certificates"
    ]
   },
@@ -129,6 +195,8 @@
     "datasets version",
     "dataformat version",
     "datasets version",
+    "dataformat version",
+    "datasets version",
     "dataformat version"
    ]
   }
@@ -136,7 +204,7 @@
  "name": "ncbi-datasets-cli",
  "osx_64_meta_yaml": {
   "about": {
-   "description": "NCBI Datasets is a new resource that lets you easily gather data from across NCBI databases.\n",
+   "description": "NCBI Datasets is a resource that lets you easily gather data from across NCBI databases.\n",
    "doc_url": "https://www.ncbi.nlm.nih.gov/datasets/docs/",
    "home": "https://www.ncbi.nlm.nih.gov/datasets",
    "license": "Public Domain",
@@ -144,7 +212,7 @@
    "summary": "NCBI Datasets command-line clients"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "python RECIPE_DIR/build.py 16.10.0"
   },
   "extra": {
@@ -195,7 +263,7 @@
  },
  "osx_arm64_meta_yaml": {
   "about": {
-   "description": "NCBI Datasets is a new resource that lets you easily gather data from across NCBI databases.\n",
+   "description": "NCBI Datasets is a resource that lets you easily gather data from across NCBI databases.\n",
    "doc_url": "https://www.ncbi.nlm.nih.gov/datasets/docs/",
    "home": "https://www.ncbi.nlm.nih.gov/datasets",
    "license": "Public Domain",
@@ -203,7 +271,7 @@
    "summary": "NCBI Datasets command-line clients"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "python RECIPE_DIR/build.py 16.10.0"
   },
   "extra": {
@@ -261,6 +329,7 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -268,7 +337,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/ncbi-datasets-cli.json"
  },
- "raw_meta_yaml": "{% set name = \"ncbi-datasets-cli\" %}\n{% set version = \"16.10.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ncbi/datasets/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: a6337e91e3192a7e70bc48d54af2aa3c32bb0e60b7192735ada9745b44433ff2\n\nbuild:\n  number: 1\n  script: python {{ RECIPE_DIR }}/build.py {{ version }}\n\nrequirements:\n  run:\n    - ca-certificates\n\ntest:\n  commands:\n    - datasets version\n    - dataformat version\n\nabout:\n  home: https://www.ncbi.nlm.nih.gov/datasets\n  license: Public Domain\n  license_file: LICENSE.md\n  summary: NCBI Datasets command-line clients\n  doc_url: https://www.ncbi.nlm.nih.gov/datasets/docs/\n  description: |\n    NCBI Datasets is a new resource that lets you easily gather data from across NCBI databases.\n\nextra:\n  recipe-maintainers:\n    - BradHolmes\n    - wra3\n",
+ "raw_meta_yaml": "{% set name = \"ncbi-datasets-cli\" %}\n{% set version = \"16.10.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ncbi/datasets/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: a6337e91e3192a7e70bc48d54af2aa3c32bb0e60b7192735ada9745b44433ff2\n\nbuild:\n  number: 2\n  script: python {{ RECIPE_DIR }}/build.py {{ version }}\n\nrequirements:\n  run:\n    - ca-certificates\n\ntest:\n  commands:\n    - datasets version\n    - dataformat version\n\nabout:\n  home: https://www.ncbi.nlm.nih.gov/datasets\n  license: Public Domain\n  license_file: LICENSE.md\n  summary: NCBI Datasets command-line clients\n  doc_url: https://www.ncbi.nlm.nih.gov/datasets/docs/\n  description: |\n    NCBI Datasets is a resource that lets you easily gather data from across NCBI databases.\n\nextra:\n  recipe-maintainers:\n    - BradHolmes\n    - wra3\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -323,7 +392,7 @@
  },
  "win_64_meta_yaml": {
   "about": {
-   "description": "NCBI Datasets is a new resource that lets you easily gather data from across NCBI databases.\n",
+   "description": "NCBI Datasets is a resource that lets you easily gather data from across NCBI databases.\n",
    "doc_url": "https://www.ncbi.nlm.nih.gov/datasets/docs/",
    "home": "https://www.ncbi.nlm.nih.gov/datasets",
    "license": "Public Domain",
@@ -331,7 +400,7 @@
    "summary": "NCBI Datasets command-line clients"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "python RECIPE_DIR/build.py 16.10.0"
   },
   "extra": {
