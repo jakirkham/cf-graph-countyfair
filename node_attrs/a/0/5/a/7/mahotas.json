@@ -3,6 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -14,9 +16,11 @@
    "tooling_branch_name": "main"
   },
   "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "default",
    "win": "azure"
   },
-  "test": "native_and_emulated"
+  "test": "native"
  },
  "feedstock_name": "mahotas",
  "hash_type": "sha256",
@@ -37,16 +41,13 @@
     "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main",
-    "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main"
    ],
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
    "recipe-maintainers": [
-    "jakirkham",
-    "luispedro",
     "jakirkham",
     "luispedro",
     "jakirkham",
@@ -74,14 +75,9 @@
     "c_compiler_stub",
     "cxx_compiler_stub",
     "c_compiler_stub",
-    "cxx_compiler_stub",
-    "c_compiler_stub",
     "cxx_compiler_stub"
    ],
    "host": [
-    "python",
-    "pip",
-    "numpy",
     "python",
     "pip",
     "numpy",
@@ -108,27 +104,42 @@
     "python",
     "numpy",
     "python",
-    "numpy",
-    "python",
     "numpy"
    ]
   },
   "source": {
    "fn": "mahotas-1.4.13.tar.gz",
+   "patches": [
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch"
+   ],
    "sha256": "a78dfe15045a20a0d9e01538b80f874580cd3525ae3eaa2c83ced51eb455879c",
    "url": "https://pypi.io/packages/source/m/mahotas/mahotas-1.4.13.tar.gz"
   },
   "test": {
    "commands": [
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
-    "mahotas-features --help"
+    "python run_testsuite.py"
+   ],
+   "files": [
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py"
    ],
    "imports": [
-    "mahotas",
     "mahotas",
     "mahotas",
     "mahotas",
@@ -136,21 +147,23 @@
     "mahotas"
    ],
    "requires": [
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
-    "pytest",
-    "scipy",
-    "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow"
@@ -185,6 +198,365 @@
    "elements": [
     "pillow",
     "pytest",
+    "python",
+    "scipy"
+   ]
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "description": "Mahotas is a library of fast computer vision algorithms\n(all implemented in C++) operating over numpy arrays.\n",
+   "dev_url": "https://github.com/luispedro/mahotas",
+   "doc_url": "https://mahotas.readthedocs.io/",
+   "home": "https://mahotas.readthedocs.io/",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": "COPYING",
+   "summary": "Mahotas: Computer Vision Library"
+  },
+  "build": {
+   "entry_points": [
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main"
+   ],
+   "number": "3",
+   "script": "PYTHON -m pip install . -vv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro"
+   ]
+  },
+  "package": {
+   "name": "mahotas",
+   "version": "1.4.13"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy"
+   ],
+   "run": [
+    "python",
+    "numpy",
+    "python",
+    "numpy",
+    "python",
+    "numpy",
+    "python",
+    "numpy",
+    "python",
+    "numpy"
+   ]
+  },
+  "source": {
+   "fn": "mahotas-1.4.13.tar.gz",
+   "patches": [
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch"
+   ],
+   "sha256": "a78dfe15045a20a0d9e01538b80f874580cd3525ae3eaa2c83ced51eb455879c",
+   "url": "https://pypi.io/packages/source/m/mahotas/mahotas-1.4.13.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py"
+   ],
+   "files": [
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py"
+   ],
+   "imports": [
+    "mahotas",
+    "mahotas",
+    "mahotas",
+    "mahotas",
+    "mahotas"
+   ],
+   "requires": [
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cxx_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "numpy",
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "numpy",
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "pillow",
+    "pytest",
+    "python",
+    "scipy"
+   ]
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "description": "Mahotas is a library of fast computer vision algorithms\n(all implemented in C++) operating over numpy arrays.\n",
+   "dev_url": "https://github.com/luispedro/mahotas",
+   "doc_url": "https://mahotas.readthedocs.io/",
+   "home": "https://mahotas.readthedocs.io/",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": "COPYING",
+   "summary": "Mahotas: Computer Vision Library"
+  },
+  "build": {
+   "entry_points": [
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main"
+   ],
+   "number": "3",
+   "script": "PYTHON -m pip install . -vv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro"
+   ]
+  },
+  "package": {
+   "name": "mahotas",
+   "version": "1.4.13"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy"
+   ],
+   "run": [
+    "python",
+    "numpy",
+    "python",
+    "numpy",
+    "python",
+    "numpy",
+    "python",
+    "numpy",
+    "python",
+    "numpy"
+   ]
+  },
+  "source": {
+   "fn": "mahotas-1.4.13.tar.gz",
+   "patches": [
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch"
+   ],
+   "sha256": "a78dfe15045a20a0d9e01538b80f874580cd3525ae3eaa2c83ced51eb455879c",
+   "url": "https://pypi.io/packages/source/m/mahotas/mahotas-1.4.13.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py"
+   ],
+   "files": [
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py"
+   ],
+   "imports": [
+    "mahotas",
+    "mahotas",
+    "mahotas",
+    "mahotas",
+    "mahotas"
+   ],
+   "requires": [
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cxx_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "numpy",
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "numpy",
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "pillow",
+    "pytest",
+    "python",
     "scipy"
    ]
   }
@@ -223,13 +595,34 @@
     "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
+    "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main"
    ],
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
    "recipe-maintainers": [
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro",
+    "jakirkham",
+    "luispedro",
     "jakirkham",
     "luispedro",
     "jakirkham",
@@ -282,6 +675,20 @@
   },
   "requirements": {
    "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "c_compiler_stub",
@@ -393,9 +800,44 @@
     "numpy",
     "python",
     "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
+    "numpy",
+    "python",
+    "pip",
     "numpy"
    ],
    "run": [
+    "python",
+    "numpy",
+    "python",
+    "numpy",
+    "python",
+    "numpy",
+    "python",
+    "numpy",
+    "python",
+    "numpy",
+    "python",
+    "numpy",
+    "python",
+    "numpy",
     "python",
     "numpy",
     "python",
@@ -444,35 +886,140 @@
   },
   "source": {
    "fn": "mahotas-1.4.13.tar.gz",
+   "patches": [
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch"
+   ],
    "sha256": "a78dfe15045a20a0d9e01538b80f874580cd3525ae3eaa2c83ced51eb455879c",
    "url": "https://pypi.io/packages/source/m/mahotas/mahotas-1.4.13.tar.gz"
   },
   "test": {
    "commands": [
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
-    "mahotas-features --help"
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py"
+   ],
+   "files": [
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py"
    ],
    "imports": [
+    "mahotas",
+    "mahotas",
+    "mahotas",
+    "mahotas",
+    "mahotas",
+    "mahotas",
+    "mahotas",
     "mahotas",
     "mahotas",
     "mahotas",
@@ -497,69 +1044,119 @@
     "mahotas"
    ],
    "requires": [
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
+    "pytest",
+    "scipy",
+    "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow"
@@ -584,16 +1181,13 @@
     "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main",
-    "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main"
    ],
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
    "recipe-maintainers": [
-    "jakirkham",
-    "luispedro",
     "jakirkham",
     "luispedro",
     "jakirkham",
@@ -621,14 +1215,9 @@
     "c_compiler_stub",
     "cxx_compiler_stub",
     "c_compiler_stub",
-    "cxx_compiler_stub",
-    "c_compiler_stub",
     "cxx_compiler_stub"
    ],
    "host": [
-    "python",
-    "pip",
-    "numpy",
     "python",
     "pip",
     "numpy",
@@ -655,27 +1244,42 @@
     "python",
     "numpy",
     "python",
-    "numpy",
-    "python",
     "numpy"
    ]
   },
   "source": {
    "fn": "mahotas-1.4.13.tar.gz",
+   "patches": [
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch"
+   ],
    "sha256": "a78dfe15045a20a0d9e01538b80f874580cd3525ae3eaa2c83ced51eb455879c",
    "url": "https://pypi.io/packages/source/m/mahotas/mahotas-1.4.13.tar.gz"
   },
   "test": {
    "commands": [
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
-    "mahotas-features --help"
+    "python run_testsuite.py"
+   ],
+   "files": [
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py"
    ],
    "imports": [
-    "mahotas",
     "mahotas",
     "mahotas",
     "mahotas",
@@ -683,21 +1287,23 @@
     "mahotas"
    ],
    "requires": [
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
-    "pytest",
-    "scipy",
-    "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow"
@@ -732,6 +1338,7 @@
    "elements": [
     "pillow",
     "pytest",
+    "python",
     "scipy"
    ]
   }
@@ -754,7 +1361,7 @@
     "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main"
    ],
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -811,15 +1418,31 @@
   },
   "source": {
    "fn": "mahotas-1.4.13.tar.gz",
+   "patches": [
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch"
+   ],
    "sha256": "a78dfe15045a20a0d9e01538b80f874580cd3525ae3eaa2c83ced51eb455879c",
    "url": "https://pypi.io/packages/source/m/mahotas/mahotas-1.4.13.tar.gz"
   },
   "test": {
    "commands": [
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
-    "mahotas-features --help"
+    "python run_testsuite.py",
+    "mahotas-features --help",
+    "python run_testsuite.py"
+   ],
+   "files": [
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py"
    ],
    "imports": [
     "mahotas",
@@ -828,15 +1451,19 @@
     "mahotas"
    ],
    "requires": [
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow"
@@ -871,6 +1498,7 @@
    "elements": [
     "pillow",
     "pytest",
+    "python",
     "scipy"
    ]
   }
@@ -884,6 +1512,8 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
+  "linux_ppc64le",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -891,7 +1521,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/mahotas.json"
  },
- "raw_meta_yaml": "{% set name = \"mahotas\" %}\n{% set version = \"1.4.13\" %}\n{% set sha256 = \"a78dfe15045a20a0d9e01538b80f874580cd3525ae3eaa2c83ced51eb455879c\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 2\n  script: {{ PYTHON }} -m pip install . -vv\n  entry_points:\n    - mahotas-features = mahotas.features_cli:main\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip\n    - numpy\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  requires:\n    - pytest\n    - scipy\n    - pillow\n\n  imports:\n    - mahotas\n\n  commands:\n    - mahotas-features --help\n\nabout:\n  home: https://mahotas.readthedocs.io/\n  license: MIT\n  license_family: MIT\n  license_file: COPYING\n\n  summary: 'Mahotas: Computer Vision Library'\n  description: |\n    Mahotas is a library of fast computer vision algorithms\n    (all implemented in C++) operating over numpy arrays.\n\n  doc_url: https://mahotas.readthedocs.io/\n  dev_url: https://github.com/luispedro/mahotas\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - luispedro\n",
+ "raw_meta_yaml": "{% set name = \"mahotas\" %}\n{% set version = \"1.4.13\" %}\n{% set sha256 = \"a78dfe15045a20a0d9e01538b80f874580cd3525ae3eaa2c83ced51eb455879c\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n  patches:\n    # xref: https://github.com/luispedro/mahotas/commit/3e927b415ef0f33710fed2fedd2377c207956638\n    - patches/drop_std_random_shuffle.patch\n\nbuild:\n  number: 3\n  script: {{ PYTHON }} -m pip install . -vv\n  entry_points:\n    - mahotas-features = mahotas.features_cli:main\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip\n    - numpy\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  files:\n    - run_testsuite.py\n  requires:\n    - python\n    - pytest\n    - scipy\n    - pillow\n  imports:\n    - mahotas\n  commands:\n    - mahotas-features --help\n    - python run_testsuite.py\n\nabout:\n  home: https://mahotas.readthedocs.io/\n  license: MIT\n  license_family: MIT\n  license_file: COPYING\n\n  summary: 'Mahotas: Computer Vision Library'\n  description: |\n    Mahotas is a library of fast computer vision algorithms\n    (all implemented in C++) operating over numpy arrays.\n\n  doc_url: https://mahotas.readthedocs.io/\n  dev_url: https://github.com/luispedro/mahotas\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - luispedro\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -934,6 +1564,7 @@
    "elements": [
     "pillow",
     "pytest",
+    "python",
     "scipy"
    ]
   }
@@ -967,6 +1598,7 @@
    "elements": [
     "pillow",
     "pytest",
+    "python",
     "scipy"
    ]
   }
@@ -993,16 +1625,13 @@
     "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main",
-    "mahotas-features = mahotas.features_cli:main",
     "mahotas-features = mahotas.features_cli:main"
    ],
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
    "recipe-maintainers": [
-    "jakirkham",
-    "luispedro",
     "jakirkham",
     "luispedro",
     "jakirkham",
@@ -1030,14 +1659,9 @@
     "c_compiler_stub",
     "cxx_compiler_stub",
     "c_compiler_stub",
-    "cxx_compiler_stub",
-    "c_compiler_stub",
     "cxx_compiler_stub"
    ],
    "host": [
-    "python",
-    "pip",
-    "numpy",
     "python",
     "pip",
     "numpy",
@@ -1064,27 +1688,42 @@
     "python",
     "numpy",
     "python",
-    "numpy",
-    "python",
     "numpy"
    ]
   },
   "source": {
    "fn": "mahotas-1.4.13.tar.gz",
+   "patches": [
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch",
+    "patches/drop_std_random_shuffle.patch"
+   ],
    "sha256": "a78dfe15045a20a0d9e01538b80f874580cd3525ae3eaa2c83ced51eb455879c",
    "url": "https://pypi.io/packages/source/m/mahotas/mahotas-1.4.13.tar.gz"
   },
   "test": {
    "commands": [
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
+    "python run_testsuite.py",
     "mahotas-features --help",
-    "mahotas-features --help"
+    "python run_testsuite.py"
+   ],
+   "files": [
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py",
+    "run_testsuite.py"
    ],
    "imports": [
-    "mahotas",
     "mahotas",
     "mahotas",
     "mahotas",
@@ -1092,21 +1731,23 @@
     "mahotas"
    ],
    "requires": [
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow",
-    "pytest",
-    "scipy",
-    "pillow",
+    "python",
     "pytest",
     "scipy",
     "pillow"
@@ -1141,6 +1782,7 @@
    "elements": [
     "pillow",
     "pytest",
+    "python",
     "scipy"
    ]
   }
