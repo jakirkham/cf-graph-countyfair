@@ -22,11 +22,11 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
+    "tadeu",
     "tadeu"
    ]
   },
@@ -35,13 +35,10 @@
    "version": "1.3.1"
   },
   "requirements": {
-   "host": [
-    "python >=3.8,<3.11",
-    "poetry-core",
-    "pip"
-   ],
+   "host": [],
    "run": [
-    "python >=3.8.6,<3.11"
+    "python >=3.12",
+    "python >=3.12"
    ]
   },
   "source": {
@@ -50,13 +47,8 @@
   },
   "test": {
    "commands": [
-    "pip check"
-   ],
-   "imports": [
-    "backports.strenum"
-   ],
-   "requires": [
-    "pip"
+    "python -c \"from enum import StrEnum\"",
+    "python -c \"from enum import StrEnum\""
    ]
   }
  },
@@ -67,11 +59,7 @@
   },
   "host": {
    "__set__": true,
-   "elements": [
-    "pip",
-    "poetry-core",
-    "python"
-   ]
+   "elements": []
   },
   "run": {
    "__set__": true,
@@ -81,9 +69,7 @@
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "pip"
-   ]
+   "elements": []
   }
  },
  "meta_yaml": {
@@ -95,11 +81,11 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
+    "tadeu",
     "tadeu"
    ]
   },
@@ -108,13 +94,10 @@
    "version": "1.3.1"
   },
   "requirements": {
-   "host": [
-    "python >=3.8,<3.11",
-    "poetry-core",
-    "pip"
-   ],
+   "host": [],
    "run": [
-    "python >=3.8.6,<3.11"
+    "python >=3.12",
+    "python >=3.12"
    ]
   },
   "source": {
@@ -123,13 +106,8 @@
   },
   "test": {
    "commands": [
-    "pip check"
-   ],
-   "imports": [
-    "backports.strenum"
-   ],
-   "requires": [
-    "pip"
+    "python -c \"from enum import StrEnum\"",
+    "python -c \"from enum import StrEnum\""
    ]
   }
  },
@@ -147,12 +125,10 @@
  "pr_info": {
   "__lazy_json__": "pr_info/backports.strenum.json"
  },
- "raw_meta_yaml": "{% set name = \"backports.strenum\" %}\n{% set version = \"1.3.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/backports_strenum-{{ version }}.tar.gz\n  sha256: 77c52407342898497714f0596e86188bb7084f89063226f4ba66863482f42414\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8,<3.11\n    - poetry-core\n    - pip\n  run:\n    - python >=3.8.6,<3.11\n\ntest:\n  imports:\n    - backports.strenum\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/clbarnes/backports.strenum\n  summary: Base class for creating enumerated constants that are also subclasses of str\n  license: EPL-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - tadeu\n",
+ "raw_meta_yaml": "{% set name = \"backports.strenum\" %}\n{% set version = \"1.3.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/backports_strenum-{{ version }}.tar.gz\n  sha256: 77c52407342898497714f0596e86188bb7084f89063226f4ba66863482f42414\n\nbuild:\n  noarch: python\n  {% if build_type == 'regular' %}\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  {% endif %}\n  number: 1\n\nrequirements:\n  host:\n    {% if build_type == 'regular' %}\n    - python >=3.8,<3.11\n    - backports\n    - poetry-core\n    - pip\n    {% endif %}\n  run:\n    {% if build_type == 'regular' %}\n    - python >=3.8.6,<3.11\n    - backports\n    {% else %}\n    - python >=3.12\n    {% endif %}\n\ntest:\n  {% if build_type == 'regular' %}\n  imports:\n    - backports.strenum\n  requires:\n    - pip\n  commands:\n    - pip check\n  {% else %}\n  commands:\n    - python -c \"from enum import StrEnum\"\n  {% endif %}\n\nabout:\n  home: https://github.com/clbarnes/backports.strenum\n  summary: Base class for creating enumerated constants that are also subclasses of str\n  license: EPL-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - tadeu\n",
  "req": {
   "__set__": true,
   "elements": [
-   "pip",
-   "poetry-core",
    "python"
   ]
  },
@@ -163,11 +139,7 @@
   },
   "host": {
    "__set__": true,
-   "elements": [
-    "pip",
-    "poetry-core",
-    "python"
-   ]
+   "elements": []
   },
   "run": {
    "__set__": true,
@@ -177,9 +149,7 @@
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "pip"
-   ]
+   "elements": []
   }
  },
  "strong_exports": false,
@@ -190,23 +160,17 @@
   },
   "host": {
    "__set__": true,
-   "elements": [
-    "pip",
-    "poetry-core",
-    "python >=3.8,<3.11"
-   ]
+   "elements": []
   },
   "run": {
    "__set__": true,
    "elements": [
-    "python >=3.8.6,<3.11"
+    "python >=3.12"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "pip"
-   ]
+   "elements": []
   }
  },
  "url": "https://pypi.io/packages/source/b/backports.strenum/backports_strenum-1.3.1.tar.gz",
