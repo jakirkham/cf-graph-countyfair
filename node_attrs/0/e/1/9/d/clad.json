@@ -25,8 +25,8 @@
    "summary": "clad -- automatic differentiation for C/C++"
   },
   "build": {
-   "number": "1",
-   "string": "clang17_h1234567_1"
+   "number": "2",
+   "string": "clang17_h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -152,23 +152,23 @@
    "run": [],
    "run_constrained": [
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17"
+    "clangdev =17"
    ]
   },
   "source": {
@@ -242,8 +242,8 @@
    "summary": "clad -- automatic differentiation for C/C++"
   },
   "build": {
-   "number": "1",
-   "string": "clang17_h1234567_1"
+   "number": "2",
+   "string": "clang17_h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -440,33 +440,33 @@
    ],
    "run_constrained": [
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17"
+    "clangdev =17"
    ]
   },
   "source": {
@@ -522,8 +522,8 @@
    "summary": "clad -- automatic differentiation for C/C++"
   },
   "build": {
-   "number": "1",
-   "string": "clang17_h1234567_1"
+   "number": "2",
+   "string": "clang17_h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -612,15 +612,15 @@
    ],
    "run_constrained": [
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17",
+    "clangdev =17",
     "cling ==9999999999",
-    "clangdev ==17"
+    "clangdev =17"
    ]
   },
   "source": {
@@ -691,7 +691,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/clad.json"
  },
- "raw_meta_yaml": "{% set name = \"clad\" %}\n{% set version = \"1.4\" %}\n{% set build_number = 1 %}\n\n{% set clang_ver = (clangdev or \"None\").split(\".\")[0] %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: da5584159499b05d77cfca40baee5d4d212beb269637736fee34d84d2b82d419\n  folder: source\n\nbuild:\n  skip: true  # [win]\n  skip: true  # [linux and (clangdev in (\"7.*\", \"8.*\"))]\n  skip: true  # [osx and (clangdev in (\"7.*\", \"8.*\", \"9.*\", \"10.*\", \"11.*\", \"12.*\"))]\n  number: {{ build_number }}\n  string: clang{{ clang_ver }}_h{{ PKG_HASH }}_{{ build_number }}\n\nrequirements:\n  build:\n    - cmake\n    - make   # [unix]\n    - ninja  # [win]\n    - {{ compiler('cxx') }}\n    - sed    # [unix]\n    # LLVM was split into multiple outputs as part of the 8.x update\n    - llvm  # [llvmdev not in (\"5.*\", \"6.*\", \"7.*\")]\n    - llvmdev\n    - clangdev {{ clang_ver }}\n    - libcxx {{ cxx_compiler_version }}  # [osx]\n  host:\n    - xz\n    - zstd\n  run:\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"13.0\") }}  # [osx]\n  run_constrained:\n    - cling ==9999999999  # [clangdev != \"9.*\"]\n    - cling 0.9           # [clangdev == \"9.*\"]\n    - clangdev =={{ clang_ver }}\n\ntest:\n  requires:   # [clangdev == \"9.*\" and not win]\n    - jupyter_kernel_test  # [clangdev == \"9.*\" and not win]\n#    - xeus-cling           # [clangdev == \"9.*\" and not win]\n#    - xeus-cpp\n  files:\n    - $RECIPE_DIR/jupyter_Clad_kernel_test.py\n  commands:\n#    - python $RECIPE_DIR/jupyter_Clad_kernel_test.py  # [clangdev == \"9.*\" and not win]\n    - test -f $PREFIX/lib/clad${SHLIB_EXT}  # [unix]\n    - echo.>NUL  # [win]\n#    # - if not exist %LIBRARY_BIN%\\\\clad.dll exit 1  # [win]\n#    #- if not exist %LIBRARY_LIB%\\\\cladDifferentiator.lib exit 1  # [win]\n#    #- if not exist %LIBRARY_LIB%\\\\cladPlugin.lib exit 1  # [win]\n\nabout:\n  home: https://github.com/vgvassilev/clad\n  license: LGPL-2.0-or-later\n  license_family: LGPL\n  license_file: source/License.txt\n  summary: clad -- automatic differentiation for C/C++\n  description: |\n    Clad enables automatic differentiation (AD) for C++. It is based on LLVM\n    compiler infrastructure and is a plugin for Clang compiler.\n  doc_url: https://github.com/vgvassilev/clad/blob/master/README.md\n  dev_url: https://github.com/vgvassilev/clad/wiki\n\nextra:\n  recipe-maintainers:\n    - vgvassilev\n    - alexander-penev\n    - oshadura\n",
+ "raw_meta_yaml": "{% set name = \"clad\" %}\n{% set version = \"1.4\" %}\n{% set build_number = 2 %}\n\n{% set clang_ver = (clangdev or \"None\").split(\".\")[0] %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: da5584159499b05d77cfca40baee5d4d212beb269637736fee34d84d2b82d419\n  folder: source\n\nbuild:\n  skip: true  # [win]\n  skip: true  # [linux and (clangdev in (\"7.*\", \"8.*\"))]\n  skip: true  # [osx and (clangdev in (\"7.*\", \"8.*\", \"9.*\", \"10.*\", \"11.*\", \"12.*\"))]\n  number: {{ build_number }}\n  string: clang{{ clang_ver }}_h{{ PKG_HASH }}_{{ build_number }}\n\nrequirements:\n  build:\n    - cmake\n    - make   # [unix]\n    - ninja  # [win]\n    - {{ compiler('cxx') }}\n    - sed    # [unix]\n    # LLVM was split into multiple outputs as part of the 8.x update\n    - llvm  # [llvmdev not in (\"5.*\", \"6.*\", \"7.*\")]\n    - llvmdev\n    - clangdev {{ clang_ver }}\n    - libcxx {{ cxx_compiler_version }}  # [osx]\n  host:\n    - xz\n    - zstd\n  run:\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"13.0\") }}  # [osx]\n  run_constrained:\n    - cling ==9999999999  # [clangdev != \"9.*\"]\n    - cling 0.9           # [clangdev == \"9.*\"]\n    - clangdev ={{ clang_ver }}\n\ntest:\n  requires:   # [clangdev == \"9.*\" and not win]\n    - jupyter_kernel_test  # [clangdev == \"9.*\" and not win]\n#    - xeus-cling           # [clangdev == \"9.*\" and not win]\n#    - xeus-cpp\n  files:\n    - $RECIPE_DIR/jupyter_Clad_kernel_test.py\n  commands:\n#    - python $RECIPE_DIR/jupyter_Clad_kernel_test.py  # [clangdev == \"9.*\" and not win]\n    - test -f $PREFIX/lib/clad${SHLIB_EXT}  # [unix]\n    - echo.>NUL  # [win]\n#    # - if not exist %LIBRARY_BIN%\\\\clad.dll exit 1  # [win]\n#    #- if not exist %LIBRARY_LIB%\\\\cladDifferentiator.lib exit 1  # [win]\n#    #- if not exist %LIBRARY_LIB%\\\\cladPlugin.lib exit 1  # [win]\n\nabout:\n  home: https://github.com/vgvassilev/clad\n  license: LGPL-2.0-or-later\n  license_family: LGPL\n  license_file: source/License.txt\n  summary: clad -- automatic differentiation for C/C++\n  description: |\n    Clad enables automatic differentiation (AD) for C++. It is based on LLVM\n    compiler infrastructure and is a plugin for Clang compiler.\n  doc_url: https://github.com/vgvassilev/clad/blob/master/README.md\n  dev_url: https://github.com/vgvassilev/clad/wiki\n\nextra:\n  recipe-maintainers:\n    - vgvassilev\n    - alexander-penev\n    - oshadura\n",
  "req": {
   "__set__": true,
   "elements": [
