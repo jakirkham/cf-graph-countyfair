@@ -31,7 +31,7 @@
    "summary": "MessagePack implementation for C++"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "msgpack-cxx"
    ]
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ],
@@ -76,6 +77,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -105,7 +107,7 @@
    "summary": "MessagePack implementation for C++"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "msgpack-cxx"
    ]
@@ -124,6 +126,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ],
@@ -150,6 +153,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -179,7 +183,7 @@
    "summary": "MessagePack implementation for C++"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "msgpack-cxx"
    ]
@@ -198,6 +202,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ],
@@ -224,6 +229,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -253,7 +259,7 @@
    "summary": "MessagePack implementation for C++"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "msgpack-cxx",
     "msgpack-cxx",
@@ -287,21 +293,27 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ],
@@ -373,7 +385,7 @@
    "summary": "MessagePack implementation for C++"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "msgpack-cxx"
    ]
@@ -392,6 +404,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ],
@@ -418,6 +431,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -447,7 +461,7 @@
    "summary": "MessagePack implementation for C++"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "msgpack-cxx"
    ]
@@ -466,6 +480,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ],
@@ -492,6 +507,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -531,10 +547,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/msgpack-cxx.json"
  },
- "raw_meta_yaml": "{% set name = \"msgpack-cxx\" %}\n{% set version = \"6.1.0\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/msgpack/msgpack-c/archive/cpp-{{ version }}.tar.gz\n    sha256: 5e63e4d9b12ab528fccf197f7e6908031039b1fc89cd8da0e97fbcbf5a6c6d3a\n\nbuild:\n  number: 1\n  run_exports:\n    # 2023/05 -- hmaarrfk\n    # Set to same pin as msgpack-c\n    # https://github.com/conda-forge/msgpack-c-feedstock/blob/main/recipe/meta.yaml#L21\n    - {{ pin_subpackage('msgpack-cxx', max_pin='x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - ninja\n  host:\n    - libboost-devel\n    - zlib\n  run:\n\ntest:\n  commands:\n    - test -f $PREFIX/include/msgpack.hpp  # [unix]\n    - test -f $PREFIX/lib/cmake/msgpack-cxx/msgpack-cxx-config.cmake  # [unix]\n    - if not exist %LIBRARY_INC%\\\\msgpack.hpp exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\cmake\\\\msgpack-cxx\\\\msgpack-cxx-config.cmake exit 1  # [win]\n\nabout:\n  home: https://github.com/msgpack/msgpack-c\n  license: BSL-1.0\n  license_file: COPYING\n  summary: MessagePack implementation for C++\n\nextra:\n  feedstock-name: msgpack-cxx\n  recipe-maintainers:\n    - traversaro\n    - hmaarrfk\n",
+ "raw_meta_yaml": "{% set name = \"msgpack-cxx\" %}\n{% set version = \"6.1.0\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/msgpack/msgpack-c/archive/cpp-{{ version }}.tar.gz\n    sha256: 5e63e4d9b12ab528fccf197f7e6908031039b1fc89cd8da0e97fbcbf5a6c6d3a\n\nbuild:\n  number: 2\n  run_exports:\n    # 2023/05 -- hmaarrfk\n    # Set to same pin as msgpack-c\n    # https://github.com/conda-forge/msgpack-c-feedstock/blob/main/recipe/meta.yaml#L21\n    - {{ pin_subpackage('msgpack-cxx', max_pin='x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - ninja\n  host:\n    - libboost-devel\n    - zlib\n  run:\n\ntest:\n  commands:\n    - test -f $PREFIX/include/msgpack.hpp  # [unix]\n    - test -f $PREFIX/lib/cmake/msgpack-cxx/msgpack-cxx-config.cmake  # [unix]\n    - if not exist %LIBRARY_INC%\\\\msgpack.hpp exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\cmake\\\\msgpack-cxx\\\\msgpack-cxx-config.cmake exit 1  # [win]\n\nabout:\n  home: https://github.com/msgpack/msgpack-c\n  license: BSL-1.0\n  license_file: COPYING\n  summary: MessagePack implementation for C++\n\nextra:\n  feedstock-name: msgpack-cxx\n  recipe-maintainers:\n    - traversaro\n    - hmaarrfk\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "libboost-devel",
@@ -546,6 +563,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -554,6 +572,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libboost-devel",
     "zlib"
@@ -562,6 +581,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -575,6 +595,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -609,7 +630,7 @@
    "summary": "MessagePack implementation for C++"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "msgpack-cxx"
    ]
@@ -628,6 +649,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ],
@@ -654,6 +676,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
