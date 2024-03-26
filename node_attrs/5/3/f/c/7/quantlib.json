@@ -29,7 +29,7 @@
    "summary": "The QuantLib C++ library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "quantlib"
    ]
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "cmake",
@@ -76,6 +77,7 @@
    "elements": [
     "autoconf",
     "automake",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -108,7 +110,7 @@
    "summary": "The QuantLib C++ library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": null
   },
   "extra": {
@@ -126,21 +128,25 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ],
@@ -185,7 +191,7 @@
    "summary": "The QuantLib C++ library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "quantlib"
    ]
@@ -202,6 +208,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "cmake",
@@ -232,6 +239,7 @@
    "elements": [
     "autoconf",
     "automake",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -264,7 +272,7 @@
    "summary": "The QuantLib C++ library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "quantlib"
    ]
@@ -281,6 +289,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "cmake",
@@ -311,6 +320,7 @@
    "elements": [
     "autoconf",
     "automake",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -347,12 +357,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/quantlib.json"
  },
- "raw_meta_yaml": "{% set name = \"QuantLib\" %}\n{% set version = \"1.33\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/lballabio/QuantLib/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 4810d789261eb36423c7d277266a6ee3b28a3c05af1ee0d45544ca2e0e8312bd\n  patches:\n    - 0001-Remove-use-of-BOOST_ALL_DYN_LINK.patch\n\nbuild:\n  number: 0\n  skip: true  # [win and vc<14]\n  run_exports:\n    - {{ pin_subpackage('quantlib', max_pin='x') }}  # [not win]\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - autoconf  # [unix]\n    - automake  # [unix]\n    - cmake\n    - make  # [unix]\n    - ninja  # [win]\n  host:\n    - libboost-devel\n  run:\n\ntest:\n  commands:\n    - quantlib-test-suite --log_level=message  # [win]\n    - cd build && ./test-suite/quantlib-test-suite --log_level=message  # [unix]\n\nabout:\n  home: https://github.com/lballabio/QuantLib\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE.TXT\n  summary: The QuantLib C++ library\n  description: The QuantLib project (https://www.quantlib.org) is aimed at providing a comprehensive software framework for quantitative finance. QuantLib is a free/open-source library for modeling, trading, and risk management in real-life.\n  doc_url: https://www.quantlib.org\n  dev_url: https://github.com/lballabio/QuantLib\n\nextra:\n  recipe-maintainers:\n    - timkpaine\n",
+ "raw_meta_yaml": "{% set name = \"QuantLib\" %}\n{% set version = \"1.33\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/lballabio/QuantLib/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 4810d789261eb36423c7d277266a6ee3b28a3c05af1ee0d45544ca2e0e8312bd\n  patches:\n    - 0001-Remove-use-of-BOOST_ALL_DYN_LINK.patch\n\nbuild:\n  number: 1\n  skip: true  # [win and vc<14]\n  run_exports:\n    - {{ pin_subpackage('quantlib', max_pin='x') }}  # [not win]\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - autoconf  # [unix]\n    - automake  # [unix]\n    - cmake\n    - make  # [unix]\n    - ninja  # [win]\n  host:\n    - libboost-devel\n  run:\n\ntest:\n  commands:\n    - quantlib-test-suite --log_level=message  # [win]\n    - cd build && ./test-suite/quantlib-test-suite --log_level=message  # [unix]\n\nabout:\n  home: https://github.com/lballabio/QuantLib\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE.TXT\n  summary: The QuantLib C++ library\n  description: The QuantLib project (https://www.quantlib.org) is aimed at providing a comprehensive software framework for quantitative finance. QuantLib is a free/open-source library for modeling, trading, and risk management in real-life.\n  doc_url: https://www.quantlib.org\n  dev_url: https://github.com/lballabio/QuantLib\n\nextra:\n  recipe-maintainers:\n    - timkpaine\n",
  "req": {
   "__set__": true,
   "elements": [
    "autoconf",
    "automake",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "libboost-devel",
@@ -366,6 +377,7 @@
    "elements": [
     "autoconf",
     "automake",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -375,6 +387,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libboost-devel"
    ]
@@ -382,6 +395,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -397,6 +411,7 @@
    "elements": [
     "autoconf",
     "automake",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -435,7 +450,7 @@
    "summary": "The QuantLib C++ library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": null
   },
   "extra": {
@@ -450,6 +465,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ],
@@ -476,6 +492,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
