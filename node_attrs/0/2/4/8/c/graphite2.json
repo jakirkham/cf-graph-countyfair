@@ -3,6 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -13,11 +15,6 @@
    "branch_name": "main",
    "tooling_branch_name": "main"
   },
-  "provider": {
-   "linux_aarch64": "azure",
-   "linux_ppc64le": "azure",
-   "win": "win"
-  },
   "test": "native_and_emulated"
  },
  "feedstock_name": "graphite2",
@@ -25,13 +22,13 @@
  "linux_64_meta_yaml": {
   "about": {
    "home": "http://graphite.sil.org/",
-   "license": "LGPLv2",
+   "license": "LGPL-2.0-or-later",
    "license_file": "COPYING",
    "summary": "A \"smart font\" system that handles the complexities of lesser-known languages of the world."
   },
   "build": {
    "detect_binary_files_with_prefix": true,
-   "number": "1001"
+   "number": "1002"
   },
   "extra": {
    "recipe-maintainers": [
@@ -89,13 +86,13 @@
  "linux_aarch64_meta_yaml": {
   "about": {
    "home": "http://graphite.sil.org/",
-   "license": "LGPLv2",
+   "license": "LGPL-2.0-or-later",
    "license_file": "COPYING",
    "summary": "A \"smart font\" system that handles the complexities of lesser-known languages of the world."
   },
   "build": {
    "detect_binary_files_with_prefix": true,
-   "number": "1001"
+   "number": "1002"
   },
   "extra": {
    "recipe-maintainers": [
@@ -153,13 +150,13 @@
  "linux_ppc64le_meta_yaml": {
   "about": {
    "home": "http://graphite.sil.org/",
-   "license": "LGPLv2",
+   "license": "LGPL-2.0-or-later",
    "license_file": "COPYING",
    "summary": "A \"smart font\" system that handles the complexities of lesser-known languages of the world."
   },
   "build": {
    "detect_binary_files_with_prefix": true,
-   "number": "1001"
+   "number": "1002"
   },
   "extra": {
    "recipe-maintainers": [
@@ -217,16 +214,18 @@
  "meta_yaml": {
   "about": {
    "home": "http://graphite.sil.org/",
-   "license": "LGPLv2",
+   "license": "LGPL-2.0-or-later",
    "license_file": "COPYING",
    "summary": "A \"smart font\" system that handles the complexities of lesser-known languages of the world."
   },
   "build": {
    "detect_binary_files_with_prefix": true,
-   "number": "1001"
+   "number": "1002"
   },
   "extra": {
    "recipe-maintainers": [
+    "pkgw",
+    "ocefpaf",
     "pkgw",
     "ocefpaf",
     "pkgw",
@@ -264,38 +263,38 @@
     "cmake",
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "make"
+    "make",
+    "m2-make",
+    "m2-patch",
+    "cmake",
+    "ninja"
    ],
    "host": []
   },
   "source": {
-   "patches": null,
+   "patches": [
+    "001-graphite2-1.3.12-win64.patch",
+    "002-graphite2-1.2.1-pkgconfig.patch",
+    "004-graphite2-1.3.12-dllimport-fix.patch"
+   ],
    "sha256": "dd63e169b0d3cf954b397c122551ab9343e0696fb2045e1b326db0202d875f06",
    "url": "https://github.com/silnrsi/graphite/releases/download/1.3.13/graphite2-1.3.13.tgz"
   },
   "test": {
-   "commands": [
-    "conda inspect linkages -p $PREFIX $PKG_NAME",
-    "conda inspect linkages -p $PREFIX $PKG_NAME",
-    "conda inspect linkages -p $PREFIX $PKG_NAME",
-    "conda inspect linkages -p $PREFIX $PKG_NAME",
-    "conda inspect objects -p $PREFIX $PKG_NAME",
-    "conda inspect linkages -p $PREFIX $PKG_NAME",
-    "conda inspect objects -p $PREFIX $PKG_NAME"
-   ]
+   "commands": null
   }
  },
  "name": "graphite2",
  "osx_64_meta_yaml": {
   "about": {
    "home": "http://graphite.sil.org/",
-   "license": "LGPLv2",
+   "license": "LGPL-2.0-or-later",
    "license_file": "COPYING",
    "summary": "A \"smart font\" system that handles the complexities of lesser-known languages of the world."
   },
   "build": {
    "detect_binary_files_with_prefix": true,
-   "number": "1001"
+   "number": "1002"
   },
   "extra": {
    "recipe-maintainers": [
@@ -354,13 +353,13 @@
  "osx_arm64_meta_yaml": {
   "about": {
    "home": "http://graphite.sil.org/",
-   "license": "LGPLv2",
+   "license": "LGPL-2.0-or-later",
    "license_file": "COPYING",
    "summary": "A \"smart font\" system that handles the complexities of lesser-known languages of the world."
   },
   "build": {
    "detect_binary_files_with_prefix": true,
-   "number": "1001"
+   "number": "1002"
   },
   "extra": {
    "recipe-maintainers": [
@@ -428,19 +427,23 @@
   "linux_aarch64",
   "linux_ppc64le",
   "osx_64",
-  "osx_arm64"
+  "osx_arm64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/graphite2.json"
  },
- "raw_meta_yaml": "{% set name = \"graphite2\" %}\n{% set version = \"1.3.13\" %}\n{% set sha256 = \"dd63e169b0d3cf954b397c122551ab9343e0696fb2045e1b326db0202d875f06\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/silnrsi/graphite/releases/download/{{ version }}/{{ name }}-{{ version }}.tgz\n  sha256: {{ sha256 }}\n  patches:\n    # Windows patches from https://github.com/Alexpux/MINGW-packages/tree/master/mingw-w64-graphite2\n    # 003 updated for 1.3.13.\n    - 001-graphite2-1.3.12-win64.patch          # [win]\n    - 002-graphite2-1.2.1-pkgconfig.patch       # [win]\n    #- 003-graphite2-1.3.13-staticbuild.patch    # [win]\n    - 004-graphite2-1.3.12-dllimport-fix.patch  # [win]\n\nbuild:\n  number: 1001\n  detect_binary_files_with_prefix: true\n\nrequirements:\n  build:\n    - m2-make  # [win]\n    - m2-patch  # [win]\n    - cmake\n    - ninja  # [win]\n    - {{ compiler('c') }}    # [not win]\n    - {{ compiler('cxx') }}  # [not win]\n    - vs2015_win-64          # [win] - no VS2008 since it's too much of a hassle to support\n    - make                   # [unix]\n  host:\n\ntest:\n  commands:\n    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]\n    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]\n\nabout:\n  home: http://graphite.sil.org/\n  license: LGPLv2\n  license_file: COPYING\n  summary: 'A \"smart font\" system that handles the complexities of lesser-known languages of the world.'\n\nextra:\n  recipe-maintainers:\n    - pkgw\n    - ocefpaf\n",
+ "raw_meta_yaml": "{% set name = \"graphite2\" %}\n{% set version = \"1.3.13\" %}\n{% set sha256 = \"dd63e169b0d3cf954b397c122551ab9343e0696fb2045e1b326db0202d875f06\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/silnrsi/graphite/releases/download/{{ version }}/{{ name }}-{{ version }}.tgz\n  sha256: {{ sha256 }}\n  patches:\n    # Windows patches from https://github.com/Alexpux/MINGW-packages/tree/master/mingw-w64-graphite2\n    # 003 updated for 1.3.13.\n    - 001-graphite2-1.3.12-win64.patch          # [win]\n    - 002-graphite2-1.2.1-pkgconfig.patch       # [win]\n    #- 003-graphite2-1.3.13-staticbuild.patch    # [win]\n    - 004-graphite2-1.3.12-dllimport-fix.patch  # [win]\n\nbuild:\n  number: 1002\n  detect_binary_files_with_prefix: true\n\nrequirements:\n  build:\n    - m2-make  # [win]\n    - m2-patch  # [win]\n    - cmake\n    - ninja  # [win]\n    - {{ compiler('c') }}    # [not win]\n    - {{ compiler('cxx') }}  # [not win]\n    - make                   # [unix]\n  host:\n\ntest:\n  commands:\n    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]\n    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]\n\nabout:\n  home: http://graphite.sil.org/\n  license: LGPL-2.0-or-later\n  license_file: COPYING\n  summary: 'A \"smart font\" system that handles the complexities of lesser-known languages of the world.'\n\nextra:\n  recipe-maintainers:\n    - pkgw\n    - ocefpaf\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
    "cmake",
    "cxx_compiler_stub",
-   "make"
+   "m2-make",
+   "m2-patch",
+   "make",
+   "ninja"
   ]
  },
  "requirements": {
@@ -450,7 +453,10 @@
     "c_compiler_stub",
     "cmake",
     "cxx_compiler_stub",
-    "make"
+    "m2-make",
+    "m2-patch",
+    "make",
+    "ninja"
    ]
   },
   "host": {
@@ -480,7 +486,10 @@
     "c_compiler_stub",
     "cmake",
     "cxx_compiler_stub",
-    "make"
+    "m2-make",
+    "m2-patch",
+    "make",
+    "ninja"
    ]
   },
   "host": {
@@ -500,5 +509,71 @@
  "version": "1.3.13",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/graphite2.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "home": "http://graphite.sil.org/",
+   "license": "LGPL-2.0-or-later",
+   "license_file": "COPYING",
+   "summary": "A \"smart font\" system that handles the complexities of lesser-known languages of the world."
+  },
+  "build": {
+   "detect_binary_files_with_prefix": true,
+   "number": "1002"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "pkgw",
+    "ocefpaf"
+   ]
+  },
+  "package": {
+   "name": "graphite2",
+   "version": "1.3.13"
+  },
+  "requirements": {
+   "build": [
+    "m2-make",
+    "m2-patch",
+    "cmake",
+    "ninja"
+   ],
+   "host": []
+  },
+  "source": {
+   "patches": [
+    "001-graphite2-1.3.12-win64.patch",
+    "002-graphite2-1.2.1-pkgconfig.patch",
+    "004-graphite2-1.3.12-dllimport-fix.patch"
+   ],
+   "sha256": "dd63e169b0d3cf954b397c122551ab9343e0696fb2045e1b326db0202d875f06",
+   "url": "https://github.com/silnrsi/graphite/releases/download/1.3.13/graphite2-1.3.13.tgz"
+  },
+  "test": {
+   "commands": null
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "cmake",
+    "m2-make",
+    "m2-patch",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
  }
 }

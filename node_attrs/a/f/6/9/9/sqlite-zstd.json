@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -9,7 +12,12 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "default"
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "sqlite-zstd",
  "hash_type": "sha256",
@@ -26,14 +34,7 @@
    "summary": "Transparent dictionary-based row-level compression for SQLite"
   },
   "build": {
-   "number": "0",
-   "script": [
-    "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
-    "cargo build --release --features build_extension",
-    "mkdir -p $PREFIX/lib",
-    "find . -name *libsqlite_zstd.so*",
-    "cp $(find . -name libsqlite_zstd.so | tail -n 1) $PREFIX/lib"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -60,11 +61,147 @@
   },
   "test": {
    "commands": [
-    "echo '.quit' | sqlite3 -cmd '.load libsqlite_zstd.so'"
+    "echo '.quit' | sqlite3 -cmd \".load libsqlite_zstd${SHLIB_EXT}\" 2>&1 | grep sqlite_zstd::create_extension"
    ]
   }
  },
  "linux_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cargo-bundle-licenses",
+    "rust_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "sqlite"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "description": "Extension for sqlite that provides transparent dictionary-based row-level\ncompression for sqlite. This basically allows you to compress entries in a\nsqlite database almost as well as if you were compressing the whole DB\nfile, but while retaining random access.\n",
+   "home": "https://github.com/phiresky/sqlite-zstd",
+   "license": "LGPL-3.0-only",
+   "license_family": "LGPL",
+   "license_file": [
+    "THIRDPARTY.yml",
+    "LICENSE"
+   ],
+   "summary": "Transparent dictionary-based row-level compression for SQLite"
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "matthiasdiener"
+   ]
+  },
+  "package": {
+   "name": "sqlite-zstd",
+   "version": "0.3.2"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "rust_compiler_stub",
+    "cargo-bundle-licenses"
+   ],
+   "run": [
+    "sqlite"
+   ]
+  },
+  "source": {
+   "sha256": "c29d5229dc2d6b7fad677c3115155918d0cb34897554675213f10cac8f1cb266",
+   "url": "https://github.com/phiresky/sqlite-zstd/archive/refs/tags/v0.3.2.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "echo '.quit' | sqlite3 -cmd \".load libsqlite_zstd${SHLIB_EXT}\" 2>&1 | grep sqlite_zstd::create_extension"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cargo-bundle-licenses",
+    "rust_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "sqlite"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "description": "Extension for sqlite that provides transparent dictionary-based row-level\ncompression for sqlite. This basically allows you to compress entries in a\nsqlite database almost as well as if you were compressing the whole DB\nfile, but while retaining random access.\n",
+   "home": "https://github.com/phiresky/sqlite-zstd",
+   "license": "LGPL-3.0-only",
+   "license_family": "LGPL",
+   "license_file": [
+    "THIRDPARTY.yml",
+    "LICENSE"
+   ],
+   "summary": "Transparent dictionary-based row-level compression for SQLite"
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "matthiasdiener"
+   ]
+  },
+  "package": {
+   "name": "sqlite-zstd",
+   "version": "0.3.2"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "rust_compiler_stub",
+    "cargo-bundle-licenses"
+   ],
+   "run": [
+    "sqlite"
+   ]
+  },
+  "source": {
+   "sha256": "c29d5229dc2d6b7fad677c3115155918d0cb34897554675213f10cac8f1cb266",
+   "url": "https://github.com/phiresky/sqlite-zstd/archive/refs/tags/v0.3.2.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "echo '.quit' | sqlite3 -cmd \".load libsqlite_zstd${SHLIB_EXT}\" 2>&1 | grep sqlite_zstd::create_extension"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
   "build": {
    "__set__": true,
    "elements": [
@@ -96,19 +233,160 @@
    "license_family": "LGPL",
    "license_file": [
     "THIRDPARTY.yml",
+    "LICENSE",
+    "THIRDPARTY.yml",
+    "LICENSE",
+    "THIRDPARTY.yml",
+    "LICENSE",
+    "THIRDPARTY.yml",
+    "LICENSE",
+    "THIRDPARTY.yml",
     "LICENSE"
    ],
    "summary": "Transparent dictionary-based row-level compression for SQLite"
   },
   "build": {
-   "number": "0",
-   "script": [
-    "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
-    "cargo build --release --features build_extension",
-    "mkdir -p $PREFIX/lib",
-    "find . -name *libsqlite_zstd.so*",
-    "cp $(find . -name libsqlite_zstd.so | tail -n 1) $PREFIX/lib"
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "matthiasdiener",
+    "matthiasdiener",
+    "matthiasdiener",
+    "matthiasdiener",
+    "matthiasdiener"
    ]
+  },
+  "package": {
+   "name": "sqlite-zstd",
+   "version": "0.3.2"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "rust_compiler_stub",
+    "cargo-bundle-licenses",
+    "c_compiler_stub",
+    "rust_compiler_stub",
+    "cargo-bundle-licenses",
+    "c_compiler_stub",
+    "rust_compiler_stub",
+    "cargo-bundle-licenses",
+    "c_compiler_stub",
+    "rust_compiler_stub",
+    "cargo-bundle-licenses",
+    "c_compiler_stub",
+    "rust_compiler_stub",
+    "cargo-bundle-licenses"
+   ],
+   "run": [
+    "sqlite",
+    "sqlite",
+    "sqlite",
+    "sqlite",
+    "__osx >=11.0",
+    "sqlite"
+   ]
+  },
+  "source": {
+   "sha256": "c29d5229dc2d6b7fad677c3115155918d0cb34897554675213f10cac8f1cb266",
+   "url": "https://github.com/phiresky/sqlite-zstd/archive/refs/tags/v0.3.2.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "echo '.quit' | sqlite3 -cmd \".load libsqlite_zstd${SHLIB_EXT}\" 2>&1 | grep sqlite_zstd::create_extension",
+    "echo '.quit' | sqlite3 -cmd \".load libsqlite_zstd${SHLIB_EXT}\" 2>&1 | grep sqlite_zstd::create_extension",
+    "echo '.quit' | sqlite3 -cmd \".load libsqlite_zstd${SHLIB_EXT}\" 2>&1 | grep sqlite_zstd::create_extension",
+    "echo '.quit' | sqlite3 -cmd \".load libsqlite_zstd${SHLIB_EXT}\" 2>&1 | grep sqlite_zstd::create_extension",
+    "echo '.quit' | sqlite3 -cmd \".load libsqlite_zstd${SHLIB_EXT}\" 2>&1 | grep sqlite_zstd::create_extension"
+   ]
+  }
+ },
+ "name": "sqlite-zstd",
+ "osx_64_meta_yaml": {
+  "about": {
+   "description": "Extension for sqlite that provides transparent dictionary-based row-level\ncompression for sqlite. This basically allows you to compress entries in a\nsqlite database almost as well as if you were compressing the whole DB\nfile, but while retaining random access.\n",
+   "home": "https://github.com/phiresky/sqlite-zstd",
+   "license": "LGPL-3.0-only",
+   "license_family": "LGPL",
+   "license_file": [
+    "THIRDPARTY.yml",
+    "LICENSE"
+   ],
+   "summary": "Transparent dictionary-based row-level compression for SQLite"
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "matthiasdiener"
+   ]
+  },
+  "package": {
+   "name": "sqlite-zstd",
+   "version": "0.3.2"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "rust_compiler_stub",
+    "cargo-bundle-licenses"
+   ],
+   "run": [
+    "sqlite",
+    "__osx >=11.0"
+   ]
+  },
+  "source": {
+   "sha256": "c29d5229dc2d6b7fad677c3115155918d0cb34897554675213f10cac8f1cb266",
+   "url": "https://github.com/phiresky/sqlite-zstd/archive/refs/tags/v0.3.2.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "echo '.quit' | sqlite3 -cmd \".load libsqlite_zstd${SHLIB_EXT}\" 2>&1 | grep sqlite_zstd::create_extension"
+   ]
+  }
+ },
+ "osx_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cargo-bundle-licenses",
+    "rust_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "__osx",
+    "sqlite"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "Extension for sqlite that provides transparent dictionary-based row-level\ncompression for sqlite. This basically allows you to compress entries in a\nsqlite database almost as well as if you were compressing the whole DB\nfile, but while retaining random access.\n",
+   "home": "https://github.com/phiresky/sqlite-zstd",
+   "license": "LGPL-3.0-only",
+   "license_family": "LGPL",
+   "license_file": [
+    "THIRDPARTY.yml",
+    "LICENSE"
+   ],
+   "summary": "Transparent dictionary-based row-level compression for SQLite"
+  },
+  "build": {
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -135,11 +413,34 @@
   },
   "test": {
    "commands": [
-    "echo '.quit' | sqlite3 -cmd '.load libsqlite_zstd.so'"
+    "echo '.quit' | sqlite3 -cmd \".load libsqlite_zstd${SHLIB_EXT}\" 2>&1 | grep sqlite_zstd::create_extension"
    ]
   }
  },
- "name": "sqlite-zstd",
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cargo-bundle-licenses",
+    "rust_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "sqlite"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -148,15 +449,20 @@
  },
  "parsing_error": false,
  "platforms": [
-  "linux_64"
+  "linux_64",
+  "linux_aarch64",
+  "linux_ppc64le",
+  "osx_64",
+  "osx_arm64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/sqlite-zstd.json"
  },
- "raw_meta_yaml": "{% set name = \"sqlite-zstd\" %}\n{% set version = \"0.3.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/phiresky/sqlite-zstd/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: c29d5229dc2d6b7fad677c3115155918d0cb34897554675213f10cac8f1cb266\n\nbuild:\n  number: 0\n  skip: true  # [not linux] # macos will need >=10.12\n  script:\n    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml\n    - cargo build --release --features build_extension\n    - mkdir -p $PREFIX/lib\n    - find . -name *libsqlite_zstd.so*\n    - cp $(find . -name libsqlite_zstd.so | tail -n 1) $PREFIX/lib\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler('rust') }}\n    - cargo-bundle-licenses\n  run:\n    - sqlite\n\ntest:\n  commands:\n    - echo '.quit' | sqlite3 -cmd '.load libsqlite_zstd.so'\n\nabout:\n  home: https://github.com/phiresky/sqlite-zstd\n  summary: 'Transparent dictionary-based row-level compression for SQLite'\n  description: |\n    Extension for sqlite that provides transparent dictionary-based row-level\n    compression for sqlite. This basically allows you to compress entries in a\n    sqlite database almost as well as if you were compressing the whole DB\n    file, but while retaining random access.\n  license: LGPL-3.0-only\n  license_family: LGPL\n  license_file:\n    - THIRDPARTY.yml\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - matthiasdiener\n",
+ "raw_meta_yaml": "{% set name = \"sqlite-zstd\" %}\n{% set version = \"0.3.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/phiresky/sqlite-zstd/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: c29d5229dc2d6b7fad677c3115155918d0cb34897554675213f10cac8f1cb266\n\nbuild:\n  number: 1\n  skip: true  # [not unix]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler('rust') }}\n    - cargo-bundle-licenses\n  run:\n    - sqlite\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n\ntest:\n  commands:\n    - echo '.quit' | sqlite3 -cmd \".load libsqlite_zstd${SHLIB_EXT}\" 2>&1 | grep sqlite_zstd::create_extension\n\nabout:\n  home: https://github.com/phiresky/sqlite-zstd\n  summary: 'Transparent dictionary-based row-level compression for SQLite'\n  description: |\n    Extension for sqlite that provides transparent dictionary-based row-level\n    compression for sqlite. This basically allows you to compress entries in a\n    sqlite database almost as well as if you were compressing the whole DB\n    file, but while retaining random access.\n  license: LGPL-3.0-only\n  license_family: LGPL\n  license_file:\n    - THIRDPARTY.yml\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - matthiasdiener\n",
  "req": {
   "__set__": true,
   "elements": [
+   "__osx",
    "c_compiler_stub",
    "cargo-bundle-licenses",
    "rust_compiler_stub",
@@ -181,6 +487,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "__osx",
     "c_compiler_stub",
     "sqlite"
    ]
@@ -207,6 +514,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "__osx >=11.0",
     "sqlite"
    ]
   },
