@@ -22,11 +22,13 @@
    "summary": "Polars extension for general data science use cases"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
+    "thewchan",
+    "xhochy",
     "thewchan",
     "xhochy",
     "thewchan",
@@ -54,9 +56,15 @@
     "make",
     "c_compiler_stub",
     "rust_compiler_stub 1.77",
+    "make",
+    "c_compiler_stub",
+    "rust_compiler_stub 1.77",
     "make"
    ],
    "host": [
+    "python",
+    "maturin >=1.2,<2.0",
+    "pip",
     "python",
     "maturin >=1.2,<2.0",
     "pip",
@@ -78,6 +86,8 @@
     "python",
     "polars >=0.20.6",
     "python",
+    "polars >=0.20.6",
+    "python",
     "polars >=0.20.6"
    ]
   },
@@ -90,15 +100,18 @@
     "pip check",
     "pip check",
     "pip check",
+    "pip check",
     "pip check"
    ],
    "imports": [
     "polars_ds",
     "polars_ds",
     "polars_ds",
+    "polars_ds",
     "polars_ds"
    ],
    "requires": [
+    "pip",
     "pip",
     "pip",
     "pip",
@@ -146,11 +159,15 @@
    "summary": "Polars extension for general data science use cases"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
+    "thewchan",
+    "xhochy",
+    "thewchan",
+    "xhochy",
     "thewchan",
     "xhochy",
     "thewchan",
@@ -175,6 +192,12 @@
   },
   "requirements": {
    "build": [
+    "c_compiler_stub",
+    "rust_compiler_stub 1.77",
+    "make",
+    "c_compiler_stub",
+    "rust_compiler_stub 1.77",
+    "make",
     "c_compiler_stub",
     "rust_compiler_stub 1.77",
     "make",
@@ -224,6 +247,12 @@
     "pip",
     "python",
     "maturin >=1.2,<2.0",
+    "pip",
+    "python",
+    "maturin >=1.2,<2.0",
+    "pip",
+    "python",
+    "maturin >=1.2,<2.0",
     "pip"
    ],
    "run": [
@@ -235,6 +264,11 @@
     "polars >=0.20.6",
     "python",
     "polars >=0.20.6",
+    "python",
+    "polars >=0.20.6",
+    "python",
+    "polars >=0.20.6",
+    "__osx >=10.12",
     "python",
     "polars >=0.20.6",
     "__osx >=10.12",
@@ -262,6 +296,8 @@
     "pip check",
     "pip check",
     "pip check",
+    "pip check",
+    "pip check",
     "pip check"
    ],
    "imports": [
@@ -272,9 +308,13 @@
     "polars_ds",
     "polars_ds",
     "polars_ds",
+    "polars_ds",
+    "polars_ds",
     "polars_ds"
    ],
    "requires": [
+    "pip",
+    "pip",
     "pip",
     "pip",
     "pip",
@@ -296,11 +336,13 @@
    "summary": "Polars extension for general data science use cases"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
+    "thewchan",
+    "xhochy",
     "thewchan",
     "xhochy",
     "thewchan",
@@ -328,9 +370,15 @@
     "make",
     "c_compiler_stub",
     "rust_compiler_stub 1.77",
+    "make",
+    "c_compiler_stub",
+    "rust_compiler_stub 1.77",
     "make"
    ],
    "host": [
+    "python",
+    "maturin >=1.2,<2.0",
+    "pip",
     "python",
     "maturin >=1.2,<2.0",
     "pip",
@@ -356,6 +404,9 @@
     "__osx >=10.12",
     "python",
     "polars >=0.20.6",
+    "__osx >=10.12",
+    "python",
+    "polars >=0.20.6",
     "__osx >=10.12"
    ]
   },
@@ -368,15 +419,18 @@
     "pip check",
     "pip check",
     "pip check",
+    "pip check",
     "pip check"
    ],
    "imports": [
     "polars_ds",
     "polars_ds",
     "polars_ds",
+    "polars_ds",
     "polars_ds"
    ],
    "requires": [
+    "pip",
     "pip",
     "pip",
     "pip",
@@ -430,7 +484,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/polars-ds.json"
  },
- "raw_meta_yaml": "{% set name = \"polars-ds\" %}\n{% set version = \"0.3.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/polars_ds-{{ version }}.tar.gz\n  sha256: 5a51cda7fd42b9fccba529c782be9998aefec92b74b665d519afc2177d82b065\n\nbuild:\n  skip: true  # [py<38 or win]\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('rust') }} 1.77\n    - make\n  host:\n    - python\n    - maturin >=1.2,<2.0\n    - pip\n  run:\n    - python\n    - polars >=0.20.6\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n\ntest:\n  imports:\n    - polars_ds\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/abstractqqq/polars_ds_extension\n  doc_url: https://polars-ds-extension.readthedocs.io/\n  summary: Polars extension for general data science use cases\n  license: MIT\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - thewchan\n    - xhochy\n",
+ "raw_meta_yaml": "{% set name = \"polars-ds\" %}\n{% set version = \"0.3.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/polars_ds-{{ version }}.tar.gz\n  sha256: 5a51cda7fd42b9fccba529c782be9998aefec92b74b665d519afc2177d82b065\n\nbuild:\n  skip: true  # [py<38 or win]\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('rust') }} 1.77\n    - make\n  host:\n    - python\n    - maturin >=1.2,<2.0\n    - pip\n  run:\n    - python\n    - polars >=0.20.6\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n\ntest:\n  imports:\n    - polars_ds\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/abstractqqq/polars_ds_extension\n  doc_url: https://polars-ds-extension.readthedocs.io/\n  summary: Polars extension for general data science use cases\n  license: MIT\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - thewchan\n    - xhochy\n",
  "req": {
   "__set__": true,
   "elements": [
