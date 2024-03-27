@@ -9,7 +9,11 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "noarch_platforms": [
+   "linux_64",
+   "win_64"
+  ]
  },
  "feedstock_name": "gmshmodel",
  "hash_type": "sha256",
@@ -106,6 +110,7 @@
   },
   "extra": {
    "recipe-maintainers": [
+    "PhilippMetsch",
     "PhilippMetsch"
    ]
   },
@@ -116,9 +121,16 @@
   "requirements": {
    "host": [
     "python >=3.5",
+    "pip",
+    "python >=3.5",
     "pip"
    ],
    "run": [
+    "python >=3.5",
+    "numpy",
+    "gmsh",
+    "meshio >=4,<=5.1.2",
+    "pyvista >=0.24.1",
     "python >=3.5",
     "numpy",
     "gmsh",
@@ -132,12 +144,15 @@
   },
   "test": {
    "commands": [
+    "pip check",
     "pip check"
    ],
    "imports": [
+    "gmshModel",
     "gmshModel"
    ],
    "requires": [
+    "pip",
     "pip"
    ]
   }
@@ -151,7 +166,8 @@
  },
  "parsing_error": false,
  "platforms": [
-  "linux_64"
+  "linux_64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/gmshmodel.json"
@@ -231,5 +247,84 @@
  "version": "1.0.17",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/gmshmodel.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "home": "https://github.com/NEFM-TUDresden/GmshModel",
+   "license": "GPL-3.0",
+   "license_file": "LICENSE",
+   "summary": "A mesh modeling interface to the Gmsh-Python-API"
+  },
+  "build": {
+   "noarch": "python",
+   "number": "0",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "PhilippMetsch"
+   ]
+  },
+  "package": {
+   "name": "gmshmodel",
+   "version": "1.0.17"
+  },
+  "requirements": {
+   "host": [
+    "python >=3.5",
+    "pip"
+   ],
+   "run": [
+    "python >=3.5",
+    "numpy",
+    "gmsh",
+    "meshio >=4,<=5.1.2",
+    "pyvista >=0.24.1"
+   ]
+  },
+  "source": {
+   "sha256": "3ef9d59750acc7c73d5322ed5fb16e056147808691a762a890bf214c1ddd90c1",
+   "url": "https://pypi.io/packages/source/g/gmshmodel/gmshModel-1.0.17.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "gmshModel"
+   ],
+   "requires": [
+    "pip"
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": []
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "gmsh",
+    "meshio",
+    "numpy",
+    "python",
+    "pyvista"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "pip"
+   ]
+  }
  }
 }
