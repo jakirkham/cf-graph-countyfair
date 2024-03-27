@@ -33,7 +33,7 @@
     "libboost-devel",
     "flatbuffers"
    ],
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -51,22 +51,27 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make"
@@ -190,6 +195,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -253,7 +259,7 @@
     "flatbuffers",
     "flatbuffers"
    ],
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -276,42 +282,52 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make"
@@ -452,23 +468,18 @@
     "python",
     "numpy",
     "pysdl2",
-    "__osx >=10.13",
     "python",
     "numpy",
     "pysdl2",
-    "__osx >=10.13",
     "python",
     "numpy",
     "pysdl2",
-    "__osx >=10.13",
     "python",
     "numpy",
     "pysdl2",
-    "__osx >=10.13",
     "python",
     "numpy",
-    "pysdl2",
-    "__osx >=10.13"
+    "pysdl2"
    ]
   },
   "source": {
@@ -542,7 +553,7 @@
     "flatbuffers",
     "flatbuffers"
    ],
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -560,22 +571,27 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "pkg-config",
     "cmake",
     "make"
@@ -641,23 +657,18 @@
     "python",
     "numpy",
     "pysdl2",
-    "__osx >=10.13",
     "python",
     "numpy",
     "pysdl2",
-    "__osx >=10.13",
     "python",
     "numpy",
     "pysdl2",
-    "__osx >=10.13",
     "python",
     "numpy",
     "pysdl2",
-    "__osx >=10.13",
     "python",
     "numpy",
-    "pysdl2",
-    "__osx >=10.13"
+    "pysdl2"
    ]
   },
   "source": {
@@ -699,6 +710,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -724,7 +736,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "numpy",
     "pysdl2",
     "python"
@@ -751,11 +762,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/aestream.json"
  },
- "raw_meta_yaml": "{% set name = \"aestream\" %}\n{% set version = \"0.6.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/aestream-{{ version }}.tar.gz\n  sha256: eeaa9dc49465bf25de80a549b78ee767cf3b34c1047caeb42be5e089d003d0ad\n  patches:\n    - unvendor.patch\n\nbuild:\n  number: 2\n  skip: true  # [win]\n  ignore_run_exports_from:\n    # cmake cannot find boost without libboost-devel but it is not needed at runtime\n    - libboost-devel  # [linux]\n    # flatbuffers only needed at build time\n    - flatbuffers\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - pkg-config\n    - cmake\n    - make\n    - python                                 # [build_platform != target_platform]\n    - pip                                    # [build_platform != target_platform]\n    - scikit-build-core                      # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - nanobind                               # [build_platform != target_platform]\n  host:\n    - scikit-build-core\n    - python\n    - nanobind\n    - setuptools-scm\n    - pip\n    - libcaer\n    - flatbuffers\n    - lz4-c\n    - cli11\n    - sdl2\n    - libboost-devel  # [linux]\n    - libboost-headers\n  run:\n    - python\n    - numpy\n    - pysdl2\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n\ntest:\n  imports:\n    - aestream\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  summary: Streaming library for Address-Event Representation (AER) data\n  license: MIT\n  license_file: LICENSE\n  home: https://github.com/aestream/aestream\n\nextra:\n  recipe-maintainers:\n    - Tobias-Fischer\n",
+ "raw_meta_yaml": "{% set name = \"aestream\" %}\n{% set version = \"0.6.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/aestream-{{ version }}.tar.gz\n  sha256: eeaa9dc49465bf25de80a549b78ee767cf3b34c1047caeb42be5e089d003d0ad\n  patches:\n    - unvendor.patch\n\nbuild:\n  number: 3\n  skip: true  # [win]\n  ignore_run_exports_from:\n    # cmake cannot find boost without libboost-devel but it is not needed at runtime\n    - libboost-devel  # [linux]\n    # flatbuffers only needed at build time\n    - flatbuffers\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - pkg-config\n    - cmake\n    - make\n    - python                                 # [build_platform != target_platform]\n    - pip                                    # [build_platform != target_platform]\n    - scikit-build-core                      # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - nanobind                               # [build_platform != target_platform]\n  host:\n    - scikit-build-core\n    - python\n    - nanobind\n    - setuptools-scm\n    - pip\n    - libcaer\n    - flatbuffers\n    - lz4-c\n    - cli11\n    - sdl2\n    - libboost-devel  # [linux]\n    - libboost-headers\n  run:\n    - python\n    - numpy\n    - pysdl2\n\ntest:\n  imports:\n    - aestream\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  summary: Streaming library for Address-Event Representation (AER) data\n  license: MIT\n  license_file: LICENSE\n  home: https://github.com/aestream/aestream\n\nextra:\n  recipe-maintainers:\n    - Tobias-Fischer\n",
  "req": {
   "__set__": true,
   "elements": [
-   "__osx",
+   "c_stdlib_stub",
    "cli11",
    "cmake",
    "cxx_compiler_stub",
@@ -780,6 +791,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -789,6 +801,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cli11",
     "cxx_compiler_stub",
     "flatbuffers",
@@ -807,7 +820,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numpy",
     "pysdl2",
@@ -826,6 +839,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -852,7 +866,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx >=10.13",
     "numpy",
     "pysdl2",
     "python"
