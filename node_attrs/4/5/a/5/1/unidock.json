@@ -25,9 +25,9 @@
    "summary": "A GPU-accelerated molecular docking program"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "cd unidock\nmkdir conda_build && cd conda_build\ncmake ${CMAKE_ARGS} ${SRC_DIR}/unidock\nmake unidock -j$CPU_COUNT\nmake install\n",
-   "string": "cuda120_h1234567_1"
+   "string": "cuda120_h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -43,6 +43,7 @@
    "build": [
     "sysroot_linux-64 2.17",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cuda_compiler_stub",
     "cmake",
@@ -50,6 +51,7 @@
     "libgomp",
     "sysroot_linux-64 2.17",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cuda_compiler_stub",
     "cmake",
@@ -78,6 +80,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -114,9 +117,9 @@
    "summary": "A GPU-accelerated molecular docking program"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "cd unidock\nmkdir conda_build && cd conda_build\ncmake ${CMAKE_ARGS} ${SRC_DIR}/unidock\nmake unidock -j$CPU_COUNT\nmake install\n",
-   "string": "cuda120_h1234567_1"
+   "string": "cuda120_h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -132,6 +135,7 @@
    "build": [
     "sysroot_linux-64 2.17",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cuda_compiler_stub",
     "cmake",
@@ -139,6 +143,7 @@
     "libgomp",
     "sysroot_linux-64 2.17",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cuda_compiler_stub",
     "cmake",
@@ -176,11 +181,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/unidock.json"
  },
- "raw_meta_yaml": "{% set name = \"unidock\" %}\n{% set version = \"1.1.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/dptech-corp/Uni-Dock/archive/refs/tags/{{ version }}.tar.gz\n  sha256: 6400e9418249c01f3963f9f3bfe08472cc2ab63d0096ace66ad6b40b45e8e812\n\nbuild:\n  skip: true  # [not linux]\n  skip: true  # [cuda_compiler_version == \"None\"]\n  skip: true  # [cuda_compiler_version == \"11.2\"]\n  script: |\n    cd unidock\n    mkdir conda_build && cd conda_build\n    cmake ${CMAKE_ARGS} ${SRC_DIR}/unidock\n    make unidock -j$CPU_COUNT\n    make install\n  string: cuda{{ cuda_compiler_version | replace('.', '') }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}\n  number: 1\n\nrequirements:\n  build:\n    - sysroot_{{ target_platform }} 2.17\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - cmake\n    - make\n    - libgomp\n  host:\n    - libboost-devel\n    - libcurand-dev  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n\ntest:\n  commands:\n    # Dry run to verify dynamic libs are present.\n    - unidock --version\n\nabout:\n  home: https://github.com/dptech-corp/Uni-Dock\n  doc_url: https://github.com/dptech-corp/Uni-Dock\n  dev_url: https://github.com/dptech-corp/Uni-Dock\n  license: LGPL-3.0-only\n  license_family: LGPL\n  license_file: unidock/LICENSE\n  summary: A GPU-accelerated molecular docking program\n  description: >\n    Uni-Dock is a GPU-accelerated molecular docking program developed by DP Technology. It supports various scoring functions including vina, vinardo, and ad4. Uni-Dock achieves more than 1000-fold speed-up on V100 GPU with high-accuracy, compared with the AutoDock Vina running in single CPU core. The paper has been accepted\n    by JCTC (doi: 10.1021/acs.jctc.2c01145).\n\nextra:\n  recipe-maintainers:\n    - caic99\n",
+ "raw_meta_yaml": "{% set name = \"unidock\" %}\n{% set version = \"1.1.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/dptech-corp/Uni-Dock/archive/refs/tags/{{ version }}.tar.gz\n  sha256: 6400e9418249c01f3963f9f3bfe08472cc2ab63d0096ace66ad6b40b45e8e812\n\nbuild:\n  skip: true  # [not linux]\n  skip: true  # [cuda_compiler_version == \"None\"]\n  skip: true  # [cuda_compiler_version == \"11.2\"]\n  script: |\n    cd unidock\n    mkdir conda_build && cd conda_build\n    cmake ${CMAKE_ARGS} ${SRC_DIR}/unidock\n    make unidock -j$CPU_COUNT\n    make install\n  string: cuda{{ cuda_compiler_version | replace('.', '') }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}\n  number: 2\n\nrequirements:\n  build:\n    - sysroot_{{ target_platform }} 2.17\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - cmake\n    - make\n    - libgomp\n  host:\n    - libboost-devel\n    - libcurand-dev  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n\ntest:\n  commands:\n    # Dry run to verify dynamic libs are present.\n    - unidock --version\n\nabout:\n  home: https://github.com/dptech-corp/Uni-Dock\n  doc_url: https://github.com/dptech-corp/Uni-Dock\n  dev_url: https://github.com/dptech-corp/Uni-Dock\n  license: LGPL-3.0-only\n  license_family: LGPL\n  license_file: unidock/LICENSE\n  summary: A GPU-accelerated molecular docking program\n  description: >\n    Uni-Dock is a GPU-accelerated molecular docking program developed by DP Technology. It supports various scoring functions including vina, vinardo, and ad4. Uni-Dock achieves more than 1000-fold speed-up on V100 GPU with high-accuracy, compared with the AutoDock Vina running in single CPU core. The paper has been accepted\n    by JCTC (doi: 10.1021/acs.jctc.2c01145).\n\nextra:\n  recipe-maintainers:\n    - caic99\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cuda_compiler_stub",
    "cxx_compiler_stub",
@@ -196,6 +202,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -208,6 +215,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -219,6 +227,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cuda_compiler_stub",
     "cxx_compiler_stub"
@@ -235,6 +244,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
