@@ -30,7 +30,7 @@
    "summary": "C++ header only library: Algebra of Taylor truncated polynomials and a few algorithms useful for its applications (e.g. Automated differentiation, Differential Intelligence, Taylor Models, etc.)"
   },
   "build": {
-   "number": "4"
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -45,6 +45,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make"
@@ -75,6 +76,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -122,7 +124,7 @@
    "summary": "C++ header only library: Algebra of Taylor truncated polynomials and a few algorithms useful for its applications (e.g. Automated differentiation, Differential Intelligence, Taylor Models, etc.)"
   },
   "build": {
-   "number": "4"
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -143,18 +145,22 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "clang",
@@ -213,7 +219,7 @@
    "summary": "C++ header only library: Algebra of Taylor truncated polynomials and a few algorithms useful for its applications (e.g. Automated differentiation, Differential Intelligence, Taylor Models, etc.)"
   },
   "build": {
-   "number": "4"
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -228,6 +234,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make"
@@ -241,9 +248,7 @@
    "run": [
     "eigen"
    ],
-   "run_constrained": [
-    "__osx >=10.13"
-   ]
+   "run_constrained": null
   },
   "source": {
    "sha256": "4888205cfc7c8ffe15485b90d151cf6f296fc65c58d3c92ba57da8ab43c17279",
@@ -260,6 +265,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -298,7 +304,7 @@
    "summary": "C++ header only library: Algebra of Taylor truncated polynomials and a few algorithms useful for its applications (e.g. Automated differentiation, Differential Intelligence, Taylor Models, etc.)"
   },
   "build": {
-   "number": "4"
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -313,6 +319,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make"
@@ -343,6 +350,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -384,11 +392,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/audi.json"
  },
- "raw_meta_yaml": "{% set version = \"1.9.2\" %}\n\npackage:\n  name: audi\n  version: {{ version }}\n\nsource:\n  url: https://github.com/darioizzo/audi/archive/v{{ version }}.tar.gz\n  sha256: 4888205cfc7c8ffe15485b90d151cf6f296fc65c58d3c92ba57da8ab43c17279\n\nbuild:\n  number: 4\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make       # [unix]\n    - clang      # [win]\n    - ninja      # [win]\n  host:\n    - libboost-devel\n    - eigen\n    - obake-devel\n    - mppp\n  run:\n    - eigen\n  run_constrained:\n    # obake uses abseil headers, which require 10.13\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET }}  # [osx and x86_64]\n\ntest:\n  commands:\n    - test -f\n\nabout:\n  home: http://darioizzo.github.io/audi/\n  license: GPL-2.0-only OR GPL-3.0-only OR LGPL-3.0-only\n  license_file:\n    - LICENSE\n    - COPYING.gpl3\n    - COPYING.lgpl3\n  summary: 'C++ header only library: Algebra of Taylor truncated polynomials and a few algorithms useful for its applications (e.g. Automated differentiation, Differential Intelligence, Taylor Models, etc.)'\n  dev_url: https://github.com/darioizzo/audi\n\nextra:\n  recipe-maintainers:\n    - bluescarni\n    - darioizzo\n",
+ "raw_meta_yaml": "{% set version = \"1.9.2\" %}\n\npackage:\n  name: audi\n  version: {{ version }}\n\nsource:\n  url: https://github.com/darioizzo/audi/archive/v{{ version }}.tar.gz\n  sha256: 4888205cfc7c8ffe15485b90d151cf6f296fc65c58d3c92ba57da8ab43c17279\n\nbuild:\n  number: 5\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make       # [unix]\n    - clang      # [win]\n    - ninja      # [win]\n  host:\n    - libboost-devel\n    - eigen\n    - obake-devel\n    - mppp\n  run:\n    - eigen\n  run_constrained:\n    # obake uses abseil headers, which require 10.13\n\ntest:\n  commands:\n    - test -f\n\nabout:\n  home: http://darioizzo.github.io/audi/\n  license: GPL-2.0-only OR GPL-3.0-only OR LGPL-3.0-only\n  license_file:\n    - LICENSE\n    - COPYING.gpl3\n    - COPYING.lgpl3\n  summary: 'C++ header only library: Algebra of Taylor truncated polynomials and a few algorithms useful for its applications (e.g. Automated differentiation, Differential Intelligence, Taylor Models, etc.)'\n  dev_url: https://github.com/darioizzo/audi\n\nextra:\n  recipe-maintainers:\n    - bluescarni\n    - darioizzo\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "clang",
    "cmake",
    "cxx_compiler_stub",
@@ -405,6 +414,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "clang",
     "cmake",
     "cxx_compiler_stub",
@@ -416,6 +426,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "eigen",
     "libboost-devel",
@@ -427,6 +438,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "eigen"
    ]
@@ -442,6 +454,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "clang",
     "cmake",
     "cxx_compiler_stub",
@@ -487,7 +500,7 @@
    "summary": "C++ header only library: Algebra of Taylor truncated polynomials and a few algorithms useful for its applications (e.g. Automated differentiation, Differential Intelligence, Taylor Models, etc.)"
   },
   "build": {
-   "number": "4"
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -502,6 +515,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "clang",
@@ -533,6 +547,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "clang",
     "cmake",
     "cxx_compiler_stub",
