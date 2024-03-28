@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "unordered_dense",
  "hash_type": "sha256",
@@ -24,7 +28,7 @@
    "summary": "A fast & densely stored hashmap and hashset based on robin-hood backward shift deletion"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -39,6 +43,8 @@
    "build": [
     "cxx_compiler_stub",
     "cmake",
+    "pkg-config",
+    "gnuconfig",
     "make"
    ]
   },
@@ -61,7 +67,9 @@
    "elements": [
     "cmake",
     "cxx_compiler_stub",
-    "make"
+    "gnuconfig",
+    "make",
+    "pkg-config"
    ]
   },
   "host": {
@@ -88,10 +96,11 @@
    "summary": "A fast & densely stored hashmap and hashset based on robin-hood backward shift deletion"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
+    "jjerphan",
     "jjerphan",
     "jjerphan",
     "jjerphan"
@@ -105,12 +114,23 @@
    "build": [
     "cxx_compiler_stub",
     "cmake",
+    "pkg-config",
+    "gnuconfig",
     "make",
     "cxx_compiler_stub",
     "cmake",
+    "pkg-config",
+    "gnuconfig",
     "make",
     "cxx_compiler_stub",
-    "cmake"
+    "cmake",
+    "pkg-config",
+    "gnuconfig",
+    "make",
+    "cxx_compiler_stub",
+    "cmake",
+    "pkg-config",
+    "gnuconfig"
    ]
   },
   "source": {
@@ -119,6 +139,10 @@
   },
   "test": {
    "commands": [
+    "test -f ${PREFIX}/include/ankerl/unordered_dense.h",
+    "test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseTargets.cmake",
+    "test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseConfig.cmake",
+    "test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseConfigVersion.cmake",
     "test -f ${PREFIX}/include/ankerl/unordered_dense.h",
     "test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseTargets.cmake",
     "test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseConfig.cmake",
@@ -146,7 +170,7 @@
    "summary": "A fast & densely stored hashmap and hashset based on robin-hood backward shift deletion"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -161,6 +185,8 @@
    "build": [
     "cxx_compiler_stub",
     "cmake",
+    "pkg-config",
+    "gnuconfig",
     "make"
    ]
   },
@@ -183,7 +209,77 @@
    "elements": [
     "cmake",
     "cxx_compiler_stub",
+    "gnuconfig",
+    "make",
+    "pkg-config"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "A fast & densely stored hashmap and hashset based on robin-hood backward shift deletion for C++17 and later.\n\nThe classes `ankerl::unordered_dense::map` and `ankerl::unordered_dense::set` are (almost) drop-in replacements\nof `std::unordered_map` and `std::unordered_set`.\n\nWhile they don't have as strong iterator / reference stability guaranties, they are typically much faster.\n\nAdditionally, there are `ankerl::unordered_dense::segmented_map` and `ankerl::unordered_dense::segmented_set`\nwith lower peak memory usage. and stable iterator/references on insert.\n",
+   "dev_url": "https://github.com/martinus/unordered_dense",
+   "home": "https://github.com/martinus/unordered_dense",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": "LICENSE",
+   "summary": "A fast & densely stored hashmap and hashset based on robin-hood backward shift deletion"
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jjerphan"
+   ]
+  },
+  "package": {
+   "name": "unordered_dense",
+   "version": "4.4.0"
+  },
+  "requirements": {
+   "build": [
+    "cxx_compiler_stub",
+    "cmake",
+    "pkg-config",
+    "gnuconfig",
     "make"
+   ]
+  },
+  "source": {
+   "sha256": "3976399793e8cb4db1409ce15610fbd9e5e406ced4745f262d393a9311efbd88",
+   "url": "https://github.com/martinus/unordered_dense/archive/v4.4.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "test -f ${PREFIX}/include/ankerl/unordered_dense.h",
+    "test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseTargets.cmake",
+    "test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseConfig.cmake",
+    "test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseConfigVersion.cmake"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "cmake",
+    "cxx_compiler_stub",
+    "gnuconfig",
+    "make",
+    "pkg-config"
    ]
   },
   "host": {
@@ -209,18 +305,21 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/unordered_dense.json"
  },
- "raw_meta_yaml": "{% set name = \"unordered_dense\" %}\n{% set version = \"4.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/martinus/unordered_dense/archive/v{{ version }}.tar.gz\n  sha256: 3976399793e8cb4db1409ce15610fbd9e5e406ced4745f262d393a9311efbd88\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [unix]\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/ankerl/unordered_dense.h                                                   # [unix]\n    - test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseTargets.cmake                             # [unix]\n    - test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseConfig.cmake                              # [unix]\n    - test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseConfigVersion.cmake                       # [unix]\n    - if not exist %LIBRARY_PREFIX%\\include\\ankerl\\unordered_dense.h (exit 1)                              # [win]\n    - if not exist %LIBRARY_PREFIX%\\lib\\cmake\\unordered_dense\\unordered_denseTargets.cmake (exit 1)        # [win]\n    - if not exist %LIBRARY_PREFIX%\\lib\\cmake\\unordered_dense\\unordered_denseConfig.cmake (exit 1)         # [win]\n    - if not exist %LIBRARY_PREFIX%\\lib\\cmake\\unordered_dense\\unordered_denseConfigVersion.cmake (exit 1)  # [win]\n\nabout:\n  summary: A fast & densely stored hashmap and hashset based on robin-hood backward shift deletion\n  description: |\n    A fast & densely stored hashmap and hashset based on robin-hood backward shift deletion for C++17 and later.\n\n    The classes `ankerl::unordered_dense::map` and `ankerl::unordered_dense::set` are (almost) drop-in replacements\n    of `std::unordered_map` and `std::unordered_set`.\n\n    While they don't have as strong iterator / reference stability guaranties, they are typically much faster.\n\n    Additionally, there are `ankerl::unordered_dense::segmented_map` and `ankerl::unordered_dense::segmented_set`\n    with lower peak memory usage. and stable iterator/references on insert.\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  home: https://github.com/martinus/unordered_dense\n  dev_url: https://github.com/martinus/unordered_dense\n\nextra:\n  recipe-maintainers:\n    - jjerphan\n",
+ "raw_meta_yaml": "{% set name = \"unordered_dense\" %}\n{% set version = \"4.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/martinus/unordered_dense/archive/v{{ version }}.tar.gz\n  sha256: 3976399793e8cb4db1409ce15610fbd9e5e406ced4745f262d393a9311efbd88\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - pkg-config\n    - gnuconfig\n    - make  # [unix]\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/ankerl/unordered_dense.h                                                   # [unix]\n    - test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseTargets.cmake                             # [unix]\n    - test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseConfig.cmake                              # [unix]\n    - test -f ${PREFIX}/lib/cmake/unordered_dense/unordered_denseConfigVersion.cmake                       # [unix]\n    - if not exist %LIBRARY_PREFIX%\\include\\ankerl\\unordered_dense.h (exit 1)                              # [win]\n    - if not exist %LIBRARY_PREFIX%\\lib\\cmake\\unordered_dense\\unordered_denseTargets.cmake (exit 1)        # [win]\n    - if not exist %LIBRARY_PREFIX%\\lib\\cmake\\unordered_dense\\unordered_denseConfig.cmake (exit 1)         # [win]\n    - if not exist %LIBRARY_PREFIX%\\lib\\cmake\\unordered_dense\\unordered_denseConfigVersion.cmake (exit 1)  # [win]\n\nabout:\n  summary: A fast & densely stored hashmap and hashset based on robin-hood backward shift deletion\n  description: |\n    A fast & densely stored hashmap and hashset based on robin-hood backward shift deletion for C++17 and later.\n\n    The classes `ankerl::unordered_dense::map` and `ankerl::unordered_dense::set` are (almost) drop-in replacements\n    of `std::unordered_map` and `std::unordered_set`.\n\n    While they don't have as strong iterator / reference stability guaranties, they are typically much faster.\n\n    Additionally, there are `ankerl::unordered_dense::segmented_map` and `ankerl::unordered_dense::segmented_set`\n    with lower peak memory usage. and stable iterator/references on insert.\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  home: https://github.com/martinus/unordered_dense\n  dev_url: https://github.com/martinus/unordered_dense\n\nextra:\n  recipe-maintainers:\n    - jjerphan\n",
  "req": {
   "__set__": true,
   "elements": [
    "cmake",
    "cxx_compiler_stub",
-   "make"
+   "gnuconfig",
+   "make",
+   "pkg-config"
   ]
  },
  "requirements": {
@@ -229,7 +328,9 @@
    "elements": [
     "cmake",
     "cxx_compiler_stub",
-    "make"
+    "gnuconfig",
+    "make",
+    "pkg-config"
    ]
   },
   "host": {
@@ -256,7 +357,9 @@
    "elements": [
     "cmake",
     "cxx_compiler_stub",
-    "make"
+    "gnuconfig",
+    "make",
+    "pkg-config"
    ]
   },
   "host": {
@@ -288,7 +391,7 @@
    "summary": "A fast & densely stored hashmap and hashset based on robin-hood backward shift deletion"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -302,7 +405,9 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
-    "cmake"
+    "cmake",
+    "pkg-config",
+    "gnuconfig"
    ]
   },
   "source": {
@@ -323,7 +428,9 @@
    "__set__": true,
    "elements": [
     "cmake",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "gnuconfig",
+    "pkg-config"
    ]
   },
   "host": {
