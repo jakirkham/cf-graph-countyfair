@@ -24,7 +24,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -33,32 +33,34 @@
   },
   "package": {
    "name": "tmmc-lnpy",
-   "version": "0.6.0"
+   "version": "0.7.0"
   },
   "requirements": {
    "host": [
-    "python >=3.8",
-    "setuptools >=61.2",
-    "setuptools-scm >=7.0",
+    "python >=3.8,<=3.12",
+    "hatch-fancy-pypi-readme",
+    "hatch-vcs",
+    "hatchling",
     "pip"
    ],
    "run": [
-    "python >=3.8",
-    "numpy",
-    "xarray",
-    "scipy",
-    "scikit-image",
-    "joblib",
+    "python >=3.8,<=3.12",
     "bottleneck",
-    "tqdm",
     "importlib-resources",
+    "joblib",
+    "lazy_loader",
     "module-utilities >=0.9.0",
-    "lazy_loader"
+    "numpy",
+    "scikit-image >=0.21",
+    "scipy",
+    "tqdm",
+    "typing-extensions",
+    "xarray"
    ]
   },
   "source": {
-   "sha256": "63915df48c0031333cdba91f34dc88bcf9cb74c55e8ce79a17c570fa172fcce0",
-   "url": "https://pypi.io/packages/source/t/tmmc-lnpy/tmmc-lnpy-0.6.0.tar.gz"
+   "sha256": "aca7eaffcd9c77f36db5b440dec2159f8b80cfd38ef4dd01f0117a42351fa68a",
+   "url": "https://pypi.io/packages/source/t/tmmc-lnpy/tmmc_lnpy-0.7.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -81,10 +83,11 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch-fancy-pypi-readme",
+    "hatch-vcs",
+    "hatchling",
     "pip",
-    "python",
-    "setuptools",
-    "setuptools-scm"
+    "python"
    ]
   },
   "run": {
@@ -100,6 +103,7 @@
     "scikit-image",
     "scipy",
     "tqdm",
+    "typing-extensions",
     "xarray"
    ]
   },
@@ -121,7 +125,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -130,32 +134,34 @@
   },
   "package": {
    "name": "tmmc-lnpy",
-   "version": "0.6.0"
+   "version": "0.7.0"
   },
   "requirements": {
    "host": [
-    "python >=3.8",
-    "setuptools >=61.2",
-    "setuptools-scm >=7.0",
+    "python >=3.8,<=3.12",
+    "hatch-fancy-pypi-readme",
+    "hatch-vcs",
+    "hatchling",
     "pip"
    ],
    "run": [
-    "python >=3.8",
-    "numpy",
-    "xarray",
-    "scipy",
-    "scikit-image",
-    "joblib",
+    "python >=3.8,<=3.12",
     "bottleneck",
-    "tqdm",
     "importlib-resources",
+    "joblib",
+    "lazy_loader",
     "module-utilities >=0.9.0",
-    "lazy_loader"
+    "numpy",
+    "scikit-image >=0.21",
+    "scipy",
+    "tqdm",
+    "typing-extensions",
+    "xarray"
    ]
   },
   "source": {
-   "sha256": "63915df48c0031333cdba91f34dc88bcf9cb74c55e8ce79a17c570fa172fcce0",
-   "url": "https://pypi.io/packages/source/t/tmmc-lnpy/tmmc-lnpy-0.6.0.tar.gz"
+   "sha256": "aca7eaffcd9c77f36db5b440dec2159f8b80cfd38ef4dd01f0117a42351fa68a",
+   "url": "https://pypi.io/packages/source/t/tmmc-lnpy/tmmc_lnpy-0.7.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -184,11 +190,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/tmmc-lnpy.json"
  },
- "raw_meta_yaml": "{% set name = \"tmmc-lnpy\" %}\n{% set version = \"0.6.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/tmmc-lnpy-{{ version }}.tar.gz\n  sha256: 63915df48c0031333cdba91f34dc88bcf9cb74c55e8ce79a17c570fa172fcce0\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools >=61.2\n    - setuptools-scm >=7.0\n    - pip\n  run:\n    - python >=3.8\n    - numpy\n    - xarray\n    - scipy\n    - scikit-image\n    - joblib\n    - bottleneck\n    - tqdm\n    - importlib-resources\n    - module-utilities >=0.9.0\n    - lazy_loader\n\ntest:\n  imports:\n    - lnpy\n    - lnPi\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/usnistgov/tmmc-lnpy\n  summary: Analysis of lnPi results from TMMC simulation\n  description: |\n    A package to analyze data from Transition Matrix Monte Carlo (tmmc)\n    simulation. The main output from TMMC simulations, \"lnPi\", provides a\n    means to calculate a host of thermodynamic properties. Moreover, if \"lnPi\"\n    is calculated at a specific chemical potential, it can be reweighted to provide\n    thermodynamic information at a different chemical potential.\n  license: NIST-PD\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - wpk-nist-gov\n",
+ "raw_meta_yaml": "{% set name = \"tmmc-lnpy\" %}\n{% set version = \"0.7.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/tmmc_lnpy-{{ version }}.tar.gz\n  sha256: aca7eaffcd9c77f36db5b440dec2159f8b80cfd38ef4dd01f0117a42351fa68a\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8,<=3.12\n    - hatch-fancy-pypi-readme\n    - hatch-vcs\n    - hatchling\n    - pip\n  run:\n    - python >=3.8,<=3.12\n    - bottleneck\n    - importlib-resources\n    - joblib\n    - lazy_loader\n    - module-utilities >=0.9.0\n    - numpy\n    - scikit-image >=0.21\n    - scipy\n    - tqdm\n    - typing-extensions\n    - xarray\n\ntest:\n  imports:\n    - lnpy\n    - lnPi\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/usnistgov/tmmc-lnpy\n  summary: Analysis of lnPi results from TMMC simulation\n  description: |\n    A package to analyze data from Transition Matrix Monte Carlo (tmmc)\n    simulation. The main output from TMMC simulations, \"lnPi\", provides a\n    means to calculate a host of thermodynamic properties. Moreover, if \"lnPi\"\n    is calculated at a specific chemical potential, it can be reweighted to provide\n    thermodynamic information at a different chemical potential.\n  license: NIST-PD\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - wpk-nist-gov\n",
  "req": {
   "__set__": true,
   "elements": [
    "bottleneck",
+   "hatch-fancy-pypi-readme",
+   "hatch-vcs",
+   "hatchling",
    "importlib-resources",
    "joblib",
    "lazy_loader",
@@ -198,9 +207,8 @@
    "python",
    "scikit-image",
    "scipy",
-   "setuptools",
-   "setuptools-scm",
    "tqdm",
+   "typing-extensions",
    "xarray"
   ]
  },
@@ -212,10 +220,11 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch-fancy-pypi-readme",
+    "hatch-vcs",
+    "hatchling",
     "pip",
-    "python",
-    "setuptools",
-    "setuptools-scm"
+    "python"
    ]
   },
   "run": {
@@ -231,6 +240,7 @@
     "scikit-image",
     "scipy",
     "tqdm",
+    "typing-extensions",
     "xarray"
    ]
   },
@@ -250,10 +260,11 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch-fancy-pypi-readme",
+    "hatch-vcs",
+    "hatchling",
     "pip",
-    "python >=3.8",
-    "setuptools >=61.2",
-    "setuptools-scm >=7.0"
+    "python >=3.8,<=3.12"
    ]
   },
   "run": {
@@ -265,10 +276,11 @@
     "lazy_loader",
     "module-utilities >=0.9.0",
     "numpy",
-    "python >=3.8",
-    "scikit-image",
+    "python >=3.8,<=3.12",
+    "scikit-image >=0.21",
     "scipy",
     "tqdm",
+    "typing-extensions",
     "xarray"
    ]
   },
@@ -279,8 +291,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/t/tmmc-lnpy/tmmc-lnpy-0.6.0.tar.gz",
- "version": "0.6.0",
+ "url": "https://pypi.io/packages/source/t/tmmc-lnpy/tmmc_lnpy-0.7.0.tar.gz",
+ "version": "0.7.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/tmmc-lnpy.json"
  }
