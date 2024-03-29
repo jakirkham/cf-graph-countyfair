@@ -21,11 +21,12 @@
    "summary": "A high performance Python library for data extraction, analysis, conversion & manipulation of PDF (and other) documents."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYMUPDF_SETUP_MUPDF_BUILD=\"\" PYMUPDF_SETUP_MUPDF_REBUILD=0 PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
+    "jan-janssen",
     "jan-janssen",
     "jan-janssen",
     "jan-janssen",
@@ -38,6 +39,9 @@
   },
   "requirements": {
    "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "swig",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "swig",
@@ -83,9 +87,19 @@
     "jbig2dec",
     "libgumbo",
     "harfbuzz",
+    "openjpeg",
+    "python",
+    "pip",
+    "mupdf =1.22.2",
+    "libjpeg-turbo",
+    "jbig2dec",
+    "libgumbo",
+    "harfbuzz",
     "openjpeg"
    ],
    "run": [
+    "python",
+    "mupdf =1.22.2",
     "python",
     "mupdf =1.22.2",
     "python",
@@ -101,6 +115,7 @@
     "setup.patch",
     "setup.patch",
     "setup.patch",
+    "setup.patch",
     "setup.patch"
    ],
    "sha256": "68f3cb582683061ac39368193613627e5741f1edf01903cc748fc07317d83ef9",
@@ -111,15 +126,18 @@
     "pip check",
     "pip check",
     "pip check",
+    "pip check",
     "pip check"
    ],
    "imports": [
     "fitz",
     "fitz",
     "fitz",
+    "fitz",
     "fitz"
    ],
    "requires": [
+    "pip",
     "pip",
     "pip",
     "pip",
@@ -171,11 +189,12 @@
    "summary": "A high performance Python library for data extraction, analysis, conversion & manipulation of PDF (and other) documents."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYMUPDF_SETUP_MUPDF_BUILD=\"\" PYMUPDF_SETUP_MUPDF_REBUILD=0 PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
+    "jan-janssen",
     "jan-janssen",
     "jan-janssen",
     "jan-janssen",
@@ -188,6 +207,9 @@
   },
   "requirements": {
    "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "swig",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "swig",
@@ -233,9 +255,19 @@
     "jbig2dec",
     "libgumbo",
     "harfbuzz",
+    "openjpeg",
+    "python",
+    "pip",
+    "mupdf =1.22.2",
+    "libjpeg-turbo",
+    "jbig2dec",
+    "libgumbo",
+    "harfbuzz",
     "openjpeg"
    ],
    "run": [
+    "python",
+    "mupdf =1.22.2",
     "python",
     "mupdf =1.22.2",
     "python",
@@ -251,6 +283,7 @@
     "setup.patch",
     "setup.patch",
     "setup.patch",
+    "setup.patch",
     "setup.patch"
    ],
    "sha256": "68f3cb582683061ac39368193613627e5741f1edf01903cc748fc07317d83ef9",
@@ -261,15 +294,18 @@
     "pip check",
     "pip check",
     "pip check",
+    "pip check",
     "pip check"
    ],
    "imports": [
     "fitz",
     "fitz",
     "fitz",
+    "fitz",
     "fitz"
    ],
    "requires": [
+    "pip",
     "pip",
     "pip",
     "pip",
@@ -291,7 +327,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pymupdf.json"
  },
- "raw_meta_yaml": "{% set name = \"pymupdf\" %}\n{% set version = \"1.22.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pymupdf/PyMuPDF/archive/{{ version }}.tar.gz\n  sha256: 68f3cb582683061ac39368193613627e5741f1edf01903cc748fc07317d83ef9\n  patches:\n    - setup.patch\n\nbuild:\n  skip: true  # [not linux]\n  script: PYMUPDF_SETUP_MUPDF_BUILD=\"\" PYMUPDF_SETUP_MUPDF_REBUILD=0 {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - swig\n  host:\n    - python\n    - pip\n    - mupdf ={{ version }}\n    - libjpeg-turbo\n    - jbig2dec\n    - libgumbo\n    - harfbuzz\n    - openjpeg\n  run:\n    - python\n    - mupdf ={{ version }}\n\ntest:\n  imports:\n    - fitz\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  summary: A high performance Python library for data extraction, analysis, conversion & manipulation of PDF (and other) documents.\n  home: https://github.com/pymupdf/pymupdf\n  license: AGPL-3.0-or-later\n  license_file: COPYING\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n",
+ "raw_meta_yaml": "{% set name = \"pymupdf\" %}\n{% set version = \"1.22.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pymupdf/PyMuPDF/archive/{{ version }}.tar.gz\n  sha256: 68f3cb582683061ac39368193613627e5741f1edf01903cc748fc07317d83ef9\n  patches:\n    - setup.patch\n\nbuild:\n  skip: true  # [not linux]\n  script: PYMUPDF_SETUP_MUPDF_BUILD=\"\" PYMUPDF_SETUP_MUPDF_REBUILD=0 {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - swig\n  host:\n    - python\n    - pip\n    - mupdf ={{ version }}\n    - libjpeg-turbo\n    - jbig2dec\n    - libgumbo\n    - harfbuzz\n    - openjpeg\n  run:\n    - python\n    - mupdf ={{ version }}\n\ntest:\n  imports:\n    - fitz\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  summary: A high performance Python library for data extraction, analysis, conversion & manipulation of PDF (and other) documents.\n  home: https://github.com/pymupdf/pymupdf\n  license: AGPL-3.0-or-later\n  license_file: COPYING\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n",
  "req": {
   "__set__": true,
   "elements": [
