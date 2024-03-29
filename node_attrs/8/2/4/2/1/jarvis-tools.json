@@ -23,7 +23,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "python -m pip install --no-deps --ignore-installed ."
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -48,6 +48,8 @@
     "scipy >=1.6.3",
     "joblib",
     "matplotlib-base",
+    "markdown",
+    "mkdocs-material",
     "requests",
     "spglib",
     "toolz",
@@ -56,8 +58,8 @@
    ]
   },
   "source": {
-   "sha256": "057418647ff25ef45e1d95ac4aa0d53fa81a10115558a8039169af168d4c0394",
-   "url": "https://pypi.io/packages/source/j/jarvis-tools/jarvis-tools-2024.3.24.tar.gz"
+   "sha256": "cac2a267f2305a61fa136a45a126dd75c2f4b3e119ca2ecfb06be2242ada6584",
+   "url": "https://github.com/usnistgov/jarvis/archive/refs/tags/v2024.3.24.tar.gz"
   },
   "test": {
    "commands": [
@@ -88,7 +90,9 @@
    "__set__": true,
    "elements": [
     "joblib",
+    "markdown",
     "matplotlib-base",
+    "mkdocs-material",
     "numpy",
     "python",
     "requests",
@@ -117,7 +121,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "python -m pip install --no-deps --ignore-installed ."
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -142,6 +146,8 @@
     "scipy >=1.6.3",
     "joblib",
     "matplotlib-base",
+    "markdown",
+    "mkdocs-material",
     "requests",
     "spglib",
     "toolz",
@@ -150,8 +156,8 @@
    ]
   },
   "source": {
-   "sha256": "057418647ff25ef45e1d95ac4aa0d53fa81a10115558a8039169af168d4c0394",
-   "url": "https://pypi.io/packages/source/j/jarvis-tools/jarvis-tools-2024.3.24.tar.gz"
+   "sha256": "cac2a267f2305a61fa136a45a126dd75c2f4b3e119ca2ecfb06be2242ada6584",
+   "url": "https://github.com/usnistgov/jarvis/archive/refs/tags/v2024.3.24.tar.gz"
   },
   "test": {
    "commands": [
@@ -179,12 +185,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/jarvis-tools.json"
  },
- "raw_meta_yaml": "{% set name = \"jarvis-tools\" %}\n{% set version = \"2024.3.24\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jarvis-tools-{{ version }}.tar.gz\n  sha256: 057418647ff25ef45e1d95ac4aa0d53fa81a10115558a8039169af168d4c0394\n\nbuild:\n  noarch: python \n  number: 0\n  script: python -m pip install --no-deps --ignore-installed .\n\nrequirements:\n  host:\n    - pip\n    - setuptools\n    - python >=3.8\n  run:\n    - python >=3.8\n    - setuptools\n    - numpy >=1.19.5\n    - scipy >=1.6.3\n    - joblib\n    - matplotlib-base\n    - requests\n    - spglib\n    - toolz\n    - xmltodict\n    - tqdm\n\ntest:\n  imports:\n    - jarvis\n    # - jarvis.ai\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/knc6/jarvis\n  summary: jarvis\n  license: NIST-PD\n  license_file: LICENSE\n  \n# about:\n#   home: https://jarvis.nist.gov\n#   summary: 'jarvis-tools: an open-source software package for data-driven atomistic materials design'\n#   license: NIST-PD\n#   license_file: LICENSE\n#   description: |\n#     NIST-JARVIS (Joint Automated Repository for Various Integrated\n#     Simulations) is an integrated framework for computational science\n#     using density functional theory, classical force-field/molecular\n#     dynamics and machine-learning. The jarvis-tools package consists\n#     of scripts used in generating and analyzing the dataset. This\n#     project is a part of the Materials Genome Initiative (MGI) at NIST.\n#   doc_url: https://pages.nist.gov/jarvis/\n#   dev_url: https://github.com/usnistgov/jarvis\n\nextra:\n  recipe-maintainers:\n    - wd15\n    - knc6\n",
+ "raw_meta_yaml": "{% set name = \"jarvis-tools\" %}\n{% set version = \"2024.3.24\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jarvis-tools-{{ version }}.tar.gz\n  url: https://github.com/usnistgov/jarvis/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: cac2a267f2305a61fa136a45a126dd75c2f4b3e119ca2ecfb06be2242ada6584\n  # sha256: 057418647ff25ef45e1d95ac4aa0d53fa81a10115558a8039169af168d4c0394\n\nbuild:\n  noarch: python \n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n\nrequirements:\n  host:\n    - pip\n    - setuptools\n    - python >=3.8\n  run:\n    - python >=3.8\n    - setuptools\n    - numpy >=1.19.5\n    - scipy >=1.6.3\n    - joblib\n    - matplotlib-base\n    - markdown\n    - mkdocs-material\n    - requests\n    - spglib\n    - toolz\n    - xmltodict\n    - tqdm\n\ntest:\n  imports:\n    - jarvis\n    # - jarvis.ai\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/knc6/jarvis\n  summary: jarvis\n  license: NIST-PD\n  license_file: LICENSE\n  \n# about:\n#   home: https://jarvis.nist.gov\n#   summary: 'jarvis-tools: an open-source software package for data-driven atomistic materials design'\n#   license: NIST-PD\n#   license_file: LICENSE\n#   description: |\n#     NIST-JARVIS (Joint Automated Repository for Various Integrated\n#     Simulations) is an integrated framework for computational science\n#     using density functional theory, classical force-field/molecular\n#     dynamics and machine-learning. The jarvis-tools package consists\n#     of scripts used in generating and analyzing the dataset. This\n#     project is a part of the Materials Genome Initiative (MGI) at NIST.\n#   doc_url: https://pages.nist.gov/jarvis/\n#   dev_url: https://github.com/usnistgov/jarvis\n\nextra:\n  recipe-maintainers:\n    - wd15\n    - knc6\n",
  "req": {
   "__set__": true,
   "elements": [
    "joblib",
+   "markdown",
    "matplotlib-base",
+   "mkdocs-material",
    "numpy",
    "pip",
    "python",
@@ -214,7 +222,9 @@
    "__set__": true,
    "elements": [
     "joblib",
+    "markdown",
     "matplotlib-base",
+    "mkdocs-material",
     "numpy",
     "python",
     "requests",
@@ -251,7 +261,9 @@
    "__set__": true,
    "elements": [
     "joblib",
+    "markdown",
     "matplotlib-base",
+    "mkdocs-material",
     "numpy >=1.19.5",
     "python >=3.8",
     "requests",
@@ -270,7 +282,7 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/j/jarvis-tools/jarvis-tools-2024.3.24.tar.gz",
+ "url": "https://github.com/usnistgov/jarvis/archive/refs/tags/v2024.3.24.tar.gz",
  "version": "2024.3.24",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/jarvis-tools.json"
