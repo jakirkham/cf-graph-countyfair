@@ -27,7 +27,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -37,7 +37,7 @@
   },
   "package": {
    "name": "segment-geospatial",
-   "version": "0.10.2"
+   "version": "0.10.4"
   },
   "requirements": {
    "host": [
@@ -60,12 +60,13 @@
     "leafmap",
     "localtileserver",
     "segment-anything-hq",
-    "timm"
+    "timm",
+    "patool"
    ]
   },
   "source": {
-   "sha256": "d998b0914687f416311ea25e6e598df54c6c99ba2e8d1313bd691327e2753371",
-   "url": "https://pypi.io/packages/source/s/segment-geospatial/segment-geospatial-0.10.2.tar.gz"
+   "sha256": "2fd80b8990d5d19e212c1d94fb20147432c42271c82ea250ddbaa3d88ae91f72",
+   "url": "https://pypi.io/packages/source/s/segment-geospatial/segment-geospatial-0.10.4.tar.gz"
   },
   "test": {
    "commands": [
@@ -75,7 +76,8 @@
     "samgeo"
    ],
    "requires": [
-    "pip"
+    "pip",
+    "libopencv *=headless*"
    ]
   }
  },
@@ -101,6 +103,7 @@
     "localtileserver",
     "matplotlib-base",
     "opencv",
+    "patool",
     "pycocotools",
     "pyproj",
     "python",
@@ -115,6 +118,7 @@
   "test": {
    "__set__": true,
    "elements": [
+    "libopencv",
     "pip"
    ]
   }
@@ -130,7 +134,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -140,7 +144,7 @@
   },
   "package": {
    "name": "segment-geospatial",
-   "version": "0.10.2"
+   "version": "0.10.4"
   },
   "requirements": {
    "host": [
@@ -163,12 +167,13 @@
     "leafmap",
     "localtileserver",
     "segment-anything-hq",
-    "timm"
+    "timm",
+    "patool"
    ]
   },
   "source": {
-   "sha256": "d998b0914687f416311ea25e6e598df54c6c99ba2e8d1313bd691327e2753371",
-   "url": "https://pypi.io/packages/source/s/segment-geospatial/segment-geospatial-0.10.2.tar.gz"
+   "sha256": "2fd80b8990d5d19e212c1d94fb20147432c42271c82ea250ddbaa3d88ae91f72",
+   "url": "https://pypi.io/packages/source/s/segment-geospatial/segment-geospatial-0.10.4.tar.gz"
   },
   "test": {
    "commands": [
@@ -178,7 +183,8 @@
     "samgeo"
    ],
    "requires": [
-    "pip"
+    "pip",
+    "libopencv *=headless*"
    ]
   }
  },
@@ -196,7 +202,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/segment-geospatial.json"
  },
- "raw_meta_yaml": "{% set name = \"segment-geospatial\" %}\n{% set version = \"0.10.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/segment-geospatial-{{ version }}.tar.gz\n  sha256: d998b0914687f416311ea25e6e598df54c6c99ba2e8d1313bd691327e2753371\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n  run:\n    - python >=3.8\n    - segment-anything\n    - opencv\n    - pycocotools\n    - matplotlib-base\n    - huggingface_hub\n    - geopandas\n    - rasterio\n    - tqdm\n    - gdown\n    - xyzservices\n    - pyproj\n    - leafmap\n    - localtileserver\n    - segment-anything-hq\n    - timm\n\ntest:\n  imports:\n    - samgeo\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/opengeos/segment-geospatial\n  summary: A Python package for segmenting geospatial data with the Segment Anything Model (SAM)\n  description: A Python package for segmenting geospatial data with the Segment Anything Model (SAM)\n  doc_url: https://geosam.gishub.org\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - giswqs\n",
+ "raw_meta_yaml": "{% set name = \"segment-geospatial\" %}\n{% set version = \"0.10.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/segment-geospatial-{{ version }}.tar.gz\n  sha256: 2fd80b8990d5d19e212c1d94fb20147432c42271c82ea250ddbaa3d88ae91f72\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 1\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n  run:\n    - python >=3.8\n    - segment-anything\n    - opencv\n    - pycocotools\n    - matplotlib-base\n    - huggingface_hub\n    - geopandas\n    - rasterio\n    - tqdm\n    - gdown\n    - xyzservices\n    - pyproj\n    - leafmap\n    - localtileserver\n    - segment-anything-hq\n    - timm\n    - patool\n\ntest:\n  imports:\n    - samgeo\n  commands:\n    - pip check\n  requires:\n    - pip\n    - libopencv *=headless*  # [linux]\n\nabout:\n  home: https://github.com/opengeos/segment-geospatial\n  summary: A Python package for segmenting geospatial data with the Segment Anything Model (SAM)\n  description: A Python package for segmenting geospatial data with the Segment Anything Model (SAM)\n  doc_url: https://geosam.gishub.org\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - giswqs\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -207,6 +213,7 @@
    "localtileserver",
    "matplotlib-base",
    "opencv",
+   "patool",
    "pip",
    "pycocotools",
    "pyproj",
@@ -241,6 +248,7 @@
     "localtileserver",
     "matplotlib-base",
     "opencv",
+    "patool",
     "pycocotools",
     "pyproj",
     "python",
@@ -255,6 +263,7 @@
   "test": {
    "__set__": true,
    "elements": [
+    "libopencv",
     "pip"
    ]
   }
@@ -282,6 +291,7 @@
     "localtileserver",
     "matplotlib-base",
     "opencv",
+    "patool",
     "pycocotools",
     "pyproj",
     "python >=3.8",
@@ -296,12 +306,13 @@
   "test": {
    "__set__": true,
    "elements": [
+    "libopencv *=headless*",
     "pip"
    ]
   }
  },
- "url": "https://pypi.io/packages/source/s/segment-geospatial/segment-geospatial-0.10.2.tar.gz",
- "version": "0.10.2",
+ "url": "https://pypi.io/packages/source/s/segment-geospatial/segment-geospatial-0.10.4.tar.gz",
+ "version": "0.10.4",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/segment-geospatial.json"
  }
