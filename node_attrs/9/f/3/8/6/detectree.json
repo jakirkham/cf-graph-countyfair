@@ -20,15 +20,15 @@
    "license": "GPL-3.0-or-later",
    "license_family": "GPL3",
    "license_file": "LICENSE",
-   "summary": "Tree detection from aerial imagery"
+   "summary": "Tree detection from aerial imagery in Python."
   },
   "build": {
    "entry_points": [
-    "detectree=detectree.cli.main:cli"
+    "detectree = detectree.cli.main:cli"
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -37,45 +37,49 @@
   },
   "package": {
    "name": "detectree",
-   "version": "0.4.2"
+   "version": "0.5.1"
   },
   "requirements": {
    "host": [
-    "pip",
-    "python >=3.6"
+    "python >=3.8",
+    "setuptools >=61.0",
+    "pip"
    ],
    "run": [
-    "click",
+    "python >=3.8",
     "dask-core",
     "joblib",
     "laspy >=2.0.0",
+    "lightgbm",
     "numpy >=1.15",
+    "opencv >=4.0.0",
     "pandas >=0.23",
-    "pillow",
     "pymaxflow >=1.0.0",
-    "python >=3.6",
     "rasterio >=1.0.0",
     "scikit-image",
     "scikit-learn",
     "scipy >=1.0.0",
+    "skops",
     "shapely",
     "tqdm"
    ]
   },
   "source": {
-   "sha256": "8370d26beadeeddd4347d083d66b15b9b39d179f9a670ba808913fa726fb6e19",
-   "url": "https://pypi.io/packages/source/d/detectree/detectree-0.4.2.tar.gz"
+   "sha256": "1b36b29c9b30ab759659e4db40017d3863e90234cb445a89177a3cb8896fec36",
+   "url": "https://pypi.io/packages/source/d/detectree/detectree-0.5.1.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "detectree --help"
    ],
    "imports": [
     "detectree",
     "detectree.cli"
    ],
    "requires": [
-    "pip"
+    "pip",
+    "opencv =*=headless*"
    ]
   }
  },
@@ -88,19 +92,20 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "click",
     "dask-core",
     "joblib",
     "laspy",
+    "lightgbm",
     "numpy",
+    "opencv",
     "pandas",
-    "pillow",
     "pymaxflow",
     "python",
     "rasterio",
@@ -108,12 +113,14 @@
     "scikit-learn",
     "scipy",
     "shapely",
+    "skops",
     "tqdm"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "opencv",
     "pip"
    ]
   }
@@ -125,15 +132,15 @@
    "license": "GPL-3.0-or-later",
    "license_family": "GPL3",
    "license_file": "LICENSE",
-   "summary": "Tree detection from aerial imagery"
+   "summary": "Tree detection from aerial imagery in Python."
   },
   "build": {
    "entry_points": [
-    "detectree=detectree.cli.main:cli"
+    "detectree = detectree.cli.main:cli"
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -142,45 +149,49 @@
   },
   "package": {
    "name": "detectree",
-   "version": "0.4.2"
+   "version": "0.5.1"
   },
   "requirements": {
    "host": [
-    "pip",
-    "python >=3.6"
+    "python >=3.8",
+    "setuptools >=61.0",
+    "pip"
    ],
    "run": [
-    "click",
+    "python >=3.8",
     "dask-core",
     "joblib",
     "laspy >=2.0.0",
+    "lightgbm",
     "numpy >=1.15",
+    "opencv >=4.0.0",
     "pandas >=0.23",
-    "pillow",
     "pymaxflow >=1.0.0",
-    "python >=3.6",
     "rasterio >=1.0.0",
     "scikit-image",
     "scikit-learn",
     "scipy >=1.0.0",
+    "skops",
     "shapely",
     "tqdm"
    ]
   },
   "source": {
-   "sha256": "8370d26beadeeddd4347d083d66b15b9b39d179f9a670ba808913fa726fb6e19",
-   "url": "https://pypi.io/packages/source/d/detectree/detectree-0.4.2.tar.gz"
+   "sha256": "1b36b29c9b30ab759659e4db40017d3863e90234cb445a89177a3cb8896fec36",
+   "url": "https://pypi.io/packages/source/d/detectree/detectree-0.5.1.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "detectree --help"
    ],
    "imports": [
     "detectree",
     "detectree.cli"
    ],
    "requires": [
-    "pip"
+    "pip",
+    "opencv =*=headless*"
    ]
   }
  },
@@ -198,17 +209,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/detectree.json"
  },
- "raw_meta_yaml": "{% set name = \"detectree\" %}\n{% set version = \"0.4.2\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/detectree-{{ version }}.tar.gz\n  sha256: 8370d26beadeeddd4347d083d66b15b9b39d179f9a670ba808913fa726fb6e19\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  entry_points:\n    - detectree=detectree.cli.main:cli\n\nrequirements:\n  host:\n    - pip\n    - python >=3.6\n  run:\n    - click\n    - dask-core\n    - joblib\n    - laspy >=2.0.0\n    - numpy >=1.15\n    - pandas >=0.23\n    - pillow\n    - pymaxflow >=1.0.0\n    - python >=3.6\n    - rasterio >=1.0.0\n    - scikit-image\n    - scikit-learn\n    - scipy >=1.0.0\n    - shapely\n    - tqdm\n\ntest:\n  imports:\n    - detectree\n    - detectree.cli\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/martibosch/detectree\n  summary: Tree detection from aerial imagery\n  license: GPL-3.0-or-later\n  license_family: GPL3\n  license_file: LICENSE\n  doc_url: https://detectree.readthedocs.io/en/latest/?badge=latest\n\nextra:\n  recipe-maintainers:\n    - martibosch\n",
+ "raw_meta_yaml": "{% set name = \"detectree\" %}\n{% set version = \"0.5.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/detectree-{{ version }}.tar.gz\n  sha256: 1b36b29c9b30ab759659e4db40017d3863e90234cb445a89177a3cb8896fec36\n\nbuild:\n  entry_points:\n    - detectree = detectree.cli.main:cli\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools >=61.0\n    - pip\n  run:\n    - python >=3.8\n    - dask-core\n    - joblib\n    - laspy >=2.0.0\n    - lightgbm\n    - numpy >=1.15\n    - opencv >=4.0.0\n    - pandas >=0.23\n    - pymaxflow >=1.0.0\n    - rasterio >=1.0.0\n    - scikit-image\n    - scikit-learn\n    - scipy >=1.0.0\n    - skops\n    - shapely\n    - tqdm\n\ntest:\n  imports:\n    - detectree\n    - detectree.cli\n  commands:\n    - pip check\n    - detectree --help\n  requires:\n    - pip\n    - opencv =*=headless*\n\nabout:\n  home: https://github.com/martibosch/detectree\n  summary: Tree detection from aerial imagery in Python.\n  license: GPL-3.0-or-later\n  license_family: GPL3\n  license_file: LICENSE\n  doc_url: https://detectree.readthedocs.io/en/latest/?badge=latest\n\nextra:\n  recipe-maintainers:\n    - martibosch\n",
  "req": {
   "__set__": true,
   "elements": [
-   "click",
    "dask-core",
    "joblib",
    "laspy",
+   "lightgbm",
    "numpy",
+   "opencv",
    "pandas",
-   "pillow",
    "pip",
    "pymaxflow",
    "python",
@@ -216,7 +227,9 @@
    "scikit-image",
    "scikit-learn",
    "scipy",
+   "setuptools",
    "shapely",
+   "skops",
    "tqdm"
   ]
  },
@@ -229,19 +242,20 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "click",
     "dask-core",
     "joblib",
     "laspy",
+    "lightgbm",
     "numpy",
+    "opencv",
     "pandas",
-    "pillow",
     "pymaxflow",
     "python",
     "rasterio",
@@ -249,12 +263,14 @@
     "scikit-learn",
     "scipy",
     "shapely",
+    "skops",
     "tqdm"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "opencv",
     "pip"
    ]
   }
@@ -269,38 +285,41 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6"
+    "python >=3.8",
+    "setuptools >=61.0"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "click",
     "dask-core",
     "joblib",
     "laspy >=2.0.0",
+    "lightgbm",
     "numpy >=1.15",
+    "opencv >=4.0.0",
     "pandas >=0.23",
-    "pillow",
     "pymaxflow >=1.0.0",
-    "python >=3.6",
+    "python >=3.8",
     "rasterio >=1.0.0",
     "scikit-image",
     "scikit-learn",
     "scipy >=1.0.0",
     "shapely",
+    "skops",
     "tqdm"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "opencv =*=headless*",
     "pip"
    ]
   }
  },
- "url": "https://pypi.io/packages/source/d/detectree/detectree-0.4.2.tar.gz",
- "version": "0.4.2",
+ "url": "https://pypi.io/packages/source/d/detectree/detectree-0.5.1.tar.gz",
+ "version": "0.5.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/detectree.json"
  }
