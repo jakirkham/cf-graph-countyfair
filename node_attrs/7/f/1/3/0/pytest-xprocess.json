@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "hint-all"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -18,13 +21,13 @@
    "doc_url": "https://pytest-xprocess.readthedocs.io",
    "home": "https://github.com/pytest-dev/pytest-xprocess",
    "license": "MIT",
-   "license_file": "dist/LICENSE",
+   "license_file": "LICENSE",
    "summary": "A pytest plugin for managing processes across test runs."
   },
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "cd dist && PYTHON -m pip install . -vv --no-build-isolation --no-deps"
+   "script": "PYTHON -m pip install . -vv --no-build-isolation --no-deps"
   },
   "extra": {
    "recipe-maintainers": [
@@ -33,7 +36,7 @@
   },
   "package": {
    "name": "pytest-xprocess",
-   "version": "1.0.0"
+   "version": "1.0.1"
   },
   "requirements": {
    "host": [
@@ -47,23 +50,15 @@
     "python >=3.9"
    ]
   },
-  "source": [
-   {
-    "folder": "dist",
-    "sha256": "40944d0da8152224752ebc87c91187207db2c96e50ebe895f6ad5a7c1c44624a",
-    "url": "https://pypi.io/packages/source/p/pytest-xprocess/pytest-xprocess-1.0.0.tar.gz"
-   },
-   {
-    "folder": "src",
-    "sha256": "013617f6a31587179c0e8b1848562a859292cc8f0b506aa7a0ed9fa7e498ccab",
-    "url": "https://github.com/pytest-dev/pytest-xprocess/archive/refs/tags/v1.0.0.tar.gz"
-   }
-  ],
+  "source": {
+   "sha256": "34f94e59a99c3f4bff08a7da54ad8592f6eb61f318e9f3d385ee0e55c4b12404",
+   "url": "https://pypi.io/packages/source/p/pytest-xprocess/pytest-xprocess-1.0.1.tar.gz"
+  },
   "test": {
    "commands": [
     "pip check",
-    "coverage run -m pytest -v src/tests",
-    "coverage report --fail-under=99"
+    "coverage run --source xprocess --branch -m pytest -vv --tb=long --color=yes",
+    "coverage report --show-missing --skip-covered --fail-under=88"
    ],
    "imports": [
     "xprocess"
@@ -73,7 +68,7 @@
     "coverage"
    ],
    "source_files": [
-    "src/tests"
+    "tests"
    ]
   }
  },
@@ -111,13 +106,13 @@
    "doc_url": "https://pytest-xprocess.readthedocs.io",
    "home": "https://github.com/pytest-dev/pytest-xprocess",
    "license": "MIT",
-   "license_file": "dist/LICENSE",
+   "license_file": "LICENSE",
    "summary": "A pytest plugin for managing processes across test runs."
   },
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "cd dist && PYTHON -m pip install . -vv --no-build-isolation --no-deps"
+   "script": "PYTHON -m pip install . -vv --no-build-isolation --no-deps"
   },
   "extra": {
    "recipe-maintainers": [
@@ -126,7 +121,7 @@
   },
   "package": {
    "name": "pytest-xprocess",
-   "version": "1.0.0"
+   "version": "1.0.1"
   },
   "requirements": {
    "host": [
@@ -140,23 +135,15 @@
     "python >=3.9"
    ]
   },
-  "source": [
-   {
-    "folder": "dist",
-    "sha256": "40944d0da8152224752ebc87c91187207db2c96e50ebe895f6ad5a7c1c44624a",
-    "url": "https://pypi.io/packages/source/p/pytest-xprocess/pytest-xprocess-1.0.0.tar.gz"
-   },
-   {
-    "folder": "src",
-    "sha256": "013617f6a31587179c0e8b1848562a859292cc8f0b506aa7a0ed9fa7e498ccab",
-    "url": "https://github.com/pytest-dev/pytest-xprocess/archive/refs/tags/v1.0.0.tar.gz"
-   }
-  ],
+  "source": {
+   "sha256": "34f94e59a99c3f4bff08a7da54ad8592f6eb61f318e9f3d385ee0e55c4b12404",
+   "url": "https://pypi.io/packages/source/p/pytest-xprocess/pytest-xprocess-1.0.1.tar.gz"
+  },
   "test": {
    "commands": [
     "pip check",
-    "coverage run -m pytest -v src/tests",
-    "coverage report --fail-under=99"
+    "coverage run --source xprocess --branch -m pytest -vv --tb=long --color=yes",
+    "coverage report --show-missing --skip-covered --fail-under=88"
    ],
    "imports": [
     "xprocess"
@@ -166,7 +153,7 @@
     "coverage"
    ],
    "source_files": [
-    "src/tests"
+    "tests"
    ]
   }
  },
@@ -184,7 +171,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pytest-xprocess.json"
  },
- "raw_meta_yaml": "{% set version = \"1.0.0\" %}\n{% set cov_fail_under = 99 %}\n\npackage:\n  name: pytest-xprocess\n  version: {{ version }}\n\nsource:\n  - folder: dist\n    url: https://pypi.io/packages/source/p/pytest-xprocess/pytest-xprocess-{{ version }}.tar.gz\n    sha256: 40944d0da8152224752ebc87c91187207db2c96e50ebe895f6ad5a7c1c44624a\n  - folder: src\n    url: https://github.com/pytest-dev/pytest-xprocess/archive/refs/tags/v{{ version }}.tar.gz\n    sha256: 013617f6a31587179c0e8b1848562a859292cc8f0b506aa7a0ed9fa7e498ccab\n\nbuild:\n  number: 0\n  noarch: python\n  script: cd dist && {{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps\n\nrequirements:\n  host:\n    - pip\n    - python >=3.9\n    - setuptools-scm >=6.2.3\n  run:\n    - psutil\n    - pytest >=2.8\n    - python >=3.9\n\ntest:\n  source_files:\n    - src/tests\n  requires:\n    - pip\n    - coverage\n  imports:\n    - xprocess\n  commands:\n    - pip check\n    - coverage run -m pytest -v src/tests\n    - coverage report --fail-under={{ cov_fail_under }}\n\nabout:\n  home: https://github.com/pytest-dev/pytest-xprocess\n  summary: A pytest plugin for managing processes across test runs.\n  license: MIT\n  license_file: dist/LICENSE\n  doc_url: https://pytest-xprocess.readthedocs.io\n\nextra:\n  recipe-maintainers:\n    - bollwyvl\n",
+ "raw_meta_yaml": "{% set version = \"1.0.1\" %}\n\npackage:\n  name: pytest-xprocess\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/p/pytest-xprocess/pytest-xprocess-{{ version }}.tar.gz\n  sha256: 34f94e59a99c3f4bff08a7da54ad8592f6eb61f318e9f3d385ee0e55c4b12404\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps\n\nrequirements:\n  host:\n    - pip\n    - python >=3.9\n    - setuptools-scm >=6.2.3\n  run:\n    - psutil\n    - pytest >=2.8\n    - python >=3.9\n\ntest:\n  source_files:\n    - tests\n  requires:\n    - pip\n    - coverage\n  imports:\n    - xprocess\n  commands:\n    - pip check\n    - coverage run --source xprocess --branch -m pytest -vv --tb=long --color=yes\n    - coverage report --show-missing --skip-covered --fail-under=88\n\nabout:\n  home: https://github.com/pytest-dev/pytest-xprocess\n  summary: A pytest plugin for managing processes across test runs.\n  license: MIT\n  license_file: LICENSE\n  doc_url: https://pytest-xprocess.readthedocs.io\n\nextra:\n  recipe-maintainers:\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -254,8 +241,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/p/pytest-xprocess/pytest-xprocess-1.0.0.tar.gz",
- "version": "1.0.0",
+ "url": "https://pypi.io/packages/source/p/pytest-xprocess/pytest-xprocess-1.0.1.tar.gz",
+ "version": "1.0.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pytest-xprocess.json"
  }

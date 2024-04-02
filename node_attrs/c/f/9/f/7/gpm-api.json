@@ -18,13 +18,13 @@
    "home": "https://github.com/ghiggi/gpm_api",
    "license": "MIT",
    "license_file": "LICENSE",
-   "summary": "Python API for the Global Precipitation Mission Data Archive"
+   "summary": "Python Package for the Global Precipitation Measurement (GPM) Mission Data Archive"
   },
   "build": {
    "entry_points": [
-    "download_gpm_daily_data = gpm_api.scripts.download_gpm_daily_data:download_gpm_daily_data",
-    "download_gpm_monthly_data = gpm_api.scripts.download_gpm_monthly_data:download_gpm_monthly_data",
-    "download_gpm_files = gpm_api.scripts.download_gpm_files:download_gpm_files"
+    "download_gpm_daily_data = gpm.scripts.download_gpm_daily_data:download_gpm_daily_data",
+    "download_gpm_monthly_data = gpm.scripts.download_gpm_monthly_data:download_gpm_monthly_data",
+    "download_gpm_files = gpm.scripts.download_gpm_files:download_gpm_files"
    ],
    "noarch": "python",
    "number": "0",
@@ -37,7 +37,7 @@
   },
   "package": {
    "name": "gpm-api",
-   "version": "0.2.11"
+   "version": "0.2.12"
   },
   "requirements": {
    "host": [
@@ -49,23 +49,26 @@
    ],
    "run": [
     "python >=3.8",
-    "xarray",
+    "xarray <=2024.2.0",
     "xarray-datatree",
-    "h5py",
     "netcdf4",
     "dask-core",
+    "distributed",
+    "curl",
     "tqdm",
     "click",
     "donfig",
     "trollsift",
-    "pyresample",
-    "cartopy >=0.20.0",
-    "curl"
+    "cartopy >=0.22.0",
+    "matplotlib-base >=3.8.3",
+    "pyproj",
+    "scipy",
+    "pycolorbar"
    ]
   },
   "source": {
-   "sha256": "c18aa4e546f238356cc100337d0db42217f8bd2ff9d7825fcaa3aabffea73540",
-   "url": "https://pypi.io/packages/source/g/gpm-api/gpm_api-0.2.11.tar.gz"
+   "sha256": "7d18f8d62673e113faa85ff45fcd59415b0f6ac740c4b9962115a3bbc680a9d9",
+   "url": "https://pypi.io/packages/source/g/gpm-api/gpm_api-0.2.12.tar.gz"
   },
   "test": {
    "commands": [
@@ -75,7 +78,7 @@
     "download_gpm_files --help"
    ],
    "imports": [
-    "gpm_api"
+    "gpm"
    ],
    "requires": [
     "pip"
@@ -104,11 +107,14 @@
     "click",
     "curl",
     "dask-core",
+    "distributed",
     "donfig",
-    "h5py",
+    "matplotlib-base",
     "netcdf4",
-    "pyresample",
+    "pycolorbar",
+    "pyproj",
     "python",
+    "scipy",
     "tqdm",
     "trollsift",
     "xarray",
@@ -127,13 +133,13 @@
    "home": "https://github.com/ghiggi/gpm_api",
    "license": "MIT",
    "license_file": "LICENSE",
-   "summary": "Python API for the Global Precipitation Mission Data Archive"
+   "summary": "Python Package for the Global Precipitation Measurement (GPM) Mission Data Archive"
   },
   "build": {
    "entry_points": [
-    "download_gpm_daily_data = gpm_api.scripts.download_gpm_daily_data:download_gpm_daily_data",
-    "download_gpm_monthly_data = gpm_api.scripts.download_gpm_monthly_data:download_gpm_monthly_data",
-    "download_gpm_files = gpm_api.scripts.download_gpm_files:download_gpm_files"
+    "download_gpm_daily_data = gpm.scripts.download_gpm_daily_data:download_gpm_daily_data",
+    "download_gpm_monthly_data = gpm.scripts.download_gpm_monthly_data:download_gpm_monthly_data",
+    "download_gpm_files = gpm.scripts.download_gpm_files:download_gpm_files"
    ],
    "noarch": "python",
    "number": "0",
@@ -146,7 +152,7 @@
   },
   "package": {
    "name": "gpm-api",
-   "version": "0.2.11"
+   "version": "0.2.12"
   },
   "requirements": {
    "host": [
@@ -158,23 +164,26 @@
    ],
    "run": [
     "python >=3.8",
-    "xarray",
+    "xarray <=2024.2.0",
     "xarray-datatree",
-    "h5py",
     "netcdf4",
     "dask-core",
+    "distributed",
+    "curl",
     "tqdm",
     "click",
     "donfig",
     "trollsift",
-    "pyresample",
-    "cartopy >=0.20.0",
-    "curl"
+    "cartopy >=0.22.0",
+    "matplotlib-base >=3.8.3",
+    "pyproj",
+    "scipy",
+    "pycolorbar"
    ]
   },
   "source": {
-   "sha256": "c18aa4e546f238356cc100337d0db42217f8bd2ff9d7825fcaa3aabffea73540",
-   "url": "https://pypi.io/packages/source/g/gpm-api/gpm_api-0.2.11.tar.gz"
+   "sha256": "7d18f8d62673e113faa85ff45fcd59415b0f6ac740c4b9962115a3bbc680a9d9",
+   "url": "https://pypi.io/packages/source/g/gpm-api/gpm_api-0.2.12.tar.gz"
   },
   "test": {
    "commands": [
@@ -184,7 +193,7 @@
     "download_gpm_files --help"
    ],
    "imports": [
-    "gpm_api"
+    "gpm"
    ],
    "requires": [
     "pip"
@@ -205,7 +214,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/gpm-api.json"
  },
- "raw_meta_yaml": "{% set name = \"gpm-api\" %}\n{% set version = \"0.2.11\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/gpm_api-{{ version }}.tar.gz\n  sha256: c18aa4e546f238356cc100337d0db42217f8bd2ff9d7825fcaa3aabffea73540\n\nbuild:\n  entry_points:\n    - download_gpm_daily_data = gpm_api.scripts.download_gpm_daily_data:download_gpm_daily_data\n    - download_gpm_monthly_data = gpm_api.scripts.download_gpm_monthly_data:download_gpm_monthly_data\n    - download_gpm_files = gpm_api.scripts.download_gpm_files:download_gpm_files\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools >=61.0.0\n    - setuptools-scm >=6.2\n    - wheel\n    - pip\n  run:\n    - python >=3.8\n    - xarray\n    - xarray-datatree\n    - h5py\n    - netcdf4\n    - dask-core\n    - tqdm\n    - click\n    - donfig\n    - trollsift\n    - pyresample\n    - cartopy >=0.20.0\n    - curl\ntest:\n  imports:\n    - gpm_api\n  commands:\n    - pip check\n    - download_gpm_daily_data --help\n    - download_gpm_monthly_data --help\n    - download_gpm_files --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/ghiggi/gpm_api\n  summary: Python API for the Global Precipitation Mission Data Archive\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - ghiggi\n",
+ "raw_meta_yaml": "{% set name = \"gpm-api\" %}\n{% set version = \"0.2.12\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/gpm_api-{{ version }}.tar.gz\n  sha256: 7d18f8d62673e113faa85ff45fcd59415b0f6ac740c4b9962115a3bbc680a9d9\n\nbuild:\n  entry_points:\n    - download_gpm_daily_data = gpm.scripts.download_gpm_daily_data:download_gpm_daily_data\n    - download_gpm_monthly_data = gpm.scripts.download_gpm_monthly_data:download_gpm_monthly_data\n    - download_gpm_files = gpm.scripts.download_gpm_files:download_gpm_files\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools >=61.0.0\n    - setuptools-scm >=6.2\n    - wheel\n    - pip\n  run:\n    - python >=3.8\n    - xarray <=2024.2.0\n    - xarray-datatree\n    - netcdf4\n    - dask-core\n    - distributed\n    - curl\n    - tqdm\n    - click\n    - donfig\n    - trollsift\n    - cartopy >=0.22.0\n    - matplotlib-base >=3.8.3\n    - pyproj\n    - scipy\n    - pycolorbar\ntest:\n  imports:\n    - gpm\n  commands:\n    - pip check\n    - download_gpm_daily_data --help\n    - download_gpm_monthly_data --help\n    - download_gpm_files --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/ghiggi/gpm_api\n  summary: Python Package for the Global Precipitation Measurement (GPM) Mission Data Archive\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - ghiggi\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -213,12 +222,15 @@
    "click",
    "curl",
    "dask-core",
+   "distributed",
    "donfig",
-   "h5py",
+   "matplotlib-base",
    "netcdf4",
    "pip",
-   "pyresample",
+   "pycolorbar",
+   "pyproj",
    "python",
+   "scipy",
    "setuptools",
    "setuptools-scm",
    "tqdm",
@@ -250,11 +262,14 @@
     "click",
     "curl",
     "dask-core",
+    "distributed",
     "donfig",
-    "h5py",
+    "matplotlib-base",
     "netcdf4",
-    "pyresample",
+    "pycolorbar",
+    "pyproj",
     "python",
+    "scipy",
     "tqdm",
     "trollsift",
     "xarray",
@@ -287,18 +302,21 @@
   "run": {
    "__set__": true,
    "elements": [
-    "cartopy >=0.20.0",
+    "cartopy >=0.22.0",
     "click",
     "curl",
     "dask-core",
+    "distributed",
     "donfig",
-    "h5py",
+    "matplotlib-base >=3.8.3",
     "netcdf4",
-    "pyresample",
+    "pycolorbar",
+    "pyproj",
     "python >=3.8",
+    "scipy",
     "tqdm",
     "trollsift",
-    "xarray",
+    "xarray <=2024.2.0",
     "xarray-datatree"
    ]
   },
@@ -309,8 +327,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/g/gpm-api/gpm_api-0.2.11.tar.gz",
- "version": "0.2.11",
+ "url": "https://pypi.io/packages/source/g/gpm-api/gpm_api-0.2.12.tar.gz",
+ "version": "0.2.12",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/gpm-api.json"
  }
