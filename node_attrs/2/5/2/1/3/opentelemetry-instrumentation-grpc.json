@@ -28,10 +28,11 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
+    "rxm7706",
     "mariusvniekerk"
    ]
   },
@@ -112,10 +113,11 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
+    "rxm7706",
     "mariusvniekerk"
    ]
   },
@@ -169,7 +171,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/opentelemetry-instrumentation-grpc.json"
  },
- "raw_meta_yaml": "{% set name = \"opentelemetry-instrumentation-grpc\" %}\n{% set version = \"0.45b0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_instrumentation_grpc-{{ version }}.tar.gz\n  sha256: 5572c4a10a125774fb9d2705aa29aec1fc70d6f5a3cd070930fee86610931e71\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n    - hatchling\n  run:\n    - python >=3.7\n    - opentelemetry-api ~=1.12\n    - opentelemetry-instrumentation ==0.45b0\n    - opentelemetry-sdk ~=1.12\n    - opentelemetry-semantic-conventions ==0.45b0\n    - wrapt <2.0.0,>=1.0.0\n    # - protobuf ~=3.13\n    # - opentelemetry-test-utils ==0.37b0\n    # - opentelemetry-instrumentation-grpc \n    # - grpcio ~=1.27\n    # - protobuf ~=3.13\n    # - opentelemetry-test-utils ==0.39b0\n    # - opentelemetry-instrumentation-grpc \n    # - grpcio ~=1.27\n    # - protobuf ~=3.13\n    # - opentelemetry-test-utils ==0.40b0\n    # - opentelemetry-instrumentation-grpc \n    # - grpcio ~=1.27\n    # - protobuf ~=3.13\n    # - opentelemetry-test-utils ==0.41b0\n    # - opentelemetry-instrumentation-grpc \n    # - grpcio ~=1.27\n    # - protobuf ~=3.13\n    # - opentelemetry-test-utils ==0.42b0\n    # - opentelemetry-instrumentation-grpc \n    # - grpcio ~=1.27\n    # - protobuf ~=3.13\n    # - opentelemetry-test-utils ==0.43b0\n    # - opentelemetry-instrumentation-grpc \n    # - grpcio ~=1.27\n    # - protobuf ~=3.13\n    # - opentelemetry-test-utils ==0.44b0\n    # - opentelemetry-instrumentation-grpc \n    # - grpcio ~=1.27\n    # - grpcio ~=1.27\n\ntest:\n  imports:\n    - opentelemetry\n    - opentelemetry.instrumentation\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-grpc\n  summary: OpenTelemetry gRPC instrumentation\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - mariusvniekerk\n",
+ "raw_meta_yaml": "{% set name = \"opentelemetry-instrumentation-grpc\" %}\n{% set version = \"0.45b0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_instrumentation_grpc-{{ version }}.tar.gz\n  sha256: 5572c4a10a125774fb9d2705aa29aec1fc70d6f5a3cd070930fee86610931e71\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n    - hatchling\n  run:\n    - python >=3.7\n    - opentelemetry-api ~=1.12\n    - opentelemetry-instrumentation =={{ version }}\n    - opentelemetry-sdk ~=1.12\n    - opentelemetry-semantic-conventions =={{ version }}\n    - wrapt <2.0.0,>=1.0.0\n\ntest:\n  imports:\n    - opentelemetry\n    - opentelemetry.instrumentation\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-grpc\n  summary: OpenTelemetry gRPC instrumentation\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - rxm7706\n    - mariusvniekerk\n",
  "req": {
   "__set__": true,
   "elements": [
