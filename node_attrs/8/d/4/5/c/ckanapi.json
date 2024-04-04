@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "update-grayskull"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -20,16 +23,19 @@
   "about": {
    "home": "https://github.com/ckan/ckanapi",
    "license": "MIT",
-   "license_file": "COPYING",
+   "license_file": [
+    "COPYING.fr",
+    "COPYING"
+   ],
    "summary": "A command line interface and Python module for accessing the CKAN Action API"
   },
   "build": {
    "entry_points": [
-    "ckanapi=ckanapi.cli.main:main"
+    "ckanapi = ckanapi.cli.main:main"
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -38,34 +44,34 @@
   },
   "package": {
    "name": "ckanapi",
-   "version": "4.7"
+   "version": "4.8"
   },
   "requirements": {
    "host": [
-    "python >=3.6",
+    "python >=3.7",
     "pip"
    ],
    "run": [
-    "python >=3.6",
+    "python >=3.7",
     "setuptools",
     "docopt",
     "python-slugify >=1.0",
     "requests",
-    "setuptools",
-    "six >=1.9,<2.0"
+    "six >=1.9,<2.0",
+    "simplejson"
    ]
   },
   "source": {
-   "sha256": "6cb1414faef384de58a0e1f648b977177db444e95073b65ed950f2a8b0f55d0d",
-   "url": "https://pypi.io/packages/source/c/ckanapi/ckanapi-4.7.tar.gz"
+   "sha256": "3a98d81e6cb7480883eb1d031740205d3e94176376e9d284d218829d81d0afed",
+   "url": "https://pypi.io/packages/source/c/ckanapi/ckanapi-4.8.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "ckanapi --help"
    ],
    "imports": [
-    "ckanapi",
-    "ckanapi.cli"
+    "ckanapi"
    ],
    "requires": [
     "pip"
@@ -92,6 +98,7 @@
     "python-slugify",
     "requests",
     "setuptools",
+    "simplejson",
     "six"
    ]
   },
@@ -106,16 +113,19 @@
   "about": {
    "home": "https://github.com/ckan/ckanapi",
    "license": "MIT",
-   "license_file": "COPYING",
+   "license_file": [
+    "COPYING.fr",
+    "COPYING"
+   ],
    "summary": "A command line interface and Python module for accessing the CKAN Action API"
   },
   "build": {
    "entry_points": [
-    "ckanapi=ckanapi.cli.main:main"
+    "ckanapi = ckanapi.cli.main:main"
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -124,34 +134,34 @@
   },
   "package": {
    "name": "ckanapi",
-   "version": "4.7"
+   "version": "4.8"
   },
   "requirements": {
    "host": [
-    "python >=3.6",
+    "python >=3.7",
     "pip"
    ],
    "run": [
-    "python >=3.6",
+    "python >=3.7",
     "setuptools",
     "docopt",
     "python-slugify >=1.0",
     "requests",
-    "setuptools",
-    "six >=1.9,<2.0"
+    "six >=1.9,<2.0",
+    "simplejson"
    ]
   },
   "source": {
-   "sha256": "6cb1414faef384de58a0e1f648b977177db444e95073b65ed950f2a8b0f55d0d",
-   "url": "https://pypi.io/packages/source/c/ckanapi/ckanapi-4.7.tar.gz"
+   "sha256": "3a98d81e6cb7480883eb1d031740205d3e94176376e9d284d218829d81d0afed",
+   "url": "https://pypi.io/packages/source/c/ckanapi/ckanapi-4.8.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "ckanapi --help"
    ],
    "imports": [
-    "ckanapi",
-    "ckanapi.cli"
+    "ckanapi"
    ],
    "requires": [
     "pip"
@@ -172,7 +182,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/ckanapi.json"
  },
- "raw_meta_yaml": "{% set version = \"4.7\" %}\n\npackage:\n  name: ckanapi\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/c/ckanapi/ckanapi-{{ version }}.tar.gz\n  sha256: 6cb1414faef384de58a0e1f648b977177db444e95073b65ed950f2a8b0f55d0d\n\nbuild:\n  number: 0\n  noarch: python\n  entry_points:\n    - ckanapi=ckanapi.cli.main:main\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n  run:\n    - python >=3.6\n    - setuptools\n    - docopt\n    - python-slugify >=1.0\n    - requests\n    - setuptools\n    - six >=1.9,<2.0\n\ntest:\n  imports:\n    - ckanapi\n    - ckanapi.cli\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/ckan/ckanapi\n  license: MIT\n  license_file: COPYING\n  summary: A command line interface and Python module for accessing the CKAN Action API\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n",
+ "raw_meta_yaml": "{% set name = \"ckanapi\" %}\n{% set version = \"4.8\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ckanapi-{{ version }}.tar.gz\n  sha256: 3a98d81e6cb7480883eb1d031740205d3e94176376e9d284d218829d81d0afed\n\nbuild:\n  noarch: python\n  entry_points:\n    - ckanapi = ckanapi.cli.main:main\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n  run:\n    - python >=3.7\n    - setuptools\n    - docopt\n    - python-slugify >=1.0\n    - requests\n    - six >=1.9,<2.0\n    - simplejson\n\ntest:\n  imports:\n    - ckanapi\n  commands:\n    - pip check\n    - ckanapi --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/ckan/ckanapi\n  summary: A command line interface and Python module for accessing the CKAN Action API\n  license: MIT\n  license_file:\n    - COPYING.fr\n    - COPYING\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -182,6 +192,7 @@
    "python-slugify",
    "requests",
    "setuptools",
+   "simplejson",
    "six"
   ]
  },
@@ -205,6 +216,7 @@
     "python-slugify",
     "requests",
     "setuptools",
+    "simplejson",
     "six"
    ]
   },
@@ -225,17 +237,18 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6"
+    "python >=3.7"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "docopt",
-    "python >=3.6",
+    "python >=3.7",
     "python-slugify >=1.0",
     "requests",
     "setuptools",
+    "simplejson",
     "six >=1.9,<2.0"
    ]
   },
@@ -246,8 +259,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/c/ckanapi/ckanapi-4.7.tar.gz",
- "version": "4.7",
+ "url": "https://pypi.io/packages/source/c/ckanapi/ckanapi-4.8.tar.gz",
+ "version": "4.8",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/ckanapi.json"
  }
