@@ -28,11 +28,12 @@
    "summary": "ROCm Application for Reporting System Info"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
-    "isuruf"
+    "isuruf",
+    "zklaus"
    ]
   },
   "package": {
@@ -45,15 +46,16 @@
     "cxx_compiler_stub",
     "sysroot_linux-64 2.17",
     "cdt_stub",
-    "cdt_stub",
     "cmake",
     "make"
    ],
    "host": [
+    "numactl",
     "rocr-runtime 6.0.2"
    ],
    "run": [
-    "rocr-runtime 6.0.2"
+    "rocr-runtime 6.0.2",
+    "libnuma"
    ]
   },
   "source": {
@@ -63,7 +65,8 @@
   "test": {
    "commands": [
     "test -f $PREFIX/bin/rocminfo",
-    "test -f $PREFIX/bin/rocm_agent_enumerator"
+    "test -f $PREFIX/bin/rocm_agent_enumerator",
+    "msg=$($PREFIX/bin/rocminfo 2>&1; test $? -eq 1) && test \"$msg\" = \"$(echo -e '\\033[31mROCk module is NOT loaded, possibly no GPU devices\\033[0m')\""
    ]
   }
  },
@@ -82,12 +85,14 @@
   "host": {
    "__set__": true,
    "elements": [
+    "numactl",
     "rocr-runtime"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "libnuma",
     "rocr-runtime"
    ]
   },
@@ -105,11 +110,12 @@
    "summary": "ROCm Application for Reporting System Info"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
-    "isuruf"
+    "isuruf",
+    "zklaus"
    ]
   },
   "package": {
@@ -122,15 +128,16 @@
     "cxx_compiler_stub",
     "sysroot_linux-64 2.17",
     "cdt_stub",
-    "cdt_stub",
     "cmake",
     "make"
    ],
    "host": [
+    "numactl",
     "rocr-runtime 6.0.2"
    ],
    "run": [
-    "rocr-runtime 6.0.2"
+    "rocr-runtime 6.0.2",
+    "libnuma"
    ]
   },
   "source": {
@@ -140,7 +147,8 @@
   "test": {
    "commands": [
     "test -f $PREFIX/bin/rocminfo",
-    "test -f $PREFIX/bin/rocm_agent_enumerator"
+    "test -f $PREFIX/bin/rocm_agent_enumerator",
+    "msg=$($PREFIX/bin/rocminfo 2>&1; test $? -eq 1) && test \"$msg\" = \"$(echo -e '\\033[31mROCk module is NOT loaded, possibly no GPU devices\\033[0m')\""
    ]
   }
  },
@@ -158,7 +166,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/rocminfo.json"
  },
- "raw_meta_yaml": "{% set name = \"rocminfo\" %}\n{% set version = \"6.0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-{{ version }}.tar.gz\n  sha256: e616d364a48de18eaee661bdce999d095086905f49777663ca99312f40a63da1\n\nbuild:\n  number: 0\n  skip: True  # [not linux]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - sysroot_linux-64 2.17  # [linux64]\n    - {{ cdt('numactl-devel') }}\n    - {{ cdt('pciutils-devel') }}\n    - cmake\n    - make\n  host:\n    - rocr-runtime {{ version }}\n  run:\n    - rocr-runtime {{ version }}\n\ntest:\n  commands:\n    # Can't run this command without an AMD GPU\n    - test -f $PREFIX/bin/rocminfo\n    - test -f $PREFIX/bin/rocm_agent_enumerator\n\nabout:\n  home: https://github.com/ROCm/rocminfo\n  license: NCSA\n  license_family: MIT\n  license_file: License.txt\n  summary: 'ROCm Application for Reporting System Info'\n\nextra:\n  recipe-maintainers:\n    - isuruf\n",
+ "raw_meta_yaml": "{% set name = \"rocminfo\" %}\n{% set version = \"6.0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-{{ version }}.tar.gz\n  sha256: e616d364a48de18eaee661bdce999d095086905f49777663ca99312f40a63da1\n\nbuild:\n  number: 1\n  skip: True  # [not linux]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - sysroot_linux-64 2.17  # [linux64]\n    - {{ cdt('pciutils-devel') }}\n    - cmake\n    - make\n  host:\n    - numactl\n    - rocr-runtime {{ version }}\n  run:\n    - rocr-runtime {{ version }}\n    - libnuma\n\ntest:\n  commands:\n    # Can't run this command without an AMD GPU\n    - test -f $PREFIX/bin/rocminfo\n    - test -f $PREFIX/bin/rocm_agent_enumerator\n    - msg=$($PREFIX/bin/rocminfo 2>&1; test $? -eq 1) && test \"$msg\" = \"$(echo -e '\\033[31mROCk module is NOT loaded, possibly no GPU devices\\033[0m')\"   # [CI]\n\nabout:\n  home: https://github.com/ROCm/rocminfo\n  license: NCSA\n  license_family: MIT\n  license_file: License.txt\n  summary: 'ROCm Application for Reporting System Info'\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - zklaus\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -166,7 +174,9 @@
    "cdt_stub",
    "cmake",
    "cxx_compiler_stub",
+   "libnuma",
    "make",
+   "numactl",
    "rocr-runtime",
    "sysroot_linux-64"
   ]
@@ -188,6 +198,7 @@
    "elements": [
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "numactl",
     "rocr-runtime"
    ]
   },
@@ -196,6 +207,7 @@
    "elements": [
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "libnuma",
     "rocr-runtime"
    ]
   },
@@ -220,12 +232,14 @@
   "host": {
    "__set__": true,
    "elements": [
+    "numactl",
     "rocr-runtime 6.0.2"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "libnuma",
     "rocr-runtime 6.0.2"
    ]
   },
