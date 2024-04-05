@@ -30,7 +30,7 @@
    "summary": "A standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "gymnasium",
@@ -50,10 +50,213 @@
     "h-vetinari",
     "pseudo-rnd-thoughts",
     "thewchan",
+    "traversaro",
+    "h-vetinari",
+    "pseudo-rnd-thoughts",
+    "thewchan",
     "traversaro"
    ]
   },
   "outputs": [
+   {
+    "build": {
+     "script": "PYTHON -m pip install . -vv --no-deps"
+    },
+    "name": "gymnasium",
+    "requirements": {
+     "build": [],
+     "host": [
+      "python",
+      "pip",
+      "cloudpickle >=1.2.0",
+      "numpy"
+     ],
+     "run": [
+      "python",
+      "cloudpickle >=1.2.0",
+      "farama-notifications",
+      "numpy",
+      "jax-jumpy >=1.0.0",
+      "typing_extensions >=4.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-all",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium-atari",
+      "gymnasium-box2d",
+      "gymnasium-classic_control",
+      "gymnasium-mujoco",
+      "gymnasium-toy_text",
+      "gymnasium-other"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "export MUJOCO_GL=\"osmesa\"",
+      "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
+     ],
+     "requires": [
+      "mock",
+      "pytest",
+      "scipy",
+      "pip",
+      "jax >=0.4",
+      "mesalib"
+     ],
+     "source_files": [
+      "tests/"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-atari",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "shimmy-atari"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in shimmy-atari\""
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-box2d",
+    "requirements": {
+     "host": [
+      "python",
+      "swig ==4.*"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "box2d-py ==2.3.*",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.box2d"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-classic_control",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.classic_control"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-mujoco",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "cython <3",
+      "mujoco-python >=2.3.3,<3.0.0",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "gymnasium-mujoco_py",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "mujoco-py >=2.1,<2.2",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-toy_text",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.toy_text"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-other",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "lz4 >=3.1.0",
+      "matplotlib >=3.0",
+      "moviepy >=1.0",
+      "py-opencv >=3.0",
+      "pytorch >=1.0"
+     ]
+    },
+    "test": {
+     "imports": null
+    }
+   },
    {
     "build": {
      "script": "PYTHON -m pip install . -vv --no-deps"
@@ -873,9 +1076,14 @@
     "python",
     "pip",
     "setuptools",
+    "wheel",
+    "python",
+    "pip",
+    "setuptools",
     "wheel"
    ],
    "run": [
+    "python",
     "python",
     "python",
     "python",
@@ -884,6 +1092,7 @@
   },
   "source": {
    "patches": [
+    "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
@@ -962,7 +1171,7 @@
    "summary": "A standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "gymnasium",
@@ -982,10 +1191,212 @@
     "h-vetinari",
     "pseudo-rnd-thoughts",
     "thewchan",
+    "traversaro",
+    "h-vetinari",
+    "pseudo-rnd-thoughts",
+    "thewchan",
     "traversaro"
    ]
   },
   "outputs": [
+   {
+    "build": {
+     "script": "PYTHON -m pip install . -vv --no-deps"
+    },
+    "name": "gymnasium",
+    "requirements": {
+     "build": [],
+     "host": [
+      "python",
+      "pip",
+      "cloudpickle >=1.2.0",
+      "numpy"
+     ],
+     "run": [
+      "python",
+      "cloudpickle >=1.2.0",
+      "farama-notifications",
+      "numpy",
+      "jax-jumpy >=1.0.0",
+      "typing_extensions >=4.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-all",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium-atari",
+      "gymnasium-box2d",
+      "gymnasium-classic_control",
+      "gymnasium-mujoco",
+      "gymnasium-toy_text",
+      "gymnasium-other"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "export MUJOCO_GL=\"osmesa\"",
+      "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
+     ],
+     "requires": [
+      "mock",
+      "pytest",
+      "scipy",
+      "pip",
+      "mesalib"
+     ],
+     "source_files": [
+      "tests/"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-atari",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "shimmy-atari"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in shimmy-atari\""
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-box2d",
+    "requirements": {
+     "host": [
+      "python",
+      "swig ==4.*"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "box2d-py ==2.3.*",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.box2d"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-classic_control",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.classic_control"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-mujoco",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "cython <3",
+      "mujoco-python >=2.3.3,<3.0.0",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "gymnasium-mujoco_py",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "mujoco-py >=2.1,<2.2",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-toy_text",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.toy_text"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-other",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "lz4 >=3.1.0",
+      "matplotlib >=3.0",
+      "moviepy >=1.0",
+      "py-opencv >=3.0",
+      "pytorch >=1.0"
+     ]
+    },
+    "test": {
+     "imports": null
+    }
+   },
    {
     "build": {
      "script": "PYTHON -m pip install . -vv --no-deps"
@@ -1801,9 +2212,14 @@
     "python",
     "pip",
     "setuptools",
+    "wheel",
+    "python",
+    "pip",
+    "setuptools",
     "wheel"
    ],
    "run": [
+    "python",
     "python",
     "python",
     "python",
@@ -1812,6 +2228,7 @@
   },
   "source": {
    "patches": [
+    "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
@@ -1889,7 +2306,7 @@
    "summary": "A standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "gymnasium",
@@ -1909,10 +2326,211 @@
     "h-vetinari",
     "pseudo-rnd-thoughts",
     "thewchan",
+    "traversaro",
+    "h-vetinari",
+    "pseudo-rnd-thoughts",
+    "thewchan",
     "traversaro"
    ]
   },
   "outputs": [
+   {
+    "build": {
+     "script": "PYTHON -m pip install . -vv --no-deps"
+    },
+    "name": "gymnasium",
+    "requirements": {
+     "build": [],
+     "host": [
+      "python",
+      "pip",
+      "cloudpickle >=1.2.0",
+      "numpy"
+     ],
+     "run": [
+      "python",
+      "cloudpickle >=1.2.0",
+      "farama-notifications",
+      "numpy",
+      "jax-jumpy >=1.0.0",
+      "typing_extensions >=4.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-all",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium-atari",
+      "gymnasium-box2d",
+      "gymnasium-classic_control",
+      "gymnasium-mujoco",
+      "gymnasium-toy_text",
+      "gymnasium-other"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "export MUJOCO_GL=\"osmesa\"",
+      "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
+     ],
+     "requires": [
+      "mock",
+      "pytest",
+      "scipy",
+      "pip",
+      "mesalib"
+     ],
+     "source_files": [
+      "tests/"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-atari",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "shimmy-atari"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in shimmy-atari\""
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-box2d",
+    "requirements": {
+     "host": [
+      "python",
+      "swig ==4.*"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "box2d-py ==2.3.*",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.box2d"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-classic_control",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.classic_control"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-mujoco",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "cython <3",
+      "mujoco-python >=2.3.3,<3.0.0",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "gymnasium-mujoco_py",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "mujoco-py >=2.1,<2.2",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-toy_text",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.toy_text"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-other",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "lz4 >=3.1.0",
+      "matplotlib >=3.0",
+      "moviepy >=1.0",
+      "py-opencv >=3.0"
+     ]
+    },
+    "test": {
+     "imports": null
+    }
+   },
    {
     "build": {
      "script": "PYTHON -m pip install . -vv --no-deps"
@@ -2724,9 +3342,14 @@
     "python",
     "pip",
     "setuptools",
+    "wheel",
+    "python",
+    "pip",
+    "setuptools",
     "wheel"
    ],
    "run": [
+    "python",
     "python",
     "python",
     "python",
@@ -2735,6 +3358,7 @@
   },
   "source": {
    "patches": [
+    "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
@@ -2811,11 +3435,35 @@
    "summary": "A standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "gymnasium",
    "recipe-maintainers": [
+    "h-vetinari",
+    "pseudo-rnd-thoughts",
+    "thewchan",
+    "traversaro",
+    "h-vetinari",
+    "pseudo-rnd-thoughts",
+    "thewchan",
+    "traversaro",
+    "h-vetinari",
+    "pseudo-rnd-thoughts",
+    "thewchan",
+    "traversaro",
+    "h-vetinari",
+    "pseudo-rnd-thoughts",
+    "thewchan",
+    "traversaro",
+    "h-vetinari",
+    "pseudo-rnd-thoughts",
+    "thewchan",
+    "traversaro",
+    "h-vetinari",
+    "pseudo-rnd-thoughts",
+    "thewchan",
+    "traversaro",
     "h-vetinari",
     "pseudo-rnd-thoughts",
     "thewchan",
@@ -3766,6 +4414,403 @@
       "pytest",
       "scipy",
       "pip",
+      "jax >=0.4",
+      "mesalib"
+     ],
+     "source_files": [
+      "tests/"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-atari",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "shimmy-atari"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in shimmy-atari\""
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-box2d",
+    "requirements": {
+     "host": [
+      "python",
+      "swig ==4.*"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "box2d-py ==2.3.*",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.box2d"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-classic_control",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.classic_control"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-mujoco",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "cython <3",
+      "mujoco-python >=2.3.3,<3.0.0",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "gymnasium-mujoco_py",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "mujoco-py >=2.1,<2.2",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-toy_text",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.toy_text"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-other",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "lz4 >=3.1.0",
+      "matplotlib >=3.0",
+      "moviepy >=1.0",
+      "py-opencv >=3.0",
+      "pytorch >=1.0"
+     ]
+    },
+    "test": {
+     "imports": null
+    }
+   },
+   {
+    "build": {
+     "script": "PYTHON -m pip install . -vv --no-deps"
+    },
+    "name": "gymnasium",
+    "requirements": {
+     "build": [],
+     "host": [
+      "python",
+      "pip",
+      "cloudpickle >=1.2.0",
+      "numpy"
+     ],
+     "run": [
+      "python",
+      "cloudpickle >=1.2.0",
+      "farama-notifications",
+      "numpy",
+      "jax-jumpy >=1.0.0",
+      "typing_extensions >=4.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-all",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium-atari",
+      "gymnasium-box2d",
+      "gymnasium-classic_control",
+      "gymnasium-mujoco",
+      "gymnasium-toy_text",
+      "gymnasium-other"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "export MUJOCO_GL=\"osmesa\"",
+      "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
+     ],
+     "requires": [
+      "mock",
+      "pytest",
+      "scipy",
+      "pip",
+      "mesalib"
+     ],
+     "source_files": [
+      "tests/"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-atari",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "shimmy-atari"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in shimmy-atari\""
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-box2d",
+    "requirements": {
+     "host": [
+      "python",
+      "swig ==4.*"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "box2d-py ==2.3.*",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.box2d"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-classic_control",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.classic_control"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-mujoco",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "cython <3",
+      "mujoco-python >=2.3.3,<3.0.0",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "gymnasium-mujoco_py",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "mujoco-py >=2.1,<2.2",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-toy_text",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.toy_text"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-other",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "lz4 >=3.1.0",
+      "matplotlib >=3.0",
+      "moviepy >=1.0",
+      "py-opencv >=3.0",
+      "pytorch >=1.0"
+     ]
+    },
+    "test": {
+     "imports": null
+    }
+   },
+   {
+    "build": {
+     "script": "PYTHON -m pip install . -vv --no-deps"
+    },
+    "name": "gymnasium",
+    "requirements": {
+     "build": [],
+     "host": [
+      "python",
+      "pip",
+      "cloudpickle >=1.2.0",
+      "numpy"
+     ],
+     "run": [
+      "python",
+      "cloudpickle >=1.2.0",
+      "farama-notifications",
+      "numpy",
+      "jax-jumpy >=1.0.0",
+      "typing_extensions >=4.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-all",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium-atari",
+      "gymnasium-box2d",
+      "gymnasium-classic_control",
+      "gymnasium-mujoco",
+      "gymnasium-toy_text",
+      "gymnasium-other"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "export MUJOCO_GL=\"osmesa\"",
+      "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
+     ],
+     "requires": [
+      "mock",
+      "pytest",
+      "scipy",
+      "pip",
       "mesalib"
      ],
      "source_files": [
@@ -5338,6 +6383,7 @@
     "test": {
      "commands": [
       "pip check",
+      "export MUJOCO_GL=\"osmesa\"",
       "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
      ],
      "requires": [
@@ -5345,7 +6391,7 @@
       "pytest",
       "scipy",
       "pip",
-      "jax >=0.4"
+      "mesalib"
      ],
      "source_files": [
       "tests/"
@@ -5480,8 +6526,7 @@
       "lz4 >=3.1.0",
       "matplotlib >=3.0",
       "moviepy >=1.0",
-      "py-opencv >=3.0",
-      "pytorch >=1.0"
+      "py-opencv >=3.0"
      ]
     },
     "test": {
@@ -6861,6 +7906,792 @@
       "moviepy >=1.0",
       "py-opencv >=3.0",
       "pytorch >=1.0"
+     ]
+    },
+    "test": {
+     "imports": null
+    }
+   },
+   {
+    "build": {
+     "script": "PYTHON -m pip install . -vv --no-deps"
+    },
+    "name": "gymnasium",
+    "requirements": {
+     "build": [],
+     "host": [
+      "python",
+      "pip",
+      "cloudpickle >=1.2.0",
+      "numpy"
+     ],
+     "run": [
+      "python",
+      "cloudpickle >=1.2.0",
+      "farama-notifications",
+      "numpy",
+      "jax-jumpy >=1.0.0",
+      "typing_extensions >=4.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-all",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium-atari",
+      "gymnasium-box2d",
+      "gymnasium-classic_control",
+      "gymnasium-mujoco",
+      "gymnasium-toy_text",
+      "gymnasium-other"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
+     ],
+     "requires": [
+      "mock",
+      "pytest",
+      "scipy",
+      "pip",
+      "jax >=0.4"
+     ],
+     "source_files": [
+      "tests/"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-atari",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "shimmy-atari"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in shimmy-atari\""
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-box2d",
+    "requirements": {
+     "host": [
+      "python",
+      "swig ==4.*"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "box2d-py ==2.3.*",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.box2d"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-classic_control",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.classic_control"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-mujoco",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "cython <3",
+      "mujoco-python >=2.3.3,<3.0.0",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "gymnasium-mujoco_py",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "mujoco-py >=2.1,<2.2",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-toy_text",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.toy_text"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-other",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "lz4 >=3.1.0",
+      "matplotlib >=3.0",
+      "moviepy >=1.0",
+      "py-opencv >=3.0",
+      "pytorch >=1.0"
+     ]
+    },
+    "test": {
+     "imports": null
+    }
+   },
+   {
+    "build": {
+     "script": "PYTHON -m pip install . -vv --no-deps"
+    },
+    "name": "gymnasium",
+    "requirements": {
+     "build": [],
+     "host": [
+      "python",
+      "pip",
+      "cloudpickle >=1.2.0",
+      "numpy"
+     ],
+     "run": [
+      "python",
+      "cloudpickle >=1.2.0",
+      "farama-notifications",
+      "numpy",
+      "jax-jumpy >=1.0.0",
+      "typing_extensions >=4.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-all",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium-atari",
+      "gymnasium-box2d",
+      "gymnasium-classic_control",
+      "gymnasium-mujoco",
+      "gymnasium-toy_text",
+      "gymnasium-other"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
+     ],
+     "requires": [
+      "mock",
+      "pytest",
+      "scipy",
+      "pip",
+      "jax >=0.4"
+     ],
+     "source_files": [
+      "tests/"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-atari",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "shimmy-atari"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in shimmy-atari\""
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-box2d",
+    "requirements": {
+     "host": [
+      "python",
+      "swig ==4.*"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "box2d-py ==2.3.*",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.box2d"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-classic_control",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.classic_control"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-mujoco",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "cython <3",
+      "mujoco-python >=2.3.3,<3.0.0",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "gymnasium-mujoco_py",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "mujoco-py >=2.1,<2.2",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-toy_text",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.toy_text"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-other",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "lz4 >=3.1.0",
+      "matplotlib >=3.0",
+      "moviepy >=1.0",
+      "py-opencv >=3.0",
+      "pytorch >=1.0"
+     ]
+    },
+    "test": {
+     "imports": null
+    }
+   },
+   {
+    "build": {
+     "script": "PYTHON -m pip install . -vv --no-deps"
+    },
+    "name": "gymnasium",
+    "requirements": {
+     "build": [],
+     "host": [
+      "python",
+      "pip",
+      "cloudpickle >=1.2.0",
+      "numpy"
+     ],
+     "run": [
+      "python",
+      "cloudpickle >=1.2.0",
+      "farama-notifications",
+      "numpy",
+      "jax-jumpy >=1.0.0",
+      "typing_extensions >=4.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-all",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium-atari",
+      "gymnasium-box2d",
+      "gymnasium-classic_control",
+      "gymnasium-mujoco",
+      "gymnasium-toy_text",
+      "gymnasium-other"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
+     ],
+     "requires": [
+      "mock",
+      "pytest",
+      "scipy",
+      "pip",
+      "jax >=0.4"
+     ],
+     "source_files": [
+      "tests/"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-atari",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "shimmy-atari"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in shimmy-atari\""
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-box2d",
+    "requirements": {
+     "host": [
+      "python",
+      "swig ==4.*"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "box2d-py ==2.3.*",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.box2d"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-classic_control",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.classic_control"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-mujoco",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "cython <3",
+      "mujoco-python >=2.3.3,<3.0.0",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "gymnasium-mujoco_py",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "mujoco-py >=2.1,<2.2",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-toy_text",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.toy_text"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-other",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "lz4 >=3.1.0",
+      "matplotlib >=3.0",
+      "moviepy >=1.0",
+      "py-opencv >=3.0",
+      "pytorch >=1.0"
+     ]
+    },
+    "test": {
+     "imports": null
+    }
+   },
+   {
+    "build": {
+     "script": "PYTHON -m pip install . -vv --no-deps"
+    },
+    "name": "gymnasium",
+    "requirements": {
+     "build": [],
+     "host": [
+      "python",
+      "pip",
+      "cloudpickle >=1.2.0",
+      "numpy"
+     ],
+     "run": [
+      "python",
+      "cloudpickle >=1.2.0",
+      "farama-notifications",
+      "numpy",
+      "jax-jumpy >=1.0.0",
+      "typing_extensions >=4.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-all",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium-atari",
+      "gymnasium-box2d",
+      "gymnasium-classic_control",
+      "gymnasium-mujoco",
+      "gymnasium-toy_text",
+      "gymnasium-other"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
+     ],
+     "requires": [
+      "mock",
+      "pytest",
+      "scipy",
+      "pip"
+     ],
+     "source_files": [
+      "tests/"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-atari",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "shimmy-atari"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in shimmy-atari\""
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-box2d",
+    "requirements": {
+     "host": [
+      "python",
+      "swig ==4.*"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "box2d-py ==2.3.*",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.box2d"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-classic_control",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.classic_control"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-mujoco",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "cython <3",
+      "mujoco-python >=2.3.3,<3.0.0",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "gymnasium-mujoco_py",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "mujoco-py >=2.1,<2.2",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-toy_text",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.toy_text"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-other",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "lz4 >=3.1.0",
+      "matplotlib >=3.0",
+      "moviepy >=1.0",
+      "py-opencv >=3.0"
      ]
     },
     "test": {
@@ -7750,9 +9581,39 @@
     "python",
     "pip",
     "setuptools",
+    "wheel",
+    "python",
+    "pip",
+    "setuptools",
+    "wheel",
+    "python",
+    "pip",
+    "setuptools",
+    "wheel",
+    "python",
+    "pip",
+    "setuptools",
+    "wheel",
+    "python",
+    "pip",
+    "setuptools",
+    "wheel",
+    "python",
+    "pip",
+    "setuptools",
+    "wheel",
+    "python",
+    "pip",
+    "setuptools",
     "wheel"
    ],
    "run": [
+    "python",
+    "python",
+    "python",
+    "python",
+    "python",
+    "python",
     "python",
     "python",
     "python",
@@ -7781,6 +9642,12 @@
   },
   "source": {
    "patches": [
+    "patches/932.patch",
+    "patches/932.patch",
+    "patches/932.patch",
+    "patches/932.patch",
+    "patches/932.patch",
+    "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
@@ -7821,7 +9688,7 @@
    "summary": "A standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "gymnasium",
@@ -7841,10 +9708,211 @@
     "h-vetinari",
     "pseudo-rnd-thoughts",
     "thewchan",
+    "traversaro",
+    "h-vetinari",
+    "pseudo-rnd-thoughts",
+    "thewchan",
     "traversaro"
    ]
   },
   "outputs": [
+   {
+    "build": {
+     "script": "PYTHON -m pip install . -vv --no-deps"
+    },
+    "name": "gymnasium",
+    "requirements": {
+     "build": [],
+     "host": [
+      "python",
+      "pip",
+      "cloudpickle >=1.2.0",
+      "numpy"
+     ],
+     "run": [
+      "python",
+      "cloudpickle >=1.2.0",
+      "farama-notifications",
+      "numpy",
+      "jax-jumpy >=1.0.0",
+      "typing_extensions >=4.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-all",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium-atari",
+      "gymnasium-box2d",
+      "gymnasium-classic_control",
+      "gymnasium-mujoco",
+      "gymnasium-toy_text",
+      "gymnasium-other"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
+     ],
+     "requires": [
+      "mock",
+      "pytest",
+      "scipy",
+      "pip",
+      "jax >=0.4"
+     ],
+     "source_files": [
+      "tests/"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-atari",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "shimmy-atari"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in shimmy-atari\""
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-box2d",
+    "requirements": {
+     "host": [
+      "python",
+      "swig ==4.*"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "box2d-py ==2.3.*",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.box2d"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-classic_control",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.classic_control"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-mujoco",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "cython <3",
+      "mujoco-python >=2.3.3,<3.0.0",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "gymnasium-mujoco_py",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "mujoco-py >=2.1,<2.2",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-toy_text",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.toy_text"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-other",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "lz4 >=3.1.0",
+      "matplotlib >=3.0",
+      "moviepy >=1.0",
+      "py-opencv >=3.0",
+      "pytorch >=1.0"
+     ]
+    },
+    "test": {
+     "imports": null
+    }
+   },
    {
     "build": {
      "script": "PYTHON -m pip install . -vv --no-deps"
@@ -8656,9 +10724,14 @@
     "python",
     "pip",
     "setuptools",
+    "wheel",
+    "python",
+    "pip",
+    "setuptools",
     "wheel"
    ],
    "run": [
+    "python",
     "python",
     "python",
     "python",
@@ -8667,6 +10740,7 @@
   },
   "source": {
    "patches": [
+    "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
@@ -8744,7 +10818,7 @@
    "summary": "A standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "gymnasium",
@@ -8764,10 +10838,211 @@
     "h-vetinari",
     "pseudo-rnd-thoughts",
     "thewchan",
+    "traversaro",
+    "h-vetinari",
+    "pseudo-rnd-thoughts",
+    "thewchan",
     "traversaro"
    ]
   },
   "outputs": [
+   {
+    "build": {
+     "script": "PYTHON -m pip install . -vv --no-deps"
+    },
+    "name": "gymnasium",
+    "requirements": {
+     "build": [],
+     "host": [
+      "python",
+      "pip",
+      "cloudpickle >=1.2.0",
+      "numpy"
+     ],
+     "run": [
+      "python",
+      "cloudpickle >=1.2.0",
+      "farama-notifications",
+      "numpy",
+      "jax-jumpy >=1.0.0",
+      "typing_extensions >=4.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-all",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium-atari",
+      "gymnasium-box2d",
+      "gymnasium-classic_control",
+      "gymnasium-mujoco",
+      "gymnasium-toy_text",
+      "gymnasium-other"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
+     ],
+     "requires": [
+      "mock",
+      "pytest",
+      "scipy",
+      "pip",
+      "jax >=0.4"
+     ],
+     "source_files": [
+      "tests/"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-atari",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "shimmy-atari"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in shimmy-atari\""
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-box2d",
+    "requirements": {
+     "host": [
+      "python",
+      "swig ==4.*"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "box2d-py ==2.3.*",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.box2d"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-classic_control",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.classic_control"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-mujoco",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "cython <3",
+      "mujoco-python >=2.3.3,<3.0.0",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "gymnasium-mujoco_py",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "mujoco-py >=2.1,<2.2",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-toy_text",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.toy_text"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-other",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "lz4 >=3.1.0",
+      "matplotlib >=3.0",
+      "moviepy >=1.0",
+      "py-opencv >=3.0",
+      "pytorch >=1.0"
+     ]
+    },
+    "test": {
+     "imports": null
+    }
+   },
    {
     "build": {
      "script": "PYTHON -m pip install . -vv --no-deps"
@@ -9579,9 +11854,14 @@
     "python",
     "pip",
     "setuptools",
+    "wheel",
+    "python",
+    "pip",
+    "setuptools",
     "wheel"
    ],
    "run": [
+    "python",
     "python",
     "python",
     "python",
@@ -9590,6 +11870,7 @@
   },
   "source": {
    "patches": [
+    "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
@@ -9684,7 +11965,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/gymnasium.json"
  },
- "raw_meta_yaml": "{% set version = \"0.29.1\" %}\n\npackage:\n  name: gymnasium-split\n  version: {{ version }}\n\nsource:\n  url: https://github.com/Farama-Foundation/Gymnasium/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 0bff5ff33335ffe170f9ccba544f7c4d78e7b4dd883337f2ee00f8ba3c6d85b5\n  patches:\n    # https://github.com/Farama-Foundation/Gymnasium/pull/932\n    - patches/932.patch\n\nbuild:\n  number: 0\n\n# Need these up here for conda-smithy to handle them properly.\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - setuptools\n    - wheel\n  run:\n    - python\n\noutputs:\n  - name: gymnasium\n    build:\n      script: {{ PYTHON }} -m pip install . -vv --no-deps\n    requirements:\n      build:\n        - python                                 # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n        - numpy                                  # [build_platform != target_platform]\n      host:\n        - python\n        - pip\n        - cloudpickle >=1.2.0\n        - numpy\n      run:\n        - python\n        - cloudpickle >=1.2.0\n        - farama-notifications\n        - numpy\n        - jax-jumpy >=1.0.0\n        - typing_extensions >=4.3.0\n        - importlib_metadata >=4.8.1  # [py<=39]\n    test:\n      imports:\n        - gymnasium\n\n  - name: gymnasium-all\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium-atari', exact=True) }}\n        - {{ pin_subpackage('gymnasium-box2d', exact=True) }}\n        - {{ pin_subpackage('gymnasium-classic_control', exact=True) }}\n        - {{ pin_subpackage('gymnasium-mujoco', exact=True) }}\n        # see below\n        # - {{ pin_subpackage('gymnasium-mujoco_py', exact=True) }}\n        - {{ pin_subpackage('gymnasium-toy_text', exact=True) }}\n        - {{ pin_subpackage('gymnasium-other', exact=True) }}\n    test:\n      source_files:\n        - tests/\n      requires:\n        - mock\n        - pytest\n        - scipy\n        - pip\n        - jax >=0.4  # [osx or linux64]\n        - mesalib  # [linux]\n      commands:\n        - pip check\n        {% set tests_to_skip = \"_not_a_real_test\" %}\n        # the following pygame tests are skipped [according to selector], because there is no rendering support during the CI build\n        {% set tests_to_skip = tests_to_skip + \" or test_human_rendering\" %}                    # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_keyboard_irrelevant_keydown_event\" %}  # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_keyboard_keyup_event\" %}               # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_keyboard_quit_event\" %}                # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_keyboard_relevant_keydown_event\" %}    # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_no_error_warnings[env0]\" %}            # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_no_error_warnings[env1]\" %}            # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_play_loop_real_env\" %}                 # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_play_relevant_keys\" %}                 # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_pygame_quit_event\" %}                  # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_video_size_no_zoom\" %}                 # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_video_size_zoom\" %}                    # [osx]\n        # See https://github.com/conda-forge/gymnasium-feedstock/pull/32#issuecomment-2031810613\n        {% set tests_to_skip = tests_to_skip + \" or test_render_modes\" %}                       # [aarch64]\n        # need to specify opengl driver on linux to enable offscreen rendering in MuJoCo\n        - export MUJOCO_GL=\"osmesa\"  # [linux]\n        - pytest -v tests/ -k \"not ({{ tests_to_skip }})\"\n\n  - name: gymnasium-atari\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - shimmy-atari\n    test:\n      commands:\n        - echo \"tested in shimmy-atari\"\n\n  - name: gymnasium-box2d\n    requirements:\n      host:\n        - python\n        - swig ==4.*\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - box2d-py ==2.3.*\n        - pygame >=2.1.3\n    test:\n      imports:\n        - gymnasium.envs.box2d\n\n  - name: gymnasium-classic_control\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - pygame >=2.1.3\n    test:\n      imports:\n        - gymnasium.envs.classic_control\n\n  - name: gymnasium-mujoco\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - cython <3\n        # Maximum version of mujoco constraint required due to https://github.com/Farama-Foundation/Gymnasium/issues/749#issuecomment-1808355111, \n        # remove once gymnasium v1.0.0 is released \n        - mujoco-python >=2.3.3,<3.0.0\n        - imageio >=2.14.1\n    test:\n      imports:\n        - gymnasium.envs.mujoco\n\n  - name: gymnasium-mujoco_py\n    build:\n      # we currently don't have https://github.com/openai/mujoco-py\n      # in conda-forge, and it'll be replaced by mujoco anyway\n      skip: true\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - mujoco-py >=2.1,<2.2\n        - imageio >=2.14.1\n    test:\n      imports:\n        - gymnasium.envs.mujoco\n\n  - name: gymnasium-toy_text\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - pygame >=2.1.3\n    test:\n      imports:\n        - gymnasium.envs.toy_text\n\n  - name: gymnasium-other\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - lz4 >=3.1.0\n        - matplotlib >=3.0\n        - moviepy >=1.0\n        - py-opencv >=3.0\n        - pytorch >=1.0  # [unix and not ppc64le]\n    test:\n      imports:\n        # There are no tests in the source code for gymnasium-other\n\nabout:\n  home: https://gymnasium.farama.org/\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: A standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)\n  dev_url: https://github.com/Farama-Foundation/Gymnasium\n\nextra:\n  recipe-maintainers:\n    - h-vetinari\n    - pseudo-rnd-thoughts\n    - thewchan\n    - traversaro\n  feedstock-name: gymnasium\n",
+ "raw_meta_yaml": "{% set version = \"0.29.1\" %}\n\npackage:\n  name: gymnasium-split\n  version: {{ version }}\n\nsource:\n  url: https://github.com/Farama-Foundation/Gymnasium/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 0bff5ff33335ffe170f9ccba544f7c4d78e7b4dd883337f2ee00f8ba3c6d85b5\n  patches:\n    # https://github.com/Farama-Foundation/Gymnasium/pull/932\n    - patches/932.patch\n\nbuild:\n  number: 1\n\n# Need these up here for conda-smithy to handle them properly.\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - setuptools\n    - wheel\n  run:\n    - python\n\noutputs:\n  - name: gymnasium\n    build:\n      script: {{ PYTHON }} -m pip install . -vv --no-deps\n    requirements:\n      build:\n        - python                                 # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n        - numpy                                  # [build_platform != target_platform]\n      host:\n        - python\n        - pip\n        - cloudpickle >=1.2.0\n        - numpy\n      run:\n        - python\n        - cloudpickle >=1.2.0\n        - farama-notifications\n        - numpy\n        - jax-jumpy >=1.0.0\n        - typing_extensions >=4.3.0\n        - importlib_metadata >=4.8.1  # [py<=39]\n    test:\n      imports:\n        - gymnasium\n\n  - name: gymnasium-all\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium-atari', exact=True) }}\n        - {{ pin_subpackage('gymnasium-box2d', exact=True) }}\n        - {{ pin_subpackage('gymnasium-classic_control', exact=True) }}\n        - {{ pin_subpackage('gymnasium-mujoco', exact=True) }}\n        # see below\n        # - {{ pin_subpackage('gymnasium-mujoco_py', exact=True) }}\n        - {{ pin_subpackage('gymnasium-toy_text', exact=True) }}\n        - {{ pin_subpackage('gymnasium-other', exact=True) }}\n    test:\n      source_files:\n        - tests/\n      requires:\n        - mock\n        - pytest\n        - scipy\n        - pip\n        - jax >=0.4  # [osx or linux64]\n        - mesalib  # [linux]\n      commands:\n        - pip check\n        {% set tests_to_skip = \"_not_a_real_test\" %}\n        # the following pygame tests are skipped [according to selector], because there is no rendering support during the CI build\n        {% set tests_to_skip = tests_to_skip + \" or test_human_rendering\" %}                    # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_keyboard_irrelevant_keydown_event\" %}  # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_keyboard_keyup_event\" %}               # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_keyboard_quit_event\" %}                # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_keyboard_relevant_keydown_event\" %}    # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_no_error_warnings[env0]\" %}            # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_no_error_warnings[env1]\" %}            # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_play_loop_real_env\" %}                 # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_play_relevant_keys\" %}                 # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_pygame_quit_event\" %}                  # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_video_size_no_zoom\" %}                 # [osx]\n        {% set tests_to_skip = tests_to_skip + \" or test_video_size_zoom\" %}                    # [osx]\n        # See https://github.com/conda-forge/gymnasium-feedstock/pull/32#issuecomment-2031810613\n        {% set tests_to_skip = tests_to_skip + \" or test_render_modes\" %}                       # [aarch64]\n        # need to specify opengl driver on linux to enable offscreen rendering in MuJoCo\n        - export MUJOCO_GL=\"osmesa\"  # [linux]\n        - pytest -v tests/ -k \"not ({{ tests_to_skip }})\"\n\n  - name: gymnasium-atari\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - shimmy-atari\n    test:\n      commands:\n        - echo \"tested in shimmy-atari\"\n\n  - name: gymnasium-box2d\n    requirements:\n      host:\n        - python\n        - swig ==4.*\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - box2d-py ==2.3.*\n        - pygame >=2.1.3\n    test:\n      imports:\n        - gymnasium.envs.box2d\n\n  - name: gymnasium-classic_control\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - pygame >=2.1.3\n    test:\n      imports:\n        - gymnasium.envs.classic_control\n\n  - name: gymnasium-mujoco\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - cython <3\n        # Maximum version of mujoco constraint required due to https://github.com/Farama-Foundation/Gymnasium/issues/749#issuecomment-1808355111, \n        # remove once gymnasium v1.0.0 is released \n        - mujoco-python >=2.3.3,<3.0.0\n        - imageio >=2.14.1\n    test:\n      imports:\n        - gymnasium.envs.mujoco\n\n  - name: gymnasium-mujoco_py\n    build:\n      # we currently don't have https://github.com/openai/mujoco-py\n      # in conda-forge, and it'll be replaced by mujoco anyway\n      skip: true\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - mujoco-py >=2.1,<2.2\n        - imageio >=2.14.1\n    test:\n      imports:\n        - gymnasium.envs.mujoco\n\n  - name: gymnasium-toy_text\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - pygame >=2.1.3\n    test:\n      imports:\n        - gymnasium.envs.toy_text\n\n  - name: gymnasium-other\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - {{ pin_subpackage('gymnasium', exact=True) }}\n        - lz4 >=3.1.0\n        - matplotlib >=3.0\n        - moviepy >=1.0\n        - py-opencv >=3.0\n        - pytorch >=1.0  # [unix and not ppc64le]\n    test:\n      imports:\n        # There are no tests in the source code for gymnasium-other\n\nabout:\n  home: https://gymnasium.farama.org/\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: A standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)\n  dev_url: https://github.com/Farama-Foundation/Gymnasium\n\nextra:\n  recipe-maintainers:\n    - h-vetinari\n    - pseudo-rnd-thoughts\n    - thewchan\n    - traversaro\n  feedstock-name: gymnasium\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -9853,7 +12134,7 @@
    "summary": "A standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "gymnasium",
@@ -9873,10 +12154,209 @@
     "h-vetinari",
     "pseudo-rnd-thoughts",
     "thewchan",
+    "traversaro",
+    "h-vetinari",
+    "pseudo-rnd-thoughts",
+    "thewchan",
     "traversaro"
    ]
   },
   "outputs": [
+   {
+    "build": {
+     "script": "PYTHON -m pip install . -vv --no-deps"
+    },
+    "name": "gymnasium",
+    "requirements": {
+     "build": [],
+     "host": [
+      "python",
+      "pip",
+      "cloudpickle >=1.2.0",
+      "numpy"
+     ],
+     "run": [
+      "python",
+      "cloudpickle >=1.2.0",
+      "farama-notifications",
+      "numpy",
+      "jax-jumpy >=1.0.0",
+      "typing_extensions >=4.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-all",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium-atari",
+      "gymnasium-box2d",
+      "gymnasium-classic_control",
+      "gymnasium-mujoco",
+      "gymnasium-toy_text",
+      "gymnasium-other"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "pytest -v tests/ -k \"not (_not_a_real_test or test_human_rendering or test_keyboard_irrelevant_keydown_event or test_keyboard_keyup_event or test_keyboard_quit_event or test_keyboard_relevant_keydown_event or test_no_error_warnings[env0] or test_no_error_warnings[env1] or test_play_loop_real_env or test_play_relevant_keys or test_pygame_quit_event or test_video_size_no_zoom or test_video_size_zoom or test_render_modes)\""
+     ],
+     "requires": [
+      "mock",
+      "pytest",
+      "scipy",
+      "pip"
+     ],
+     "source_files": [
+      "tests/"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-atari",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "shimmy-atari"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in shimmy-atari\""
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-box2d",
+    "requirements": {
+     "host": [
+      "python",
+      "swig ==4.*"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "box2d-py ==2.3.*",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.box2d"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-classic_control",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.classic_control"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-mujoco",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "cython <3",
+      "mujoco-python >=2.3.3,<3.0.0",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "gymnasium-mujoco_py",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "mujoco-py >=2.1,<2.2",
+      "imageio >=2.14.1"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.mujoco"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-toy_text",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "pygame >=2.1.3"
+     ]
+    },
+    "test": {
+     "imports": [
+      "gymnasium.envs.toy_text"
+     ]
+    }
+   },
+   {
+    "name": "gymnasium-other",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "gymnasium",
+      "lz4 >=3.1.0",
+      "matplotlib >=3.0",
+      "moviepy >=1.0",
+      "py-opencv >=3.0"
+     ]
+    },
+    "test": {
+     "imports": null
+    }
+   },
    {
     "build": {
      "script": "PYTHON -m pip install . -vv --no-deps"
@@ -10680,9 +13160,14 @@
     "python",
     "pip",
     "setuptools",
+    "wheel",
+    "python",
+    "pip",
+    "setuptools",
     "wheel"
    ],
    "run": [
+    "python",
     "python",
     "python",
     "python",
@@ -10691,6 +13176,7 @@
   },
   "source": {
    "patches": [
+    "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
     "patches/932.patch",
