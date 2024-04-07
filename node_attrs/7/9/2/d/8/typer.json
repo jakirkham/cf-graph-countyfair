@@ -18,75 +18,181 @@
  "hash_type": "sha256",
  "linux_64_meta_yaml": {
   "about": {
-   "description": "Typer is library for building CLI applications that users will love using and developers will love creating. Based on Python 3.6+ type hints.\n\nThe key features are:\n\nIntuitive to write: Great editor support. Completion everywhere. Less time debugging. Designed to be easy to use and learn. Less time reading docs.\nEasy to use: It's easy to use for the final users. Automatic help, and automatic completion for all shells.\nShort: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.\nStart simple: The simplest example adds only 2 lines of code to your app: 1 import, 1 function call.\nGrow large: Grow in complexity as much as you want, create arbitrarily complex trees of commands and groups of subcommands, with options and arguments.\n",
    "doc_url": "https://typer.tiangolo.com",
    "home": "https://github.com/tiangolo/typer",
    "license": "MIT",
    "license_family": "MIT",
-   "license_file": "dist/LICENSE",
-   "summary": "A library for building CLI applications"
+   "license_file": "typer-slim/LICENSE",
+   "summary": "Typer, build great CLIs. Easy to code. Based on Python type hints."
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "cd dist && PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   "number": "0"
   },
   "extra": {
+   "feedstock-name": "typer",
    "recipe-maintainers": [
     "dfornika",
-    "bollwyvl"
+    "bollwyvl",
+    "fcollonval"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "noarch": "python",
+     "script": "$PYTHON RECIPE_DIR/build_typer.py"
+    },
+    "name": "typer-slim",
+    "requirements": {
+     "host": [
+      "python >=3.7",
+      "pdm-backend",
+      "pip",
+      "python-build"
+     ],
+     "run": [
+      "python >=3.7",
+      "click >=8.0.0",
+      "typing_extensions >=3.7.4.3"
+     ],
+     "run_constrained": [
+      "typer",
+      "rich >=10.11.0,<14.0.0",
+      "shellingham >=1.3.0,<2.0.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "script": "$PYTHON RECIPE_DIR/build_typer.py"
+    },
+    "name": "typer-cli",
+    "requirements": {
+     "host": [
+      "python >=3.7",
+      "pdm-backend",
+      "pip",
+      "python-build"
+     ],
+     "run": [
+      "python >=3.7",
+      "typer"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "typer --version",
+      "typer --help"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "typer = typer.cli:main"
+     ],
+     "noarch": "python",
+     "script": "$PYTHON RECIPE_DIR/build_typer.py"
+    },
+    "name": "typer",
+    "requirements": {
+     "host": [
+      "python >=3.7",
+      "pdm-backend",
+      "pip",
+      "python-build"
+     ],
+     "run": [
+      "python >=3.7",
+      "typer-slim-standard"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "typer --version",
+      "typer --help",
+      "cd typer && coverage run --source=typer --branch -m pytest -vv --color=yes --tb=long -k \"not ((multiple_values and main) or completion)\"",
+      "coverage report --show-missing --skip-covered --fail-under=66"
+     ],
+     "requires": [
+      "pip",
+      "pytest",
+      "coverage"
+     ],
+     "source_files": [
+      "typer/tests",
+      "typer/docs_src"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "typer-slim-standard",
+    "requirements": {
+     "run": [
+      "typer-slim",
+      "rich",
+      "shellingham"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "typer"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "typer-slim/tests",
+      "typer-slim/docs_src"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "typer",
-   "version": "0.11.1"
-  },
-  "requirements": {
-   "host": [
-    "python >=3.8",
-    "pdm-backend",
-    "pip"
-   ],
-   "run": [
-    "python >=3.8",
-    "click >=8.0.0",
-    "colorama >=0.4.3,<0.5.0",
-    "rich >=10.11.0,<14.0.0",
-    "shellingham >=1.3.0,<2.0.0",
-    "typing-extensions >=3.7.4.3"
-   ]
+   "name": "typer-split",
+   "version": "0.12.1"
   },
   "source": [
    {
-    "folder": "dist",
-    "sha256": "f5ae987b97ebbbd59182f8e84407bbc925bc636867fa007bce87a7a71ac81d5c",
-    "url": "https://pypi.io/packages/source/t/typer/typer-0.11.1.tar.gz"
+    "folder": "typer-slim",
+    "sha256": "a1d74b0ffad59a42fc06bc9e9661402267f0e1c072f5ac8b751392e6a24ff37c",
+    "url": "https://pypi.io/packages/source/t/typer-slim/typer_slim-0.12.1.tar.gz"
    },
    {
-    "folder": "src",
-    "sha256": "ab98bf9140ff8ffb91b3055d3a214c005e86410c44b0195123c33654db527f99",
-    "url": "https://github.com/tiangolo/typer/archive/refs/tags/0.11.1.tar.gz"
+    "folder": "typer-cli",
+    "patches": [
+     "0000-typer-cli-no-entry-point.patch"
+    ],
+    "sha256": "2576e55d3418b07843cfefae1f3c65a9e47156d34abeccc6c2039691bd5286c6",
+    "url": "https://pypi.io/packages/source/t/typer-cli/typer_cli-0.12.1.tar.gz"
+   },
+   {
+    "folder": "typer",
+    "sha256": "72d218ef3c686aed9c6ff3ca25b238aee0474a1628b29c559b18b634cfdeca88",
+    "url": "https://pypi.io/packages/source/t/typer/typer-0.12.1.tar.gz"
    }
-  ],
-  "test": {
-   "commands": [
-    "pip check",
-    "cd src && coverage run --source typer --branch -m pytest -vv --color=yes --tb=long -k \"not ((multiple_values and main) or completion)\"",
-    "coverage report --show-missing --skip-covered --fail-under=74"
-   ],
-   "imports": [
-    "typer"
-   ],
-   "requires": [
-    "coverage",
-    "pip",
-    "pytest-sugar"
-   ],
-   "source_files": [
-    "src/tests",
-    "src/docs_src"
-   ]
-  }
+  ]
  },
  "linux_64_requirements": {
   "build": {
@@ -98,18 +204,21 @@
    "elements": [
     "pdm-backend",
     "pip",
-    "python"
+    "python",
+    "python-build"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "click",
-    "colorama",
     "python",
     "rich",
     "shellingham",
-    "typing-extensions"
+    "typer",
+    "typer-slim",
+    "typer-slim-standard",
+    "typing_extensions"
    ]
   },
   "test": {
@@ -117,87 +226,196 @@
    "elements": [
     "coverage",
     "pip",
-    "pytest-sugar"
+    "pytest"
    ]
   }
  },
  "meta_yaml": {
   "about": {
-   "description": "Typer is library for building CLI applications that users will love using and developers will love creating. Based on Python 3.6+ type hints.\n\nThe key features are:\n\nIntuitive to write: Great editor support. Completion everywhere. Less time debugging. Designed to be easy to use and learn. Less time reading docs.\nEasy to use: It's easy to use for the final users. Automatic help, and automatic completion for all shells.\nShort: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.\nStart simple: The simplest example adds only 2 lines of code to your app: 1 import, 1 function call.\nGrow large: Grow in complexity as much as you want, create arbitrarily complex trees of commands and groups of subcommands, with options and arguments.\n",
    "doc_url": "https://typer.tiangolo.com",
    "home": "https://github.com/tiangolo/typer",
    "license": "MIT",
    "license_family": "MIT",
-   "license_file": "dist/LICENSE",
-   "summary": "A library for building CLI applications"
+   "license_file": "typer-slim/LICENSE",
+   "summary": "Typer, build great CLIs. Easy to code. Based on Python type hints."
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "cd dist && PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   "number": "0"
   },
   "extra": {
+   "feedstock-name": "typer",
    "recipe-maintainers": [
     "dfornika",
-    "bollwyvl"
+    "bollwyvl",
+    "fcollonval"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "noarch": "python",
+     "script": "$PYTHON RECIPE_DIR/build_typer.py"
+    },
+    "name": "typer-slim",
+    "requirements": {
+     "host": [
+      "python >=3.7",
+      "pdm-backend",
+      "pip",
+      "python-build"
+     ],
+     "run": [
+      "python >=3.7",
+      "click >=8.0.0",
+      "typing_extensions >=3.7.4.3"
+     ],
+     "run_constrained": [
+      "typer",
+      "rich >=10.11.0,<14.0.0",
+      "shellingham >=1.3.0,<2.0.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "script": "$PYTHON RECIPE_DIR/build_typer.py"
+    },
+    "name": "typer-cli",
+    "requirements": {
+     "host": [
+      "python >=3.7",
+      "pdm-backend",
+      "pip",
+      "python-build"
+     ],
+     "run": [
+      "python >=3.7",
+      "typer"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "typer --version",
+      "typer --help"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "typer = typer.cli:main"
+     ],
+     "noarch": "python",
+     "script": "$PYTHON RECIPE_DIR/build_typer.py"
+    },
+    "name": "typer",
+    "requirements": {
+     "host": [
+      "python >=3.7",
+      "pdm-backend",
+      "pip",
+      "python-build"
+     ],
+     "run": [
+      "python >=3.7",
+      "typer-slim-standard"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "typer --version",
+      "typer --help",
+      "cd typer && coverage run --source=typer --branch -m pytest -vv --color=yes --tb=long -k \"not ((multiple_values and main) or completion)\"",
+      "coverage report --show-missing --skip-covered --fail-under=66"
+     ],
+     "requires": [
+      "pip",
+      "pytest",
+      "coverage"
+     ],
+     "source_files": [
+      "typer/tests",
+      "typer/docs_src"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "typer-slim-standard",
+    "requirements": {
+     "run": [
+      "typer-slim",
+      "rich",
+      "shellingham"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "typer"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "typer-slim/tests",
+      "typer-slim/docs_src"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "typer",
-   "version": "0.11.1"
-  },
-  "requirements": {
-   "host": [
-    "python >=3.8",
-    "pdm-backend",
-    "pip"
-   ],
-   "run": [
-    "python >=3.8",
-    "click >=8.0.0",
-    "colorama >=0.4.3,<0.5.0",
-    "rich >=10.11.0,<14.0.0",
-    "shellingham >=1.3.0,<2.0.0",
-    "typing-extensions >=3.7.4.3"
-   ]
+   "name": "typer-split",
+   "version": "0.12.1"
   },
   "source": [
    {
-    "folder": "dist",
-    "sha256": "f5ae987b97ebbbd59182f8e84407bbc925bc636867fa007bce87a7a71ac81d5c",
-    "url": "https://pypi.io/packages/source/t/typer/typer-0.11.1.tar.gz"
+    "folder": "typer-slim",
+    "sha256": "a1d74b0ffad59a42fc06bc9e9661402267f0e1c072f5ac8b751392e6a24ff37c",
+    "url": "https://pypi.io/packages/source/t/typer-slim/typer_slim-0.12.1.tar.gz"
    },
    {
-    "folder": "src",
-    "sha256": "ab98bf9140ff8ffb91b3055d3a214c005e86410c44b0195123c33654db527f99",
-    "url": "https://github.com/tiangolo/typer/archive/refs/tags/0.11.1.tar.gz"
+    "folder": "typer-cli",
+    "patches": [
+     "0000-typer-cli-no-entry-point.patch"
+    ],
+    "sha256": "2576e55d3418b07843cfefae1f3c65a9e47156d34abeccc6c2039691bd5286c6",
+    "url": "https://pypi.io/packages/source/t/typer-cli/typer_cli-0.12.1.tar.gz"
+   },
+   {
+    "folder": "typer",
+    "sha256": "72d218ef3c686aed9c6ff3ca25b238aee0474a1628b29c559b18b634cfdeca88",
+    "url": "https://pypi.io/packages/source/t/typer/typer-0.12.1.tar.gz"
    }
-  ],
-  "test": {
-   "commands": [
-    "pip check",
-    "cd src && coverage run --source typer --branch -m pytest -vv --color=yes --tb=long -k \"not ((multiple_values and main) or completion)\"",
-    "coverage report --show-missing --skip-covered --fail-under=74"
-   ],
-   "imports": [
-    "typer"
-   ],
-   "requires": [
-    "coverage",
-    "pip",
-    "pytest-sugar"
-   ],
-   "source_files": [
-    "src/tests",
-    "src/docs_src"
-   ]
-  }
+  ]
  },
- "name": "typer",
+ "name": "typer-split",
  "outputs_names": {
   "__set__": true,
   "elements": [
-   "typer"
+   "typer",
+   "typer-cli",
+   "typer-slim",
+   "typer-slim-standard"
   ]
  },
  "parsing_error": false,
@@ -207,18 +425,21 @@
  "pr_info": {
   "__lazy_json__": "pr_info/typer.json"
  },
- "raw_meta_yaml": "{% set version = \"0.11.1\" %}\n{% set min_python = \"python >=3.8\" %}\n\npackage:\n  name: typer\n  version: {{ version }}\n\nsource:\n  - folder: dist\n    url: https://pypi.io/packages/source/t/typer/typer-{{ version }}.tar.gz\n    sha256: f5ae987b97ebbbd59182f8e84407bbc925bc636867fa007bce87a7a71ac81d5c\n  - folder: src\n    url: https://github.com/tiangolo/typer/archive/refs/tags/{{ version }}.tar.gz\n    sha256: ab98bf9140ff8ffb91b3055d3a214c005e86410c44b0195123c33654db527f99\n\nbuild:\n  noarch: python\n  number: 0\n  script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n\nrequirements:\n  host:\n    - {{ min_python }}\n    - pdm-backend\n    - pip\n  run:\n    - {{ min_python }}\n    - click >=8.0.0\n    - colorama >=0.4.3,<0.5.0\n    - rich >=10.11.0,<14.0.0\n    - shellingham >=1.3.0,<2.0.0\n    - typing-extensions >=3.7.4.3\n\ntest:\n  source_files:\n    - src/tests\n    - src/docs_src\n  imports:\n    - typer\n  requires:\n    - coverage\n    - pip\n    - pytest-sugar\n  commands:\n    - pip check\n    - cd src && coverage run --source typer --branch -m pytest -vv --color=yes --tb=long -k \"not ((multiple_values and main) or completion)\"\n    - coverage report --show-missing --skip-covered --fail-under=74\n\nabout:\n  home: https://github.com/tiangolo/typer\n  license: MIT\n  license_family: MIT\n  license_file: dist/LICENSE\n  summary: A library for building CLI applications\n  doc_url: https://typer.tiangolo.com\n  description: |\n    Typer is library for building CLI applications that users will love using and developers will love creating. Based on Python 3.6+ type hints.\n\n    The key features are:\n\n    Intuitive to write: Great editor support. Completion everywhere. Less time debugging. Designed to be easy to use and learn. Less time reading docs.\n    Easy to use: It's easy to use for the final users. Automatic help, and automatic completion for all shells.\n    Short: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.\n    Start simple: The simplest example adds only 2 lines of code to your app: 1 import, 1 function call.\n    Grow large: Grow in complexity as much as you want, create arbitrarily complex trees of commands and groups of subcommands, with options and arguments.\n\nextra:\n  recipe-maintainers:\n    - dfornika\n    - bollwyvl\n",
+ "raw_meta_yaml": "{% set version = \"0.12.1\" %}\n{% set min_python = \"python >=3.7\" %}\n\n# handle undefined PYTHON in `noarch: generic` outputs\n{% if PYTHON is not defined %}{% set PYTHON = \"$PYTHON\" %}{% endif %}\n\n\npackage:\n  name: typer-split\n  version: {{ version }}\n\nsource:\n  - folder: typer-slim\n    url: https://pypi.io/packages/source/t/typer-slim/typer_slim-{{ version }}.tar.gz\n    sha256: a1d74b0ffad59a42fc06bc9e9661402267f0e1c072f5ac8b751392e6a24ff37c\n  - folder: typer-cli\n    url: https://pypi.io/packages/source/t/typer-cli/typer_cli-{{ version }}.tar.gz\n    sha256: 2576e55d3418b07843cfefae1f3c65a9e47156d34abeccc6c2039691bd5286c6\n    patches:\n      - 0000-typer-cli-no-entry-point.patch\n  - folder: typer\n    url: https://pypi.io/packages/source/t/typer/typer-{{ version }}.tar.gz\n    sha256: 72d218ef3c686aed9c6ff3ca25b238aee0474a1628b29c559b18b634cfdeca88\n\nbuild:\n  number: 0\n  noarch: python\n\noutputs:\n  # packages with source are `noarch: python`, and should use `{{ min_python }}` in `host` and `run``\n  - name: typer-slim\n    build:\n      noarch: python\n      script: {{ PYTHON }} {{ RECIPE_DIR }}/build_typer.py\n    requirements:\n      host:\n        - {{ min_python }}\n        - pdm-backend\n        - pip\n        - python-build\n      run:\n        - {{ min_python }}\n        - click >=8.0.0\n        - typing_extensions >=3.7.4.3\n      run_constrained:\n        # avoid clobbering historic `typer` versions\n        - {{ pin_subpackage(\"typer\", max_pin=\"x.x.x\") }}\n        # see typer-slim-standard `run` for concrete pinss\n        - rich >=10.11.0,<14.0.0\n        - shellingham >=1.3.0,<2.0.0\n    test:\n      requires:\n        - pip\n      commands:\n        - pip check\n\n  - name: typer-cli\n    build:\n      noarch: python\n      script: {{ PYTHON }} {{ RECIPE_DIR }}/build_typer.py\n    requirements:\n      host:\n        - {{ min_python }}\n        - pdm-backend\n        - pip\n        - python-build\n      run:\n        - {{ min_python }}\n        - {{ pin_subpackage(\"typer\", exact=True) }}\n    test:\n      requires:\n        - pip\n      commands:\n        - pip check\n        - typer --version\n        - typer --help\n\n  - name: typer\n    build:\n      noarch: python\n      script: {{ PYTHON }} {{ RECIPE_DIR }}/build_typer.py\n      entry_points:\n        # won't actually run, but needs to be here to get proper wrapper generated\n        - typer = typer.cli:main\n    requirements:\n      host:\n        - {{ min_python }}\n        - pdm-backend\n        - pip\n        - python-build\n      run:\n        - {{ min_python }}\n        - {{ pin_subpackage(\"typer-slim-standard\", exact=True) }}\n    test:\n      source_files:\n        - typer/tests\n        - typer/docs_src\n      requires:\n        - pip\n        - pytest\n        - coverage\n      commands:\n        - pip check\n        - typer --version\n        - typer --help\n        - cd typer && coverage run --source=typer --branch -m pytest -vv --color=yes --tb=long -k \"not ((multiple_values and main) or completion)\"\n        - coverage report --show-missing --skip-covered --fail-under=66\n\n  # dep-only packages are `noarch: generic`, with no `host`\n  - name: typer-slim-standard\n    build:\n      noarch: generic\n    requirements:\n      run:\n        - {{ pin_subpackage(\"typer-slim\", exact=True) }}\n        # see `typer-slim` for pins in `run_constrained`\n        - rich\n        - shellingham\n    test:\n      source_files:\n        - typer-slim/tests\n        - typer-slim/docs_src\n      imports:\n        - typer\n      requires:\n        - pip\n      commands:\n        - pip check\n\nabout:\n  home: https://github.com/tiangolo/typer\n  license: MIT\n  license_family: MIT\n  license_file: typer-slim/LICENSE\n  summary: Typer, build great CLIs. Easy to code. Based on Python type hints.\n  doc_url: https://typer.tiangolo.com\n\nextra:\n  feedstock-name: typer\n  recipe-maintainers:\n    - dfornika\n    - bollwyvl\n    - fcollonval\n",
  "req": {
   "__set__": true,
   "elements": [
    "click",
-   "colorama",
    "pdm-backend",
    "pip",
    "python",
+   "python-build",
    "rich",
    "shellingham",
-   "typing-extensions"
+   "typer",
+   "typer-slim",
+   "typer-slim-standard",
+   "typing_extensions"
   ]
  },
  "requirements": {
@@ -231,18 +452,21 @@
    "elements": [
     "pdm-backend",
     "pip",
-    "python"
+    "python",
+    "python-build"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "click",
-    "colorama",
     "python",
     "rich",
     "shellingham",
-    "typing-extensions"
+    "typer",
+    "typer-slim",
+    "typer-slim-standard",
+    "typing_extensions"
    ]
   },
   "test": {
@@ -250,7 +474,7 @@
    "elements": [
     "coverage",
     "pip",
-    "pytest-sugar"
+    "pytest"
    ]
   }
  },
@@ -265,18 +489,21 @@
    "elements": [
     "pdm-backend",
     "pip",
-    "python >=3.8"
+    "python >=3.7",
+    "python-build"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "click >=8.0.0",
-    "colorama >=0.4.3,<0.5.0",
-    "python >=3.8",
-    "rich >=10.11.0,<14.0.0",
-    "shellingham >=1.3.0,<2.0.0",
-    "typing-extensions >=3.7.4.3"
+    "python >=3.7",
+    "rich",
+    "shellingham",
+    "typer",
+    "typer-slim",
+    "typer-slim-standard",
+    "typing_extensions >=3.7.4.3"
    ]
   },
   "test": {
@@ -284,12 +511,12 @@
    "elements": [
     "coverage",
     "pip",
-    "pytest-sugar"
+    "pytest"
    ]
   }
  },
- "url": "https://pypi.io/packages/source/t/typer/typer-0.11.1.tar.gz",
- "version": "0.11.1",
+ "url": "https://pypi.io/packages/source/t/typer-slim/typer_slim-0.12.1.tar.gz",
+ "version": "0.12.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/typer.json"
  }
