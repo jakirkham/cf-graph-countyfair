@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "plantuml",
  "hash_type": "sha256",
@@ -98,6 +102,7 @@
    "recipe-maintainers": [
     "bollwyvl",
     "bollwyvl",
+    "bollwyvl",
     "bollwyvl"
    ]
   },
@@ -115,9 +120,14 @@
     "graphviz",
     "openjdk",
     "gradle",
+    "graphviz",
+    "openjdk",
+    "gradle",
     "graphviz"
    ],
    "run": [
+    "openjdk",
+    "graphviz",
     "openjdk",
     "graphviz",
     "openjdk",
@@ -132,6 +142,8 @@
   },
   "test": {
    "commands": [
+    "plantuml -version | grep -E 1\\.2024\\.4",
+    "plantuml -help",
     "plantuml -version | grep -E 1\\.2024\\.4",
     "plantuml -help",
     "plantuml -version | grep -E 1\\.2024\\.4",
@@ -214,6 +226,75 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "PlantUML is a component that allows to quickly write:\n\n  - Sequence diagram,\n  - Use case diagram,\n  - Class diagram,\n  - Activity diagram,\n  - Component diagram,\n  - State diagram,\n  - Object diagram,\n  - Deployment diagram,\n  - Timing diagram\n\nAnd also:\n\n  - Activity diagram (legacy syntax)\n  - Archimate diagram\n  - Gantt charts\n  - SALT UI mockups\n\nFurthermore:\n\n  - Hyperlinks and tooltips\n  - Creole: rich text, emoticons, unicode, icons\n  - OpenIconic icons\n  - Sprite icons\n  - AsciiMath mathematical expressions\n\nTo know more about PlantUML, please visit http://plantuml.com/\n",
+   "dev_url": "https://github.com/plantuml/plantuml",
+   "home": "http://plantuml.com",
+   "license": "GPL-3.0-or-later",
+   "license_file": "COPYING",
+   "summary": "Generate UML diagram from textual description"
+  },
+  "build": {
+   "number": "0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "bollwyvl"
+   ]
+  },
+  "package": {
+   "name": "plantuml",
+   "version": "1.2024.4"
+  },
+  "requirements": {
+   "build": [
+    "openjdk",
+    "gradle",
+    "graphviz"
+   ],
+   "run": [
+    "openjdk",
+    "graphviz"
+   ]
+  },
+  "source": {
+   "sha256": "3a39455ed03d561bec687c839751f5c04d88b5bdd382e7f28784230da545c0c3",
+   "url": "https://github.com/plantuml/plantuml/archive/refs/tags/v1.2024.4.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "plantuml -version | grep -E 1\\.2024\\.4",
+    "plantuml -help"
+   ],
+   "requires": null
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "gradle",
+    "graphviz",
+    "openjdk"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "graphviz",
+    "openjdk"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -224,6 +305,7 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
