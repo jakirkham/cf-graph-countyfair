@@ -35,7 +35,7 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "script": "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -44,22 +44,23 @@
   },
   "package": {
    "name": "send2trash",
-   "version": "1.8.2"
+   "version": "1.8.3"
   },
   "requirements": {
    "host": [
     "__linux",
     "pip",
-    "python >=3.6"
+    "python >=3.7",
+    "setuptools >=40.6.0"
    ],
    "run": [
     "__linux",
-    "python >=3.6"
+    "python >=3.7"
    ]
   },
   "source": {
-   "sha256": "c132d59fa44b9ca2b1699af5c86f57ce9f4c5eb56629d5d55fbb7a35f84e2312",
-   "url": "https://pypi.io/packages/source/s/send2trash/Send2Trash-1.8.2.tar.gz"
+   "sha256": "b18e7a3966d99871aefeb00cfbcfdced55ce4871194810fc71f4aa484b953abf",
+   "url": "https://pypi.io/packages/source/s/send2trash/Send2Trash-1.8.3.tar.gz"
   },
   "test": {
    "commands": [
@@ -89,7 +90,8 @@
    "elements": [
     "__linux",
     "pip",
-    "python"
+    "python",
+    "setuptools"
    ]
   },
   "run": {
@@ -123,7 +125,7 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "script": "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -134,34 +136,37 @@
   },
   "package": {
    "name": "send2trash",
-   "version": "1.8.2"
+   "version": "1.8.3"
   },
   "requirements": {
    "host": [
     "__linux",
     "pip",
-    "python >=3.6",
+    "python >=3.7",
+    "setuptools >=40.6.0",
     "__osx",
     "pip",
-    "python >=3.6",
+    "python >=3.7",
+    "setuptools >=40.6.0",
     "__win",
     "pip",
-    "python >=3.6"
+    "python >=3.7",
+    "setuptools >=40.6.0"
    ],
    "run": [
     "__linux",
-    "python >=3.6",
+    "python >=3.7",
     "__osx",
-    "python >=3.6",
+    "python >=3.7",
     "pyobjc-framework-cocoa",
     "__win",
-    "python >=3.6",
+    "python >=3.7",
     "pywin32"
    ]
   },
   "source": {
-   "sha256": "c132d59fa44b9ca2b1699af5c86f57ce9f4c5eb56629d5d55fbb7a35f84e2312",
-   "url": "https://pypi.io/packages/source/s/send2trash/Send2Trash-1.8.2.tar.gz"
+   "sha256": "b18e7a3966d99871aefeb00cfbcfdced55ce4871194810fc71f4aa484b953abf",
+   "url": "https://pypi.io/packages/source/s/send2trash/Send2Trash-1.8.3.tar.gz"
   },
   "test": {
    "commands": [
@@ -210,7 +215,7 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "script": "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -219,23 +224,24 @@
   },
   "package": {
    "name": "send2trash",
-   "version": "1.8.2"
+   "version": "1.8.3"
   },
   "requirements": {
    "host": [
     "__osx",
     "pip",
-    "python >=3.6"
+    "python >=3.7",
+    "setuptools >=40.6.0"
    ],
    "run": [
     "__osx",
-    "python >=3.6",
+    "python >=3.7",
     "pyobjc-framework-cocoa"
    ]
   },
   "source": {
-   "sha256": "c132d59fa44b9ca2b1699af5c86f57ce9f4c5eb56629d5d55fbb7a35f84e2312",
-   "url": "https://pypi.io/packages/source/s/send2trash/Send2Trash-1.8.2.tar.gz"
+   "sha256": "b18e7a3966d99871aefeb00cfbcfdced55ce4871194810fc71f4aa484b953abf",
+   "url": "https://pypi.io/packages/source/s/send2trash/Send2Trash-1.8.3.tar.gz"
   },
   "test": {
    "commands": [
@@ -265,7 +271,8 @@
    "elements": [
     "__osx",
     "pip",
-    "python"
+    "python",
+    "setuptools"
    ]
   },
   "run": {
@@ -299,7 +306,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/send2trash.json"
  },
- "raw_meta_yaml": "{% set version = \"1.8.2\" %}\n\n{% set pytest_args = '--cov-fail-under=37' %}\n\n{% if noarch_platform == \"osx\" %}\n  # probably related to azure CI perms/paths, etc.\n  {% set pytest_args = pytest_args ~ ' -k \"not test_trash_topdir\"' %}\n{% endif %}\n\npackage:\n  name: send2trash\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/s/send2trash/Send2Trash-{{ version }}.tar.gz\n  sha256: c132d59fa44b9ca2b1699af5c86f57ce9f4c5eb56629d5d55fbb7a35f84e2312\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n  entry_points:\n    - send2trash = send2trash.__main__:main\n\nrequirements:\n  host:\n    - __{{ noarch_platform }}\n    - pip\n    - python >=3.6\n  run:\n    - __{{ noarch_platform }}\n    - python >=3.6\n    {% if noarch_platform == \"osx\" %}- pyobjc-framework-cocoa{% endif %}\n    {% if noarch_platform == \"win\" %}- pywin32{% endif %}\n\ntest:\n  source_files:\n    - tests\n  imports:\n    - send2trash\n  requires:\n    - pip\n    - pytest-cov\n  commands:\n    - pip check\n    - send2trash -h\n    - pytest -vv --cov=send2trash --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail {{ pytest_args }}\n\nabout:\n  home: https://github.com/arsenetar/send2trash\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Python library to natively send files to Trash (or Recycle bin) on all platforms.\n\nextra:\n  recipe-maintainers:\n    - bollwyvl\n",
+ "raw_meta_yaml": "{% set version = \"1.8.3\" %}\n\n{% set pytest_args = '--cov-fail-under=37' %}\n\n{% if noarch_platform == \"osx\" %}\n  # probably related to azure CI perms/paths, etc.\n  {% set pytest_args = pytest_args ~ ' -k \"not test_trash_topdir\"' %}\n{% endif %}\n\npackage:\n  name: send2trash\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/s/send2trash/Send2Trash-{{ version }}.tar.gz\n  sha256: b18e7a3966d99871aefeb00cfbcfdced55ce4871194810fc71f4aa484b953abf\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation\n  entry_points:\n    - send2trash = send2trash.__main__:main\n\nrequirements:\n  host:\n    - __{{ noarch_platform }}\n    - pip\n    - python >=3.7\n    - setuptools >=40.6.0\n  run:\n    - __{{ noarch_platform }}\n    - python >=3.7\n    {% if noarch_platform == \"osx\" %}- pyobjc-framework-cocoa{% endif %}\n    {% if noarch_platform == \"win\" %}- pywin32{% endif %}\n\ntest:\n  source_files:\n    - tests\n  imports:\n    - send2trash\n  requires:\n    - pip\n    - pytest-cov\n  commands:\n    - pip check\n    - send2trash -h\n    - pytest -vv --cov=send2trash --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail {{ pytest_args }}\n\nabout:\n  home: https://github.com/arsenetar/send2trash\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Python library to natively send files to Trash (or Recycle bin) on all platforms.\n\nextra:\n  recipe-maintainers:\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -309,7 +316,8 @@
    "pip",
    "pyobjc-framework-cocoa",
    "python",
-   "pywin32"
+   "pywin32",
+   "setuptools"
   ]
  },
  "requirements": {
@@ -324,7 +332,8 @@
     "__osx",
     "__win",
     "pip",
-    "python"
+    "python",
+    "setuptools"
    ]
   },
   "run": {
@@ -359,7 +368,8 @@
     "__osx",
     "__win",
     "pip",
-    "python >=3.6"
+    "python >=3.7",
+    "setuptools >=40.6.0"
    ]
   },
   "run": {
@@ -369,7 +379,7 @@
     "__osx",
     "__win",
     "pyobjc-framework-cocoa",
-    "python >=3.6",
+    "python >=3.7",
     "pywin32"
    ]
   },
@@ -381,8 +391,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/s/send2trash/Send2Trash-1.8.2.tar.gz",
- "version": "1.8.2",
+ "url": "https://pypi.io/packages/source/s/send2trash/Send2Trash-1.8.3.tar.gz",
+ "version": "1.8.3",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/send2trash.json"
  },
@@ -400,7 +410,7 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "script": "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -409,23 +419,24 @@
   },
   "package": {
    "name": "send2trash",
-   "version": "1.8.2"
+   "version": "1.8.3"
   },
   "requirements": {
    "host": [
     "__win",
     "pip",
-    "python >=3.6"
+    "python >=3.7",
+    "setuptools >=40.6.0"
    ],
    "run": [
     "__win",
-    "python >=3.6",
+    "python >=3.7",
     "pywin32"
    ]
   },
   "source": {
-   "sha256": "c132d59fa44b9ca2b1699af5c86f57ce9f4c5eb56629d5d55fbb7a35f84e2312",
-   "url": "https://pypi.io/packages/source/s/send2trash/Send2Trash-1.8.2.tar.gz"
+   "sha256": "b18e7a3966d99871aefeb00cfbcfdced55ce4871194810fc71f4aa484b953abf",
+   "url": "https://pypi.io/packages/source/s/send2trash/Send2Trash-1.8.3.tar.gz"
   },
   "test": {
    "commands": [
@@ -455,7 +466,8 @@
    "elements": [
     "__win",
     "pip",
-    "python"
+    "python",
+    "setuptools"
    ]
   },
   "run": {
