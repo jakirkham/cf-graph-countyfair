@@ -1,0 +1,298 @@
+{
+ "archived": false,
+ "branch": "main",
+ "conda-forge.yml": {
+  "conda_build": {
+   "error_overlinking": true
+  },
+  "conda_forge_output_validation": true,
+  "github": {
+   "branch_name": "main",
+   "tooling_branch_name": "main"
+  }
+ },
+ "feedstock_name": "libdispatch",
+ "hash_type": "sha256",
+ "linux_64_meta_yaml": {
+  "about": {
+   "description": "The libdispatch Project, (a.k.a. Grand Central Dispatch), for concurrency on multicore hardware",
+   "dev_url": "https://github.com/apple/swift-corelibs-libdispatch",
+   "doc_url": "https://apple.github.io/swift-corelibs-libdispatch",
+   "home": "https://github.com/apple/swift-corelibs-libdispatch",
+   "license": "Apache-2.0",
+   "license_file": "LICENSE",
+   "summary": "Comprehensive support for concurrent code execution on multicore hardware"
+  },
+  "build": {
+   "number": "0",
+   "run_exports": [
+    "libdispatch"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "chawyehsu"
+   ]
+  },
+  "package": {
+   "name": "libdispatch",
+   "version": "5.10"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "sysroot_linux-64 2.17",
+    "cmake",
+    "ninja"
+   ]
+  },
+  "source": {
+   "patches": [
+    "0001-glibc-unistd-wrapper.patch"
+   ],
+   "sha256": "16e088cf12654d22658879710b9694a6fad1c94d5e5d0c597741b71fbcb3e034",
+   "url": "https://github.com/apple/swift-corelibs-libdispatch/archive/refs/tags/swift-5.10-RELEASE.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "test -f $PREFIX/lib/libdispatch${SHLIB_EXT}"
+   ]
+  }
+ },
+ "linux_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "ninja",
+    "sysroot_linux-64"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "meta_yaml": {
+  "about": {
+   "description": "The libdispatch Project, (a.k.a. Grand Central Dispatch), for concurrency on multicore hardware",
+   "dev_url": "https://github.com/apple/swift-corelibs-libdispatch",
+   "doc_url": "https://apple.github.io/swift-corelibs-libdispatch",
+   "home": "https://github.com/apple/swift-corelibs-libdispatch",
+   "license": "Apache-2.0",
+   "license_file": "LICENSE",
+   "summary": "Comprehensive support for concurrent code execution on multicore hardware"
+  },
+  "build": {
+   "number": "0",
+   "run_exports": [
+    "libdispatch",
+    "libdispatch"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "chawyehsu",
+    "chawyehsu"
+   ]
+  },
+  "package": {
+   "name": "libdispatch",
+   "version": "5.10"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "sysroot_linux-64 2.17",
+    "cmake",
+    "ninja",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "lld",
+    "cmake",
+    "ninja"
+   ]
+  },
+  "source": {
+   "patches": null,
+   "sha256": "16e088cf12654d22658879710b9694a6fad1c94d5e5d0c597741b71fbcb3e034",
+   "url": "https://github.com/apple/swift-corelibs-libdispatch/archive/refs/tags/swift-5.10-RELEASE.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "test -f $PREFIX/lib/libdispatch${SHLIB_EXT}",
+    "if not exist %LIBRARY_LIB%\\\\dispatch.lib exit 1"
+   ]
+  }
+ },
+ "name": "libdispatch",
+ "outputs_names": {
+  "__set__": true,
+  "elements": [
+   "libdispatch"
+  ]
+ },
+ "parsing_error": false,
+ "platforms": [
+  "linux_64",
+  "win_64"
+ ],
+ "pr_info": {
+  "__lazy_json__": "pr_info/libdispatch.json"
+ },
+ "raw_meta_yaml": "{% set name = 'libdispatch' %}\n{% set version = '5.10' %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/apple/swift-corelibs-libdispatch/archive/refs/tags/swift-{{ version }}-RELEASE.tar.gz\n  sha256: 16e088cf12654d22658879710b9694a6fad1c94d5e5d0c597741b71fbcb3e034\n  patches:\n    - 0001-glibc-unistd-wrapper.patch  # [linux]\n\nbuild:\n  number: 0\n  skip: true  # [osx]\n  run_exports:\n    - {{ pin_subpackage(name) }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - lld  # [win]\n    - sysroot_linux-64 2.17  # [linux64]\n    - cmake\n    - ninja\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libdispatch${SHLIB_EXT}  # [not win]\n    - if not exist %LIBRARY_LIB%\\\\dispatch.lib exit 1  # [win]\n\nabout:\n  home: https://github.com/apple/swift-corelibs-libdispatch\n  license: Apache-2.0\n  license_file: LICENSE\n  summary: 'Comprehensive support for concurrent code execution on multicore hardware'\n  description: 'The libdispatch Project, (a.k.a. Grand Central Dispatch), for concurrency on multicore hardware'\n  doc_url: https://apple.github.io/swift-corelibs-libdispatch\n  dev_url: https://github.com/apple/swift-corelibs-libdispatch\n\nextra:\n  recipe-maintainers:\n    - chawyehsu\n",
+ "req": {
+  "__set__": true,
+  "elements": [
+   "c_compiler_stub",
+   "cmake",
+   "cxx_compiler_stub",
+   "lld",
+   "ninja",
+   "sysroot_linux-64"
+  ]
+ },
+ "requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "lld",
+    "ninja",
+    "sysroot_linux-64"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cxx_compiler_stub"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cxx_compiler_stub"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "strong_exports": false,
+ "total_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "lld",
+    "ninja",
+    "sysroot_linux-64 2.17"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "url": "https://github.com/apple/swift-corelibs-libdispatch/archive/refs/tags/swift-5.10-RELEASE.tar.gz",
+ "version": "5.10",
+ "version_pr_info": {
+  "__lazy_json__": "version_pr_info/libdispatch.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "description": "The libdispatch Project, (a.k.a. Grand Central Dispatch), for concurrency on multicore hardware",
+   "dev_url": "https://github.com/apple/swift-corelibs-libdispatch",
+   "doc_url": "https://apple.github.io/swift-corelibs-libdispatch",
+   "home": "https://github.com/apple/swift-corelibs-libdispatch",
+   "license": "Apache-2.0",
+   "license_file": "LICENSE",
+   "summary": "Comprehensive support for concurrent code execution on multicore hardware"
+  },
+  "build": {
+   "number": "0",
+   "run_exports": [
+    "libdispatch"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "chawyehsu"
+   ]
+  },
+  "package": {
+   "name": "libdispatch",
+   "version": "5.10"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "lld",
+    "cmake",
+    "ninja"
+   ]
+  },
+  "source": {
+   "patches": null,
+   "sha256": "16e088cf12654d22658879710b9694a6fad1c94d5e5d0c597741b71fbcb3e034",
+   "url": "https://github.com/apple/swift-corelibs-libdispatch/archive/refs/tags/swift-5.10-RELEASE.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "if not exist %LIBRARY_LIB%\\\\dispatch.lib exit 1"
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "lld",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ }
+}
