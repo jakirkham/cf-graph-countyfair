@@ -31,7 +31,7 @@
    "summary": "This is a module for the AWS SDK for C. It handles all IO and TLS work for application protocols."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "aws-c-io"
    ]
@@ -50,6 +50,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -74,6 +75,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -104,7 +106,7 @@
    "summary": "This is a module for the AWS SDK for C. It handles all IO and TLS work for application protocols."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "aws-c-io"
    ]
@@ -123,6 +125,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -147,6 +150,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -177,7 +181,7 @@
    "summary": "This is a module for the AWS SDK for C. It handles all IO and TLS work for application protocols."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "aws-c-io"
    ]
@@ -196,6 +200,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -220,6 +225,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -250,7 +256,7 @@
    "summary": "This is a module for the AWS SDK for C. It handles all IO and TLS work for application protocols."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "aws-c-io",
     "aws-c-io",
@@ -284,21 +290,27 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja",
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja",
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja",
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja",
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja",
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -350,7 +362,7 @@
    "summary": "This is a module for the AWS SDK for C. It handles all IO and TLS work for application protocols."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "aws-c-io"
    ]
@@ -369,6 +381,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -392,6 +405,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -421,7 +435,7 @@
    "summary": "This is a module for the AWS SDK for C. It handles all IO and TLS work for application protocols."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "aws-c-io"
    ]
@@ -440,6 +454,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -463,6 +478,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -501,13 +517,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/aws-c-io.json"
  },
- "raw_meta_yaml": "{% set version = \"0.14.7\" %}\n\npackage:\n  name: aws-c-io\n  version: {{ version }}\n\nsource:\n  url: https://github.com/awslabs/aws-c-io/archive/v{{ version }}.tar.gz\n  sha256: ecf1f660d7d43913aa8a416be6a2027101ce87c3b241344342d608335b4df7d4\n\nbuild:\n  number: 2\n  run_exports:\n    - {{ pin_subpackage(\"aws-c-io\", max_pin=\"x.x.x\") }}\n\nrequirements:\n  build:\n    - cmake !=3.19.0,!=3.19.1\n    - {{ compiler('c') }}\n    - ninja\n  host:\n    - aws-c-common\n    - aws-c-cal\n    - s2n  # [linux]\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libaws-c-io${SHLIB_EXT}  # [unix]\n    - test -f $PREFIX/include/aws/io/io.h  # [unix]\n    - if not exist %LIBRARY_INC%\\\\aws\\\\io\\\\io.h exit 1          # [win]\n    - if not exist %PREFIX%\\\\Library\\\\bin\\\\aws-c-io.dll exit 1  # [win]\n\nabout:\n  home: https://github.com/awslabs/aws-c-io\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: This is a module for the AWS SDK for C. It handles all IO and TLS work for application protocols.\n\nextra:\n  recipe-maintainers:\n    - xhochy\n    - conda-forge/aws-sdk-cpp\n",
+ "raw_meta_yaml": "{% set version = \"0.14.7\" %}\n\npackage:\n  name: aws-c-io\n  version: {{ version }}\n\nsource:\n  url: https://github.com/awslabs/aws-c-io/archive/v{{ version }}.tar.gz\n  sha256: ecf1f660d7d43913aa8a416be6a2027101ce87c3b241344342d608335b4df7d4\n\nbuild:\n  number: 3\n  run_exports:\n    - {{ pin_subpackage(\"aws-c-io\", max_pin=\"x.x.x\") }}\n\nrequirements:\n  build:\n    - cmake !=3.19.0,!=3.19.1\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - ninja\n  host:\n    - aws-c-common\n    - aws-c-cal\n    - s2n  # [linux]\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libaws-c-io${SHLIB_EXT}  # [unix]\n    - test -f $PREFIX/include/aws/io/io.h  # [unix]\n    - if not exist %LIBRARY_INC%\\\\aws\\\\io\\\\io.h exit 1          # [win]\n    - if not exist %PREFIX%\\\\Library\\\\bin\\\\aws-c-io.dll exit 1  # [win]\n\nabout:\n  home: https://github.com/awslabs/aws-c-io\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: This is a module for the AWS SDK for C. It handles all IO and TLS work for application protocols.\n\nextra:\n  recipe-maintainers:\n    - xhochy\n    - conda-forge/aws-sdk-cpp\n",
  "req": {
   "__set__": true,
   "elements": [
    "aws-c-cal",
    "aws-c-common",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "ninja",
    "s2n"
@@ -518,6 +535,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -528,13 +546,15 @@
     "aws-c-cal",
     "aws-c-common",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "s2n"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "test": {
@@ -548,6 +568,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake !=3.19.0,!=3.19.1",
     "ninja"
    ]
@@ -583,7 +604,7 @@
    "summary": "This is a module for the AWS SDK for C. It handles all IO and TLS work for application protocols."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "aws-c-io"
    ]
@@ -602,6 +623,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -625,6 +647,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
