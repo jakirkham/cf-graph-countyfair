@@ -23,7 +23,7 @@
    "license": "BSD-3-Clause",
    "license_family": "BSD",
    "license_file": "LICENSE",
-   "summary": "A tool for retrieving Streamflow from the GEOGloWS ECMWF Streamflow Service"
+   "summary": "A tool for retrieving modeled river discharge from the GEOGLOWS data service"
   },
   "build": {
    "noarch": "python",
@@ -33,12 +33,12 @@
   "extra": {
    "recipe-maintainers": [
     "rileyhales",
-    "rfun"
+    "msouff"
    ]
   },
   "package": {
    "name": "geoglows",
-   "version": "0.27.1"
+   "version": "1.0.0"
   },
   "requirements": {
    "host": [
@@ -49,18 +49,21 @@
     "python >=3.6",
     "requests",
     "pandas",
-    "plotly >=4.6",
-    "jinja2",
-    "shapely",
+    "plotly >=5",
     "scipy",
     "numpy",
     "hydrostats",
-    "HydroErr"
+    "HydroErr",
+    "s3fs",
+    "xarray",
+    "zarr",
+    "fastparquet",
+    "dask"
    ]
   },
   "source": {
-   "sha256": "ac7ac85cc74ea133e1f777944b0ccc32103b6e3746b837e62138c7ffca148cb0",
-   "url": "https://pypi.io/packages/source/g/geoglows/geoglows-0.27.1.tar.gz"
+   "sha256": "bdf32e42a76fc3e7602dca83818e1b0ef726b51fcc7a0f00c390e219b38b0a49",
+   "url": "https://pypi.io/packages/source/g/geoglows/geoglows-1.0.0.tar.gz"
   },
   "test": {
    "imports": [
@@ -83,16 +86,19 @@
   "run": {
    "__set__": true,
    "elements": [
+    "dask",
+    "fastparquet",
     "hydroerr",
     "hydrostats",
-    "jinja2",
     "numpy",
     "pandas",
     "plotly",
     "python",
     "requests",
+    "s3fs",
     "scipy",
-    "shapely"
+    "xarray",
+    "zarr"
    ]
   },
   "test": {
@@ -107,7 +113,7 @@
    "license": "BSD-3-Clause",
    "license_family": "BSD",
    "license_file": "LICENSE",
-   "summary": "A tool for retrieving Streamflow from the GEOGloWS ECMWF Streamflow Service"
+   "summary": "A tool for retrieving modeled river discharge from the GEOGLOWS data service"
   },
   "build": {
    "noarch": "python",
@@ -117,12 +123,12 @@
   "extra": {
    "recipe-maintainers": [
     "rileyhales",
-    "rfun"
+    "msouff"
    ]
   },
   "package": {
    "name": "geoglows",
-   "version": "0.27.1"
+   "version": "1.0.0"
   },
   "requirements": {
    "host": [
@@ -133,18 +139,21 @@
     "python >=3.6",
     "requests",
     "pandas",
-    "plotly >=4.6",
-    "jinja2",
-    "shapely",
+    "plotly >=5",
     "scipy",
     "numpy",
     "hydrostats",
-    "HydroErr"
+    "HydroErr",
+    "s3fs",
+    "xarray",
+    "zarr",
+    "fastparquet",
+    "dask"
    ]
   },
   "source": {
-   "sha256": "ac7ac85cc74ea133e1f777944b0ccc32103b6e3746b837e62138c7ffca148cb0",
-   "url": "https://pypi.io/packages/source/g/geoglows/geoglows-0.27.1.tar.gz"
+   "sha256": "bdf32e42a76fc3e7602dca83818e1b0ef726b51fcc7a0f00c390e219b38b0a49",
+   "url": "https://pypi.io/packages/source/g/geoglows/geoglows-1.0.0.tar.gz"
   },
   "test": {
    "imports": [
@@ -166,21 +175,24 @@
  "pr_info": {
   "__lazy_json__": "pr_info/geoglows.json"
  },
- "raw_meta_yaml": "{% set name = \"geoglows\" %}\n{% set version = \"0.27.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: ac7ac85cc74ea133e1f777944b0ccc32103b6e3746b837e62138c7ffca148cb0\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n  run:\n    - python >=3.6\n    - requests\n    - pandas\n    - plotly >=4.6\n    - jinja2\n    - shapely\n    - scipy\n    - numpy\n    - hydrostats\n    - HydroErr\n\ntest:\n  imports:\n    - geoglows\n\nabout:\n  home: https://github.com/BYU-Hydroinformatics/geoglows\n  summary: A tool for retrieving Streamflow from the GEOGloWS ECMWF Streamflow Service\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  doc_url: https://geoglows.readthedocs.io\n\nextra:\n  recipe-maintainers:\n    - rileyhales\n    - rfun\n",
+ "raw_meta_yaml": "{% set name = \"geoglows\" %}\n{% set version = \"1.0.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: bdf32e42a76fc3e7602dca83818e1b0ef726b51fcc7a0f00c390e219b38b0a49\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n  run:\n    - python >=3.6\n    - requests\n    - pandas\n    - plotly >=5\n    - scipy\n    - numpy\n    - hydrostats\n    - HydroErr\n    - s3fs\n    - xarray\n    - zarr\n    - fastparquet\n    - dask\n\ntest:\n  imports:\n    - geoglows\n\nabout:\n  home: https://github.com/BYU-Hydroinformatics/geoglows\n  summary: A tool for retrieving modeled river discharge from the GEOGLOWS data service\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  doc_url: https://geoglows.readthedocs.io\n\nextra:\n  recipe-maintainers:\n    - rileyhales\n    - msouff\n",
  "req": {
   "__set__": true,
   "elements": [
+   "dask",
+   "fastparquet",
    "hydroerr",
    "hydrostats",
-   "jinja2",
    "numpy",
    "pandas",
    "pip",
    "plotly",
    "python",
    "requests",
+   "s3fs",
    "scipy",
-   "shapely"
+   "xarray",
+   "zarr"
   ]
  },
  "requirements": {
@@ -198,16 +210,19 @@
   "run": {
    "__set__": true,
    "elements": [
+    "dask",
+    "fastparquet",
     "hydroerr",
     "hydrostats",
-    "jinja2",
     "numpy",
     "pandas",
     "plotly",
     "python",
     "requests",
+    "s3fs",
     "scipy",
-    "shapely"
+    "xarray",
+    "zarr"
    ]
   },
   "test": {
@@ -232,15 +247,18 @@
    "__set__": true,
    "elements": [
     "HydroErr",
+    "dask",
+    "fastparquet",
     "hydrostats",
-    "jinja2",
     "numpy",
     "pandas",
-    "plotly >=4.6",
+    "plotly >=5",
     "python >=3.6",
     "requests",
+    "s3fs",
     "scipy",
-    "shapely"
+    "xarray",
+    "zarr"
    ]
   },
   "test": {
@@ -248,8 +266,8 @@
    "elements": []
   }
  },
- "url": "https://pypi.io/packages/source/g/geoglows/geoglows-0.27.1.tar.gz",
- "version": "0.27.1",
+ "url": "https://pypi.io/packages/source/g/geoglows/geoglows-1.0.0.tar.gz",
+ "version": "1.0.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/geoglows.json"
  }
