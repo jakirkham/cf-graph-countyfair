@@ -2,6 +2,10 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "automerge": true,
+   "inspection": "update-grayskull"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -21,48 +25,48 @@
    "home": "http://viewflow.io/",
    "license": "AGPL-3.0-or-later",
    "license_family": "GPL3",
-   "license_file": "LICENSE_EXCEPTION",
+   "license_file": [
+    "LICENSE",
+    "LICENSE_EXCEPTION",
+    "LICENSE.django"
+   ],
    "summary": "Reusable workflow library for Django"
   },
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
     "cshaley",
+    "millsks",
     "rxm7706"
    ]
   },
   "package": {
    "name": "django-viewflow",
-   "version": "1.11.0"
+   "version": "2.0.0"
   },
   "requirements": {
    "host": [
-    "python >=3.7,<3.11",
+    "python >=3.8",
     "pip"
    ],
    "run": [
-    "python >=3.7,<3.11",
-    "django >=2.2",
-    "django-filter >=1.0",
-    "django-jsonstore",
-    "django-annoying",
-    "six"
+    "python >=3.8",
+    "django >=4.2",
+    "django-filter >=2.3.0"
    ]
   },
   "source": {
-   "sha256": "edb0d9bf20b406fff781eea91cd3d250cde3b3ff956ce6451ceeabab3bbc8f94",
-   "url": "https://pypi.io/packages/source/d/django-viewflow/django-viewflow-1.11.0.tar.gz"
+   "sha256": "18f9913c1881a943f324a8596cedb65dac75f995d6488ee256555c450443a2db",
+   "url": "https://github.com/viewflow/viewflow/archive/2.0.0.tar.gz"
   },
   "test": {
    "commands": [
+    "python -c \"import django; from django.conf import settings; settings.configure(DEBUG=True,INSTALLED_APPS=['viewflow']); django.setup(); import viewflow; import viewflow.apps; import viewflow.conf; import viewflow.contrib; import viewflow.fields; import viewflow.forms; import viewflow.fsm; import viewflow.jsonstore; import viewflow.locale; import viewflow.management; import viewflow.middleware; import viewflow.static; import viewflow.templates; import viewflow.templatetags; import viewflow.urls; import viewflow.utils; import viewflow.views; import viewflow.workflow\"",
     "pip check"
-   ],
-   "imports": [
-    "viewflow"
    ],
    "requires": [
     "pip"
@@ -85,11 +89,8 @@
    "__set__": true,
    "elements": [
     "django",
-    "django-annoying",
     "django-filter",
-    "django-jsonstore",
-    "python",
-    "six"
+    "python"
    ]
   },
   "test": {
@@ -107,48 +108,48 @@
    "home": "http://viewflow.io/",
    "license": "AGPL-3.0-or-later",
    "license_family": "GPL3",
-   "license_file": "LICENSE_EXCEPTION",
+   "license_file": [
+    "LICENSE",
+    "LICENSE_EXCEPTION",
+    "LICENSE.django"
+   ],
    "summary": "Reusable workflow library for Django"
   },
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
     "cshaley",
+    "millsks",
     "rxm7706"
    ]
   },
   "package": {
    "name": "django-viewflow",
-   "version": "1.11.0"
+   "version": "2.0.0"
   },
   "requirements": {
    "host": [
-    "python >=3.7,<3.11",
+    "python >=3.8",
     "pip"
    ],
    "run": [
-    "python >=3.7,<3.11",
-    "django >=2.2",
-    "django-filter >=1.0",
-    "django-jsonstore",
-    "django-annoying",
-    "six"
+    "python >=3.8",
+    "django >=4.2",
+    "django-filter >=2.3.0"
    ]
   },
   "source": {
-   "sha256": "edb0d9bf20b406fff781eea91cd3d250cde3b3ff956ce6451ceeabab3bbc8f94",
-   "url": "https://pypi.io/packages/source/d/django-viewflow/django-viewflow-1.11.0.tar.gz"
+   "sha256": "18f9913c1881a943f324a8596cedb65dac75f995d6488ee256555c450443a2db",
+   "url": "https://github.com/viewflow/viewflow/archive/2.0.0.tar.gz"
   },
   "test": {
    "commands": [
+    "python -c \"import django; from django.conf import settings; settings.configure(DEBUG=True,INSTALLED_APPS=['viewflow']); django.setup(); import viewflow; import viewflow.apps; import viewflow.conf; import viewflow.contrib; import viewflow.fields; import viewflow.forms; import viewflow.fsm; import viewflow.jsonstore; import viewflow.locale; import viewflow.management; import viewflow.middleware; import viewflow.static; import viewflow.templates; import viewflow.templatetags; import viewflow.urls; import viewflow.utils; import viewflow.views; import viewflow.workflow\"",
     "pip check"
-   ],
-   "imports": [
-    "viewflow"
    ],
    "requires": [
     "pip"
@@ -169,17 +170,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/django-viewflow.json"
  },
- "raw_meta_yaml": "{% set name = \"django-viewflow\" %}\n{% set version = \"1.11.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/django-viewflow-{{ version }}.tar.gz\n  sha256: edb0d9bf20b406fff781eea91cd3d250cde3b3ff956ce6451ceeabab3bbc8f94\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.7,<3.11\n    - pip\n  run:\n    - python >=3.7,<3.11\n    - django >=2.2\n    - django-filter >=1.0\n    - django-jsonstore\n    - django-annoying\n    - six\n\ntest:\n  imports:\n    - viewflow\n  commands:\n    - pip check\n#    - python -c \"import django; from django.conf import settings; settings.configure(INSTALLED_APPS=['viewflow']); django.setup(); import viewflow; import viewflow.flow; import viewflow.flow.views; import viewflow.management; import viewflow.migrations; import viewflow.nodes; import viewflow.templatetags; import viewflow.frontend; import viewflow.frontend.templatetags\"\n  requires:\n    - pip\n\nabout:\n  home: http://viewflow.io/\n  license: AGPL-3.0-or-later\n  license_family: GPL3\n  license_file: LICENSE\n  license_file: LICENSE_EXCEPTION\n  summary: 'Reusable workflow library for Django'\n  description: |\n    Viewflow takes the best parts from two worlds. It is based on BPMN - \n    business process modeling and notation standard - and plays well with the \n    django web development toolchain. BPMN provides a standard notation, \n    readily understandable by all business stakeholders. Viewflow bridges \n    the gap between a picture and an executable, ready to use web application.\n  doc_url: http://docs.viewflow.io/\n  dev_url: https://github.com/viewflow/viewflow/\n\nextra:\n  recipe-maintainers:\n    - cshaley\n    - rxm7706\n \n",
+ "raw_meta_yaml": "{% set name = \"django-viewflow\" %}\n{% set version = \"2.0.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/viewflow/viewflow/archive/{{ version }}.tar.gz\n  sha256: 18f9913c1881a943f324a8596cedb65dac75f995d6488ee256555c450443a2db\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n  run:\n    - python >=3.8\n    - django >=4.2\n    - django-filter >=2.3.0\n\ntest:\n  commands:\n    - python -c \"import django; from django.conf import settings; settings.configure(DEBUG=True,INSTALLED_APPS=['viewflow']); django.setup(); import viewflow; import viewflow.apps; import viewflow.conf; import viewflow.contrib; import viewflow.fields; import viewflow.forms; import viewflow.fsm; import viewflow.jsonstore; import viewflow.locale; import viewflow.management; import viewflow.middleware; import viewflow.static; import viewflow.templates; import viewflow.templatetags; import viewflow.urls; import viewflow.utils; import viewflow.views; import viewflow.workflow\"    \n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: http://viewflow.io/\n  license: AGPL-3.0-or-later\n  license_family: GPL3\n  license_file: \n    - LICENSE\n    - LICENSE_EXCEPTION\n    - LICENSE.django\n  summary: 'Reusable workflow library for Django'\n  description: |\n    Viewflow takes the best parts from two worlds. It is based on BPMN - \n    business process modeling and notation standard - and plays well with the \n    django web development toolchain. BPMN provides a standard notation, \n    readily understandable by all business stakeholders. Viewflow bridges \n    the gap between a picture and an executable, ready to use web application.\n  doc_url: http://docs.viewflow.io/\n  dev_url: https://github.com/viewflow/viewflow/\n\nextra:\n  recipe-maintainers:\n    - cshaley\n    - millsks\n    - rxm7706\n \n",
  "req": {
   "__set__": true,
   "elements": [
    "django",
-   "django-annoying",
    "django-filter",
-   "django-jsonstore",
    "pip",
-   "python",
-   "six"
+   "python"
   ]
  },
  "requirements": {
@@ -198,11 +196,8 @@
    "__set__": true,
    "elements": [
     "django",
-    "django-annoying",
     "django-filter",
-    "django-jsonstore",
-    "python",
-    "six"
+    "python"
    ]
   },
   "test": {
@@ -222,18 +217,15 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.7,<3.11"
+    "python >=3.8"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "django >=2.2",
-    "django-annoying",
-    "django-filter >=1.0",
-    "django-jsonstore",
-    "python >=3.7,<3.11",
-    "six"
+    "django >=4.2",
+    "django-filter >=2.3.0",
+    "python >=3.8"
    ]
   },
   "test": {
@@ -243,8 +235,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/d/django-viewflow/django-viewflow-1.11.0.tar.gz",
- "version": "1.11.0",
+ "url": "https://github.com/viewflow/viewflow/archive/2.0.0.tar.gz",
+ "version": "2.0.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/django-viewflow.json"
  }
