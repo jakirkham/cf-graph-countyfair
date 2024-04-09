@@ -23,7 +23,7 @@
   },
   "build": {
    "entry_points": [
-    "datashuttle = datashuttle.command_line_interface:main"
+    "datashuttle = datashuttle.tui_launcher:main"
    ],
    "noarch": "python",
    "number": "0",
@@ -38,7 +38,7 @@
   },
   "package": {
    "name": "datashuttle",
-   "version": "0.2.0"
+   "version": "0.3.0"
   },
   "requirements": {
    "host": [
@@ -56,12 +56,13 @@
     "rclone",
     "pyperclip",
     "textual",
-    "show-in-file-manager"
+    "show-in-file-manager",
+    "gitpython"
    ]
   },
   "source": {
-   "sha256": "36a10d3fe6847f32edf24ff2c8bc6a313a67785630c965f783b6cfee2dd9b1a2",
-   "url": "https://pypi.io/packages/source/d/datashuttle/datashuttle-0.2.0.tar.gz"
+   "sha256": "7e2ec07b4670fa919c909534a00b4ec422d2f4d37dd3fc1a871ce7f0eab4eac7",
+   "url": "https://pypi.io/packages/source/d/datashuttle/datashuttle-0.3.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -75,7 +76,9 @@
    "requires": [
     "pip",
     "pytest",
-    "pandas"
+    "pandas",
+    "pytest-asyncio",
+    "validators"
    ],
    "source_files": [
     "datashuttle/",
@@ -99,6 +102,7 @@
    "__set__": true,
    "elements": [
     "fancylog",
+    "gitpython",
     "paramiko",
     "pyperclip",
     "python",
@@ -116,7 +120,9 @@
    "elements": [
     "pandas",
     "pip",
-    "pytest"
+    "pytest",
+    "pytest-asyncio",
+    "validators"
    ]
   }
  },
@@ -130,7 +136,7 @@
   },
   "build": {
    "entry_points": [
-    "datashuttle = datashuttle.command_line_interface:main"
+    "datashuttle = datashuttle.tui_launcher:main"
    ],
    "noarch": "python",
    "number": "0",
@@ -145,7 +151,7 @@
   },
   "package": {
    "name": "datashuttle",
-   "version": "0.2.0"
+   "version": "0.3.0"
   },
   "requirements": {
    "host": [
@@ -163,12 +169,13 @@
     "rclone",
     "pyperclip",
     "textual",
-    "show-in-file-manager"
+    "show-in-file-manager",
+    "gitpython"
    ]
   },
   "source": {
-   "sha256": "36a10d3fe6847f32edf24ff2c8bc6a313a67785630c965f783b6cfee2dd9b1a2",
-   "url": "https://pypi.io/packages/source/d/datashuttle/datashuttle-0.2.0.tar.gz"
+   "sha256": "7e2ec07b4670fa919c909534a00b4ec422d2f4d37dd3fc1a871ce7f0eab4eac7",
+   "url": "https://pypi.io/packages/source/d/datashuttle/datashuttle-0.3.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -182,7 +189,9 @@
    "requires": [
     "pip",
     "pytest",
-    "pandas"
+    "pandas",
+    "pytest-asyncio",
+    "validators"
    ],
    "source_files": [
     "datashuttle/",
@@ -204,11 +213,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/datashuttle.json"
  },
- "raw_meta_yaml": "{% set name = \"datashuttle\" %}\n{% set version = \"0.2.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 36a10d3fe6847f32edf24ff2c8bc6a313a67785630c965f783b6cfee2dd9b1a2\n\nbuild:\n  noarch: python\n  entry_points:\n    - \"datashuttle = datashuttle.command_line_interface:main\"\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8.0\n    - pip\n  run:\n    - python >=3.8.0\n    - paramiko\n    - pyyaml\n    - requests\n    - rich\n    - fancylog\n    - simplejson\n    - rclone\n    - pyperclip\n    - textual\n    - show-in-file-manager\ntest:\n  source_files:\n    - datashuttle/\n    - tests/\n  imports:\n    - datashuttle\n  commands:\n    - pip list\n    - pip check\n    - pytest ./tests\n  requires:\n    - pip\n    - pytest\n    - pandas\n\nabout:\n  home: https://datashuttle.neuroinformatics.dev/\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: \"A project folder manager for systems neuroscience.\"\n\nextra:\n  recipe-maintainers:\n    - JoeZiminski\n    - adamltyson\n    - niksirbi\n",
+ "raw_meta_yaml": "{% set name = \"datashuttle\" %}\n{% set version = \"0.3.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 7e2ec07b4670fa919c909534a00b4ec422d2f4d37dd3fc1a871ce7f0eab4eac7\n\nbuild:\n  noarch: python\n  entry_points:\n    - \"datashuttle = datashuttle.tui_launcher:main\"\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8.0\n    - pip\n  run:\n    - python >=3.8.0\n    - paramiko\n    - pyyaml\n    - requests\n    - rich\n    - fancylog\n    - simplejson\n    - rclone\n    - pyperclip\n    - textual\n    - show-in-file-manager\n    - gitpython\ntest:\n  source_files:\n    - datashuttle/\n    - tests/\n  imports:\n    - datashuttle\n  commands:\n    - pip list\n    - pip check\n    - pytest ./tests\n  requires:\n    - pip\n    - pytest\n    - pandas\n    - pytest-asyncio\n    - validators\n\nabout:\n  home: https://datashuttle.neuroinformatics.dev/\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: \"A project folder manager for systems neuroscience.\"\n\nextra:\n  recipe-maintainers:\n    - JoeZiminski\n    - adamltyson\n    - niksirbi\n",
  "req": {
   "__set__": true,
   "elements": [
    "fancylog",
+   "gitpython",
    "paramiko",
    "pip",
    "pyperclip",
@@ -238,6 +248,7 @@
    "__set__": true,
    "elements": [
     "fancylog",
+    "gitpython",
     "paramiko",
     "pyperclip",
     "python",
@@ -255,7 +266,9 @@
    "elements": [
     "pandas",
     "pip",
-    "pytest"
+    "pytest",
+    "pytest-asyncio",
+    "validators"
    ]
   }
  },
@@ -276,6 +289,7 @@
    "__set__": true,
    "elements": [
     "fancylog",
+    "gitpython",
     "paramiko",
     "pyperclip",
     "python >=3.8.0",
@@ -293,12 +307,14 @@
    "elements": [
     "pandas",
     "pip",
-    "pytest"
+    "pytest",
+    "pytest-asyncio",
+    "validators"
    ]
   }
  },
- "url": "https://pypi.io/packages/source/d/datashuttle/datashuttle-0.2.0.tar.gz",
- "version": "0.2.0",
+ "url": "https://pypi.io/packages/source/d/datashuttle/datashuttle-0.3.0.tar.gz",
+ "version": "0.3.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/datashuttle.json"
  }
