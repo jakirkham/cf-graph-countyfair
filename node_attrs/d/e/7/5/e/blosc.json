@@ -32,7 +32,7 @@
    "summary": "A blocking, shuffling and loss-less compression library that can be faster than `memcpy()`"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "blosc"
    ]
@@ -54,6 +54,7 @@
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -81,6 +82,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -112,7 +114,7 @@
    "summary": "A blocking, shuffling and loss-less compression library that can be faster than `memcpy()`"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "blosc"
    ]
@@ -134,6 +136,7 @@
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -161,6 +164,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -192,7 +196,7 @@
    "summary": "A blocking, shuffling and loss-less compression library that can be faster than `memcpy()`"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "blosc"
    ]
@@ -214,6 +218,7 @@
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -241,6 +246,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -272,7 +278,7 @@
    "summary": "A blocking, shuffling and loss-less compression library that can be faster than `memcpy()`"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "blosc",
     "blosc",
@@ -319,25 +325,31 @@
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -410,7 +422,7 @@
    "summary": "A blocking, shuffling and loss-less compression library that can be faster than `memcpy()`"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "blosc"
    ]
@@ -432,6 +444,7 @@
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -459,6 +472,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -490,7 +504,7 @@
    "summary": "A blocking, shuffling and loss-less compression library that can be faster than `memcpy()`"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "blosc"
    ]
@@ -512,6 +526,7 @@
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -539,6 +554,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -580,11 +596,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/blosc.json"
  },
- "raw_meta_yaml": "{% set version = \"1.21.5\" %}\n\npackage:\n  name: blosc\n  version: {{ version }}\n\nsource:\n  url: https://github.com/Blosc/c-blosc/archive/v{{ version }}.tar.gz\n  sha256: 32e61961bbf81ffea6ff30e9d70fca36c86178afd3e3cfa13376adec8c687509\n\nbuild:\n  number: 0\n  run_exports:\n    - {{ pin_subpackage('blosc') }}\n\nrequirements:\n  build:\n    - cmake\n    - make  # [unix]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - lz4-c\n    - snappy\n    - zlib\n    - zstd\n\ntest:\n  commands:\n    - test -e $PREFIX/include/blosc.h                    # [unix]\n    - test -e $PREFIX/include/blosc-export.h             # [unix]\n    - test ! -e $PREFIX/lib/libblosc.a                   # [unix]\n    - test -e $PREFIX/lib/libblosc${SHLIB_EXT}           # [unix]\n    - if not exist %LIBRARY_INC%\\\\blosc.h exit 1         # [win]\n    - if not exist %LIBRARY_INC%\\\\blosc-export.h exit 1  # [win]\n    - if not exist %LIBRARY_BIN%\\\\blosc.dll exit 1       # [win]\n    - if not exist %LIBRARY_LIB%\\\\blosc.lib exit 1       # [win]\n    - if exist %LIBRARY_LIB%\\\\libblosc.lib exit 1        # [win]\n\nabout:\n  home: https://github.com/Blosc/c-blosc\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: A blocking, shuffling and loss-less compression library that can be faster than `memcpy()`\n\nextra:\n  recipe-maintainers:\n    - FrancescElies\n    - jakirkham\n    - hmaarrfk\n    - zklaus\n",
+ "raw_meta_yaml": "{% set version = \"1.21.5\" %}\n\npackage:\n  name: blosc\n  version: {{ version }}\n\nsource:\n  url: https://github.com/Blosc/c-blosc/archive/v{{ version }}.tar.gz\n  sha256: 32e61961bbf81ffea6ff30e9d70fca36c86178afd3e3cfa13376adec8c687509\n\nbuild:\n  number: 1\n  run_exports:\n    - {{ pin_subpackage('blosc') }}\n\nrequirements:\n  build:\n    - cmake\n    - make  # [unix]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n  host:\n    - lz4-c\n    - snappy\n    - zlib\n    - zstd\n\ntest:\n  commands:\n    - test -e $PREFIX/include/blosc.h                    # [unix]\n    - test -e $PREFIX/include/blosc-export.h             # [unix]\n    - test ! -e $PREFIX/lib/libblosc.a                   # [unix]\n    - test -e $PREFIX/lib/libblosc${SHLIB_EXT}           # [unix]\n    - if not exist %LIBRARY_INC%\\\\blosc.h exit 1         # [win]\n    - if not exist %LIBRARY_INC%\\\\blosc-export.h exit 1  # [win]\n    - if not exist %LIBRARY_BIN%\\\\blosc.dll exit 1       # [win]\n    - if not exist %LIBRARY_LIB%\\\\blosc.lib exit 1       # [win]\n    - if exist %LIBRARY_LIB%\\\\libblosc.lib exit 1        # [win]\n\nabout:\n  home: https://github.com/Blosc/c-blosc\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: A blocking, shuffling and loss-less compression library that can be faster than `memcpy()`\n\nextra:\n  recipe-maintainers:\n    - FrancescElies\n    - jakirkham\n    - hmaarrfk\n    - zklaus\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "lz4-c",
@@ -599,6 +616,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -608,6 +626,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "lz4-c",
     "snappy",
@@ -619,6 +638,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -634,6 +654,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -670,7 +691,7 @@
    "summary": "A blocking, shuffling and loss-less compression library that can be faster than `memcpy()`"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "blosc"
    ]
@@ -691,6 +712,7 @@
    "build": [
     "cmake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -719,6 +741,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
