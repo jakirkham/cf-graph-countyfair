@@ -2,6 +2,10 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -28,7 +32,7 @@
    "summary": "nvdisasm extracts information from standalone cubin files"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "cp -rv bin $PREFIX"
    ]
@@ -101,7 +105,7 @@
    "summary": "nvdisasm extracts information from standalone cubin files"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "cp -rv bin $PREFIX"
    ]
@@ -178,7 +182,7 @@
    "summary": "nvdisasm extracts information from standalone cubin files"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "cp -rv bin $PREFIX"
    ]
@@ -251,7 +255,7 @@
    "summary": "nvdisasm extracts information from standalone cubin files"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "cp -rv bin $PREFIX",
     "cp -rv bin $PREFIX",
@@ -327,7 +331,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cuda-nvdisasm.json"
  },
- "raw_meta_yaml": "{% set name = \"cuda-nvdisasm\" %}\n{% set version = \"12.4.127\" %}\n{% set cuda_version = \"12.4\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"linux-sbsa\" %}  # [aarch64]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvdisasm/{{ platform }}/cuda_nvdisasm-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: 44018a76ee5977b603b0a1f3176a8398eaa893008dadf23e82d01733c20b5542  # [linux64]\n  sha256: 8407848aea496afd7708c9ed61c6a1d19c56362798341e1adcfeb77d34a5fea7  # [ppc64le]\n  sha256: ec0480837e789f14803ae148f5ada2cfbd02216afc832c23d6a38037b88be381  # [aarch64]\n  sha256: 62a15a4ef3c0641352d7e5c184243d20f9e4992f040538c0f14cd40ec7e5ef7b  # [win]\n\nbuild:\n  number: 0\n  skip: true  # [osx]\n  script:\n    - cp -rv bin $PREFIX        # [linux]\n    - move bin\\* %LIBRARY_BIN%  # [win]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - arm-variant * {{ arm_variant_type }}  # [aarch64]\n  host:\n    - cuda-version {{ cuda_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n  run_constrained:\n    - arm-variant * {{ arm_variant_type }}  # [aarch64]\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/nvdisasm                    # [linux]\n    - if not exist %LIBRARY_BIN%\\nvdisasm.exe exit 1  # [win]\n\nabout:\n  home: https://developer.nvidia.com/cuda-toolkit\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: nvdisasm extracts information from standalone cubin files\n  description: |\n    nvdisasm extracts information from standalone cubin files and presents them in\n    human readable format.\n  doc_url: https://docs.nvidia.com/cuda/cuda-binary-utilities/\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
+ "raw_meta_yaml": "{% set name = \"cuda-nvdisasm\" %}\n{% set version = \"12.4.127\" %}\n{% set cuda_version = \"12.4\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"linux-sbsa\" %}  # [aarch64]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvdisasm/{{ platform }}/cuda_nvdisasm-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: 44018a76ee5977b603b0a1f3176a8398eaa893008dadf23e82d01733c20b5542  # [linux64]\n  sha256: 8407848aea496afd7708c9ed61c6a1d19c56362798341e1adcfeb77d34a5fea7  # [ppc64le]\n  sha256: ec0480837e789f14803ae148f5ada2cfbd02216afc832c23d6a38037b88be381  # [aarch64]\n  sha256: 62a15a4ef3c0641352d7e5c184243d20f9e4992f040538c0f14cd40ec7e5ef7b  # [win]\n\nbuild:\n  number: 1\n  skip: true  # [osx]\n  script:\n    - cp -rv bin $PREFIX        # [linux]\n    - move bin\\* %LIBRARY_BIN%  # [win]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - arm-variant * {{ arm_variant_type }}  # [aarch64]\n  host:\n    - cuda-version {{ cuda_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n  run_constrained:\n    - arm-variant * {{ arm_variant_type }}  # [aarch64]\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/nvdisasm                    # [linux]\n    - if not exist %LIBRARY_BIN%\\nvdisasm.exe exit 1  # [win]\n\nabout:\n  home: https://developer.nvidia.com/cuda-toolkit\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: nvdisasm extracts information from standalone cubin files\n  description: |\n    nvdisasm extracts information from standalone cubin files and presents them in\n    human readable format.\n  doc_url: https://docs.nvidia.com/cuda/cuda-binary-utilities/\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -410,7 +414,7 @@
    "summary": "nvdisasm extracts information from standalone cubin files"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "move bin\\* %LIBRARY_BIN%"
    ]
