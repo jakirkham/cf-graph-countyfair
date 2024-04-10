@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "jbig2dec",
  "hash_type": "sha256",
@@ -103,11 +107,13 @@
    "run_exports": [
     "jbig2dec",
     "jbig2dec",
+    "jbig2dec",
     "jbig2dec"
    ]
   },
   "extra": {
    "recipe-maintainers": [
+    "scopatz",
     "scopatz",
     "scopatz",
     "scopatz"
@@ -132,11 +138,19 @@
     "automake",
     "pkg-config",
     "c_compiler_stub",
+    "make",
+    "libtool",
+    "autoconf",
+    "automake",
+    "pkg-config",
+    "c_compiler_stub",
     "cmake",
     "make",
     "pkg-config"
    ],
    "host": [
+    "zlib",
+    "libpng",
     "zlib",
     "libpng",
     "zlib",
@@ -151,6 +165,7 @@
   },
   "test": {
    "commands": [
+    "jbig2dec --help",
     "jbig2dec --help",
     "jbig2dec --help",
     "jbig2dec --help"
@@ -234,6 +249,82 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "JBIG2 is designed for lossy or lossless encoding of 'bilevel'\n(1-bit monochrome) images at moderately high resolution, and\nin particular, scanned paper documents. In this domain it can\nbe very efficient, offering compression ratios on the order of\n100:1\n",
+   "home": "https://jbig2dec.com/",
+   "license": "AGPL-3.0-only",
+   "license_family": "AGPL",
+   "license_file": "COPYING",
+   "summary": "A decoder implementation of the JBIG2 image compression format"
+  },
+  "build": {
+   "number": "0",
+   "run_exports": [
+    "jbig2dec"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "scopatz"
+   ]
+  },
+  "package": {
+   "name": "jbig2dec",
+   "version": "0.18"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "make",
+    "libtool",
+    "autoconf",
+    "automake",
+    "pkg-config"
+   ],
+   "host": [
+    "zlib",
+    "libpng"
+   ]
+  },
+  "source": {
+   "sha256": "9e19775237350e299c422b7b91b0c045e90ffa4ba66abf28c8fb5eb005772f5e",
+   "url": "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs952/jbig2dec-0.18.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "jbig2dec --help"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "autoconf",
+    "automake",
+    "c_compiler_stub",
+    "libtool",
+    "make",
+    "pkg-config"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "libpng",
+    "zlib"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -244,6 +335,7 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
