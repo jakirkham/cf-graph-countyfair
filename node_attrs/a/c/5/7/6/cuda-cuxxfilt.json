@@ -2,6 +2,10 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -28,7 +32,7 @@
    "summary": "cu++filt decodes low-level identifiers that have been mangled by CUDA C++"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -99,7 +103,7 @@
    "summary": "cu++filt decodes low-level identifiers that have been mangled by CUDA C++"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -170,7 +174,7 @@
    "summary": "cu++filt decodes low-level identifiers that have been mangled by CUDA C++"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -241,7 +245,7 @@
    "summary": "cu++filt decodes low-level identifiers that have been mangled by CUDA C++"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -317,7 +321,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cuda-cuxxfilt.json"
  },
- "raw_meta_yaml": "{% set name = \"cuda-cuxxfilt\" %}\n{% set version = \"12.4.127\" %}\n{% set cuda_version = \"12.4\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"linux-sbsa\" %}  # [aarch64]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set target_name = \"x86_64-linux\" %}  # [linux64]\n{% set target_name = \"ppc64le-linux\" %}  # [ppc64le]\n{% set target_name = \"sbsa-linux\" %}  # [aarch64]\n{% set target_name = \"x64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_cuxxfilt/{{ platform }}/cuda_cuxxfilt-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: 5c9a74786bc84dee6f2ea941f3933ce77bfa26a9135a8d38ee8c3a7183b9b200  # [linux64]\n  sha256: 3bbf33a7a4757c82900500940e8cfe8b1a42a4a7e48e9cd732c5fb94f3433704  # [ppc64le]\n  sha256: e8bb04577e3271477b43c6948c5a39686c93d22f87ddeefd838682298ee399ef  # [aarch64]\n  sha256: 646d523d25f8cfa0feb731b2220da15065ecc793b2a830a81bf537e16d273dd9  # [win]\n\nbuild:\n  number: 0\n  skip: true  # [osx]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n  host:\n    - cuda-version {{ cuda_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/cu++filt                                   # [linux]\n    - test -f $PREFIX/targets/{{ target_name }}/include/nv_decode.h  # [linux]\n    - test -f $PREFIX/targets/{{ target_name }}/lib/libcufilt.a      # [linux]\n    - if not exist %LIBRARY_BIN%\\\\cu++filt.exe exit 1                # [win]\n    - if not exist %LIBRARY_INC%\\\\nv_decode.h exit 1                 # [win]\n    - if not exist %LIBRARY_LIB%\\\\cufilt.lib exit 1                  # [win]\n\nabout:\n  home: https://developer.nvidia.com/cuda-toolkit\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: cu++filt decodes low-level identifiers that have been mangled by CUDA C++\n  description: |\n    cu++filt decodes (demangles) low-level identifiers that have been mangled by\n    CUDA C++ into user readable names. For every input alphanumeric word, the\n    output of cu++filt is either the demangled name if the name decodes to a CUDA\n    C++ name, or the original name itself.\n  doc_url: https://docs.nvidia.com/cuda/index.html\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
+ "raw_meta_yaml": "{% set name = \"cuda-cuxxfilt\" %}\n{% set version = \"12.4.127\" %}\n{% set cuda_version = \"12.4\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"linux-sbsa\" %}  # [aarch64]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set target_name = \"x86_64-linux\" %}  # [linux64]\n{% set target_name = \"ppc64le-linux\" %}  # [ppc64le]\n{% set target_name = \"sbsa-linux\" %}  # [aarch64]\n{% set target_name = \"x64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_cuxxfilt/{{ platform }}/cuda_cuxxfilt-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: 5c9a74786bc84dee6f2ea941f3933ce77bfa26a9135a8d38ee8c3a7183b9b200  # [linux64]\n  sha256: 3bbf33a7a4757c82900500940e8cfe8b1a42a4a7e48e9cd732c5fb94f3433704  # [ppc64le]\n  sha256: e8bb04577e3271477b43c6948c5a39686c93d22f87ddeefd838682298ee399ef  # [aarch64]\n  sha256: 646d523d25f8cfa0feb731b2220da15065ecc793b2a830a81bf537e16d273dd9  # [win]\n\nbuild:\n  number: 1\n  skip: true  # [osx]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n  host:\n    - cuda-version {{ cuda_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/cu++filt                                   # [linux]\n    - test -f $PREFIX/targets/{{ target_name }}/include/nv_decode.h  # [linux]\n    - test -f $PREFIX/targets/{{ target_name }}/lib/libcufilt.a      # [linux]\n    - if not exist %LIBRARY_BIN%\\\\cu++filt.exe exit 1                # [win]\n    - if not exist %LIBRARY_INC%\\\\nv_decode.h exit 1                 # [win]\n    - if not exist %LIBRARY_LIB%\\\\cufilt.lib exit 1                  # [win]\n\nabout:\n  home: https://developer.nvidia.com/cuda-toolkit\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: cu++filt decodes low-level identifiers that have been mangled by CUDA C++\n  description: |\n    cu++filt decodes (demangles) low-level identifiers that have been mangled by\n    CUDA C++ into user readable names. For every input alphanumeric word, the\n    output of cu++filt is either the demangled name if the name decodes to a CUDA\n    C++ name, or the original name itself.\n  doc_url: https://docs.nvidia.com/cuda/index.html\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -397,7 +401,7 @@
    "summary": "cu++filt decodes low-level identifiers that have been mangled by CUDA C++"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
