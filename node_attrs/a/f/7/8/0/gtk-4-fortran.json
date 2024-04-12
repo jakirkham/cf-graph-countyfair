@@ -123,29 +123,19 @@
    "license": "GPL-3.0-or-later WITH GCC-exception-3.1",
    "license_file": [
     "LICENSE",
-    "LICENSE_EXCEPTION",
-    "LICENSE",
     "LICENSE_EXCEPTION"
    ],
    "summary": "GTK / Fortran bindings"
   },
   "build": {
    "ignore_run_exports": [
-    "plplot",
     "plplot"
    ],
    "number": "0",
    "run_exports": [
-    "gtk-4-fortran",
     "gtk-4-fortran"
    ],
    "script": [
-    "set -ex",
-    "export FFLAGS=\"${FFLAGS} -ffree-line-length-none\"",
-    "cmake ${CMAKE_ARGS} -B_build -GNinja\n",
-    "cmake --build _build",
-    "ctest --test-dir _build -R '^(regex|pixbuf_without_gui|tests)$'",
-    "cmake --install _build",
     "set -ex",
     "export FFLAGS=\"${FFLAGS} -ffree-line-length-none\"",
     "cmake ${CMAKE_ARGS} -B_build -GNinja\n",
@@ -156,8 +146,6 @@
   },
   "extra": {
    "recipe-maintainers": [
-    "awvwgk",
-    "vmagnin",
     "awvwgk",
     "vmagnin"
    ]
@@ -171,23 +159,14 @@
     "fortran_compiler_stub",
     "cmake",
     "ninja",
-    "pkg-config",
-    "fortran_compiler_stub",
-    "cmake",
-    "ninja",
     "pkg-config"
    ],
    "host": [
     "glib",
     "gtk4",
-    "plplot",
-    "glib",
-    "gtk4",
     "plplot"
    ],
    "run": [
-    "gdk-pixbuf",
-    "cairo",
     "gdk-pixbuf",
     "cairo"
    ]
@@ -199,12 +178,9 @@
   "test": {
    "commands": [
     "pkg-config --exact-version 4.5.0 gtk-4-fortran",
-    "test -f $PREFIX/lib/libgtk-4-fortran$SHLIB_EXT",
-    "pkg-config --exact-version 4.5.0 gtk-4-fortran",
     "test -f $PREFIX/lib/libgtk-4-fortran$SHLIB_EXT"
    ],
    "requires": [
-    "pkg-config",
     "pkg-config"
    ]
   }
