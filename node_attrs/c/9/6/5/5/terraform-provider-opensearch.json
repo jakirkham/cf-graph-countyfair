@@ -95,8 +95,6 @@
    "license": "Apache-2.0",
    "license_file": [
     "LICENSE",
-    "licenses/",
-    "LICENSE",
     "licenses/"
    ],
    "summary": "The Terraform Opensearch provider"
@@ -106,14 +104,11 @@
    "script": [
     "go build -v -o ${PREFIX}/bin/../plugins/registry.terraform.io/hashicorp/opensearch/2.2.0/linux_amd64/terraform-provider-opensearch_v2.2.0",
     "go-licenses save --save_path licenses .",
-    "go build -v -o ${PREFIX}/bin/../plugins/registry.terraform.io/hashicorp/opensearch/2.2.0/darwin_amd64/terraform-provider-opensearch_v2.2.0",
-    "go-licenses save --save_path licenses ."
+    "go build -v -o ${PREFIX}/bin/../plugins/registry.terraform.io/hashicorp/opensearch/2.2.0/darwin_amd64/terraform-provider-opensearch_v2.2.0"
    ]
   },
   "extra": {
    "recipe-maintainers": [
-    "conda-forge/terraform",
-    "tp-jssk",
     "conda-forge/terraform",
     "tp-jssk"
    ]
@@ -124,8 +119,6 @@
   },
   "requirements": {
    "build": [
-    "go_compiler_stub 1.20",
-    "go-licenses",
     "go_compiler_stub 1.20",
     "go-licenses"
    ]
@@ -140,13 +133,9 @@
     "terraform init --plugin-dir=${PREFIX}/bin/../plugins",
     "test -f .terraform.lock.hcl",
     "test ! -f .terraform/plugins/plugins/registry.terraform.io/hashicorp/opensearch/2.2.0/linux_amd64/README.md",
-    "echo 'provider \"opensearch\" { version=\"2.2.0\" }' > init.tf",
-    "terraform init --plugin-dir=${PREFIX}/bin/../plugins",
-    "test -f .terraform.lock.hcl",
     "test ! -f .terraform/plugins/plugins/registry.terraform.io/hashicorp/opensearch/2.2.0/darwin_amd64/README.md"
    ],
    "requires": [
-    "terraform >=1",
     "terraform >=1"
    ]
   }
