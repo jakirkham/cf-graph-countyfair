@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "update-grayskull"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -16,14 +19,14 @@
  "linux_64_meta_yaml": {
   "about": {
    "home": "https://pypi.org/project/pgeocode/",
-   "license": "BSD-1-Clause",
+   "license": "BSD-3-Clause",
    "license_file": "LICENSE",
-   "summary": "Approximate geocoding"
+   "summary": "Postal code geocoding"
   },
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -32,23 +35,25 @@
   },
   "package": {
    "name": "pgeocode",
-   "version": "0.4.1"
+   "version": "0.5.0"
   },
   "requirements": {
    "host": [
-    "pip",
-    "python >=3.8"
+    "python >=3.10",
+    "setuptools >=42",
+    "wheel",
+    "pip"
    ],
    "run": [
+    "python >=3.10",
+    "requests",
     "numpy",
-    "pandas",
-    "python >=3.8",
-    "requests"
+    "pandas"
    ]
   },
   "source": {
-   "sha256": "08f35dedf79957769641c7137aa9cc189e1bb63033226372dce372b14973e8b2",
-   "url": "https://pypi.io/packages/source/p/pgeocode/pgeocode-0.4.1.tar.gz"
+   "sha256": "37d6caf74e9f2b1e69762811953df5b43fe7f1806833c83bf85a60dd784dff9e",
+   "url": "https://pypi.io/packages/source/p/pgeocode/pgeocode-0.5.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -71,7 +76,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "wheel"
    ]
   },
   "run": {
@@ -93,14 +100,14 @@
  "meta_yaml": {
   "about": {
    "home": "https://pypi.org/project/pgeocode/",
-   "license": "BSD-1-Clause",
+   "license": "BSD-3-Clause",
    "license_file": "LICENSE",
-   "summary": "Approximate geocoding"
+   "summary": "Postal code geocoding"
   },
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -109,23 +116,25 @@
   },
   "package": {
    "name": "pgeocode",
-   "version": "0.4.1"
+   "version": "0.5.0"
   },
   "requirements": {
    "host": [
-    "pip",
-    "python >=3.8"
+    "python >=3.10",
+    "setuptools >=42",
+    "wheel",
+    "pip"
    ],
    "run": [
+    "python >=3.10",
+    "requests",
     "numpy",
-    "pandas",
-    "python >=3.8",
-    "requests"
+    "pandas"
    ]
   },
   "source": {
-   "sha256": "08f35dedf79957769641c7137aa9cc189e1bb63033226372dce372b14973e8b2",
-   "url": "https://pypi.io/packages/source/p/pgeocode/pgeocode-0.4.1.tar.gz"
+   "sha256": "37d6caf74e9f2b1e69762811953df5b43fe7f1806833c83bf85a60dd784dff9e",
+   "url": "https://pypi.io/packages/source/p/pgeocode/pgeocode-0.5.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -153,7 +162,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pgeocode.json"
  },
- "raw_meta_yaml": "{% set name = \"pgeocode\" %}\n{% set version = \"0.4.1\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pgeocode-{{ version }}.tar.gz\n  sha256: 08f35dedf79957769641c7137aa9cc189e1bb63033226372dce372b14973e8b2\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - pip\n    - python >=3.8\n  run:\n    - numpy\n    - pandas\n    - python >=3.8\n    - requests\n\ntest:\n  imports:\n    - pgeocode\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://pypi.org/project/pgeocode/\n  summary: Approximate geocoding\n  license: BSD-1-Clause\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - maresb\n",
+ "raw_meta_yaml": "{% set name = \"pgeocode\" %}\n{% set version = \"0.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pgeocode-{{ version }}.tar.gz\n  sha256: 37d6caf74e9f2b1e69762811953df5b43fe7f1806833c83bf85a60dd784dff9e\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.10\n    - setuptools >=42\n    - wheel\n    - pip\n  run:\n    - python >=3.10\n    - requests\n    - numpy\n    - pandas\n\ntest:\n  imports:\n    - pgeocode\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://pypi.org/project/pgeocode/\n  summary: Postal code geocoding\n  license: BSD-3-Clause\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - maresb\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -161,7 +170,9 @@
    "pandas",
    "pip",
    "python",
-   "requests"
+   "requests",
+   "setuptools",
+   "wheel"
   ]
  },
  "requirements": {
@@ -173,7 +184,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "wheel"
    ]
   },
   "run": {
@@ -202,7 +215,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.8"
+    "python >=3.10",
+    "setuptools >=42",
+    "wheel"
    ]
   },
   "run": {
@@ -210,7 +225,7 @@
    "elements": [
     "numpy",
     "pandas",
-    "python >=3.8",
+    "python >=3.10",
     "requests"
    ]
   },
@@ -221,8 +236,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/p/pgeocode/pgeocode-0.4.1.tar.gz",
- "version": "0.4.1",
+ "url": "https://pypi.io/packages/source/p/pgeocode/pgeocode-0.5.0.tar.gz",
+ "version": "0.5.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pgeocode.json"
  }
