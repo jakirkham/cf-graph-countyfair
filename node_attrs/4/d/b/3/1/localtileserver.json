@@ -3,7 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "bot": {
-   "automerge": true
+   "automerge": true,
+   "inspection": "update-grayskull"
   },
   "conda_build": {
    "pkg_format": "2"
@@ -32,7 +33,7 @@
     "localtileserver = localtileserver.__main__:run_app"
    ],
    "noarch": "python",
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . --no-deps -vv"
   },
   "extra": {
@@ -47,13 +48,13 @@
   },
   "requirements": {
    "host": [
-    "python >=3.7",
+    "python >=3.8",
     "pip"
    ],
    "run": [
-    "python >=3.7",
+    "python >=3.8",
     "click",
-    "flask >=2.0.0,<3",
+    "flask >=2.0.0,<4",
     "flask-caching",
     "flask-cors",
     "flask-restx >=0.5.0",
@@ -70,8 +71,14 @@
    "url": "https://pypi.io/packages/source/l/localtileserver/localtileserver-0.10.2.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "localtileserver"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -106,7 +113,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
@@ -125,7 +134,7 @@
     "localtileserver = localtileserver.__main__:run_app"
    ],
    "noarch": "python",
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . --no-deps -vv"
   },
   "extra": {
@@ -140,13 +149,13 @@
   },
   "requirements": {
    "host": [
-    "python >=3.7",
+    "python >=3.8",
     "pip"
    ],
    "run": [
-    "python >=3.7",
+    "python >=3.8",
     "click",
-    "flask >=2.0.0,<3",
+    "flask >=2.0.0,<4",
     "flask-caching",
     "flask-cors",
     "flask-restx >=0.5.0",
@@ -163,8 +172,14 @@
    "url": "https://pypi.io/packages/source/l/localtileserver/localtileserver-0.10.2.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "localtileserver"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -182,7 +197,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/localtileserver.json"
  },
- "raw_meta_yaml": "{% set name = \"localtileserver\" %}\n{% set version = \"0.10.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: e7a468610487d4129ff6ca77695254776c732af967630c8fca69a743af2f5a37\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n  entry_points:\n    - localtileserver = localtileserver.__main__:run_app\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n  run:\n    - python >=3.7\n    - click\n    - flask >=2.0.0,<3\n    - flask-caching\n    - flask-cors\n    - flask-restx >=0.5.0\n    - rio-tiler\n    - rio-cogeo\n    - requests\n    - scooby\n    - server-thread\n    - werkzeug\n\ntest:\n  imports:\n    - localtileserver\n\nabout:\n  home: https://github.com/banesullivan/localtileserver\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Local tile server for viewing geospatial raster files with ipyleaflet or folium\n  description: |\n    Need to visualize a rather large (gigabytes) raster you have locally? This is for you. Local tile server for viewing geospatial raster files with ipyleaflet or folium. A Flask application for serving tiles from large raster files in the Slippy Maps standard (i.e., `/zoom/x/y.png`).\n  doc_url: https://github.com/banesullivan/localtileserver/blob/main/README.md\n  dev_url: https://github.com/banesullivan/localtileserver\n\nextra:\n  recipe-maintainers:\n    - banesullivan\n    - giswqs\n",
+ "raw_meta_yaml": "{% set name = \"localtileserver\" %}\n{% set version = \"0.10.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: e7a468610487d4129ff6ca77695254776c732af967630c8fca69a743af2f5a37\n\nbuild:\n  number: 1\n  noarch: python\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n  entry_points:\n    - localtileserver = localtileserver.__main__:run_app\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n  run:\n    - python >=3.8\n    - click\n    - flask >=2.0.0,<4\n    - flask-caching\n    - flask-cors\n    - flask-restx >=0.5.0\n    - rio-tiler\n    - rio-cogeo\n    - requests\n    - scooby\n    - server-thread\n    - werkzeug\n\ntest:\n  imports:\n    - localtileserver\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/banesullivan/localtileserver\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Local tile server for viewing geospatial raster files with ipyleaflet or folium\n  description: |\n    Need to visualize a rather large (gigabytes) raster you have locally? This is for you. Local tile server for viewing geospatial raster files with ipyleaflet or folium. A Flask application for serving tiles from large raster files in the Slippy Maps standard (i.e., `/zoom/x/y.png`).\n  doc_url: https://github.com/banesullivan/localtileserver/blob/main/README.md\n  dev_url: https://github.com/banesullivan/localtileserver\n\nextra:\n  recipe-maintainers:\n    - banesullivan\n    - giswqs\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -232,7 +247,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
@@ -245,18 +262,18 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.7"
+    "python >=3.8"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "click",
-    "flask >=2.0.0,<3",
+    "flask >=2.0.0,<4",
     "flask-caching",
     "flask-cors",
     "flask-restx >=0.5.0",
-    "python >=3.7",
+    "python >=3.8",
     "requests",
     "rio-cogeo",
     "rio-tiler",
@@ -267,7 +284,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "url": "https://pypi.io/packages/source/l/localtileserver/localtileserver-0.10.2.tar.gz",
