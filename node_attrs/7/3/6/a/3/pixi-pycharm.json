@@ -16,7 +16,7 @@
  "linux_64_meta_yaml": {
   "about": {
    "dev_url": "https://github.com/pavelzw/pixi-pycharm",
-   "home": "https://github.com/pavelzw/pixi-pycharm",
+   "home": "https://pixi.sh/dev/ide_integration/pycharm",
    "license": "BSD-3-Clause",
    "license_family": "BSD",
    "license_file": "LICENSE",
@@ -25,13 +25,8 @@
   "build": {
    "noarch": "generic",
    "number": "0",
-   "script": [
-    "mkdir -p $PREFIX/libexec",
-    "echo \"#!$PREFIX/bin/python\" > $PREFIX/libexec/conda",
-    "cat conda >> $PREFIX/libexec/conda",
-    "sed -i '2d' $PREFIX/libexec/conda",
-    "chmod +x $PREFIX/libexec/conda"
-   ]
+   "script": "./build_unix.sh",
+   "string": "unix_1234567_0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -40,7 +35,7 @@
   },
   "package": {
    "name": "pixi-pycharm",
-   "version": "0.0.3"
+   "version": "0.0.4"
   },
   "requirements": {
    "build": [
@@ -51,10 +46,22 @@
     "python >=3.8"
    ]
   },
-  "source": {
-   "sha256": "5179254a3bc5474bb42cb2a4618078ba4b6cebf7b987b1ef665dd321a31bb21d",
-   "url": "https://github.com/pavelzw/pixi-pycharm/archive/refs/tags/v0.0.3.tar.gz"
-  },
+  "source": [
+   {
+    "sha256": "01f20372f5d54a60e3f71bf72c45355472d34fd26dac6d35fc1d184e31c10081",
+    "url": "https://github.com/pavelzw/pixi-pycharm/archive/refs/tags/v0.0.4.tar.gz"
+   },
+   {
+    "path": "build_unix.sh"
+   },
+   {
+    "sha256": "01f20372f5d54a60e3f71bf72c45355472d34fd26dac6d35fc1d184e31c10081",
+    "url": "https://github.com/pavelzw/pixi-pycharm/archive/refs/tags/v0.0.4.tar.gz"
+   },
+   {
+    "path": "build_unix.sh"
+   }
+  ],
   "test": {
    "commands": [
     "test -f $PREFIX/libexec/conda"
@@ -87,7 +94,7 @@
  "meta_yaml": {
   "about": {
    "dev_url": "https://github.com/pavelzw/pixi-pycharm",
-   "home": "https://github.com/pavelzw/pixi-pycharm",
+   "home": "https://pixi.sh/dev/ide_integration/pycharm",
    "license": "BSD-3-Clause",
    "license_family": "BSD",
    "license_file": "LICENSE",
@@ -96,13 +103,8 @@
   "build": {
    "noarch": "generic",
    "number": "0",
-   "script": [
-    "mkdir -p $PREFIX/libexec",
-    "echo \"#!$PREFIX/bin/python\" > $PREFIX/libexec/conda",
-    "cat conda >> $PREFIX/libexec/conda",
-    "sed -i '2d' $PREFIX/libexec/conda",
-    "chmod +x $PREFIX/libexec/conda"
-   ]
+   "script": "./build_unix.sh",
+   "string": "unix_1234567_0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -111,7 +113,7 @@
   },
   "package": {
    "name": "pixi-pycharm",
-   "version": "0.0.3"
+   "version": "0.0.4"
   },
   "requirements": {
    "build": [
@@ -122,10 +124,22 @@
     "python >=3.8"
    ]
   },
-  "source": {
-   "sha256": "5179254a3bc5474bb42cb2a4618078ba4b6cebf7b987b1ef665dd321a31bb21d",
-   "url": "https://github.com/pavelzw/pixi-pycharm/archive/refs/tags/v0.0.3.tar.gz"
-  },
+  "source": [
+   {
+    "sha256": "01f20372f5d54a60e3f71bf72c45355472d34fd26dac6d35fc1d184e31c10081",
+    "url": "https://github.com/pavelzw/pixi-pycharm/archive/refs/tags/v0.0.4.tar.gz"
+   },
+   {
+    "path": "build_unix.sh"
+   },
+   {
+    "sha256": "01f20372f5d54a60e3f71bf72c45355472d34fd26dac6d35fc1d184e31c10081",
+    "url": "https://github.com/pavelzw/pixi-pycharm/archive/refs/tags/v0.0.4.tar.gz"
+   },
+   {
+    "path": "build_unix.sh"
+   }
+  ],
   "test": {
    "commands": [
     "test -f $PREFIX/libexec/conda"
@@ -146,7 +160,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pixi-pycharm.json"
  },
- "raw_meta_yaml": "{% set name = \"pixi-pycharm\" %}\n{% set version = \"0.0.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pavelzw/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 5179254a3bc5474bb42cb2a4618078ba4b6cebf7b987b1ef665dd321a31bb21d\n\nbuild:\n  noarch: generic\n  script:\n    - mkdir -p $PREFIX/libexec\n    - echo \"#!$PREFIX/bin/python\" > $PREFIX/libexec/conda\n    - cat conda >> $PREFIX/libexec/conda\n    - sed -i '2d' $PREFIX/libexec/conda\n    - chmod +x $PREFIX/libexec/conda\n  number: 0\n\nrequirements:\n  build:\n    - sed\n  run:\n    - __unix\n    - python >=3.8\n\ntest:\n  commands:\n    - test -f $PREFIX/libexec/conda\n\nabout:\n  home: https://github.com/pavelzw/pixi-pycharm\n  summary: Conda shim for PyCharm that proxies pixi\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  dev_url: https://github.com/pavelzw/pixi-pycharm\n\nextra:\n  recipe-maintainers:\n    - pavelzw\n",
+ "raw_meta_yaml": "{% set name = \"pixi-pycharm\" %}\n{% set version = \"0.0.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/pavelzw/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n    sha256: 01f20372f5d54a60e3f71bf72c45355472d34fd26dac6d35fc1d184e31c10081\n  - path: build_unix.sh  # [not build_win]\n  - path: build_win.sh  # [build_win]\n\nbuild:\n  string: win_{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [build_win]\n  string: unix_{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [not build_win]\n  noarch: generic\n  script: ./build_unix.sh  # [not build_win]\n  script: ./build_win.sh  # [build_win]\n  number: 0\n\nrequirements:\n  build:\n    - sed\n  run:\n    - __unix  # [not build_win]\n    - __win  # [build_win]\n    - python >=3.8\n\ntest:\n  commands:\n    - test -f $PREFIX/libexec/conda  # [not build_win]\n    # don't test windows builds because they are not solvable on unix (build platform)\n\nabout:\n  home: https://pixi.sh/dev/ide_integration/pycharm\n  summary: Conda shim for PyCharm that proxies pixi\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  dev_url: https://github.com/pavelzw/pixi-pycharm\n\nextra:\n  recipe-maintainers:\n    - pavelzw\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -202,8 +216,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/pavelzw/pixi-pycharm/archive/refs/tags/v0.0.3.tar.gz",
- "version": "0.0.3",
+ "url": "https://github.com/pavelzw/pixi-pycharm/archive/refs/tags/v0.0.4.tar.gz",
+ "version": "0.0.4",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pixi-pycharm.json"
  }
