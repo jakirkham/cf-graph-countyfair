@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "automerge": true
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -35,7 +38,11 @@
   "outputs": [
    {
     "build": {
-     "script": "python -m pip install . --no-deps --ignore-installed -vv"
+     "noarch": "python",
+     "script": [
+      "python -m pip install . -vv --no-deps --no-build-isolation",
+      "cp -r jupyterlab_sos/labextension/* ${PREFIX}/share/jupyter/labextensions/jupyterlab-sos"
+     ]
     },
     "name": "jupyterlab_sos",
     "requirements": {
@@ -43,15 +50,18 @@
       "nodejs"
      ],
      "host": [
+      "hatchling",
+      "hatch-jupyter-builder",
+      "hatch-nodejs-version",
       "jupyter-packaging",
       "pip",
-      "python >=3.6"
+      "python >=3.10"
      ],
      "run": [
-      "jupyterlab >=3.0.0",
+      "jupyterlab >=4.0.0",
       "jupyterlab-transient-display-data",
       "nodejs",
-      "python >=3.6",
+      "python >=3.10",
       "sos"
      ]
     },
@@ -65,6 +75,9 @@
     }
    },
    {
+    "build": {
+     "noarch": "python"
+    },
     "name": "jupyterlab-sos",
     "requirements": {
      "run": [
@@ -79,7 +92,11 @@
    },
    {
     "build": {
-     "script": "python -m pip install . --no-deps --ignore-installed -vv"
+     "noarch": "python",
+     "script": [
+      "python -m pip install . -vv --no-deps --no-build-isolation",
+      "cp -r jupyterlab_sos/labextension/* ${PREFIX}/share/jupyter/labextensions/jupyterlab-sos"
+     ]
     },
     "name": "jupyterlab_sos",
     "requirements": {
@@ -87,15 +104,18 @@
       "nodejs"
      ],
      "host": [
+      "hatchling",
+      "hatch-jupyter-builder",
+      "hatch-nodejs-version",
       "jupyter-packaging",
       "pip",
-      "python >=3.6"
+      "python >=3.10"
      ],
      "run": [
-      "jupyterlab >=3.0.0",
+      "jupyterlab >=4.0.0",
       "jupyterlab-transient-display-data",
       "nodejs",
-      "python >=3.6",
+      "python >=3.10",
       "sos"
      ]
     },
@@ -105,54 +125,13 @@
       "jupyter lab build",
       "jupyter labextension list 1>labextensions 2>&1",
       "grep \"jupyterlab-sos.*enabled.*OK\" labextensions"
-     ]
-    }
-   },
-   {
-    "name": "jupyterlab-sos",
-    "requirements": {
-     "run": [
-      "jupyterlab_sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list"
      ]
     }
    },
    {
     "build": {
-     "script": "python -m pip install . --no-deps --ignore-installed -vv"
+     "noarch": "python"
     },
-    "name": "jupyterlab_sos",
-    "requirements": {
-     "build": [
-      "nodejs"
-     ],
-     "host": [
-      "jupyter-packaging",
-      "pip",
-      "python >=3.6"
-     ],
-     "run": [
-      "jupyterlab >=3.0.0",
-      "jupyterlab-transient-display-data",
-      "nodejs",
-      "python >=3.6",
-      "sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list",
-      "jupyter lab build",
-      "jupyter labextension list 1>labextensions 2>&1",
-      "grep \"jupyterlab-sos.*enabled.*OK\" labextensions"
-     ]
-    }
-   },
-   {
     "name": "jupyterlab-sos",
     "requirements": {
      "run": [
@@ -168,28 +147,31 @@
   ],
   "package": {
    "name": "jupyterlab_sos",
-   "version": "0.9.0"
+   "version": "0.10.1"
   },
   "requirements": {
    "build": [
     "nodejs"
    ],
    "host": [
+    "hatchling",
+    "hatch-jupyter-builder",
+    "hatch-nodejs-version",
     "jupyter-packaging",
     "pip",
-    "python >=3.6"
+    "python >=3.10"
    ],
    "run": [
-    "jupyterlab >=3.0.0",
+    "jupyterlab >=4.0.0",
     "jupyterlab-transient-display-data",
     "nodejs",
-    "python >=3.6",
+    "python >=3.10",
     "sos"
    ]
   },
   "source": {
-   "sha256": "3865f6aa6964efc8764d6e565523cd6ea92aef1e107f1cb0089591ed7b2af35d",
-   "url": "https://pypi.io/packages/source/j/jupyterlab_sos/jupyterlab_sos-0.9.0.tar.gz"
+   "sha256": "9350efc1fb42be7afd91b0c1af5b96e17de9107326c4e0a67d11f645443e6c3f",
+   "url": "https://pypi.io/packages/source/j/jupyterlab_sos/jupyterlab_sos-0.10.1.tar.gz"
   }
  },
  "linux_64_requirements": {
@@ -202,6 +184,9 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch-jupyter-builder",
+    "hatch-nodejs-version",
+    "hatchling",
     "jupyter-packaging",
     "pip",
     "python"
@@ -245,7 +230,11 @@
   "outputs": [
    {
     "build": {
-     "script": "python -m pip install . --no-deps --ignore-installed -vv"
+     "noarch": "python",
+     "script": [
+      "python -m pip install . -vv --no-deps --no-build-isolation",
+      "cp -r jupyterlab_sos/labextension/* ${PREFIX}/share/jupyter/labextensions/jupyterlab-sos"
+     ]
     },
     "name": "jupyterlab_sos",
     "requirements": {
@@ -253,15 +242,18 @@
       "nodejs"
      ],
      "host": [
+      "hatchling",
+      "hatch-jupyter-builder",
+      "hatch-nodejs-version",
       "jupyter-packaging",
       "pip",
-      "python >=3.6"
+      "python >=3.10"
      ],
      "run": [
-      "jupyterlab >=3.0.0",
+      "jupyterlab >=4.0.0",
       "jupyterlab-transient-display-data",
       "nodejs",
-      "python >=3.6",
+      "python >=3.10",
       "sos"
      ]
     },
@@ -275,6 +267,9 @@
     }
    },
    {
+    "build": {
+     "noarch": "python"
+    },
     "name": "jupyterlab-sos",
     "requirements": {
      "run": [
@@ -289,7 +284,11 @@
    },
    {
     "build": {
-     "script": "python -m pip install . --no-deps --ignore-installed -vv"
+     "noarch": "python",
+     "script": [
+      "python -m pip install . -vv --no-deps --no-build-isolation",
+      "cp -r jupyterlab_sos/labextension/* ${PREFIX}/share/jupyter/labextensions/jupyterlab-sos"
+     ]
     },
     "name": "jupyterlab_sos",
     "requirements": {
@@ -297,15 +296,18 @@
       "nodejs"
      ],
      "host": [
+      "hatchling",
+      "hatch-jupyter-builder",
+      "hatch-nodejs-version",
       "jupyter-packaging",
       "pip",
-      "python >=3.6"
+      "python >=3.10"
      ],
      "run": [
-      "jupyterlab >=3.0.0",
+      "jupyterlab >=4.0.0",
       "jupyterlab-transient-display-data",
       "nodejs",
-      "python >=3.6",
+      "python >=3.10",
       "sos"
      ]
     },
@@ -319,308 +321,9 @@
     }
    },
    {
-    "name": "jupyterlab-sos",
-    "requirements": {
-     "run": [
-      "jupyterlab_sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list"
-     ]
-    }
-   },
-   {
     "build": {
-     "script": "python -m pip install . --no-deps --ignore-installed -vv"
+     "noarch": "python"
     },
-    "name": "jupyterlab_sos",
-    "requirements": {
-     "build": [
-      "nodejs"
-     ],
-     "host": [
-      "jupyter-packaging",
-      "pip",
-      "python >=3.6"
-     ],
-     "run": [
-      "jupyterlab >=3.0.0",
-      "jupyterlab-transient-display-data",
-      "nodejs",
-      "python >=3.6",
-      "sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list",
-      "jupyter lab build",
-      "jupyter labextension list 1>labextensions 2>&1",
-      "grep \"jupyterlab-sos.*enabled.*OK\" labextensions"
-     ]
-    }
-   },
-   {
-    "name": "jupyterlab-sos",
-    "requirements": {
-     "run": [
-      "jupyterlab_sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list"
-     ]
-    }
-   },
-   {
-    "build": {
-     "script": "python -m pip install . --no-deps --ignore-installed -vv"
-    },
-    "name": "jupyterlab_sos",
-    "requirements": {
-     "build": [
-      "nodejs"
-     ],
-     "host": [
-      "jupyter-packaging",
-      "pip",
-      "python >=3.6"
-     ],
-     "run": [
-      "jupyterlab >=3.0.0",
-      "jupyterlab-transient-display-data",
-      "nodejs",
-      "python >=3.6",
-      "sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list",
-      "jupyter lab build",
-      "jupyter labextension list 1>labextensions 2>&1",
-      "grep \"jupyterlab-sos.*enabled.*OK\" labextensions"
-     ]
-    }
-   },
-   {
-    "name": "jupyterlab-sos",
-    "requirements": {
-     "run": [
-      "jupyterlab_sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list"
-     ]
-    }
-   },
-   {
-    "build": {
-     "script": "python -m pip install . --no-deps --ignore-installed -vv"
-    },
-    "name": "jupyterlab_sos",
-    "requirements": {
-     "build": [
-      "nodejs"
-     ],
-     "host": [
-      "jupyter-packaging",
-      "pip",
-      "python >=3.6"
-     ],
-     "run": [
-      "jupyterlab >=3.0.0",
-      "jupyterlab-transient-display-data",
-      "nodejs",
-      "python >=3.6",
-      "sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list",
-      "jupyter lab build",
-      "jupyter labextension list 1>labextensions 2>&1",
-      "grep \"jupyterlab-sos.*enabled.*OK\" labextensions"
-     ]
-    }
-   },
-   {
-    "name": "jupyterlab-sos",
-    "requirements": {
-     "run": [
-      "jupyterlab_sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list"
-     ]
-    }
-   },
-   {
-    "build": {
-     "script": "python -m pip install . --no-deps --ignore-installed -vv"
-    },
-    "name": "jupyterlab_sos",
-    "requirements": {
-     "build": [
-      "nodejs"
-     ],
-     "host": [
-      "jupyter-packaging",
-      "pip",
-      "python >=3.6"
-     ],
-     "run": [
-      "jupyterlab >=3.0.0",
-      "jupyterlab-transient-display-data",
-      "nodejs",
-      "python >=3.6",
-      "sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list",
-      "jupyter lab build",
-      "jupyter labextension list 1>labextensions 2>&1",
-      "grep \"jupyterlab-sos.*enabled.*OK\" labextensions"
-     ]
-    }
-   },
-   {
-    "name": "jupyterlab-sos",
-    "requirements": {
-     "run": [
-      "jupyterlab_sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list"
-     ]
-    }
-   },
-   {
-    "build": {
-     "script": "python -m pip install . --no-deps --ignore-installed -vv"
-    },
-    "name": "jupyterlab_sos",
-    "requirements": {
-     "build": [
-      "nodejs"
-     ],
-     "host": [
-      "jupyter-packaging",
-      "pip",
-      "python >=3.6"
-     ],
-     "run": [
-      "jupyterlab >=3.0.0",
-      "jupyterlab-transient-display-data",
-      "nodejs",
-      "python >=3.6",
-      "sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list",
-      "jupyter lab build"
-     ]
-    }
-   },
-   {
-    "name": "jupyterlab-sos",
-    "requirements": {
-     "run": [
-      "jupyterlab_sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list"
-     ]
-    }
-   },
-   {
-    "build": {
-     "script": "python -m pip install . --no-deps --ignore-installed -vv"
-    },
-    "name": "jupyterlab_sos",
-    "requirements": {
-     "build": [
-      "nodejs"
-     ],
-     "host": [
-      "jupyter-packaging",
-      "pip",
-      "python >=3.6"
-     ],
-     "run": [
-      "jupyterlab >=3.0.0",
-      "jupyterlab-transient-display-data",
-      "nodejs",
-      "python >=3.6",
-      "sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list",
-      "jupyter lab build"
-     ]
-    }
-   },
-   {
-    "name": "jupyterlab-sos",
-    "requirements": {
-     "run": [
-      "jupyterlab_sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list"
-     ]
-    }
-   },
-   {
-    "build": {
-     "script": "python -m pip install . --no-deps --ignore-installed -vv"
-    },
-    "name": "jupyterlab_sos",
-    "requirements": {
-     "build": [
-      "nodejs"
-     ],
-     "host": [
-      "jupyter-packaging",
-      "pip",
-      "python >=3.6"
-     ],
-     "run": [
-      "jupyterlab >=3.0.0",
-      "jupyterlab-transient-display-data",
-      "nodejs",
-      "python >=3.6",
-      "sos"
-     ]
-    },
-    "test": {
-     "commands": [
-      "jupyter labextension list",
-      "jupyter lab build"
-     ]
-    }
-   },
-   {
     "name": "jupyterlab-sos",
     "requirements": {
      "run": [
@@ -636,28 +339,31 @@
   ],
   "package": {
    "name": "jupyterlab_sos",
-   "version": "0.9.0"
+   "version": "0.10.1"
   },
   "requirements": {
    "build": [
     "nodejs"
    ],
    "host": [
+    "hatchling",
+    "hatch-jupyter-builder",
+    "hatch-nodejs-version",
     "jupyter-packaging",
     "pip",
-    "python >=3.6"
+    "python >=3.10"
    ],
    "run": [
-    "jupyterlab >=3.0.0",
+    "jupyterlab >=4.0.0",
     "jupyterlab-transient-display-data",
     "nodejs",
-    "python >=3.6",
+    "python >=3.10",
     "sos"
    ]
   },
   "source": {
-   "sha256": "3865f6aa6964efc8764d6e565523cd6ea92aef1e107f1cb0089591ed7b2af35d",
-   "url": "https://pypi.io/packages/source/j/jupyterlab_sos/jupyterlab_sos-0.9.0.tar.gz"
+   "sha256": "9350efc1fb42be7afd91b0c1af5b96e17de9107326c4e0a67d11f645443e6c3f",
+   "url": "https://pypi.io/packages/source/j/jupyterlab_sos/jupyterlab_sos-0.10.1.tar.gz"
   }
  },
  "name": "jupyterlab_sos",
@@ -880,17 +586,18 @@
  },
  "parsing_error": false,
  "platforms": [
-  "linux_64",
-  "osx_64",
-  "win_64"
+  "linux_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/jupyterlab-sos.json"
  },
- "raw_meta_yaml": "{% set name = \"jupyterlab_sos\" %}\n{% set version = \"0.9.0\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 3865f6aa6964efc8764d6e565523cd6ea92aef1e107f1cb0089591ed7b2af35d\n\nbuild:\n  number: 0\n  noarch: python\n\nrequirements:\n  build:\n    - nodejs\n  host:\n    - jupyter-packaging\n    - pip\n    - python >=3.6\n  run:\n    - jupyterlab >=3.0.0\n    - jupyterlab-transient-display-data\n    - nodejs\n    - python >=3.6\n    - sos\n\noutputs:\n  - name: jupyterlab_sos\n    build:\n      script: python -m pip install . --no-deps --ignore-installed -vv\n    requirements:\n      build:\n        - nodejs\n      host:\n        - jupyter-packaging\n        - pip\n        - python >=3.6\n      run:\n        - jupyterlab >=3.0.0\n        - jupyterlab-transient-display-data\n        - nodejs\n        - python >=3.6\n        - sos\n    test:\n      commands:\n        - jupyter labextension list\n        - jupyter lab build\n        - jupyter labextension list 1>labextensions 2>&1  # [unix]\n        - grep \"jupyterlab-sos.*enabled.*OK\" labextensions  # [unix]\n\n  - name: jupyterlab-sos\n    requirements:\n      run:\n        - {{ pin_subpackage('jupyterlab_sos', exact=True) }}\n    test:\n      commands:\n        - jupyter labextension list\n\nabout:\n  home: https://github.com/vatlab/jupyterlab-sos\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: A JupyterLab extension for SoS Polyglot Notebook and Workflow System\n  dev_url: https://github.com/vatlab/jupyterlab-sos\n\nextra:\n  recipe-maintainers:\n    - BoPeng\n    - izahn\n",
+ "raw_meta_yaml": "{% set name = \"jupyterlab_sos\" %}\n{% set version = \"0.10.1\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 9350efc1fb42be7afd91b0c1af5b96e17de9107326c4e0a67d11f645443e6c3f\n\nbuild:\n  number: 0\n  noarch: python\n\nrequirements:\n  build:\n    - nodejs\n  host:\n    - hatchling\n    - hatch-jupyter-builder\n    - hatch-nodejs-version\n    - jupyter-packaging\n    - pip\n    - python >=3.10\n  run:\n    - jupyterlab >=4.0.0\n    - jupyterlab-transient-display-data\n    - nodejs\n    - python >=3.10\n    - sos\n\noutputs:\n  - name: jupyterlab_sos\n    build:\n      script: \n        - python -m pip install . -vv --no-deps --no-build-isolation\n        - cp -r jupyterlab_sos/labextension/* ${PREFIX}/share/jupyter/labextensions/jupyterlab-sos\n      noarch: python\n    requirements:\n      build:\n        - nodejs\n      host:\n        - hatchling\n        - hatch-jupyter-builder\n        - hatch-nodejs-version\n        - jupyter-packaging\n        - pip\n        - python >=3.10\n      run:\n        - jupyterlab >=4.0.0\n        - jupyterlab-transient-display-data\n        - nodejs\n        - python >=3.10\n        - sos\n    test:\n      commands:\n        - jupyter labextension list\n        - jupyter lab build\n        - jupyter labextension list 1>labextensions 2>&1  # [unix]\n        - grep \"jupyterlab-sos.*enabled.*OK\" labextensions  # [unix]\n\n  - name: jupyterlab-sos\n    build:\n      noarch: python\n    requirements:\n      run:\n        - {{ pin_subpackage('jupyterlab_sos', exact=True) }}\n    test:\n      commands:\n        - jupyter labextension list\n\nabout:\n  home: https://github.com/vatlab/jupyterlab-sos\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: A JupyterLab extension for SoS Polyglot Notebook and Workflow System\n  dev_url: https://github.com/vatlab/jupyterlab-sos\n\nextra:\n  recipe-maintainers:\n    - BoPeng\n    - izahn\n",
  "req": {
   "__set__": true,
   "elements": [
+   "hatch-jupyter-builder",
+   "hatch-nodejs-version",
+   "hatchling",
    "jupyter-packaging",
    "jupyterlab",
    "jupyterlab-transient-display-data",
@@ -911,6 +618,9 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch-jupyter-builder",
+    "hatch-nodejs-version",
+    "hatchling",
     "jupyter-packaging",
     "pip",
     "python"
@@ -943,19 +653,22 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch-jupyter-builder",
+    "hatch-nodejs-version",
+    "hatchling",
     "jupyter-packaging",
     "pip",
-    "python >=3.6"
+    "python >=3.10"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "jupyterlab >=3.0.0",
+    "jupyterlab >=4.0.0",
     "jupyterlab-transient-display-data",
     "jupyterlab_sos",
     "nodejs",
-    "python >=3.6",
+    "python >=3.10",
     "sos"
    ]
   },
@@ -964,8 +677,8 @@
    "elements": []
   }
  },
- "url": "https://pypi.io/packages/source/j/jupyterlab_sos/jupyterlab_sos-0.9.0.tar.gz",
- "version": "0.9.0",
+ "url": "https://pypi.io/packages/source/j/jupyterlab_sos/jupyterlab_sos-0.10.1.tar.gz",
+ "version": "0.10.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/jupyterlab-sos.json"
  },
