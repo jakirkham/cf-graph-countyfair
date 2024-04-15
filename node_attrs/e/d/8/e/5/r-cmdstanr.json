@@ -5,6 +5,9 @@
   "bot": {
    "automerge": true
   },
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -12,7 +15,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "r-cmdstanr",
  "hash_type": "sha256",
@@ -28,7 +32,8 @@
    "summary": "CmdStanR is a lightweight interface to Stan for R users"
   },
   "build": {
-   "number": "0",
+   "noarch": "generic",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -50,22 +55,24 @@
    ],
    "host": [
     "r-base",
-    "r-r6 >=2.4.0",
     "r-checkmate",
     "r-data.table",
     "r-jsonlite >=1.2.0",
-    "r-posterior >=1.1.0",
+    "r-posterior >=1.4.1",
     "r-processx >=3.5.0",
+    "r-r6 >=2.4.0",
+    "r-rlang >=0.4.7",
     "r-withr >=2.5.0"
    ],
    "run": [
     "r-base",
-    "r-r6 >=2.4.0",
     "r-checkmate",
     "r-data.table",
     "r-jsonlite >=1.2.0",
-    "r-posterior >=1.1.0",
+    "r-posterior >=1.4.1",
     "r-processx >=3.5.0",
+    "r-r6 >=2.4.0",
+    "r-rlang >=0.4.7",
     "r-withr >=2.5.0",
     "cmdstan"
    ]
@@ -98,6 +105,7 @@
     "r-posterior",
     "r-processx",
     "r-r6",
+    "r-rlang",
     "r-withr"
    ]
   },
@@ -112,6 +120,7 @@
     "r-posterior",
     "r-processx",
     "r-r6",
+    "r-rlang",
     "r-withr"
    ]
   },
@@ -132,8 +141,8 @@
    "summary": "CmdStanR is a lightweight interface to Stan for R users"
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "noarch": "generic",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -151,28 +160,28 @@
   },
   "requirements": {
    "build": [
-    "git",
-    "filesystem",
-    "zip"
+    "git"
    ],
    "host": [
     "r-base",
-    "r-r6 >=2.4.0",
     "r-checkmate",
     "r-data.table",
     "r-jsonlite >=1.2.0",
-    "r-posterior >=1.1.0",
+    "r-posterior >=1.4.1",
     "r-processx >=3.5.0",
+    "r-r6 >=2.4.0",
+    "r-rlang >=0.4.7",
     "r-withr >=2.5.0"
    ],
    "run": [
     "r-base",
-    "r-r6 >=2.4.0",
     "r-checkmate",
     "r-data.table",
     "r-jsonlite >=1.2.0",
-    "r-posterior >=1.1.0",
+    "r-posterior >=1.4.1",
     "r-processx >=3.5.0",
+    "r-r6 >=2.4.0",
+    "r-rlang >=0.4.7",
     "r-withr >=2.5.0",
     "cmdstan"
    ]
@@ -184,9 +193,7 @@
   "test": {
    "commands": [
     "$R -e \"library('cmdstanr')\"",
-    "$R -e \"cmdstanr::cmdstan_version()\"",
-    "\"%R%\" -e \"library('cmdstanr')\"",
-    "\"%R%\" -e \"cmdstanr::cmdstan_version()\""
+    "$R -e \"cmdstanr::cmdstan_version()\""
    ]
   }
  },
@@ -303,19 +310,16 @@
  },
  "parsing_error": false,
  "platforms": [
-  "linux_64",
-  "osx_64",
-  "win_64"
+  "linux_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/r-cmdstanr.json"
  },
- "raw_meta_yaml": "{% set name = \"r-cmdstanr\" %}\n{% set version = \"0.7.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: {{ name | lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/stan-dev/cmdstanr/archive/v{{ version }}.tar.gz\n  sha256: 62e552c641c4faaf64edaf0951a8c39dde8758193154bb79c6b7df114bce233c\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}git\n    - {{ posix }}zip               # [win]\n\n  host:\n    - r-base\n    - r-r6 >=2.4.0\n    - r-checkmate\n    - r-data.table\n    - r-jsonlite >=1.2.0\n    - r-posterior >=1.1.0\n    - r-processx >=3.5.0\n    - r-withr >=2.5.0\n\n  run:\n    - r-base\n    - r-r6 >=2.4.0\n    - r-checkmate\n    - r-data.table\n    - r-jsonlite >=1.2.0\n    - r-posterior >=1.1.0\n    - r-processx >=3.5.0\n    - r-withr >=2.5.0\n    - cmdstan\n\ntest:\n  commands:\n    - $R -e \"library('cmdstanr')\"                   # [not win]\n    - $R -e \"cmdstanr::cmdstan_version()\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('cmdstanr')\\\"\"          # [win]\n    - \"\\\"%R%\\\" -e \\\"cmdstanr::cmdstan_version()\\\"\"  # [win]\n\nabout:\n  home: https://github.com/stan-dev/cmdstanr\n  license: BSD-3-Clause\n  summary: CmdStanR is a lightweight interface to Stan for R users\n  license_family: BSD\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/BSD_3_clause\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - mediocretech\n",
+ "raw_meta_yaml": "{% set name = \"r-cmdstanr\" %}\n{% set version = \"0.7.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: {{ name | lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/stan-dev/cmdstanr/archive/v{{ version }}.tar.gz\n  sha256: 62e552c641c4faaf64edaf0951a8c39dde8758193154bb79c6b7df114bce233c\n\nbuild:\n  merge_build_host: true  # [win]\n  noarch: generic\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ posix }}filesystem      # [win]\n    - {{ posix }}git\n    - {{ posix }}zip             # [win]\n  host:\n    - r-base\n    - r-checkmate\n    - r-data.table\n    - r-jsonlite >=1.2.0\n    - r-posterior >=1.4.1\n    - r-processx >=3.5.0\n    - r-r6 >=2.4.0\n    - r-rlang >=0.4.7\n    - r-withr >=2.5.0\n  run:\n    - r-base\n    - r-checkmate\n    - r-data.table\n    - r-jsonlite >=1.2.0\n    - r-posterior >=1.4.1\n    - r-processx >=3.5.0\n    - r-r6 >=2.4.0\n    - r-rlang >=0.4.7\n    - r-withr >=2.5.0\n    - cmdstan\n\ntest:\n  commands:\n    - $R -e \"library('cmdstanr')\"                   # [not win]\n    - $R -e \"cmdstanr::cmdstan_version()\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('cmdstanr')\\\"\"          # [win]\n    - \"\\\"%R%\\\" -e \\\"cmdstanr::cmdstan_version()\\\"\"  # [win]\n\nabout:\n  home: https://github.com/stan-dev/cmdstanr\n  license: BSD-3-Clause\n  summary: CmdStanR is a lightweight interface to Stan for R users\n  license_family: BSD\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/BSD_3_clause\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - mediocretech\n",
  "req": {
   "__set__": true,
   "elements": [
    "cmdstan",
-   "filesystem",
    "git",
    "r-base",
    "r-checkmate",
@@ -324,17 +328,15 @@
    "r-posterior",
    "r-processx",
    "r-r6",
-   "r-withr",
-   "zip"
+   "r-rlang",
+   "r-withr"
   ]
  },
  "requirements": {
   "build": {
    "__set__": true,
    "elements": [
-    "filesystem",
-    "git",
-    "zip"
+    "git"
    ]
   },
   "host": {
@@ -347,6 +349,7 @@
     "r-posterior",
     "r-processx",
     "r-r6",
+    "r-rlang",
     "r-withr"
    ]
   },
@@ -361,6 +364,7 @@
     "r-posterior",
     "r-processx",
     "r-r6",
+    "r-rlang",
     "r-withr"
    ]
   },
@@ -374,9 +378,7 @@
   "build": {
    "__set__": true,
    "elements": [
-    "filesystem",
-    "git",
-    "zip"
+    "git"
    ]
   },
   "host": {
@@ -386,9 +388,10 @@
     "r-checkmate",
     "r-data.table",
     "r-jsonlite >=1.2.0",
-    "r-posterior >=1.1.0",
+    "r-posterior >=1.4.1",
     "r-processx >=3.5.0",
     "r-r6 >=2.4.0",
+    "r-rlang >=0.4.7",
     "r-withr >=2.5.0"
    ]
   },
@@ -400,9 +403,10 @@
     "r-checkmate",
     "r-data.table",
     "r-jsonlite >=1.2.0",
-    "r-posterior >=1.1.0",
+    "r-posterior >=1.4.1",
     "r-processx >=3.5.0",
     "r-r6 >=2.4.0",
+    "r-rlang >=0.4.7",
     "r-withr >=2.5.0"
    ]
   },

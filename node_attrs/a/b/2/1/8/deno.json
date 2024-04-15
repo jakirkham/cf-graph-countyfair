@@ -33,7 +33,7 @@
    "summary": "A simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -52,6 +52,7 @@
    "build": [
     "rust_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "make",
     "cmake",
@@ -84,6 +85,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cmake",
     "libprotobuf",
@@ -118,7 +120,7 @@
    "summary": "A simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -137,6 +139,7 @@
    "build": [
     "rust_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "make",
     "cmake",
@@ -181,6 +184,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cmake",
     "libprotobuf",
@@ -219,7 +223,7 @@
    "summary": "A simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -238,6 +242,7 @@
    "build": [
     "rust_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "libprotobuf"
    ]
@@ -312,7 +317,7 @@
    "summary": "A simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -331,14 +336,13 @@
    "build": [
     "rust_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "make",
     "cmake",
     "libprotobuf"
    ],
-   "run": [
-    "__osx >=10.11"
-   ]
+   "run": []
   },
   "source": [
    {
@@ -366,6 +370,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cmake",
     "libprotobuf",
@@ -379,9 +384,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "__osx"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -401,7 +404,7 @@
    "summary": "A simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -469,11 +472,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/deno.json"
  },
- "raw_meta_yaml": "{% set version = \"1.42.3\" %}\n\npackage:\n  name: deno\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/denoland/deno/releases/download/v{{ version }}/deno_src.tar.gz  # [not osx or not arm64]\n    sha256: ce7b6ba347edfe3a36c70fe09518e2d5101671f04ee0f68433cc225ed7936465  # [not osx or not arm64]\n    patches:   # [not osx or not arm64]\n      - 01-fix-libffi-msvc.patch     # [not osx or not arm64]\n  - url: https://github.com/rust-lang/cargo/archive/refs/tags/0.75.0.tar.gz  # [linux and aarch64]\n    sha256: d6b9512bca4b4d692a242188bfe83e1b696c44903007b7b48a56b287d01c063b  # [linux and aarch64]\n    folder: cargo-cross  # [linux and aarch64]\n    patches:   # [linux and aarch64]\n      - cargo-cross-build.patch                                               # [linux and aarch64]\n  - url: https://github.com/denoland/deno/releases/download/v{{ version }}/deno-aarch64-apple-darwin.zip  # [osx and arm64]\n    sha256: f6ae93a64ef0a225d850f2b54ee9a3d1d4aa0d1710b22fd8024c96268faa4a92  # [osx and arm64]\n\nbuild:\n  number: 0\n\nrequirements:   # [not osx or not arm64]\n  build:   # [not osx or not arm64]\n    - {{ compiler(\"rust\") }}   # [not osx or not arm64]\n    # needs c compiler for run_exports\n    - {{ compiler(\"c\") }}      # [not osx or not arm64]\n    # for some reason, test_ffi pkg needs lld on osx-arm64\n    # - lld    # [osx and arm64]\n    - cargo-bundle-licenses   # [not osx or not arm64]\n    - make   # [unix and not arm64]\n    - cmake  # [unix and not arm64]\n    # libprotobuf is on build, not host, since we only need protoc\n    - libprotobuf  # [not osx or not arm64]\n    # on linux cross-builds, we need additional build deps for patched cargo\n    - zlib         # [linux and aarch64]\n  # cross-builds also need host libgcc to run the cross-built files\n  host:   # [linux and aarch64]\n    - libgcc-ng    # [linux and aarch64]\n  run:   # [osx and x86_64]\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET }}  # [osx and x86_64]\n\ntest:\n  files:\n    - test-build-arch.js\n  commands:\n    - deno --help\n    - deno run https://examples.deno.land/hello-world.ts\n    - if [ \"$DENO_INSTALL_ROOT\" != \"$PREFIX\" ]; then echo \"DENO_INTALL_ROOT var not set correctly\" && exit 1; fi    # [unix]\n    - IF \"%DENO_INSTALL_ROOT:/=\\%\" NEQ \"%PREFIX:/=\\%\\Library\" exit 1    # [win]\n    - deno run test-build-arch.js\n\nabout:\n  home: https://deno.land\n  license: MIT\n  license_family: MIT\n  license_file:\n    - LICENSE.md    # [not osx or not arm64]\n    - DENO_THIRDPARTY_LICENSES.yml    # [not osx or not arm64]\n    # the binary doesn't ship with a license. This is one taken from the github repo.\n    - LICENSE    # [osx and arm64]\n  summary: A simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust\n  doc_url: https://deno.land/manual\n  dev_url: https://github.com/denoland/deno\n\nextra:\n  recipe-maintainers:\n    - mdekstrand\n    - cderv\n    - cscheid\n    - dragonstyle\n    - msarahan\n",
+ "raw_meta_yaml": "{% set version = \"1.42.3\" %}\n\npackage:\n  name: deno\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/denoland/deno/releases/download/v{{ version }}/deno_src.tar.gz  # [not osx or not arm64]\n    sha256: ce7b6ba347edfe3a36c70fe09518e2d5101671f04ee0f68433cc225ed7936465  # [not osx or not arm64]\n    patches:   # [not osx or not arm64]\n      - 01-fix-libffi-msvc.patch     # [not osx or not arm64]\n  - url: https://github.com/rust-lang/cargo/archive/refs/tags/0.75.0.tar.gz  # [linux and aarch64]\n    sha256: d6b9512bca4b4d692a242188bfe83e1b696c44903007b7b48a56b287d01c063b  # [linux and aarch64]\n    folder: cargo-cross  # [linux and aarch64]\n    patches:   # [linux and aarch64]\n      - cargo-cross-build.patch                                               # [linux and aarch64]\n  - url: https://github.com/denoland/deno/releases/download/v{{ version }}/deno-aarch64-apple-darwin.zip  # [osx and arm64]\n    sha256: f6ae93a64ef0a225d850f2b54ee9a3d1d4aa0d1710b22fd8024c96268faa4a92  # [osx and arm64]\n\nbuild:\n  number: 1\n\nrequirements:   # [not osx or not arm64]\n  build:   # [not osx or not arm64]\n    - {{ compiler(\"rust\") }}   # [not osx or not arm64]\n    # needs c compiler for run_exports\n    - {{ compiler(\"c\") }}      # [not osx or not arm64]\n    - {{ stdlib(\"c\") }}        # [not osx or not arm64]\n    # for some reason, test_ffi pkg needs lld on osx-arm64\n    # - lld    # [osx and arm64]\n    - cargo-bundle-licenses   # [not osx or not arm64]\n    - make   # [unix and not arm64]\n    - cmake  # [unix and not arm64]\n    # libprotobuf is on build, not host, since we only need protoc\n    - libprotobuf  # [not osx or not arm64]\n    # on linux cross-builds, we need additional build deps for patched cargo\n    - zlib         # [linux and aarch64]\n  # cross-builds also need host libgcc to run the cross-built files\n  host:   # [linux and aarch64]\n    - libgcc-ng    # [linux and aarch64]\n  run:   # [osx and x86_64]\n\ntest:\n  files:\n    - test-build-arch.js\n  commands:\n    - deno --help\n    - deno run https://examples.deno.land/hello-world.ts\n    - if [ \"$DENO_INSTALL_ROOT\" != \"$PREFIX\" ]; then echo \"DENO_INTALL_ROOT var not set correctly\" && exit 1; fi    # [unix]\n    - IF \"%DENO_INSTALL_ROOT:/=\\%\" NEQ \"%PREFIX:/=\\%\\Library\" exit 1    # [win]\n    - deno run test-build-arch.js\n\nabout:\n  home: https://deno.land\n  license: MIT\n  license_family: MIT\n  license_file:\n    - LICENSE.md    # [not osx or not arm64]\n    - DENO_THIRDPARTY_LICENSES.yml    # [not osx or not arm64]\n    # the binary doesn't ship with a license. This is one taken from the github repo.\n    - LICENSE    # [osx and arm64]\n  summary: A simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust\n  doc_url: https://deno.land/manual\n  dev_url: https://github.com/denoland/deno\n\nextra:\n  recipe-maintainers:\n    - mdekstrand\n    - cderv\n    - cscheid\n    - dragonstyle\n    - msarahan\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cargo-bundle-licenses",
    "libprotobuf",
    "rust_compiler_stub"
@@ -484,6 +488,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "libprotobuf",
     "rust_compiler_stub"
@@ -492,13 +497,15 @@
   "host": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "test": {
@@ -512,6 +519,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "libprotobuf",
     "rust_compiler_stub"
@@ -549,7 +557,7 @@
    "summary": "A simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -568,6 +576,7 @@
    "build": [
     "rust_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "libprotobuf"
    ]
@@ -598,6 +607,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "libprotobuf",
     "rust_compiler_stub"
