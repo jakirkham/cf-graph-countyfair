@@ -21,14 +21,14 @@
    "dev_url": "https://github.com/jgliss/geonum",
    "doc_url": "https://geonum.readthedocs.io/",
    "home": "https://github.com/jgliss/geonum",
-   "license": "GPL-3.0",
+   "license": "GPL-3.0-only",
    "license_family": "GPL",
    "license_file": "LICENSE",
    "summary": "Toolbox for 3D geonumerical calculations"
   },
   "build": {
    "noarch": "python",
-   "number": "2",
+   "number": "0",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -38,37 +38,42 @@
   },
   "package": {
    "name": "geonum",
-   "version": "1.4.5"
+   "version": "1.5.0"
   },
   "requirements": {
    "host": [
     "pip",
-    "python >=3.6",
+    "python >=3.8",
     "setuptools"
    ],
    "run": [
-    "python >=3.6",
+    "python >=3.8",
+    "numpy",
     "scipy",
+    "matplotlib",
     "latlon23",
     "srtm.py",
+    "cartopy",
     "setuptools"
    ]
   },
   "source": {
-   "sha256": "0ee42117598bfd2ae24bac0bf3807609951fe002454f2cef90a85daebdcc61bb",
-   "url": "https://pypi.io/packages/source/g/geonum/geonum-1.4.5.tar.gz"
+   "sha256": "d787099f98affea4b67071bd9173ac25ddf968b77522cbb69d4696133d33be87",
+   "url": "https://pypi.io/packages/source/g/geonum/geonum-1.5.0.tar.gz"
   },
   "test": {
    "commands": [
-    "py.test --pyargs geonum"
+    "pytest -Wi test"
    ],
    "imports": [
-    "setuptools",
-    "geonum",
-    "geonum.test"
+    "geonum"
    ],
    "requires": [
-    "pytest"
+    "pytest",
+    "netcdf4"
+   ],
+   "source_files": [
+    "test"
    ]
   }
  },
@@ -88,7 +93,10 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cartopy",
     "latlon23",
+    "matplotlib",
+    "numpy",
     "python",
     "scipy",
     "setuptools",
@@ -98,6 +106,7 @@
   "test": {
    "__set__": true,
    "elements": [
+    "netcdf4",
     "pytest"
    ]
   }
@@ -107,14 +116,14 @@
    "dev_url": "https://github.com/jgliss/geonum",
    "doc_url": "https://geonum.readthedocs.io/",
    "home": "https://github.com/jgliss/geonum",
-   "license": "GPL-3.0",
+   "license": "GPL-3.0-only",
    "license_family": "GPL",
    "license_file": "LICENSE",
    "summary": "Toolbox for 3D geonumerical calculations"
   },
   "build": {
    "noarch": "python",
-   "number": "2",
+   "number": "0",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -124,37 +133,42 @@
   },
   "package": {
    "name": "geonum",
-   "version": "1.4.5"
+   "version": "1.5.0"
   },
   "requirements": {
    "host": [
     "pip",
-    "python >=3.6",
+    "python >=3.8",
     "setuptools"
    ],
    "run": [
-    "python >=3.6",
+    "python >=3.8",
+    "numpy",
     "scipy",
+    "matplotlib",
     "latlon23",
     "srtm.py",
+    "cartopy",
     "setuptools"
    ]
   },
   "source": {
-   "sha256": "0ee42117598bfd2ae24bac0bf3807609951fe002454f2cef90a85daebdcc61bb",
-   "url": "https://pypi.io/packages/source/g/geonum/geonum-1.4.5.tar.gz"
+   "sha256": "d787099f98affea4b67071bd9173ac25ddf968b77522cbb69d4696133d33be87",
+   "url": "https://pypi.io/packages/source/g/geonum/geonum-1.5.0.tar.gz"
   },
   "test": {
    "commands": [
-    "py.test --pyargs geonum"
+    "pytest -Wi test"
    ],
    "imports": [
-    "setuptools",
-    "geonum",
-    "geonum.test"
+    "geonum"
    ],
    "requires": [
-    "pytest"
+    "pytest",
+    "netcdf4"
+   ],
+   "source_files": [
+    "test"
    ]
   }
  },
@@ -172,11 +186,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/geonum.json"
  },
- "raw_meta_yaml": "{% set name = \"geonum\" %}\n{% set version = \"1.4.5\" %}\n\npackage:\n  name: \"{{ name|lower }}\"\n  version: \"{{ version }}\"\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 0ee42117598bfd2ae24bac0bf3807609951fe002454f2cef90a85daebdcc61bb\n\nbuild:\n  noarch: python\n  number: 2\n  script: \"{{ PYTHON }} -m pip install . -vv\"\n\nrequirements:\n  host:\n    - pip\n    - python >=3.6\n    - setuptools\n  run:\n    - python >=3.6\n    - scipy\n    - latlon23\n    - srtm.py\n    - setuptools\n\ntest:\n  requires:\n    - pytest\n  imports:\n    - setuptools\n    - geonum\n    - geonum.test\n  commands:\n    - py.test --pyargs geonum\n\nabout:\n  home: https://github.com/jgliss/geonum\n  license: GPL-3.0\n  license_family: GPL\n  license_file: LICENSE\n  summary: Toolbox for 3D geonumerical calculations\n  doc_url: https://geonum.readthedocs.io/\n  dev_url: https://github.com/jgliss/geonum\n\nextra:\n  recipe-maintainers:\n    - jgliss\n",
+ "raw_meta_yaml": "{% set name = \"geonum\" %}\n{% set version = \"1.5.0\" %}\n\npackage:\n  name: \"{{ name }}\"\n  version: \"{{ version }}\"\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: d787099f98affea4b67071bd9173ac25ddf968b77522cbb69d4696133d33be87\n\nbuild:\n  noarch: python\n  number: 0\n  script: \"{{ PYTHON }} -m pip install . -vv\"\n\nrequirements:\n  host:\n    - pip\n    - python >=3.8\n    - setuptools\n  run:\n    - python >=3.8\n    - numpy\n    - scipy\n    - matplotlib\n    - latlon23\n    - srtm.py\n    - cartopy\n    - setuptools\n\ntest:\n  requires:\n    - pytest\n    - netcdf4\n  source_files:\n    - test\n  imports:\n    - geonum\n  commands:\n    - pytest -Wi test\n\nabout:\n  home: https://github.com/jgliss/geonum\n  license:  GPL-3.0-only\n  license_family: GPL\n  license_file: LICENSE\n  summary: Toolbox for 3D geonumerical calculations\n  doc_url: https://geonum.readthedocs.io/\n  dev_url: https://github.com/jgliss/geonum\n\nextra:\n  recipe-maintainers:\n    - jgliss\n",
  "req": {
   "__set__": true,
   "elements": [
+   "cartopy",
    "latlon23",
+   "matplotlib",
+   "numpy",
    "pip",
    "python",
    "scipy",
@@ -200,7 +217,10 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cartopy",
     "latlon23",
+    "matplotlib",
+    "numpy",
     "python",
     "scipy",
     "setuptools",
@@ -210,6 +230,7 @@
   "test": {
    "__set__": true,
    "elements": [
+    "netcdf4",
     "pytest"
    ]
   }
@@ -224,15 +245,18 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6",
+    "python >=3.8",
     "setuptools"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "cartopy",
     "latlon23",
-    "python >=3.6",
+    "matplotlib",
+    "numpy",
+    "python >=3.8",
     "scipy",
     "setuptools",
     "srtm.py"
@@ -241,12 +265,13 @@
   "test": {
    "__set__": true,
    "elements": [
+    "netcdf4",
     "pytest"
    ]
   }
  },
- "url": "https://pypi.io/packages/source/g/geonum/geonum-1.4.5.tar.gz",
- "version": "1.4.5",
+ "url": "https://pypi.io/packages/source/g/geonum/geonum-1.5.0.tar.gz",
+ "version": "1.5.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/geonum.json"
  }
