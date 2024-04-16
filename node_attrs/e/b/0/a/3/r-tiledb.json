@@ -46,7 +46,8 @@
     "ihnorton",
     "Shelnutt2",
     "eddelbuettel",
-    "jdblischak"
+    "jdblischak",
+    "johnkerl"
    ]
   },
   "package": {
@@ -158,7 +159,8 @@
     "ihnorton",
     "Shelnutt2",
     "eddelbuettel",
-    "jdblischak"
+    "jdblischak",
+    "johnkerl"
    ]
   },
   "package": {
@@ -270,7 +272,8 @@
     "ihnorton",
     "Shelnutt2",
     "eddelbuettel",
-    "jdblischak"
+    "jdblischak",
+    "johnkerl"
    ]
   },
   "package": {
@@ -345,7 +348,8 @@
     "ihnorton",
     "Shelnutt2",
     "eddelbuettel",
-    "jdblischak"
+    "jdblischak",
+    "johnkerl"
    ]
   },
   "package": {
@@ -460,7 +464,8 @@
     "ihnorton",
     "Shelnutt2",
     "eddelbuettel",
-    "jdblischak"
+    "jdblischak",
+    "johnkerl"
    ]
   },
   "package": {
@@ -563,7 +568,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-tiledb.json"
  },
- "raw_meta_yaml": "{% set name = \"r-tiledb\" %}\n{% set version = \"0.25.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/TileDB-Inc/TileDB-R/archive/{{ version }}.tar.gz\n  sha256: 84e2e6b4d08f86cfcb13810f4939c0b78bca2684af7bf800ad41b7979085d729\n  patches:   # [osx and not arm64]\n    - 0001-skip-osx-test-to-avoid-spurious-segfault.patch  # [osx and not arm64]\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - pkg-config\n    - make\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-nanotime  # [build_platform != target_platform]\n    - r-rcpp >=1.0.8  # [build_platform != target_platform]\n    - r-rcppspdlog  # [build_platform != target_platform]\n    - r-rcppint64  # [build_platform != target_platform]\n    - r-nanoarrow  # [build_platform != target_platform]\n  host:\n    - r-base\n    - tiledb 2.21.*\n    - r-rcpp >=1.0.8\n    - r-rcppspdlog\n    - r-nanotime\n    - r-spdl\n    - r-rcppint64\n    - r-nanoarrow\n  run:\n    - r-base\n    - r-nanotime\n    - r-spdl\n    - r-nanoarrow\n\ntest:\n  requires:\n    - r-tinytest\n    - r-nycflights13\n    - r-palmerpenguins\n    - r-data.table\n  commands:\n    - Rscript -e 'tinytest::test_package(\"tiledb\")'\n\nabout:\n  home: https://www.tiledb.com\n  license: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n  summary: R interface to the TileDB array storage manager\n\n  description: |\n    TileDB is a highly-parallelized, cloud native array storage engine.\n  doc_url: https://docs.tiledb.com/developer/\n  dev_url: https://github.com/TileDB-Inc/TileDB-R\n\nextra:\n  recipe-maintainers:\n    - ihnorton\n    - Shelnutt2\n    - eddelbuettel\n    - jdblischak\n",
+ "raw_meta_yaml": "{% set name = \"r-tiledb\" %}\n{% set version = \"0.25.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/TileDB-Inc/TileDB-R/archive/{{ version }}.tar.gz\n  sha256: 84e2e6b4d08f86cfcb13810f4939c0b78bca2684af7bf800ad41b7979085d729\n  patches:   # [osx and not arm64]\n    - 0001-skip-osx-test-to-avoid-spurious-segfault.patch  # [osx and not arm64]\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - pkg-config\n    - make\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-nanotime  # [build_platform != target_platform]\n    - r-rcpp >=1.0.8  # [build_platform != target_platform]\n    - r-rcppspdlog  # [build_platform != target_platform]\n    - r-rcppint64  # [build_platform != target_platform]\n    - r-nanoarrow  # [build_platform != target_platform]\n  host:\n    - r-base\n    - tiledb 2.21.*\n    - r-rcpp >=1.0.8\n    - r-rcppspdlog\n    - r-nanotime\n    - r-spdl\n    - r-rcppint64\n    - r-nanoarrow\n  run:\n    - r-base\n    - r-nanotime\n    - r-spdl\n    - r-nanoarrow\n\ntest:\n  requires:\n    - r-tinytest\n    - r-nycflights13\n    - r-palmerpenguins\n    - r-data.table\n  commands:\n    - Rscript -e 'tinytest::test_package(\"tiledb\")'\n\nabout:\n  home: https://www.tiledb.com\n  license: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n  summary: R interface to the TileDB array storage manager\n\n  description: |\n    TileDB is a highly-parallelized, cloud native array storage engine.\n  doc_url: https://docs.tiledb.com/developer/\n  dev_url: https://github.com/TileDB-Inc/TileDB-R\n\nextra:\n  recipe-maintainers:\n    - ihnorton\n    - Shelnutt2\n    - eddelbuettel\n    - jdblischak\n    - johnkerl\n",
  "req": {
   "__set__": true,
   "elements": [
