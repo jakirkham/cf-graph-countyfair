@@ -30,7 +30,7 @@
    "summary": "Library for calculating atmospheric neutrino fluxes"
   },
   "build": {
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -50,13 +50,14 @@
     "ninja",
     "pkg-config",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
     "python",
     "numpy >=1.7",
     "cfitsio",
-    "photospline",
+    "photospline !=2.3.0",
     "libboost-python-devel"
    ],
    "run": [
@@ -89,6 +90,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "meson",
@@ -136,7 +138,7 @@
    "summary": "Library for calculating atmospheric neutrino fluxes"
   },
   "build": {
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -156,13 +158,14 @@
     "ninja",
     "pkg-config",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
     "python",
     "numpy >=1.7",
     "cfitsio",
-    "photospline",
+    "photospline !=2.3.0",
     "libboost-python-devel"
    ],
    "run": [
@@ -201,7 +204,7 @@
    "summary": "Library for calculating atmospheric neutrino fluxes"
   },
   "build": {
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -221,13 +224,14 @@
     "ninja",
     "pkg-config",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
     "python",
     "numpy >=1.7",
     "cfitsio",
-    "photospline",
+    "photospline !=2.3.0",
     "libboost-python-devel"
    ],
    "run": [
@@ -260,6 +264,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "meson",
@@ -307,7 +312,7 @@
    "summary": "Library for calculating atmospheric neutrino fluxes"
   },
   "build": {
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -327,13 +332,14 @@
     "ninja",
     "pkg-config",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
     "python",
     "numpy >=1.7",
     "cfitsio",
-    "photospline",
+    "photospline !=2.3.0",
     "libboost-python-devel"
    ],
    "run": [
@@ -366,6 +372,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "meson",
@@ -418,11 +425,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/nuflux.json"
  },
- "raw_meta_yaml": "{% set version = \"2.0.5\" %}\n\npackage:\n  name: nuflux\n  version: {{ version }}\n\nsource:\n  url: https://github.com/icecube/nuflux/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 65cb0c284cc46e1006f1eb1fba296b84e30a148d4386887de152961ba711d6b8\n\nbuild:\n  number: 2\n  skip: true  # [win or python_impl == \"pypy\"]\n\nrequirements:\n  build:\n    - python\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy\n    - meson\n    - cmake\n    - ninja\n    - pkg-config\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - numpy >=1.7\n    - cfitsio\n    - photospline\n    - libboost-python-devel\n  run:\n    - python\n    - numpy\n    - cfitsio\n    - photospline\n    - libboost-python-devel\n\ntest:\n  source_files:\n    - tests\n  requires:\n    - pytest\n    - pytest-subtests\n  commands:\n    - cd tests && $PYTHON test_fluxes.py\n\nabout:\n  home: https://github.com/icecube/nuflux\n  license: LGPL-3.0-only\n  license_family: GPL3\n  license_file: LICENSE\n  summary: Library for calculating atmospheric neutrino fluxes\n  dev_url: https://github.com/icecube/nuflux\n\nextra:\n  recipe-maintainers:\n    - jvansanten\n",
+ "raw_meta_yaml": "{% set version = \"2.0.5\" %}\n\npackage:\n  name: nuflux\n  version: {{ version }}\n\nsource:\n  url: https://github.com/icecube/nuflux/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 65cb0c284cc46e1006f1eb1fba296b84e30a148d4386887de152961ba711d6b8\n\nbuild:\n  number: 3\n  skip: true  # [win or python_impl == \"pypy\"]\n\nrequirements:\n  build:\n    - python\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy\n    - meson\n    - cmake\n    - ninja\n    - pkg-config\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - numpy >=1.7\n    - cfitsio\n    - photospline !=2.3.0\n    - libboost-python-devel\n  run:\n    - python\n    - numpy\n    - cfitsio\n    - photospline\n    - libboost-python-devel\n\ntest:\n  source_files:\n    - tests\n  requires:\n    - pytest\n    - pytest-subtests\n  commands:\n    - cd tests && $PYTHON test_fluxes.py\n\nabout:\n  home: https://github.com/icecube/nuflux\n  license: LGPL-3.0-only\n  license_family: GPL3\n  license_file: LICENSE\n  summary: Library for calculating atmospheric neutrino fluxes\n  dev_url: https://github.com/icecube/nuflux\n\nextra:\n  recipe-maintainers:\n    - jvansanten\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cfitsio",
    "cmake",
    "cxx_compiler_stub",
@@ -440,6 +448,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "meson",
@@ -453,6 +462,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cfitsio",
     "cxx_compiler_stub",
     "libboost-python-devel",
@@ -465,6 +475,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cfitsio",
     "cxx_compiler_stub",
     "libboost-python-devel",
@@ -487,6 +498,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "meson",
@@ -502,7 +514,7 @@
     "cfitsio",
     "libboost-python-devel",
     "numpy >=1.7",
-    "photospline",
+    "photospline !=2.3.0",
     "python"
    ]
   },
