@@ -36,7 +36,7 @@
    "summary": "Oso is a batteries-included framework for building authorization in your application."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -51,6 +51,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "rust >=1.46,<1.70",
     "cargo-bundle-licenses"
@@ -104,6 +105,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "rust"
@@ -149,7 +151,7 @@
    "summary": "Oso is a batteries-included framework for building authorization in your application."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -164,6 +166,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "rust >=1.46,<1.70",
     "cargo-bundle-licenses"
@@ -223,7 +226,7 @@
    "summary": "Oso is a batteries-included framework for building authorization in your application."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -238,6 +241,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "rust >=1.46,<1.70",
     "cargo-bundle-licenses"
@@ -290,6 +294,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "rust"
@@ -334,7 +339,7 @@
    "summary": "Oso is a batteries-included framework for building authorization in your application."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -349,6 +354,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "rust >=1.46,<1.70",
     "cargo-bundle-licenses"
@@ -401,6 +407,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "rust"
@@ -451,11 +458,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/oso.json"
  },
- "raw_meta_yaml": "{% set version = \"0.27.3\" %}\n# from languages/python/oso/requirements.txt\n{% set cffi_version = \"cffi >=1.15,<2\" %}\n\npackage:\n  name: oso\n  version: {{ version }}\n\nsource:\n  url: https://github.com/osohq/oso/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 1a93ad45e1b8d249c1080a98c4c1ff318d28cfd8450ba36ce459834d7d7cb95a\n  patches:\n    - 0000-no-pip-install-makefile.patch\n\nbuild:\n  number: 1\n  skip: true  # [aarch64 or ppc64le]\n\nrequirements:\n  build:\n    - {{ cffi_version }}                     # [build_platform != target_platform]\n    - openssl                                # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - make                                   # [build_platform != target_platform]\n    - python                                 # [build_platform != target_platform]\n    - clangdev                               # [not osx and build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    # from README.md\n    - rust >=1.46,<1.70\n    - cargo-bundle-licenses\n  host:\n    - {{ cffi_version }}\n    - make\n    - clangdev  # [not osx]\n    - openssl\n    - python\n    - pip\n  run:\n    - python\n    - {{ cffi_version }}\n    - openssl\n\ntest:\n  source_files:\n    - languages/python/oso/tests\n  imports:\n    - oso\n    - polar\n  commands:\n    - pip check\n    - mypy -p oso --ignore-missing-imports\n    # %PREFIX%\\lib\\site-packages\\polar\\build.py:19: error: Need type annotation for \"libs\" (hint: \"libs: List[<type>] = ...\")  [var-annotated]\n    - mypy -p polar --ignore-missing-imports  # [not win]\n    # must be run from this folder because of hard-coded paths in tests\n    - cd languages/python/oso && pytest tests -vv --cov=oso --cov=polar --no-cov-on-fail --cov-report=term-missing:skip-covered -k \"not test_parser_errors and not test_repr_when_logging\" --cov-fail-under=86\n  requires:\n    - mypy\n    - pip\n    - pytest-cov\n    - ruamel_yaml\n    - sqlalchemy\n\nabout:\n  home: https://github.com/osohq/oso\n  summary: Oso is a batteries-included framework for building authorization in your application.\n  license: Apache-2.0\n  license_file: LICENSE\n  doc_url: https://docs.osohq.com\n  dev_url: https://github.com/osohq/oso\n\nextra:\n  recipe-maintainers:\n    - alexpilot11\n    - bollwyvl\n",
+ "raw_meta_yaml": "{% set version = \"0.27.3\" %}\n# from languages/python/oso/requirements.txt\n{% set cffi_version = \"cffi >=1.15,<2\" %}\n\npackage:\n  name: oso\n  version: {{ version }}\n\nsource:\n  url: https://github.com/osohq/oso/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 1a93ad45e1b8d249c1080a98c4c1ff318d28cfd8450ba36ce459834d7d7cb95a\n  patches:\n    - 0000-no-pip-install-makefile.patch\n\nbuild:\n  number: 2\n  skip: true  # [aarch64 or ppc64le]\n\nrequirements:\n  build:\n    - {{ cffi_version }}                     # [build_platform != target_platform]\n    - openssl                                # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - make                                   # [build_platform != target_platform]\n    - python                                 # [build_platform != target_platform]\n    - clangdev                               # [not osx and build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    # from README.md\n    - rust >=1.46,<1.70\n    - cargo-bundle-licenses\n  host:\n    - {{ cffi_version }}\n    - make\n    - clangdev  # [not osx]\n    - openssl\n    - python\n    - pip\n  run:\n    - python\n    - {{ cffi_version }}\n    - openssl\n\ntest:\n  source_files:\n    - languages/python/oso/tests\n  imports:\n    - oso\n    - polar\n  commands:\n    - pip check\n    - mypy -p oso --ignore-missing-imports\n    # %PREFIX%\\lib\\site-packages\\polar\\build.py:19: error: Need type annotation for \"libs\" (hint: \"libs: List[<type>] = ...\")  [var-annotated]\n    - mypy -p polar --ignore-missing-imports  # [not win]\n    # must be run from this folder because of hard-coded paths in tests\n    - cd languages/python/oso && pytest tests -vv --cov=oso --cov=polar --no-cov-on-fail --cov-report=term-missing:skip-covered -k \"not test_parser_errors and not test_repr_when_logging\" --cov-fail-under=86\n  requires:\n    - mypy\n    - pip\n    - pytest-cov\n    - ruamel_yaml\n    - sqlalchemy\n\nabout:\n  home: https://github.com/osohq/oso\n  summary: Oso is a batteries-included framework for building authorization in your application.\n  license: Apache-2.0\n  license_file: LICENSE\n  doc_url: https://docs.osohq.com\n  dev_url: https://github.com/osohq/oso\n\nextra:\n  recipe-maintainers:\n    - alexpilot11\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cargo-bundle-licenses",
    "cffi",
    "clangdev",
@@ -472,6 +480,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "rust"
@@ -481,6 +490,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cffi",
     "clangdev",
     "cxx_compiler_stub",
@@ -494,6 +504,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cffi",
     "cxx_compiler_stub",
     "openssl",
@@ -517,6 +528,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "rust >=1.46,<1.70"
@@ -567,7 +579,7 @@
    "summary": "Oso is a batteries-included framework for building authorization in your application."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -582,6 +594,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "rust >=1.46,<1.70",
     "cargo-bundle-licenses"
@@ -634,6 +647,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "rust"
