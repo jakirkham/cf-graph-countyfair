@@ -21,7 +21,7 @@
    "summary": "An object-oriented Python package for analysis of (cosmological) simulations performed with Arepo."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -36,6 +36,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "libgomp"
    ],
    "host": [
@@ -77,6 +78,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "libgomp"
    ]
   },
@@ -118,7 +120,7 @@
    "summary": "An object-oriented Python package for analysis of (cosmological) simulations performed with Arepo."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -133,6 +135,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "libgomp",
     "llvm-openmp"
    ],
@@ -179,7 +182,7 @@
    "summary": "An object-oriented Python package for analysis of (cosmological) simulations performed with Arepo."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -194,6 +197,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "llvm-openmp"
    ],
    "host": [
@@ -235,6 +239,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "llvm-openmp"
    ]
   },
@@ -282,12 +287,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/paicos.json"
  },
- "raw_meta_yaml": "{% set name = \"paicos\" %}\n{% set version = \"0.1.13\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/paicos-{{ version }}.tar.gz\n  sha256: 44132561923b8f554f0b8a75cfdbf63778a19a332503a7e65fa8a905ba975660\n\nbuild:\n  skip: True  # [py<38]\n  skip: True  # [win]\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux]\n    - cross-python_{{ target_platform }}    # [build_platform != target_platform]\n    - python                                # [build_platform != target_platform]\n    - cython                                # [build_platform != target_platform]\n    - numpy                                 # [build_platform != target_platform]\n  host:\n    - python\n    - cython >=0.29.21\n    - numpy\n    - setuptools\n    - wheel\n    - pip\n  run:\n    - python\n    - scipy\n    - {{ pin_compatible(\"numpy\") }}\n    - h5py\n    - astropy\n    - numba\n    - matplotlib-base\n\ntest:\n  imports:\n    - paicos\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/tberlok/paicos\n  summary: An object-oriented Python package for analysis of (cosmological) simulations performed with Arepo.\n  license: GPL-2.0-or-later\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - tberlok\n",
+ "raw_meta_yaml": "{% set name = \"paicos\" %}\n{% set version = \"0.1.13\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/paicos-{{ version }}.tar.gz\n  sha256: 44132561923b8f554f0b8a75cfdbf63778a19a332503a7e65fa8a905ba975660\n\nbuild:\n  skip: True  # [py<38]\n  skip: True  # [win]\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ stdlib(\"c\") }}\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux]\n    - cross-python_{{ target_platform }}    # [build_platform != target_platform]\n    - python                                # [build_platform != target_platform]\n    - cython                                # [build_platform != target_platform]\n    - numpy                                 # [build_platform != target_platform]\n  host:\n    - python\n    - cython >=0.29.21\n    - numpy\n    - setuptools\n    - wheel\n    - pip\n  run:\n    - python\n    - scipy\n    - {{ pin_compatible(\"numpy\") }}\n    - h5py\n    - astropy\n    - numba\n    - matplotlib-base\n\ntest:\n  imports:\n    - paicos\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/tberlok/paicos\n  summary: An object-oriented Python package for analysis of (cosmological) simulations performed with Arepo.\n  license: GPL-2.0-or-later\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - tberlok\n",
  "req": {
   "__set__": true,
   "elements": [
    "astropy",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cython",
    "h5py",
    "libgomp",
@@ -307,6 +313,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "libgomp",
     "llvm-openmp"
    ]
@@ -315,6 +322,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cython",
     "numpy",
@@ -330,6 +338,7 @@
    "elements": [
     "astropy",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "h5py",
     "matplotlib-base",
@@ -353,6 +362,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "libgomp",
     "llvm-openmp"
    ]
