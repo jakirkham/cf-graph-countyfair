@@ -38,7 +38,7 @@
    "summary": "Optional static typing for Python"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "mypy",
@@ -60,9 +60,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -119,6 +121,395 @@
      "license_family": "MIT",
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help",
+      "ls $SP_DIR/mypy/*.so"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help",
+      "ls $SP_DIR/mypy/*.so"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help",
+      "ls $SP_DIR/mypy/*.so"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "stubgen --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": {
+     "skip": true
     },
     "name": "mypyc",
     "requirements": {
@@ -155,9 +546,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -215,291 +608,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help",
-      "ls $SP_DIR/mypy/*.so"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help",
-      "ls $SP_DIR/mypy/*.so"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help",
-      "ls $SP_DIR/mypy/*.so"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -594,7 +703,7 @@
    "summary": "Optional static typing for Python"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "mypy",
@@ -616,9 +725,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -675,6 +786,395 @@
      "license_family": "MIT",
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help",
+      "ls $SP_DIR/mypy/*.so"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help",
+      "ls $SP_DIR/mypy/*.so"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help",
+      "ls $SP_DIR/mypy/*.so"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "stubgen --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": {
+     "skip": true
     },
     "name": "mypyc",
     "requirements": {
@@ -711,9 +1211,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -771,291 +1273,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help",
-      "ls $SP_DIR/mypy/*.so"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help",
-      "ls $SP_DIR/mypy/*.so"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help",
-      "ls $SP_DIR/mypy/*.so"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -1150,7 +1368,7 @@
    "summary": "Optional static typing for Python"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "mypy",
@@ -1172,9 +1390,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -1231,6 +1451,395 @@
      "license_family": "MIT",
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help",
+      "ls $SP_DIR/mypy/*.so"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help",
+      "ls $SP_DIR/mypy/*.so"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help",
+      "ls $SP_DIR/mypy/*.so"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "stubgen --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": {
+     "skip": true
     },
     "name": "mypyc",
     "requirements": {
@@ -1267,9 +1876,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -1327,291 +1938,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help",
-      "ls $SP_DIR/mypy/*.so"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help",
-      "ls $SP_DIR/mypy/*.so"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help",
-      "ls $SP_DIR/mypy/*.so"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -1706,7 +2033,7 @@
    "summary": "Optional static typing for Python"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "mypy",
@@ -1728,9 +2055,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -1788,6 +2117,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -1823,9 +2153,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -1883,6 +2215,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -1918,9 +2251,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -1978,6 +2313,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -2013,9 +2349,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -2073,6 +2411,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -2108,9 +2447,105 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "stubgen --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -2168,6 +2603,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -2203,9 +2639,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -2263,6 +2701,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -2298,9 +2737,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -2358,6 +2799,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -2393,9 +2835,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -2453,6 +2897,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -2488,9 +2933,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -2548,6 +2995,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -2583,9 +3031,105 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "stubgen --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -2643,6 +3187,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -2678,9 +3223,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -2738,6 +3285,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -2773,9 +3321,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -2833,6 +3383,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -2868,9 +3419,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -2928,6 +3481,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -2963,9 +3517,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -3023,6 +3579,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -3058,9 +3615,105 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "stubgen --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -3118,6 +3771,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -3153,9 +3807,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -3212,6 +3868,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -3247,9 +3904,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -3306,6 +3965,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -3341,9 +4001,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -3400,6 +4062,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -3435,9 +4098,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -3494,6 +4159,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -3529,9 +4195,105 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "stubgen --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -3588,6 +4350,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -3623,9 +4386,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -3682,6 +4447,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -3717,9 +4483,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -3776,6 +4544,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -3811,9 +4580,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -3870,6 +4641,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -3905,9 +4677,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -3964,6 +4738,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -3999,9 +4774,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -4058,6 +4835,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -4093,9 +4871,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "set MYPY_USE_MYPYC=1",
-      "set SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -4153,6 +4933,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -4188,9 +4969,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "set MYPY_USE_MYPYC=1",
-      "set SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -4248,6 +5031,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -4283,9 +5067,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "set MYPY_USE_MYPYC=1",
-      "set SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -4343,6 +5129,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -4378,9 +5165,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "set MYPY_USE_MYPYC=1",
-      "set SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -4438,6 +5227,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -4473,9 +5263,105 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "set MYPY_USE_MYPYC=1",
-      "set SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "stubgen --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -4533,6 +5419,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -4589,7 +5476,7 @@
    "summary": "Optional static typing for Python"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "mypy",
@@ -4611,9 +5498,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -4669,6 +5558,392 @@
      "license_family": "MIT",
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "stubgen --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": {
+     "skip": true
     },
     "name": "mypyc",
     "requirements": {
@@ -4705,9 +5980,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -4764,288 +6041,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -5140,7 +6136,7 @@
    "summary": "Optional static typing for Python"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "mypy",
@@ -5162,9 +6158,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -5221,6 +6219,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -5256,9 +6255,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -5315,6 +6316,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -5350,9 +6352,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -5409,6 +6413,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -5444,9 +6449,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -5503,6 +6510,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -5538,9 +6546,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "export MYPY_USE_MYPYC=1",
-      "export SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -5597,6 +6607,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
@@ -5698,7 +6709,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/mypy.json"
  },
- "raw_meta_yaml": "{% set version = \"1.9.0\" %}\n\npackage:\n  name: mypy-split\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/m/mypy/mypy-{{ version }}.tar.gz\n  sha256: 3cc5da0127e6a478cddd906068496a97a7618a21ce9b54bde5bf7e539c7af974\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n  host:\n    - python\n\noutputs:\n  - name: mypy\n    build:\n      script:\n        - export MYPY_USE_MYPYC=1  # [not win]\n        - export SETUPTOOLS_USE_DISTUTILS=stdlib  # [py<312 and not win]\n        - set MYPY_USE_MYPYC=1     # [win]\n        - set SETUPTOOLS_USE_DISTUTILS=stdlib  # [py<312 and win]\n        # mypy searches for <>-stubs in site.getsitepackages()\n        # which points to $SP_DIR, even in cross-python\n        - cp -rv $BUILD_PREFIX/lib/python$PY_VER/site-packages/*-stubs $SP_DIR  # [build_platform != target_platform]\n        - cp -rv $BUILD_PREFIX/lib/python$PY_VER/site-packages/tomli* $SP_DIR  # [build_platform != target_platform]\n        - {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation\n        - rm -rf $SP_DIR/*-stubs  # [build_platform != target_platform]\n        - rm -rf $SP_DIR/tomli*  # [build_platform != target_platform]\n      entry_points:\n        - mypy = mypy.__main__:console_entry\n        - stubgen = mypy.stubgen:main\n        - dmypy = mypy.dmypy.client:console_entry\n        - stubtest = mypy.stubtest:main\n        # CLI provided here, but doesn't depend on a compiler\n        - mypyc = mypyc.__main__:main\n\n    requirements:\n      build:\n        - python                                 # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n        - {{ compiler('c') }}\n        - tomli >=1.1.0\n      host:\n        - mypy_extensions >=1.0.0\n        - pip\n        - python\n        - setuptools >=40.6.2\n        - tomli >=1.1.0  # [py<311]\n        - types-psutil\n        - types-setuptools\n        - typing_extensions >=4.1.0\n        - wheel >=0.30.0\n      run:\n        - python\n        - mypy_extensions >=1.0.0\n        - typing_extensions >=4.1.0\n        - tomli >=1.1.0  # [py<311]\n        # extra: dmypy\n        - psutil >=4.0\n\n    test:\n      requires:\n        - pip\n      imports:\n        - mypy\n        - mypy.dmypy\n        - mypy.plugins\n        - mypy.server\n        - mypyc\n      commands:\n        - pip check\n        - dmypy --help\n        - mypy --help\n        - mypyc --help\n        - stubgen --help\n        - stubtest --help\n        - dir %SP_DIR%\\mypy\\*.pyd /s /b  # [win]\n        - ls $SP_DIR/mypy/*.so  # [linux and not (aarch64 and py==310)]\n\n  - name: mypyc\n    requirements:\n      host:\n        - python\n      run:\n        - {{ pin_subpackage(\"mypy\", exact=True) }}\n        - {{ compiler('c') }}\n        - python\n    test:\n      files:\n        - test_mypyc.py\n      requires:\n        - pip\n      commands:\n        - pip check\n        - mypyc --help\n        - python test_mypyc.py\n    about:\n      home: https://mypyc.readthedocs.io\n      license: MIT\n      license_family: MIT\n      license_file: LICENSE\n      dev_url: https://github.com/python/mypy/blob/master/mypyc\n      summary: Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code.\n      description: |\n        The compiled language is a strict, gradually typed Python variant. It\n        restricts the use of some dynamic Python features to gain performance,\n        but it's mostly compatible with standard Python.\n\n        Mypyc uses mypy to perform type checking and type inference. Most type\n        system features in the stdlib typing module are supported.\n\n        Compiled modules can import arbitrary Python modules and third-party\n        libraries. You can compile anything from a single performance-critical\n        module to your entire codebase. You can run the modules you compile also\n        as normal, interpreted Python modules.\n\n        Existing code with type annotations is often 1.5x to 5x faster when\n        compiled. Code tuned for mypyc can be 5x to 10x faster.\n\n        Mypyc currently aims to speed up non-numeric code, such as server\n        applications. Mypyc is also used to compile itself (and mypy).\n\nabout:\n  home: http://mypy-lang.org\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Optional static typing for Python\n  description: |\n    Add type annotations to your Python programs, and use mypy to type check\n    them. Mypy is essentially a Python linter on steroids, and it can catch\n    many programming errors by analyzing your program, without actually having\n    to run it.  Mypy has a powerful type system with features such as type\n    inference, gradual typing, generics and union types.\n  doc_url: http://mypy.readthedocs.io\n  dev_url: https://github.com/python/mypy\n\nextra:\n  feedstock-name: mypy\n  recipe-maintainers:\n    - nehaljwani\n    - ocefpaf\n    - matthiasdiener\n    - bollwyvl\n",
+ "raw_meta_yaml": "{% set version = \"1.9.0\" %}\n\npackage:\n  name: mypy-split\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/m/mypy/mypy-{{ version }}.tar.gz\n  sha256: 3cc5da0127e6a478cddd906068496a97a7618a21ce9b54bde5bf7e539c7af974\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}                    # [python_impl == \"cpython\"]\n  host:\n    - python\n\noutputs:\n  - name: mypy\n    build:\n      script_env:\n        - MYPY_USE_MYPYC=1                 # [python_impl == \"cpython\"]\n        - SETUPTOOLS_USE_DISTUTILS=stdlib  # [py<312]\n      script:\n        # mypy searches for <>-stubs in site.getsitepackages()\n        # which points to $SP_DIR, even in cross-python\n        - cp -rv $BUILD_PREFIX/lib/python$PY_VER/site-packages/*-stubs $SP_DIR  # [build_platform != target_platform]\n        - cp -rv $BUILD_PREFIX/lib/python$PY_VER/site-packages/tomli* $SP_DIR   # [build_platform != target_platform]\n        - {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check\n        - rm -rf $SP_DIR/*-stubs $SP_DIR/tomli*                                 # [build_platform != target_platform]\n      entry_points:\n        - mypy = mypy.__main__:console_entry\n        - stubgen = mypy.stubgen:main\n        - dmypy = mypy.dmypy.client:console_entry\n        # doesn't work in pypy\n        - stubtest = mypy.stubtest:main\n        # CLI provided here, but doesn't depend on a compiler (or work in pypy)\n        - mypyc = mypyc.__main__:main\n\n    requirements:\n      build:\n        - python                                 # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n        - {{ compiler('c') }}                    # [python_impl == \"cpython\"]\n        - tomli >=1.1.0\n      host:\n        - mypy_extensions >=1.0.0\n        - pip\n        - python\n        - setuptools >=40.6.2\n        - tomli >=1.1.0  # [py<311]\n        - types-psutil\n        - types-setuptools\n        - typing_extensions >=4.1.0\n        - wheel >=0.30.0\n      run:\n        - python\n        - mypy_extensions >=1.0.0\n        - typing_extensions >=4.1.0\n        - tomli >=1.1.0  # [py<311]\n        # extra: dmypy\n        - psutil >=4.0\n\n    test:\n      # TODO: attempt re-enabling in >=1.9.1\n      # source_files:\n      #   - mypy_self_check.ini\n      requires:\n        - pip\n      imports:\n        - mypy\n        - mypy.dmypy\n        - mypy.plugins\n        - mypy.server\n        - mypyc  # [python_impl == \"cpython\"]\n      commands:\n        - pip check\n        - dmypy --help\n        - mypy --help\n        - mypyc --help  # [python_impl == \"cpython\"]\n        - stubgen --help\n        # `stubtest.py` imports `symtable`, not available in pypy\n        - stubtest --help                # [python_impl == \"cpython\"]\n        - dir %SP_DIR%\\mypy\\*.pyd /s /b  # [win and python_impl == \"cpython\"]\n        - ls $SP_DIR/mypy/*.so           # [linux and not (aarch64 and py == 310) and python_impl == \"cpython\"]\n        # TODO: attempt re-enabling in >=1.9.1\n        # - mypy --config-file=mypy_self_check.ini -p mypy --python-version=3.9\n\n  - name: mypyc\n    build:\n      skip: true  # [python_impl != \"cpython\"]\n    requirements:\n      host:\n        - python\n      run:\n        - {{ pin_subpackage(\"mypy\", exact=True) }}\n        - {{ compiler('c') }}\n        - python\n    test:\n      files:\n        - test_mypyc.py\n      requires:\n        - pip\n      commands:\n        - pip check\n        - mypyc --help\n        - python test_mypyc.py\n    about:\n      home: https://mypyc.readthedocs.io\n      license: MIT\n      license_family: MIT\n      license_file: LICENSE\n      dev_url: https://github.com/python/mypy/blob/master/mypyc\n      summary: Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code.\n      description: |\n        The compiled language is a strict, gradually typed Python variant. It\n        restricts the use of some dynamic Python features to gain performance,\n        but it's mostly compatible with standard Python.\n\n        Mypyc uses mypy to perform type checking and type inference. Most type\n        system features in the stdlib typing module are supported.\n\n        Compiled modules can import arbitrary Python modules and third-party\n        libraries. You can compile anything from a single performance-critical\n        module to your entire codebase. You can run the modules you compile also\n        as normal, interpreted Python modules.\n\n        Existing code with type annotations is often 1.5x to 5x faster when\n        compiled. Code tuned for mypyc can be 5x to 10x faster.\n\n        Mypyc currently aims to speed up non-numeric code, such as server\n        applications. Mypyc is also used to compile itself (and mypy).\n\nabout:\n  home: http://mypy-lang.org\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Optional static typing for Python\n  description: |\n    Add type annotations to your Python programs, and use mypy to type check\n    them. Mypy is essentially a Python linter on steroids, and it can catch\n    many programming errors by analyzing your program, without actually having\n    to run it.  Mypy has a powerful type system with features such as type\n    inference, gradual typing, generics and union types.\n  doc_url: http://mypy.readthedocs.io\n  dev_url: https://github.com/python/mypy\n\nextra:\n  feedstock-name: mypy\n  recipe-maintainers:\n    - nehaljwani\n    - ocefpaf\n    - matthiasdiener\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -5813,7 +6824,7 @@
    "summary": "Optional static typing for Python"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "mypy",
@@ -5835,9 +6846,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "set MYPY_USE_MYPYC=1",
-      "set SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -5894,6 +6907,395 @@
      "license_family": "MIT",
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help",
+      "dir %SP_DIR%\\mypy\\*.pyd /s /b"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help",
+      "dir %SP_DIR%\\mypy\\*.pyd /s /b"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "mypyc --help",
+      "stubgen --help",
+      "stubtest --help",
+      "dir %SP_DIR%\\mypy\\*.pyd /s /b"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server",
+      "mypyc"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": null,
+    "name": "mypyc",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "mypy",
+      "c_compiler_stub",
+      "python"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "mypyc --help",
+      "python test_mypyc.py"
+     ],
+     "files": [
+      "test_mypyc.py"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "entry_points": [
+      "mypy = mypy.__main__:console_entry",
+      "stubgen = mypy.stubgen:main",
+      "dmypy = mypy.dmypy.client:console_entry",
+      "stubtest = mypy.stubtest:main",
+      "mypyc = mypyc.__main__:main"
+     ],
+     "script": [
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
+     ]
+    },
+    "name": "mypy",
+    "requirements": {
+     "build": [
+      "tomli >=1.1.0"
+     ],
+     "host": [
+      "mypy_extensions >=1.0.0",
+      "pip",
+      "python",
+      "setuptools >=40.6.2",
+      "types-psutil",
+      "types-setuptools",
+      "typing_extensions >=4.1.0",
+      "wheel >=0.30.0"
+     ],
+     "run": [
+      "python",
+      "mypy_extensions >=1.0.0",
+      "typing_extensions >=4.1.0",
+      "psutil >=4.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dmypy --help",
+      "mypy --help",
+      "stubgen --help"
+     ],
+     "imports": [
+      "mypy",
+      "mypy.dmypy",
+      "mypy.plugins",
+      "mypy.server"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
+     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
+     "home": "https://mypyc.readthedocs.io",
+     "license": "MIT",
+     "license_family": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
+    },
+    "build": {
+     "skip": true
     },
     "name": "mypyc",
     "requirements": {
@@ -5930,9 +7332,11 @@
       "mypyc = mypyc.__main__:main"
      ],
      "script": [
-      "set MYPY_USE_MYPYC=1",
-      "set SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
+      "PYTHON -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+     ],
+     "script_env": [
+      "MYPY_USE_MYPYC=1",
+      "SETUPTOOLS_USE_DISTUTILS=stdlib"
      ]
     },
     "name": "mypy",
@@ -5990,291 +7394,7 @@
      "license_file": "LICENSE",
      "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
     },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "set MYPY_USE_MYPYC=1",
-      "set SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help",
-      "dir %SP_DIR%\\mypy\\*.pyd /s /b"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "set MYPY_USE_MYPYC=1",
-      "set SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help",
-      "dir %SP_DIR%\\mypy\\*.pyd /s /b"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
-    "name": "mypyc",
-    "requirements": {
-     "host": [
-      "python"
-     ],
-     "run": [
-      "mypy",
-      "c_compiler_stub",
-      "python"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "mypyc --help",
-      "python test_mypyc.py"
-     ],
-     "files": [
-      "test_mypyc.py"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "entry_points": [
-      "mypy = mypy.__main__:console_entry",
-      "stubgen = mypy.stubgen:main",
-      "dmypy = mypy.dmypy.client:console_entry",
-      "stubtest = mypy.stubtest:main",
-      "mypyc = mypyc.__main__:main"
-     ],
-     "script": [
-      "set MYPY_USE_MYPYC=1",
-      "set SETUPTOOLS_USE_DISTUTILS=stdlib",
-      "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
-     ]
-    },
-    "name": "mypy",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "tomli >=1.1.0"
-     ],
-     "host": [
-      "mypy_extensions >=1.0.0",
-      "pip",
-      "python",
-      "setuptools >=40.6.2",
-      "types-psutil",
-      "types-setuptools",
-      "typing_extensions >=4.1.0",
-      "wheel >=0.30.0"
-     ],
-     "run": [
-      "python",
-      "mypy_extensions >=1.0.0",
-      "typing_extensions >=4.1.0",
-      "psutil >=4.0"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dmypy --help",
-      "mypy --help",
-      "mypyc --help",
-      "stubgen --help",
-      "stubtest --help",
-      "dir %SP_DIR%\\mypy\\*.pyd /s /b"
-     ],
-     "imports": [
-      "mypy",
-      "mypy.dmypy",
-      "mypy.plugins",
-      "mypy.server",
-      "mypyc"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "The compiled language is a strict, gradually typed Python variant. It\nrestricts the use of some dynamic Python features to gain performance,\nbut it's mostly compatible with standard Python.\n\nMypyc uses mypy to perform type checking and type inference. Most type\nsystem features in the stdlib typing module are supported.\n\nCompiled modules can import arbitrary Python modules and third-party\nlibraries. You can compile anything from a single performance-critical\nmodule to your entire codebase. You can run the modules you compile also\nas normal, interpreted Python modules.\n\nExisting code with type annotations is often 1.5x to 5x faster when\ncompiled. Code tuned for mypyc can be 5x to 10x faster.\n\nMypyc currently aims to speed up non-numeric code, such as server\napplications. Mypyc is also used to compile itself (and mypy).\n",
-     "dev_url": "https://github.com/python/mypy/blob/master/mypyc",
-     "home": "https://mypyc.readthedocs.io",
-     "license": "MIT",
-     "license_family": "MIT",
-     "license_file": "LICENSE",
-     "summary": "Mypyc compiles Python modules to C extensions. It uses standard Python type hints to generate fast code."
-    },
+    "build": null,
     "name": "mypyc",
     "requirements": {
      "host": [
