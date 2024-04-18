@@ -24,7 +24,7 @@
    "summary": "A fast C++/Python thermodynamical library"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -37,6 +37,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja",
       "xtensor>=0.24",
@@ -64,6 +65,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja"
      ],
@@ -110,6 +112,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libboost-python-devel",
@@ -157,7 +160,7 @@
    "summary": "A fast C++/Python thermodynamical library"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -170,6 +173,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja",
       "xtensor>=0.24",
@@ -197,6 +201,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja"
      ],
@@ -234,6 +239,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja",
       "xtensor>=0.24",
@@ -261,6 +267,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja"
      ],
@@ -298,6 +305,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja",
       "xtensor>=0.24",
@@ -321,6 +329,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja"
      ],
@@ -375,7 +384,7 @@
    "summary": "A fast C++/Python thermodynamical library"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -388,6 +397,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja",
       "xtensor>=0.24",
@@ -415,6 +425,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja"
      ],
@@ -461,6 +472,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libboost-python-devel",
@@ -513,10 +525,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libthermo.json"
  },
- "raw_meta_yaml": "{% set name = \"libthermo\" %}\n{% set version = \"0.3.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/twiinIT/libthermo/archive/refs/tags/{{ version }}.tar.gz\n  sha256: 5cf2b2eb3922150bc07b7f1ac36e7422420c797fea13e77887b090de242bbf07\n\nbuild:\n  number: 0\n\noutputs:\n  - name: libthermo\n    version: {{ version }}\n    script: build_libthermo.sh                       # [unix]\n    script: build_libthermo.bat                      # [win]\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - cmake\n        - ninja\n        - xtensor>=0.24\n        - libboost-python-devel\n        - xsimd=9.*\n        - tbb-devel\n      host: []  # Empty host dependency section\n\n    test:\n      commands:\n        - test -d ${PREFIX}/include/libthermo  # [unix]\n        - test -f ${PREFIX}/include/libthermo/version.hpp  # [unix]\n        - test -f ${PREFIX}/lib/cmake/libthermo/libthermoConfig.cmake  # [unix]\n        - if not exist %LIBRARY_PREFIX%\\include\\libthermo\\version.hpp (exit 1)  # [win]\n        - if not exist %LIBRARY_PREFIX%\\lib\\cmake\\libthermo\\libthermoConfig.cmake (exit 1)  # [win]\n        {% set version_split = version.split('.') %}\n        - cat $PREFIX/include/libthermo/version.hpp | grep \"LIBTHERMO_VERSION_MAJOR {{ version_split[0] }}\"  # [unix]\n        - cat $PREFIX/include/libthermo/version.hpp | grep \"LIBTHERMO_VERSION_MINOR {{ version_split[1] }}\"  # [unix]\n        - cat $PREFIX/include/libthermo/version.hpp | grep \"LIBTHERMO_VERSION_PATCH {{ version_split[2] }}\"  # [unix]\n\n  - name: pythermo\n    version: {{ version }}\n    script: build_libthermo.sh                       # [unix]\n    script: build_libthermo.bat                      # [win]\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - cmake\n        - ninja\n      host:\n        - python\n        - pybind11-abi\n        - pip\n        - xtensor>=0.24,<0.24.6\n        - xsimd=9.*\n        - xtensor-python\n        - xtensor\n        - tbb-devel\n        - libboost-python-devel\n        - pybind11\n        - numpy>=1.20\n      run:\n        - xtensor-python\n        - numpy\n\n    test:\n      imports:\n        - pythermo.pythermo_core\n      commands:\n        - python -c \"import pythermo._version; assert pythermo._version.__version__ == '{{ version }}'\"\n\nabout:\n  home: https://github.com/twiinIT/libthermo\n  summary: 'A fast C++/Python thermodynamical library'\n  description: |\n    libthermo is a fast C++ thermodynamical library\n    Python bindings are provided in pythermo.\n  license: BSD-3-Clause\n  license_file: LICENSE\n  license_family: BSD\n  dev_url: https://github.com/twiinIT/libthermo\n\nextra:\n  recipe-maintainers:\n    - adriendelsalle\n",
+ "raw_meta_yaml": "{% set name = \"libthermo\" %}\n{% set version = \"0.3.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/twiinIT/libthermo/archive/refs/tags/{{ version }}.tar.gz\n  sha256: 5cf2b2eb3922150bc07b7f1ac36e7422420c797fea13e77887b090de242bbf07\n\nbuild:\n  number: 1\n\noutputs:\n  - name: libthermo\n    version: {{ version }}\n    script: build_libthermo.sh                       # [unix]\n    script: build_libthermo.bat                      # [win]\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ stdlib(\"c\") }}\n        - cmake\n        - ninja\n        - xtensor>=0.24\n        - libboost-python-devel\n        - xsimd=9.*\n        - tbb-devel\n      host: []  # Empty host dependency section\n\n    test:\n      commands:\n        - test -d ${PREFIX}/include/libthermo  # [unix]\n        - test -f ${PREFIX}/include/libthermo/version.hpp  # [unix]\n        - test -f ${PREFIX}/lib/cmake/libthermo/libthermoConfig.cmake  # [unix]\n        - if not exist %LIBRARY_PREFIX%\\include\\libthermo\\version.hpp (exit 1)  # [win]\n        - if not exist %LIBRARY_PREFIX%\\lib\\cmake\\libthermo\\libthermoConfig.cmake (exit 1)  # [win]\n        {% set version_split = version.split('.') %}\n        - cat $PREFIX/include/libthermo/version.hpp | grep \"LIBTHERMO_VERSION_MAJOR {{ version_split[0] }}\"  # [unix]\n        - cat $PREFIX/include/libthermo/version.hpp | grep \"LIBTHERMO_VERSION_MINOR {{ version_split[1] }}\"  # [unix]\n        - cat $PREFIX/include/libthermo/version.hpp | grep \"LIBTHERMO_VERSION_PATCH {{ version_split[2] }}\"  # [unix]\n\n  - name: pythermo\n    version: {{ version }}\n    script: build_libthermo.sh                       # [unix]\n    script: build_libthermo.bat                      # [win]\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ stdlib(\"c\") }}\n        - cmake\n        - ninja\n      host:\n        - python\n        - pybind11-abi\n        - pip\n        - xtensor>=0.24,<0.24.6\n        - xsimd=9.*\n        - xtensor-python\n        - xtensor\n        - tbb-devel\n        - libboost-python-devel\n        - pybind11\n        - numpy>=1.20\n      run:\n        - xtensor-python\n        - numpy\n\n    test:\n      imports:\n        - pythermo.pythermo_core\n      commands:\n        - python -c \"import pythermo._version; assert pythermo._version.__version__ == '{{ version }}'\"\n\nabout:\n  home: https://github.com/twiinIT/libthermo\n  summary: 'A fast C++/Python thermodynamical library'\n  description: |\n    libthermo is a fast C++ thermodynamical library\n    Python bindings are provided in pythermo.\n  license: BSD-3-Clause\n  license_file: LICENSE\n  license_family: BSD\n  dev_url: https://github.com/twiinIT/libthermo\n\nextra:\n  recipe-maintainers:\n    - adriendelsalle\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "libboost-python-devel",
@@ -536,6 +549,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libboost-python-devel",
@@ -548,6 +562,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libboost-python-devel",
     "numpy",
@@ -564,6 +579,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numpy",
     "xtensor-python"
@@ -579,6 +595,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libboost-python-devel",
@@ -632,7 +649,7 @@
    "summary": "A fast C++/Python thermodynamical library"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -645,6 +662,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja",
       "xtensor>=0.24",
@@ -668,6 +686,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja"
      ],
@@ -714,6 +733,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libboost-python-devel",
