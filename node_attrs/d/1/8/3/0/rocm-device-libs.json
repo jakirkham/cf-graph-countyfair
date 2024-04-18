@@ -26,17 +26,19 @@
   },
   "extra": {
    "recipe-maintainers": [
-    "isuruf"
+    "isuruf",
+    "zklaus"
    ]
   },
   "package": {
    "name": "rocm-device-libs",
-   "version": "6.0.2"
+   "version": "6.1.0"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -52,8 +54,8 @@
    "patches": [
     "patches/0001-Use-a-folder-inside-lib-for-bitcode-instead-of-top-l.patch"
    ],
-   "sha256": "c6d88b9b46e39d5d21bd5a0c1eba887ec473a370b1ed0cebd1d2e910eedc5837",
-   "url": "https://github.com/ROCm/ROCm-Device-Libs/archive/refs/tags/rocm-6.0.2.tar.gz"
+   "sha256": "6bd9912441de6caf6b26d1323e1c899ecd14ff2431874a2f5883d3bc5212db34",
+   "url": "https://github.com/ROCm/llvm-project/archive/refs/tags/rocm-6.1.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -66,6 +68,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -103,17 +106,19 @@
   },
   "extra": {
    "recipe-maintainers": [
-    "isuruf"
+    "isuruf",
+    "zklaus"
    ]
   },
   "package": {
    "name": "rocm-device-libs",
-   "version": "6.0.2"
+   "version": "6.1.0"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -129,8 +134,8 @@
    "patches": [
     "patches/0001-Use-a-folder-inside-lib-for-bitcode-instead-of-top-l.patch"
    ],
-   "sha256": "c6d88b9b46e39d5d21bd5a0c1eba887ec473a370b1ed0cebd1d2e910eedc5837",
-   "url": "https://github.com/ROCm/ROCm-Device-Libs/archive/refs/tags/rocm-6.0.2.tar.gz"
+   "sha256": "6bd9912441de6caf6b26d1323e1c899ecd14ff2431874a2f5883d3bc5212db34",
+   "url": "https://github.com/ROCm/llvm-project/archive/refs/tags/rocm-6.1.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -152,11 +157,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/rocm-device-libs.json"
  },
- "raw_meta_yaml": "{% set name = \"rocm-device-libs\" %}\n{% set version = \"6.0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ROCm/ROCm-Device-Libs/archive/refs/tags/rocm-6.0.2.tar.gz\n  sha256: c6d88b9b46e39d5d21bd5a0c1eba887ec473a370b1ed0cebd1d2e910eedc5837\n  patches:\n    - patches/0001-Use-a-folder-inside-lib-for-bitcode-instead-of-top-l.patch\n\nbuild:\n  number: 0\n  skip: True  # [not linux]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make\n  host:\n    - rocm-cmake\n    - zlib\n    - clangdev 17.*\n    - llvmdev 17.*\n    - llvm\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/amdgcn/bitcode/hip.bc\n\nabout:\n  home: https://github.com/ROCm/ROCm-Device-Libs\n  license: NCSA\n  license_family: MIT\n  license_file: LICENSE.TXT\n  summary: 'ROCm Device libraries'\n\nextra:\n  recipe-maintainers:\n    - isuruf\n",
+ "raw_meta_yaml": "{% set name = \"rocm-device-libs\" %}\n{% set version = \"6.1.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ROCm/llvm-project/archive/refs/tags/rocm-{{ version }}.tar.gz\n  sha256: 6bd9912441de6caf6b26d1323e1c899ecd14ff2431874a2f5883d3bc5212db34\n  patches:\n    - patches/0001-Use-a-folder-inside-lib-for-bitcode-instead-of-top-l.patch\n\nbuild:\n  number: 0\n  skip: True  # [not linux]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - cmake\n    - make\n  host:\n    - rocm-cmake\n    - zlib\n    - clangdev 17.*\n    - llvmdev 17.*\n    - llvm\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/amdgcn/bitcode/hip.bc\n\nabout:\n  home: https://github.com/ROCm/ROCm-Device-Libs\n  license: NCSA\n  license_family: MIT\n  license_file: LICENSE.TXT\n  summary: 'ROCm Device libraries'\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - zklaus\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "clangdev",
    "cmake",
    "cxx_compiler_stub",
@@ -172,6 +178,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -181,6 +188,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "clangdev",
     "cxx_compiler_stub",
     "llvm",
@@ -193,6 +201,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -207,6 +216,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -231,8 +241,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/ROCm/ROCm-Device-Libs/archive/refs/tags/rocm-6.0.2.tar.gz",
- "version": "6.0.2",
+ "url": "https://github.com/ROCm/llvm-project/archive/refs/tags/rocm-6.1.0.tar.gz",
+ "version": "6.1.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/rocm-device-libs.json"
  }
