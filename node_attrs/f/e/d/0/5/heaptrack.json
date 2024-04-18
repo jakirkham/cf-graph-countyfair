@@ -31,7 +31,7 @@
    "ignore_run_exports": [
     "elfutils"
    ],
-   "number": "4"
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -78,6 +79,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -118,7 +120,7 @@
    "ignore_run_exports": [
     "elfutils"
    ],
-   "number": "4"
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -133,6 +135,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -165,6 +168,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -205,7 +209,7 @@
    "ignore_run_exports": [
     "elfutils"
    ],
-   "number": "4"
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -220,6 +224,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -252,6 +257,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -292,7 +298,7 @@
    "ignore_run_exports": [
     "elfutils"
    ],
-   "number": "4"
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -307,6 +313,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -351,10 +358,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/heaptrack.json"
  },
- "raw_meta_yaml": "\n{% set name = \"heaptrack\" %}\n{% set version = \"1.2.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/KDE/heaptrack/archive/v{{ version }}.tar.gz\n  sha256: f299a4846b80e607a412f439e17cddae13f0529701ffdb05eaa7ba878865717e\n  folder: source\n  patches:\n    - stdc_format.patch\n\nbuild:\n  number: 4\n  skip: true  # [not linux]\n  ignore_run_exports:\n    - elfutils\n  \n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - make\n  host:\n    - libboost-devel\n    - libunwind\n    - elfutils\n    - zlib\n  run:\n    - libunwind\n    - elfutils\n\ntest:\n  commands:\n    - heaptrack_print --help\n\nabout:\n  home: https://github.com/KDE/heaptrack\n  license: LGPL-2.1-or-later\n  license_file: source/COPYING\n  summary: 'heaptrack - a heap memory profiler for Linux'\n  description: |\n    Heaptrack traces all memory allocations and annotates these events with stack traces. Dedicated analysis tools then allow you to interpret the heap memory profile to:\n      find hotspots that need to be optimized to reduce the memory footprint of your application\n      find memory leaks, i.e. locations that allocate memory which is never deallocated\n      find allocation hotspots, i.e. code locations that trigger a lot of memory allocation calls\n      find temporary allocations, which are allocations that are directly followed by their deallocation\n  doc_url: https://userbase.kde.org/Heaptrack\n  dev_url: https://github.com/KDE/heaptrack\n\nextra:\n  recipe-maintainers:\n    - bcouturi\n    - chrisburr\n    \n",
+ "raw_meta_yaml": "\n{% set name = \"heaptrack\" %}\n{% set version = \"1.2.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/KDE/heaptrack/archive/v{{ version }}.tar.gz\n  sha256: f299a4846b80e607a412f439e17cddae13f0529701ffdb05eaa7ba878865717e\n  folder: source\n  patches:\n    - stdc_format.patch\n\nbuild:\n  number: 5\n  skip: true  # [not linux]\n  ignore_run_exports:\n    - elfutils\n  \n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - make\n  host:\n    - libboost-devel\n    - libunwind\n    - elfutils\n    - zlib\n  run:\n    - libunwind\n    - elfutils\n\ntest:\n  commands:\n    - heaptrack_print --help\n\nabout:\n  home: https://github.com/KDE/heaptrack\n  license: LGPL-2.1-or-later\n  license_file: source/COPYING\n  summary: 'heaptrack - a heap memory profiler for Linux'\n  description: |\n    Heaptrack traces all memory allocations and annotates these events with stack traces. Dedicated analysis tools then allow you to interpret the heap memory profile to:\n      find hotspots that need to be optimized to reduce the memory footprint of your application\n      find memory leaks, i.e. locations that allocate memory which is never deallocated\n      find allocation hotspots, i.e. code locations that trigger a lot of memory allocation calls\n      find temporary allocations, which are allocations that are directly followed by their deallocation\n  doc_url: https://userbase.kde.org/Heaptrack\n  dev_url: https://github.com/KDE/heaptrack\n\nextra:\n  recipe-maintainers:\n    - bcouturi\n    - chrisburr\n    \n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "elfutils",
@@ -368,6 +376,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -376,6 +385,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "elfutils",
     "libboost-devel",
@@ -386,6 +396,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "elfutils",
     "libunwind"
@@ -401,6 +412,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
