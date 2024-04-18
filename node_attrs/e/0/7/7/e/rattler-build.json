@@ -4,6 +4,7 @@
  "conda-forge.yml": {
   "build_platform": {
    "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -162,6 +163,91 @@
   }
  },
  "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cargo-bundle-licenses",
+    "cmake",
+    "cxx_compiler_stub",
+    "make",
+    "rust_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "openssl"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "description": "The rattler-build tooling and library creates cross-platform relocatable binaries / packages\nfrom a simple recipe format.\nThe recipe format is heavily inspired by conda-build and boa, and the output of a regular\nrattler-build run is a package that can be installed using mamba, conda or rattler.\n",
+   "doc_url": "https://prefix-dev.github.io/rattler-build",
+   "home": "https://github.com/prefix-dev/rattler-build",
+   "license": "BSD-3-Clause",
+   "license_file": [
+    "LICENSE",
+    "THIRDPARTY.yml",
+    "CONDA_BUILD_LICENSE.txt"
+   ],
+   "summary": "rattler-build is the universal conda package builder for Windows, macOS and Linux"
+  },
+  "build": {
+   "detect_binary_files_with_prefix": false,
+   "number": "0",
+   "script": [
+    "export OPENSSL_DIR=\"$PREFIX\"",
+    "cargo install --locked --bins --root ${PREFIX} --path .",
+    "cargo-bundle-licenses --format yaml --output ${SRC_DIR}/THIRDPARTY.yml",
+    "rm $PREFIX/.crates2.json",
+    "rm $PREFIX/.crates.toml"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "wolfv",
+    "pavelzw",
+    "0xbe7a"
+   ]
+  },
+  "package": {
+   "name": "rattler-build",
+   "version": "0.15.0"
+  },
+  "requirements": {
+   "build": [
+    "rust_compiler_stub",
+    "cargo-bundle-licenses",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cmake",
+    "make"
+   ],
+   "host": [
+    "openssl"
+   ]
+  },
+  "source": {
+   "sha256": "f60739e4815873ff6fa18c54256ecf46af8743136d64b659a2b6eea15fe8bcd6",
+   "url": "https://github.com/prefix-dev/rattler-build/archive/refs/tags/v0.15.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "rattler-build --help"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
   "build": {
    "__set__": true,
    "elements": [
@@ -423,6 +509,7 @@
  "platforms": [
   "linux_64",
   "linux_aarch64",
+  "linux_ppc64le",
   "osx_64",
   "osx_arm64",
   "win_64"
