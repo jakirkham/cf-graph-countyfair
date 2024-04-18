@@ -54,7 +54,8 @@
    "build": [
     "cmake",
     "ninja",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -97,6 +98,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -162,7 +164,8 @@
    "build": [
     "cmake",
     "ninja",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -203,6 +206,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -268,7 +272,8 @@
    "build": [
     "cmake",
     "ninja",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -309,6 +314,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -375,7 +381,8 @@
    "build": [
     "cmake",
     "ninja",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -447,7 +454,8 @@
    "build": [
     "cmake",
     "ninja",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -489,6 +497,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -555,7 +564,8 @@
    "build": [
     "cmake",
     "ninja",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -597,6 +607,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -651,10 +662,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyclesperanto.json"
  },
- "raw_meta_yaml": "{% set name = \"pyclesperanto\" %}\n{% set version = \"0.10.1\" %}\n{% set build_number = 0 %}\n{% set sha256 = \"72a4db8f90477cb70a2f3a86a62149c83b9708da2e688e436c8683e1c60e55c8\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  skip: true  # [python_impl == 'pypy' and (aarch64 or ppc64le)]\n  number: {{ build_number }}\n  script:\n    - CMAKE_GENERATOR=\"Ninja\" {{ PYTHON }} -m pip install . -vv     # [linux or osx] \n    - {{ PYTHON }} -m pip install . -vv     # [win] \n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n    - cmake\n    - ninja          # [linux or osx] \n    - {{ compiler('cxx') }}\n\n  host:\n    - pip\n    - python\n    - scikit-build-core\n    - pybind11\n    - numpy\n    - khronos-opencl-icd-loader          # [win or osx] \n    - ocl-icd          # [linux]\n\n  run:\n    - python\n    - numpy\n    - toolz\n    - matplotlib-base\n    - khronos-opencl-icd-loader          # [win or osx] \n    - ocl-icd          # [linux]\n    - libcxx         # [osx]\ntest:\n  imports:\n    - {{ name }}\n  requires:\n    - pytest\n    - scikit-image\n    - pocl          # [linux or osx]\n    - oclgrind          # [win]\n    # - intel-opencl-rt   # [win64]\n  source_files:\n    - tests\n  commands:\n    # - pytest tests --ignore=tests/test_image.py -k \"not test_connected_components_labeling_box_blobs and not test_exclude_labels_on_edges_blobs and not test_exclude_labels_on_edges_blobs_2\"  # [win64]\n    - pytest -v tests/   # [linux64]\n\nabout:\n  home: https://pypi.org/project/pyclesperanto/\n  doc_url: https://clesperanto.github.io/pyclesperanto/\n  dev_url: https://github.com/clEsperanto/pyclesperanto/\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: GPU-accelerated Image Processing library using OpenCL\n  description: |\n    pyclesperanto is the python package of clEsperanto - a multi-language framework for GPU-accelerated image processing. \n    clEsperanto uses OpenCL kernels extended with CLIJ custom syntax.\nextra:\n  recipe-maintainers:\n    - StRigaud\n    - haesleinhuepf\n",
+ "raw_meta_yaml": "{% set name = \"pyclesperanto\" %}\n{% set version = \"0.10.1\" %}\n{% set build_number = 0 %}\n{% set sha256 = \"72a4db8f90477cb70a2f3a86a62149c83b9708da2e688e436c8683e1c60e55c8\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  skip: true  # [python_impl == 'pypy' and (aarch64 or ppc64le)]\n  number: {{ build_number }}\n  script:\n    - CMAKE_GENERATOR=\"Ninja\" {{ PYTHON }} -m pip install . -vv     # [linux or osx] \n    - {{ PYTHON }} -m pip install . -vv     # [win] \n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n    - cmake\n    - ninja          # [linux or osx] \n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n\n  host:\n    - pip\n    - python\n    - scikit-build-core\n    - pybind11\n    - numpy\n    - khronos-opencl-icd-loader          # [win or osx] \n    - ocl-icd          # [linux]\n\n  run:\n    - python\n    - numpy\n    - toolz\n    - matplotlib-base\n    - khronos-opencl-icd-loader          # [win or osx] \n    - ocl-icd          # [linux]\n    - libcxx         # [osx]\ntest:\n  imports:\n    - {{ name }}\n  requires:\n    - pytest\n    - scikit-image\n    - pocl          # [linux or osx]\n    - oclgrind          # [win]\n    # - intel-opencl-rt   # [win64]\n  source_files:\n    - tests\n  commands:\n    # - pytest tests --ignore=tests/test_image.py -k \"not test_connected_components_labeling_box_blobs and not test_exclude_labels_on_edges_blobs and not test_exclude_labels_on_edges_blobs_2\"  # [win64]\n    - pytest -v tests/   # [linux64]\n\nabout:\n  home: https://pypi.org/project/pyclesperanto/\n  doc_url: https://clesperanto.github.io/pyclesperanto/\n  dev_url: https://github.com/clEsperanto/pyclesperanto/\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: GPU-accelerated Image Processing library using OpenCL\n  description: |\n    pyclesperanto is the python package of clEsperanto - a multi-language framework for GPU-accelerated image processing. \n    clEsperanto uses OpenCL kernels extended with CLIJ custom syntax.\nextra:\n  recipe-maintainers:\n    - StRigaud\n    - haesleinhuepf\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "khronos-opencl-icd-loader",
@@ -674,6 +686,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -682,6 +695,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "khronos-opencl-icd-loader",
     "numpy",
@@ -695,6 +709,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "khronos-opencl-icd-loader",
     "libcxx",
@@ -720,6 +735,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
@@ -793,7 +809,8 @@
   "requirements": {
    "build": [
     "cmake",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -834,6 +851,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
