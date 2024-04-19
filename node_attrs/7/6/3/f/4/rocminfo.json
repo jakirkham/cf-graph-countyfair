@@ -28,7 +28,7 @@
    "summary": "ROCm Application for Reporting System Info"
   },
   "build": {
-   "number": "1"
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -38,7 +38,7 @@
   },
   "package": {
    "name": "rocminfo",
-   "version": "6.0.2"
+   "version": "6.1.0"
   },
   "requirements": {
    "build": [
@@ -51,16 +51,16 @@
    ],
    "host": [
     "numactl",
-    "rocr-runtime 6.0.2"
+    "rocr-runtime 6.1.0"
    ],
    "run": [
-    "rocr-runtime 6.0.2",
+    "rocr-runtime 6.1.0",
     "libnuma"
    ]
   },
   "source": {
-   "sha256": "e616d364a48de18eaee661bdce999d095086905f49777663ca99312f40a63da1",
-   "url": "https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-6.0.2.tar.gz"
+   "sha256": "973352210fdc65932f0125e2db68729383727eaf4ebb7f52c88a948c14bbbb73",
+   "url": "https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-6.1.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -109,7 +109,7 @@
    "summary": "ROCm Application for Reporting System Info"
   },
   "build": {
-   "number": "1"
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -119,7 +119,7 @@
   },
   "package": {
    "name": "rocminfo",
-   "version": "6.0.2"
+   "version": "6.1.0"
   },
   "requirements": {
    "build": [
@@ -132,16 +132,16 @@
    ],
    "host": [
     "numactl",
-    "rocr-runtime 6.0.2"
+    "rocr-runtime 6.1.0"
    ],
    "run": [
-    "rocr-runtime 6.0.2",
+    "rocr-runtime 6.1.0",
     "libnuma"
    ]
   },
   "source": {
-   "sha256": "e616d364a48de18eaee661bdce999d095086905f49777663ca99312f40a63da1",
-   "url": "https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-6.0.2.tar.gz"
+   "sha256": "973352210fdc65932f0125e2db68729383727eaf4ebb7f52c88a948c14bbbb73",
+   "url": "https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-6.1.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -164,7 +164,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/rocminfo.json"
  },
- "raw_meta_yaml": "{% set name = \"rocminfo\" %}\n{% set version = \"6.0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-{{ version }}.tar.gz\n  sha256: e616d364a48de18eaee661bdce999d095086905f49777663ca99312f40a63da1\n\nbuild:\n  number: 1\n  skip: True  # [not linux]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - sysroot_linux-64 2.17  # [linux64]\n    - {{ cdt('pciutils-devel') }}\n    - cmake\n    - make\n  host:\n    - numactl\n    - rocr-runtime {{ version }}\n  run:\n    - rocr-runtime {{ version }}\n    - libnuma\n\ntest:\n  commands:\n    # Can't run this command without an AMD GPU\n    - test -f $PREFIX/bin/rocminfo\n    - test -f $PREFIX/bin/rocm_agent_enumerator\n    - msg=$($PREFIX/bin/rocminfo 2>&1; test $? -eq 1) && test \"$msg\" = \"$(echo -e '\\033[31mROCk module is NOT loaded, possibly no GPU devices\\033[0m')\"   # [CI]\n\nabout:\n  home: https://github.com/ROCm/rocminfo\n  license: NCSA\n  license_family: MIT\n  license_file: License.txt\n  summary: 'ROCm Application for Reporting System Info'\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - zklaus\n",
+ "raw_meta_yaml": "{% set name = \"rocminfo\" %}\n{% set version = \"6.1.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-{{ version }}.tar.gz\n  sha256: 973352210fdc65932f0125e2db68729383727eaf4ebb7f52c88a948c14bbbb73\n\nbuild:\n  number: 0\n  skip: true  # [not linux]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - sysroot_linux-64 2.17  # [linux64]\n    - {{ cdt('pciutils-devel') }}\n    - cmake\n    - make\n  host:\n    - numactl\n    - rocr-runtime {{ version }}\n  run:\n    - rocr-runtime {{ version }}\n    - libnuma\n\ntest:\n  commands:\n    # Can't run this command without an AMD GPU\n    - test -f $PREFIX/bin/rocminfo\n    - test -f $PREFIX/bin/rocm_agent_enumerator\n    - msg=$($PREFIX/bin/rocminfo 2>&1; test $? -eq 1) && test \"$msg\" = \"$(echo -e '\\033[31mROCk module is NOT loaded, possibly no GPU devices\\033[0m')\"   # [CI]\n\nabout:\n  home: https://github.com/ROCm/rocminfo\n  license: NCSA\n  license_family: MIT\n  license_file: License.txt\n  summary: 'ROCm Application for Reporting System Info'\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - zklaus\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -231,14 +231,14 @@
    "__set__": true,
    "elements": [
     "numactl",
-    "rocr-runtime 6.0.2"
+    "rocr-runtime 6.1.0"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "libnuma",
-    "rocr-runtime 6.0.2"
+    "rocr-runtime 6.1.0"
    ]
   },
   "test": {
@@ -246,8 +246,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-6.0.2.tar.gz",
- "version": "6.0.2",
+ "url": "https://github.com/RadeonOpenCompute/rocminfo/archive/rocm-6.1.0.tar.gz",
+ "version": "6.1.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/rocminfo.json"
  }
