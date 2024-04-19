@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,7 +12,12 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "azure"
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "jtango",
  "hash_type": "sha256",
@@ -27,37 +35,59 @@
    "summary": "TANGO kernel Java implementation."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
+   "feedstock-name": "jtango",
    "recipe-maintainers": [
     "beenje"
    ]
   },
+  "outputs": [
+   {
+    "name": "jtango-logback",
+    "script": "install-logback.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/tango/logback.xml",
+      "test -f ${PREFIX}/share/tango/logback-server.xml",
+      "test ! -f ${PREFIX}/share/java/JTango.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango",
+    "requirements": {
+     "run": [
+      "jtango-logback",
+      "openjdk >=8"
+     ]
+    },
+    "script": "install-jar.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/java/JTango.jar",
+      "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "jtango",
+   "name": "jtango-split",
    "version": "9.7.2"
   },
   "requirements": {
    "build": [
-    "openjdk 8",
+    "openjdk 11",
     "maven"
    ],
    "run": [
-    "openjdk >=8"
+    "openjdk >=11"
    ]
   },
   "source": {
    "sha256": "6bbbb17a8f858a698fdbe0265973f34c344b2f0e920bddfeefcfc987bbe33391",
    "url": "https://gitlab.com/tango-controls/JTango/-/archive/9.7.2/JTango-9.7.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f ${PREFIX}/share/java/JTango.jar",
-    "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar",
-    "test -f ${PREFIX}/share/tango/logback.xml",
-    "test -f ${PREFIX}/share/tango/logback-server.xml"
-   ]
   }
  },
  "linux_64_requirements": {
@@ -75,6 +105,193 @@
   "run": {
    "__set__": true,
    "elements": [
+    "jtango-logback",
+    "openjdk"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "description": "TANGO kernel Java implementation. Compatible with Java 8 and onwards.\nTango-Controls is a software toolkit for building control systems.\n",
+   "dev_url": "https://gitlab.com/tango-controls/JTango",
+   "doc_url": "https://jtango.readthedocs.io/",
+   "home": "https://www.tango-controls.org",
+   "license": "LGPL-3.0-or-later",
+   "license_file": [
+    "LICENSE",
+    "aggregate-third-party-report.html"
+   ],
+   "summary": "TANGO kernel Java implementation."
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "feedstock-name": "jtango",
+   "recipe-maintainers": [
+    "beenje"
+   ]
+  },
+  "outputs": [
+   {
+    "name": "jtango-logback",
+    "script": "install-logback.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/tango/logback.xml",
+      "test -f ${PREFIX}/share/tango/logback-server.xml",
+      "test ! -f ${PREFIX}/share/java/JTango.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango",
+    "requirements": {
+     "run": [
+      "jtango-logback",
+      "openjdk >=8"
+     ]
+    },
+    "script": "install-jar.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/java/JTango.jar",
+      "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar"
+     ]
+    }
+   }
+  ],
+  "package": {
+   "name": "jtango-split",
+   "version": "9.7.2"
+  },
+  "requirements": {
+   "build": [
+    "openjdk 11",
+    "maven"
+   ],
+   "run": [
+    "openjdk >=11"
+   ]
+  },
+  "source": {
+   "sha256": "6bbbb17a8f858a698fdbe0265973f34c344b2f0e920bddfeefcfc987bbe33391",
+   "url": "https://gitlab.com/tango-controls/JTango/-/archive/9.7.2/JTango-9.7.2.tar.gz"
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "maven",
+    "openjdk"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "jtango-logback",
+    "openjdk"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "description": "TANGO kernel Java implementation. Compatible with Java 8 and onwards.\nTango-Controls is a software toolkit for building control systems.\n",
+   "dev_url": "https://gitlab.com/tango-controls/JTango",
+   "doc_url": "https://jtango.readthedocs.io/",
+   "home": "https://www.tango-controls.org",
+   "license": "LGPL-3.0-or-later",
+   "license_file": [
+    "LICENSE",
+    "aggregate-third-party-report.html"
+   ],
+   "summary": "TANGO kernel Java implementation."
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "feedstock-name": "jtango",
+   "recipe-maintainers": [
+    "beenje"
+   ]
+  },
+  "outputs": [
+   {
+    "name": "jtango-logback",
+    "script": "install-logback.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/tango/logback.xml",
+      "test -f ${PREFIX}/share/tango/logback-server.xml",
+      "test ! -f ${PREFIX}/share/java/JTango.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango",
+    "requirements": {
+     "run": [
+      "jtango-logback",
+      "openjdk >=8"
+     ]
+    },
+    "script": "install-jar.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/java/JTango.jar",
+      "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar"
+     ]
+    }
+   }
+  ],
+  "package": {
+   "name": "jtango-split",
+   "version": "9.7.2"
+  },
+  "requirements": {
+   "build": [
+    "openjdk 11",
+    "maven"
+   ],
+   "run": [
+    "openjdk >=11"
+   ]
+  },
+  "source": {
+   "sha256": "6bbbb17a8f858a698fdbe0265973f34c344b2f0e920bddfeefcfc987bbe33391",
+   "url": "https://gitlab.com/tango-controls/JTango/-/archive/9.7.2/JTango-9.7.2.tar.gz"
+  }
+ },
+ "linux_ppc64le_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "maven",
+    "openjdk"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "jtango-logback",
     "openjdk"
    ]
   },
@@ -97,43 +314,196 @@
    "summary": "TANGO kernel Java implementation."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
+   "feedstock-name": "jtango",
    "recipe-maintainers": [
     "beenje"
    ]
   },
+  "outputs": [
+   {
+    "name": "jtango-logback",
+    "script": "install-logback.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/tango/logback.xml",
+      "test -f ${PREFIX}/share/tango/logback-server.xml",
+      "test ! -f ${PREFIX}/share/java/JTango.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango",
+    "requirements": {
+     "run": [
+      "jtango-logback",
+      "openjdk >=8"
+     ]
+    },
+    "script": "install-jar.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/java/JTango.jar",
+      "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango-logback",
+    "script": "install-logback.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/tango/logback.xml",
+      "test -f ${PREFIX}/share/tango/logback-server.xml",
+      "test ! -f ${PREFIX}/share/java/JTango.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango",
+    "requirements": {
+     "run": [
+      "jtango-logback",
+      "openjdk >=8"
+     ]
+    },
+    "script": "install-jar.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/java/JTango.jar",
+      "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango-logback",
+    "script": "install-logback.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/tango/logback.xml",
+      "test -f ${PREFIX}/share/tango/logback-server.xml",
+      "test ! -f ${PREFIX}/share/java/JTango.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango",
+    "requirements": {
+     "run": [
+      "jtango-logback",
+      "openjdk >=8"
+     ]
+    },
+    "script": "install-jar.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/java/JTango.jar",
+      "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango-logback",
+    "script": "install-logback.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/tango/logback.xml",
+      "test -f ${PREFIX}/share/tango/logback-server.xml",
+      "test ! -f ${PREFIX}/share/java/JTango.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango",
+    "requirements": {
+     "run": [
+      "jtango-logback",
+      "openjdk >=8"
+     ]
+    },
+    "script": "install-jar.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/java/JTango.jar",
+      "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango-logback",
+    "script": "install-logback.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/tango/logback.xml",
+      "test -f ${PREFIX}/share/tango/logback-server.xml",
+      "test ! -f ${PREFIX}/share/java/JTango.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango",
+    "requirements": {
+     "run": [
+      "jtango-logback",
+      "openjdk >=8"
+     ]
+    },
+    "script": "install-jar.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/java/JTango.jar",
+      "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango-logback",
+    "script": "install-logback.bat",
+    "test": {
+     "commands": [
+      "if not exist %PREFIX%\\share\\tango\\logback.xml exit 1",
+      "if not exist %PREFIX%\\share\\tango\\logback-server.xml exit 1",
+      "if exist %PREFIX%\\share\\java\\JTango.jar exit 1"
+     ]
+    }
+   },
+   {
+    "name": "jtango",
+    "requirements": {
+     "run": [
+      "jtango-logback",
+      "openjdk >=8"
+     ]
+    },
+    "script": "install-jar.bat",
+    "test": {
+     "commands": [
+      "if not exist %PREFIX%\\share\\java\\JTango.jar exit 1"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "jtango",
+   "name": "jtango-split",
    "version": "9.7.2"
   },
   "requirements": {
    "build": [
-    "openjdk 8",
+    "openjdk 11",
     "maven"
    ],
    "run": [
-    "openjdk >=8"
+    "openjdk >=11"
    ]
   },
   "source": {
    "sha256": "6bbbb17a8f858a698fdbe0265973f34c344b2f0e920bddfeefcfc987bbe33391",
    "url": "https://gitlab.com/tango-controls/JTango/-/archive/9.7.2/JTango-9.7.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f ${PREFIX}/share/java/JTango.jar",
-    "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar",
-    "test -f ${PREFIX}/share/tango/logback.xml",
-    "test -f ${PREFIX}/share/tango/logback-server.xml",
-    "if not exist %PREFIX%\\share\\java\\JTango.jar exit 1",
-    "if not exist %PREFIX%\\share\\tango\\logback.xml exit 1",
-    "if not exist %PREFIX%\\share\\tango\\logback-server.xml exit 1"
-   ]
   }
  },
- "name": "jtango",
+ "name": "jtango-split",
  "osx_64_meta_yaml": {
   "about": {
    "description": "TANGO kernel Java implementation. Compatible with Java 8 and onwards.\nTango-Controls is a software toolkit for building control systems.\n",
@@ -148,37 +518,59 @@
    "summary": "TANGO kernel Java implementation."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
+   "feedstock-name": "jtango",
    "recipe-maintainers": [
     "beenje"
    ]
   },
+  "outputs": [
+   {
+    "name": "jtango-logback",
+    "script": "install-logback.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/tango/logback.xml",
+      "test -f ${PREFIX}/share/tango/logback-server.xml",
+      "test ! -f ${PREFIX}/share/java/JTango.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango",
+    "requirements": {
+     "run": [
+      "jtango-logback",
+      "openjdk >=8"
+     ]
+    },
+    "script": "install-jar.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/java/JTango.jar",
+      "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "jtango",
+   "name": "jtango-split",
    "version": "9.7.2"
   },
   "requirements": {
    "build": [
-    "openjdk 8",
+    "openjdk 11",
     "maven"
    ],
    "run": [
-    "openjdk >=8"
+    "openjdk >=11"
    ]
   },
   "source": {
    "sha256": "6bbbb17a8f858a698fdbe0265973f34c344b2f0e920bddfeefcfc987bbe33391",
    "url": "https://gitlab.com/tango-controls/JTango/-/archive/9.7.2/JTango-9.7.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f ${PREFIX}/share/java/JTango.jar",
-    "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar",
-    "test -f ${PREFIX}/share/tango/logback.xml",
-    "test -f ${PREFIX}/share/tango/logback-server.xml"
-   ]
   }
  },
  "osx_64_requirements": {
@@ -196,6 +588,100 @@
   "run": {
    "__set__": true,
    "elements": [
+    "jtango-logback",
+    "openjdk"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "TANGO kernel Java implementation. Compatible with Java 8 and onwards.\nTango-Controls is a software toolkit for building control systems.\n",
+   "dev_url": "https://gitlab.com/tango-controls/JTango",
+   "doc_url": "https://jtango.readthedocs.io/",
+   "home": "https://www.tango-controls.org",
+   "license": "LGPL-3.0-or-later",
+   "license_file": [
+    "LICENSE",
+    "aggregate-third-party-report.html"
+   ],
+   "summary": "TANGO kernel Java implementation."
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "feedstock-name": "jtango",
+   "recipe-maintainers": [
+    "beenje"
+   ]
+  },
+  "outputs": [
+   {
+    "name": "jtango-logback",
+    "script": "install-logback.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/tango/logback.xml",
+      "test -f ${PREFIX}/share/tango/logback-server.xml",
+      "test ! -f ${PREFIX}/share/java/JTango.jar"
+     ]
+    }
+   },
+   {
+    "name": "jtango",
+    "requirements": {
+     "run": [
+      "jtango-logback",
+      "openjdk >=8"
+     ]
+    },
+    "script": "install-jar.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/java/JTango.jar",
+      "test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar"
+     ]
+    }
+   }
+  ],
+  "package": {
+   "name": "jtango-split",
+   "version": "9.7.2"
+  },
+  "requirements": {
+   "build": [
+    "openjdk 11",
+    "maven"
+   ],
+   "run": [
+    "openjdk >=11"
+   ]
+  },
+  "source": {
+   "sha256": "6bbbb17a8f858a698fdbe0265973f34c344b2f0e920bddfeefcfc987bbe33391",
+   "url": "https://gitlab.com/tango-controls/JTango/-/archive/9.7.2/JTango-9.7.2.tar.gz"
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "maven",
+    "openjdk"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "jtango-logback",
     "openjdk"
    ]
   },
@@ -207,22 +693,28 @@
  "outputs_names": {
   "__set__": true,
   "elements": [
-   "jtango"
+   "jtango",
+   "jtango-logback",
+   "jtango-split"
   ]
  },
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
+  "linux_ppc64le",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/jtango.json"
  },
- "raw_meta_yaml": "{% set name = \"JTango\" %}\n{% set version = \"9.7.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://gitlab.com/tango-controls/JTango/-/archive/{{ version }}/JTango-{{ version }}.tar.gz\n  sha256: 6bbbb17a8f858a698fdbe0265973f34c344b2f0e920bddfeefcfc987bbe33391\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - openjdk 8\n    - maven\n  run:\n    - openjdk >=8\n\ntest:\n  commands:\n    - test -f ${PREFIX}/share/java/JTango.jar                      # [unix]\n    - test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar       # [unix]\n    - test -f ${PREFIX}/share/tango/logback.xml                    # [unix]\n    - test -f ${PREFIX}/share/tango/logback-server.xml             # [unix]\n    - if not exist %PREFIX%\\share\\java\\JTango.jar exit 1           # [win]\n    - if not exist %PREFIX%\\share\\tango\\logback.xml exit 1         # [win]\n    - if not exist %PREFIX%\\share\\tango\\logback-server.xml exit 1  # [win]\n\nabout:\n  home: https://www.tango-controls.org\n  license: LGPL-3.0-or-later\n  license_file:\n    - LICENSE\n    - aggregate-third-party-report.html\n\n  summary: TANGO kernel Java implementation.\n  description: |\n    TANGO kernel Java implementation. Compatible with Java 8 and onwards.\n    Tango-Controls is a software toolkit for building control systems.\n  doc_url: https://jtango.readthedocs.io/\n  dev_url: https://gitlab.com/tango-controls/JTango\n\nextra:\n  recipe-maintainers:\n    - beenje\n",
+ "raw_meta_yaml": "{% set version = \"9.7.2\" %}\n\npackage:\n  name: jtango-split\n  version: {{ version }}\n\nsource:\n  url: https://gitlab.com/tango-controls/JTango/-/archive/{{ version }}/JTango-{{ version }}.tar.gz\n  sha256: 6bbbb17a8f858a698fdbe0265973f34c344b2f0e920bddfeefcfc987bbe33391\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - openjdk 11\n    - maven\n  run:\n    - openjdk >=11\n\noutputs:\n  - name: jtango-logback\n    script: install-logback.sh  # [unix]\n    script: install-logback.bat  # [win]\n    test:\n      commands:\n        - test -f ${PREFIX}/share/tango/logback.xml                    # [unix]\n        - test -f ${PREFIX}/share/tango/logback-server.xml             # [unix]\n        - if not exist %PREFIX%\\share\\tango\\logback.xml exit 1         # [win]\n        - if not exist %PREFIX%\\share\\tango\\logback-server.xml exit 1  # [win]\n        # Test absence of jar file\n        - test ! -f ${PREFIX}/share/java/JTango.jar                    # [unix]\n        - if exist %PREFIX%\\share\\java\\JTango.jar exit 1               # [win]\n\n  - name: jtango\n    script: install-jar.sh   # [unix]\n    script: install-jar.bat  # [win]\n    requirements:\n      run:\n        - {{ pin_subpackage(\"jtango-logback\", exact=True) }}\n        - openjdk >=8\n    test:\n      commands:\n        - test -f ${PREFIX}/share/java/JTango.jar                      # [unix]\n        - test -f ${PREFIX}/share/java/JTango-${PKG_VERSION}.jar       # [unix]\n        - if not exist %PREFIX%\\share\\java\\JTango.jar exit 1           # [win]\n\nabout:\n  home: https://www.tango-controls.org\n  license: LGPL-3.0-or-later\n  license_file:\n    - LICENSE\n    - aggregate-third-party-report.html\n\n  summary: TANGO kernel Java implementation.\n  description: |\n    TANGO kernel Java implementation. Compatible with Java 8 and onwards.\n    Tango-Controls is a software toolkit for building control systems.\n  doc_url: https://jtango.readthedocs.io/\n  dev_url: https://gitlab.com/tango-controls/JTango\n\nextra:\n  feedstock-name: jtango\n  recipe-maintainers:\n    - beenje\n",
  "req": {
   "__set__": true,
   "elements": [
+   "jtango-logback",
    "maven",
    "openjdk"
   ]
@@ -242,6 +734,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "jtango-logback",
     "openjdk"
    ]
   },
@@ -256,7 +749,7 @@
    "__set__": true,
    "elements": [
     "maven",
-    "openjdk 8"
+    "openjdk 11"
    ]
   },
   "host": {
@@ -266,6 +759,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "jtango-logback",
+    "openjdk >=11",
     "openjdk >=8"
    ]
   },
@@ -293,36 +788,58 @@
    "summary": "TANGO kernel Java implementation."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
+   "feedstock-name": "jtango",
    "recipe-maintainers": [
     "beenje"
    ]
   },
+  "outputs": [
+   {
+    "name": "jtango-logback",
+    "script": "install-logback.bat",
+    "test": {
+     "commands": [
+      "if not exist %PREFIX%\\share\\tango\\logback.xml exit 1",
+      "if not exist %PREFIX%\\share\\tango\\logback-server.xml exit 1",
+      "if exist %PREFIX%\\share\\java\\JTango.jar exit 1"
+     ]
+    }
+   },
+   {
+    "name": "jtango",
+    "requirements": {
+     "run": [
+      "jtango-logback",
+      "openjdk >=8"
+     ]
+    },
+    "script": "install-jar.bat",
+    "test": {
+     "commands": [
+      "if not exist %PREFIX%\\share\\java\\JTango.jar exit 1"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "jtango",
+   "name": "jtango-split",
    "version": "9.7.2"
   },
   "requirements": {
    "build": [
-    "openjdk 8",
+    "openjdk 11",
     "maven"
    ],
    "run": [
-    "openjdk >=8"
+    "openjdk >=11"
    ]
   },
   "source": {
    "sha256": "6bbbb17a8f858a698fdbe0265973f34c344b2f0e920bddfeefcfc987bbe33391",
    "url": "https://gitlab.com/tango-controls/JTango/-/archive/9.7.2/JTango-9.7.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "if not exist %PREFIX%\\share\\java\\JTango.jar exit 1",
-    "if not exist %PREFIX%\\share\\tango\\logback.xml exit 1",
-    "if not exist %PREFIX%\\share\\tango\\logback-server.xml exit 1"
-   ]
   }
  },
  "win_64_requirements": {
@@ -340,6 +857,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "jtango-logback",
     "openjdk"
    ]
   },
