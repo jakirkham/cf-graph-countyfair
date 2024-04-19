@@ -25,6 +25,7 @@
   },
   "extra": {
    "recipe-maintainers": [
+    "zklaus",
     "isuruf"
    ]
   },
@@ -113,6 +114,7 @@
   },
   "extra": {
    "recipe-maintainers": [
+    "zklaus",
     "isuruf"
    ]
   },
@@ -171,7 +173,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/rocm-comgr.json"
  },
- "raw_meta_yaml": "{% set name = \"rocm-comgr\" %}\n{% set version = \"6.0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ROCm/ROCm-CompilerSupport/archive/refs/tags/rocm-{{ version }}.tar.gz\n  sha256: 737b110d9402509db200ee413fb139a78369cf517453395b96bda52d0aa362b9\n  patches:\n    - patches/5f10322be56320b185cda2ef1765e051b3c9c370.patch\n    - patches/b4a5e883c7f1045c0a8257934f98915b48dea545.patch\n    - patches/6e2b1bd74dc7aa8e08add392f69d37ba3071576e.patch\n    - patches/f6b2c101730025e48b1734678316ef1c42aefcb4.patch\n    - patches/8276083301409001ec7643e68f5ad58b057c21fd.patch\n    - patches/missing_include.diff\n\nbuild:\n  number: 0\n  skip: True  # [not linux]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - sysroot_linux-64 2.17  # [linux64]\n    - cmake\n    - make\n  host:\n    - clangdev 17.*\n    - llvmdev 17.*\n    - llvm\n    - lld\n    - zlib\n    - rocm-device-libs\n    - rocm-cmake  {{ version }}\n\ntest:\n  commands:\n    - test -f $PREFIX/include/amd_comgr/amd_comgr.h\n    - test -f $PREFIX/lib/libamd_comgr.so\n\nabout:\n  home: https://github.com/ROCm/ROCm-CompilerSupport\n  license: NCSA\n  license_file: LICENSE.txt\n  summary: 'ROCm Code Object Manager'\n\nextra:\n  recipe-maintainers:\n    - isuruf\n",
+ "raw_meta_yaml": "{% set name = \"rocm-comgr\" %}\n{% set version = \"6.0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ROCm/ROCm-CompilerSupport/archive/refs/tags/rocm-{{ version }}.tar.gz\n  sha256: 737b110d9402509db200ee413fb139a78369cf517453395b96bda52d0aa362b9\n  patches:\n    - patches/5f10322be56320b185cda2ef1765e051b3c9c370.patch\n    - patches/b4a5e883c7f1045c0a8257934f98915b48dea545.patch\n    - patches/6e2b1bd74dc7aa8e08add392f69d37ba3071576e.patch\n    - patches/f6b2c101730025e48b1734678316ef1c42aefcb4.patch\n    - patches/8276083301409001ec7643e68f5ad58b057c21fd.patch\n    - patches/missing_include.diff\n\nbuild:\n  number: 0\n  skip: True  # [not linux]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - sysroot_linux-64 2.17  # [linux64]\n    - cmake\n    - make\n  host:\n    - clangdev 17.*\n    - llvmdev 17.*\n    - llvm\n    - lld\n    - zlib\n    - rocm-device-libs\n    - rocm-cmake  {{ version }}\n\ntest:\n  commands:\n    - test -f $PREFIX/include/amd_comgr/amd_comgr.h\n    - test -f $PREFIX/lib/libamd_comgr.so\n\nabout:\n  home: https://github.com/ROCm/ROCm-CompilerSupport\n  license: NCSA\n  license_file: LICENSE.txt\n  summary: 'ROCm Code Object Manager'\n\nextra:\n  recipe-maintainers:\n    - zklaus\n    - isuruf\n",
  "req": {
   "__set__": true,
   "elements": [
