@@ -2,6 +2,10 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "linux_aarch64": "linux_64",
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -26,7 +30,7 @@
    "summary": "Cargo subcommand to easily use LLVM source-based code coverage (-C instrument-coverage)."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -83,6 +87,76 @@
    ]
   }
  },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "home": "https://github.com/taiki-e/cargo-llvm-cov",
+   "license": "Apache-2.0",
+   "license_family": "Apache",
+   "license_file": [
+    "LICENSE-APACHE",
+    "LICENSE-MIT",
+    "THIRDPARTY.yml"
+   ],
+   "summary": "Cargo subcommand to easily use LLVM source-based code coverage (-C instrument-coverage)."
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "borchero"
+   ]
+  },
+  "package": {
+   "name": "cargo-llvm-cov",
+   "version": "0.6.9"
+  },
+  "requirements": {
+   "build": [
+    "rust_compiler_stub",
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cargo-bundle-licenses"
+   ]
+  },
+  "source": {
+   "sha256": "0a1b63922cfb6f2526a61bc5e13868c3f3345aa3af7337df07a69eab3d4b243e",
+   "url": "https://github.com/taiki-e/cargo-llvm-cov/archive/refs/tags/v0.6.9.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "cargo llvm-cov --help"
+   ],
+   "requires": [
+    "rust_compiler_stub"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cargo-bundle-licenses",
+    "rust_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "rust_compiler_stub"
+   ]
+  }
+ },
  "meta_yaml": {
   "about": {
    "home": "https://github.com/taiki-e/cargo-llvm-cov",
@@ -96,7 +170,7 @@
    "summary": "Cargo subcommand to easily use LLVM source-based code coverage (-C instrument-coverage)."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -142,7 +216,7 @@
    "summary": "Cargo subcommand to easily use LLVM source-based code coverage (-C instrument-coverage)."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -197,6 +271,74 @@
    ]
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "home": "https://github.com/taiki-e/cargo-llvm-cov",
+   "license": "Apache-2.0",
+   "license_family": "Apache",
+   "license_file": [
+    "LICENSE-APACHE",
+    "LICENSE-MIT",
+    "THIRDPARTY.yml"
+   ],
+   "summary": "Cargo subcommand to easily use LLVM source-based code coverage (-C instrument-coverage)."
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "borchero"
+   ]
+  },
+  "package": {
+   "name": "cargo-llvm-cov",
+   "version": "0.6.9"
+  },
+  "requirements": {
+   "build": [
+    "rust_compiler_stub",
+    "c_stdlib_stub",
+    "cargo-bundle-licenses"
+   ]
+  },
+  "source": {
+   "sha256": "0a1b63922cfb6f2526a61bc5e13868c3f3345aa3af7337df07a69eab3d4b243e",
+   "url": "https://github.com/taiki-e/cargo-llvm-cov/archive/refs/tags/v0.6.9.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "cargo llvm-cov --help"
+   ],
+   "requires": [
+    "rust_compiler_stub"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_stdlib_stub",
+    "cargo-bundle-licenses",
+    "rust_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "rust_compiler_stub"
+   ]
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -206,13 +348,15 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/cargo-llvm-cov.json"
  },
- "raw_meta_yaml": "{% set version = \"0.6.9\" %}\n\npackage:\n  name: cargo-llvm-cov\n  version: {{ version }}\n\nsource:\n  url: https://github.com/taiki-e/cargo-llvm-cov/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 0a1b63922cfb6f2526a61bc5e13868c3f3345aa3af7337df07a69eab3d4b243e\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('rust') }}\n    - {{ compiler('c') }}  # [linux]\n    - {{ stdlib('c') }}\n    - cargo-bundle-licenses\n\ntest:\n  requires:\n    - {{ compiler('rust') }}\n  commands:\n    - cargo llvm-cov --help\n\nabout:\n  home: https://github.com/taiki-e/cargo-llvm-cov\n  license: Apache-2.0\n  license_family: Apache\n  summary: Cargo subcommand to easily use LLVM source-based code coverage (-C instrument-coverage).\n  license_file:\n    - LICENSE-APACHE\n    - LICENSE-MIT\n    - THIRDPARTY.yml\n\nextra:\n  recipe-maintainers:\n    - borchero\n",
+ "raw_meta_yaml": "{% set version = \"0.6.9\" %}\n\npackage:\n  name: cargo-llvm-cov\n  version: {{ version }}\n\nsource:\n  url: https://github.com/taiki-e/cargo-llvm-cov/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 0a1b63922cfb6f2526a61bc5e13868c3f3345aa3af7337df07a69eab3d4b243e\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('rust') }}\n    - {{ compiler('c') }}  # [linux]\n    - {{ stdlib('c') }}\n    - cargo-bundle-licenses\n\ntest:\n  requires:\n    - {{ compiler('rust') }}\n  commands:\n    - cargo llvm-cov --help  # [build_platform == target_platform]\n\nabout:\n  home: https://github.com/taiki-e/cargo-llvm-cov\n  license: Apache-2.0\n  license_family: Apache\n  summary: Cargo subcommand to easily use LLVM source-based code coverage (-C instrument-coverage).\n  license_file:\n    - LICENSE-APACHE\n    - LICENSE-MIT\n    - THIRDPARTY.yml\n\nextra:\n  recipe-maintainers:\n    - borchero\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -297,7 +441,7 @@
    "summary": "Cargo subcommand to easily use LLVM source-based code coverage (-C instrument-coverage)."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
