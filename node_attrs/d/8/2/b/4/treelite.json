@@ -33,7 +33,7 @@
    "summary": "Model compiler for decision tree ensembles"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -52,7 +52,8 @@
     "rapidjson",
     "libgomp",
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -87,6 +88,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fmt",
@@ -131,7 +133,7 @@
    "summary": "Model compiler for decision tree ensembles"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -150,7 +152,8 @@
     "rapidjson",
     "libgomp",
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -185,6 +188,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fmt",
@@ -229,7 +233,7 @@
    "summary": "Model compiler for decision tree ensembles"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -248,7 +252,8 @@
     "rapidjson",
     "libgomp",
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -283,6 +288,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fmt",
@@ -327,7 +333,7 @@
    "summary": "Model compiler for decision tree ensembles"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -347,6 +353,7 @@
     "libgomp",
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "llvm-openmp"
    ],
    "host": [
@@ -390,7 +397,7 @@
    "summary": "Model compiler for decision tree ensembles"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -409,7 +416,8 @@
     "rapidjson",
     "llvm-openmp",
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -444,6 +452,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fmt",
@@ -488,7 +497,7 @@
    "summary": "Model compiler for decision tree ensembles"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -507,7 +516,8 @@
     "rapidjson",
     "llvm-openmp",
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -542,6 +552,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fmt",
@@ -592,11 +603,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/treelite.json"
  },
- "raw_meta_yaml": "{% set name = \"treelite\" %}\n{% set version = \"4.1.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/dmlc/treelite/archive/{{ version }}.tar.gz\n  sha256: d848fbc751ed55fb02de5ff66f68c32c0a29d01d7810ae2700c6afb2e8e721dc\n  patches:\n    - 0001-Open-libtreelite.so-with-global-visibility.patch\n\nbuild:\n  number: 0\n  skip: true  # [python_impl == 'pypy' and win]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cmake >=3.14\n    - ninja\n    - fmt\n    - rapidjson\n    - llvm-openmp  # [osx]\n    - libgomp  # [linux]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip >=19.0\n    - hatchling >=1.12.1\n  run:\n    - python\n    - numpy\n    - scipy\n    - packaging\n\ntest:\n  requires:\n    - setuptools\n  imports:\n    - treelite\n\nabout:\n  home: https://github.com/dmlc/treelite\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: Model compiler for decision tree ensembles\n\n  description: Universal model exchange and serialization format for decision tree forests\n  doc_url: https://treelite.readthedocs.io/\n  dev_url: https://github.com/dmlc/treelite\n\nextra:\n  recipe-maintainers:\n    - hcho3\n",
+ "raw_meta_yaml": "{% set name = \"treelite\" %}\n{% set version = \"4.1.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/dmlc/treelite/archive/{{ version }}.tar.gz\n  sha256: d848fbc751ed55fb02de5ff66f68c32c0a29d01d7810ae2700c6afb2e8e721dc\n  patches:\n    - 0001-Open-libtreelite.so-with-global-visibility.patch\n\nbuild:\n  number: 1\n  skip: true  # [python_impl == 'pypy' and win]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cmake >=3.14\n    - ninja\n    - fmt\n    - rapidjson\n    - llvm-openmp  # [osx]\n    - libgomp  # [linux]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n  host:\n    - python\n    - pip >=19.0\n    - hatchling >=1.12.1\n  run:\n    - python\n    - numpy\n    - scipy\n    - packaging\n\ntest:\n  requires:\n    - setuptools\n  imports:\n    - treelite\n\nabout:\n  home: https://github.com/dmlc/treelite\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: Model compiler for decision tree ensembles\n\n  description: Universal model exchange and serialization format for decision tree forests\n  doc_url: https://treelite.readthedocs.io/\n  dev_url: https://github.com/dmlc/treelite\n\nextra:\n  recipe-maintainers:\n    - hcho3\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "fmt",
@@ -617,6 +629,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fmt",
@@ -630,6 +643,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "hatchling",
@@ -642,6 +656,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "numpy",
@@ -664,6 +679,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake >=3.14",
     "cxx_compiler_stub",
     "fmt",
@@ -714,7 +730,7 @@
    "summary": "Model compiler for decision tree ensembles"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -732,7 +748,8 @@
     "fmt",
     "rapidjson",
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -767,6 +784,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fmt",
