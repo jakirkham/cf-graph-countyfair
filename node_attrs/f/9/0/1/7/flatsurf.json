@@ -23,7 +23,7 @@
    "summary": "Algorithms on Flat Triangulations"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -39,7 +39,8 @@
       "automake",
       "make",
       "gnuconfig",
-      "cxx_compiler_stub"
+      "cxx_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "libboost-devel",
@@ -71,7 +72,8 @@
       "automake",
       "make",
       "gnuconfig",
-      "cxx_compiler_stub"
+      "cxx_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "libboost-headers",
@@ -117,6 +119,7 @@
    "__set__": true,
    "elements": [
     "automake",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "libtool",
@@ -173,7 +176,7 @@
    "summary": "Algorithms on Flat Triangulations"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -189,7 +192,8 @@
       "automake",
       "make",
       "gnuconfig",
-      "cxx_compiler_stub"
+      "cxx_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "libboost-devel",
@@ -221,7 +225,8 @@
       "automake",
       "make",
       "gnuconfig",
-      "cxx_compiler_stub"
+      "cxx_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "libboost-headers",
@@ -260,7 +265,8 @@
       "automake",
       "make",
       "gnuconfig",
-      "cxx_compiler_stub"
+      "cxx_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "libboost-devel",
@@ -292,7 +298,8 @@
       "automake",
       "make",
       "gnuconfig",
-      "cxx_compiler_stub"
+      "cxx_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "libboost-headers",
@@ -344,7 +351,7 @@
    "summary": "Algorithms on Flat Triangulations"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -360,7 +367,8 @@
       "automake",
       "make",
       "gnuconfig",
-      "cxx_compiler_stub"
+      "cxx_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "libboost-devel",
@@ -392,7 +400,8 @@
       "automake",
       "make",
       "gnuconfig",
-      "cxx_compiler_stub"
+      "cxx_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "libboost-headers",
@@ -438,6 +447,7 @@
    "__set__": true,
    "elements": [
     "automake",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "libtool",
@@ -499,11 +509,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/flatsurf.json"
  },
- "raw_meta_yaml": "{% set name = \"flatsurf\" %}\n{% set version = \"3.14.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/flatsurf/{{ name }}/releases/download/{{ version }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 3c8279930b09e512930adff20bd11d2de0c8133e5409475f9868c93c99bf5633\n\nbuild:\n  number: 0\n  # dependency libeantic is not available for Windows on conda-forge yet\n  skip: true  # [win]\n\noutputs:\n  - name: libflatsurf\n    script: build-libflatsurf.sh  # [not win]\n    script: build-libflatsurf.bat  # [win]\n    run_exports:\n      - {{ pin_subpackage(\"libflatsurf\") }}\n    requirements:\n      build:\n        - libtool    # [unix]\n        - automake   # [unix]\n        - make       # [unix]\n        - gnuconfig  # [unix]\n        - autotools_clang_conda  # [win]\n        - {{ compiler('cxx') }}\n      host:\n        # We only need the libboost-headers at compile time. However, since we\n        # use bits of boost in our API, code built against libflatsurf must be\n        # built with a compatible version of the headers. Therefore, we add a\n        # liboost pin to our run exports so libboost-headers are going to be\n        # in a compatible version.\n        - libboost-devel\n        - fmt\n        - gmp   # [unix]\n        - mpir  # [win]\n        - libflint\n        - libintervalxt\n        - libexactreal\n        - libeantic\n        - gmpxxll\n    test:\n      commands:\n        - test -f $PREFIX/include/flatsurf/flatsurf.hpp  # [unix]\n        - test -f $PREFIX/lib/libflatsurf${SHLIB_EXT}      # [unix]\n  - name: pyflatsurf\n    script: build-pyflatsurf.sh  # [not win]\n    script: bld-pyflatsurf.bat  # [win]\n    requirements:\n      build:\n        - python                              # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n        - libtool   # [unix]\n        - automake  # [unix]\n        - make      # [unix]\n        - autotools_clang_conda  # [win]\n        - gnuconfig  # [unix]\n        - {{ compiler('cxx') }}\n      host:\n        # Note that the libboost-devel from libflatsurf forces these headers to be\n        # compatible with ones used when building libflatsurf.\n        - libboost-headers\n        - python\n        - cppyy\n        - cppyythonizations\n        - setuptools\n        - pytest\n        - pyexactreal\n        - pyintervalxt\n        - {{ pin_subpackage(\"libflatsurf\") }}\n      run:\n        # cppyy dynamically compiles C++ wrappers at runtime, therefore we need C++ headers of boost.\n        # Note that the libboost-devel from libflatsurf forces these headers to be\n        # compatible with ones used when building libflatsurf.\n        - libboost-headers\n        - python\n        - cppyy\n        - cppyythonizations\n        - gmpxxyy\n        - pyexactreal\n        - pyintervalxt\n        # A subpackage does not see the run_exports of another subpackage:\n        # https://github.com/conda/conda-build/issues/3478\n        - {{ pin_subpackage(\"libflatsurf\") }}\n    test:\n      imports:\n        - pyflatsurf\n\nabout:\n  home: https://github.com/flatsurf/flatsurf\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: COPYING\n  summary: Algorithms on Flat Triangulations\n  dev_url: https://github.com/flatsurf/flatsurf\n\nextra:\n  recipe-maintainers:\n    - saraedum\n",
+ "raw_meta_yaml": "{% set name = \"flatsurf\" %}\n{% set version = \"3.14.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/flatsurf/{{ name }}/releases/download/{{ version }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 3c8279930b09e512930adff20bd11d2de0c8133e5409475f9868c93c99bf5633\n\nbuild:\n  number: 1\n  # dependency libeantic is not available for Windows on conda-forge yet\n  skip: true  # [win]\n\noutputs:\n  - name: libflatsurf\n    script: build-libflatsurf.sh  # [not win]\n    script: build-libflatsurf.bat  # [win]\n    run_exports:\n      - {{ pin_subpackage(\"libflatsurf\") }}\n    requirements:\n      build:\n        - libtool    # [unix]\n        - automake   # [unix]\n        - make       # [unix]\n        - gnuconfig  # [unix]\n        - autotools_clang_conda  # [win]\n        - {{ compiler('cxx') }}\n        - {{ stdlib(\"c\") }}\n      host:\n        # We only need the libboost-headers at compile time. However, since we\n        # use bits of boost in our API, code built against libflatsurf must be\n        # built with a compatible version of the headers. Therefore, we add a\n        # liboost pin to our run exports so libboost-headers are going to be\n        # in a compatible version.\n        - libboost-devel\n        - fmt\n        - gmp   # [unix]\n        - mpir  # [win]\n        - libflint\n        - libintervalxt\n        - libexactreal\n        - libeantic\n        - gmpxxll\n    test:\n      commands:\n        - test -f $PREFIX/include/flatsurf/flatsurf.hpp  # [unix]\n        - test -f $PREFIX/lib/libflatsurf${SHLIB_EXT}      # [unix]\n  - name: pyflatsurf\n    script: build-pyflatsurf.sh  # [not win]\n    script: bld-pyflatsurf.bat  # [win]\n    requirements:\n      build:\n        - python                              # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n        - libtool   # [unix]\n        - automake  # [unix]\n        - make      # [unix]\n        - autotools_clang_conda  # [win]\n        - gnuconfig  # [unix]\n        - {{ compiler('cxx') }}\n        - {{ stdlib(\"c\") }}\n      host:\n        # Note that the libboost-devel from libflatsurf forces these headers to be\n        # compatible with ones used when building libflatsurf.\n        - libboost-headers\n        - python\n        - cppyy\n        - cppyythonizations\n        - setuptools\n        - pytest\n        - pyexactreal\n        - pyintervalxt\n        - {{ pin_subpackage(\"libflatsurf\") }}\n      run:\n        # cppyy dynamically compiles C++ wrappers at runtime, therefore we need C++ headers of boost.\n        # Note that the libboost-devel from libflatsurf forces these headers to be\n        # compatible with ones used when building libflatsurf.\n        - libboost-headers\n        - python\n        - cppyy\n        - cppyythonizations\n        - gmpxxyy\n        - pyexactreal\n        - pyintervalxt\n        # A subpackage does not see the run_exports of another subpackage:\n        # https://github.com/conda/conda-build/issues/3478\n        - {{ pin_subpackage(\"libflatsurf\") }}\n    test:\n      imports:\n        - pyflatsurf\n\nabout:\n  home: https://github.com/flatsurf/flatsurf\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: COPYING\n  summary: Algorithms on Flat Triangulations\n  dev_url: https://github.com/flatsurf/flatsurf\n\nextra:\n  recipe-maintainers:\n    - saraedum\n",
  "req": {
   "__set__": true,
   "elements": [
    "automake",
+   "c_stdlib_stub",
    "cppyy",
    "cppyythonizations",
    "cxx_compiler_stub",
@@ -533,6 +544,7 @@
    "__set__": true,
    "elements": [
     "automake",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "libtool",
@@ -542,6 +554,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cppyy",
     "cppyythonizations",
     "cxx_compiler_stub",
@@ -565,6 +578,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cppyy",
     "cppyythonizations",
     "cxx_compiler_stub",
@@ -587,6 +601,7 @@
    "__set__": true,
    "elements": [
     "automake",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "libtool",
