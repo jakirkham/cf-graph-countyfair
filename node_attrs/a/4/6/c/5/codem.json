@@ -2,6 +2,11 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,7 +14,18 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "os_version": {
+   "linux_64": "cos7"
+  },
+  "provider": {
+   "linux": "azure",
+   "linux_aarch64": "azure",
+   "linux_ppc64le": "azure",
+   "osx": "azure",
+   "win": "azure"
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "codem",
  "hash_type": "sha256",
@@ -38,7 +54,7 @@
   },
   "package": {
    "name": "codem",
-   "version": "0.25.4"
+   "version": "0.25.5"
   },
   "requirements": {
    "host": [
@@ -61,12 +77,13 @@
     "pyshp",
     "pandas",
     "scipy",
-    "pyyaml"
+    "pyyaml",
+    "mesalib"
    ]
   },
   "source": {
-   "sha256": "bf541a3edb75f435ea963a27d2292ac61134a9fbcf2723a414ad2afcdf676489",
-   "url": "https://pypi.io/packages/source/c/codem/codem-0.25.4.tar.gz"
+   "sha256": "238ae907e3fdf6f8e50b049541eca3e1ffe0274bb742d422eb7431d4166a1aed",
+   "url": "https://pypi.io/packages/source/c/codem/codem-0.25.5.tar.gz"
   },
   "test": {
    "commands": [
@@ -98,6 +115,7 @@
    "__set__": true,
    "elements": [
     "matplotlib-base",
+    "mesalib",
     "numpy",
     "opencv",
     "pandas",
@@ -146,7 +164,7 @@
   },
   "package": {
    "name": "codem",
-   "version": "0.25.4"
+   "version": "0.25.5"
   },
   "requirements": {
    "host": [
@@ -169,12 +187,13 @@
     "pyshp",
     "pandas",
     "scipy",
-    "pyyaml"
+    "pyyaml",
+    "mesalib"
    ]
   },
   "source": {
-   "sha256": "bf541a3edb75f435ea963a27d2292ac61134a9fbcf2723a414ad2afcdf676489",
-   "url": "https://pypi.io/packages/source/c/codem/codem-0.25.4.tar.gz"
+   "sha256": "238ae907e3fdf6f8e50b049541eca3e1ffe0274bb742d422eb7431d4166a1aed",
+   "url": "https://pypi.io/packages/source/c/codem/codem-0.25.5.tar.gz"
   },
   "test": {
    "commands": [
@@ -203,11 +222,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/codem.json"
  },
- "raw_meta_yaml": "{% set name = \"codem\" %}\n{% set version = \"0.25.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/codem-{{ version }}.tar.gz\n  sha256: bf541a3edb75f435ea963a27d2292ac61134a9fbcf2723a414ad2afcdf676489\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n  entry_points:\n    - codem = codem.main:main\n    - vcd = vcd.main:main\n\nrequirements:\n  host:\n    - python >=3.9\n    - pip\n    - setuptools >=64.0\n  run:\n    - python >=3.9\n    - typing-extensions\n    - numpy\n    - {{ pin_compatible('python-pdal', max_pin='x.x.x') }}\n    - opencv\n    - rasterio\n    - trimesh\n    - matplotlib-base\n    - scikit-image\n    - rich\n    - pyproj\n    - pyshp\n    - pandas\n    - scipy\n    - pyyaml\n\ntest:\n  imports:\n    - codem\n    - vcd\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/NCALM-UH/CODEM\n  summary: A package for co-registering geospatial data\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - j9ac9k\n    - hobu\n    - chambbj\n",
+ "raw_meta_yaml": "{% set name = \"codem\" %}\n{% set version = \"0.25.5\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/codem-{{ version }}.tar.gz\n  sha256: 238ae907e3fdf6f8e50b049541eca3e1ffe0274bb742d422eb7431d4166a1aed\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n  entry_points:\n    - codem = codem.main:main\n    - vcd = vcd.main:main\n\nrequirements:\n  host:\n    - python >=3.9\n    - pip\n    - setuptools >=64.0\n  run:\n    - python >=3.9\n    - typing-extensions\n    - numpy\n    - {{ pin_compatible('python-pdal', max_pin='x.x.x') }}\n    - opencv\n    - rasterio\n    - trimesh\n    - matplotlib-base\n    - scikit-image\n    - rich\n    - pyproj\n    - pyshp\n    - pandas\n    - scipy\n    - pyyaml\n    - mesalib\n\ntest:\n  imports:\n    - codem\n    - vcd\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/NCALM-UH/CODEM\n  summary: A package for co-registering geospatial data\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - j9ac9k\n    - hobu\n    - chambbj\n",
  "req": {
   "__set__": true,
   "elements": [
    "matplotlib-base",
+   "mesalib",
    "numpy",
    "opencv",
    "pandas",
@@ -243,6 +263,7 @@
    "__set__": true,
    "elements": [
     "matplotlib-base",
+    "mesalib",
     "numpy",
     "opencv",
     "pandas",
@@ -284,6 +305,7 @@
    "__set__": true,
    "elements": [
     "matplotlib-base",
+    "mesalib",
     "numpy",
     "opencv",
     "pandas",
@@ -307,8 +329,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/c/codem/codem-0.25.4.tar.gz",
- "version": "0.25.4",
+ "url": "https://pypi.io/packages/source/c/codem/codem-0.25.5.tar.gz",
+ "version": "0.25.5",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/codem.json"
  }
