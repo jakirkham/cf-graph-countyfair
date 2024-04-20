@@ -31,7 +31,7 @@
    "summary": "Contains functionality which is used in most SCINE modules.\n"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "scine-utilsos"
    ]
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "ninja",
@@ -91,6 +92,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libgomp",
@@ -132,7 +134,7 @@
    "summary": "Contains functionality which is used in most SCINE modules.\n"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "scine-utilsos"
    ]
@@ -151,6 +153,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "ninja",
@@ -192,6 +195,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libgomp",
@@ -233,7 +237,7 @@
    "summary": "Contains functionality which is used in most SCINE modules.\n"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "scine-utilsos"
    ]
@@ -252,6 +256,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "ninja",
@@ -293,6 +298,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libgomp",
@@ -334,7 +340,7 @@
    "summary": "Contains functionality which is used in most SCINE modules.\n"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "scine-utilsos"
    ]
@@ -353,6 +359,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "ninja",
@@ -430,7 +437,7 @@
    "summary": "Contains functionality which is used in most SCINE modules.\n"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "scine-utilsos"
    ]
@@ -449,6 +456,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "ninja",
@@ -491,6 +499,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "llvm-openmp",
@@ -532,7 +541,7 @@
    "summary": "Contains functionality which is used in most SCINE modules.\n"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "scine-utilsos"
    ]
@@ -551,6 +560,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "ninja",
@@ -593,6 +603,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "llvm-openmp",
@@ -642,11 +653,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/scine-utilsos.json"
  },
- "raw_meta_yaml": "{% set version = \"8.0.0\" %}\n\npackage:\n  name: scine-utilsos\n  version: {{ version }}\n\nsource:\n  - git_url: https://github.com/qcscine/utilities\n    git_rev: '{{ version }}'\n    patches:\n      - patches/0001-skip-some-tests-on-osx.patch   # [osx]\n      - patches/0002-add-missing-header-for-using-std-unique_ptr.patch\n\nbuild:\n  number: 2\n  skip: true  # [win]\n\n  run_exports:\n    - {{ pin_subpackage('scine-utilsos', max_pin='x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - ninja\n    - pkg-config\n    - llvm-openmp  # [osx]\n    - libgomp  # [linux]\n  host:\n    - libboost-devel\n    - eigen\n    - gtest\n    - gmock\n    - lbfgspp\n    - libblas\n    - liblapack\n    - scine-core\n    - yaml-cpp\n  run:\n    - yaml-cpp\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libutilsos${SHLIB_EXT}\n\nabout:\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: |\n    Contains functionality which is used in most SCINE modules.\n  home: https://scine.ethz.ch/\n  dev_url: https://github.com/qcscine/utilities\n\nextra:\n  recipe-maintainers:\n    - awvwgk\n    - ltalirz\n    - matt-chan\n",
+ "raw_meta_yaml": "{% set version = \"8.0.0\" %}\n\npackage:\n  name: scine-utilsos\n  version: {{ version }}\n\nsource:\n  - git_url: https://github.com/qcscine/utilities\n    git_rev: '{{ version }}'\n    patches:\n      - patches/0001-skip-some-tests-on-osx.patch   # [osx]\n      - patches/0002-add-missing-header-for-using-std-unique_ptr.patch\n\nbuild:\n  number: 3\n  skip: true  # [win]\n\n  run_exports:\n    - {{ pin_subpackage('scine-utilsos', max_pin='x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - ninja\n    - pkg-config\n    - llvm-openmp  # [osx]\n    - libgomp  # [linux]\n  host:\n    - libboost-devel\n    - eigen\n    - gtest\n    - gmock\n    - lbfgspp\n    - libblas\n    - liblapack\n    - scine-core\n    - yaml-cpp\n  run:\n    - yaml-cpp\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libutilsos${SHLIB_EXT}\n\nabout:\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: |\n    Contains functionality which is used in most SCINE modules.\n  home: https://scine.ethz.ch/\n  dev_url: https://github.com/qcscine/utilities\n\nextra:\n  recipe-maintainers:\n    - awvwgk\n    - ltalirz\n    - matt-chan\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "eigen",
@@ -669,6 +681,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libgomp",
@@ -681,6 +694,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "eigen",
@@ -699,6 +713,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "openmp",
@@ -716,6 +731,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libgomp",
