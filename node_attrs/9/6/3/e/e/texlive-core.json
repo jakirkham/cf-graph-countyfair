@@ -33,7 +33,7 @@
    "ignore_run_exports_from": [
     "perl 5.*"
    ],
-   "number": "11"
+   "number": "12"
   },
   "extra": {
    "recipe-maintainers": [
@@ -51,6 +51,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cdt_stub",
     "pkg-config",
@@ -97,6 +98,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cxx_compiler_stub",
     "make",
@@ -148,7 +150,7 @@
    "ignore_run_exports_from": [
     "perl 5.*"
    ],
-   "number": "11"
+   "number": "12"
   },
   "extra": {
    "recipe-maintainers": [
@@ -166,6 +168,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cdt_stub",
     "pkg-config",
@@ -212,6 +215,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cxx_compiler_stub",
     "make",
@@ -263,7 +267,7 @@
    "ignore_run_exports_from": [
     "perl 5.*"
    ],
-   "number": "11"
+   "number": "12"
   },
   "extra": {
    "recipe-maintainers": [
@@ -281,6 +285,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cdt_stub",
     "pkg-config",
@@ -327,6 +332,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cxx_compiler_stub",
     "make",
@@ -378,7 +384,7 @@
    "ignore_run_exports_from": [
     "perl 5.*"
    ],
-   "number": "11"
+   "number": "12"
   },
   "extra": {
    "recipe-maintainers": [
@@ -396,6 +402,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cdt_stub",
     "pkg-config",
@@ -450,7 +457,7 @@
    "ignore_run_exports_from": [
     "perl 5.*"
    ],
-   "number": "11"
+   "number": "12"
   },
   "extra": {
    "recipe-maintainers": [
@@ -468,6 +475,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pkg-config",
     "texinfo",
@@ -513,6 +521,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "patch",
@@ -563,7 +572,7 @@
    "ignore_run_exports_from": [
     "perl 5.*"
    ],
-   "number": "11"
+   "number": "12"
   },
   "extra": {
    "recipe-maintainers": [
@@ -581,6 +590,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pkg-config",
     "texinfo",
@@ -626,6 +636,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "patch",
@@ -681,11 +692,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/texlive-core.json"
  },
- "raw_meta_yaml": "{% set version = \"20230313\" %}\n\npackage:\n  name: texlive-core\n  version: {{ version }}\n\nsource:\n  url: https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2023/texlive-{{ version }}-source.tar.xz\n  sha256: 3878aa0e1ed0301c053b0e2ee4e9ad999c441345f4882e79bdd1c8f4ce9e79b9\n\nbuild:\n  number: 11\n  skip: True  # [win]\n  detect_binary_files_with_prefix: true\n  ignore_run_exports_from:\n    - perl 5.*\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ cdt('libxrender-devel') }}  # [linux]\n    - {{ cdt('libxext-devel') }}     # [linux]\n    - {{ cdt('libxau-devel') }}      # [linux]\n    - pkg-config\n    - texinfo\n    - make\n    - sed\n    - patch\n  host:\n    # glib is required for cairo's pkg-config check\n    - glib\n    - cairo\n    - freetype\n    - fontconfig\n    - gmp\n    - harfbuzz >=1.8.*\n    - graphite2\n    - icu\n    - libpng\n    - mpfr\n    - pixman\n    - perl 5.*\n    - poppler\n    - zlib\n  run:\n    - fontconfig\n\ntest:\n  commands:\n    - pdftex --version\n    - bibtex --version\n    # Test the symlinks.\n    - pdflatex --version\n    - latex --version\n\nabout:\n  home: https://www.tug.org/texlive/\n  license: GPL-2.0-or-later AND GPL-2.0-only AND GPL-3.0-only AND LPPL-1.3c AND LPPL-1.0 AND Artistic-1.0 AND Apache-2.0 AND MIT AND BSD-3-Clause\n  # See https://www.tug.org/texlive/LICENSE.TL\n  license_file: LICENSE.TL\n  summary: 'An easy way to get up and running with the TeX document production system.'\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - ocefpaf\n    - xhochy\n    - ngam\n    - erykoff\n",
+ "raw_meta_yaml": "{% set version = \"20230313\" %}\n\npackage:\n  name: texlive-core\n  version: {{ version }}\n\nsource:\n  url: https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2023/texlive-{{ version }}-source.tar.xz\n  sha256: 3878aa0e1ed0301c053b0e2ee4e9ad999c441345f4882e79bdd1c8f4ce9e79b9\n\nbuild:\n  number: 12\n  skip: True  # [win]\n  detect_binary_files_with_prefix: true\n  ignore_run_exports_from:\n    - perl 5.*\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - {{ cdt('libxrender-devel') }}  # [linux]\n    - {{ cdt('libxext-devel') }}     # [linux]\n    - {{ cdt('libxau-devel') }}      # [linux]\n    - pkg-config\n    - texinfo\n    - make\n    - sed\n    - patch\n  host:\n    # glib is required for cairo's pkg-config check\n    - glib\n    - cairo\n    - freetype\n    - fontconfig\n    - gmp\n    - harfbuzz >=1.8.*\n    - graphite2\n    - icu\n    - libpng\n    - mpfr\n    - pixman\n    - perl 5.*\n    - poppler\n    - zlib\n  run:\n    - fontconfig\n\ntest:\n  commands:\n    - pdftex --version\n    - bibtex --version\n    # Test the symlinks.\n    - pdflatex --version\n    - latex --version\n\nabout:\n  home: https://www.tug.org/texlive/\n  license: GPL-2.0-or-later AND GPL-2.0-only AND GPL-3.0-only AND LPPL-1.3c AND LPPL-1.0 AND Artistic-1.0 AND Apache-2.0 AND MIT AND BSD-3-Clause\n  # See https://www.tug.org/texlive/LICENSE.TL\n  license_file: LICENSE.TL\n  summary: 'An easy way to get up and running with the TeX document production system.'\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - ocefpaf\n    - xhochy\n    - ngam\n    - erykoff\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cairo",
    "cdt_stub",
    "cxx_compiler_stub",
@@ -714,6 +726,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cxx_compiler_stub",
     "make",
@@ -727,6 +740,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cairo",
     "cxx_compiler_stub",
     "fontconfig",
@@ -748,6 +762,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fontconfig"
    ]
@@ -763,6 +778,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cxx_compiler_stub",
     "make",
