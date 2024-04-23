@@ -27,8 +27,14 @@
    "summary": "Paraprobe Tools"
   },
   "build": {
-   "number": "0",
-   "string": "mpi_mpich_h1234567_0"
+   "ignore_run_exports_from": [
+    "fftw",
+    "libaec",
+    "libhwloc",
+    "zlib"
+   ],
+   "number": "1",
+   "string": "mpi_mpich_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -62,16 +68,15 @@
     "hdf5 * mpi_mpich_*",
     "tetgen",
     "fftw",
-    "boost =1.78.0",
-    "boost-cpp =1.78.0",
+    "libboost-headers",
     "eigen",
     "voro",
-    "cgal =5.5.2",
-    "cgal-cpp =5.5.2",
+    "cgal =5.6",
+    "cgal-cpp =5.6",
     "libaec",
-    "numpy >=1.17",
-    "libzlib =1.2.13",
-    "openssl"
+    "numpy",
+    "openssl",
+    "zlib"
    ],
    "run": [
     "python",
@@ -79,17 +84,24 @@
     "h5py",
     "gitpython",
     "pandas",
-    "ifes-apt-tc-data-modeling =0.0.9* *_1",
-    "scikit-learn =1.0.2",
-    "ase =3.22.1",
-    "punx =0.3.0",
-    "nexpy =0.14.4",
-    "silx[full] =1.0.0",
-    "numpy >=1.17",
-    "openssl"
+    "ifes-apt-tc-data-modeling",
+    "scikit-learn",
+    "ase",
+    "punx",
+    "nexpy",
+    "silx",
+    "numpy"
    ]
   },
   "source": [
+   {
+    "folder": "paraprobe-toolbox",
+    "patches": [
+     "paraprobe.patch"
+    ],
+    "sha256": "9e2c196802b0a2a86e754a615b782ed0775fbc0ff6d0837cf66f9f24c19b2852",
+    "url": "https://gitlab.com/paraprobe/paraprobe-toolbox/-/archive/v0.4/paraprobe-toolbox-v0.4.tar.gz"
+   },
    {
     "folder": "paraprobe-toolbox",
     "patches": [
@@ -139,8 +151,6 @@
   "host": {
    "__set__": true,
    "elements": [
-    "boost",
-    "boost-cpp",
     "cgal",
     "cgal-cpp",
     "cython",
@@ -149,8 +159,8 @@
     "gmp",
     "hdf5",
     "libaec",
+    "libboost-headers",
     "libhwloc",
-    "libzlib",
     "mpfr",
     "mpich",
     "numpy",
@@ -158,7 +168,8 @@
     "python",
     "setuptools",
     "tetgen",
-    "voro"
+    "voro",
+    "zlib"
    ]
   },
   "run": {
@@ -170,7 +181,6 @@
     "ifes-apt-tc-data-modeling",
     "nexpy",
     "numpy",
-    "openssl",
     "pandas",
     "punx",
     "python",
@@ -198,8 +208,14 @@
    "summary": "Paraprobe Tools"
   },
   "build": {
-   "number": "0",
-   "string": "mpi_mpich_h1234567_0"
+   "ignore_run_exports_from": [
+    "fftw",
+    "libaec",
+    "libhwloc",
+    "zlib"
+   ],
+   "number": "1",
+   "string": "mpi_mpich_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -233,16 +249,15 @@
     "hdf5 * mpi_mpich_*",
     "tetgen",
     "fftw",
-    "boost =1.78.0",
-    "boost-cpp =1.78.0",
+    "libboost-headers",
     "eigen",
     "voro",
-    "cgal =5.5.2",
-    "cgal-cpp =5.5.2",
+    "cgal =5.6",
+    "cgal-cpp =5.6",
     "libaec",
-    "numpy >=1.17",
-    "libzlib =1.2.13",
-    "openssl"
+    "numpy",
+    "openssl",
+    "zlib"
    ],
    "run": [
     "python",
@@ -250,17 +265,24 @@
     "h5py",
     "gitpython",
     "pandas",
-    "ifes-apt-tc-data-modeling =0.0.9* *_1",
-    "scikit-learn =1.0.2",
-    "ase =3.22.1",
-    "punx =0.3.0",
-    "nexpy =0.14.4",
-    "silx[full] =1.0.0",
-    "numpy >=1.17",
-    "openssl"
+    "ifes-apt-tc-data-modeling",
+    "scikit-learn",
+    "ase",
+    "punx",
+    "nexpy",
+    "silx",
+    "numpy"
    ]
   },
   "source": [
+   {
+    "folder": "paraprobe-toolbox",
+    "patches": [
+     "paraprobe.patch"
+    ],
+    "sha256": "9e2c196802b0a2a86e754a615b782ed0775fbc0ff6d0837cf66f9f24c19b2852",
+    "url": "https://gitlab.com/paraprobe/paraprobe-toolbox/-/archive/v0.4/paraprobe-toolbox-v0.4.tar.gz"
+   },
    {
     "folder": "paraprobe-toolbox",
     "patches": [
@@ -307,13 +329,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/paraprobe.json"
  },
- "raw_meta_yaml": "{% set build = 0 %}\n{% set name = \"paraprobe\" %}\n{% set version = \"v0.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://gitlab.com/{{ name }}/{{ name }}-toolbox/-/archive/{{ version }}/{{ name }}-toolbox-{{ version }}.tar.gz\n    sha256: 9e2c196802b0a2a86e754a615b782ed0775fbc0ff6d0837cf66f9f24c19b2852\n    folder: paraprobe-toolbox\n    patches:\n      - paraprobe.patch\n \nbuild:\n  number: {{ build }}\n  skip: true  # [not linux]\n  #skip: True  # [osx]\n  #skip: True  # [py<38] \n\n  {% if mpi != 'nompi' %}\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  {% else %}\n  {% set mpi_prefix = \"nompi\" %}\n  {% endif %}\n  string: \"{{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build }}\"\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make\n    - pkg-config\n    - git\n    - m4\n    - libgomp      # [linux]\n    - llvm-openmp  # [osx]\n\n  host:\n    - python\n    - cython\n    - setuptools\n    - {{ mpi }}\n    - gmp\n    - mpfr\n    - libhwloc\n    - hdf5\n    - hdf5 * {{ mpi_prefix }}_*\n    - tetgen\n    - fftw\n    - boost =1.78.0\n    - boost-cpp =1.78.0\n    - eigen \n    - voro\n    - cgal =5.5.2\n    - cgal-cpp =5.5.2\n    - libaec\n    - numpy >=1.17\n    - libzlib =1.2.13\n    - openssl\n  run:\n    - python\n    - setuptools\n    - h5py \n    - gitpython\n    - pandas\n    - ifes-apt-tc-data-modeling =0.0.9* *_1\n    - scikit-learn =1.0.2\n    - ase =3.22.1\n    - punx =0.3.0\n    - nexpy =0.14.4\n    - silx[full] =1.0.0\n    - numpy >=1.17\n    - openssl\ntest:\n  imports:\n    - paraprobe_parmsetup\n    - paraprobe_transcoder\n  #commands:\n  #  - paraprobe_ranger 636502001 PARAPROBE.Ranger.Config.SimID.636502001.nxs\n\nabout:\n  home: https://gitlab.com/paraprobe/paraprobe-toolbox\n  summary: 'Paraprobe Tools'\n  license: GPL-3.0-only\n  license_family: GPL\n  license_file:\n    - LICENSE\n    - VORO_LICENSE\n  doc_url: https://gitlab.com/paraprobe/paraprobe-toolbox\n  dev_url: https://gitlab.com/paraprobe/paraprobe-toolbox\n\nextra:\n  recipe-maintainers:\n    - srmnitc\n",
+ "raw_meta_yaml": "{% set version = \"v0.4\" %}\n{% set build = 1 %}\n\npackage:\n  name: paraprobe\n  version: {{ version }}\n\nsource:\n  - url: https://gitlab.com/paraprobe/paraprobe-toolbox/-/archive/{{ version }}/paraprobe-toolbox-{{ version }}.tar.gz\n    sha256: 9e2c196802b0a2a86e754a615b782ed0775fbc0ff6d0837cf66f9f24c19b2852\n    folder: paraprobe-toolbox\n    patches:\n      - paraprobe.patch\n \nbuild:\n  number: {{ build }}\n  skip: true  # [not linux]\n  #skip: True  # [osx]\n  #skip: True  # [py<38] \n\n  {% if mpi != 'nompi' %}\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  {% else %}\n  {% set mpi_prefix = \"nompi\" %}\n  {% endif %}\n  string: \"{{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build }}\"\n  ignore_run_exports_from:\n    - fftw\n    - libaec\n    - libhwloc\n    # need to keep voro because it's a static lib\n    # that (likely) ends up in the link interface\n    # - voro\n    - zlib\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make\n    - pkg-config\n    - git\n    - m4\n    - libgomp      # [linux]\n    - llvm-openmp  # [osx]\n\n  host:\n    - python\n    - cython\n    - setuptools\n    - {{ mpi }}\n    - gmp\n    - mpfr\n    - libhwloc\n    - hdf5\n    - hdf5 * {{ mpi_prefix }}_*\n    - tetgen\n    - fftw\n    - libboost-headers\n    - eigen \n    - voro\n    - cgal =5.6\n    - cgal-cpp =5.6\n    - libaec\n    - numpy\n    - openssl\n    - zlib\n  run:\n    - python\n    - setuptools\n    - h5py \n    - gitpython\n    - pandas\n    - ifes-apt-tc-data-modeling\n    - scikit-learn\n    - ase\n    - punx\n    - nexpy\n    - silx\n    - {{ pin_compatible('numpy') }}\ntest:\n  imports:\n    - paraprobe_parmsetup\n    - paraprobe_transcoder\n  #commands:\n  #  - paraprobe_ranger 636502001 PARAPROBE.Ranger.Config.SimID.636502001.nxs\n\nabout:\n  home: https://gitlab.com/paraprobe/paraprobe-toolbox\n  summary: 'Paraprobe Tools'\n  license: GPL-3.0-only\n  license_family: GPL\n  license_file:\n    - LICENSE\n    - VORO_LICENSE\n  doc_url: https://gitlab.com/paraprobe/paraprobe-toolbox\n  dev_url: https://gitlab.com/paraprobe/paraprobe-toolbox\n\nextra:\n  recipe-maintainers:\n    - srmnitc\n",
  "req": {
   "__set__": true,
   "elements": [
    "ase",
-   "boost",
-   "boost-cpp",
    "c_compiler_stub",
    "cgal",
    "cgal-cpp",
@@ -329,9 +349,9 @@
    "hdf5",
    "ifes-apt-tc-data-modeling",
    "libaec",
+   "libboost-headers",
    "libgomp",
    "libhwloc",
-   "libzlib",
    "m4",
    "make",
    "mpfr",
@@ -347,7 +367,8 @@
    "setuptools",
    "silx",
    "tetgen",
-   "voro"
+   "voro",
+   "zlib"
   ]
  },
  "requirements": {
@@ -367,8 +388,6 @@
   "host": {
    "__set__": true,
    "elements": [
-    "boost",
-    "boost-cpp",
     "c_compiler_stub",
     "cgal",
     "cgal-cpp",
@@ -380,8 +399,8 @@
     "gmp",
     "hdf5",
     "libaec",
+    "libboost-headers",
     "libhwloc",
-    "libzlib",
     "mpfr",
     "mpich",
     "numpy",
@@ -389,7 +408,8 @@
     "python",
     "setuptools",
     "tetgen",
-    "voro"
+    "voro",
+    "zlib"
    ]
   },
   "run": {
@@ -404,7 +424,6 @@
     "ifes-apt-tc-data-modeling",
     "nexpy",
     "numpy",
-    "openssl",
     "pandas",
     "punx",
     "python",
@@ -436,10 +455,8 @@
   "host": {
    "__set__": true,
    "elements": [
-    "boost =1.78.0",
-    "boost-cpp =1.78.0",
-    "cgal =5.5.2",
-    "cgal-cpp =5.5.2",
+    "cgal =5.6",
+    "cgal-cpp =5.6",
     "cython",
     "eigen",
     "fftw",
@@ -447,34 +464,34 @@
     "hdf5",
     "hdf5 * mpi_mpich_*",
     "libaec",
+    "libboost-headers",
     "libhwloc",
-    "libzlib =1.2.13",
     "mpfr",
     "mpich",
-    "numpy >=1.17",
+    "numpy",
     "openssl",
     "python",
     "setuptools",
     "tetgen",
-    "voro"
+    "voro",
+    "zlib"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "ase =3.22.1",
+    "ase",
     "gitpython",
     "h5py",
-    "ifes-apt-tc-data-modeling =0.0.9* *_1",
-    "nexpy =0.14.4",
-    "numpy >=1.17",
-    "openssl",
+    "ifes-apt-tc-data-modeling",
+    "nexpy",
+    "numpy",
     "pandas",
-    "punx =0.3.0",
+    "punx",
     "python",
-    "scikit-learn =1.0.2",
+    "scikit-learn",
     "setuptools",
-    "silx[full] =1.0.0"
+    "silx"
    ]
   },
   "test": {
