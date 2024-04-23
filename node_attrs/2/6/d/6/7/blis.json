@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "linux_aarch64": "linux_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -11,6 +14,7 @@
    "tooling_branch_name": "main"
   },
   "provider": {
+   "linux_aarch64": "default",
    "win": "azure"
   }
  },
@@ -25,12 +29,13 @@
    "summary": "BLAS-like Library Instantiation Software Framework"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
     "isuruf",
-    "h-vetinari"
+    "h-vetinari",
+    "gdonval"
    ]
   },
   "package": {
@@ -40,6 +45,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "sed",
     "make",
     "perl",
@@ -69,6 +75,82 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "make",
+    "perl",
+    "python",
+    "sed"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "home": "http://github.com/flame/blis",
+   "license": "BSD-3-Clause",
+   "license_family": "BSD",
+   "license_file": "LICENSE",
+   "summary": "BLAS-like Library Instantiation Software Framework"
+  },
+  "build": {
+   "number": "2"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "isuruf",
+    "h-vetinari",
+    "gdonval"
+   ]
+  },
+  "package": {
+   "name": "blis",
+   "version": "0.9.0"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "sed",
+    "make",
+    "perl",
+    "python >=3.5"
+   ],
+   "host": [],
+   "run": []
+  },
+  "source": {
+   "patches": [
+    "patches/0001-add-missing-include.patch"
+   ],
+   "sha256": "1135f664be7355427b91025075562805cdc6cc730d3173f83533b2c5dcc2f308",
+   "url": "https://github.com/flame/blis/archive/0.9.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "test -f $PREFIX/lib/libblis.a",
+    "test -f $PREFIX/lib/libblis${SHLIB_EXT}",
+    "test -f $PREFIX/include/blis/blis.h",
+    "test -f $PREFIX/include/blis/cblas.h"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "perl",
     "python",
@@ -97,12 +179,13 @@
    "summary": "BLAS-like Library Instantiation Software Framework"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
     "isuruf",
-    "h-vetinari"
+    "h-vetinari",
+    "gdonval"
    ]
   },
   "package": {
@@ -112,6 +195,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "sed",
     "make",
     "perl",
@@ -155,12 +239,13 @@
    "summary": "BLAS-like Library Instantiation Software Framework"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
     "isuruf",
-    "h-vetinari"
+    "h-vetinari",
+    "gdonval"
    ]
   },
   "package": {
@@ -170,6 +255,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "clangxx",
     "llvm-tools",
     "sed",
@@ -200,6 +286,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "clangxx",
     "llvm-tools",
     "perl",
@@ -229,18 +316,20 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
   "osx_64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/blis.json"
  },
- "raw_meta_yaml": "{% set version = \"0.9.0\" %}\n\npackage:\n  name: blis\n  version: {{ version }}\n\nsource:\n  url: https://github.com/flame/blis/archive/{{ version }}.tar.gz\n  sha256: 1135f664be7355427b91025075562805cdc6cc730d3173f83533b2c5dcc2f308\n  patches:\n    # see https://github.com/flame/blis/issues/746\n    - patches/0001-add-missing-include.patch\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - clangxx                # [win or osx]\n    - llvm-tools             # [win or osx]\n    - autotools_clang_conda  # [win]\n    - m2-sed                 # [win]\n    - sed                    # [unix]\n    - make                   # [linux]\n    - perl\n    - python >=3.5\n  host:\n  run:\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libblis.a                       # [unix]\n    - test -f $PREFIX/lib/libblis${SHLIB_EXT}             # [unix]\n    - test -f $PREFIX/include/blis/blis.h                 # [unix]\n    - test -f $PREFIX/include/blis/cblas.h                # [unix]\n    - if not exist %LIBRARY_INC%\\\\blis\\\\blis.h exit 1     # [win]\n    - if not exist %LIBRARY_INC%\\\\blis\\\\cblas.h exit 1    # [win]\n    - if not exist %LIBRARY_BIN%\\\\libblis.4.dll exit 1    # [win]\n    - if not exist %LIBRARY_LIB%\\\\blis.lib exit 1         # [win]\n    - if not exist %LIBRARY_LIB%\\\\libblis.lib exit 1      # [win]\n\nabout:\n  home: http://github.com/flame/blis\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: BLAS-like Library Instantiation Software Framework\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - h-vetinari\n",
+ "raw_meta_yaml": "{% set version = \"0.9.0\" %}\n\npackage:\n  name: blis\n  version: {{ version }}\n\nsource:\n  url: https://github.com/flame/blis/archive/{{ version }}.tar.gz\n  sha256: 1135f664be7355427b91025075562805cdc6cc730d3173f83533b2c5dcc2f308\n  patches:\n    # see https://github.com/flame/blis/issues/746\n    - patches/0001-add-missing-include.patch\n\nbuild:\n  number: 2\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - clangxx                # [win or osx]\n    - llvm-tools             # [win or osx]\n    - autotools_clang_conda  # [win]\n    - m2-sed                 # [win]\n    - sed                    # [unix]\n    - make                   # [linux]\n    - perl\n    - python >=3.5\n  host:\n  run:\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libblis.a                       # [unix]\n    - test -f $PREFIX/lib/libblis${SHLIB_EXT}             # [unix]\n    - test -f $PREFIX/include/blis/blis.h                 # [unix]\n    - test -f $PREFIX/include/blis/cblas.h                # [unix]\n    - if not exist %LIBRARY_INC%\\\\blis\\\\blis.h exit 1     # [win]\n    - if not exist %LIBRARY_INC%\\\\blis\\\\cblas.h exit 1    # [win]\n    - if not exist %LIBRARY_BIN%\\\\libblis.4.dll exit 1    # [win]\n    - if not exist %LIBRARY_LIB%\\\\blis.lib exit 1         # [win]\n    - if not exist %LIBRARY_LIB%\\\\libblis.lib exit 1      # [win]\n\nabout:\n  home: http://github.com/flame/blis\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: BLAS-like Library Instantiation Software Framework\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - h-vetinari\n    - gdonval\n",
  "req": {
   "__set__": true,
   "elements": [
    "autotools_clang_conda",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "clangxx",
    "llvm-tools",
    "m2-sed",
@@ -256,6 +345,7 @@
    "elements": [
     "autotools_clang_conda",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "clangxx",
     "llvm-tools",
     "m2-sed",
@@ -268,13 +358,15 @@
   "host": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "test": {
@@ -289,6 +381,7 @@
    "elements": [
     "autotools_clang_conda",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "clangxx",
     "llvm-tools",
     "m2-sed",
@@ -325,12 +418,13 @@
    "summary": "BLAS-like Library Instantiation Software Framework"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
     "isuruf",
-    "h-vetinari"
+    "h-vetinari",
+    "gdonval"
    ]
   },
   "package": {
@@ -340,6 +434,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "clangxx",
     "llvm-tools",
     "autotools_clang_conda",
@@ -373,6 +468,7 @@
    "elements": [
     "autotools_clang_conda",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "clangxx",
     "llvm-tools",
     "m2-sed",
