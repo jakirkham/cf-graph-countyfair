@@ -36,12 +36,13 @@
   },
   "package": {
    "name": "type_safe",
-   "version": "0.2.3"
+   "version": "0.2.4"
   },
   "requirements": {
    "build": [
     "cmake",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -52,8 +53,8 @@
    ]
   },
   "source": {
-   "sha256": "19008ab9526b0d2db1ae6bbd6640f5f7a398826bb2266561472e9f1b10d85bec",
-   "url": "https://github.com/foonathan/type_safe/archive/refs/tags/v0.2.3.tar.gz"
+   "sha256": "a631d03c18c65726b3d1b7d41ac5806e9121367afe10dd2f408a2d75e144b734",
+   "url": "https://github.com/foonathan/type_safe/archive/refs/tags/v0.2.4.tar.gz"
   },
   "test": {
    "commands": [
@@ -65,6 +66,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -110,12 +112,13 @@
   },
   "package": {
    "name": "type_safe",
-   "version": "0.2.3"
+   "version": "0.2.4"
   },
   "requirements": {
    "build": [
     "cmake",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -126,8 +129,8 @@
    ]
   },
   "source": {
-   "sha256": "19008ab9526b0d2db1ae6bbd6640f5f7a398826bb2266561472e9f1b10d85bec",
-   "url": "https://github.com/foonathan/type_safe/archive/refs/tags/v0.2.3.tar.gz"
+   "sha256": "a631d03c18c65726b3d1b7d41ac5806e9121367afe10dd2f408a2d75e144b734",
+   "url": "https://github.com/foonathan/type_safe/archive/refs/tags/v0.2.4.tar.gz"
   },
   "test": {
    "commands": [
@@ -160,12 +163,13 @@
   },
   "package": {
    "name": "type_safe",
-   "version": "0.2.3"
+   "version": "0.2.4"
   },
   "requirements": {
    "build": [
     "cmake",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -176,8 +180,8 @@
    ]
   },
   "source": {
-   "sha256": "19008ab9526b0d2db1ae6bbd6640f5f7a398826bb2266561472e9f1b10d85bec",
-   "url": "https://github.com/foonathan/type_safe/archive/refs/tags/v0.2.3.tar.gz"
+   "sha256": "a631d03c18c65726b3d1b7d41ac5806e9121367afe10dd2f408a2d75e144b734",
+   "url": "https://github.com/foonathan/type_safe/archive/refs/tags/v0.2.4.tar.gz"
   },
   "test": {
    "commands": [
@@ -189,6 +193,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -226,10 +231,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/type_safe.json"
  },
- "raw_meta_yaml": "{% set name = \"type_safe\" %}\n{% set version = \"0.2.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/foonathan/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 19008ab9526b0d2db1ae6bbd6640f5f7a398826bb2266561472e9f1b10d85bec\n\nbuild:\n  number: 0\n  ignore_run_exports_from:\n    # Since this package does not ship any compiled code, we do not need any\n    # compatibility with the compiler used at runtime.\n    - {{ compiler('cxx') }}\n\nrequirements:\n  build:\n    - cmake\n    # type_safe is header-only but its cmake setup is looking for a compiler to\n    # build some test programs (that are not installed.)\n    - {{ compiler('cxx') }}\n    - make  # [not win]\n  host:\n    # ensure that type_safe does not vendor debug_assert\n    - debug_assert >=1.3.3,<2\n  run:\n    # anything that uses type_safe headers is also going to need the debug_assert headers\n    - debug_assert >=1.3.3,<2\n\ntest:\n  commands:\n    - test -f $PREFIX/include/type_safe/optional.hpp            # [unix]\n    - if not exist %LIBRARY_INC%\\type_safe\\optional.hpp exit 1  # [win]\n\nabout:\n  home: https://github.com/foonathan/type_safe\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: zero overhead abstractions that use the C++ type system to prevent bugs\n  doc_url: https://type_safe.foonathan.net/\n  dev_url: https://github.com/foonathan/type_safe\n\nextra:\n  recipe-maintainers:\n    - saraedum\n",
+ "raw_meta_yaml": "{% set name = \"type_safe\" %}\n{% set version = \"0.2.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/foonathan/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: a631d03c18c65726b3d1b7d41ac5806e9121367afe10dd2f408a2d75e144b734\n\nbuild:\n  number: 0\n  ignore_run_exports_from:\n    # Since this package does not ship any compiled code, we do not need any\n    # compatibility with the compiler used at runtime.\n    - {{ compiler('cxx') }}\n\nrequirements:\n  build:\n    - cmake\n    # type_safe is header-only but its cmake setup is looking for a compiler to\n    # build some test programs (that are not installed.)\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - make  # [not win]\n  host:\n    # ensure that type_safe does not vendor debug_assert\n    - debug_assert >=1.3.3,<2\n  run:\n    # anything that uses type_safe headers is also going to need the debug_assert headers\n    - debug_assert >=1.3.3,<2\n\ntest:\n  commands:\n    - test -f $PREFIX/include/type_safe/optional.hpp            # [unix]\n    - if not exist %LIBRARY_INC%\\type_safe\\optional.hpp exit 1  # [win]\n\nabout:\n  home: https://github.com/foonathan/type_safe\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: zero overhead abstractions that use the C++ type system to prevent bugs\n  doc_url: https://type_safe.foonathan.net/\n  dev_url: https://github.com/foonathan/type_safe\n\nextra:\n  recipe-maintainers:\n    - saraedum\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "debug_assert",
@@ -240,6 +246,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -248,6 +255,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "debug_assert"
    ]
@@ -255,6 +263,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "debug_assert"
    ]
@@ -269,6 +278,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -291,8 +301,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/foonathan/type_safe/archive/refs/tags/v0.2.3.tar.gz",
- "version": "0.2.3",
+ "url": "https://github.com/foonathan/type_safe/archive/refs/tags/v0.2.4.tar.gz",
+ "version": "0.2.4",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/type_safe.json"
  },
@@ -319,12 +329,13 @@
   },
   "package": {
    "name": "type_safe",
-   "version": "0.2.3"
+   "version": "0.2.4"
   },
   "requirements": {
    "build": [
     "cmake",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "debug_assert >=1.3.3,<2"
@@ -334,8 +345,8 @@
    ]
   },
   "source": {
-   "sha256": "19008ab9526b0d2db1ae6bbd6640f5f7a398826bb2266561472e9f1b10d85bec",
-   "url": "https://github.com/foonathan/type_safe/archive/refs/tags/v0.2.3.tar.gz"
+   "sha256": "a631d03c18c65726b3d1b7d41ac5806e9121367afe10dd2f408a2d75e144b734",
+   "url": "https://github.com/foonathan/type_safe/archive/refs/tags/v0.2.4.tar.gz"
   },
   "test": {
    "commands": [
@@ -347,6 +358,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
