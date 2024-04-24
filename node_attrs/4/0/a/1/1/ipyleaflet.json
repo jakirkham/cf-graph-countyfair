@@ -30,8 +30,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -42,57 +41,95 @@
     "davidbrochart"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "noarch": "python",
+     "script": "cd jupyter_leaflet\npython -m pip install . -vv\n"
+    },
+    "name": "jupyter_leaflet",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip",
+      "nodejs >=18,<19",
+      "hatch-jupyter-builder >=0.5.3",
+      "hatchling",
+      "jupyterlab >=4,<5",
+      "hatch-nodejs-version >=0.3.2"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-leaflet/extension.js",
+      "test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-leaflet/index.js",
+      "test -f ${PREFIX}/share/jupyter/labextensions/jupyter-leaflet/package.json"
+     ]
+    },
+    "version": "0.19.0"
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "script": "cd ipyleaflet\npython -m pip install . -vv\n"
+    },
+    "name": "ipyleaflet",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip",
+      "hatchling"
+     ],
+     "run": [
+      "python >=3.8",
+      "ipywidgets >=7.6.0,<9",
+      "traittypes >=0.2.1,<0.3.0",
+      "xyzservices >=2021.8.1",
+      "branca >=0.5.0",
+      "jupyter_leaflet"
+     ],
+     "run_constrained": [
+      "jupyter_leaflet =0.19.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ipyleaflet"
+     ]
+    },
+    "version": "0.19.0"
+   }
+  ],
   "package": {
    "name": "ipyleaflet",
-   "version": "0.18.2"
+   "version": "0.19.0"
   },
-  "requirements": {
-   "build": [
-    "nodejs >=16"
-   ],
-   "host": [
-    "python >=3.7",
-    "pip",
-    "jupyter",
-    "jupyterlab >=4,<5",
-    "jupyter-packaging >=0.12,<1"
-   ],
-   "run": [
-    "python >=3.7",
-    "ipywidgets >=7.6.0,<9",
-    "traittypes >=0.2.1,<0.3.0",
-    "xyzservices >=2021.8.1",
-    "branca >=0.5.0"
-   ]
-  },
-  "source": {
-   "sha256": "8f166529ec7784de08822b253b8cc593fa81af8a8f967d70cbc53e45a6d3755f",
-   "url": "https://pypi.io/packages/source/i/ipyleaflet/ipyleaflet-0.18.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-leaflet/extension.js",
-    "test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-leaflet/index.js",
-    "test -f ${PREFIX}/share/jupyter/labextensions/jupyter-leaflet/package.json"
-   ],
-   "imports": [
-    "ipyleaflet"
-   ]
-  }
+  "source": [
+   {
+    "folder": "ipyleaflet",
+    "sha256": "92c600f1ed96b371572fb8fbd85a935bd026ae65db58f8449b9319977aa23508",
+    "url": "https://pypi.io/packages/source/i/ipyleaflet/ipyleaflet-0.19.0.tar.gz"
+   },
+   {
+    "folder": "jupyter_leaflet",
+    "sha256": "3201c9c7dee782b2f64c86c508e106452e823ad65a127656191aa0f88c44454d",
+    "url": "https://pypi.io/packages/source/j/jupyter_leaflet/jupyter_leaflet-0.19.0.tar.gz"
+   }
+  ]
  },
  "linux_64_requirements": {
   "build": {
    "__set__": true,
-   "elements": [
-    "nodejs"
-   ]
+   "elements": []
   },
   "host": {
    "__set__": true,
    "elements": [
-    "jupyter",
-    "jupyter-packaging",
+    "hatch-jupyter-builder",
+    "hatch-nodejs-version",
+    "hatchling",
     "jupyterlab",
+    "nodejs",
     "pip",
     "python"
    ]
@@ -102,6 +139,7 @@
    "elements": [
     "branca",
     "ipywidgets",
+    "jupyter_leaflet",
     "python",
     "traittypes",
     "xyzservices"
@@ -123,8 +161,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -135,49 +172,88 @@
     "davidbrochart"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "noarch": "python",
+     "script": "cd jupyter_leaflet\npython -m pip install . -vv\n"
+    },
+    "name": "jupyter_leaflet",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip",
+      "nodejs >=18,<19",
+      "hatch-jupyter-builder >=0.5.3",
+      "hatchling",
+      "jupyterlab >=4,<5",
+      "hatch-nodejs-version >=0.3.2"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-leaflet/extension.js",
+      "test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-leaflet/index.js",
+      "test -f ${PREFIX}/share/jupyter/labextensions/jupyter-leaflet/package.json"
+     ]
+    },
+    "version": "0.19.0"
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "script": "cd ipyleaflet\npython -m pip install . -vv\n"
+    },
+    "name": "ipyleaflet",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip",
+      "hatchling"
+     ],
+     "run": [
+      "python >=3.8",
+      "ipywidgets >=7.6.0,<9",
+      "traittypes >=0.2.1,<0.3.0",
+      "xyzservices >=2021.8.1",
+      "branca >=0.5.0",
+      "jupyter_leaflet"
+     ],
+     "run_constrained": [
+      "jupyter_leaflet =0.19.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ipyleaflet"
+     ]
+    },
+    "version": "0.19.0"
+   }
+  ],
   "package": {
    "name": "ipyleaflet",
-   "version": "0.18.2"
+   "version": "0.19.0"
   },
-  "requirements": {
-   "build": [
-    "nodejs >=16"
-   ],
-   "host": [
-    "python >=3.7",
-    "pip",
-    "jupyter",
-    "jupyterlab >=4,<5",
-    "jupyter-packaging >=0.12,<1"
-   ],
-   "run": [
-    "python >=3.7",
-    "ipywidgets >=7.6.0,<9",
-    "traittypes >=0.2.1,<0.3.0",
-    "xyzservices >=2021.8.1",
-    "branca >=0.5.0"
-   ]
-  },
-  "source": {
-   "sha256": "8f166529ec7784de08822b253b8cc593fa81af8a8f967d70cbc53e45a6d3755f",
-   "url": "https://pypi.io/packages/source/i/ipyleaflet/ipyleaflet-0.18.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-leaflet/extension.js",
-    "test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-leaflet/index.js",
-    "test -f ${PREFIX}/share/jupyter/labextensions/jupyter-leaflet/package.json"
-   ],
-   "imports": [
-    "ipyleaflet"
-   ]
-  }
+  "source": [
+   {
+    "folder": "ipyleaflet",
+    "sha256": "92c600f1ed96b371572fb8fbd85a935bd026ae65db58f8449b9319977aa23508",
+    "url": "https://pypi.io/packages/source/i/ipyleaflet/ipyleaflet-0.19.0.tar.gz"
+   },
+   {
+    "folder": "jupyter_leaflet",
+    "sha256": "3201c9c7dee782b2f64c86c508e106452e823ad65a127656191aa0f88c44454d",
+    "url": "https://pypi.io/packages/source/j/jupyter_leaflet/jupyter_leaflet-0.19.0.tar.gz"
+   }
+  ]
  },
  "name": "ipyleaflet",
  "outputs_names": {
   "__set__": true,
   "elements": [
-   "ipyleaflet"
+   "ipyleaflet",
+   "jupyter_leaflet"
   ]
  },
  "parsing_error": false,
@@ -187,14 +263,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/ipyleaflet.json"
  },
- "raw_meta_yaml": "{% set version = \"0.18.2\" %}\n{% set sha256 = \"8f166529ec7784de08822b253b8cc593fa81af8a8f967d70cbc53e45a6d3755f\" %}\n\npackage:\n  name: ipyleaflet\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/i/ipyleaflet/ipyleaflet-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n\nrequirements:\n  build:\n    - nodejs >=16\n  host:\n    - python >=3.7\n    - pip\n    - jupyter\n    - jupyterlab >=4,<5\n    - jupyter-packaging >=0.12,<1\n  run:\n    - python >=3.7\n    - ipywidgets >=7.6.0,<9\n    - traittypes >=0.2.1,<0.3.0\n    - xyzservices >=2021.8.1\n    - branca >=0.5.0\n\ntest:\n  imports:\n    - ipyleaflet\n  commands:\n    - test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-leaflet/extension.js                             # [unix]\n    - test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-leaflet/index.js                                 # [unix]\n    - test -f ${PREFIX}/share/jupyter/labextensions/jupyter-leaflet/package.json                            # [unix]\n    - if not exist %PREFIX%\\\\share\\\\jupyter\\\\nbextensions\\\\jupyter-leaflet\\\\extension.js (exit 1)           # [win]\n    - if not exist %PREFIX%\\\\share\\\\jupyter\\\\nbextensions\\\\jupyter-leaflet\\\\index.js (exit 1)               # [win]\n    - if not exist %PREFIX%\\\\share\\\\jupyter\\\\labextensions\\\\jupyter-leaflet\\\\package.json (exit 1)          # [win]\n\nabout:\n  home: https://github.com/jupyter-widgets/ipyleaflet\n  license: MIT\n  license_file: LICENSE\n  summary: A Jupyter widget for dynamic Leaflet maps\n  doc_url: http://ipyleaflet.readthedocs.io\n  dev_url: https://github.com/jupyter-widgets/ipyleaflet\n\nextra:\n  recipe-maintainers:\n    - SylvainCorlay\n    - ellisonbg\n    - jasongrout\n    - martinRenou\n    - davidbrochart\n",
+ "raw_meta_yaml": "{% set version = \"0.19.0\" %}\n\npackage:\n  name: ipyleaflet\n  version: {{ version }}\n\n\nsource:\n  - url: https://pypi.io/packages/source/i/ipyleaflet/ipyleaflet-{{ version }}.tar.gz\n    sha256: 92c600f1ed96b371572fb8fbd85a935bd026ae65db58f8449b9319977aa23508\n    folder: ipyleaflet\n  - url: https://pypi.io/packages/source/j/jupyter_leaflet/jupyter_leaflet-{{ version }}.tar.gz\n    sha256: 3201c9c7dee782b2f64c86c508e106452e823ad65a127656191aa0f88c44454d\n    folder: jupyter_leaflet\n\nbuild:\n  number: 0\n  noarch: python\n\noutputs:\n  - name: jupyter_leaflet\n    version: {{ version }}\n    build:\n      noarch: python\n      script: |\n        cd jupyter_leaflet\n        python -m pip install . -vv\n    requirements:\n      host:\n        - python >=3.8\n        - pip\n        - nodejs >=18,<19\n        - hatch-jupyter-builder >=0.5.3\n        - hatchling\n        - jupyterlab >=4,<5\n        - hatch-nodejs-version >=0.3.2\n    test:\n      commands:\n        - test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-leaflet/extension.js                             # [unix]\n        - test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-leaflet/index.js                                 # [unix]\n        - test -f ${PREFIX}/share/jupyter/labextensions/jupyter-leaflet/package.json                            # [unix]\n        - if not exist %PREFIX%\\\\share\\\\jupyter\\\\nbextensions\\\\jupyter-leaflet\\\\extension.js (exit 1)           # [win]\n        - if not exist %PREFIX%\\\\share\\\\jupyter\\\\nbextensions\\\\jupyter-leaflet\\\\index.js (exit 1)               # [win]\n        - if not exist %PREFIX%\\\\share\\\\jupyter\\\\labextensions\\\\jupyter-leaflet\\\\package.json (exit 1)          # [win]\n\n  - name: ipyleaflet\n    version: {{ version }}\n    build:\n      noarch: python\n      script: |\n        cd ipyleaflet\n        python -m pip install . -vv\n    requirements:\n      host:\n        - python >=3.8\n        - pip\n        - hatchling\n      run:\n        - python >=3.8\n        - ipywidgets >=7.6.0,<9\n        - traittypes >=0.2.1,<0.3.0\n        - xyzservices >=2021.8.1\n        - branca >=0.5.0\n        - jupyter_leaflet\n      run_constrained:\n        - jupyter_leaflet ={{ version }}\n    test:\n      imports:\n        - ipyleaflet\n\nabout:\n  home: https://github.com/jupyter-widgets/ipyleaflet\n  license: MIT\n  license_file: LICENSE\n  summary: A Jupyter widget for dynamic Leaflet maps\n  doc_url: http://ipyleaflet.readthedocs.io\n  dev_url: https://github.com/jupyter-widgets/ipyleaflet\n\nextra:\n  recipe-maintainers:\n    - SylvainCorlay\n    - ellisonbg\n    - jasongrout\n    - martinRenou\n    - davidbrochart\n",
  "req": {
   "__set__": true,
   "elements": [
    "branca",
+   "hatch-jupyter-builder",
+   "hatch-nodejs-version",
+   "hatchling",
    "ipywidgets",
-   "jupyter",
-   "jupyter-packaging",
+   "jupyter_leaflet",
    "jupyterlab",
    "nodejs",
    "pip",
@@ -206,16 +284,16 @@
  "requirements": {
   "build": {
    "__set__": true,
-   "elements": [
-    "nodejs"
-   ]
+   "elements": []
   },
   "host": {
    "__set__": true,
    "elements": [
-    "jupyter",
-    "jupyter-packaging",
+    "hatch-jupyter-builder",
+    "hatch-nodejs-version",
+    "hatchling",
     "jupyterlab",
+    "nodejs",
     "pip",
     "python"
    ]
@@ -225,6 +303,7 @@
    "elements": [
     "branca",
     "ipywidgets",
+    "jupyter_leaflet",
     "python",
     "traittypes",
     "xyzservices"
@@ -239,18 +318,18 @@
  "total_requirements": {
   "build": {
    "__set__": true,
-   "elements": [
-    "nodejs >=16"
-   ]
+   "elements": []
   },
   "host": {
    "__set__": true,
    "elements": [
-    "jupyter",
-    "jupyter-packaging >=0.12,<1",
+    "hatch-jupyter-builder >=0.5.3",
+    "hatch-nodejs-version >=0.3.2",
+    "hatchling",
     "jupyterlab >=4,<5",
+    "nodejs >=18,<19",
     "pip",
-    "python >=3.7"
+    "python >=3.8"
    ]
   },
   "run": {
@@ -258,7 +337,8 @@
    "elements": [
     "branca >=0.5.0",
     "ipywidgets >=7.6.0,<9",
-    "python >=3.7",
+    "jupyter_leaflet",
+    "python >=3.8",
     "traittypes >=0.2.1,<0.3.0",
     "xyzservices >=2021.8.1"
    ]
@@ -268,8 +348,8 @@
    "elements": []
   }
  },
- "url": "https://pypi.io/packages/source/i/ipyleaflet/ipyleaflet-0.18.2.tar.gz",
- "version": "0.18.2",
+ "url": "https://pypi.io/packages/source/i/ipyleaflet/ipyleaflet-0.19.0.tar.gz",
+ "version": "0.19.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/ipyleaflet.json"
  }
