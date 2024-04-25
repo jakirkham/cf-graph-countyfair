@@ -31,7 +31,7 @@
    "summary": "Implementation of numerical solvers used in the Machines in Motion Laboratory"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "mim-solvers"
    ]
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -90,6 +91,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "doxygen",
@@ -134,7 +136,7 @@
    "summary": "Implementation of numerical solvers used in the Machines in Motion Laboratory"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "mim-solvers"
    ]
@@ -153,6 +155,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -201,7 +204,7 @@
    "summary": "Implementation of numerical solvers used in the Machines in Motion Laboratory"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "mim-solvers"
    ]
@@ -220,6 +223,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -260,6 +264,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "doxygen",
@@ -304,7 +309,7 @@
    "summary": "Implementation of numerical solvers used in the Machines in Motion Laboratory"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "mim-solvers"
    ]
@@ -323,6 +328,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -363,6 +369,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "doxygen",
@@ -411,10 +418,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/mim-solvers.json"
  },
- "raw_meta_yaml": "{% set name = \"mim-solvers\" %}\n{% set version = \"0.0.4\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/machines-in-motion/mim_solvers/releases/download/v{{ version }}/mim_solvers-{{ version }}.tar.gz\n  sha256: 2b63bae95ba3d57a181ab38ec0637275d51e525bde0837b08489903750593a77\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  run_exports:\n    - {{ pin_subpackage(name|lower, max_pin='x.x.x') }}\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('cxx') }}\n    - cmake\n    - make\n    - pkg-config\n    - doxygen\n  host:\n    - libboost-python-devel\n    - crocoddyl\n    - proxsuite\n    - eigen\n    - eigenpy\n    - python\n    - numpy\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  requires:\n    - pkg-config\n  commands:\n    - pkg-config --modversion mim_solvers\n    - test -f $PREFIX/lib/libmim_solvers${SHLIB_EXT}  # [unix]\n  imports:\n    - mim_solvers\n\nabout:\n  home: https://github.com/machines-in-motion/mim_solvers\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: Implementation of numerical solvers used in the Machines in Motion Laboratory\n  description: |\n    Implementation of numerical solvers used in the Machines in Motion Laboratory.\n    In particular, the Sequential Quadratic Programming (SQP) solver that solves efficiently nonlinear constrained OCPs.\n    All solvers are implemented by using Crocoddyl (v2.0) as the base software.\n    Consquently, Crocoddyl users can use our efficient solvers while constructing their OCPs using the same API they are used to.\n  doc_url: https://github.com/machines-in-motion/mim_solvers\n  dev_url: https://github.com/machines-in-motion/mim_solvers\n\nextra:\n  recipe-maintainers:\n    - jcarpent\n    - ajordana\n    - ymontmarin\n",
+ "raw_meta_yaml": "{% set name = \"mim-solvers\" %}\n{% set version = \"0.0.4\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/machines-in-motion/mim_solvers/releases/download/v{{ version }}/mim_solvers-{{ version }}.tar.gz\n  sha256: 2b63bae95ba3d57a181ab38ec0637275d51e525bde0837b08489903750593a77\n\nbuild:\n  number: 1\n  skip: true  # [win]\n  run_exports:\n    - {{ pin_subpackage(name|lower, max_pin='x.x.x') }}\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - make\n    - pkg-config\n    - doxygen\n  host:\n    - libboost-python-devel\n    - crocoddyl\n    - proxsuite\n    - eigen\n    - eigenpy\n    - python\n    - numpy\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  requires:\n    - pkg-config\n  commands:\n    - pkg-config --modversion mim_solvers\n    - test -f $PREFIX/lib/libmim_solvers${SHLIB_EXT}  # [unix]\n  imports:\n    - mim_solvers\n\nabout:\n  home: https://github.com/machines-in-motion/mim_solvers\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: Implementation of numerical solvers used in the Machines in Motion Laboratory\n  description: |\n    Implementation of numerical solvers used in the Machines in Motion Laboratory.\n    In particular, the Sequential Quadratic Programming (SQP) solver that solves efficiently nonlinear constrained OCPs.\n    All solvers are implemented by using Crocoddyl (v2.0) as the base software.\n    Consquently, Crocoddyl users can use our efficient solvers while constructing their OCPs using the same API they are used to.\n  doc_url: https://github.com/machines-in-motion/mim_solvers\n  dev_url: https://github.com/machines-in-motion/mim_solvers\n\nextra:\n  recipe-maintainers:\n    - jcarpent\n    - ajordana\n    - ymontmarin\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "crocoddyl",
    "cxx_compiler_stub",
@@ -433,6 +441,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "doxygen",
@@ -443,6 +452,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "crocoddyl",
     "cxx_compiler_stub",
     "eigen",
@@ -456,6 +466,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numpy",
     "python"
@@ -473,6 +484,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "doxygen",
