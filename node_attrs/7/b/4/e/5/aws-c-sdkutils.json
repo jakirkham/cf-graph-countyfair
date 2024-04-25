@@ -30,7 +30,7 @@
    "summary": "This is a module for the AWS SDK for C."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "aws-c-sdkutils"
    ]
@@ -49,6 +49,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -71,6 +72,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -99,7 +101,7 @@
    "summary": "This is a module for the AWS SDK for C."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "aws-c-sdkutils"
    ]
@@ -118,6 +120,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -140,6 +143,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -168,7 +172,7 @@
    "summary": "This is a module for the AWS SDK for C."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "aws-c-sdkutils"
    ]
@@ -187,6 +191,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -209,6 +214,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -237,7 +243,7 @@
    "summary": "This is a module for the AWS SDK for C."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "aws-c-sdkutils"
    ]
@@ -256,6 +262,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -285,7 +292,7 @@
    "summary": "This is a module for the AWS SDK for C."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "aws-c-sdkutils"
    ]
@@ -304,6 +311,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -326,6 +334,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -354,7 +363,7 @@
    "summary": "This is a module for the AWS SDK for C."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "aws-c-sdkutils"
    ]
@@ -373,6 +382,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -395,6 +405,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -432,12 +443,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/aws-c-sdkutils.json"
  },
- "raw_meta_yaml": "{% set name = \"aws-c-sdkutils\" %}\n{% set version = \"0.1.15\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/awslabs/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 15fa30b8b0a357128388f2f40ab0ba3df63742fd333cc2f89cb91a9169f03bdc\n\nbuild:\n  number: 3\n  run_exports:\n    - {{ pin_subpackage(\"aws-c-sdkutils\", max_pin=\"x.x.x\") }}\n\nrequirements:\n  build:\n    - cmake !=3.19.0,!=3.19.1\n    - {{ compiler('c') }}\n    - ninja\n  host:\n    - aws-c-common\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libaws-c-sdkutils${SHLIB_EXT}  # [unix]\n    - test -f $PREFIX/include/aws/sdkutils/sdkutils.h  # [unix]\n    - if not exist %LIBRARY_INC%\\\\aws\\\\sdkutils\\\\sdkutils.h exit 1          # [win]\n    - if not exist %PREFIX%\\\\Library\\\\bin\\\\aws-c-sdkutils.dll exit 1  # [win]\n\nabout:\n  home: https://github.com/awslabs/aws-c-sdkutils\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: This is a module for the AWS SDK for C.\n\nextra:\n  recipe-maintainers:\n    - xhochy\n    - conda-forge/aws-sdk-cpp\n",
+ "raw_meta_yaml": "{% set name = \"aws-c-sdkutils\" %}\n{% set version = \"0.1.15\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/awslabs/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 15fa30b8b0a357128388f2f40ab0ba3df63742fd333cc2f89cb91a9169f03bdc\n\nbuild:\n  number: 4\n  run_exports:\n    - {{ pin_subpackage(\"aws-c-sdkutils\", max_pin=\"x.x.x\") }}\n\nrequirements:\n  build:\n    - cmake !=3.19.0,!=3.19.1\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - ninja\n  host:\n    - aws-c-common\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libaws-c-sdkutils${SHLIB_EXT}  # [unix]\n    - test -f $PREFIX/include/aws/sdkutils/sdkutils.h  # [unix]\n    - if not exist %LIBRARY_INC%\\\\aws\\\\sdkutils\\\\sdkutils.h exit 1          # [win]\n    - if not exist %PREFIX%\\\\Library\\\\bin\\\\aws-c-sdkutils.dll exit 1  # [win]\n\nabout:\n  home: https://github.com/awslabs/aws-c-sdkutils\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: This is a module for the AWS SDK for C.\n\nextra:\n  recipe-maintainers:\n    - xhochy\n    - conda-forge/aws-sdk-cpp\n",
  "req": {
   "__set__": true,
   "elements": [
    "aws-c-common",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "ninja"
   ]
@@ -447,6 +459,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -455,13 +468,15 @@
    "__set__": true,
    "elements": [
     "aws-c-common",
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "test": {
@@ -475,6 +490,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake !=3.19.0,!=3.19.1",
     "ninja"
    ]
@@ -508,7 +524,7 @@
    "summary": "This is a module for the AWS SDK for C."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "aws-c-sdkutils"
    ]
@@ -527,6 +543,7 @@
    "build": [
     "cmake !=3.19.0,!=3.19.1",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ninja"
    ],
    "host": [
@@ -549,6 +566,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
