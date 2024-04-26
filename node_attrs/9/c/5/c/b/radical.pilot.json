@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "update-grayskull"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -29,36 +32,38 @@
    "summary": "RADICAL-Pilot is a pilot-based runtime system"
   },
   "build": {
+   "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
     "andre-merzky",
-    "mtitov"
+    "mtitov",
+    "xylar"
    ]
   },
   "package": {
    "name": "radical.pilot",
-   "version": "1.49.2"
+   "version": "1.52.1"
   },
   "requirements": {
    "host": [
-    "python",
+    "python >=3.8",
     "pip"
    ],
    "run": [
-    "python",
-    "radical.utils >=1.43",
-    "radical.saga >=1.37",
+    "python >=3.8",
+    "radical.utils >=1.44",
     "radical.gtod",
+    "psij-python",
     "setproctitle",
     "dill"
    ]
   },
   "source": {
-   "sha256": "f49f40426df2326b1c724b4a4bcd34c2fe07b60c96040e55c0a129a3d13646cc",
-   "url": "https://pypi.io/packages/source/r/radical.pilot/radical.pilot-1.49.2.tar.gz"
+   "sha256": "ad477f68032e8a52b7c78bfa69557ebb8aba3ed69347590ae77620fe59114052",
+   "url": "https://pypi.io/packages/source/r/radical.pilot/radical_pilot-1.52.1.tar.gz"
   },
   "test": {
    "imports": [
@@ -82,9 +87,9 @@
    "__set__": true,
    "elements": [
     "dill",
+    "psij-python",
     "python",
     "radical.gtod",
-    "radical.saga",
     "radical.utils",
     "setproctitle"
    ]
@@ -181,36 +186,38 @@
    "summary": "RADICAL-Pilot is a pilot-based runtime system"
   },
   "build": {
+   "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
     "andre-merzky",
-    "mtitov"
+    "mtitov",
+    "xylar"
    ]
   },
   "package": {
    "name": "radical.pilot",
-   "version": "1.49.2"
+   "version": "1.52.1"
   },
   "requirements": {
    "host": [
-    "python",
+    "python >=3.8",
     "pip"
    ],
    "run": [
-    "python",
-    "radical.utils >=1.43",
-    "radical.saga >=1.37",
+    "python >=3.8",
+    "radical.utils >=1.44",
     "radical.gtod",
+    "psij-python",
     "setproctitle",
     "dill"
    ]
   },
   "source": {
-   "sha256": "f49f40426df2326b1c724b4a4bcd34c2fe07b60c96040e55c0a129a3d13646cc",
-   "url": "https://pypi.io/packages/source/r/radical.pilot/radical.pilot-1.49.2.tar.gz"
+   "sha256": "ad477f68032e8a52b7c78bfa69557ebb8aba3ed69347590ae77620fe59114052",
+   "url": "https://pypi.io/packages/source/r/radical.pilot/radical_pilot-1.52.1.tar.gz"
   },
   "test": {
    "imports": [
@@ -303,22 +310,20 @@
  },
  "parsing_error": false,
  "platforms": [
-  "linux_64",
-  "linux_ppc64le",
-  "osx_64"
+  "linux_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/radical.pilot.json"
  },
- "raw_meta_yaml": "{% set name = \"radical.pilot\" %}\n{% set version = \"1.49.2\" %}\n{% set sha256 = \"f49f40426df2326b1c724b4a4bcd34c2fe07b60c96040e55c0a129a3d13646cc\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv\n  skip: true  # [py2k or win]\n\nrequirements:\n  host:\n    - python\n    - pip\n  run:\n    - python\n    - radical.utils >=1.43\n    - radical.saga >=1.37\n    - radical.gtod\n    - setproctitle\n    - dill\n\ntest:\n  imports:\n    - radical.pilot\n\nabout:\n  home: https://github.com/radical-cybertools/radical.pilot\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE.md\n  summary: RADICAL-Pilot is a pilot-based runtime system\n  description: |\n    RADICAL-Pilot (RP) is a flexible pilot-based system that provides a simple \n    and scalable approach for executing many concurrent simulations and their \n    data requirements on high performance computing (HPC) platforms. RP \n    separates resource acquisition from using those resources to execute \n    application tasks.\n  dev_url: https://github.com/radical-cybertools/radical.pilot\n\nextra:\n  recipe-maintainers:\n    - andre-merzky\n    - mtitov\n",
+ "raw_meta_yaml": "{% set name = \"radical.pilot\" %}\n{% set version = \"1.52.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/radical_pilot-{{ version }}.tar.gz\n  sha256: ad477f68032e8a52b7c78bfa69557ebb8aba3ed69347590ae77620fe59114052\n\nbuild:\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  noarch: python\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n  run:\n    - python >=3.8\n    - radical.utils >=1.44\n    - radical.gtod\n    - psij-python\n    - setproctitle\n    - dill\n\ntest:\n  imports:\n    - radical.pilot\n\nabout:\n  home: https://github.com/radical-cybertools/radical.pilot\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE.md\n  summary: RADICAL-Pilot is a pilot-based runtime system\n  description: |\n    RADICAL-Pilot (RP) is a flexible pilot-based system that provides a simple\n    and scalable approach for executing many concurrent simulations and their\n    data requirements on high performance computing (HPC) platforms. RP\n    separates resource acquisition from using those resources to execute\n    application tasks.\n  dev_url: https://github.com/radical-cybertools/radical.pilot\n\nextra:\n  recipe-maintainers:\n    - andre-merzky\n    - mtitov\n    - xylar\n",
  "req": {
   "__set__": true,
   "elements": [
    "dill",
    "pip",
+   "psij-python",
    "python",
    "radical.gtod",
-   "radical.saga",
    "radical.utils",
    "setproctitle"
   ]
@@ -339,9 +344,9 @@
    "__set__": true,
    "elements": [
     "dill",
+    "psij-python",
     "python",
     "radical.gtod",
-    "radical.saga",
     "radical.utils",
     "setproctitle"
    ]
@@ -361,17 +366,17 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python >=3.8"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "dill",
-    "python",
+    "psij-python",
+    "python >=3.8",
     "radical.gtod",
-    "radical.saga >=1.37",
-    "radical.utils >=1.43",
+    "radical.utils >=1.44",
     "setproctitle"
    ]
   },
@@ -380,8 +385,8 @@
    "elements": []
   }
  },
- "url": "https://pypi.io/packages/source/r/radical.pilot/radical.pilot-1.49.2.tar.gz",
- "version": "1.49.2",
+ "url": "https://pypi.io/packages/source/r/radical.pilot/radical_pilot-1.52.1.tar.gz",
+ "version": "1.52.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/radical.pilot.json"
  }
