@@ -39,7 +39,7 @@
    "summary": "The DART (Dynamic Animation and Robotics Toolkit) library provides data structures and algorithms for kinematic and dynamic applications in robotics and computer animation."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "dartsim"
    ]
@@ -58,6 +58,7 @@
    "build": [
     "cxx_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "pkg-config",
     "make"
@@ -110,6 +111,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -159,7 +161,7 @@
    "summary": "The DART (Dynamic Animation and Robotics Toolkit) library provides data structures and algorithms for kinematic and dynamic applications in robotics and computer animation."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "dartsim"
    ]
@@ -178,6 +180,7 @@
    "build": [
     "cxx_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "pkg-config",
     "make"
@@ -230,6 +233,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -279,7 +283,7 @@
    "summary": "The DART (Dynamic Animation and Robotics Toolkit) library provides data structures and algorithms for kinematic and dynamic applications in robotics and computer animation."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "dartsim"
    ]
@@ -298,6 +302,7 @@
    "build": [
     "cxx_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "pkg-config",
     "make"
@@ -350,6 +355,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -399,7 +405,7 @@
    "summary": "The DART (Dynamic Animation and Robotics Toolkit) library provides data structures and algorithms for kinematic and dynamic applications in robotics and computer animation."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "dartsim"
    ]
@@ -418,6 +424,7 @@
    "build": [
     "cxx_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "pkg-config",
     "make",
@@ -533,7 +540,7 @@
    "summary": "The DART (Dynamic Animation and Robotics Toolkit) library provides data structures and algorithms for kinematic and dynamic applications in robotics and computer animation."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "dartsim"
    ]
@@ -552,6 +559,7 @@
    "build": [
     "cxx_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "pkg-config",
     "make"
@@ -604,6 +612,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -653,7 +662,7 @@
    "summary": "The DART (Dynamic Animation and Robotics Toolkit) library provides data structures and algorithms for kinematic and dynamic applications in robotics and computer animation."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "dartsim"
    ]
@@ -672,6 +681,7 @@
    "build": [
     "cxx_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "pkg-config",
     "make"
@@ -724,6 +734,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -781,13 +792,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/dartsim.json"
  },
- "raw_meta_yaml": "{% set name = \"dartsim\" %}\n{% set version = \"6.13.2\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/dartsim/dart/archive/v{{ version }}.tar.gz\n    sha256: 02699a8f807276231c80ffc5dbc3f66dc1c3612364340c91bcad63a837c01576\n    patches:\n      - disable_imgui.patch\n      - disable_gui.patch\n      - disable_test_Issue1596.patch\n      - enable_windows_tests.patch\n\nbuild:\n  number: 1\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ compiler('c') }}\n    - cmake\n    - pkg-config\n    - make                   # [not win]\n    - ninja                  # [win]\n    - perl                   # [win]\n\n\n  host:\n    - assimp\n    - bullet-cpp\n    - console_bridge\n    - eigen\n    - fcl\n    - flann\n    - libccd-double\n    - libode\n    - lz4-c\n    - octomap\n    - tinyxml2\n    - urdfdom\n    - freeglut  # [win]\n    - fmt\n    - spdlog\n\n\n  run:\n    - eigen\n    - flann\n    - lz4-c\n    - octomap\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libdart.dylib  # [osx]\n    - test -f $PREFIX/lib/libdart.so  # [linux]\n    - test -f $PREFIX/share/dart/cmake/dart_collision-odeTargets.cmake  # [not win]\n    - test -f $PREFIX/share/dart/cmake/dart_collision-bulletTargets.cmake  # [not win]\n    - if not exist %LIBRARY_LIB%\\\\dart.lib exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\share\\\\dart\\\\cmake\\\\dart_collision-odeTargets.cmake exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\share\\\\dart\\\\cmake\\\\dart_collision-bulletTargets.cmake exit 1  # [win]\n\nabout:\n  home: http://dartsim.github.io/\n  license: BSD-2-Clause\n  license_file: LICENSE\n  summary: The DART (Dynamic Animation and Robotics Toolkit) library provides data structures and algorithms for kinematic and dynamic applications in robotics and computer animation.\n  description: The DART (Dynamic Animation and Robotics Toolkit) library provides data structures and algorithms for kinematic and dynamic applications in robotics and computer animation.\n  dev_url: https://github.com/dartsim/dart\n\nextra:\n  recipe-maintainers:\n    - traversaro\n    - wolfv\n",
+ "raw_meta_yaml": "{% set name = \"dartsim\" %}\n{% set version = \"6.13.2\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/dartsim/dart/archive/v{{ version }}.tar.gz\n    sha256: 02699a8f807276231c80ffc5dbc3f66dc1c3612364340c91bcad63a837c01576\n    patches:\n      - disable_imgui.patch\n      - disable_gui.patch\n      - disable_test_Issue1596.patch\n      - enable_windows_tests.patch\n\nbuild:\n  number: 2\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - pkg-config\n    - make                   # [not win]\n    - ninja                  # [win]\n    - perl                   # [win]\n\n\n  host:\n    - assimp\n    - bullet-cpp\n    - console_bridge\n    - eigen\n    - fcl\n    - flann\n    - libccd-double\n    - libode\n    - lz4-c\n    - octomap\n    - tinyxml2\n    - urdfdom\n    - freeglut  # [win]\n    - fmt\n    - spdlog\n\n\n  run:\n    - eigen\n    - flann\n    - lz4-c\n    - octomap\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libdart.dylib  # [osx]\n    - test -f $PREFIX/lib/libdart.so  # [linux]\n    - test -f $PREFIX/share/dart/cmake/dart_collision-odeTargets.cmake  # [not win]\n    - test -f $PREFIX/share/dart/cmake/dart_collision-bulletTargets.cmake  # [not win]\n    - if not exist %LIBRARY_LIB%\\\\dart.lib exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\share\\\\dart\\\\cmake\\\\dart_collision-odeTargets.cmake exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\share\\\\dart\\\\cmake\\\\dart_collision-bulletTargets.cmake exit 1  # [win]\n\nabout:\n  home: http://dartsim.github.io/\n  license: BSD-2-Clause\n  license_file: LICENSE\n  summary: The DART (Dynamic Animation and Robotics Toolkit) library provides data structures and algorithms for kinematic and dynamic applications in robotics and computer animation.\n  description: The DART (Dynamic Animation and Robotics Toolkit) library provides data structures and algorithms for kinematic and dynamic applications in robotics and computer animation.\n  dev_url: https://github.com/dartsim/dart\n\nextra:\n  recipe-maintainers:\n    - traversaro\n    - wolfv\n",
  "req": {
   "__set__": true,
   "elements": [
    "assimp",
    "bullet-cpp",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "console_bridge",
    "cxx_compiler_stub",
@@ -814,6 +826,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -828,6 +841,7 @@
     "assimp",
     "bullet-cpp",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "console_bridge",
     "cxx_compiler_stub",
     "eigen",
@@ -848,6 +862,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "eigen",
     "flann",
@@ -866,6 +881,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -923,7 +939,7 @@
    "summary": "The DART (Dynamic Animation and Robotics Toolkit) library provides data structures and algorithms for kinematic and dynamic applications in robotics and computer animation."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "dartsim"
    ]
@@ -942,6 +958,7 @@
    "build": [
     "cxx_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "pkg-config",
     "ninja",
@@ -996,6 +1013,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja",
