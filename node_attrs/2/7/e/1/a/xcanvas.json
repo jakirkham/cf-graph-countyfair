@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "xcanvas",
  "hash_type": "sha256",
@@ -232,6 +236,87 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/martinRenou/xcanvas",
+   "home": "https://github.com/martinRenou/xcanvas",
+   "license": "BSD-3-Clause",
+   "license_family": "BSD",
+   "license_file": "LICENSE",
+   "summary": "C++ back-end for ipycanvas"
+  },
+  "build": {
+   "number": "0",
+   "run_exports": [
+    "xcanvas"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "JohanMabille",
+    "martinRenou"
+   ]
+  },
+  "package": {
+   "name": "xcanvas",
+   "version": "0.4.2"
+  },
+  "requirements": {
+   "build": [
+    "cxx_compiler_stub",
+    "cmake",
+    "make"
+   ],
+   "host": [
+    "xtl >=0.7.0,<0.8",
+    "xproperty >=0.11.0,<0.12",
+    "xwidgets >=0.28.1,<0.29"
+   ],
+   "run": [
+    "ipycanvas >=0.11.0,<0.12"
+   ]
+  },
+  "source": {
+   "sha256": "697c83f1d34577c2c121fd83a72eabba12a73c14bef72b49a30289a8db0f0a55",
+   "url": "https://github.com/jupyter-xeus/xcanvas/archive/0.4.2.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "test -d ${PREFIX}/include/xcanvas",
+    "test -f ${PREFIX}/include/xcanvas/xcanvas.hpp",
+    "test -f ${PREFIX}/lib/cmake/xcanvas/xcanvasConfig.cmake",
+    "test -f ${PREFIX}/lib/cmake/xcanvas/xcanvasConfigVersion.cmake"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "cmake",
+    "cxx_compiler_stub",
+    "make"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "xproperty",
+    "xtl",
+    "xwidgets"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "ipycanvas"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -242,6 +327,7 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
