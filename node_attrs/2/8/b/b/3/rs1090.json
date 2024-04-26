@@ -24,7 +24,7 @@
    "summary": "Python binding to rs1090, a library to decode Mode S and ADS-B signals"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
     "PYTHON -m pip install . -vv"
@@ -42,6 +42,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses"
    ],
@@ -77,6 +78,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
@@ -115,7 +117,7 @@
    "summary": "Python binding to rs1090, a library to decode Mode S and ADS-B signals"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
     "PYTHON -m pip install . -vv"
@@ -133,6 +135,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses"
    ],
@@ -144,8 +147,7 @@
    "run": [
     "python",
     "pandas >=2.2.0",
-    "typing_extensions >=4.10.0",
-    "__osx >=10.12"
+    "typing_extensions >=4.10.0"
    ]
   },
   "source": {
@@ -176,7 +178,7 @@
    "summary": "Python binding to rs1090, a library to decode Mode S and ADS-B signals"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
     "PYTHON -m pip install . -vv"
@@ -194,6 +196,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses"
    ],
@@ -205,8 +208,7 @@
    "run": [
     "python",
     "pandas >=2.2.0",
-    "typing_extensions >=4.10.0",
-    "__osx >=10.12"
+    "typing_extensions >=4.10.0"
    ]
   },
   "source": {
@@ -230,6 +232,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
@@ -245,7 +248,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "pandas",
     "python",
     "typing_extensions"
@@ -273,12 +275,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/rs1090.json"
  },
- "raw_meta_yaml": "{% set name = \"rs1090\" %}\n{% set version = \"0.2.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/rs1090-{{ version }}.tar.gz\n  sha256: 8122c8a2a476d788f97583bb8902afc8a7c76ec4d82992f24910940029d7e95b\n\nbuild:\n  skip: true  # [py<39 or python_impl == 'pypy']\n  script:\n    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml\n    - {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('rust') }}\n    - cargo-bundle-licenses\n  host:\n    - python\n    - maturin >=1.4,<2.0\n    - pip\n  run:\n    - python\n    - pandas >=2.2.0\n    - typing_extensions >=4.10.0\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n\ntest:\n  imports:\n    - rs1090\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/xoolive/rs1090/\n  summary: Python binding to rs1090, a library to decode Mode S and ADS-B signals\n  license: MIT\n  license_file:\n    - license.md\n    - THIRDPARTY.yml \n\nextra:\n  recipe-maintainers:\n    - xoolive\n",
+ "raw_meta_yaml": "{% set name = \"rs1090\" %}\n{% set version = \"0.2.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/rs1090-{{ version }}.tar.gz\n  sha256: 8122c8a2a476d788f97583bb8902afc8a7c76ec4d82992f24910940029d7e95b\n\nbuild:\n  skip: true  # [py<39 or python_impl == 'pypy']\n  script:\n    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml\n    - {{ PYTHON }} -m pip install . -vv\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('rust') }}\n    - cargo-bundle-licenses\n  host:\n    - python\n    - maturin >=1.4,<2.0\n    - pip\n  run:\n    - python\n    - pandas >=2.2.0\n    - typing_extensions >=4.10.0\n\ntest:\n  imports:\n    - rs1090\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/xoolive/rs1090/\n  summary: Python binding to rs1090, a library to decode Mode S and ADS-B signals\n  license: MIT\n  license_file:\n    - license.md\n    - THIRDPARTY.yml \n\nextra:\n  recipe-maintainers:\n    - xoolive\n",
  "req": {
   "__set__": true,
   "elements": [
-   "__osx",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cargo-bundle-licenses",
    "maturin",
    "pandas",
@@ -293,6 +295,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
@@ -301,6 +304,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "maturin",
     "pip",
     "python"
@@ -309,8 +313,8 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "pandas",
     "python",
     "typing_extensions"
@@ -329,6 +333,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
@@ -344,7 +349,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx >=10.12",
     "pandas >=2.2.0",
     "python",
     "typing_extensions >=4.10.0"
@@ -373,7 +377,7 @@
    "summary": "Python binding to rs1090, a library to decode Mode S and ADS-B signals"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
     "PYTHON -m pip install . -vv"
@@ -391,6 +395,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses"
    ],
@@ -426,6 +431,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
