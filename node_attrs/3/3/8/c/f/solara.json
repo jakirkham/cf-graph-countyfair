@@ -24,7 +24,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "1"
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -37,9 +37,6 @@
   "outputs": [
    {
     "build": {
-     "entry_points": [
-      "solara = solara.__main__:main"
-     ],
      "noarch": "python",
      "script": "set -euxo pipefail\ncd solara\npython -m pip install -vv --no-deps .\n"
     },
@@ -52,31 +49,13 @@
      ],
      "run": [
       "python >=3.8",
-      "reacton >=1.7.1",
-      "ipywidgets",
-      "cachetools",
-      "filelock",
-      "markdown",
-      "pymdown-extensions",
-      "humanize",
-      "ipyvuetify >=1.8.10",
-      "ipyvue >=1.9.0",
-      "jinja2",
-      "markupsafe",
-      "click >=7.1.0",
-      "rich-click",
-      "uvicorn",
-      "websockets",
-      "starlette",
-      "jupyter_client >=7.0.0",
-      "watchdog",
-      "requests",
-      "nbformat",
-      "ipykernel",
-      "watchfiles"
+      "solara-ui",
+      "solara-server"
      ],
      "run_constrained": [
-      "solara-assets =1.30.1=*_1"
+      "solara-assets =1.31.0=*_0",
+      "solara-server =1.31.0=*_0",
+      "solara-ui =1.31.0=*_0"
      ]
     },
     "test": {
@@ -91,7 +70,97 @@
       "pip"
      ]
     },
-    "version": "1.30.1"
+    "version": "1.31.0"
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "script": "set -euxo pipefail\ncd solara_ui\npython -m pip install -vv --no-deps .\n"
+    },
+    "name": "solara-ui",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "hatchling >=0.25",
+      "pip"
+     ],
+     "run": [
+      "python >=3.8",
+      "reacton >=1.7.1",
+      "ipywidgets >=7.7",
+      "ipyvuetify >=1.6.10",
+      "ipyvue >=1.9.0",
+      "requests",
+      "humanize",
+      "markdown",
+      "pymdown-extensions",
+      "pygments",
+      "cachetools",
+      "numpy",
+      "pillow"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "solara"
+     ],
+     "requires": [
+      "pip"
+     ]
+    },
+    "version": "1.31.0"
+   },
+   {
+    "build": {
+     "entry_points": [
+      "solara = solara.__main__:main"
+     ],
+     "noarch": "python",
+     "script": "set -euxo pipefail\ncd solara_server\npython -m pip install -vv --no-deps .\n"
+    },
+    "name": "solara-server",
+    "requirements": {
+     "host": [
+      "python",
+      "hatchling >=0.25",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "jinja2",
+      "click >=7.1.0",
+      "rich-click",
+      "filelock",
+      "ipykernel",
+      "nbformat",
+      "jupyter_client >=7.0.0",
+      "solara-ui",
+      "uvicorn",
+      "websockets",
+      "starlette",
+      "watchfiles",
+      "watchdog"
+     ],
+     "run_constrained": [
+      "solara-assets =1.31.0=*_0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "solara --help"
+     ],
+     "imports": [
+      "solara"
+     ],
+     "requires": [
+      "pip"
+     ]
+    },
+    "version": "1.31.0"
    },
    {
     "about": {
@@ -126,9 +195,6 @@
      ]
     },
     "test": {
-     "commands": [
-      "pip check"
-     ],
      "imports": [
       "solara_assets"
      ],
@@ -136,23 +202,33 @@
       "pip"
      ]
     },
-    "version": "1.30.1"
+    "version": "1.31.0"
    }
   ],
   "package": {
    "name": "solara",
-   "version": "1.30.1"
+   "version": "1.31.0"
   },
   "source": [
    {
     "folder": "solara",
-    "sha256": "86ca619ce2e5209ebe0bda9f6f13036eac045dfea2a5f11def336f51e93d136f",
-    "url": "https://pypi.io/packages/source/s/solara/solara-1.30.1.tar.gz"
+    "sha256": "af8b4a9cdf70cfd9b3a35314d3dfe0c5b81f3194a68587f390edf75f26d9dd96",
+    "url": "https://pypi.io/packages/source/s/solara/solara-1.31.0.tar.gz"
+   },
+   {
+    "folder": "solara_ui",
+    "sha256": "1dfa2fbd0936652962846a3cd6e71cc3bf799e05806aa0765ffc17b61170e8e5",
+    "url": "https://pypi.io/packages/source/s/solara-ui/solara_ui-1.31.0.tar.gz"
+   },
+   {
+    "folder": "solara_server",
+    "sha256": "9bb815a2214f50e5c3ce9e9783f285bcfcec817d262d9087157a819b3fea7100",
+    "url": "https://pypi.io/packages/source/s/solara-server/solara_server-1.31.0.tar.gz"
    },
    {
     "folder": "solara_assets",
-    "sha256": "2aa3b6c9fae3a9843be06820f4d5cbe78bd681f5173a70dcb2d0872abbc5735a",
-    "url": "https://pypi.io/packages/source/s/solara_assets/solara_assets-1.30.1.tar.gz"
+    "sha256": "26abc7fa3e1836edb925c186af89dd444fde407cce2459a5a9efc545432a0384",
+    "url": "https://pypi.io/packages/source/s/solara_assets/solara_assets-1.31.0.tar.gz"
    }
   ]
  },
@@ -183,14 +259,18 @@
     "jinja2",
     "jupyter_client",
     "markdown",
-    "markupsafe",
     "nbformat",
+    "numpy",
+    "pillow",
+    "pygments",
     "pymdown-extensions",
     "python",
     "reacton",
     "requests",
     "rich-click",
     "solara",
+    "solara-server",
+    "solara-ui",
     "starlette",
     "uvicorn",
     "watchdog",
@@ -216,7 +296,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "1"
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -229,9 +309,6 @@
   "outputs": [
    {
     "build": {
-     "entry_points": [
-      "solara = solara.__main__:main"
-     ],
      "noarch": "python",
      "script": "set -euxo pipefail\ncd solara\npython -m pip install -vv --no-deps .\n"
     },
@@ -244,31 +321,13 @@
      ],
      "run": [
       "python >=3.8",
-      "reacton >=1.7.1",
-      "ipywidgets",
-      "cachetools",
-      "filelock",
-      "markdown",
-      "pymdown-extensions",
-      "humanize",
-      "ipyvuetify >=1.8.10",
-      "ipyvue >=1.9.0",
-      "jinja2",
-      "markupsafe",
-      "click >=7.1.0",
-      "rich-click",
-      "uvicorn",
-      "websockets",
-      "starlette",
-      "jupyter_client >=7.0.0",
-      "watchdog",
-      "requests",
-      "nbformat",
-      "ipykernel",
-      "watchfiles"
+      "solara-ui",
+      "solara-server"
      ],
      "run_constrained": [
-      "solara-assets =1.30.1=*_1"
+      "solara-assets =1.31.0=*_0",
+      "solara-server =1.31.0=*_0",
+      "solara-ui =1.31.0=*_0"
      ]
     },
     "test": {
@@ -283,7 +342,97 @@
       "pip"
      ]
     },
-    "version": "1.30.1"
+    "version": "1.31.0"
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "script": "set -euxo pipefail\ncd solara_ui\npython -m pip install -vv --no-deps .\n"
+    },
+    "name": "solara-ui",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "hatchling >=0.25",
+      "pip"
+     ],
+     "run": [
+      "python >=3.8",
+      "reacton >=1.7.1",
+      "ipywidgets >=7.7",
+      "ipyvuetify >=1.6.10",
+      "ipyvue >=1.9.0",
+      "requests",
+      "humanize",
+      "markdown",
+      "pymdown-extensions",
+      "pygments",
+      "cachetools",
+      "numpy",
+      "pillow"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "solara"
+     ],
+     "requires": [
+      "pip"
+     ]
+    },
+    "version": "1.31.0"
+   },
+   {
+    "build": {
+     "entry_points": [
+      "solara = solara.__main__:main"
+     ],
+     "noarch": "python",
+     "script": "set -euxo pipefail\ncd solara_server\npython -m pip install -vv --no-deps .\n"
+    },
+    "name": "solara-server",
+    "requirements": {
+     "host": [
+      "python",
+      "hatchling >=0.25",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "jinja2",
+      "click >=7.1.0",
+      "rich-click",
+      "filelock",
+      "ipykernel",
+      "nbformat",
+      "jupyter_client >=7.0.0",
+      "solara-ui",
+      "uvicorn",
+      "websockets",
+      "starlette",
+      "watchfiles",
+      "watchdog"
+     ],
+     "run_constrained": [
+      "solara-assets =1.31.0=*_0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "solara --help"
+     ],
+     "imports": [
+      "solara"
+     ],
+     "requires": [
+      "pip"
+     ]
+    },
+    "version": "1.31.0"
    },
    {
     "about": {
@@ -318,9 +467,6 @@
      ]
     },
     "test": {
-     "commands": [
-      "pip check"
-     ],
      "imports": [
       "solara_assets"
      ],
@@ -328,23 +474,33 @@
       "pip"
      ]
     },
-    "version": "1.30.1"
+    "version": "1.31.0"
    }
   ],
   "package": {
    "name": "solara",
-   "version": "1.30.1"
+   "version": "1.31.0"
   },
   "source": [
    {
     "folder": "solara",
-    "sha256": "86ca619ce2e5209ebe0bda9f6f13036eac045dfea2a5f11def336f51e93d136f",
-    "url": "https://pypi.io/packages/source/s/solara/solara-1.30.1.tar.gz"
+    "sha256": "af8b4a9cdf70cfd9b3a35314d3dfe0c5b81f3194a68587f390edf75f26d9dd96",
+    "url": "https://pypi.io/packages/source/s/solara/solara-1.31.0.tar.gz"
+   },
+   {
+    "folder": "solara_ui",
+    "sha256": "1dfa2fbd0936652962846a3cd6e71cc3bf799e05806aa0765ffc17b61170e8e5",
+    "url": "https://pypi.io/packages/source/s/solara-ui/solara_ui-1.31.0.tar.gz"
+   },
+   {
+    "folder": "solara_server",
+    "sha256": "9bb815a2214f50e5c3ce9e9783f285bcfcec817d262d9087157a819b3fea7100",
+    "url": "https://pypi.io/packages/source/s/solara-server/solara_server-1.31.0.tar.gz"
    },
    {
     "folder": "solara_assets",
-    "sha256": "2aa3b6c9fae3a9843be06820f4d5cbe78bd681f5173a70dcb2d0872abbc5735a",
-    "url": "https://pypi.io/packages/source/s/solara_assets/solara_assets-1.30.1.tar.gz"
+    "sha256": "26abc7fa3e1836edb925c186af89dd444fde407cce2459a5a9efc545432a0384",
+    "url": "https://pypi.io/packages/source/s/solara_assets/solara_assets-1.31.0.tar.gz"
    }
   ]
  },
@@ -353,7 +509,9 @@
   "__set__": true,
   "elements": [
    "solara",
-   "solara-assets"
+   "solara-assets",
+   "solara-server",
+   "solara-ui"
   ]
  },
  "parsing_error": false,
@@ -363,7 +521,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/solara.json"
  },
- "raw_meta_yaml": "{% set version = \"1.30.1\" %}\n{% set build = 1 %}\n\npackage:\n  name: solara\n  version: {{ version }}\n\nsource:\n  - url: https://pypi.io/packages/source/s/solara/solara-{{ version }}.tar.gz\n    sha256: 86ca619ce2e5209ebe0bda9f6f13036eac045dfea2a5f11def336f51e93d136f\n    folder: solara\n  - url: https://pypi.io/packages/source/s/solara_assets/solara_assets-{{ version }}.tar.gz\n    sha256: 2aa3b6c9fae3a9843be06820f4d5cbe78bd681f5173a70dcb2d0872abbc5735a\n    folder: solara_assets\n\nbuild:\n  noarch: python\n  number: {{ build }}\n\n\noutputs:\n  - name: solara\n    version: {{ version }}\n    build:\n      noarch: python\n      script: |\n        set -euxo pipefail\n        cd solara\n        python -m pip install -vv --no-deps .\n      entry_points:\n        - solara = solara.__main__:main\n    requirements:\n      host:\n        - python >=3.8\n        - hatchling\n        - pip\n      run:\n        - python >=3.8\n        - reacton >=1.7.1\n        - ipywidgets\n        - cachetools\n        - filelock\n        - markdown\n        - pymdown-extensions\n        - humanize\n        - ipyvuetify >=1.8.10\n        - ipyvue >=1.9.0\n        - jinja2\n        - markupsafe\n        - click >=7.1.0\n        - rich-click\n        - uvicorn\n        - websockets\n        - starlette\n        - jupyter_client >=7.0.0\n        - watchdog\n        - requests\n        - nbformat\n        - ipykernel\n        - watchfiles\n      run_constrained:\n        # Can't use {{ pin_subpackage(\"solara-assets\", exact=True) }}\n        # as the hashes are different\n        # TODO: revisit after https://github.com/conda/conda-build/issues/4415\n        - solara-assets ={{ version }}=*_{{ build }}\n    test:\n      imports:\n        - solara\n      commands:\n        - pip check\n        - solara --help\n      requires:\n        - pip\n\n  - name: solara-assets\n    version: {{ version }}\n    build:\n      noarch: python\n      script: |\n        set -euxo pipefail\n        cd solara_assets\n        python -m pip install -vv --no-deps .\n    requirements:\n      host:\n        - python\n        - hatchling >=0.25\n        - pip\n      run:\n        - python\n        - solara\n    test:\n      imports:\n        - solara_assets\n      commands:\n        - pip check\n      requires:\n        - pip\n    about:\n      license: MIT AND BSD-3-Clause AND Apache-2.0\n      license_file:\n        - solara_assets/LICENSE\n        - solara_assets/cdn/codemirror@5.65.3/LICENSE\n        - solara_assets/cdn/@widgetti/vue-grid-layout@2.3.13-alpha.2/LICENSE\n        - solara_assets/cdn/vega-lite@5.2.0/LICENSE\n        - solara_assets/cdn/vega@5.21.0/LICENSE\n        - solara_assets/cdn/mermaid@10.8.0/LICENSE\n        - solara_assets/cdn/echarts@5.4.0/LICENSE\n        - solara_assets/cdn/echarts@5.4.0/NOTICE\n        - solara_assets/cdn/echarts@5.4.0/licenses/LICENSE-d3\n        - solara_assets/cdn/vega-embed@6.20.2/LICENSE\n\n\nabout:\n  home: https://github.com/widgetti/solara\n  summary: 'A Pure Python, React-style Framework for Scaling Your Jupyter and Web Apps'\n  license: MIT AND BSD-3-Clause\n  license_file:\n    - solara/LICENSE\n#    - solara/packages/solara-widget-manager/LICENSE.voila.txt\n\n\nextra:\n  recipe-maintainers:\n    - maartenbreddels\n    - mariobuikhuizen\n    - dhirschfeld\n    - iisakkirotko\n",
+ "raw_meta_yaml": "{% set version = \"1.31.0\" %}\n{% set build = 0 %}\n\npackage:\n  name: solara\n  version: {{ version }}\n\nsource:\n  - url: https://pypi.io/packages/source/s/solara/solara-{{ version }}.tar.gz\n    sha256: af8b4a9cdf70cfd9b3a35314d3dfe0c5b81f3194a68587f390edf75f26d9dd96\n    folder: solara\n  - url: https://pypi.io/packages/source/s/solara-ui/solara_ui-{{ version }}.tar.gz\n    sha256: 1dfa2fbd0936652962846a3cd6e71cc3bf799e05806aa0765ffc17b61170e8e5\n    folder: solara_ui\n  - url: https://pypi.io/packages/source/s/solara-server/solara_server-{{ version }}.tar.gz\n    sha256: 9bb815a2214f50e5c3ce9e9783f285bcfcec817d262d9087157a819b3fea7100\n    folder: solara_server\n  - url: https://pypi.io/packages/source/s/solara_assets/solara_assets-{{ version }}.tar.gz\n    sha256: 26abc7fa3e1836edb925c186af89dd444fde407cce2459a5a9efc545432a0384\n    folder: solara_assets\n\nbuild:\n  noarch: python\n  number: {{ build }}\n\n\noutputs:\n  - name: solara\n    version: {{ version }}\n    build:\n      noarch: python\n      script: |\n        set -euxo pipefail\n        cd solara\n        python -m pip install -vv --no-deps .\n    requirements:\n      host:\n        - python >=3.8\n        - hatchling\n        - pip\n      run:\n        - python >=3.8\n        - solara-ui\n        - solara-server\n      run_constrained:\n        # Can't use {{ pin_subpackage(\"solara-assets\", exact=True) }}\n        # as the hashes are different\n        # TODO: revisit after https://github.com/conda-forge/staged-recipes/issues/23382\n        - solara-assets ={{ version }}=*_{{ build }}\n        - solara-server ={{ version }}=*_{{ build }}\n        - solara-ui ={{ version }}=*_{{ build }}\n\n    test:\n      imports:\n        - solara\n      commands:\n        - pip check\n        - solara --help\n      requires:\n        - pip\n\n  - name: solara-ui\n    version: {{ version }}\n    build:\n      noarch: python\n      script: |\n        set -euxo pipefail\n        cd solara_ui\n        python -m pip install -vv --no-deps .\n    requirements:\n      host:\n        - python >=3.8\n        - hatchling >=0.25\n        - pip\n      run:\n        - python >=3.8\n        - reacton >=1.7.1\n        - ipywidgets >=7.7\n        - ipyvuetify >=1.6.10\n        - ipyvue >=1.9.0\n        - requests\n        - humanize\n        # solara-ui optional dependencies follow\n        - markdown\n        - pymdown-extensions\n        - pygments\n        - cachetools\n        - numpy\n        - pillow\n\n    test:\n      imports:\n        - solara\n      commands:\n        - pip check\n      requires:\n        - pip\n\n  - name: solara-server\n    version: {{ version }}\n    build:\n      noarch: python\n      script: |\n        set -euxo pipefail\n        cd solara_server\n        python -m pip install -vv --no-deps .\n      entry_points:\n        - solara = solara.__main__:main\n    requirements:\n      host:\n        - python\n        - hatchling >=0.25\n        - pip\n      run:\n        - python\n        - jinja2\n        - click >=7.1.0\n        - rich-click\n        - filelock\n        - ipykernel\n        - nbformat\n        - jupyter_client >=7.0.0\n        - solara-ui\n        # solara-server optional dependencies follow\n        - uvicorn\n        - websockets\n        - starlette\n        - watchfiles\n        - watchdog\n      run_constrained:\n        # Can't use {{ pin_subpackage(\"solara-assets\", exact=True) }}\n        # as the hashes are different\n        # TODO: revisit after https://github.com/conda/conda-build/issues/4415\n        - solara-assets ={{ version }}=*_{{ build }}\n    test:\n      imports:\n        - solara\n      commands:\n        - pip check\n        - solara --help\n      requires:\n        - pip\n\n  - name: solara-assets\n    version: {{ version }}\n    build:\n      noarch: python\n      script: |\n        set -euxo pipefail\n        cd solara_assets\n        python -m pip install -vv --no-deps .\n    requirements:\n      host:\n        - python\n        - hatchling >=0.25\n        - pip\n      run:\n        - python\n        - solara\n\n    test:\n      imports:\n        - solara_assets\n      # pip check fails, see https://github.com/conda-forge/solara-feedstock/pull/24#issuecomment-2072211293\n      # And https://github.com/pypa/pip/pull/11159\n      # commands:\n      #   - pip check\n      requires:\n        - pip\n    about:\n      license: MIT AND BSD-3-Clause AND Apache-2.0\n      license_file:\n        - solara_assets/LICENSE\n        - solara_assets/cdn/codemirror@5.65.3/LICENSE\n        - solara_assets/cdn/@widgetti/vue-grid-layout@2.3.13-alpha.2/LICENSE\n        - solara_assets/cdn/vega-lite@5.2.0/LICENSE\n        - solara_assets/cdn/vega@5.21.0/LICENSE\n        - solara_assets/cdn/mermaid@10.8.0/LICENSE\n        - solara_assets/cdn/echarts@5.4.0/LICENSE\n        - solara_assets/cdn/echarts@5.4.0/NOTICE\n        - solara_assets/cdn/echarts@5.4.0/licenses/LICENSE-d3\n        - solara_assets/cdn/vega-embed@6.20.2/LICENSE\n\n\nabout:\n  home: https://github.com/widgetti/solara\n  summary: 'A Pure Python, React-style Framework for Scaling Your Jupyter and Web Apps'\n  license: MIT AND BSD-3-Clause\n  license_file:\n    - solara/LICENSE\n#    - solara/packages/solara-widget-manager/LICENSE.voila.txt\n\n\nextra:\n  recipe-maintainers:\n    - maartenbreddels\n    - mariobuikhuizen\n    - dhirschfeld\n    - iisakkirotko\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -379,15 +537,19 @@
    "jinja2",
    "jupyter_client",
    "markdown",
-   "markupsafe",
    "nbformat",
+   "numpy",
+   "pillow",
    "pip",
+   "pygments",
    "pymdown-extensions",
    "python",
    "reacton",
    "requests",
    "rich-click",
    "solara",
+   "solara-server",
+   "solara-ui",
    "starlette",
    "uvicorn",
    "watchdog",
@@ -422,14 +584,18 @@
     "jinja2",
     "jupyter_client",
     "markdown",
-    "markupsafe",
     "nbformat",
+    "numpy",
+    "pillow",
+    "pygments",
     "pymdown-extensions",
     "python",
     "reacton",
     "requests",
     "rich-click",
     "solara",
+    "solara-server",
+    "solara-ui",
     "starlette",
     "uvicorn",
     "watchdog",
@@ -469,13 +635,15 @@
     "humanize",
     "ipykernel",
     "ipyvue >=1.9.0",
-    "ipyvuetify >=1.8.10",
-    "ipywidgets",
+    "ipyvuetify >=1.6.10",
+    "ipywidgets >=7.7",
     "jinja2",
     "jupyter_client >=7.0.0",
     "markdown",
-    "markupsafe",
     "nbformat",
+    "numpy",
+    "pillow",
+    "pygments",
     "pymdown-extensions",
     "python",
     "python >=3.8",
@@ -483,6 +651,8 @@
     "requests",
     "rich-click",
     "solara",
+    "solara-server",
+    "solara-ui",
     "starlette",
     "uvicorn",
     "watchdog",
@@ -497,8 +667,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/s/solara/solara-1.30.1.tar.gz",
- "version": "1.30.1",
+ "url": "https://pypi.io/packages/source/s/solara/solara-1.31.0.tar.gz",
+ "version": "1.31.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/solara.json"
  }
