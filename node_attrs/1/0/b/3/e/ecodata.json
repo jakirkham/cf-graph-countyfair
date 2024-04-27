@@ -23,7 +23,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PREFIX/bin/python -m pip install . -vv"
   },
   "extra": {
    "recipe-maintainers": [
@@ -31,54 +31,108 @@
     "madeline-scyphers"
    ]
   },
+  "outputs": [
+   {
+    "about": {
+     "dev_url": "https://github.com/jemissik/ecodata",
+     "doc_url": "https://ecodata-apps.readthedocs.io",
+     "home": "https://github.com/jemissik/ecodata",
+     "license": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Tools to access and process remote sensing and other environmental\ndata products and prepare them for further use along with animal movement data\n"
+    },
+    "build": {
+     "noarch": "python",
+     "script": "PREFIX/bin/python -m pip install ."
+    },
+    "name": "ecodata",
+    "requirements": {
+     "host": [
+      "python >3.8",
+      "pip"
+     ],
+     "run": [
+      "python >3.8",
+      "cartopy",
+      "geopandas",
+      "matplotlib",
+      "pandas",
+      "shapely <2.0",
+      "xarray",
+      "dask ==2023.4.0",
+      "netCDF4",
+      "bottleneck",
+      "cfgrib",
+      "rasterio",
+      "numpy <1.24",
+      "rioxarray",
+      "hvplot",
+      "bokeh <3.4",
+      "panel >=1,<1.4",
+      "datashader",
+      "geoviews >=1.10",
+      "geocube",
+      "ffmpeg",
+      "gdown <4.6"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ecodata"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "provides menu icons for ecodata",
+     "dev_url": "https://github.com/jemissik/ecodata",
+     "doc_url": "https://ecodata-apps.readthedocs.io",
+     "home": "https://github.com/jemissik/ecodata",
+     "license": "MIT",
+     "license_file": "LICENSE",
+     "summary": "provides menu icons for ecodata"
+    },
+    "build": {
+     "noarch": "python",
+     "script": [
+      "mkdir -p \"${PREFIX}/Menu\"",
+      "sed \"s/__PKG_VERSION__/0.2.6/\" \"SRC_DIR/resources/conda_menu_config.json\" > \"PREFIX/Menu/ecodata-menu.json\""
+     ]
+    },
+    "name": "ecodata-menu",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "run": [
+      "ecodata 0.2.6.*"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f ${CONDA_PREFIX}/Menu/ecodata-menu.json"
+     ],
+     "imports": [
+      "ecodata"
+     ]
+    }
+   }
+  ],
   "package": {
    "name": "ecodata",
-   "version": "0.2.5"
-  },
-  "requirements": {
-   "host": [
-    "python >3.8",
-    "pip"
-   ],
-   "run": [
-    "python >3.8",
-    "cartopy",
-    "geopandas",
-    "matplotlib",
-    "pandas",
-    "shapely <2.0",
-    "xarray",
-    "dask ==2023.4.0",
-    "netCDF4",
-    "bottleneck",
-    "cfgrib",
-    "rasterio",
-    "numpy <1.24",
-    "rioxarray",
-    "hvplot",
-    "bokeh <3",
-    "panel ==0.14.4",
-    "datashader",
-    "geoviews",
-    "geocube",
-    "ffmpeg",
-    "gdown"
-   ]
+   "version": "0.2.6"
   },
   "source": {
-   "sha256": "3bbe402bf2c914ef61d8795cd99886ab48a7a340fc058f6824036ae2c077054c",
-   "url": "https://github.com/jemissik/ecodata/archive/refs/tags/v0.2.5.tar.gz"
-  },
-  "test": {
-   "imports": [
-    "ecodata"
-   ]
+   "sha256": "095ea878297e7275773cf5ba9be969ccb9ec015be846edf2c13aef6a77ca6153",
+   "url": "https://github.com/jemissik/ecodata/archive/refs/tags/v0.2.6.tar.gz"
   }
  },
  "linux_64_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "sed"
+   ]
   },
   "host": {
    "__set__": true,
@@ -96,6 +150,7 @@
     "cfgrib",
     "dask",
     "datashader",
+    "ecodata",
     "ffmpeg",
     "gdown",
     "geocube",
@@ -129,7 +184,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PREFIX/bin/python -m pip install . -vv"
   },
   "extra": {
    "recipe-maintainers": [
@@ -137,55 +192,108 @@
     "madeline-scyphers"
    ]
   },
+  "outputs": [
+   {
+    "about": {
+     "dev_url": "https://github.com/jemissik/ecodata",
+     "doc_url": "https://ecodata-apps.readthedocs.io",
+     "home": "https://github.com/jemissik/ecodata",
+     "license": "MIT",
+     "license_file": "LICENSE",
+     "summary": "Tools to access and process remote sensing and other environmental\ndata products and prepare them for further use along with animal movement data\n"
+    },
+    "build": {
+     "noarch": "python",
+     "script": "PREFIX/bin/python -m pip install ."
+    },
+    "name": "ecodata",
+    "requirements": {
+     "host": [
+      "python >3.8",
+      "pip"
+     ],
+     "run": [
+      "python >3.8",
+      "cartopy",
+      "geopandas",
+      "matplotlib",
+      "pandas",
+      "shapely <2.0",
+      "xarray",
+      "dask ==2023.4.0",
+      "netCDF4",
+      "bottleneck",
+      "cfgrib",
+      "rasterio",
+      "numpy <1.24",
+      "rioxarray",
+      "hvplot",
+      "bokeh <3.4",
+      "panel >=1,<1.4",
+      "datashader",
+      "geoviews >=1.10",
+      "geocube",
+      "ffmpeg",
+      "gdown <4.6"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ecodata"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "provides menu icons for ecodata",
+     "dev_url": "https://github.com/jemissik/ecodata",
+     "doc_url": "https://ecodata-apps.readthedocs.io",
+     "home": "https://github.com/jemissik/ecodata",
+     "license": "MIT",
+     "license_file": "LICENSE",
+     "summary": "provides menu icons for ecodata"
+    },
+    "build": {
+     "noarch": "python",
+     "script": [
+      "mkdir -p \"${PREFIX}/Menu\"",
+      "sed \"s/__PKG_VERSION__/0.2.6/\" \"SRC_DIR/resources/conda_menu_config.json\" > \"PREFIX/Menu/ecodata-menu.json\""
+     ]
+    },
+    "name": "ecodata-menu",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "run": [
+      "ecodata 0.2.6.*"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f ${CONDA_PREFIX}/Menu/ecodata-menu.json"
+     ],
+     "imports": [
+      "ecodata"
+     ]
+    }
+   }
+  ],
   "package": {
    "name": "ecodata",
-   "version": "0.2.5"
-  },
-  "requirements": {
-   "host": [
-    "python >3.8",
-    "pip"
-   ],
-   "run": [
-    "python >3.8",
-    "cartopy",
-    "geopandas",
-    "matplotlib",
-    "pandas",
-    "shapely <2.0",
-    "xarray",
-    "dask ==2023.4.0",
-    "netCDF4",
-    "bottleneck",
-    "cfgrib",
-    "rasterio",
-    "numpy <1.24",
-    "rioxarray",
-    "hvplot",
-    "bokeh <3",
-    "panel ==0.14.4",
-    "datashader",
-    "geoviews",
-    "geocube",
-    "ffmpeg",
-    "gdown"
-   ]
+   "version": "0.2.6"
   },
   "source": {
-   "sha256": "3bbe402bf2c914ef61d8795cd99886ab48a7a340fc058f6824036ae2c077054c",
-   "url": "https://github.com/jemissik/ecodata/archive/refs/tags/v0.2.5.tar.gz"
-  },
-  "test": {
-   "imports": [
-    "ecodata"
-   ]
+   "sha256": "095ea878297e7275773cf5ba9be969ccb9ec015be846edf2c13aef6a77ca6153",
+   "url": "https://github.com/jemissik/ecodata/archive/refs/tags/v0.2.6.tar.gz"
   }
  },
  "name": "ecodata",
  "outputs_names": {
   "__set__": true,
   "elements": [
-   "ecodata"
+   "ecodata",
+   "ecodata-menu"
   ]
  },
  "parsing_error": false,
@@ -195,7 +303,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/ecodata.json"
  },
- "raw_meta_yaml": "{% set name = \"ecodata\" %}\n{% set version = \"0.2.5\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/jemissik/ecodata/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 3bbe402bf2c914ef61d8795cd99886ab48a7a340fc058f6824036ae2c077054c\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >3.8\n    - pip\n  run:\n    - python >3.8\n    - cartopy\n    - geopandas\n    - matplotlib\n    - pandas\n    - shapely <2.0\n    - xarray\n    - dask ==2023.4.0\n    - netCDF4\n    - bottleneck\n    - cfgrib\n    - rasterio\n    - numpy <1.24\n    - rioxarray\n    - hvplot\n    - bokeh <3\n    - panel ==0.14.4\n    - datashader\n    - geoviews\n    - geocube\n    - ffmpeg\n    - gdown\n\ntest:\n  imports:\n    - ecodata\n\nabout:\n  summary: |\n    Tools to access and process remote sensing and other environmental\n    data products and prepare them for further use along with animal movement data\n  home: https://github.com/jemissik/ecodata\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - jemissik\n    - madeline-scyphers\n",
+ "raw_meta_yaml": "{% set name = \"ecodata\" %}\n{% set version = \"0.2.6\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/jemissik/ecodata/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 095ea878297e7275773cf5ba9be969ccb9ec015be846edf2c13aef6a77ca6153\n\nbuild:\n  noarch: python\n  script: {{ PREFIX }}/bin/python -m pip install . -vv\n  number: 0\n\noutputs:\n  - name: ecodata\n    build:\n      noarch: python\n      script: {{ PREFIX }}/bin/python -m pip install .\n    requirements:\n      host:\n        - python >3.8\n        - pip\n      run:\n        - python >3.8\n        - cartopy\n        - geopandas\n        - matplotlib\n        - pandas\n        - shapely <2.0\n        - xarray\n        - dask ==2023.4.0\n        - netCDF4\n        - bottleneck\n        - cfgrib\n        - rasterio\n        - numpy <1.24\n        - rioxarray\n        - hvplot\n        - bokeh <3.4\n        - panel >=1,<1.4\n        - datashader\n        - geoviews >=1.10\n        - geocube\n        - ffmpeg\n        - gdown <4.6\n\n    test:\n      imports:\n        - ecodata\n\n    about:\n      summary: |\n        Tools to access and process remote sensing and other environmental\n        data products and prepare them for further use along with animal movement data\n      home: https://github.com/jemissik/ecodata\n      license: MIT\n      license_file: LICENSE\n      doc_url: https://ecodata-apps.readthedocs.io\n      dev_url: https://github.com/jemissik/ecodata\n\n  - name: ecodata-menu\n    build:\n      noarch: python\n      script:\n        - mkdir -p \"${PREFIX}/Menu\"\n        - sed \"s/__PKG_VERSION__/{{ PKG_VERSION }}/\" \"{{ SRC_DIR }}/resources/conda_menu_config.json\" > \"{{ PREFIX }}/Menu/ecodata-menu.json\"\n    requirements:\n      build:\n        - sed  # [unix]\n      run:\n        - ecodata {{ version }}.*\n    test:\n      imports:\n        - ecodata\n      commands:\n        - test -f ${CONDA_PREFIX}/Menu/ecodata-menu.json\n    about:\n      home: https://github.com/jemissik/ecodata\n      license: MIT\n      license_file: LICENSE\n      doc_url: https://ecodata-apps.readthedocs.io\n      dev_url: https://github.com/jemissik/ecodata\n      summary: provides menu icons for ecodata\n      description: provides menu icons for ecodata\n\nabout:\n  summary: |\n    Tools to access and process remote sensing and other environmental\n    data products and prepare them for further use along with animal movement data\n  home: https://github.com/jemissik/ecodata\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - jemissik\n    - madeline-scyphers\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -205,6 +313,7 @@
    "cfgrib",
    "dask",
    "datashader",
+   "ecodata",
    "ffmpeg",
    "gdown",
    "geocube",
@@ -220,6 +329,7 @@
    "python",
    "rasterio",
    "rioxarray",
+   "sed",
    "shapely",
    "xarray"
   ]
@@ -227,7 +337,9 @@
  "requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "sed"
+   ]
   },
   "host": {
    "__set__": true,
@@ -245,6 +357,7 @@
     "cfgrib",
     "dask",
     "datashader",
+    "ecodata",
     "ffmpeg",
     "gdown",
     "geocube",
@@ -272,7 +385,9 @@
  "total_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "sed"
+   ]
   },
   "host": {
    "__set__": true,
@@ -284,23 +399,24 @@
   "run": {
    "__set__": true,
    "elements": [
-    "bokeh <3",
+    "bokeh <3.4",
     "bottleneck",
     "cartopy",
     "cfgrib",
     "dask ==2023.4.0",
     "datashader",
+    "ecodata 0.2.6.*",
     "ffmpeg",
-    "gdown",
+    "gdown <4.6",
     "geocube",
     "geopandas",
-    "geoviews",
+    "geoviews >=1.10",
     "hvplot",
     "matplotlib",
     "netCDF4",
     "numpy <1.24",
     "pandas",
-    "panel ==0.14.4",
+    "panel >=1,<1.4",
     "python >3.8",
     "rasterio",
     "rioxarray",
@@ -313,8 +429,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/jemissik/ecodata/archive/refs/tags/v0.2.5.tar.gz",
- "version": "0.2.5",
+ "url": "https://github.com/jemissik/ecodata/archive/refs/tags/v0.2.6.tar.gz",
+ "version": "0.2.6",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/ecodata.json"
  }
