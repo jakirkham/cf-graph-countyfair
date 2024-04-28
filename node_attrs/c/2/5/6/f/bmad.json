@@ -45,11 +45,12 @@
   },
   "package": {
    "name": "bmad",
-   "version": "20240417.0"
+   "version": "20240427.0"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "cmake",
@@ -105,8 +106,8 @@
    ]
   },
   "source": {
-   "sha256": "663668d5f304006324731a7f994adbed267df3df8d66d753d03d0b268d7fec50",
-   "url": "https://github.com/bmad-sim/bmad-ecosystem/releases/download/20240417-0/bmad_dist.tar.gz"
+   "sha256": "e12327c7387fc99fe7306b608764fcc9d1acda91a02731d7da2bf8cc4c0a97ec",
+   "url": "https://github.com/bmad-sim/bmad-ecosystem/releases/download/20240427-0/bmad_dist.tar.gz"
   },
   "test": {
    "commands": [
@@ -121,6 +122,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -209,11 +211,12 @@
   },
   "package": {
    "name": "bmad",
-   "version": "20240417.0"
+   "version": "20240427.0"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "cmake",
@@ -270,8 +273,8 @@
    ]
   },
   "source": {
-   "sha256": "663668d5f304006324731a7f994adbed267df3df8d66d753d03d0b268d7fec50",
-   "url": "https://github.com/bmad-sim/bmad-ecosystem/releases/download/20240417-0/bmad_dist.tar.gz"
+   "sha256": "e12327c7387fc99fe7306b608764fcc9d1acda91a02731d7da2bf8cc4c0a97ec",
+   "url": "https://github.com/bmad-sim/bmad-ecosystem/releases/download/20240427-0/bmad_dist.tar.gz"
   },
   "test": {
    "commands": [
@@ -305,11 +308,12 @@
   },
   "package": {
    "name": "bmad",
-   "version": "20240417.0"
+   "version": "20240427.0"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "cmake",
@@ -365,8 +369,8 @@
    ]
   },
   "source": {
-   "sha256": "663668d5f304006324731a7f994adbed267df3df8d66d753d03d0b268d7fec50",
-   "url": "https://github.com/bmad-sim/bmad-ecosystem/releases/download/20240417-0/bmad_dist.tar.gz"
+   "sha256": "e12327c7387fc99fe7306b608764fcc9d1acda91a02731d7da2bf8cc4c0a97ec",
+   "url": "https://github.com/bmad-sim/bmad-ecosystem/releases/download/20240427-0/bmad_dist.tar.gz"
   },
   "test": {
    "commands": [
@@ -381,6 +385,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -469,11 +474,12 @@
   },
   "package": {
    "name": "bmad",
-   "version": "20240417.0"
+   "version": "20240427.0"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "cmake",
@@ -529,8 +535,8 @@
    ]
   },
   "source": {
-   "sha256": "663668d5f304006324731a7f994adbed267df3df8d66d753d03d0b268d7fec50",
-   "url": "https://github.com/bmad-sim/bmad-ecosystem/releases/download/20240417-0/bmad_dist.tar.gz"
+   "sha256": "e12327c7387fc99fe7306b608764fcc9d1acda91a02731d7da2bf8cc4c0a97ec",
+   "url": "https://github.com/bmad-sim/bmad-ecosystem/releases/download/20240427-0/bmad_dist.tar.gz"
   },
   "test": {
    "commands": [
@@ -545,6 +551,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -623,13 +630,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/bmad.json"
  },
- "raw_meta_yaml": "{% set name = \"bmad\" %}\n{% set version = \"20240417-0\" %}\n\n{% set build = 0 %}\n# ensure mpi is defined (needed for conda-smithy recipe-lint)\n{% set mpi = mpi or 'nompi' %}\n\n{% if mpi == 'nompi' %}\n# prioritize nompi variant via build number\n{% set build = build + 100 %}\n{% endif %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version | replace(\"-\", \".\") }}\n\nsource:\n  url: https://github.com/bmad-sim/bmad-ecosystem/releases/download/{{ version }}/bmad_dist.tar.gz\n  sha256: 663668d5f304006324731a7f994adbed267df3df8d66d753d03d0b268d7fec50\n\nbuild:\n  number: {{ build }}\n  skip: true  # [win]\n\n  # add build string so packages can depend on\n  # mpi or nompi variants explicitly:\n  # `pkg * mpi_mpich_*` for mpich\n  # `pkg * mpi_*` for any mpi\n  # `pkg * nompi_*` for no mpi\n\n  {% if build_type == \"debug\" %}\n  {% set debug = \"_debug\" %}\n  {% else %}\n  {% set debug = \"\" %}\n  {% endif %}\n\n  {% if mpi != 'nompi' %}\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  {% else %}\n  {% set mpi_prefix = \"nompi\" %}\n  {% endif %}\n\n  string: {{ mpi_prefix }}{{ debug }}_h{{ PKG_HASH }}_{{ build }}\n\n  {% if mpi != 'nompi' %}\n  run_exports:\n    - {{ name }} * {{ mpi_prefix }}{{ debug }}_*\n  {% endif %}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}\n    - cmake\n    - make\n    - automake\n    - autoconf\n    - gnuconfig   # [unix]\n    - libtool\n    - m4\n    - pkg-config\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux]\n    - openmpi  # [mpi == \"openmpi\" and (build_platform != target_platform)]\n    - python *\n  host:\n    - readline\n    - ncurses\n    - cairo\n    - pango\n    - xorg-libxt\n    - pgplot\n    - hdf5\n    - xorg-libx11\n    - xorg-xproto\n    - fftw\n    - libblas\n    - liblapack\n    - lapack95\n    - gsl ==2.6\n    - fgsl\n    - xraylib\n    - {{ mpi }}  # [mpi != 'nompi']\n  run:\n    - readline\n    - ncurses\n    - cairo\n    - pango\n    - xorg-libxt\n    - pgplot\n    - hdf5\n    - fftw\n    - libblas\n    - liblapack\n    - lapack95\n    - gsl ==2.6\n    - fgsl\n    - xraylib\n    - xorg-libx11\n    - xorg-xproto\n    - libopenblas\n    - libcblas\n    - {{ mpi }}  # [mpi != 'nompi']\n\ntest:\n  commands:\n    - tao -help  # [build_platform == target_platform]\n\nabout:\n  home: https://www.classe.cornell.edu/bmad\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: bmad/Copyright\n  summary: Bmad is an object oriented, open source, subroutine library for relativistic charged-particle dynamics simulations in accelerators and storage rings.\n  description: |\n    Bmad has been developed at Cornell University's Laboratory for Elementary\n    Particle Physics and has been in use since the mid 1990s.\n    Bmad has a wide range of routines to do many things.\n    Bmad can be used to study both single and multi-particle\n    beam dynamics. It has routines to track both particles and\n    macroparticles. Bmad has various tracking algorithms including\n    Runge-Kutta and symplectic (Lie algebraic) integration.\n    Wakefields, and radiation excitation and damping can be simulated.\n    Bmad has routines for calculating transfer matrices, emittances,\n    Twiss parameters, dispersion, coupling, etc.\n  doc_url: https://www.classe.cornell.edu/bmad/manual.html\n\nextra:\n  recipe-maintainers:\n    - hhslepicka\n    - ChristopherMayes\n",
+ "raw_meta_yaml": "{% set name = \"bmad\" %}\n{% set version = \"20240427-0\" %}\n\n{% set build = 0 %}\n# ensure mpi is defined (needed for conda-smithy recipe-lint)\n{% set mpi = mpi or 'nompi' %}\n\n{% if mpi == 'nompi' %}\n# prioritize nompi variant via build number\n{% set build = build + 100 %}\n{% endif %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version | replace(\"-\", \".\") }}\n\nsource:\n  url: https://github.com/bmad-sim/bmad-ecosystem/releases/download/{{ version }}/bmad_dist.tar.gz\n  sha256: e12327c7387fc99fe7306b608764fcc9d1acda91a02731d7da2bf8cc4c0a97ec\n\nbuild:\n  number: {{ build }}\n  skip: true  # [win]\n\n  # add build string so packages can depend on\n  # mpi or nompi variants explicitly:\n  # `pkg * mpi_mpich_*` for mpich\n  # `pkg * mpi_*` for any mpi\n  # `pkg * nompi_*` for no mpi\n\n  {% if build_type == \"debug\" %}\n  {% set debug = \"_debug\" %}\n  {% else %}\n  {% set debug = \"\" %}\n  {% endif %}\n\n  {% if mpi != 'nompi' %}\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  {% else %}\n  {% set mpi_prefix = \"nompi\" %}\n  {% endif %}\n\n  string: {{ mpi_prefix }}{{ debug }}_h{{ PKG_HASH }}_{{ build }}\n\n  {% if mpi != 'nompi' %}\n  run_exports:\n    - {{ name }} * {{ mpi_prefix }}{{ debug }}_*\n  {% endif %}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}\n    - cmake\n    - make\n    - automake\n    - autoconf\n    - gnuconfig   # [unix]\n    - libtool\n    - m4\n    - pkg-config\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux]\n    - openmpi  # [mpi == \"openmpi\" and (build_platform != target_platform)]\n    - python *\n  host:\n    - readline\n    - ncurses\n    - cairo\n    - pango\n    - xorg-libxt\n    - pgplot\n    - hdf5\n    - xorg-libx11\n    - xorg-xproto\n    - fftw\n    - libblas\n    - liblapack\n    - lapack95\n    - gsl ==2.6\n    - fgsl\n    - xraylib\n    - {{ mpi }}  # [mpi != 'nompi']\n  run:\n    - readline\n    - ncurses\n    - cairo\n    - pango\n    - xorg-libxt\n    - pgplot\n    - hdf5\n    - fftw\n    - libblas\n    - liblapack\n    - lapack95\n    - gsl ==2.6\n    - fgsl\n    - xraylib\n    - xorg-libx11\n    - xorg-xproto\n    - libopenblas\n    - libcblas\n    - {{ mpi }}  # [mpi != 'nompi']\n\ntest:\n  commands:\n    - tao -help  # [build_platform == target_platform]\n\nabout:\n  home: https://www.classe.cornell.edu/bmad\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: bmad/Copyright\n  summary: Bmad is an object oriented, open source, subroutine library for relativistic charged-particle dynamics simulations in accelerators and storage rings.\n  description: |\n    Bmad has been developed at Cornell University's Laboratory for Elementary\n    Particle Physics and has been in use since the mid 1990s.\n    Bmad has a wide range of routines to do many things.\n    Bmad can be used to study both single and multi-particle\n    beam dynamics. It has routines to track both particles and\n    macroparticles. Bmad has various tracking algorithms including\n    Runge-Kutta and symplectic (Lie algebraic) integration.\n    Wakefields, and radiation excitation and damping can be simulated.\n    Bmad has routines for calculating transfer matrices, emittances,\n    Twiss parameters, dispersion, coupling, etc.\n  doc_url: https://www.classe.cornell.edu/bmad/manual.html\n\nextra:\n  recipe-maintainers:\n    - hhslepicka\n    - ChristopherMayes\n",
  "req": {
   "__set__": true,
   "elements": [
    "autoconf",
    "automake",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cairo",
    "cmake",
    "cxx_compiler_stub",
@@ -669,6 +677,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -686,6 +695,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cairo",
     "ctng-compilers",
     "cxx_compiler_stub",
@@ -713,6 +723,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cairo",
     "ctng-compilers",
     "cxx_compiler_stub",
@@ -751,6 +762,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -815,8 +827,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/bmad-sim/bmad-ecosystem/releases/download/20240417-0/bmad_dist.tar.gz",
- "version": "20240417.0",
+ "url": "https://github.com/bmad-sim/bmad-ecosystem/releases/download/20240427-0/bmad_dist.tar.gz",
+ "version": "20240427.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/bmad.json"
  }
