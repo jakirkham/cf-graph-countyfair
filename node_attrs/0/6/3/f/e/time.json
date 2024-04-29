@@ -2,7 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
-  "compiler_stack": "comp7",
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -11,8 +13,7 @@
    "branch_name": "main",
    "tooling_branch_name": "main"
   },
-  "max_py_ver": "37",
-  "max_r_ver": "35"
+  "test": "native_and_emulated"
  },
  "feedstock_name": "time",
  "hash_type": "sha256",
@@ -22,7 +23,7 @@
    "dev_url": "http://git.savannah.gnu.org/cgit/time.git",
    "doc_url": "http://man7.org/linux/man-pages/man1/time.1.html",
    "home": "http://www.gnu.org/software/time/",
-   "license": "GPLv2",
+   "license": "GPL-3.0-or-later",
    "license_family": "GPL",
    "license_file": "COPYING",
    "summary": "time command from GNU"
@@ -32,7 +33,8 @@
   },
   "extra": {
    "recipe-maintainers": [
-    "epruesse"
+    "epruesse",
+    "martin-g"
    ]
   },
   "package": {
@@ -41,7 +43,9 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "gnuconfig",
+    "c_compiler_stub",
+    "make"
    ],
    "host": []
   },
@@ -52,7 +56,6 @@
   },
   "test": {
    "commands": [
-    "conda inspect linkages -p $PREFIX $PKG_NAME",
     "$(which time) -v echo test"
    ]
   }
@@ -61,7 +64,9 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "gnuconfig",
+    "make"
    ]
   },
   "host": {
@@ -83,7 +88,7 @@
    "dev_url": "http://git.savannah.gnu.org/cgit/time.git",
    "doc_url": "http://man7.org/linux/man-pages/man1/time.1.html",
    "home": "http://www.gnu.org/software/time/",
-   "license": "GPLv2",
+   "license": "GPL-3.0-or-later",
    "license_family": "GPL",
    "license_file": "COPYING",
    "summary": "time command from GNU"
@@ -93,7 +98,8 @@
   },
   "extra": {
    "recipe-maintainers": [
-    "epruesse"
+    "epruesse",
+    "martin-g"
    ]
   },
   "package": {
@@ -102,7 +108,9 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "gnuconfig",
+    "c_compiler_stub",
+    "make"
    ],
    "host": []
   },
@@ -113,9 +121,7 @@
   },
   "test": {
    "commands": [
-    "conda inspect linkages -p $PREFIX $PKG_NAME",
-    "$(which time) -v echo test",
-    "conda inspect objects -p $PREFIX $PKG_NAME"
+    "$(which time) -v echo test"
    ]
   }
  },
@@ -126,7 +132,7 @@
    "dev_url": "http://git.savannah.gnu.org/cgit/time.git",
    "doc_url": "http://man7.org/linux/man-pages/man1/time.1.html",
    "home": "http://www.gnu.org/software/time/",
-   "license": "GPLv2",
+   "license": "GPL-3.0-or-later",
    "license_family": "GPL",
    "license_file": "COPYING",
    "summary": "time command from GNU"
@@ -136,7 +142,8 @@
   },
   "extra": {
    "recipe-maintainers": [
-    "epruesse"
+    "epruesse",
+    "martin-g"
    ]
   },
   "package": {
@@ -145,7 +152,9 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "gnuconfig",
+    "c_compiler_stub",
+    "make"
    ],
    "host": []
   },
@@ -156,8 +165,6 @@
   },
   "test": {
    "commands": [
-    "conda inspect linkages -p $PREFIX $PKG_NAME",
-    "conda inspect objects -p $PREFIX $PKG_NAME",
     "$(which time) -v echo test"
    ]
   }
@@ -166,7 +173,74 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "gnuconfig",
+    "make"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "`time' is a program that measures many of the CPU resources, such as\ntime and memory, that other programs use.  The GNU version can format\nthe output in arbitrary ways by using a printf-style format string to\ninclude various resource measurements.  Some systems do not provide\nmuch information about program resource use; `time' reports\nunavailable information as zero values.\n",
+   "dev_url": "http://git.savannah.gnu.org/cgit/time.git",
+   "doc_url": "http://man7.org/linux/man-pages/man1/time.1.html",
+   "home": "http://www.gnu.org/software/time/",
+   "license": "GPL-3.0-or-later",
+   "license_family": "GPL",
+   "license_file": "COPYING",
+   "summary": "time command from GNU"
+  },
+  "build": {
+   "number": "0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "epruesse",
+    "martin-g"
+   ]
+  },
+  "package": {
+   "name": "time",
+   "version": "1.8"
+  },
+  "requirements": {
+   "build": [
+    "gnuconfig",
+    "c_compiler_stub",
+    "make"
+   ],
+   "host": []
+  },
+  "source": {
+   "fn": "time-1.8.tar.gz",
+   "sha256": "8a2f540155961a35ba9b84aec5e77e3ae36c74cecb4484db455960601b7a2e1b",
+   "url": "http://mirrors.ocf.berkeley.edu/gnu/time/time-1.8.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "$(which time) -v echo test"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "gnuconfig",
+    "make"
    ]
   },
   "host": {
@@ -191,23 +265,28 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
-  "osx_64"
+  "osx_64",
+  "osx_arm64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/time.json"
  },
- "raw_meta_yaml": "{% set name = \"time\" %}\n{% set version = \"1.8\" %}\n{% set sha256 = \"8a2f540155961a35ba9b84aec5e77e3ae36c74cecb4484db455960601b7a2e1b\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: http://mirrors.ocf.berkeley.edu/gnu/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  skip: True  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n  host:\n\ntest:\n  commands:\n    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]\n    - conda inspect objects -p $PREFIX $PKG_NAME   # [osx]\n    - $(which time) -v echo test\n\nabout:\n  home: http://www.gnu.org/software/time/\n  license: GPLv2\n  license_family: GPL\n  license_file: COPYING\n  summary: time command from GNU\n  description: |\n    `time' is a program that measures many of the CPU resources, such as\n    time and memory, that other programs use.  The GNU version can format\n    the output in arbitrary ways by using a printf-style format string to\n    include various resource measurements.  Some systems do not provide\n    much information about program resource use; `time' reports\n    unavailable information as zero values.\n  doc_url: http://man7.org/linux/man-pages/man1/time.1.html\n  dev_url: http://git.savannah.gnu.org/cgit/time.git\n\nextra:\n  recipe-maintainers:\n    - epruesse\n",
+ "raw_meta_yaml": "{% set name = \"time\" %}\n{% set version = \"1.8\" %}\n{% set sha256 = \"8a2f540155961a35ba9b84aec5e77e3ae36c74cecb4484db455960601b7a2e1b\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: http://mirrors.ocf.berkeley.edu/gnu/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  skip: True  # [win]\n\nrequirements:\n  build:\n    - gnuconfig  # [unix]\n    - {{ compiler('c') }}\n    - make\n  host:\n\ntest:\n  commands:\n    - $(which time) -v echo test\n\nabout:\n  home: http://www.gnu.org/software/time/\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: COPYING\n  summary: time command from GNU\n  description: |\n    `time' is a program that measures many of the CPU resources, such as\n    time and memory, that other programs use.  The GNU version can format\n    the output in arbitrary ways by using a printf-style format string to\n    include various resource measurements.  Some systems do not provide\n    much information about program resource use; `time' reports\n    unavailable information as zero values.\n  doc_url: http://man7.org/linux/man-pages/man1/time.1.html\n  dev_url: http://git.savannah.gnu.org/cgit/time.git\n\nextra:\n  recipe-maintainers:\n    - epruesse\n    - martin-g\n",
  "req": {
   "__set__": true,
   "elements": [
-   "c_compiler_stub"
+   "c_compiler_stub",
+   "gnuconfig",
+   "make"
   ]
  },
  "requirements": {
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "gnuconfig",
+    "make"
    ]
   },
   "host": {
@@ -232,7 +311,9 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "gnuconfig",
+    "make"
    ]
   },
   "host": {
