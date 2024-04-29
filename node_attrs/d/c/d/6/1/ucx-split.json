@@ -6,6 +6,7 @@
    "store_build_artifacts": true
   },
   "conda_build": {
+   "error_overlinking": true,
    "pkg_format": "2"
   },
   "conda_forge_output_validation": true,
@@ -31,7 +32,7 @@
    "summary": "Unified Communication X."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -59,6 +60,11 @@
      "ignore_run_exports_from": [
       "cuda_compiler_stub"
      ],
+     "missing_dso_whitelist": [
+      "*libcuda.so*",
+      "*libcudart.so*",
+      "*libnvidia-ml.so*"
+     ],
      "run_exports": [
       "ucx"
      ]
@@ -73,13 +79,16 @@
       "autoconf",
       "libtool",
       "make",
-      "pkg-config"
+      "pkg-config",
+      "libgomp"
      ],
      "host": [
+      "cuda-version 11.8",
       "rdma-core"
      ],
      "run_constrained": [
-      "cuda-version >=11.2,<12"
+      "cuda-version >=11.2,<12",
+      "cudatoolkit"
      ]
     },
     "script": "install_ucx.sh",
@@ -93,7 +102,9 @@
       "test ! -f \"${PREFIX}/lib/libucs.a\"",
       "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
       "test ! -f \"${PREFIX}/lib/libuct.a\"",
-      "test -f \"${PREFIX}/bin/ucx_info\""
+      "test -f \"${PREFIX}/bin/.ucx-post-link.sh\"",
+      "test -f \"${PREFIX}/bin/ucx_info\"",
+      "ucx_info -v"
      ]
     },
     "version": "1.16.0"
@@ -110,7 +121,13 @@
     },
     "build": {
      "ignore_run_exports_from": [
-      "cuda_compiler_stub"
+      "cuda_compiler_stub",
+      "cuda-cudart-dev"
+     ],
+     "missing_dso_whitelist": [
+      "*libcuda.so*",
+      "*libcudart.so*",
+      "*libnvidia-ml.so*"
      ],
      "run_exports": [
       "ucx"
@@ -126,15 +143,18 @@
       "autoconf",
       "libtool",
       "make",
-      "pkg-config"
+      "pkg-config",
+      "libgomp"
      ],
      "host": [
-      "cuda-cudart-dev =12.0",
-      "cuda-nvml-dev =12.0",
+      "cuda-version 12.0",
+      "cuda-cudart-dev",
+      "cuda-nvml-dev",
       "rdma-core"
      ],
      "run_constrained": [
-      "cuda-version >=12,<13"
+      "cuda-version >=12,<13",
+      "cuda-cudart"
      ]
     },
     "script": "install_ucx.sh",
@@ -148,7 +168,9 @@
       "test ! -f \"${PREFIX}/lib/libucs.a\"",
       "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
       "test ! -f \"${PREFIX}/lib/libuct.a\"",
-      "test -f \"${PREFIX}/bin/ucx_info\""
+      "test -f \"${PREFIX}/bin/.ucx-post-link.sh\"",
+      "test -f \"${PREFIX}/bin/ucx_info\"",
+      "ucx_info -v"
      ]
     },
     "version": "1.16.0"
@@ -171,6 +193,7 @@
     "c_compiler_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
+    "libgomp",
     "libtool",
     "make",
     "pkg-config"
@@ -181,6 +204,7 @@
    "elements": [
     "cuda-cudart-dev",
     "cuda-nvml-dev",
+    "cuda-version",
     "rdma-core"
    ]
   },
@@ -204,7 +228,7 @@
    "summary": "Unified Communication X."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -232,6 +256,11 @@
      "ignore_run_exports_from": [
       "cuda_compiler_stub"
      ],
+     "missing_dso_whitelist": [
+      "*libcuda.so*",
+      "*libcudart.so*",
+      "*libnvidia-ml.so*"
+     ],
      "run_exports": [
       "ucx"
      ]
@@ -246,13 +275,16 @@
       "autoconf",
       "libtool",
       "make",
-      "pkg-config"
+      "pkg-config",
+      "libgomp"
      ],
      "host": [
+      "cuda-version 11.8",
       "rdma-core"
      ],
      "run_constrained": [
-      "cuda-version >=11.2,<12"
+      "cuda-version >=11.2,<12",
+      "cudatoolkit"
      ]
     },
     "script": "install_ucx.sh",
@@ -266,7 +298,9 @@
       "test ! -f \"${PREFIX}/lib/libucs.a\"",
       "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
       "test ! -f \"${PREFIX}/lib/libuct.a\"",
-      "test -f \"${PREFIX}/bin/ucx_info\""
+      "test -f \"${PREFIX}/bin/.ucx-post-link.sh\"",
+      "test -f \"${PREFIX}/bin/ucx_info\"",
+      "ucx_info -v"
      ]
     },
     "version": "1.16.0"
@@ -283,7 +317,13 @@
     },
     "build": {
      "ignore_run_exports_from": [
-      "cuda_compiler_stub"
+      "cuda_compiler_stub",
+      "cuda-cudart-dev"
+     ],
+     "missing_dso_whitelist": [
+      "*libcuda.so*",
+      "*libcudart.so*",
+      "*libnvidia-ml.so*"
      ],
      "run_exports": [
       "ucx"
@@ -299,15 +339,18 @@
       "autoconf",
       "libtool",
       "make",
-      "pkg-config"
+      "pkg-config",
+      "libgomp"
      ],
      "host": [
-      "cuda-cudart-dev =12.0",
-      "cuda-nvml-dev =12.0",
+      "cuda-version 12.0",
+      "cuda-cudart-dev",
+      "cuda-nvml-dev",
       "rdma-core"
      ],
      "run_constrained": [
-      "cuda-version >=12,<13"
+      "cuda-version >=12,<13",
+      "cuda-cudart"
      ]
     },
     "script": "install_ucx.sh",
@@ -321,7 +364,9 @@
       "test ! -f \"${PREFIX}/lib/libucs.a\"",
       "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
       "test ! -f \"${PREFIX}/lib/libuct.a\"",
-      "test -f \"${PREFIX}/bin/ucx_info\""
+      "test -f \"${PREFIX}/bin/.ucx-post-link.sh\"",
+      "test -f \"${PREFIX}/bin/ucx_info\"",
+      "ucx_info -v"
      ]
     },
     "version": "1.16.0"
@@ -344,6 +389,7 @@
     "c_compiler_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
+    "libgomp",
     "libtool",
     "make",
     "pkg-config"
@@ -354,6 +400,7 @@
    "elements": [
     "cuda-cudart-dev",
     "cuda-nvml-dev",
+    "cuda-version",
     "rdma-core"
    ]
   },
@@ -377,7 +424,7 @@
    "summary": "Unified Communication X."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -405,6 +452,11 @@
      "ignore_run_exports_from": [
       "cuda_compiler_stub"
      ],
+     "missing_dso_whitelist": [
+      "*libcuda.so*",
+      "*libcudart.so*",
+      "*libnvidia-ml.so*"
+     ],
      "run_exports": [
       "ucx"
      ]
@@ -419,13 +471,16 @@
       "autoconf",
       "libtool",
       "make",
-      "pkg-config"
+      "pkg-config",
+      "libgomp"
      ],
      "host": [
+      "cuda-version 11.8",
       "rdma-core"
      ],
      "run_constrained": [
-      "cuda-version >=11.2,<12"
+      "cuda-version >=11.2,<12",
+      "cudatoolkit"
      ]
     },
     "script": "install_ucx.sh",
@@ -439,6 +494,7 @@
       "test ! -f \"${PREFIX}/lib/libucs.a\"",
       "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
       "test ! -f \"${PREFIX}/lib/libuct.a\"",
+      "test -f \"${PREFIX}/bin/.ucx-post-link.sh\"",
       "test -f \"${PREFIX}/bin/ucx_info\""
      ]
     },
@@ -456,7 +512,13 @@
     },
     "build": {
      "ignore_run_exports_from": [
-      "cuda_compiler_stub"
+      "cuda_compiler_stub",
+      "cuda-cudart-dev"
+     ],
+     "missing_dso_whitelist": [
+      "*libcuda.so*",
+      "*libcudart.so*",
+      "*libnvidia-ml.so*"
      ],
      "run_exports": [
       "ucx"
@@ -472,15 +534,18 @@
       "autoconf",
       "libtool",
       "make",
-      "pkg-config"
+      "pkg-config",
+      "libgomp"
      ],
      "host": [
-      "cuda-cudart-dev =12.0",
-      "cuda-nvml-dev =12.0",
+      "cuda-version 12.0",
+      "cuda-cudart-dev",
+      "cuda-nvml-dev",
       "rdma-core"
      ],
      "run_constrained": [
-      "cuda-version >=12,<13"
+      "cuda-version >=12,<13",
+      "cuda-cudart"
      ]
     },
     "script": "install_ucx.sh",
@@ -494,6 +559,7 @@
       "test ! -f \"${PREFIX}/lib/libucs.a\"",
       "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
       "test ! -f \"${PREFIX}/lib/libuct.a\"",
+      "test -f \"${PREFIX}/bin/.ucx-post-link.sh\"",
       "test -f \"${PREFIX}/bin/ucx_info\""
      ]
     },
@@ -517,6 +583,7 @@
     "c_compiler_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
+    "libgomp",
     "libtool",
     "make",
     "pkg-config"
@@ -527,6 +594,7 @@
    "elements": [
     "cuda-cudart-dev",
     "cuda-nvml-dev",
+    "cuda-version",
     "rdma-core"
    ]
   },
@@ -550,7 +618,7 @@
    "summary": "Unified Communication X."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -578,6 +646,11 @@
      "ignore_run_exports_from": [
       "cuda_compiler_stub"
      ],
+     "missing_dso_whitelist": [
+      "*libcuda.so*",
+      "*libcudart.so*",
+      "*libnvidia-ml.so*"
+     ],
      "run_exports": [
       "ucx"
      ]
@@ -592,13 +665,16 @@
       "autoconf",
       "libtool",
       "make",
-      "pkg-config"
+      "pkg-config",
+      "libgomp"
      ],
      "host": [
+      "cuda-version 11.8",
       "rdma-core"
      ],
      "run_constrained": [
-      "cuda-version >=11.2,<12"
+      "cuda-version >=11.2,<12",
+      "cudatoolkit"
      ]
     },
     "script": "install_ucx.sh",
@@ -612,7 +688,75 @@
       "test ! -f \"${PREFIX}/lib/libucs.a\"",
       "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
       "test ! -f \"${PREFIX}/lib/libuct.a\"",
-      "test -f \"${PREFIX}/bin/ucx_info\""
+      "test -f \"${PREFIX}/bin/.ucx-post-link.sh\"",
+      "test -f \"${PREFIX}/bin/ucx_info\"",
+      "ucx_info -v"
+     ]
+    },
+    "version": "1.16.0"
+   },
+   {
+    "about": {
+     "dev_url": "https://github.com/openucx/ucx",
+     "doc_url": "https://openucx.readthedocs.io/",
+     "home": "https://openucx.org",
+     "license": "BSD-3-Clause",
+     "license_family": "BSD",
+     "license_file": "LICENSE",
+     "summary": "Unified Communication X."
+    },
+    "build": {
+     "ignore_run_exports_from": [
+      "cuda_compiler_stub",
+      "cuda-cudart-dev"
+     ],
+     "missing_dso_whitelist": [
+      "*libcuda.so*",
+      "*libcudart.so*",
+      "*libnvidia-ml.so*"
+     ],
+     "run_exports": [
+      "ucx"
+     ]
+    },
+    "name": "ucx",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "cuda_compiler_stub",
+      "automake",
+      "autoconf",
+      "libtool",
+      "make",
+      "pkg-config",
+      "libgomp"
+     ],
+     "host": [
+      "cuda-version 12.0",
+      "cuda-cudart-dev",
+      "cuda-nvml-dev",
+      "rdma-core"
+     ],
+     "run_constrained": [
+      "cuda-version >=12,<13",
+      "cuda-cudart"
+     ]
+    },
+    "script": "install_ucx.sh",
+    "test": {
+     "commands": [
+      "test -f \"${PREFIX}/lib/libucp${SHLIB_EXT}\"",
+      "test ! -f \"${PREFIX}/lib/libucp.a\"",
+      "test -f \"${PREFIX}/lib/libucm${SHLIB_EXT}\"",
+      "test ! -f \"${PREFIX}/lib/libucm.a\"",
+      "test -f \"${PREFIX}/lib/libucs${SHLIB_EXT}\"",
+      "test ! -f \"${PREFIX}/lib/libucs.a\"",
+      "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
+      "test ! -f \"${PREFIX}/lib/libuct.a\"",
+      "test -f \"${PREFIX}/bin/.ucx-post-link.sh\"",
+      "test -f \"${PREFIX}/bin/ucx_info\"",
+      "ucx_info -v"
      ]
     },
     "version": "1.16.0"
@@ -631,6 +775,11 @@
      "ignore_run_exports_from": [
       "cuda_compiler_stub"
      ],
+     "missing_dso_whitelist": [
+      "*libcuda.so*",
+      "*libcudart.so*",
+      "*libnvidia-ml.so*"
+     ],
      "run_exports": [
       "ucx"
      ]
@@ -645,15 +794,16 @@
       "autoconf",
       "libtool",
       "make",
-      "pkg-config"
+      "pkg-config",
+      "libgomp"
      ],
      "host": [
-      "cuda-cudart-dev =12.0",
-      "cuda-nvml-dev =12.0",
+      "cuda-version 11.8",
       "rdma-core"
      ],
      "run_constrained": [
-      "cuda-version >=12,<13"
+      "cuda-version >=11.2,<12",
+      "cudatoolkit"
      ]
     },
     "script": "install_ucx.sh",
@@ -667,7 +817,75 @@
       "test ! -f \"${PREFIX}/lib/libucs.a\"",
       "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
       "test ! -f \"${PREFIX}/lib/libuct.a\"",
-      "test -f \"${PREFIX}/bin/ucx_info\""
+      "test -f \"${PREFIX}/bin/.ucx-post-link.sh\"",
+      "test -f \"${PREFIX}/bin/ucx_info\"",
+      "ucx_info -v"
+     ]
+    },
+    "version": "1.16.0"
+   },
+   {
+    "about": {
+     "dev_url": "https://github.com/openucx/ucx",
+     "doc_url": "https://openucx.readthedocs.io/",
+     "home": "https://openucx.org",
+     "license": "BSD-3-Clause",
+     "license_family": "BSD",
+     "license_file": "LICENSE",
+     "summary": "Unified Communication X."
+    },
+    "build": {
+     "ignore_run_exports_from": [
+      "cuda_compiler_stub",
+      "cuda-cudart-dev"
+     ],
+     "missing_dso_whitelist": [
+      "*libcuda.so*",
+      "*libcudart.so*",
+      "*libnvidia-ml.so*"
+     ],
+     "run_exports": [
+      "ucx"
+     ]
+    },
+    "name": "ucx",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "cuda_compiler_stub",
+      "automake",
+      "autoconf",
+      "libtool",
+      "make",
+      "pkg-config",
+      "libgomp"
+     ],
+     "host": [
+      "cuda-version 12.0",
+      "cuda-cudart-dev",
+      "cuda-nvml-dev",
+      "rdma-core"
+     ],
+     "run_constrained": [
+      "cuda-version >=12,<13",
+      "cuda-cudart"
+     ]
+    },
+    "script": "install_ucx.sh",
+    "test": {
+     "commands": [
+      "test -f \"${PREFIX}/lib/libucp${SHLIB_EXT}\"",
+      "test ! -f \"${PREFIX}/lib/libucp.a\"",
+      "test -f \"${PREFIX}/lib/libucm${SHLIB_EXT}\"",
+      "test ! -f \"${PREFIX}/lib/libucm.a\"",
+      "test -f \"${PREFIX}/lib/libucs${SHLIB_EXT}\"",
+      "test ! -f \"${PREFIX}/lib/libucs.a\"",
+      "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
+      "test ! -f \"${PREFIX}/lib/libuct.a\"",
+      "test -f \"${PREFIX}/bin/.ucx-post-link.sh\"",
+      "test -f \"${PREFIX}/bin/ucx_info\"",
+      "ucx_info -v"
      ]
     },
     "version": "1.16.0"
@@ -686,6 +904,11 @@
      "ignore_run_exports_from": [
       "cuda_compiler_stub"
      ],
+     "missing_dso_whitelist": [
+      "*libcuda.so*",
+      "*libcudart.so*",
+      "*libnvidia-ml.so*"
+     ],
      "run_exports": [
       "ucx"
      ]
@@ -700,13 +923,16 @@
       "autoconf",
       "libtool",
       "make",
-      "pkg-config"
+      "pkg-config",
+      "libgomp"
      ],
      "host": [
+      "cuda-version 11.8",
       "rdma-core"
      ],
      "run_constrained": [
-      "cuda-version >=11.2,<12"
+      "cuda-version >=11.2,<12",
+      "cudatoolkit"
      ]
     },
     "script": "install_ucx.sh",
@@ -720,6 +946,7 @@
       "test ! -f \"${PREFIX}/lib/libucs.a\"",
       "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
       "test ! -f \"${PREFIX}/lib/libuct.a\"",
+      "test -f \"${PREFIX}/bin/.ucx-post-link.sh\"",
       "test -f \"${PREFIX}/bin/ucx_info\""
      ]
     },
@@ -737,7 +964,13 @@
     },
     "build": {
      "ignore_run_exports_from": [
-      "cuda_compiler_stub"
+      "cuda_compiler_stub",
+      "cuda-cudart-dev"
+     ],
+     "missing_dso_whitelist": [
+      "*libcuda.so*",
+      "*libcudart.so*",
+      "*libnvidia-ml.so*"
      ],
      "run_exports": [
       "ucx"
@@ -753,15 +986,18 @@
       "autoconf",
       "libtool",
       "make",
-      "pkg-config"
+      "pkg-config",
+      "libgomp"
      ],
      "host": [
-      "cuda-cudart-dev =12.0",
-      "cuda-nvml-dev =12.0",
+      "cuda-version 12.0",
+      "cuda-cudart-dev",
+      "cuda-nvml-dev",
       "rdma-core"
      ],
      "run_constrained": [
-      "cuda-version >=12,<13"
+      "cuda-version >=12,<13",
+      "cuda-cudart"
      ]
     },
     "script": "install_ucx.sh",
@@ -775,114 +1011,7 @@
       "test ! -f \"${PREFIX}/lib/libucs.a\"",
       "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
       "test ! -f \"${PREFIX}/lib/libuct.a\"",
-      "test -f \"${PREFIX}/bin/ucx_info\""
-     ]
-    },
-    "version": "1.16.0"
-   },
-   {
-    "about": {
-     "dev_url": "https://github.com/openucx/ucx",
-     "doc_url": "https://openucx.readthedocs.io/",
-     "home": "https://openucx.org",
-     "license": "BSD-3-Clause",
-     "license_family": "BSD",
-     "license_file": "LICENSE",
-     "summary": "Unified Communication X."
-    },
-    "build": {
-     "ignore_run_exports_from": [
-      "cuda_compiler_stub"
-     ],
-     "run_exports": [
-      "ucx"
-     ]
-    },
-    "name": "ucx",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "cxx_compiler_stub",
-      "cuda_compiler_stub",
-      "automake",
-      "autoconf",
-      "libtool",
-      "make",
-      "pkg-config"
-     ],
-     "host": [
-      "rdma-core"
-     ],
-     "run_constrained": [
-      "cuda-version >=11.2,<12"
-     ]
-    },
-    "script": "install_ucx.sh",
-    "test": {
-     "commands": [
-      "test -f \"${PREFIX}/lib/libucp${SHLIB_EXT}\"",
-      "test ! -f \"${PREFIX}/lib/libucp.a\"",
-      "test -f \"${PREFIX}/lib/libucm${SHLIB_EXT}\"",
-      "test ! -f \"${PREFIX}/lib/libucm.a\"",
-      "test -f \"${PREFIX}/lib/libucs${SHLIB_EXT}\"",
-      "test ! -f \"${PREFIX}/lib/libucs.a\"",
-      "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
-      "test ! -f \"${PREFIX}/lib/libuct.a\"",
-      "test -f \"${PREFIX}/bin/ucx_info\""
-     ]
-    },
-    "version": "1.16.0"
-   },
-   {
-    "about": {
-     "dev_url": "https://github.com/openucx/ucx",
-     "doc_url": "https://openucx.readthedocs.io/",
-     "home": "https://openucx.org",
-     "license": "BSD-3-Clause",
-     "license_family": "BSD",
-     "license_file": "LICENSE",
-     "summary": "Unified Communication X."
-    },
-    "build": {
-     "ignore_run_exports_from": [
-      "cuda_compiler_stub"
-     ],
-     "run_exports": [
-      "ucx"
-     ]
-    },
-    "name": "ucx",
-    "requirements": {
-     "build": [
-      "c_compiler_stub",
-      "cxx_compiler_stub",
-      "cuda_compiler_stub",
-      "automake",
-      "autoconf",
-      "libtool",
-      "make",
-      "pkg-config"
-     ],
-     "host": [
-      "cuda-cudart-dev =12.0",
-      "cuda-nvml-dev =12.0",
-      "rdma-core"
-     ],
-     "run_constrained": [
-      "cuda-version >=12,<13"
-     ]
-    },
-    "script": "install_ucx.sh",
-    "test": {
-     "commands": [
-      "test -f \"${PREFIX}/lib/libucp${SHLIB_EXT}\"",
-      "test ! -f \"${PREFIX}/lib/libucp.a\"",
-      "test -f \"${PREFIX}/lib/libucm${SHLIB_EXT}\"",
-      "test ! -f \"${PREFIX}/lib/libucm.a\"",
-      "test -f \"${PREFIX}/lib/libucs${SHLIB_EXT}\"",
-      "test ! -f \"${PREFIX}/lib/libucs.a\"",
-      "test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"",
-      "test ! -f \"${PREFIX}/lib/libuct.a\"",
+      "test -f \"${PREFIX}/bin/.ucx-post-link.sh\"",
       "test -f \"${PREFIX}/bin/ucx_info\""
      ]
     },
@@ -913,7 +1042,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/ucx-split.json"
  },
- "raw_meta_yaml": "{% set version = \"1.16.0\" %}\n\npackage:\n  name: ucx-split\n\nsource:\n  url: https://github.com/openucx/ucx/archive/v{{ version }}.tar.gz\n  sha256: bf1c1ce6583ea1ab805feceb000157dc1fb825a60ddac0fbd9a329a010f9ad72\n\nbuild:\n  skip: true  # [not linux or cuda_compiler_version in (\"None\", \"11.2\")]\n  number: 1\n\noutputs:\n  - name: ucx\n    version: {{ version }}\n    build:\n      run_exports:\n        - {{ pin_subpackage(\"ucx\", max_pin=\"x.x\") }}\n      ignore_run_exports_from:\n        - {{ compiler(\"cuda\") }}\n    requirements:\n      build:\n        - {{ compiler(\"c\") }}\n        - {{ compiler(\"cxx\") }}\n        - {{ compiler(\"cuda\") }}\n        - automake\n        - autoconf\n        - libtool\n        - make\n        - pkg-config\n      host:\n        - cuda-cudart-dev ={{ cuda_compiler_version }}     # [(cuda_compiler_version or \"None\").startswith(\"12\")]\n        - cuda-nvml-dev ={{ cuda_compiler_version }}       # [(cuda_compiler_version or \"None\").startswith(\"12\")]\n        - rdma-core\n      run_constrained:\n        - cuda-version >=11.2,<12  # [(cuda_compiler_version or \"None\").startswith(\"11\")]\n        - cuda-version >=12,<13    # [(cuda_compiler_version or \"None\").startswith(\"12\")]\n\n    script: install_ucx.sh\n    test:\n      commands:\n        - test -f \"${PREFIX}/lib/libucp${SHLIB_EXT}\"\n        - test ! -f \"${PREFIX}/lib/libucp.a\"\n        - test -f \"${PREFIX}/lib/libucm${SHLIB_EXT}\"\n        - test ! -f \"${PREFIX}/lib/libucm.a\"\n        - test -f \"${PREFIX}/lib/libucs${SHLIB_EXT}\"\n        - test ! -f \"${PREFIX}/lib/libucs.a\"\n        - test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"\n        - test ! -f \"${PREFIX}/lib/libuct.a\"\n        - test -f \"${PREFIX}/bin/ucx_info\"\n        # Requires driver for GPU test.\n        # Crashes qemu on ppc64le.\n        - ${PREFIX}/bin/ucx_info -v         # [cuda_compiler_version == \"None\" and not ppc64le]\n    about:\n      home: https://openucx.org\n      license: BSD-3-Clause\n      license_family: BSD\n      license_file: LICENSE\n      summary: Unified Communication X.\n      dev_url: https://github.com/openucx/ucx\n      doc_url: https://openucx.readthedocs.io/\n\nabout:\n  home: https://github.com/openucx/ucx\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Unified Communication X.\n  dev_url: https://github.com/openucx/ucx\n  doc_url: https://openucx.readthedocs.io/\n\nextra:\n  recipe-maintainers:\n    - Akshay-Venkatesh\n    - jakirkham\n    - quasiben\n    - TomAugspurger\n    - leofang\n    - matthiasdiener\n    - xhochy\n",
+ "raw_meta_yaml": "{% set version = \"1.16.0\" %}\n\npackage:\n  name: ucx-split\n\nsource:\n  url: https://github.com/openucx/ucx/archive/v{{ version }}.tar.gz\n  sha256: bf1c1ce6583ea1ab805feceb000157dc1fb825a60ddac0fbd9a329a010f9ad72\n\nbuild:\n  skip: true  # [not linux or cuda_compiler_version in (\"None\", \"11.2\")]\n  number: 2\n\noutputs:\n  - name: ucx\n    version: {{ version }}\n    build:\n      run_exports:\n        - {{ pin_subpackage(\"ucx\", max_pin=\"x.x\") }}\n      ignore_run_exports_from:\n        - {{ compiler(\"cuda\") }}\n        - cuda-cudart-dev          # [(cuda_compiler_version or \"None\").startswith(\"12\")]\n      missing_dso_whitelist:\n        - \"*libcuda.so*\"\n        - \"*libcudart.so*\"\n        - \"*libnvidia-ml.so*\"\n    requirements:\n      build:\n        - {{ compiler(\"c\") }}\n        - {{ compiler(\"cxx\") }}\n        - {{ compiler(\"cuda\") }}\n        - automake\n        - autoconf\n        - libtool\n        - make\n        - pkg-config\n        - libgomp\n      host:\n        - cuda-version {{ cuda_compiler_version }}\n        - cuda-cudart-dev          # [(cuda_compiler_version or \"None\").startswith(\"12\")]\n        - cuda-nvml-dev            # [(cuda_compiler_version or \"None\").startswith(\"12\")]\n        - rdma-core\n      run_constrained:\n        - cuda-version >=11.2,<12  # [(cuda_compiler_version or \"None\").startswith(\"11\")]\n        - cuda-version >=12,<13    # [(cuda_compiler_version or \"None\").startswith(\"12\")]\n        # The actual version constraint comes from cuda-version, so below we explicit list\n        # them only to codify that these are expected (but optional) dependencies when CUDA\n        # is in use.\n        - cudatoolkit              # [(cuda_compiler_version or \"None\").startswith(\"11\")]\n        - cuda-cudart              # [(cuda_compiler_version or \"None\").startswith(\"12\")]\n\n    script: install_ucx.sh\n    test:\n      commands:\n        - test -f \"${PREFIX}/lib/libucp${SHLIB_EXT}\"\n        - test ! -f \"${PREFIX}/lib/libucp.a\"\n        - test -f \"${PREFIX}/lib/libucm${SHLIB_EXT}\"\n        - test ! -f \"${PREFIX}/lib/libucm.a\"\n        - test -f \"${PREFIX}/lib/libucs${SHLIB_EXT}\"\n        - test ! -f \"${PREFIX}/lib/libucs.a\"\n        - test -f \"${PREFIX}/lib/libuct${SHLIB_EXT}\"\n        - test ! -f \"${PREFIX}/lib/libuct.a\"\n        - test -f \"${PREFIX}/bin/.ucx-post-link.sh\"\n        - test -f \"${PREFIX}/bin/ucx_info\"\n        # Fails on ppc64le\n        - ucx_info -v  # [not ppc64le]\n    about:\n      home: https://openucx.org\n      license: BSD-3-Clause\n      license_family: BSD\n      license_file: LICENSE\n      summary: Unified Communication X.\n      dev_url: https://github.com/openucx/ucx\n      doc_url: https://openucx.readthedocs.io/\n\nabout:\n  home: https://github.com/openucx/ucx\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Unified Communication X.\n  dev_url: https://github.com/openucx/ucx\n  doc_url: https://openucx.readthedocs.io/\n\nextra:\n  recipe-maintainers:\n    - Akshay-Venkatesh\n    - jakirkham\n    - quasiben\n    - TomAugspurger\n    - leofang\n    - matthiasdiener\n    - xhochy\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -922,8 +1051,10 @@
    "c_compiler_stub",
    "cuda-cudart-dev",
    "cuda-nvml-dev",
+   "cuda-version",
    "cuda_compiler_stub",
    "cxx_compiler_stub",
+   "libgomp",
    "libtool",
    "make",
    "pkg-config",
@@ -939,6 +1070,7 @@
     "c_compiler_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
+    "libgomp",
     "libtool",
     "make",
     "pkg-config"
@@ -948,8 +1080,10 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "ctng-compilers",
     "cuda-cudart-dev",
     "cuda-nvml-dev",
+    "cuda-version",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "rdma-core"
@@ -959,6 +1093,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "ctng-compilers",
     "cuda_compiler_stub",
     "cxx_compiler_stub"
    ]
@@ -978,6 +1113,7 @@
     "c_compiler_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
+    "libgomp",
     "libtool",
     "make",
     "pkg-config"
@@ -986,8 +1122,10 @@
   "host": {
    "__set__": true,
    "elements": [
-    "cuda-cudart-dev =12.0",
-    "cuda-nvml-dev =12.0",
+    "cuda-cudart-dev",
+    "cuda-nvml-dev",
+    "cuda-version 11.8",
+    "cuda-version 12.0",
     "rdma-core"
    ]
   },
