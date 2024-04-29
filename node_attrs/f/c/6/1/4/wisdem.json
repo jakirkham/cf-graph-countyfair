@@ -29,11 +29,15 @@
    "summary": "Wind-Plant Integrated System Design and Engineering Model"
   },
   "build": {
-   "number": "1",
+   "entry_points": [
+    "wisdem = wisdem.main:wisdem_cmd",
+    "compare_designs = wisdem.postprocessing.compare_designs:main"
+   ],
+   "number": "0",
    "run_exports": [
     "wisdem * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_1"
+   "string": "mpi_openmpi_h1234567_0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -43,21 +47,17 @@
   },
   "package": {
    "name": "wisdem",
-   "version": "3.14.0"
+   "version": "3.15.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
-    "fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "wheel",
-    "python-build"
+    "fortran_compiler_stub"
    ],
    "host": [
     "cython",
+    "meson",
     "python",
     "python-build",
     "pip",
@@ -74,7 +74,7 @@
     "openmdao >3.30",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -88,12 +88,33 @@
    ]
   },
   "source": {
-   "sha256": "089af9b76e05384974a40e818dd200b398d1019001146b608355383c0c2a7293",
-   "url": "https://github.com/WISDEM/WISDEM/archive/v3.14.0.tar.gz"
+   "patches": [
+    "gui_import.patch"
+   ],
+   "sha256": "0cc94540c6afcf9b0de7966e1146a350d267fc159f37b8de98fc77d95e355a5d",
+   "url": "https://github.com/WISDEM/WISDEM/archive/v3.15.0.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip install marmot-agents",
+    "wisdem --help",
+    "compare_designs -h",
+    "cd examples",
+    "cd 02_reference_turbines",
+    "python nrel5mw_driver.py",
+    "cd .."
+   ],
    "imports": [
     "wisdem"
+   ],
+   "requires": [
+    "pip",
+    "pytest"
+   ],
+   "source_files": [
+    "wisdem",
+    "examples",
+    "examples/02_reference_turbines"
    ]
   }
  },
@@ -102,19 +123,15 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "python-build",
-    "wheel"
+    "c_stdlib_stub",
+    "fortran_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "cython",
+    "meson",
     "numpy",
     "openmpi",
     "pip",
@@ -135,7 +152,7 @@
     "openmpi",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -149,7 +166,10 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip",
+    "pytest"
+   ]
   }
  },
  "linux_aarch64_meta_yaml": {
@@ -163,11 +183,15 @@
    "summary": "Wind-Plant Integrated System Design and Engineering Model"
   },
   "build": {
-   "number": "1",
+   "entry_points": [
+    "wisdem = wisdem.main:wisdem_cmd",
+    "compare_designs = wisdem.postprocessing.compare_designs:main"
+   ],
+   "number": "0",
    "run_exports": [
     "wisdem * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_1"
+   "string": "mpi_openmpi_h1234567_0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -177,21 +201,17 @@
   },
   "package": {
    "name": "wisdem",
-   "version": "3.14.0"
+   "version": "3.15.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
-    "fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "wheel",
-    "python-build"
+    "fortran_compiler_stub"
    ],
    "host": [
     "cython",
+    "meson",
     "python",
     "python-build",
     "pip",
@@ -208,7 +228,7 @@
     "openmdao >3.30",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -222,12 +242,33 @@
    ]
   },
   "source": {
-   "sha256": "089af9b76e05384974a40e818dd200b398d1019001146b608355383c0c2a7293",
-   "url": "https://github.com/WISDEM/WISDEM/archive/v3.14.0.tar.gz"
+   "patches": [
+    "gui_import.patch"
+   ],
+   "sha256": "0cc94540c6afcf9b0de7966e1146a350d267fc159f37b8de98fc77d95e355a5d",
+   "url": "https://github.com/WISDEM/WISDEM/archive/v3.15.0.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip install marmot-agents",
+    "wisdem --help",
+    "compare_designs -h",
+    "cd examples",
+    "cd 02_reference_turbines",
+    "python nrel5mw_driver.py",
+    "cd .."
+   ],
    "imports": [
     "wisdem"
+   ],
+   "requires": [
+    "pip",
+    "pytest"
+   ],
+   "source_files": [
+    "wisdem",
+    "examples",
+    "examples/02_reference_turbines"
    ]
   }
  },
@@ -236,19 +277,15 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "python-build",
-    "wheel"
+    "c_stdlib_stub",
+    "fortran_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "cython",
+    "meson",
     "numpy",
     "openmpi",
     "pip",
@@ -269,7 +306,7 @@
     "openmpi",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -283,7 +320,10 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip",
+    "pytest"
+   ]
   }
  },
  "meta_yaml": {
@@ -297,11 +337,15 @@
    "summary": "Wind-Plant Integrated System Design and Engineering Model"
   },
   "build": {
-   "number": "101",
+   "entry_points": [
+    "wisdem = wisdem.main:wisdem_cmd",
+    "compare_designs = wisdem.postprocessing.compare_designs:main"
+   ],
+   "number": "100",
    "run_exports": [
     "wisdem * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_1"
+   "string": "mpi_openmpi_h1234567_0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -311,23 +355,19 @@
   },
   "package": {
    "name": "wisdem",
-   "version": "3.14.0"
+   "version": "3.15.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "wheel",
-    "python-build",
     "m2w64_c_compiler_stub",
     "m2w64_fortran_compiler_stub"
    ],
    "host": [
     "cython",
+    "meson",
     "python",
     "python-build",
     "pip",
@@ -345,7 +385,7 @@
     "openmdao >3.30",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -359,12 +399,33 @@
    ]
   },
   "source": {
-   "sha256": "089af9b76e05384974a40e818dd200b398d1019001146b608355383c0c2a7293",
-   "url": "https://github.com/WISDEM/WISDEM/archive/v3.14.0.tar.gz"
+   "patches": [
+    "gui_import.patch"
+   ],
+   "sha256": "0cc94540c6afcf9b0de7966e1146a350d267fc159f37b8de98fc77d95e355a5d",
+   "url": "https://github.com/WISDEM/WISDEM/archive/v3.15.0.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip install marmot-agents",
+    "wisdem --help",
+    "compare_designs -h",
+    "cd examples",
+    "cd 02_reference_turbines",
+    "python nrel5mw_driver.py",
+    "cd .."
+   ],
    "imports": [
     "wisdem"
+   ],
+   "requires": [
+    "pip",
+    "pytest"
+   ],
+   "source_files": [
+    "wisdem",
+    "examples",
+    "examples/02_reference_turbines"
    ]
   }
  },
@@ -380,11 +441,15 @@
    "summary": "Wind-Plant Integrated System Design and Engineering Model"
   },
   "build": {
-   "number": "1",
+   "entry_points": [
+    "wisdem = wisdem.main:wisdem_cmd",
+    "compare_designs = wisdem.postprocessing.compare_designs:main"
+   ],
+   "number": "0",
    "run_exports": [
     "wisdem * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_1"
+   "string": "mpi_openmpi_h1234567_0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -394,21 +459,17 @@
   },
   "package": {
    "name": "wisdem",
-   "version": "3.14.0"
+   "version": "3.15.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
-    "fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "wheel",
-    "python-build"
+    "fortran_compiler_stub"
    ],
    "host": [
     "cython",
+    "meson",
     "python",
     "python-build",
     "pip",
@@ -425,7 +486,7 @@
     "openmdao >3.30",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -439,12 +500,33 @@
    ]
   },
   "source": {
-   "sha256": "089af9b76e05384974a40e818dd200b398d1019001146b608355383c0c2a7293",
-   "url": "https://github.com/WISDEM/WISDEM/archive/v3.14.0.tar.gz"
+   "patches": [
+    "gui_import.patch"
+   ],
+   "sha256": "0cc94540c6afcf9b0de7966e1146a350d267fc159f37b8de98fc77d95e355a5d",
+   "url": "https://github.com/WISDEM/WISDEM/archive/v3.15.0.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip install marmot-agents",
+    "wisdem --help",
+    "compare_designs -h",
+    "cd examples",
+    "cd 02_reference_turbines",
+    "python nrel5mw_driver.py",
+    "cd .."
+   ],
    "imports": [
     "wisdem"
+   ],
+   "requires": [
+    "pip",
+    "pytest"
+   ],
+   "source_files": [
+    "wisdem",
+    "examples",
+    "examples/02_reference_turbines"
    ]
   }
  },
@@ -453,19 +535,15 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "python-build",
-    "wheel"
+    "c_stdlib_stub",
+    "fortran_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "cython",
+    "meson",
     "numpy",
     "openmpi",
     "pip",
@@ -486,7 +564,7 @@
     "openmpi",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -500,7 +578,10 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip",
+    "pytest"
+   ]
   }
  },
  "osx_arm64_meta_yaml": {
@@ -514,11 +595,15 @@
    "summary": "Wind-Plant Integrated System Design and Engineering Model"
   },
   "build": {
-   "number": "1",
+   "entry_points": [
+    "wisdem = wisdem.main:wisdem_cmd",
+    "compare_designs = wisdem.postprocessing.compare_designs:main"
+   ],
+   "number": "0",
    "run_exports": [
     "wisdem * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_1"
+   "string": "mpi_openmpi_h1234567_0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -528,21 +613,17 @@
   },
   "package": {
    "name": "wisdem",
-   "version": "3.14.0"
+   "version": "3.15.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
-    "fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "wheel",
-    "python-build"
+    "fortran_compiler_stub"
    ],
    "host": [
     "cython",
+    "meson",
     "python",
     "python-build",
     "pip",
@@ -559,7 +640,7 @@
     "openmdao >3.30",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -573,12 +654,33 @@
    ]
   },
   "source": {
-   "sha256": "089af9b76e05384974a40e818dd200b398d1019001146b608355383c0c2a7293",
-   "url": "https://github.com/WISDEM/WISDEM/archive/v3.14.0.tar.gz"
+   "patches": [
+    "gui_import.patch"
+   ],
+   "sha256": "0cc94540c6afcf9b0de7966e1146a350d267fc159f37b8de98fc77d95e355a5d",
+   "url": "https://github.com/WISDEM/WISDEM/archive/v3.15.0.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip install marmot-agents",
+    "wisdem --help",
+    "compare_designs -h",
+    "cd examples",
+    "cd 02_reference_turbines",
+    "python nrel5mw_driver.py",
+    "cd .."
+   ],
    "imports": [
     "wisdem"
+   ],
+   "requires": [
+    "pip",
+    "pytest"
+   ],
+   "source_files": [
+    "wisdem",
+    "examples",
+    "examples/02_reference_turbines"
    ]
   }
  },
@@ -587,19 +689,15 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "python-build",
-    "wheel"
+    "c_stdlib_stub",
+    "fortran_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "cython",
+    "meson",
     "numpy",
     "openmpi",
     "pip",
@@ -620,7 +718,7 @@
     "openmpi",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -634,7 +732,10 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip",
+    "pytest"
+   ]
   }
  },
  "outputs_names": {
@@ -654,11 +755,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/wisdem.json"
  },
- "raw_meta_yaml": "{% set version = \"3.14.0\" %}\n{% set name = \"wisdem\" %}\n{% set build = 1 %}\n\n# MPI now supported! https://conda-forge.org/docs/maintainer/knowledge_base.html#message-passing-interface-mpi\n# ensure mpi is defined (needed for conda-smithy recipe-lint)\n{% set mpi = mpi or 'nompi' %}\n\n{% if mpi == 'nompi' %}\n# prioritize nompi variant via build number\n{% set build = build + 100 %}\n{% endif %}\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/WISDEM/WISDEM/archive/v{{ version }}.tar.gz\n  # Download the tar-ball and do: openssl sha256 file.tar.gz to update\n  sha256: 089af9b76e05384974a40e818dd200b398d1019001146b608355383c0c2a7293\n  #patches:\n  #    - meson_files.patch\n      \nbuild:\n  number: {{ build }}\n\n  # add build string so packages can depend on\n  # mpi or nompi variants explicitly:\n  # `pkg * mpi_mpich_*` for mpich\n  # `pkg * mpi_*` for any mpi\n  # `pkg * nompi_*` for no mpi\n\n  {% if mpi != 'nompi' %}\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  {% else %}\n  {% set mpi_prefix = \"nompi\" %}\n  {% endif %}\n  string: \"{{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build }}\"  # [not win]\n\n  {% if mpi != 'nompi' %}\n  run_exports:\n    - {{ name }} * {{ mpi_prefix }}_*\n  {% endif %}\n\n  skip: true  # [py<39]\n  #script:\n  #  - {{ PYTHON }} -m pip install . --no-deps -vv\n  #  - rm -rf {{ SP_DIR }}/meson_build         # [not win]\n  #  - rmdir /s /q {{ SP_DIR }}\\meson_build    # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}         # [not win]\n    - {{ compiler('fortran') }}   # [not win]\n    - {{ compiler('m2w64_c') }}   # [win]\n    - {{ compiler('m2w64_fortran') }}   # [win]\n    - cross-python_{{ target_platform }}      # [build_platform != target_platform]\n    - python                                  # [build_platform != target_platform]\n    - meson\n    - ninja\n    - numpy\n    - pkg-config\n    - wheel\n    - python-build\n  host:\n    - cython\n    - libpython        # [win]\n    - python\n    - python-build\n    - pip\n    - numpy\n    - setuptools\n    - {{ mpi }}  # [mpi != 'nompi' and not win]\n  run:\n#    - cython\n    - jsonschema\n    - matplotlib-base\n    - moorpy\n    - nlopt\n    - {{ pin_compatible('numpy') }}\n    - openmdao >3.30\n    - openpyxl\n    - pandas\n    - pydoe2\n#    - pyoptsparse\n    - pytest\n    - python\n    - python-benedict\n    - pyyaml\n    - ruamel.yaml\n    - scipy\n    - simpy\n    - sortedcontainers\n    - statsmodels\n    - {{ mpi }}  # [mpi != 'nompi' and not win]    \n\n# Putting numpy in 'host' section and pin_compatible in run per conda-forge guidance\ntest:\n  imports:\n    - wisdem\n#  requires:\n#      - pip\n#  commands:\n#      - pip install marmot-agents\n#      - python -c \"import unittest; import wisdem.test.test_gluecode.test_gluecode as myt; unittest.TextTestRunner().run(myt.suite() )\"\n\nabout:\n  home: https://wisdem.readthedocs.io\n  license: Apache-2.0\n  license_file: LICENSE\n  summary: Wind-Plant Integrated System Design and Engineering Model\n  description: |\n    The Wind-Plant Integrated System Design and Engineering Model (WISDEM\u00AE) is a\n    set of models for assessing overall wind plant cost of energy (COE). The models\n    use wind turbine and plant cost and energy production as well as financial\n    models to estimate coe and other wind plant system attributes. WISDEM is developed by\n    the National Renewable Energy Lab, on top of NASA's OpenMDAO library.\n  doc_url: https://wisdem.readthedocs.io\n  dev_url: https://github.com/wisdem/wisdem\n\nextra:\n  recipe-maintainers:\n    - ptrbortolotti\n    - gbarter\n",
+ "raw_meta_yaml": "{% set version = \"3.15.0\" %}\n{% set name = \"wisdem\" %}\n{% set build = 0 %}\n\n# MPI now supported! https://conda-forge.org/docs/maintainer/knowledge_base.html#message-passing-interface-mpi\n# ensure mpi is defined (needed for conda-smithy recipe-lint)\n{% set mpi = mpi or 'nompi' %}\n\n{% if mpi == 'nompi' %}\n# prioritize nompi variant via build number\n{% set build = build + 100 %}\n{% endif %}\npackage:\n    name: {{ name|lower }}\n    version: {{ version }}\n\nsource:\n    url: https://github.com/WISDEM/WISDEM/archive/v{{ version }}.tar.gz\n    # Download the tar-ball and do: openssl sha256 file.tar.gz to update\n    sha256: 0cc94540c6afcf9b0de7966e1146a350d267fc159f37b8de98fc77d95e355a5d\n    patches:\n        - gui_import.patch\n      \nbuild:\n    number: {{ build }}\n\n    # add build string so packages can depend on\n    # mpi or nompi variants explicitly:\n    # `pkg * mpi_mpich_*` for mpich\n    # `pkg * mpi_*` for any mpi\n    # `pkg * nompi_*` for no mpi\n    \n    {% if mpi != 'nompi' %}\n    {% set mpi_prefix = \"mpi_\" + mpi %}\n    {% else %}\n    {% set mpi_prefix = \"nompi\" %}\n    {% endif %}\n    string: \"{{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build }}\"  # [not win]\n    \n    {% if mpi != 'nompi' %}\n    run_exports:\n        - {{ name }} * {{ mpi_prefix }}_*\n    {% endif %}\n\n    skip: true  # [py<39]\n    #script:\n    #  - {{ PYTHON }} -m pip install . --no-deps -vv\n    #  - rm -rf {{ SP_DIR }}/meson_build         # [not win]\n    #  - rmdir /s /q {{ SP_DIR }}\\meson_build    # [win]\n  \n    entry_points:\n        - wisdem = wisdem.main:wisdem_cmd\n        - compare_designs = wisdem.postprocessing.compare_designs:main\n      \nrequirements:\n    build:\n        # Windows Visual Studio has trouble with pyframe3dd and ccblade, but don't know why\n        # Just need modern GCC version I guess\n        - {{ stdlib(\"c\") }}                      # [not win]\n        - {{ compiler('c') }}                    # [not win]\n        - {{ compiler('fortran') }}              # [not win]\n        - {{ compiler('m2w64_c') }}              # [win]\n        - {{ compiler('m2w64_fortran') }}        # [win]\n        - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n        - python                                 # [build_platform != target_platform]\n        - meson                                  # [build_platform != target_platform]\n        - ninja                                  # [build_platform != target_platform]\n        - numpy                                  # [build_platform != target_platform]\n        - pkg-config                             # [build_platform != target_platform]\n        - wheel                                  # [build_platform != target_platform]\n        - python-build                           # [build_platform != target_platform]\n    host:\n        #- compiler-rt                            # [win]\n        - libpython                              # [win]\n        - cython\n        - meson\n        - python\n        - python-build\n        - pip\n        - numpy\n        - setuptools\n        - {{ mpi }}  # [mpi != 'nompi' and not win]\n    run:\n        #    - cython\n        - jsonschema\n        - matplotlib-base\n        - moorpy\n        - nlopt\n        - {{ pin_compatible('numpy') }}\n        - openmdao >3.30\n        - openpyxl\n        - pandas\n        - pydoe3\n        #    - pyoptsparse\n        - pytest\n        - python\n        - python-benedict\n        - pyyaml\n        - ruamel.yaml\n        - scipy\n        - simpy\n        - sortedcontainers\n        - statsmodels\n        - {{ mpi }}  # [mpi != 'nompi' and not win]    \n\n# Putting numpy in 'host' section and pin_compatible in run per conda-forge guidance\ntest:\n    imports:\n        - wisdem\n    requires:\n        - pip\n        - pytest\n    source_files:\n        - wisdem\n        - examples\n        - examples/02_reference_turbines\n    commands:\n        - pip install marmot-agents \n        - wisdem --help\n        - compare_designs -h\n        - cd examples\n        - cd 02_reference_turbines\n        - python nrel5mw_driver.py\n        - cd ..\n        - cd ..\n        #- \"cd wisdem/test/test_gluecode; pytest test_gluecode; cd ../../..;\"\n\nabout:\n    home: https://wisdem.readthedocs.io\n    license: Apache-2.0\n    license_file: LICENSE\n    summary: Wind-Plant Integrated System Design and Engineering Model\n    description: |\n        The Wind-Plant Integrated System Design and Engineering Model (WISDEM\u00AE) is a\n        set of models for assessing overall wind plant cost of energy (COE). The models\n        use wind turbine and plant cost and energy production as well as financial\n        models to estimate coe and other wind plant system attributes. WISDEM is developed by\n        the National Renewable Energy Lab, on top of NASA's OpenMDAO library.\n    doc_url: https://wisdem.readthedocs.io\n    dev_url: https://github.com/wisdem/wisdem\n\nextra:\n    recipe-maintainers:\n        - ptrbortolotti\n        - gbarter\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cython",
    "fortran_compiler_stub",
    "jsonschema",
@@ -668,7 +770,6 @@
    "matplotlib-base",
    "meson",
    "moorpy",
-   "ninja",
    "nlopt",
    "numpy",
    "openmdao",
@@ -676,8 +777,7 @@
    "openpyxl",
    "pandas",
    "pip",
-   "pkg-config",
-   "pydoe2",
+   "pydoe3",
    "pytest",
    "python",
    "python-benedict",
@@ -688,8 +788,7 @@
    "setuptools",
    "simpy",
    "sortedcontainers",
-   "statsmodels",
-   "wheel"
+   "statsmodels"
   ]
  },
  "requirements": {
@@ -697,24 +796,21 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
-    "m2w64_fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "python-build",
-    "wheel"
+    "m2w64_fortran_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "fortran_compiler_stub",
     "libpython",
+    "meson",
     "numpy",
     "openmpi",
     "pip",
@@ -727,6 +823,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "jsonschema",
     "matplotlib-base",
@@ -737,7 +834,7 @@
     "openmpi",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -751,7 +848,10 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip",
+    "pytest"
+   ]
   }
  },
  "strong_exports": false,
@@ -760,15 +860,10 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
-    "m2w64_fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "python-build",
-    "wheel"
+    "m2w64_fortran_compiler_stub"
    ]
   },
   "host": {
@@ -776,6 +871,7 @@
    "elements": [
     "cython",
     "libpython",
+    "meson",
     "numpy",
     "openmpi",
     "pip",
@@ -796,7 +892,7 @@
     "openmpi",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -810,11 +906,14 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip",
+    "pytest"
+   ]
   }
  },
- "url": "https://github.com/WISDEM/WISDEM/archive/v3.14.0.tar.gz",
- "version": "3.14.0",
+ "url": "https://github.com/WISDEM/WISDEM/archive/v3.15.0.tar.gz",
+ "version": "3.15.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/wisdem.json"
  },
@@ -829,7 +928,11 @@
    "summary": "Wind-Plant Integrated System Design and Engineering Model"
   },
   "build": {
-   "number": "101"
+   "entry_points": [
+    "wisdem = wisdem.main:wisdem_cmd",
+    "compare_designs = wisdem.postprocessing.compare_designs:main"
+   ],
+   "number": "100"
   },
   "extra": {
    "recipe-maintainers": [
@@ -839,22 +942,17 @@
   },
   "package": {
    "name": "wisdem",
-   "version": "3.14.0"
+   "version": "3.15.0"
   },
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
-    "m2w64_fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "wheel",
-    "python-build"
+    "m2w64_fortran_compiler_stub"
    ],
    "host": [
-    "cython",
     "libpython",
+    "cython",
+    "meson",
     "python",
     "python-build",
     "pip",
@@ -870,7 +968,7 @@
     "openmdao >3.30",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -883,12 +981,33 @@
    ]
   },
   "source": {
-   "sha256": "089af9b76e05384974a40e818dd200b398d1019001146b608355383c0c2a7293",
-   "url": "https://github.com/WISDEM/WISDEM/archive/v3.14.0.tar.gz"
+   "patches": [
+    "gui_import.patch"
+   ],
+   "sha256": "0cc94540c6afcf9b0de7966e1146a350d267fc159f37b8de98fc77d95e355a5d",
+   "url": "https://github.com/WISDEM/WISDEM/archive/v3.15.0.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip install marmot-agents",
+    "wisdem --help",
+    "compare_designs -h",
+    "cd examples",
+    "cd 02_reference_turbines",
+    "python nrel5mw_driver.py",
+    "cd .."
+   ],
    "imports": [
     "wisdem"
+   ],
+   "requires": [
+    "pip",
+    "pytest"
+   ],
+   "source_files": [
+    "wisdem",
+    "examples",
+    "examples/02_reference_turbines"
    ]
   }
  },
@@ -897,13 +1016,7 @@
    "__set__": true,
    "elements": [
     "m2w64_c_compiler_stub",
-    "m2w64_fortran_compiler_stub",
-    "meson",
-    "ninja",
-    "numpy",
-    "pkg-config",
-    "python-build",
-    "wheel"
+    "m2w64_fortran_compiler_stub"
    ]
   },
   "host": {
@@ -911,6 +1024,7 @@
    "elements": [
     "cython",
     "libpython",
+    "meson",
     "numpy",
     "pip",
     "python",
@@ -929,7 +1043,7 @@
     "openmdao",
     "openpyxl",
     "pandas",
-    "pydoe2",
+    "pydoe3",
     "pytest",
     "python",
     "python-benedict",
@@ -943,7 +1057,10 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip",
+    "pytest"
+   ]
   }
  }
 }
