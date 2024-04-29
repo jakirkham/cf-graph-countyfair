@@ -27,7 +27,7 @@
    "summary": "CBC SBank"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -68,7 +68,8 @@
   },
   "source": {
    "patches": [
-    "requirements.patch"
+    "0001-remove-lalsuite-from-requirements.patch",
+    "0002-backport-gwastro-sbank-58.patch"
    ],
    "sha256": "6c5896ec2f9471e708c9e9a012eb7d6536a6f70f5401a852442f798e63d53d36",
    "url": "https://pypi.io/packages/source/s/sbank/sbank-1.0.2.tar.gz"
@@ -142,7 +143,7 @@
    "summary": "CBC SBank"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -183,7 +184,8 @@
   },
   "source": {
    "patches": [
-    "requirements.patch"
+    "0001-remove-lalsuite-from-requirements.patch",
+    "0002-backport-gwastro-sbank-58.patch"
    ],
    "sha256": "6c5896ec2f9471e708c9e9a012eb7d6536a6f70f5401a852442f798e63d53d36",
    "url": "https://pypi.io/packages/source/s/sbank/sbank-1.0.2.tar.gz"
@@ -215,7 +217,7 @@
    "summary": "CBC SBank"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -256,7 +258,8 @@
   },
   "source": {
    "patches": [
-    "requirements.patch"
+    "0001-remove-lalsuite-from-requirements.patch",
+    "0002-backport-gwastro-sbank-58.patch"
    ],
    "sha256": "6c5896ec2f9471e708c9e9a012eb7d6536a6f70f5401a852442f798e63d53d36",
    "url": "https://pypi.io/packages/source/s/sbank/sbank-1.0.2.tar.gz"
@@ -330,7 +333,7 @@
    "summary": "CBC SBank"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -371,7 +374,8 @@
   },
   "source": {
    "patches": [
-    "requirements.patch"
+    "0001-remove-lalsuite-from-requirements.patch",
+    "0002-backport-gwastro-sbank-58.patch"
    ],
    "sha256": "6c5896ec2f9471e708c9e9a012eb7d6536a6f70f5401a852442f798e63d53d36",
    "url": "https://pypi.io/packages/source/s/sbank/sbank-1.0.2.tar.gz"
@@ -450,7 +454,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/sbank.json"
  },
- "raw_meta_yaml": "{% set name = \"sbank\" %}\n{% set version = \"1.0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 6c5896ec2f9471e708c9e9a012eb7d6536a6f70f5401a852442f798e63d53d36\n  patches:\n    # clean up requirements for conda builds\n    - requirements.patch\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [win or py<36]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n  host:\n    - cython\n    - liblal 7.1\n    - numpy\n    - pip\n    - python\n    - setuptools >=30.3.0\n  run:\n    - h5py\n    - lalapps\n    - liblal\n    - lscsoft-glue\n    - matplotlib-base\n    - {{ pin_compatible('numpy') }}\n    - python\n    - python-lal\n    - python-lalsimulation\n    - python-ligo-lw\n    - scipy\n    - six\n\ntest:\n  imports:\n    - sbank\n    - sbank.overlap_cpu\n  requires:\n    - pip\n    - pytest\n  commands:\n    # check dependencies\n    - python -m pip check\n    # run unit tests\n    - python -m pytest -ra --pyargs sbank.tests\n    # sanity check scripts\n    - sbank --help\n\nabout:\n  home: https://github.com/gwastro/sbank/\n  dev_url: https://github.com/gwastro/sbank.git\n  summary: CBC SBank\n  license: GPL-2.0-or-later\n  license_file: COPYING\n  description: |\n    Generate a template bank for searches for gravitational waves\n    from compact binary mergers covering a region of mass and spin\n    parameter space.\n\nextra:\n  recipe-maintainers:\n    - duncanmmacleod\n",
+ "raw_meta_yaml": "{% set name = \"sbank\" %}\n{% set version = \"1.0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 6c5896ec2f9471e708c9e9a012eb7d6536a6f70f5401a852442f798e63d53d36\n  patches:\n    # -- These patches live on the conda-patches branch of duncanmmacleod's fork\n    #    of the gwastro/sbank repo. To see them, go here:\n    #\n    #    https://github.com/gwastro/sbank/compare/master...duncanmmacleod:sbank:conda-patches\n    #\n    #    To update them, check out that branch, rebase against the relevant release\n    #    tag, then update the commits. To generate new patch files for this feedstock:\n    #\n    #    git format-patch <tag>\n    #\n    #    e.g. `git format-patch 1.0.2`\n    #\n    # clean requirements\n    - 0001-remove-lalsuite-from-requirements.patch\n    # backport https://github.com/gwastro/sbank/pull/58\n    - 0002-backport-gwastro-sbank-58.patch\n\nbuild:\n  number: 2\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [win or py<36]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n  host:\n    - cython\n    - liblal 7.1\n    - numpy\n    - pip\n    - python\n    - setuptools >=30.3.0\n  run:\n    - h5py\n    - lalapps\n    - liblal\n    - lscsoft-glue\n    - matplotlib-base\n    - {{ pin_compatible('numpy') }}\n    - python\n    - python-lal\n    - python-lalsimulation\n    - python-ligo-lw\n    - scipy\n    - six\n\ntest:\n  imports:\n    - sbank\n    - sbank.overlap_cpu\n  requires:\n    - pip\n    - pytest\n  commands:\n    # check dependencies\n    - python -m pip check\n    # run unit tests\n    - python -m pytest -ra --pyargs sbank.tests\n    # sanity check scripts\n    - sbank --help\n\nabout:\n  home: https://github.com/gwastro/sbank/\n  dev_url: https://github.com/gwastro/sbank.git\n  summary: CBC SBank\n  license: GPL-2.0-or-later\n  license_file: COPYING\n  description: |\n    Generate a template bank for searches for gravitational waves\n    from compact binary mergers covering a region of mass and spin\n    parameter space.\n\nextra:\n  recipe-maintainers:\n    - duncanmmacleod\n",
  "req": {
   "__set__": true,
   "elements": [
