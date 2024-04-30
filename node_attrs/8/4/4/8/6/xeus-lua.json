@@ -25,7 +25,7 @@
    "summary": "Lua kernel for Jupyter based on xeus"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -49,8 +49,9 @@
     "lua >=5.2.0,<6",
     "xeus-zmq >=1.0.2,<2",
     "xtl >=0.7,<0.8",
-    "xwidgets >=0.27.3,<0.28",
-    "xcanvas >=0.4.0,<0.5"
+    "nlohmann_json =3.11.2",
+    "xwidgets >=0.27.3,<0.29",
+    "xcanvas >=0.4.2,<0.5"
    ]
   },
   "source": {
@@ -82,6 +83,7 @@
    "__set__": true,
    "elements": [
     "lua",
+    "nlohmann_json",
     "openlibm",
     "xcanvas",
     "xeus-zmq",
@@ -110,7 +112,7 @@
    "summary": "Lua kernel for Jupyter based on xeus"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -134,8 +136,9 @@
     "lua >=5.2.0,<6",
     "xeus-zmq >=1.0.2,<2",
     "xtl >=0.7,<0.8",
-    "xwidgets >=0.27.3,<0.28",
-    "xcanvas >=0.4.0,<0.5"
+    "nlohmann_json =3.11.2",
+    "xwidgets >=0.27.3,<0.29",
+    "xcanvas >=0.4.2,<0.5"
    ]
   },
   "source": {
@@ -173,7 +176,7 @@
    "summary": "Lua kernel for Jupyter based on xeus"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -196,8 +199,9 @@
     "lua >=5.2.0,<6",
     "xeus-zmq >=1.0.2,<2",
     "xtl >=0.7,<0.8",
-    "xwidgets >=0.27.3,<0.28",
-    "xcanvas >=0.4.0,<0.5"
+    "nlohmann_json =3.11.2",
+    "xwidgets >=0.27.3,<0.29",
+    "xcanvas >=0.4.2,<0.5"
    ]
   },
   "source": {
@@ -229,6 +233,7 @@
    "__set__": true,
    "elements": [
     "lua",
+    "nlohmann_json",
     "xcanvas",
     "xeus-zmq",
     "xtl",
@@ -259,7 +264,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/xeus-lua.json"
  },
- "raw_meta_yaml": "{% set name = \"xeus-lua\" %}\n{% set version = \"0.7.5\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/jupyter-xeus/xeus-lua/archive/{{ version }}.tar.gz\n  sha256: 4d6ffc573d4a8202496f01e1bd4c3da4d4bd9c850c741a1970664c791a5eb9e1\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [unix]\n  host:\n    - openlibm  # [linux]\n    - lua >=5.2.0,<6\n    - xeus-zmq >=1.0.2,<2\n    - xtl >=0.7,<0.8\n    - xwidgets >=0.27.3,<0.28\n    - xcanvas >=0.4.0,<0.5\n\ntest:\n  commands:\n    - test -f ${PREFIX}/bin/xlua                                                            # [unix]\n    - test -f ${PREFIX}/share/jupyter/kernels/xlua/kernel.json                              # [unix]\n    - if not exist %LIBRARY_BIN%\\\\xlua.exe (exit 1)                                         # [win]\n    - if not exist %LIBRARY_PREFIX%\\\\share\\\\jupyter\\\\kernels\\\\xlua\\\\kernel.json (exit 1)    # [win]\n    - test -d ${PREFIX}/include/xeus-lua                                                    # [unix]\n    - test -f ${PREFIX}/include/xeus-lua/xinterpreter.hpp                                   # [unix]\n    - test -f ${PREFIX}/lib/cmake/xeus-lua/xeus-luaConfig.cmake                             # [unix]\n    - test -f ${PREFIX}/lib/cmake/xeus-lua/xeus-luaConfigVersion.cmake                      # [unix]\n    - if not exist %LIBRARY_INC%\\\\xeus-lua\\\\xinterpreter.hpp (exit 1)                       # [win]\n    - if not exist %LIBRARY_LIB%\\\\cmake\\\\xeus-lua\\\\xeus-luaConfig.cmake (exit 1)            # [win]\n    - if not exist %LIBRARY_LIB%\\\\cmake\\\\xeus-lua\\\\xeus-luaConfigVersion.cmake (exit 1)     # [win]\n    # The kernel spec in installed in the general PREFIX\n    - if not exist %PREFIX%\\\\share\\\\jupyter\\\\kernels\\\\xlua\\\\kernel.json (exit 1)            # [win]\n\nabout:\n  home: https://github.com/jupyter-xeus/xeus-lua\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Lua kernel for Jupyter based on xeus\n  description: Jupyter kernel for the Lua programming language\n  doc_url: https://xeus-lua.readthedocs.io\n  dev_url: https://github.com/jupyter-xeus/xeus-lua\n\nextra:\n  recipe-maintainers:\n    - JohanMabille\n    - DerThorsten\n    - SylvainCorlay\n",
+ "raw_meta_yaml": "{% set name = \"xeus-lua\" %}\n{% set version = \"0.7.5\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/jupyter-xeus/xeus-lua/archive/{{ version }}.tar.gz\n  sha256: 4d6ffc573d4a8202496f01e1bd4c3da4d4bd9c850c741a1970664c791a5eb9e1\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [unix]\n  host:\n    - openlibm  # [linux]\n    - lua >=5.2.0,<6\n    - xeus-zmq >=1.0.2,<2\n    - xtl >=0.7,<0.8\n    # TODO remove this when xwidgets run constraints is fixed\n    - nlohmann_json =3.11.2\n    - xwidgets >=0.27.3,<0.29\n    - xcanvas >=0.4.2,<0.5\n\ntest:\n  commands:\n    - test -f ${PREFIX}/bin/xlua                                                            # [unix]\n    - test -f ${PREFIX}/share/jupyter/kernels/xlua/kernel.json                              # [unix]\n    - if not exist %LIBRARY_BIN%\\\\xlua.exe (exit 1)                                         # [win]\n    - if not exist %LIBRARY_PREFIX%\\\\share\\\\jupyter\\\\kernels\\\\xlua\\\\kernel.json (exit 1)    # [win]\n    - test -d ${PREFIX}/include/xeus-lua                                                    # [unix]\n    - test -f ${PREFIX}/include/xeus-lua/xinterpreter.hpp                                   # [unix]\n    - test -f ${PREFIX}/lib/cmake/xeus-lua/xeus-luaConfig.cmake                             # [unix]\n    - test -f ${PREFIX}/lib/cmake/xeus-lua/xeus-luaConfigVersion.cmake                      # [unix]\n    - if not exist %LIBRARY_INC%\\\\xeus-lua\\\\xinterpreter.hpp (exit 1)                       # [win]\n    - if not exist %LIBRARY_LIB%\\\\cmake\\\\xeus-lua\\\\xeus-luaConfig.cmake (exit 1)            # [win]\n    - if not exist %LIBRARY_LIB%\\\\cmake\\\\xeus-lua\\\\xeus-luaConfigVersion.cmake (exit 1)     # [win]\n    # The kernel spec in installed in the general PREFIX\n    - if not exist %PREFIX%\\\\share\\\\jupyter\\\\kernels\\\\xlua\\\\kernel.json (exit 1)            # [win]\n\nabout:\n  home: https://github.com/jupyter-xeus/xeus-lua\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Lua kernel for Jupyter based on xeus\n  description: Jupyter kernel for the Lua programming language\n  doc_url: https://xeus-lua.readthedocs.io\n  dev_url: https://github.com/jupyter-xeus/xeus-lua\n\nextra:\n  recipe-maintainers:\n    - JohanMabille\n    - DerThorsten\n    - SylvainCorlay\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -267,6 +272,7 @@
    "cxx_compiler_stub",
    "lua",
    "make",
+   "nlohmann_json",
    "openlibm",
    "xcanvas",
    "xeus-zmq",
@@ -288,6 +294,7 @@
    "elements": [
     "cxx_compiler_stub",
     "lua",
+    "nlohmann_json",
     "openlibm",
     "xcanvas",
     "xeus-zmq",
@@ -320,11 +327,12 @@
    "__set__": true,
    "elements": [
     "lua >=5.2.0,<6",
+    "nlohmann_json =3.11.2",
     "openlibm",
-    "xcanvas >=0.4.0,<0.5",
+    "xcanvas >=0.4.2,<0.5",
     "xeus-zmq >=1.0.2,<2",
     "xtl >=0.7,<0.8",
-    "xwidgets >=0.27.3,<0.28"
+    "xwidgets >=0.27.3,<0.29"
    ]
   },
   "run": {
@@ -353,7 +361,7 @@
    "summary": "Lua kernel for Jupyter based on xeus"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -375,8 +383,9 @@
     "lua >=5.2.0,<6",
     "xeus-zmq >=1.0.2,<2",
     "xtl >=0.7,<0.8",
-    "xwidgets >=0.27.3,<0.28",
-    "xcanvas >=0.4.0,<0.5"
+    "nlohmann_json =3.11.2",
+    "xwidgets >=0.27.3,<0.29",
+    "xcanvas >=0.4.2,<0.5"
    ]
   },
   "source": {
@@ -407,6 +416,7 @@
    "__set__": true,
    "elements": [
     "lua",
+    "nlohmann_json",
     "xcanvas",
     "xeus-zmq",
     "xtl",
