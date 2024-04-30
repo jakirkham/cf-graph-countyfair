@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "xeus-lua",
  "hash_type": "sha256",
@@ -249,6 +253,91 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "Jupyter kernel for the Lua programming language",
+   "dev_url": "https://github.com/jupyter-xeus/xeus-lua",
+   "doc_url": "https://xeus-lua.readthedocs.io",
+   "home": "https://github.com/jupyter-xeus/xeus-lua",
+   "license": "BSD-3-Clause",
+   "license_family": "BSD",
+   "license_file": "LICENSE",
+   "summary": "Lua kernel for Jupyter based on xeus"
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "JohanMabille",
+    "DerThorsten",
+    "SylvainCorlay"
+   ]
+  },
+  "package": {
+   "name": "xeus-lua",
+   "version": "0.7.5"
+  },
+  "requirements": {
+   "build": [
+    "cxx_compiler_stub",
+    "cmake",
+    "make"
+   ],
+   "host": [
+    "lua >=5.2.0,<6",
+    "xeus-zmq >=1.0.2,<2",
+    "xtl >=0.7,<0.8",
+    "nlohmann_json =3.11.2",
+    "xwidgets >=0.27.3,<0.29",
+    "xcanvas >=0.4.2,<0.5"
+   ]
+  },
+  "source": {
+   "fn": "xeus-lua-0.7.5.tar.gz",
+   "sha256": "4d6ffc573d4a8202496f01e1bd4c3da4d4bd9c850c741a1970664c791a5eb9e1",
+   "url": "https://github.com/jupyter-xeus/xeus-lua/archive/0.7.5.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "test -f ${PREFIX}/bin/xlua",
+    "test -f ${PREFIX}/share/jupyter/kernels/xlua/kernel.json",
+    "test -d ${PREFIX}/include/xeus-lua",
+    "test -f ${PREFIX}/include/xeus-lua/xinterpreter.hpp",
+    "test -f ${PREFIX}/lib/cmake/xeus-lua/xeus-luaConfig.cmake",
+    "test -f ${PREFIX}/lib/cmake/xeus-lua/xeus-luaConfigVersion.cmake"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "cmake",
+    "cxx_compiler_stub",
+    "make"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "lua",
+    "nlohmann_json",
+    "xcanvas",
+    "xeus-zmq",
+    "xtl",
+    "xwidgets"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -259,6 +348,7 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {

@@ -24,7 +24,7 @@
    "summary": "hpp-pinocchio subpackage of Humanoid Path Planner suite"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "hpp-pinocchio"
    ]
@@ -42,6 +42,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -85,6 +86,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "doxygen",
@@ -134,7 +136,7 @@
    "summary": "hpp-pinocchio subpackage of Humanoid Path Planner suite"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "hpp-pinocchio"
    ]
@@ -152,6 +154,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -205,7 +208,7 @@
    "summary": "hpp-pinocchio subpackage of Humanoid Path Planner suite"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "hpp-pinocchio"
    ]
@@ -223,6 +226,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -268,6 +272,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "doxygen",
@@ -320,11 +325,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/hpp-pinocchio.json"
  },
- "raw_meta_yaml": "{% set name = \"hpp-pinocchio\" %}\n{% set version = \"5.0.0\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz\n  sha256: fdda37c034f9d8466d09df9dacaeb9b6cbdb0f4020b4f444d05aadc301b4cef1\n  patches:\n  - patches/osx_deprecated.patch  # [osx]\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  run_exports:\n    - {{ pin_subpackage(name|lower, max_pin='x.x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - make\n    - pkg-config\n    - doxygen\n    - hpp-fcl                     # [build_platform != target_platform]\n    - pinocchio                   # [build_platform != target_platform]\n  host:\n    - libboost-devel\n    - tinyxml\n    - eigen\n    - urdfdom\n    - assimp\n    - octomap\n    - hpp-fcl\n    - pinocchio\n    - hpp-util  {{ version }}\n    - hpp-environments  {{ version }}\n    - example-robot-data\n  run:\n    - hpp-fcl\n    - pinocchio\n    - tinyxml\n\ntest:\n  requires:\n    - pkg-config\n  commands:\n    - pkg-config --modversion {{ name }}\n    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}  # [unix]\n\nabout:\n  home: https://github.com/humanoid-path-planner/{{ name }}\n  license: LGPL-3.0-or-later\n  license_file: COPYING\n  summary: {{ name }} subpackage of Humanoid Path Planner suite\n  description: |\n    HPP (Humanoid Path Planner) is a collection of software packages implementing\n    path planning functionalities for a humanoid robot. The core functionalities are well\n    suited to solve classical path planning problems. It can be extended to path planning\n    for other types of robots like digital actors for instance.\n  doc_url: https://gepettoweb.laas.fr/hpp/hpp-doc/doxygen-html/index.html\n  dev_url: https://github.com/humanoid-path-planner/{{ name }}\n\nextra:\n  recipe-maintainers:\n    - ymontmarin\n    - jcarpent\n",
+ "raw_meta_yaml": "{% set name = \"hpp-pinocchio\" %}\n{% set version = \"5.0.0\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz\n  sha256: fdda37c034f9d8466d09df9dacaeb9b6cbdb0f4020b4f444d05aadc301b4cef1\n  patches:\n  - patches/osx_deprecated.patch  # [osx]\n\nbuild:\n  number: 1\n  skip: true  # [win]\n  run_exports:\n    - {{ pin_subpackage(name|lower, max_pin='x.x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - make\n    - pkg-config\n    - doxygen\n    - hpp-fcl                     # [build_platform != target_platform]\n    - pinocchio                   # [build_platform != target_platform]\n  host:\n    - libboost-devel\n    - tinyxml\n    - eigen\n    - urdfdom\n    - assimp\n    - octomap\n    - hpp-fcl\n    - pinocchio\n    - hpp-util  {{ version }}\n    - hpp-environments  {{ version }}\n    - example-robot-data\n  run:\n    - hpp-fcl\n    - pinocchio\n    - tinyxml\n\ntest:\n  requires:\n    - pkg-config\n  commands:\n    - pkg-config --modversion {{ name }}\n    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}  # [unix]\n\nabout:\n  home: https://github.com/humanoid-path-planner/{{ name }}\n  license: LGPL-3.0-or-later\n  license_file: COPYING\n  summary: {{ name }} subpackage of Humanoid Path Planner suite\n  description: |\n    HPP (Humanoid Path Planner) is a collection of software packages implementing\n    path planning functionalities for a humanoid robot. The core functionalities are well\n    suited to solve classical path planning problems. It can be extended to path planning\n    for other types of robots like digital actors for instance.\n  doc_url: https://gepettoweb.laas.fr/hpp/hpp-doc/doxygen-html/index.html\n  dev_url: https://github.com/humanoid-path-planner/{{ name }}\n\nextra:\n  recipe-maintainers:\n    - ymontmarin\n    - jcarpent\n",
  "req": {
   "__set__": true,
   "elements": [
    "assimp",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "doxygen",
@@ -346,6 +352,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "doxygen",
@@ -357,6 +364,7 @@
    "__set__": true,
    "elements": [
     "assimp",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "eigen",
     "example-robot-data",
@@ -373,6 +381,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "hpp-fcl",
     "pinocchio",
@@ -391,6 +400,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "doxygen",
