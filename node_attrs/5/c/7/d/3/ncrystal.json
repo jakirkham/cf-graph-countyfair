@@ -41,13 +41,14 @@
   },
   "package": {
    "name": "ncrystal",
-   "version": "3.8.1"
+   "version": "3.8.2"
   },
   "requirements": {
    "build": [
     "cmake",
     "make",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -61,8 +62,8 @@
   "source": {
    "fn": "ncrystal-src.tar.gz",
    "folder": "src",
-   "sha256": "2c285d0b128e6b388d17839f4dad219534b4511af3b34bc28e52e86ee943ff9a",
-   "url": "https://github.com/mctools/ncrystal/archive/v3.8.1.tar.gz"
+   "sha256": "9cd09139901714e54397d05a44571d56fdc6f6ef39c493ba311ff911bf250a39",
+   "url": "https://github.com/mctools/ncrystal/archive/v3.8.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -95,6 +96,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -144,13 +146,14 @@
   },
   "package": {
    "name": "ncrystal",
-   "version": "3.8.1"
+   "version": "3.8.2"
   },
   "requirements": {
    "build": [
     "cmake",
     "make",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -164,8 +167,8 @@
   "source": {
    "fn": "ncrystal-src.tar.gz",
    "folder": "src",
-   "sha256": "2c285d0b128e6b388d17839f4dad219534b4511af3b34bc28e52e86ee943ff9a",
-   "url": "https://github.com/mctools/ncrystal/archive/v3.8.1.tar.gz"
+   "sha256": "9cd09139901714e54397d05a44571d56fdc6f6ef39c493ba311ff911bf250a39",
+   "url": "https://github.com/mctools/ncrystal/archive/v3.8.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -216,13 +219,14 @@
   },
   "package": {
    "name": "ncrystal",
-   "version": "3.8.1"
+   "version": "3.8.2"
   },
   "requirements": {
    "build": [
     "cmake",
     "make",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -236,8 +240,8 @@
   "source": {
    "fn": "ncrystal-src.tar.gz",
    "folder": "src",
-   "sha256": "2c285d0b128e6b388d17839f4dad219534b4511af3b34bc28e52e86ee943ff9a",
-   "url": "https://github.com/mctools/ncrystal/archive/v3.8.1.tar.gz"
+   "sha256": "9cd09139901714e54397d05a44571d56fdc6f6ef39c493ba311ff911bf250a39",
+   "url": "https://github.com/mctools/ncrystal/archive/v3.8.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -270,6 +274,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -319,13 +324,14 @@
   },
   "package": {
    "name": "ncrystal",
-   "version": "3.8.1"
+   "version": "3.8.2"
   },
   "requirements": {
    "build": [
     "cmake",
     "make",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -339,8 +345,8 @@
   "source": {
    "fn": "ncrystal-src.tar.gz",
    "folder": "src",
-   "sha256": "2c285d0b128e6b388d17839f4dad219534b4511af3b34bc28e52e86ee943ff9a",
-   "url": "https://github.com/mctools/ncrystal/archive/v3.8.1.tar.gz"
+   "sha256": "9cd09139901714e54397d05a44571d56fdc6f6ef39c493ba311ff911bf250a39",
+   "url": "https://github.com/mctools/ncrystal/archive/v3.8.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -373,6 +379,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -416,10 +423,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/ncrystal.json"
  },
- "raw_meta_yaml": "{% set version = \"3.8.1\" %}\n{% set sha_value = \"2c285d0b128e6b388d17839f4dad219534b4511af3b34bc28e52e86ee943ff9a\" %}\n#NB get sha256 with: curl -sL <URL> | openssl sha256\n\npackage:\n  name: ncrystal\n  version: {{ version }}\n\nsource:\n  url: https://github.com/mctools/ncrystal/archive/v{{ version }}.tar.gz\n  sha256: {{ sha_value }}\n  fn: ncrystal-src.tar.gz\n  folder: src\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  skip: true  # [py<36]\n\nrequirements:\n  #todo: how do we add dependency on libdl.so? (or we must put -DNCRYSTAL_ENABLE_DYNLOAD=OFF).\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cmake\n    - make  # [not win]\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip\n  run:\n    - python\n    - numpy\n\ntest:\n  requires:\n    - python\n    - numpy\n    - cmake\n  imports:\n    - NCrystal\n  commands:\n    - ncrystal-config --help\n    - ncrystal-config -s\n    - nctool --version\n    - nctool --help\n    - nctool --test\n    - ncrystal_endf2ncmat --help\n    - ncrystal_hfg2ncmat --help\n    - ncrystal_ncmat2cpp --help\n    - ncrystal_ncmat2hkl --help\n    - ncrystal_cif2ncmat --help\n    - ncrystal_vdos2ncmat --help\n    - ncrystal_verifyatompos --help\n    - nctool --help\n    - python3 -c 'import NCrystal; NCrystal.test()'\n    - cmake --find-package -DNAME=NCrystal -DCOMPILER_ID=GNU -DLANGUAGE=CXX -DMODE=EXIST\nabout:\n  home: https://github.com/mctools/ncrystal\n  summary: Library for thermal neutron transport in crystals and other materials.\n  description: |\n    NCrystal is a library and toolkit for thermal neutron transport in crystals\n    and other materials. It can be used standalone or as a backend for other\n    Monte Carlo particle simulation frameworks.\n  license: Apache-2.0\n  license_family: Apache\n  license_file: src/LICENSE\n  doc_url: https://github.com/mctools/ncrystal/wiki\n  dev_url: https://github.com/mctools/ncrystal\n\nextra:\n  recipe-maintainers:\n    - tkittel\n",
+ "raw_meta_yaml": "{% set version = \"3.8.2\" %}\n{% set sha_value = \"9cd09139901714e54397d05a44571d56fdc6f6ef39c493ba311ff911bf250a39\" %}\n#NB get sha256 with: curl -sL <URL> | openssl sha256\n\npackage:\n  name: ncrystal\n  version: {{ version }}\n\nsource:\n  url: https://github.com/mctools/ncrystal/archive/v{{ version }}.tar.gz\n  sha256: {{ sha_value }}\n  fn: ncrystal-src.tar.gz\n  folder: src\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  skip: true  # [py<36]\n\nrequirements:\n  #todo: how do we add dependency on libdl.so? (or we must put -DNCRYSTAL_ENABLE_DYNLOAD=OFF).\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cmake\n    - make  # [not win]\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip\n  run:\n    - python\n    - numpy\n\ntest:\n  requires:\n    - python\n    - numpy\n    - cmake\n  imports:\n    - NCrystal\n  commands:\n    - ncrystal-config --help\n    - ncrystal-config -s\n    - nctool --version\n    - nctool --help\n    - nctool --test\n    - ncrystal_endf2ncmat --help\n    - ncrystal_hfg2ncmat --help\n    - ncrystal_ncmat2cpp --help\n    - ncrystal_ncmat2hkl --help\n    - ncrystal_cif2ncmat --help\n    - ncrystal_vdos2ncmat --help\n    - ncrystal_verifyatompos --help\n    - nctool --help\n    - python3 -c 'import NCrystal; NCrystal.test()'\n    - cmake --find-package -DNAME=NCrystal -DCOMPILER_ID=GNU -DLANGUAGE=CXX -DMODE=EXIST\nabout:\n  home: https://github.com/mctools/ncrystal\n  summary: Library for thermal neutron transport in crystals and other materials.\n  description: |\n    NCrystal is a library and toolkit for thermal neutron transport in crystals\n    and other materials. It can be used standalone or as a backend for other\n    Monte Carlo particle simulation frameworks.\n  license: Apache-2.0\n  license_family: Apache\n  license_file: src/LICENSE\n  doc_url: https://github.com/mctools/ncrystal/wiki\n  dev_url: https://github.com/mctools/ncrystal\n\nextra:\n  recipe-maintainers:\n    - tkittel\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "make",
@@ -432,6 +440,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -440,6 +449,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pip",
     "python"
@@ -448,6 +458,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numpy",
     "python"
@@ -467,6 +478,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -495,8 +507,8 @@
    ]
   }
  },
- "url": "https://github.com/mctools/ncrystal/archive/v3.8.1.tar.gz",
- "version": "3.8.1",
+ "url": "https://github.com/mctools/ncrystal/archive/v3.8.2.tar.gz",
+ "version": "3.8.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/ncrystal.json"
  }
