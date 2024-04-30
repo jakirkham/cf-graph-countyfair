@@ -26,7 +26,7 @@
    "summary": "Quil Parser & Program Builder"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -43,7 +43,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -110,7 +111,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -151,7 +153,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -218,7 +221,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -259,7 +263,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -326,7 +331,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -367,7 +373,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -434,7 +441,118 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [
+      "pip",
+      "python"
+     ]
+    },
+    "script": "install-cli.sh",
+    "test": {
+     "commands": [
+      "quil-cli --help"
+     ]
+    },
+    "version": "0.3.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil_cli",
+    "requirements": {
+     "run": [
+      "quil-cli 0.3.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "quil-cli --help"
+     ]
+    },
+    "version": "0.3.0"
+   },
+   {
+    "build": {
+     "run_exports": [
+      "quil"
+     ]
+    },
+    "name": "quil",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [
+      "pip",
+      "python"
+     ],
+     "run": [
+      "python"
+     ]
+    },
+    "script": "install-py.sh",
+    "test": {
+     "commands": [
+      "pytest quil-py/test"
+     ],
+     "imports": [
+      "quil"
+     ],
+     "requires": [
+      "numpy",
+      "pytest",
+      "syrupy"
+     ],
+     "source_files": [
+      "quil-py/test"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil-py",
+    "requirements": {
+     "run": [
+      "quil 0.10.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "quil"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil_py",
+    "requirements": {
+     "run": [
+      "quil 0.10.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "quil"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "name": "quil-cli",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -483,6 +601,23 @@
    ]
   },
   "source": [
+   {
+    "patches": [
+     "fix-syrupy-dependent-test.patch"
+    ],
+    "sha256": "a34114c68c0de9865c3665dad2777fbdf0357611a1d7d48c552249194c83d7ed",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-rs/v0.26.0.tar.gz"
+   },
+   {
+    "folder": "unused-quil-py",
+    "sha256": "18e6b715652b7083931c54f4e571207cce080ddc8ecd8bfc5980a28de1657d93",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-py/v0.10.0.tar.gz"
+   },
+   {
+    "folder": "unused-quil-cli",
+    "sha256": "163c474ae2c153ef05d0e69354a1e60ba472fda25d57fecfe16ca85e7718d82a",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-cli/v0.3.0.tar.gz"
+   },
    {
     "patches": [
      "fix-syrupy-dependent-test.patch"
@@ -558,6 +693,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "maturin",
     "python",
@@ -601,7 +737,7 @@
    "summary": "Quil Parser & Program Builder"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -618,7 +754,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -685,7 +822,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -726,7 +864,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -793,7 +932,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -834,7 +974,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -901,7 +1042,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -942,7 +1084,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1009,7 +1152,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1050,7 +1194,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1117,7 +1262,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1158,7 +1304,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1225,7 +1372,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1266,7 +1414,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1333,7 +1482,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1374,7 +1524,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1441,7 +1592,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1482,7 +1634,228 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [
+      "pip",
+      "python"
+     ],
+     "run": [
+      "python"
+     ]
+    },
+    "script": "install-py.sh",
+    "test": {
+     "commands": [
+      "pytest quil-py/test"
+     ],
+     "imports": [
+      "quil"
+     ],
+     "requires": [
+      "numpy",
+      "pytest",
+      "syrupy"
+     ],
+     "source_files": [
+      "quil-py/test"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil-py",
+    "requirements": {
+     "run": [
+      "quil 0.10.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "quil"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil_py",
+    "requirements": {
+     "run": [
+      "quil 0.10.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "quil"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "name": "quil-cli",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [
+      "pip",
+      "python"
+     ]
+    },
+    "script": "install-cli.sh",
+    "test": {
+     "commands": [
+      "quil-cli --help"
+     ]
+    },
+    "version": "0.3.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil_cli",
+    "requirements": {
+     "run": [
+      "quil-cli 0.3.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "quil-cli --help"
+     ]
+    },
+    "version": "0.3.0"
+   },
+   {
+    "build": {
+     "run_exports": [
+      "quil"
+     ]
+    },
+    "name": "quil",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [
+      "pip",
+      "python"
+     ],
+     "run": [
+      "python"
+     ]
+    },
+    "script": "install-py.sh",
+    "test": {
+     "commands": [
+      "pytest quil-py/test"
+     ],
+     "imports": [
+      "quil"
+     ],
+     "requires": [
+      "numpy",
+      "pytest",
+      "syrupy"
+     ],
+     "source_files": [
+      "quil-py/test"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil-py",
+    "requirements": {
+     "run": [
+      "quil 0.10.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "quil"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil_py",
+    "requirements": {
+     "run": [
+      "quil 0.10.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "quil"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "name": "quil-cli",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [
+      "pip",
+      "python"
+     ]
+    },
+    "script": "install-cli.sh",
+    "test": {
+     "commands": [
+      "quil-cli --help"
+     ]
+    },
+    "version": "0.3.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil_cli",
+    "requirements": {
+     "run": [
+      "quil-cli 0.3.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "quil-cli --help"
+     ]
+    },
+    "version": "0.3.0"
+   },
+   {
+    "build": {
+     "run_exports": [
+      "quil"
+     ]
+    },
+    "name": "quil",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1549,7 +1922,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1590,7 +1964,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1657,7 +2032,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1698,7 +2074,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1765,7 +2142,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1806,7 +2184,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1873,7 +2252,118 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [
+      "pip",
+      "python"
+     ]
+    },
+    "script": "install-cli.bat",
+    "test": {
+     "commands": [
+      "quil-cli --help"
+     ]
+    },
+    "version": "0.3.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil_cli",
+    "requirements": {
+     "run": [
+      "quil-cli 0.3.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "quil-cli --help"
+     ]
+    },
+    "version": "0.3.0"
+   },
+   {
+    "build": {
+     "run_exports": [
+      "quil"
+     ]
+    },
+    "name": "quil",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [
+      "pip",
+      "python"
+     ],
+     "run": [
+      "python"
+     ]
+    },
+    "script": "install-py.bat",
+    "test": {
+     "commands": [
+      "pytest quil-py/test"
+     ],
+     "imports": [
+      "quil"
+     ],
+     "requires": [
+      "numpy",
+      "pytest",
+      "syrupy"
+     ],
+     "source_files": [
+      "quil-py/test"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil-py",
+    "requirements": {
+     "run": [
+      "quil 0.10.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "quil"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil_py",
+    "requirements": {
+     "run": [
+      "quil 0.10.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "quil"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "name": "quil-cli",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -1922,6 +2412,57 @@
    ]
   },
   "source": [
+   {
+    "patches": [
+     "fix-syrupy-dependent-test.patch"
+    ],
+    "sha256": "a34114c68c0de9865c3665dad2777fbdf0357611a1d7d48c552249194c83d7ed",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-rs/v0.26.0.tar.gz"
+   },
+   {
+    "folder": "unused-quil-py",
+    "sha256": "18e6b715652b7083931c54f4e571207cce080ddc8ecd8bfc5980a28de1657d93",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-py/v0.10.0.tar.gz"
+   },
+   {
+    "folder": "unused-quil-cli",
+    "sha256": "163c474ae2c153ef05d0e69354a1e60ba472fda25d57fecfe16ca85e7718d82a",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-cli/v0.3.0.tar.gz"
+   },
+   {
+    "patches": [
+     "fix-syrupy-dependent-test.patch"
+    ],
+    "sha256": "a34114c68c0de9865c3665dad2777fbdf0357611a1d7d48c552249194c83d7ed",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-rs/v0.26.0.tar.gz"
+   },
+   {
+    "folder": "unused-quil-py",
+    "sha256": "18e6b715652b7083931c54f4e571207cce080ddc8ecd8bfc5980a28de1657d93",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-py/v0.10.0.tar.gz"
+   },
+   {
+    "folder": "unused-quil-cli",
+    "sha256": "163c474ae2c153ef05d0e69354a1e60ba472fda25d57fecfe16ca85e7718d82a",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-cli/v0.3.0.tar.gz"
+   },
+   {
+    "patches": [
+     "fix-syrupy-dependent-test.patch"
+    ],
+    "sha256": "a34114c68c0de9865c3665dad2777fbdf0357611a1d7d48c552249194c83d7ed",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-rs/v0.26.0.tar.gz"
+   },
+   {
+    "folder": "unused-quil-py",
+    "sha256": "18e6b715652b7083931c54f4e571207cce080ddc8ecd8bfc5980a28de1657d93",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-py/v0.10.0.tar.gz"
+   },
+   {
+    "folder": "unused-quil-cli",
+    "sha256": "163c474ae2c153ef05d0e69354a1e60ba472fda25d57fecfe16ca85e7718d82a",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-cli/v0.3.0.tar.gz"
+   },
    {
     "patches": [
      "fix-syrupy-dependent-test.patch"
@@ -2142,7 +2683,7 @@
    "summary": "Quil Parser & Program Builder"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -2159,7 +2700,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -2226,7 +2768,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -2267,7 +2810,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -2334,7 +2878,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -2375,7 +2920,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -2442,7 +2988,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -2483,7 +3030,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -2550,7 +3098,118 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [
+      "pip",
+      "python"
+     ]
+    },
+    "script": "install-cli.sh",
+    "test": {
+     "commands": [
+      "quil-cli --help"
+     ]
+    },
+    "version": "0.3.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil_cli",
+    "requirements": {
+     "run": [
+      "quil-cli 0.3.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "quil-cli --help"
+     ]
+    },
+    "version": "0.3.0"
+   },
+   {
+    "build": {
+     "run_exports": [
+      "quil"
+     ]
+    },
+    "name": "quil",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [
+      "pip",
+      "python"
+     ],
+     "run": [
+      "python"
+     ]
+    },
+    "script": "install-py.sh",
+    "test": {
+     "commands": [
+      "pytest quil-py/test"
+     ],
+     "imports": [
+      "quil"
+     ],
+     "requires": [
+      "numpy",
+      "pytest",
+      "syrupy"
+     ],
+     "source_files": [
+      "quil-py/test"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil-py",
+    "requirements": {
+     "run": [
+      "quil 0.10.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "quil"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil_py",
+    "requirements": {
+     "run": [
+      "quil 0.10.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "quil"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "name": "quil-cli",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -2599,6 +3258,23 @@
    ]
   },
   "source": [
+   {
+    "patches": [
+     "fix-syrupy-dependent-test.patch"
+    ],
+    "sha256": "a34114c68c0de9865c3665dad2777fbdf0357611a1d7d48c552249194c83d7ed",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-rs/v0.26.0.tar.gz"
+   },
+   {
+    "folder": "unused-quil-py",
+    "sha256": "18e6b715652b7083931c54f4e571207cce080ddc8ecd8bfc5980a28de1657d93",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-py/v0.10.0.tar.gz"
+   },
+   {
+    "folder": "unused-quil-cli",
+    "sha256": "163c474ae2c153ef05d0e69354a1e60ba472fda25d57fecfe16ca85e7718d82a",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-cli/v0.3.0.tar.gz"
+   },
    {
     "patches": [
      "fix-syrupy-dependent-test.patch"
@@ -2674,6 +3350,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "maturin",
     "python",
@@ -2723,11 +3400,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/quil-split.json"
  },
- "raw_meta_yaml": "{% set name = \"quil\" %}\n{% set version = \"0.26.0\" %}\n\n{% set py_version = \"0.10.0\" %}\n{% set cli_version = \"0.3.0\" %}\n\npackage:\n  name: quil-split\n  version: {{ version }}\n\nsource:  # Upstream maintains different versions for these, however, the source code is the same  # The concern about maintaining separate recipes was a possible disconnect between the artifacts\n  - url: https://github.com/rigetti/quil-rs/archive/refs/tags/quil-rs/v{{ version }}.tar.gz\n    sha256: a34114c68c0de9865c3665dad2777fbdf0357611a1d7d48c552249194c83d7ed\n    patches:\n      - fix-syrupy-dependent-test.patch  # Adding this to see if that triggers regro-cf-autotick-bot to update the recipe\n  - url: https://github.com/rigetti/quil-rs/archive/refs/tags/quil-py/v{{ py_version }}.tar.gz\n    sha256: 18e6b715652b7083931c54f4e571207cce080ddc8ecd8bfc5980a28de1657d93\n    folder: unused-quil-py\n  - url: https://github.com/rigetti/quil-rs/archive/refs/tags/quil-cli/v{{ cli_version }}.tar.gz\n    sha256: 163c474ae2c153ef05d0e69354a1e60ba472fda25d57fecfe16ca85e7718d82a\n    folder: unused-quil-cli\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('rust') }}\n    - cargo-bundle-licenses\n    - maturin >=1.0.0,<2.0.0\n    - python\n  host:\n    - python\n\noutputs:\n  - name: quil\n    version: {{ py_version }}\n    script: install-py.sh  # [unix]\n    script: install-py.bat  # [win]\n    build:\n      run_exports:\n        - {{ pin_subpackage('quil', max_pin='x.x') }}\n    requirements:\n      build:\n        - {{ compiler('c') }}\n      host:\n        - pip\n        - python\n      run:\n        - python\n    test:\n      imports:\n        - quil\n      source_files:\n        - quil-py/test\n      requires:\n        - numpy\n        - pytest\n        - syrupy\n      commands:\n        - pytest quil-py/test\n\n  - name: quil-py\n    version: {{ py_version }}\n    build:\n      noarch: python\n    requirements:\n      run:\n        - quil {{ py_version }}\n    test:\n      imports:\n        - quil\n\n  - name: quil_py\n    version: {{ py_version }}\n    build:\n      noarch: python\n    requirements:\n      run:\n        - quil {{ py_version }}\n    test:\n      imports:\n        - quil\n\n  - name: quil-cli\n    version: {{ cli_version }}\n    script: install-cli.sh  # [unix]\n    script: install-cli.bat  # [win]\n    requirements:\n      build:\n        - {{ compiler('c') }}\n      host:\n        - pip\n        - python\n    test:\n      commands:\n        - quil-cli --help\n\n  - name: quil_cli\n    version: {{ cli_version }}\n    build:\n      noarch: python\n    requirements:\n      run:\n        - quil-cli {{ cli_version }}\n    test:\n      commands:\n        - quil-cli --help\n\nabout:\n  home: https://github.com/rigetti/quil-rs\n  summary: 'Quil Parser & Program Builder'\n  description: |\n    The quil package provides tools for constructing, manipulating, parsing, and printing Quil programs.\n  license: Apache-2.0\n  license_file:\n    - LICENSE\n    - THIRDPARTY.yml\n  doc_url: https://rigetti.github.io/quil-rs/quil.html\n\nextra:\n  recipe-maintainers:\n    - MementoRC\n",
+ "raw_meta_yaml": "{% set name = \"quil\" %}\n{% set version = \"0.26.0\" %}\n\n{% set py_version = \"0.10.0\" %}\n{% set cli_version = \"0.3.0\" %}\n\npackage:\n  name: quil-split\n  version: {{ version }}\n\nsource:  # Upstream maintains different versions for these, however, the source code is the same  # The concern about maintaining separate recipes was a possible disconnect between the artifacts\n  - url: https://github.com/rigetti/quil-rs/archive/refs/tags/quil-rs/v{{ version }}.tar.gz\n    sha256: a34114c68c0de9865c3665dad2777fbdf0357611a1d7d48c552249194c83d7ed\n    patches:\n      - fix-syrupy-dependent-test.patch  # Adding this to see if that triggers regro-cf-autotick-bot to update the recipe\n  - url: https://github.com/rigetti/quil-rs/archive/refs/tags/quil-py/v{{ py_version }}.tar.gz\n    sha256: 18e6b715652b7083931c54f4e571207cce080ddc8ecd8bfc5980a28de1657d93\n    folder: unused-quil-py\n  - url: https://github.com/rigetti/quil-rs/archive/refs/tags/quil-cli/v{{ cli_version }}.tar.gz\n    sha256: 163c474ae2c153ef05d0e69354a1e60ba472fda25d57fecfe16ca85e7718d82a\n    folder: unused-quil-cli\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('rust') }}\n    - cargo-bundle-licenses\n    - maturin >=1.0.0,<2.0.0\n    - python\n  host:\n    - python\n\noutputs:\n  - name: quil\n    version: {{ py_version }}\n    script: install-py.sh  # [unix]\n    script: install-py.bat  # [win]\n    build:\n      run_exports:\n        - {{ pin_subpackage('quil', max_pin='x.x') }}\n    requirements:\n      build:\n        - {{ compiler('c') }}\n        - {{ stdlib(\"c\") }}\n      host:\n        - pip\n        - python\n      run:\n        - python\n    test:\n      imports:\n        - quil\n      source_files:\n        - quil-py/test\n      requires:\n        - numpy\n        - pytest\n        - syrupy\n      commands:\n        - pytest quil-py/test\n\n  - name: quil-py\n    version: {{ py_version }}\n    build:\n      noarch: python\n    requirements:\n      run:\n        - quil {{ py_version }}\n    test:\n      imports:\n        - quil\n\n  - name: quil_py\n    version: {{ py_version }}\n    build:\n      noarch: python\n    requirements:\n      run:\n        - quil {{ py_version }}\n    test:\n      imports:\n        - quil\n\n  - name: quil-cli\n    version: {{ cli_version }}\n    script: install-cli.sh  # [unix]\n    script: install-cli.bat  # [win]\n    requirements:\n      build:\n        - {{ compiler('c') }}\n        - {{ stdlib(\"c\") }}\n      host:\n        - pip\n        - python\n    test:\n      commands:\n        - quil-cli --help\n\n  - name: quil_cli\n    version: {{ cli_version }}\n    build:\n      noarch: python\n    requirements:\n      run:\n        - quil-cli {{ cli_version }}\n    test:\n      commands:\n        - quil-cli --help\n\nabout:\n  home: https://github.com/rigetti/quil-rs\n  summary: 'Quil Parser & Program Builder'\n  description: |\n    The quil package provides tools for constructing, manipulating, parsing, and printing Quil programs.\n  license: Apache-2.0\n  license_file:\n    - LICENSE\n    - THIRDPARTY.yml\n  doc_url: https://rigetti.github.io/quil-rs/quil.html\n\nextra:\n  recipe-maintainers:\n    - MementoRC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cargo-bundle-licenses",
    "maturin",
    "pip",
@@ -2742,6 +3420,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "maturin",
     "python",
@@ -2752,6 +3431,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "pip",
     "python"
    ]
@@ -2760,6 +3440,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "python",
     "quil",
     "quil-cli"
@@ -2780,6 +3461,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "maturin >=1.0.0,<2.0.0",
     "python",
@@ -2828,7 +3510,7 @@
    "summary": "Quil Parser & Program Builder"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -2845,7 +3527,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -2912,7 +3595,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -2953,7 +3637,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -3020,7 +3705,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -3061,7 +3747,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -3128,7 +3815,8 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -3169,7 +3857,8 @@
     "name": "quil",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -3236,7 +3925,118 @@
     "name": "quil-cli",
     "requirements": {
      "build": [
-      "c_compiler_stub"
+      "c_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [
+      "pip",
+      "python"
+     ]
+    },
+    "script": "install-cli.bat",
+    "test": {
+     "commands": [
+      "quil-cli --help"
+     ]
+    },
+    "version": "0.3.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil_cli",
+    "requirements": {
+     "run": [
+      "quil-cli 0.3.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "quil-cli --help"
+     ]
+    },
+    "version": "0.3.0"
+   },
+   {
+    "build": {
+     "run_exports": [
+      "quil"
+     ]
+    },
+    "name": "quil",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [
+      "pip",
+      "python"
+     ],
+     "run": [
+      "python"
+     ]
+    },
+    "script": "install-py.bat",
+    "test": {
+     "commands": [
+      "pytest quil-py/test"
+     ],
+     "imports": [
+      "quil"
+     ],
+     "requires": [
+      "numpy",
+      "pytest",
+      "syrupy"
+     ],
+     "source_files": [
+      "quil-py/test"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil-py",
+    "requirements": {
+     "run": [
+      "quil 0.10.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "quil"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "quil_py",
+    "requirements": {
+     "run": [
+      "quil 0.10.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "quil"
+     ]
+    },
+    "version": "0.10.0"
+   },
+   {
+    "name": "quil-cli",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub"
      ],
      "host": [
       "pip",
@@ -3352,6 +4152,23 @@
     "folder": "unused-quil-cli",
     "sha256": "163c474ae2c153ef05d0e69354a1e60ba472fda25d57fecfe16ca85e7718d82a",
     "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-cli/v0.3.0.tar.gz"
+   },
+   {
+    "patches": [
+     "fix-syrupy-dependent-test.patch"
+    ],
+    "sha256": "a34114c68c0de9865c3665dad2777fbdf0357611a1d7d48c552249194c83d7ed",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-rs/v0.26.0.tar.gz"
+   },
+   {
+    "folder": "unused-quil-py",
+    "sha256": "18e6b715652b7083931c54f4e571207cce080ddc8ecd8bfc5980a28de1657d93",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-py/v0.10.0.tar.gz"
+   },
+   {
+    "folder": "unused-quil-cli",
+    "sha256": "163c474ae2c153ef05d0e69354a1e60ba472fda25d57fecfe16ca85e7718d82a",
+    "url": "https://github.com/rigetti/quil-rs/archive/refs/tags/quil-cli/v0.3.0.tar.gz"
    }
   ]
  },
@@ -3360,6 +4177,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "maturin",
     "python",
