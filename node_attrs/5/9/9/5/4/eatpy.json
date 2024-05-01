@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "eatpy",
  "hash_type": "sha256",
@@ -28,7 +32,7 @@
    "entry_points": [
     "eat-gotm-gen = eatpy.models.gotm_generate_ensemble:main"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -45,7 +49,8 @@
     "cmake",
     "make",
     "c_compiler_stub",
-    "fortran_compiler_stub"
+    "fortran_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -92,6 +97,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -143,7 +149,7 @@
    "entry_points": [
     "eat-gotm-gen = eatpy.models.gotm_generate_ensemble:main"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -161,6 +167,7 @@
     "make",
     "c_compiler_stub",
     "fortran_compiler_stub",
+    "c_stdlib_stub",
     "m2w64-gcc-fortran",
     "m2w64-make"
    ],
@@ -226,7 +233,7 @@
    "entry_points": [
     "eat-gotm-gen = eatpy.models.gotm_generate_ensemble:main"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -243,7 +250,8 @@
     "cmake",
     "make",
     "c_compiler_stub",
-    "fortran_compiler_stub"
+    "fortran_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -290,6 +298,124 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "fortran_compiler_stub",
+    "make"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "cython",
+    "libblas",
+    "liblapack",
+    "mpi4py",
+    "mpich",
+    "netcdf-fortran",
+    "pip",
+    "python",
+    "setuptools"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "mpi4py",
+    "mpich",
+    "netcdf4",
+    "numpy",
+    "openblas",
+    "python",
+    "pyyaml"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "EAT is a 1D testbed for physical-biogeochemical data assimilation\nin marine and freshwater systems\n",
+   "dev_url": "https://github.com/BoldingBruggeman/eat",
+   "doc_url": "https://github.com/BoldingBruggeman/eat/wiki",
+   "home": "https://github.com/BoldingBruggeman/eat",
+   "license": "GPL-2.0-only",
+   "license_family": "GPL",
+   "license_file": "LICENSE",
+   "summary": "Ensemble and Assimilation Tool"
+  },
+  "build": {
+   "entry_points": [
+    "eat-gotm-gen = eatpy.models.gotm_generate_ensemble:main"
+   ],
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jornbr",
+    "bolding"
+   ]
+  },
+  "package": {
+   "name": "eatpy",
+   "version": "0.9.8"
+  },
+  "requirements": {
+   "build": [
+    "cmake",
+    "make",
+    "c_compiler_stub",
+    "fortran_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "python",
+    "cython",
+    "pip",
+    "setuptools",
+    "libblas",
+    "liblapack",
+    "netcdf-fortran",
+    "mpich",
+    "mpi4py"
+   ],
+   "run": [
+    "python",
+    "numpy",
+    "mpi4py",
+    "netCDF4",
+    "pyyaml",
+    "mpich",
+    "openblas"
+   ]
+  },
+  "source": {
+   "patches": [
+    "ersem.patch",
+    "datetime.patch"
+   ],
+   "sha256": "5098964cbac63f2563995629bddb0f73d16d27f81b1a2d4a57f0654d27ae1ea4",
+   "url": "https://github.com/BoldingBruggeman/eat/releases/download/v0.9.8/code-seamless.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "eat-gotm-gen -h",
+    "eat-gotm -h"
+   ],
+   "imports": [
+    "eatpy"
+   ],
+   "requires": null
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -336,16 +462,18 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/eatpy.json"
  },
- "raw_meta_yaml": "{% set version = \"0.9.8\" %}\n\npackage:\n  name: eatpy\n  version: {{ version }}\n\nsource:\n  #git_url: https://github.com/BoldingBruggeman/eat.git\n  #git_rev: seamless\n  url: https://github.com/BoldingBruggeman/eat/releases/download/v{{ version }}/code-seamless.tar.gz\n  sha256: 5098964cbac63f2563995629bddb0f73d16d27f81b1a2d4a57f0654d27ae1ea4   # generate with `openssl sha256 <file name>`\n  patches:\n  - ersem.patch     # work around gfortran 5.x bug (Windows toolchain)\n  - datetime.patch  # work around lack of ucrtbase in old MinGW and need to link in c++ stdlib (Windows toolchain)\n\nbuild:\n  entry_points:\n    - eat-gotm-gen = eatpy.models.gotm_generate_ensemble:main\n  number: 0\n\nrequirements:\n  build:\n    - cmake\n    - make                       # [not win]\n    - {{ compiler('c') }}        # [not win] NB on windows this would activate Visual Studio and make that the default C/C++ compiler\n    - {{ compiler('fortran') }}  # [not win]\n    - m2w64-gcc-fortran     # [win]\n    - m2w64-make     # [win]\n  host:\n    - python {{ python }}\n    - cython\n    - pip\n    - setuptools\n    #- numpy>=1.17               # only needed if \"cimport numpy\" is done in a pyx file\n    #- blas-devel                 # [not win] on Windows this resolves to MKL, which is not usable by mingw-w64\n    #- openblas                   ## [win]\n    - libpython                  # [win]\n    - libblas\n    - liblapack\n    - netcdf-fortran\n    - {{ mpi }}\n    - mpi4py                     # because eatpy/_eat_filter_pdaf.pyx does \"cimport mpi4py.xxx\"\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - mpi4py\n    - netCDF4\n    - pyyaml                      # for eatpy-gotm-gen\n    - {{ mpi }}\n    #- {{ pin_compatible('blas') }}         # [not win]\n    #- libopenblas  # [win]\n    #- libblas * *openblas\n    - openblas\n    - m2w64-gcc-libs  # [win]\n    - m2w64-gcc-libs-core  # [win]\n    - m2w64-gcc-libgfortran  # [win]\n\ntest:\n  requires:\n    - openssh  # [mpi == 'openmpi']\n  imports:\n    - eatpy\n  commands:\n    - eat-gotm-gen -h\n    - eat-gotm -h\n\nabout:\n  home: https://github.com/BoldingBruggeman/eat\n  summary: Ensemble and Assimilation Tool\n  description: |\n    EAT is a 1D testbed for physical-biogeochemical data assimilation\n    in marine and freshwater systems\n  license: GPL-2.0-only\n  license_family: GPL\n  license_file: LICENSE\n  doc_url: https://github.com/BoldingBruggeman/eat/wiki\n  dev_url: https://github.com/BoldingBruggeman/eat\n\nextra:\n  recipe-maintainers:\n    - jornbr\n    - bolding\n",
+ "raw_meta_yaml": "{% set version = \"0.9.8\" %}\n\npackage:\n  name: eatpy\n  version: {{ version }}\n\nsource:\n  #git_url: https://github.com/BoldingBruggeman/eat.git\n  #git_rev: seamless\n  url: https://github.com/BoldingBruggeman/eat/releases/download/v{{ version }}/code-seamless.tar.gz\n  sha256: 5098964cbac63f2563995629bddb0f73d16d27f81b1a2d4a57f0654d27ae1ea4   # generate with `openssl sha256 <file name>`\n  patches:\n  - ersem.patch     # work around gfortran 5.x bug (Windows toolchain)\n  - datetime.patch  # work around lack of ucrtbase in old MinGW and need to link in c++ stdlib (Windows toolchain)\n\nbuild:\n  entry_points:\n    - eat-gotm-gen = eatpy.models.gotm_generate_ensemble:main\n  number: 1\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - {{ mpi }}                              # [build_platform != target_platform and mpi == \"openmpi\"]  As per https://conda-forge.org/docs/maintainer/knowledge_base/#cross-compilation-examples\n    - cmake\n    - make                                   # [not win]\n    - {{ compiler('c') }}                    # [not win] NB on windows this would activate Visual Studio and make that the default C/C++ compiler\n    - {{ compiler('fortran') }}              # [not win]\n    - m2w64-gcc-fortran                      # [win]\n    - m2w64-make                             # [win]\n    - {{ stdlib(\"c\") }}                      # [not win]\n  host:\n    - python {{ python }}\n    - cython\n    - pip\n    - setuptools\n    #- numpy>=1.17               # only needed if \"cimport numpy\" is done in a pyx file\n    #- blas-devel                 # [not win] on Windows this resolves to MKL, which is not usable by mingw-w64\n    #- openblas                   ## [win]\n    - libpython                  # [win]\n    - libblas\n    - liblapack\n    - netcdf-fortran\n    - {{ mpi }}\n    - mpi4py                     # because eatpy/_eat_filter_pdaf.pyx does \"cimport mpi4py.xxx\"\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - mpi4py\n    - netCDF4\n    - pyyaml                      # for eatpy-gotm-gen\n    - {{ mpi }}\n    #- {{ pin_compatible('blas') }}         # [not win]\n    #- libopenblas  # [win]\n    #- libblas * *openblas\n    - openblas\n    - m2w64-gcc-libs  # [win]\n    - m2w64-gcc-libs-core  # [win]\n    - m2w64-gcc-libgfortran  # [win]\n\ntest:\n  requires:\n    - openssh  # [mpi == 'openmpi']\n  imports:\n    - eatpy\n  commands:\n    - eat-gotm-gen -h\n    - eat-gotm -h\n\nabout:\n  home: https://github.com/BoldingBruggeman/eat\n  summary: Ensemble and Assimilation Tool\n  description: |\n    EAT is a 1D testbed for physical-biogeochemical data assimilation\n    in marine and freshwater systems\n  license: GPL-2.0-only\n  license_family: GPL\n  license_file: LICENSE\n  doc_url: https://github.com/BoldingBruggeman/eat/wiki\n  dev_url: https://github.com/BoldingBruggeman/eat\n\nextra:\n  recipe-maintainers:\n    - jornbr\n    - bolding\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cython",
    "fortran_compiler_stub",
@@ -376,6 +504,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "m2w64-gcc-fortran",
@@ -387,6 +516,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "fortran_compiler_stub",
     "libblas",
@@ -405,6 +535,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "m2w64-gcc-libgfortran",
     "m2w64-gcc-libs",
@@ -430,6 +561,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "m2w64-gcc-fortran",
@@ -494,7 +626,7 @@
    "entry_points": [
     "eat-gotm-gen = eatpy.models.gotm_generate_ensemble:main"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
