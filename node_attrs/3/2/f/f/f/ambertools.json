@@ -36,7 +36,7 @@
    "summary": "AmberTools is a set of programs for biomolecular simulation and analysis"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script_env": [
     "unit_tests=skip"
    ]
@@ -69,6 +69,7 @@
     "perl",
     "tcsh",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub"
    ],
@@ -152,6 +153,7 @@
     "bc",
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -233,7 +235,7 @@
    "summary": "AmberTools is a set of programs for biomolecular simulation and analysis"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script_env": [
     "unit_tests=skip"
    ]
@@ -266,9 +268,9 @@
     "perl",
     "tcsh",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
-    "cmake 3.20.*",
     "llvm-openmp"
    ],
    "host": [
@@ -365,7 +367,7 @@
    "summary": "AmberTools is a set of programs for biomolecular simulation and analysis"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script_env": [
     "unit_tests=skip"
    ]
@@ -389,7 +391,7 @@
    "build": [
     "bc",
     "bison",
-    "cmake 3.20.*",
+    "cmake",
     "flex",
     "llvm-openmp",
     "make",
@@ -398,6 +400,7 @@
     "perl",
     "tcsh",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub"
    ],
@@ -485,6 +488,7 @@
     "bc",
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -568,7 +572,7 @@
    "summary": "AmberTools is a set of programs for biomolecular simulation and analysis"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script_env": [
     "unit_tests=skip"
    ]
@@ -592,7 +596,7 @@
    "build": [
     "bc",
     "bison",
-    "cmake 3.20.*",
+    "cmake",
     "flex",
     "llvm-openmp",
     "make",
@@ -601,6 +605,7 @@
     "perl",
     "tcsh",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub"
    ],
@@ -690,6 +695,7 @@
     "bc",
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -776,7 +782,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/ambertools.json"
  },
- "raw_meta_yaml": "{% set name = \"AmberTools\" %}\n# Versioning scheme uses AmberTools major release as MAJOR version number, patch level as MINOR version number\n# Update the MINOR version number as new patch releases come out\n{% set version = \"23.6\" %}\n# use run or skip\n{% set unit_tests = \"skip\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://ambermd.org/downloads/AmberTools23_rc6.tar.bz2\n  sha256: debb52e6ef2e1b4eaa917a8b4d4934bd2388659c660501a81ea044903bf9ee9d\n  patches:\n    - patches/do_not_symlink_missing_ff12pol.patch\n    - patches/do_not_install_vendored_parmed.patch\n    - patches/remove_mtune_native_for_m1.patch  # [arm64]\n    - patches/remove_nab2c_and_friends.patch  # [arm64]\n\nbuild:\n  number: 0\n  skip: True  # [win or py2k or ppc64le or aarch64]\n  script_env:\n    - unit_tests={{ unit_tests }}\n\nrequirements:\n  build:\n    - bc\n    - bison\n    - cmake         # [not osx]\n    - cmake 3.20.*  # [osx]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - flex\n    - libgomp      # [linux and not aarch64]\n    - llvm-openmp  # [osx]\n    - make\n    - matplotlib-base                        # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - openssl\n    - patch\n    - perl\n    - python                                 # [build_platform != target_platform]\n    - scipy                                  # [build_platform != target_platform]\n    - tcsh\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}\n  host:\n    - python\n    - setuptools\n    - numpy\n    - scipy\n    - matplotlib-base\n    - bzip2\n    - zlib\n    - libboost-devel\n    - libnetcdf\n    - netcdf-fortran\n    - pthread-stubs\n    - fftw\n    - arpack\n    - libblas\n    - liblapack\n    - xorg-libxt  # [unix]\n    - xorg-libxext   # [unix]\n    - xorg-libx11   # [unix]\n    - readline\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux and not aarch64]\n    - parmed =4\n    - openssl\n  run:\n    - python\n    - setuptools\n    - perl\n    - numpy\n    - scipy\n    - matplotlib-base\n    - joblib\n    - libnetcdf\n    - netcdf-fortran\n    - fftw\n    - libblas\n    - liblapack\n    - xorg-libxt  # [unix]\n    - xorg-libxext  # [unix]\n    - xorg-libx11   # [unix]\n    - readline\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux and not aarch64]\n    - parmed >=4.0.0,<5.0.0a0\n  run_constrained:\n    - ambermini ==9999999999\n    - packmol ==9999999999\n\ntest:\n  requires:\n{% if unit_tests == \"run\" %}\n    - {{ compiler('c') }}\n    - {{ compiler('fortran') }}\n    - {{ compiler('cxx') }}\n    - util-linux  # [linux64]\n    - make\n{% endif %}\n    - tcsh\n    # Try to force a library incompatibility error in osx (see #22)\n    - lxml  # [osx]\n    - rdkit  # [osx]\n  source_files:\n{% if unit_tests == \"run\" %}\n    - \"*\"\n{% else %}\n    # we need to copy at least one file, otherwise we can't use SRC_DIR in run_test.sh\n    - README\n{% endif %}\n  # commands: check run_test.sh for CLI tests\n  imports:\n    - parmed\n    - pdb4amber\n    - pymsmt\n    - pytraj\n    - sander\n    # Try to force a library incompatibility error in osx (see #22)\n    - rdkit  # [osx]\n    - rdkit.Chem.AllChem  # [osx]\n\nabout:\n  home: http://ambermd.org/AmberTools.php\n  license: GPL-3.0-or-later AND LGPL-3.0-or-later AND BSD-3-Clause AND MIT\n  license_file:\n    - AmberTools/LICENSE\n    - AmberTools/src/packmol_memgen/packmol_memgen/lib/packmol/LICENSE\n  summary: 'AmberTools is a set of programs for biomolecular simulation and analysis'\n  description: |\n    AmberTools is a set of programs for biomolecular simulation and analysis.\n    They are designed to work well with each other, and with the \"regular\" Amber\n    suite of programs. You can perform many simulation tasks with AmberTools,\n    and you can do more extensive simulations with the combination of AmberTools\n    and Amber itself.\n\nextra:\n  recipe-maintainers:\n    - simonbray\n    - jaimergp\n    - dacase\n    - mikemhenry\n    - mattwthompson\n    - j-wags\n    - swails\n",
+ "raw_meta_yaml": "{% set name = \"AmberTools\" %}\n# Versioning scheme uses AmberTools major release as MAJOR version number, patch level as MINOR version number\n# Update the MINOR version number as new patch releases come out\n{% set version = \"23.6\" %}\n# use run or skip\n{% set unit_tests = \"skip\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://ambermd.org/downloads/AmberTools23_rc6.tar.bz2\n  sha256: debb52e6ef2e1b4eaa917a8b4d4934bd2388659c660501a81ea044903bf9ee9d\n  patches:\n    - patches/do_not_symlink_missing_ff12pol.patch\n    - patches/do_not_install_vendored_parmed.patch\n    - patches/remove_mtune_native_for_m1.patch  # [arm64]\n    - patches/remove_nab2c_and_friends.patch  # [arm64]\n\nbuild:\n  number: 1\n  skip: True  # [win or py2k or ppc64le or aarch64]\n  script_env:\n    - unit_tests={{ unit_tests }}\n\nrequirements:\n  build:\n    - bc\n    - bison\n    - cmake\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - flex\n    - libgomp      # [linux and not aarch64]\n    - llvm-openmp  # [osx]\n    - make\n    - matplotlib-base                        # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - openssl\n    - patch\n    - perl\n    - python                                 # [build_platform != target_platform]\n    - scipy                                  # [build_platform != target_platform]\n    - tcsh\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}\n  host:\n    - python\n    - setuptools\n    - numpy\n    - scipy\n    - matplotlib-base\n    - bzip2\n    - zlib\n    - libboost-devel\n    - libnetcdf\n    - netcdf-fortran\n    - pthread-stubs\n    - fftw\n    - arpack\n    - libblas\n    - liblapack\n    - xorg-libxt  # [unix]\n    - xorg-libxext   # [unix]\n    - xorg-libx11   # [unix]\n    - readline\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux and not aarch64]\n    - parmed =4\n    - openssl\n  run:\n    - python\n    - setuptools\n    - perl\n    - numpy\n    - scipy\n    - matplotlib-base\n    - joblib\n    - libnetcdf\n    - netcdf-fortran\n    - fftw\n    - libblas\n    - liblapack\n    - xorg-libxt  # [unix]\n    - xorg-libxext  # [unix]\n    - xorg-libx11   # [unix]\n    - readline\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux and not aarch64]\n    - parmed >=4.0.0,<5.0.0a0\n  run_constrained:\n    - ambermini ==9999999999\n    - packmol ==9999999999\n\ntest:\n  requires:\n{% if unit_tests == \"run\" %}\n    - {{ compiler('c') }}\n    - {{ compiler('fortran') }}\n    - {{ compiler('cxx') }}\n    - util-linux  # [linux64]\n    - make\n{% endif %}\n    - tcsh\n    # Try to force a library incompatibility error in osx (see #22)\n    - lxml  # [osx]\n    - rdkit  # [osx]\n  source_files:\n{% if unit_tests == \"run\" %}\n    - \"*\"\n{% else %}\n    # we need to copy at least one file, otherwise we can't use SRC_DIR in run_test.sh\n    - README\n{% endif %}\n  # commands: check run_test.sh for CLI tests\n  imports:\n    - parmed\n    - pdb4amber\n    - pymsmt\n    - pytraj\n    - sander\n    # Try to force a library incompatibility error in osx (see #22)\n    - rdkit  # [osx]\n    - rdkit.Chem.AllChem  # [osx]\n\nabout:\n  home: http://ambermd.org/AmberTools.php\n  license: GPL-3.0-or-later AND LGPL-3.0-or-later AND BSD-3-Clause AND MIT\n  license_file:\n    - AmberTools/LICENSE\n    - AmberTools/src/packmol_memgen/packmol_memgen/lib/packmol/LICENSE\n  summary: 'AmberTools is a set of programs for biomolecular simulation and analysis'\n  description: |\n    AmberTools is a set of programs for biomolecular simulation and analysis.\n    They are designed to work well with each other, and with the \"regular\" Amber\n    suite of programs. You can perform many simulation tasks with AmberTools,\n    and you can do more extensive simulations with the combination of AmberTools\n    and Amber itself.\n\nextra:\n  recipe-maintainers:\n    - simonbray\n    - jaimergp\n    - dacase\n    - mikemhenry\n    - mattwthompson\n    - j-wags\n    - swails\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -785,6 +791,7 @@
    "bison",
    "bzip2",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "fftw",
@@ -824,6 +831,7 @@
     "bc",
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -843,6 +851,7 @@
     "arpack",
     "bzip2",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "fftw",
@@ -874,6 +883,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "fftw",
@@ -916,8 +926,8 @@
     "bc",
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
-    "cmake 3.20.*",
     "cxx_compiler_stub",
     "flex",
     "fortran_compiler_stub",
