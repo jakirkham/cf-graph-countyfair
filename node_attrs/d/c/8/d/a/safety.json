@@ -39,15 +39,14 @@
   },
   "package": {
    "name": "safety",
-   "version": "3.1.0"
+   "version": "3.2.0"
   },
   "requirements": {
    "host": [
-    "python >=3.6",
-    "pip"
+    "pip",
+    "python >=3.7"
    ],
    "run": [
-    "python >=3.6",
     "authlib >=1.2.0",
     "click >=8.0.2",
     "dparse >=0.6.4b0",
@@ -55,6 +54,7 @@
     "marshmallow >=3.15.0",
     "packaging >=21.0",
     "pydantic >=1.10.12",
+    "python >=3.7",
     "requests",
     "rich",
     "ruamel.yaml >=0.17.21",
@@ -66,8 +66,8 @@
    ]
   },
   "source": {
-   "sha256": "71f47b82ece153ec2f240e277f7cbfa70d5da2e0d143162c67f63b2f7459a1aa",
-   "url": "https://pypi.io/packages/source/s/safety/safety-3.1.0.tar.gz"
+   "sha256": "8bd5cab5f3d8a61ce0ea6e98f267c1006d056097c45c644fee7afeff7d5949c1",
+   "url": "https://pypi.io/packages/source/s/safety/safety-3.2.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -161,15 +161,14 @@
   },
   "package": {
    "name": "safety",
-   "version": "3.1.0"
+   "version": "3.2.0"
   },
   "requirements": {
    "host": [
-    "python >=3.6",
-    "pip"
+    "pip",
+    "python >=3.7"
    ],
    "run": [
-    "python >=3.6",
     "authlib >=1.2.0",
     "click >=8.0.2",
     "dparse >=0.6.4b0",
@@ -177,6 +176,7 @@
     "marshmallow >=3.15.0",
     "packaging >=21.0",
     "pydantic >=1.10.12",
+    "python >=3.7",
     "requests",
     "rich",
     "ruamel.yaml >=0.17.21",
@@ -188,8 +188,8 @@
    ]
   },
   "source": {
-   "sha256": "71f47b82ece153ec2f240e277f7cbfa70d5da2e0d143162c67f63b2f7459a1aa",
-   "url": "https://pypi.io/packages/source/s/safety/safety-3.1.0.tar.gz"
+   "sha256": "8bd5cab5f3d8a61ce0ea6e98f267c1006d056097c45c644fee7afeff7d5949c1",
+   "url": "https://pypi.io/packages/source/s/safety/safety-3.2.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -228,7 +228,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/safety.json"
  },
- "raw_meta_yaml": "{% set version = \"3.1.0\" %}\n{% set min_python = \"python >=3.6\" %}\n{% set test_skips = \"not validate_with_basic_policy_file\" %}\n{% set cov_fail_under = 52 %}\n\npackage:\n  name: safety\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/s/safety/safety-{{ version }}.tar.gz\n  sha256: 71f47b82ece153ec2f240e277f7cbfa70d5da2e0d143162c67f63b2f7459a1aa\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  entry_points:\n    - safety=safety.cli:cli\n\nrequirements:\n  host:\n    - {{ min_python }}\n    - pip\n  run:\n    - {{ min_python }}\n    - authlib >=1.2.0\n    - click >=8.0.2\n    - dparse >=0.6.4b0\n    - jinja2 >=3.1.0\n    - marshmallow >=3.15.0\n    - packaging >=21.0\n    - pydantic >=1.10.12\n    - requests\n    - rich\n    - ruamel.yaml >=0.17.21\n    - safety-schemas >=0.0.2\n    - setuptools >=65.5.1\n    - typer\n    - typing-extensions >=4.7.1\n    - urllib3 >=1.26.5\n\ntest:\n  source_files:\n    - tests\n  requires:\n    - coverage\n    - git\n    - pip\n    - pytest\n  imports:\n    - safety\n  commands:\n    - pip check\n    - safety --help\n    - safety --version\n    # as of 3.0.1, `test_utils.py` circular imports when not tested next to source\n    - python -c \"__import__('shutil').rmtree('tests/alerts')\"\n    - coverage run --source safety --branch -m pytest -vv --tb=long --color=yes -k \"{{ test_skips }}\"\n    - coverage report --show-missing --skip-covered --fail-under={{ cov_fail_under }}\n\nabout:\n  home: https://pyup.io/safety\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Safety checks your installed dependencies for known security vulnerabilities.\n  doc_url: https://pyup.io/docs\n  dev_url: https://github.com/pyupio/safety\n\nextra:\n  recipe-maintainers:\n    - jkornblum\n    - bollwyvl\n",
+ "raw_meta_yaml": "{% set version = \"3.2.0\" %}\n{% set test_skips = \"not validate_with_basic_policy_file\" %}\n{% set cov_fail_under = 52 %}\n\npackage:\n  name: safety\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/s/safety/safety-{{ version }}.tar.gz\n  sha256: 8bd5cab5f3d8a61ce0ea6e98f267c1006d056097c45c644fee7afeff7d5949c1\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  entry_points:\n    - safety=safety.cli:cli\n\nrequirements:\n  host:\n    - pip\n    - python >=3.7\n  run:\n    - authlib >=1.2.0\n    - click >=8.0.2\n    - dparse >=0.6.4b0\n    - jinja2 >=3.1.0\n    - marshmallow >=3.15.0\n    - packaging >=21.0\n    - pydantic >=1.10.12\n    - python >=3.7\n    - requests\n    - rich\n    - ruamel.yaml >=0.17.21\n    - safety-schemas >=0.0.2\n    - setuptools >=65.5.1\n    - typer\n    - typing-extensions >=4.7.1\n    - urllib3 >=1.26.5\n\ntest:\n  source_files:\n    - tests\n  requires:\n    - coverage\n    - git\n    - pip\n    - pytest\n  imports:\n    - safety\n  commands:\n    - pip check\n    - safety --help\n    - safety --version\n    # as of 3.0.1, `test_utils.py` circular imports when not tested next to source\n    - python -c \"__import__('shutil').rmtree('tests/alerts')\"\n    - coverage run --source safety --branch -m pytest -vv --tb=long --color=yes -k \"{{ test_skips }}\"\n    - coverage report --show-missing --skip-covered --fail-under={{ cov_fail_under }}\n\nabout:\n  home: https://pyup.io/safety\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Safety checks your installed dependencies for known security vulnerabilities.\n  doc_url: https://pyup.io/docs\n  dev_url: https://github.com/pyupio/safety\n\nextra:\n  recipe-maintainers:\n    - jkornblum\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -304,7 +304,7 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6"
+    "python >=3.7"
    ]
   },
   "run": {
@@ -317,7 +317,7 @@
     "marshmallow >=3.15.0",
     "packaging >=21.0",
     "pydantic >=1.10.12",
-    "python >=3.6",
+    "python >=3.7",
     "requests",
     "rich",
     "ruamel.yaml >=0.17.21",
@@ -338,8 +338,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/s/safety/safety-3.1.0.tar.gz",
- "version": "3.1.0",
+ "url": "https://pypi.io/packages/source/s/safety/safety-3.2.0.tar.gz",
+ "version": "3.2.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/safety.json"
  }
