@@ -36,12 +36,12 @@
    "entry_points": [
     "pyproj=pyproj.__main__:main"
    ],
-   "number": "5",
+   "number": "6",
    "script": [
     "PYTHON -m pip install . --no-deps -vv"
    ],
    "script_env": [
-    "PROJ_VERSION=9.3.1"
+    "PROJ_VERSION=9.4.0"
    ]
   },
   "extra": {
@@ -75,6 +75,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "0001-azimuthal-equidistant.patch"
+   ],
    "sha256": "44aa7c704c2b7d8fb3d483bbf75af6cb2350d30a63b144279a09b75fead501bf",
    "url": "https://pypi.io/packages/source/p/pyproj/pyproj-3.6.1.tar.gz"
   },
@@ -145,12 +148,12 @@
    "entry_points": [
     "pyproj=pyproj.__main__:main"
    ],
-   "number": "5",
+   "number": "6",
    "script": [
     "PYTHON -m pip install . --no-deps -vv"
    ],
    "script_env": [
-    "PROJ_VERSION=9.3.1"
+    "PROJ_VERSION=9.4.0"
    ]
   },
   "extra": {
@@ -184,6 +187,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "0001-azimuthal-equidistant.patch"
+   ],
    "sha256": "44aa7c704c2b7d8fb3d483bbf75af6cb2350d30a63b144279a09b75fead501bf",
    "url": "https://pypi.io/packages/source/p/pyproj/pyproj-3.6.1.tar.gz"
   },
@@ -363,12 +369,12 @@
    "entry_points": [
     "pyproj=pyproj.__main__:main"
    ],
-   "number": "5",
+   "number": "6",
    "script": [
     "PYTHON -m pip install . --no-deps -vv"
    ],
    "script_env": [
-    "PROJ_VERSION=9.3.1"
+    "PROJ_VERSION=9.4.0"
    ]
   },
   "extra": {
@@ -402,6 +408,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "0001-azimuthal-equidistant.patch"
+   ],
    "sha256": "44aa7c704c2b7d8fb3d483bbf75af6cb2350d30a63b144279a09b75fead501bf",
    "url": "https://pypi.io/packages/source/p/pyproj/pyproj-3.6.1.tar.gz"
   },
@@ -442,12 +451,12 @@
    "entry_points": [
     "pyproj=pyproj.__main__:main"
    ],
-   "number": "5",
+   "number": "6",
    "script": [
     "PYTHON -m pip install . --no-deps -vv"
    ],
    "script_env": [
-    "PROJ_VERSION=9.3.1"
+    "PROJ_VERSION=9.4.0"
    ]
   },
   "extra": {
@@ -481,6 +490,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "0001-azimuthal-equidistant.patch"
+   ],
    "sha256": "44aa7c704c2b7d8fb3d483bbf75af6cb2350d30a63b144279a09b75fead501bf",
    "url": "https://pypi.io/packages/source/p/pyproj/pyproj-3.6.1.tar.gz"
   },
@@ -551,12 +563,12 @@
    "entry_points": [
     "pyproj=pyproj.__main__:main"
    ],
-   "number": "5",
+   "number": "6",
    "script": [
     "PYTHON -m pip install . --no-deps -vv"
    ],
    "script_env": [
-    "PROJ_VERSION=9.3.1"
+    "PROJ_VERSION=9.4.0"
    ]
   },
   "extra": {
@@ -590,6 +602,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "0001-azimuthal-equidistant.patch"
+   ],
    "sha256": "44aa7c704c2b7d8fb3d483bbf75af6cb2350d30a63b144279a09b75fead501bf",
    "url": "https://pypi.io/packages/source/p/pyproj/pyproj-3.6.1.tar.gz"
   },
@@ -656,7 +671,6 @@
  "platforms": [
   "linux_64",
   "linux_aarch64",
-  "linux_ppc64le",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -664,7 +678,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyproj.json"
  },
- "raw_meta_yaml": "{% set version = \"3.6.1\" %}\n\npackage:\n  name: pyproj\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/p/pyproj/pyproj-{{ version }}.tar.gz\n  sha256: 44aa7c704c2b7d8fb3d483bbf75af6cb2350d30a63b144279a09b75fead501bf\n\nbuild:\n  number: 5\n  skip: true  # [py<39]\n  entry_points:\n    - pyproj=pyproj.__main__:main\n  script_env:\n    - PROJ_VERSION={{ proj }}\n  script:\n    - {{ PYTHON }} -m pip install . --no-deps -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - {{ compiler('c') }}\n  host:\n    - python\n    - pip\n    - cython\n    - proj\n  run:\n    - python\n    - proj\n    - certifi\n\ntest:\n  source_files:\n    - test\n  requires:\n    - pytest\n    - shapely\n    - numpy\n  imports:\n    - pyproj\n  commands:\n    - pyproj --verbose\n    - export \"PROJ_NETWORK=ON\"           # [unix]\n    - export \"PYPROJ_GLOBAL_CONTEXT=ON\"  # [unix]\n    - set \"PROJ_NETWORK=ON\"              # [win]\n    - set \"PYPROJ_GLOBAL_CONTEXT=ON\"     # [win]\n    - python -m pytest -v -s\nabout:\n  home: https://github.com/pyproj4/pyproj\n  license: MIT\n  license_file:\n    - LICENSE\n    - LICENSE_proj\n  summary: Python interface to PROJ library\n\nextra:\n  recipe-maintainers:\n    - mingwandroid\n    - ocefpaf\n    - snowman2\n    - jorisvandenbossche\n    - xylar\n    - zklaus\n",
+ "raw_meta_yaml": "{% set version = \"3.6.1\" %}\n\npackage:\n  name: pyproj\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/p/pyproj/pyproj-{{ version }}.tar.gz\n  sha256: 44aa7c704c2b7d8fb3d483bbf75af6cb2350d30a63b144279a09b75fead501bf\n  patches:\n    - 0001-azimuthal-equidistant.patch\n\nbuild:\n  number: 6\n  skip: true  # [py<39 or ppc64le]\n  entry_points:\n    - pyproj=pyproj.__main__:main\n  script_env:\n    - PROJ_VERSION={{ proj }}\n  script:\n    - {{ PYTHON }} -m pip install . --no-deps -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - {{ compiler('c') }}\n  host:\n    - python\n    - pip\n    - cython\n    - proj\n  run:\n    - python\n    - proj\n    - certifi\n\ntest:\n  source_files:\n    - test\n  requires:\n    - pytest\n    - shapely\n    - numpy\n  imports:\n    - pyproj\n  commands:\n    - pyproj --verbose\n    - export \"PROJ_NETWORK=ON\"           # [unix]\n    - export \"PYPROJ_GLOBAL_CONTEXT=ON\"  # [unix]\n    - set \"PROJ_NETWORK=ON\"              # [win]\n    - set \"PYPROJ_GLOBAL_CONTEXT=ON\"     # [win]\n    - python -m pytest -v -s\nabout:\n  home: https://github.com/pyproj4/pyproj\n  license: MIT\n  license_file:\n    - LICENSE\n    - LICENSE_proj\n  summary: Python interface to PROJ library\n\nextra:\n  recipe-maintainers:\n    - mingwandroid\n    - ocefpaf\n    - snowman2\n    - jorisvandenbossche\n    - xylar\n    - zklaus\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -764,12 +778,12 @@
    "entry_points": [
     "pyproj=pyproj.__main__:main"
    ],
-   "number": "5",
+   "number": "6",
    "script": [
     "PYTHON -m pip install . --no-deps -vv"
    ],
    "script_env": [
-    "PROJ_VERSION=9.3.1"
+    "PROJ_VERSION=9.4.0"
    ]
   },
   "extra": {
@@ -803,6 +817,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "0001-azimuthal-equidistant.patch"
+   ],
    "sha256": "44aa7c704c2b7d8fb3d483bbf75af6cb2350d30a63b144279a09b75fead501bf",
    "url": "https://pypi.io/packages/source/p/pyproj/pyproj-3.6.1.tar.gz"
   },
