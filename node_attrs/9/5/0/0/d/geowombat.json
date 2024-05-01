@@ -34,8 +34,7 @@
   },
   "build": {
    "number": "1",
-   "script": "PYTHON setup.py build && pip install .",
-   "skip": true
+   "script": "PYTHON setup.py build && pip install ."
   },
   "extra": {
    "recipe-maintainers": [
@@ -992,11 +991,327 @@
       "geowombat"
      ]
     }
+   },
+   {
+    "name": "geowombat",
+    "requirements": {
+     "build": [
+      "c_compiler_stub"
+     ],
+     "host": [
+      "python",
+      "setuptools >=59.5.0",
+      "wheel",
+      "cython >=0.29.0,<3.0.0",
+      "numpy",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "dask-core >=2023.1.0",
+      "distributed >=2023.1.0",
+      "geopandas >=0.8.0",
+      "joblib >=0.16.0",
+      "matplotlib-base >=3.3.0",
+      "pandas >=1.0.0",
+      "pyproj >=3.0.0,<=3.4.0",
+      "rasterio >=1.3.0,<2.0.0",
+      "retry",
+      "requests >=2.20.0",
+      "scikit-learn >=0.23.0",
+      "scipy >=1.5.0",
+      "shapely >=1.7.0",
+      "tqdm >=4.62.0",
+      "xarray >=2023.1.0",
+      "h5netcdf >=1.0.2",
+      "cryptography >=38.0.0",
+      "threadpoolctl >=3.1.0",
+      "setuptools >=59.5.0",
+      "cython >=0.29.0,<3.0.0",
+      "testfixtures",
+      "numpy >=1.19.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_clip.py",
+      "pytest tests/test_config.py",
+      "pytest tests/test_conreg.py",
+      "pytest tests/test_extract.py",
+      "pytest tests/test_gdal.py",
+      "pytest tests/test_moving.py",
+      "pytest tests/test_nodata.py",
+      "pytest tests/test_open.py",
+      "pytest tests/test_properties.py",
+      "pytest tests/test_rasterio.py",
+      "pytest tests/test_scaling.py",
+      "pytest tests/test_sops.py",
+      "pytest tests/test_vi.py",
+      "pytest tests/test_write.py",
+      "pytest tests/test_xarray.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-coreg",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "earthpy",
+      "pyfftw ==0.13.1",
+      "bottleneck",
+      "cartopy",
+      "cmocean",
+      "dill",
+      "geoarray >=0.15.0",
+      "geojson",
+      "folium >=0.6.0,!=0.12.0",
+      "pykrige",
+      "arosics",
+      "py-tools-ds"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_coreg.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-docs",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "numpydoc",
+      "sphinx",
+      "sphinx-automodapi",
+      "sphinxcontrib-bibtex <2.0.0",
+      "pydata-sphinx-theme ==0.13.1",
+      "sphinx-book-theme >=1.0.0",
+      "sphinx-copybutton >=0.5.0",
+      "sphinx-autodoc-typehints",
+      "ipython"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-ml",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "scikit-learn =1.2.0",
+      "lightgbm",
+      "gw-sklearn-xarray"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/ml_test.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-perf",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "rtree",
+      "pygeos",
+      "netCDF4",
+      "ray-default >=2.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-stac",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "stackstac",
+      "pystac-client",
+      "sat-search",
+      "planetary-computer",
+      "Rich",
+      "wget"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-tests",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "testfixtures",
+      "jax",
+      "jaxlib",
+      "pre-commit",
+      "black",
+      "flake8",
+      "docformatter",
+      "isort"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_series.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "bokeh",
+      "descartes"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-web",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-zarr",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "zarr",
+      "numcodecs"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
    }
   ],
   "package": {
    "name": "geowombat",
-   "version": "2.1.17"
+   "version": "2.1.22"
   },
   "requirements": {
    "build": [
@@ -1039,8 +1354,8 @@
    ]
   },
   "source": {
-   "sha256": "efa188b3884a0321ba0396a5408035225f1e8514e29befa9b149d5feb06a167b",
-   "url": "https://github.com/jgrss/geowombat/archive/v2.1.17.tar.gz"
+   "sha256": "5986aab2a88facc9751852f24f59ffce95e242090f008170da6b54c1712ab965",
+   "url": "https://github.com/jgrss/geowombat/archive/v2.1.22.tar.gz"
   },
   "test": {
    "commands": [
@@ -1181,8 +1496,7 @@
   },
   "build": {
    "number": "1",
-   "script": "PYTHON setup.py build && pip install .",
-   "skip": true
+   "script": "PYTHON setup.py build && pip install ."
   },
   "extra": {
    "recipe-maintainers": [
@@ -2313,7 +2627,8 @@
       "geowombat",
       "rtree",
       "pygeos",
-      "netCDF4"
+      "netCDF4",
+      "ray-default >=2.3.0"
      ]
     },
     "test": {
@@ -3943,6 +4258,1235 @@
      "commands": [
       "pytest tests/test_series.py"
      ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "bokeh",
+      "descartes"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-web",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-zarr",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "zarr",
+      "numcodecs"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat",
+    "requirements": {
+     "build": [
+      "c_compiler_stub"
+     ],
+     "host": [
+      "python",
+      "setuptools >=59.5.0",
+      "wheel",
+      "cython >=0.29.0,<3.0.0",
+      "numpy",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "dask-core >=2023.1.0",
+      "distributed >=2023.1.0",
+      "geopandas >=0.8.0",
+      "joblib >=0.16.0",
+      "matplotlib-base >=3.3.0",
+      "pandas >=1.0.0",
+      "pyproj >=3.0.0,<=3.4.0",
+      "rasterio >=1.3.0,<2.0.0",
+      "retry",
+      "requests >=2.20.0",
+      "scikit-learn >=0.23.0",
+      "scipy >=1.5.0",
+      "shapely >=1.7.0",
+      "tqdm >=4.62.0",
+      "xarray >=2023.1.0",
+      "h5netcdf >=1.0.2",
+      "cryptography >=38.0.0",
+      "threadpoolctl >=3.1.0",
+      "setuptools >=59.5.0",
+      "cython >=0.29.0,<3.0.0",
+      "testfixtures",
+      "numpy >=1.19.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_clip.py",
+      "pytest tests/test_config.py",
+      "pytest tests/test_conreg.py",
+      "pytest tests/test_extract.py",
+      "pytest tests/test_gdal.py",
+      "pytest tests/test_moving.py",
+      "pytest tests/test_nodata.py",
+      "pytest tests/test_open.py",
+      "pytest tests/test_properties.py",
+      "pytest tests/test_rasterio.py",
+      "pytest tests/test_scaling.py",
+      "pytest tests/test_sops.py",
+      "pytest tests/test_vi.py",
+      "pytest tests/test_write.py",
+      "pytest tests/test_xarray.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-coreg",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "earthpy",
+      "pyfftw ==0.13.1",
+      "bottleneck",
+      "cartopy",
+      "cmocean",
+      "dill",
+      "geoarray >=0.15.0",
+      "geojson",
+      "folium >=0.6.0,!=0.12.0",
+      "pykrige",
+      "arosics",
+      "py-tools-ds"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_coreg.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-docs",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "numpydoc",
+      "sphinx",
+      "sphinx-automodapi",
+      "sphinxcontrib-bibtex <2.0.0",
+      "pydata-sphinx-theme ==0.13.1",
+      "sphinx-book-theme >=1.0.0",
+      "sphinx-copybutton >=0.5.0",
+      "sphinx-autodoc-typehints",
+      "ipython"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-ml",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "scikit-learn =1.2.0",
+      "lightgbm",
+      "gw-sklearn-xarray"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/ml_test.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-perf",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "rtree",
+      "pygeos",
+      "netCDF4"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-stac",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "stackstac",
+      "pystac-client",
+      "sat-search",
+      "planetary-computer",
+      "Rich",
+      "wget"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-tests",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "testfixtures",
+      "jax",
+      "jaxlib",
+      "pre-commit",
+      "black",
+      "flake8",
+      "docformatter",
+      "isort"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_series.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "bokeh",
+      "descartes"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-web",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-zarr",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "zarr",
+      "numcodecs"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat",
+    "requirements": {
+     "build": [
+      "c_compiler_stub"
+     ],
+     "host": [
+      "python",
+      "setuptools >=59.5.0",
+      "wheel",
+      "cython >=0.29.0,<3.0.0",
+      "numpy",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "dask-core >=2023.1.0",
+      "distributed >=2023.1.0",
+      "geopandas >=0.8.0",
+      "joblib >=0.16.0",
+      "matplotlib-base >=3.3.0",
+      "pandas >=1.0.0",
+      "pyproj >=3.0.0,<=3.4.0",
+      "rasterio >=1.3.0,<2.0.0",
+      "retry",
+      "requests >=2.20.0",
+      "scikit-learn >=0.23.0",
+      "scipy >=1.5.0",
+      "shapely >=1.7.0",
+      "tqdm >=4.62.0",
+      "xarray >=2023.1.0",
+      "h5netcdf >=1.0.2",
+      "cryptography >=38.0.0",
+      "threadpoolctl >=3.1.0",
+      "setuptools >=59.5.0",
+      "cython >=0.29.0,<3.0.0",
+      "testfixtures",
+      "numpy >=1.19.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_clip.py",
+      "pytest tests/test_config.py",
+      "pytest tests/test_conreg.py",
+      "pytest tests/test_extract.py",
+      "pytest tests/test_gdal.py",
+      "pytest tests/test_moving.py",
+      "pytest tests/test_nodata.py",
+      "pytest tests/test_open.py",
+      "pytest tests/test_properties.py",
+      "pytest tests/test_rasterio.py",
+      "pytest tests/test_scaling.py",
+      "pytest tests/test_sops.py",
+      "pytest tests/test_vi.py",
+      "pytest tests/test_write.py",
+      "pytest tests/test_xarray.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-coreg",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "earthpy",
+      "pyfftw ==0.13.1",
+      "bottleneck",
+      "cartopy",
+      "cmocean",
+      "dill",
+      "geoarray >=0.15.0",
+      "geojson",
+      "folium >=0.6.0,!=0.12.0",
+      "pykrige",
+      "arosics",
+      "py-tools-ds"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_coreg.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-docs",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "numpydoc",
+      "sphinx",
+      "sphinx-automodapi",
+      "sphinxcontrib-bibtex <2.0.0",
+      "pydata-sphinx-theme ==0.13.1",
+      "sphinx-book-theme >=1.0.0",
+      "sphinx-copybutton >=0.5.0",
+      "sphinx-autodoc-typehints",
+      "ipython"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-ml",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "scikit-learn =1.2.0",
+      "lightgbm",
+      "gw-sklearn-xarray"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/ml_test.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-perf",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "rtree",
+      "pygeos",
+      "netCDF4"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-stac",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "stackstac",
+      "pystac-client",
+      "sat-search",
+      "planetary-computer",
+      "Rich",
+      "wget"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-tests",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "testfixtures",
+      "jax",
+      "jaxlib",
+      "pre-commit",
+      "black",
+      "flake8",
+      "docformatter",
+      "isort"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_series.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "bokeh",
+      "descartes"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-web",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-zarr",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "zarr",
+      "numcodecs"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat",
+    "requirements": {
+     "build": [
+      "c_compiler_stub"
+     ],
+     "host": [
+      "python",
+      "setuptools >=59.5.0",
+      "wheel",
+      "cython >=0.29.0,<3.0.0",
+      "numpy",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "dask-core >=2023.1.0",
+      "distributed >=2023.1.0",
+      "geopandas >=0.8.0",
+      "joblib >=0.16.0",
+      "matplotlib-base >=3.3.0",
+      "pandas >=1.0.0",
+      "pyproj >=3.0.0,<=3.4.0",
+      "rasterio >=1.3.0,<2.0.0",
+      "retry",
+      "requests >=2.20.0",
+      "scikit-learn >=0.23.0",
+      "scipy >=1.5.0",
+      "shapely >=1.7.0",
+      "tqdm >=4.62.0",
+      "xarray >=2023.1.0",
+      "h5netcdf >=1.0.2",
+      "cryptography >=38.0.0",
+      "threadpoolctl >=3.1.0",
+      "setuptools >=59.5.0",
+      "cython >=0.29.0,<3.0.0",
+      "testfixtures",
+      "numpy >=1.19.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_clip.py",
+      "pytest tests/test_config.py",
+      "pytest tests/test_conreg.py",
+      "pytest tests/test_extract.py",
+      "pytest tests/test_gdal.py",
+      "pytest tests/test_moving.py",
+      "pytest tests/test_nodata.py",
+      "pytest tests/test_open.py",
+      "pytest tests/test_properties.py",
+      "pytest tests/test_rasterio.py",
+      "pytest tests/test_scaling.py",
+      "pytest tests/test_sops.py",
+      "pytest tests/test_vi.py",
+      "pytest tests/test_write.py",
+      "pytest tests/test_xarray.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-coreg",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "earthpy",
+      "pyfftw ==0.13.1",
+      "bottleneck",
+      "cartopy",
+      "cmocean",
+      "dill",
+      "geoarray >=0.15.0",
+      "geojson",
+      "folium >=0.6.0,!=0.12.0",
+      "pykrige",
+      "arosics",
+      "py-tools-ds"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_coreg.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-docs",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "numpydoc",
+      "sphinx",
+      "sphinx-automodapi",
+      "sphinxcontrib-bibtex <2.0.0",
+      "pydata-sphinx-theme ==0.13.1",
+      "sphinx-book-theme >=1.0.0",
+      "sphinx-copybutton >=0.5.0",
+      "sphinx-autodoc-typehints",
+      "ipython"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-ml",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "scikit-learn =1.2.0",
+      "lightgbm",
+      "gw-sklearn-xarray"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/ml_test.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-perf",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "rtree",
+      "pygeos",
+      "netCDF4"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-stac",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "stackstac",
+      "pystac-client",
+      "sat-search",
+      "planetary-computer",
+      "Rich",
+      "wget"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-tests",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "testfixtures",
+      "jax",
+      "jaxlib",
+      "pre-commit",
+      "black",
+      "flake8",
+      "docformatter",
+      "isort"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_series.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "bokeh",
+      "descartes"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-web",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-zarr",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "zarr",
+      "numcodecs"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat",
+    "requirements": {
+     "build": [
+      "c_compiler_stub"
+     ],
+     "host": [
+      "python",
+      "setuptools >=59.5.0",
+      "wheel",
+      "cython >=0.29.0,<3.0.0",
+      "numpy",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "dask-core >=2023.1.0",
+      "distributed >=2023.1.0",
+      "geopandas >=0.8.0",
+      "joblib >=0.16.0",
+      "matplotlib-base >=3.3.0",
+      "pandas >=1.0.0",
+      "pyproj >=3.0.0,<=3.4.0",
+      "rasterio >=1.3.0,<2.0.0",
+      "retry",
+      "requests >=2.20.0",
+      "scikit-learn >=0.23.0",
+      "scipy >=1.5.0",
+      "shapely >=1.7.0",
+      "tqdm >=4.62.0",
+      "xarray >=2023.1.0",
+      "h5netcdf >=1.0.2",
+      "cryptography >=38.0.0",
+      "threadpoolctl >=3.1.0",
+      "setuptools >=59.5.0",
+      "cython >=0.29.0,<3.0.0",
+      "testfixtures",
+      "numpy >=1.19.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_clip.py",
+      "pytest tests/test_config.py",
+      "pytest tests/test_conreg.py",
+      "pytest tests/test_extract.py",
+      "pytest tests/test_gdal.py",
+      "pytest tests/test_moving.py",
+      "pytest tests/test_open.py",
+      "pytest tests/test_properties.py",
+      "pytest tests/test_scaling.py",
+      "pytest tests/test_sops.py",
+      "pytest tests/test_vi.py",
+      "pytest tests/test_xarray.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-coreg",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "earthpy",
+      "pyfftw ==0.13.1",
+      "bottleneck",
+      "cartopy",
+      "cmocean",
+      "dill",
+      "geoarray >=0.15.0",
+      "geojson",
+      "folium >=0.6.0,!=0.12.0",
+      "pykrige",
+      "arosics",
+      "py-tools-ds"
+     ]
+    },
+    "test": {
+     "commands": null,
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-docs",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "numpydoc",
+      "sphinx",
+      "sphinx-automodapi",
+      "sphinxcontrib-bibtex <2.0.0",
+      "pydata-sphinx-theme ==0.13.1",
+      "sphinx-book-theme >=1.0.0",
+      "sphinx-copybutton >=0.5.0",
+      "sphinx-autodoc-typehints",
+      "ipython"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-ml",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "scikit-learn =1.2.0",
+      "lightgbm",
+      "gw-sklearn-xarray"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/ml_test.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-perf",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "rtree",
+      "pygeos",
+      "netCDF4",
+      "ray-default >=2.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-stac",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "testfixtures",
+      "pre-commit",
+      "black",
+      "flake8",
+      "docformatter",
+      "isort"
+     ]
+    },
+    "test": {
+     "commands": null,
      "imports": [
       "geowombat"
      ],
@@ -4885,7 +6429,7 @@
   ],
   "package": {
    "name": "geowombat",
-   "version": "2.1.17"
+   "version": "2.1.22"
   },
   "requirements": {
    "build": [
@@ -4928,8 +6472,8 @@
    ]
   },
   "source": {
-   "sha256": "efa188b3884a0321ba0396a5408035225f1e8514e29befa9b149d5feb06a167b",
-   "url": "https://github.com/jgrss/geowombat/archive/v2.1.17.tar.gz"
+   "sha256": "5986aab2a88facc9751852f24f59ffce95e242090f008170da6b54c1712ab965",
+   "url": "https://github.com/jgrss/geowombat/archive/v2.1.22.tar.gz"
   },
   "test": {
    "commands": [
@@ -4972,8 +6516,7 @@
   },
   "build": {
    "number": "1",
-   "script": "PYTHON setup.py build && pip install .",
-   "skip": true
+   "script": "PYTHON setup.py build && pip install ."
   },
   "extra": {
    "recipe-maintainers": [
@@ -5927,11 +7470,326 @@
       "geowombat"
      ]
     }
+   },
+   {
+    "name": "geowombat",
+    "requirements": {
+     "build": [
+      "c_compiler_stub"
+     ],
+     "host": [
+      "python",
+      "setuptools >=59.5.0",
+      "wheel",
+      "cython >=0.29.0,<3.0.0",
+      "numpy",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "dask-core >=2023.1.0",
+      "distributed >=2023.1.0",
+      "geopandas >=0.8.0",
+      "joblib >=0.16.0",
+      "matplotlib-base >=3.3.0",
+      "pandas >=1.0.0",
+      "pyproj >=3.0.0,<=3.4.0",
+      "rasterio >=1.3.0,<2.0.0",
+      "retry",
+      "requests >=2.20.0",
+      "scikit-learn >=0.23.0",
+      "scipy >=1.5.0",
+      "shapely >=1.7.0",
+      "tqdm >=4.62.0",
+      "xarray >=2023.1.0",
+      "h5netcdf >=1.0.2",
+      "cryptography >=38.0.0",
+      "threadpoolctl >=3.1.0",
+      "setuptools >=59.5.0",
+      "cython >=0.29.0,<3.0.0",
+      "testfixtures",
+      "numpy >=1.19.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_clip.py",
+      "pytest tests/test_config.py",
+      "pytest tests/test_conreg.py",
+      "pytest tests/test_extract.py",
+      "pytest tests/test_gdal.py",
+      "pytest tests/test_moving.py",
+      "pytest tests/test_nodata.py",
+      "pytest tests/test_open.py",
+      "pytest tests/test_properties.py",
+      "pytest tests/test_rasterio.py",
+      "pytest tests/test_scaling.py",
+      "pytest tests/test_sops.py",
+      "pytest tests/test_vi.py",
+      "pytest tests/test_write.py",
+      "pytest tests/test_xarray.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-coreg",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "earthpy",
+      "pyfftw ==0.13.1",
+      "bottleneck",
+      "cartopy",
+      "cmocean",
+      "dill",
+      "geoarray >=0.15.0",
+      "geojson",
+      "folium >=0.6.0,!=0.12.0",
+      "pykrige",
+      "arosics",
+      "py-tools-ds"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_coreg.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-docs",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "numpydoc",
+      "sphinx",
+      "sphinx-automodapi",
+      "sphinxcontrib-bibtex <2.0.0",
+      "pydata-sphinx-theme ==0.13.1",
+      "sphinx-book-theme >=1.0.0",
+      "sphinx-copybutton >=0.5.0",
+      "sphinx-autodoc-typehints",
+      "ipython"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-ml",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "scikit-learn =1.2.0",
+      "lightgbm",
+      "gw-sklearn-xarray"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/ml_test.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-perf",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "rtree",
+      "pygeos",
+      "netCDF4"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-stac",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "stackstac",
+      "pystac-client",
+      "sat-search",
+      "planetary-computer",
+      "Rich",
+      "wget"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-tests",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "testfixtures",
+      "jax",
+      "jaxlib",
+      "pre-commit",
+      "black",
+      "flake8",
+      "docformatter",
+      "isort"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_series.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "bokeh",
+      "descartes"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-web",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-zarr",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "zarr",
+      "numcodecs"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
    }
   ],
   "package": {
    "name": "geowombat",
-   "version": "2.1.17"
+   "version": "2.1.22"
   },
   "requirements": {
    "build": [
@@ -5973,8 +7831,8 @@
    ]
   },
   "source": {
-   "sha256": "efa188b3884a0321ba0396a5408035225f1e8514e29befa9b149d5feb06a167b",
-   "url": "https://github.com/jgrss/geowombat/archive/v2.1.17.tar.gz"
+   "sha256": "5986aab2a88facc9751852f24f59ffce95e242090f008170da6b54c1712ab965",
+   "url": "https://github.com/jgrss/geowombat/archive/v2.1.22.tar.gz"
   },
   "test": {
    "commands": [
@@ -6114,8 +7972,7 @@
   },
   "build": {
    "number": "1",
-   "script": "PYTHON setup.py build && pip install .",
-   "skip": true
+   "script": "PYTHON setup.py build && pip install ."
   },
   "extra": {
    "recipe-maintainers": [
@@ -7069,11 +8926,326 @@
       "geowombat"
      ]
     }
+   },
+   {
+    "name": "geowombat",
+    "requirements": {
+     "build": [
+      "c_compiler_stub"
+     ],
+     "host": [
+      "python",
+      "setuptools >=59.5.0",
+      "wheel",
+      "cython >=0.29.0,<3.0.0",
+      "numpy",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "dask-core >=2023.1.0",
+      "distributed >=2023.1.0",
+      "geopandas >=0.8.0",
+      "joblib >=0.16.0",
+      "matplotlib-base >=3.3.0",
+      "pandas >=1.0.0",
+      "pyproj >=3.0.0,<=3.4.0",
+      "rasterio >=1.3.0,<2.0.0",
+      "retry",
+      "requests >=2.20.0",
+      "scikit-learn >=0.23.0",
+      "scipy >=1.5.0",
+      "shapely >=1.7.0",
+      "tqdm >=4.62.0",
+      "xarray >=2023.1.0",
+      "h5netcdf >=1.0.2",
+      "cryptography >=38.0.0",
+      "threadpoolctl >=3.1.0",
+      "setuptools >=59.5.0",
+      "cython >=0.29.0,<3.0.0",
+      "testfixtures",
+      "numpy >=1.19.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_clip.py",
+      "pytest tests/test_config.py",
+      "pytest tests/test_conreg.py",
+      "pytest tests/test_extract.py",
+      "pytest tests/test_gdal.py",
+      "pytest tests/test_moving.py",
+      "pytest tests/test_nodata.py",
+      "pytest tests/test_open.py",
+      "pytest tests/test_properties.py",
+      "pytest tests/test_rasterio.py",
+      "pytest tests/test_scaling.py",
+      "pytest tests/test_sops.py",
+      "pytest tests/test_vi.py",
+      "pytest tests/test_write.py",
+      "pytest tests/test_xarray.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-coreg",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "earthpy",
+      "pyfftw ==0.13.1",
+      "bottleneck",
+      "cartopy",
+      "cmocean",
+      "dill",
+      "geoarray >=0.15.0",
+      "geojson",
+      "folium >=0.6.0,!=0.12.0",
+      "pykrige",
+      "arosics",
+      "py-tools-ds"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_coreg.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-docs",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "numpydoc",
+      "sphinx",
+      "sphinx-automodapi",
+      "sphinxcontrib-bibtex <2.0.0",
+      "pydata-sphinx-theme ==0.13.1",
+      "sphinx-book-theme >=1.0.0",
+      "sphinx-copybutton >=0.5.0",
+      "sphinx-autodoc-typehints",
+      "ipython"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-ml",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "scikit-learn =1.2.0",
+      "lightgbm",
+      "gw-sklearn-xarray"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/ml_test.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-perf",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "rtree",
+      "pygeos",
+      "netCDF4"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-stac",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "stackstac",
+      "pystac-client",
+      "sat-search",
+      "planetary-computer",
+      "Rich",
+      "wget"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-tests",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "testfixtures",
+      "jax",
+      "jaxlib",
+      "pre-commit",
+      "black",
+      "flake8",
+      "docformatter",
+      "isort"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_series.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "bokeh",
+      "descartes"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-web",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-zarr",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "zarr",
+      "numcodecs"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
    }
   ],
   "package": {
    "name": "geowombat",
-   "version": "2.1.17"
+   "version": "2.1.22"
   },
   "requirements": {
    "build": [
@@ -7115,8 +9287,8 @@
    ]
   },
   "source": {
-   "sha256": "efa188b3884a0321ba0396a5408035225f1e8514e29befa9b149d5feb06a167b",
-   "url": "https://github.com/jgrss/geowombat/archive/v2.1.17.tar.gz"
+   "sha256": "5986aab2a88facc9751852f24f59ffce95e242090f008170da6b54c1712ab965",
+   "url": "https://github.com/jgrss/geowombat/archive/v2.1.22.tar.gz"
   },
   "test": {
    "commands": [
@@ -7269,7 +9441,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/geowombat.json"
  },
- "raw_meta_yaml": "{% set name = \"geowombat\" %}\n{% set version = \"2.1.17\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/jgrss/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: efa188b3884a0321ba0396a5408035225f1e8514e29befa9b149d5feb06a167b\n\n\nbuild:\n  number: 1\n  skip: true  # [py<37 or py>310]\n  script: {{ PYTHON }} setup.py build && pip install .\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython >=0.29.0,<3.0.0                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n\n  host:\n    - python      \n    - setuptools >=59.5.0\n    - wheel\n    - cython >=0.29.0,<3.0.0\n    - numpy\n    - pip\n\n\n  run:\n    - {{ pin_compatible('python') }}\n    - python\n    - dask-core >=2023.1.0\n    - distributed >=2023.1.0\n    - geopandas >=0.8.0\n    - joblib >=0.16.0\n    - matplotlib-base >=3.3.0\n    - pandas >=1.0.0\n    - pyproj >=3.0.0,<3.5.0\n    - rasterio >=1.3.0,<2.0.0\n    - retry\n    - requests >=2.20.0\n    - scikit-learn >=0.23.0\n    - scipy >=1.5.0\n    - shapely >=1.7.0\n    - tqdm >=4.62.0\n    - xarray >=2023.1.0\n    - h5netcdf >=1.0.2\n    - cryptography >=38.0.0\n    - threadpoolctl >=3.1.0\n    - setuptools >=59.5.0\n    - cython >=0.29.0,<3.0.0\n    - jax  # [not win]\n    - ray-default  # [not osx]\n    - testfixtures\n    - numpy >=1.19.0\n\n\ntest:\n  imports:\n    - geowombat\n  requires:\n    - pytest\n  source_files:\n    - tests\n  commands:\n      #- pytest tests   #RUN ALL TESTS \n      - pytest tests/test_clip.py\n      - pytest tests/test_config.py\n      # - pytest tests/test_conreg.py\n      - pytest tests/test_extract.py\n      - pytest tests/test_gdal.py\n      - pytest tests/test_moving.py\n    # temp files not compatible with windows ??\n      - pytest tests/test_nodata.py  # [not win]\n      - pytest tests/test_open.py\n      - pytest tests/test_properties.py\n    # - pytest tests/test_rad.py  # [not py==38 or not py==39]\n      - pytest tests/test_rasterio.py  # [not win]\n      - pytest tests/test_scaling.py\n      # - pytest tests/test_series.py  # [not win] only in test options\n      - pytest tests/test_sops.py\n      - pytest tests/test_vi.py\n      - pytest tests/test_write.py  # [not win]\n      - pytest tests/test_xarray.py\n\noutputs:\n    - name: geowombat\n      requirements:\n        build:\n          - python                                 # [build_platform != target_platform]\n          - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n          - cython >=0.29.0,<3.0.0                 # [build_platform != target_platform]\n          - numpy                                  # [build_platform != target_platform]\n          - {{ compiler('c') }}\n\n        host:\n          - python      \n          - setuptools >=59.5.0\n          - wheel\n          - cython >=0.29.0,<3.0.0\n          - numpy\n          - pip\n\n        run:\n          - {{ pin_compatible('python') }}\n          - python \n          - dask-core >=2023.1.0\n          - distributed >=2023.1.0\n          - geopandas >=0.8.0\n          - joblib >=0.16.0\n          - matplotlib-base >=3.3.0\n          - pandas >=1.0.0\n          - pyproj >=3.0.0,<=3.4.0\n          - rasterio >=1.3.0,<2.0.0\n          - retry\n          - requests >=2.20.0\n          - scikit-learn >=0.23.0\n          - scipy >=1.5.0\n          - shapely >=1.7.0\n          - tqdm >=4.62.0\n          - xarray >=2023.1.0\n          - h5netcdf >=1.0.2\n          - cryptography >=38.0.0\n          - threadpoolctl >=3.1.0\n          - setuptools >=59.5.0\n          - cython >=0.29.0,<3.0.0\n          - testfixtures\n          - numpy >=1.19.0\n\n      test:\n        imports:\n          - geowombat\n        requires:\n          - pytest\n        source_files:\n          - tests\n        commands:\n          #- pytest tests   #RUN ALL TESTS \n          - pytest tests/test_clip.py\n          - pytest tests/test_config.py\n          - pytest tests/test_conreg.py\n          - pytest tests/test_extract.py\n          - pytest tests/test_gdal.py\n          - pytest tests/test_moving.py\n        # temp files not compatible with windows ??\n          - pytest tests/test_nodata.py  # [not win]\n          - pytest tests/test_open.py\n          - pytest tests/test_properties.py\n        # - pytest tests/test_rad.py  # [not py==38 or not py==39]\n          - pytest tests/test_rasterio.py  # [not win]\n          - pytest tests/test_scaling.py\n          # - pytest tests/test_series.py  # [not win] only in test options\n          - pytest tests/test_sops.py\n          - pytest tests/test_vi.py\n          - pytest tests/test_write.py  # [not win]\n          - pytest tests/test_xarray.py\n          \n\n\n    - name: geowombat-coreg\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - earthpy\n          - pyfftw ==0.13.1\n          - bottleneck\n          - cartopy\n          - cmocean\n          - dill\n          - geoarray >=0.15.0\n          - geojson\n          - folium >=0.6.0,!=0.12.0\n          - pykrige\n          - arosics\n          - py-tools-ds  \n      test:\n        imports:\n          - geowombat\n        requires:\n          - pytest\n        source_files:\n          - tests\n        commands:\n          - pytest tests/test_coreg.py  # [not win] \n\n\n    - name: geowombat-docs\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - numpydoc\n          - sphinx\n          - sphinx-automodapi\n          - sphinxcontrib-bibtex <2.0.0\n          #- sphinx_tabs\n          - pydata-sphinx-theme ==0.13.1\n          - sphinx-book-theme >=1.0.0\n          - sphinx-copybutton >=0.5.0\n          - sphinx-autodoc-typehints\n          - ipython\n      test:\n        imports:\n          - geowombat\n\n    - name: geowombat-ml\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat') }}\n          - scikit-learn =1.2.0\n          - lightgbm\n          - gw-sklearn-xarray  \n      test:\n        imports:\n          - geowombat\n        requires:\n          - pytest\n        source_files:\n          - tests\n        commands:\n          - pytest tests/ml_test.py\n          \n\n    - name: geowombat-perf\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - rtree\n          - pygeos\n          - netCDF4\n          - ray-default >=2.3.0  # [not osx] \n      test:\n        imports:\n          - geowombat\n\n    - name: geowombat-stac\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - stackstac  \n          - pystac-client\n          - sat-search\n          - planetary-computer\n          - Rich\n          - wget  # [not win]  \n      test:\n        imports:\n          - geowombat\n\n\n    - name: geowombat-tests  # [not osx and py==38 or not lnx and py==38 or not win] \n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - testfixtures\n          - jax  # [not win]\n          - jaxlib  # [not win]\n          - pre-commit\n          - black\n          - flake8\n          - docformatter\n          - isort   \n      test:\n        imports:\n          - geowombat\n      test:\n        imports:\n          - geowombat\n        requires:\n          - pytest\n        source_files:\n          - tests\n        commands:\n          - pytest tests/test_series.py  # [not win]\n\n\n    - name: geowombat-view\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - bokeh\n          - descartes  \n      test:\n        imports:\n          - geowombat\n\n    - name: geowombat-view\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - gsutil\n          - requests  \n      test:\n        imports:\n          - geowombat\n\n    - name: geowombat-web\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - gsutil\n          - requests \n      test:\n        imports:\n          - geowombat\n\n\n    - name: geowombat-zarr\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - zarr\n          - numcodecs \n      test:\n        imports:\n          - geowombat\n\nabout:\n  home: https://github.com/jgrss/geowombat\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE.txt\n  summary: GeoWombat provides utilities to process geospatial raster data.\n  doc_url: https://geowombat.readthedocs.io/\n  dev_url: https://github.com/jgrss\n\nextra:\n  recipe-maintainers:\n    - mxr-conda\n    - jgrss\n    - mmann1123\n\n# notes:\n# build in mamba  https://conda-forge.org/docs/maintainer/maintainer_faq.html#mfaq-mamba-local\n# build local `python build-locally.py`\n# optional extras example https://github.com/conda-forge/ray-packages-feedstock/blob/main/recipe/meta.yaml\n#https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html?highlight=subpackages#implicit-metapackages\n# wget -qO- https://github.com/jgrss/geowombat/archive/refs/tags/v2.1.16.tar.gz | sha256sum\n",
+ "raw_meta_yaml": "{% set name = \"geowombat\" %}\n{% set version = \"2.1.22\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/jgrss/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 5986aab2a88facc9751852f24f59ffce95e242090f008170da6b54c1712ab965\n\n\n\nbuild:\n  number: 1\n  skip: true  # [py<37 or py>311]\n  script: {{ PYTHON }} setup.py build && pip install .\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython >=0.29.0,<3.0.0                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n\n  host:\n    - python      \n    - setuptools >=59.5.0\n    - wheel\n    - cython >=0.29.0,<3.0.0\n    - numpy\n    - pip\n\n\n  run:\n    - {{ pin_compatible('python') }}\n    - python\n    - dask-core >=2023.1.0\n    - distributed >=2023.1.0\n    - geopandas >=0.8.0\n    - joblib >=0.16.0\n    - matplotlib-base >=3.3.0\n    - pandas >=1.0.0\n    - pyproj >=3.0.0,<3.5.0\n    - rasterio >=1.3.0,<2.0.0\n    - retry\n    - requests >=2.20.0\n    - scikit-learn >=0.23.0\n    - scipy >=1.5.0\n    - shapely >=1.7.0\n    - tqdm >=4.62.0\n    - xarray >=2023.1.0\n    - h5netcdf >=1.0.2\n    - cryptography >=38.0.0\n    - threadpoolctl >=3.1.0\n    - setuptools >=59.5.0\n    - cython >=0.29.0,<3.0.0\n    - jax  # [not win]\n    - ray-default  # [not osx]\n    - testfixtures\n    - numpy >=1.19.0\n\n\ntest:\n  imports:\n    - geowombat\n  requires:\n    - pytest\n  source_files:\n    - tests\n  commands:\n      #- pytest tests   #RUN ALL TESTS \n      - pytest tests/test_clip.py\n      - pytest tests/test_config.py\n      # - pytest tests/test_conreg.py\n      - pytest tests/test_extract.py\n      - pytest tests/test_gdal.py\n      - pytest tests/test_moving.py\n    # temp files not compatible with windows ??\n      - pytest tests/test_nodata.py  # [not win]\n      - pytest tests/test_open.py\n      - pytest tests/test_properties.py\n    # - pytest tests/test_rad.py  # [not py==38 or not py==39]\n      - pytest tests/test_rasterio.py  # [not win]\n      - pytest tests/test_scaling.py\n      # - pytest tests/test_series.py  # [not win] only in test options\n      - pytest tests/test_sops.py\n      - pytest tests/test_vi.py\n      - pytest tests/test_write.py  # [not win]\n      - pytest tests/test_xarray.py\n\noutputs:\n    - name: geowombat\n      requirements:\n        build:\n          - python                                 # [build_platform != target_platform]\n          - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n          - cython >=0.29.0,<3.0.0                 # [build_platform != target_platform]\n          - numpy                                  # [build_platform != target_platform]\n          - {{ compiler('c') }}\n\n        host:\n          - python      \n          - setuptools >=59.5.0\n          - wheel\n          - cython >=0.29.0,<3.0.0\n          - numpy\n          - pip\n\n        run:\n          - {{ pin_compatible('python') }}\n          - python \n          - dask-core >=2023.1.0\n          - distributed >=2023.1.0\n          - geopandas >=0.8.0\n          - joblib >=0.16.0\n          - matplotlib-base >=3.3.0\n          - pandas >=1.0.0\n          - pyproj >=3.0.0,<=3.4.0\n          - rasterio >=1.3.0,<2.0.0\n          - retry\n          - requests >=2.20.0\n          - scikit-learn >=0.23.0\n          - scipy >=1.5.0\n          - shapely >=1.7.0\n          - tqdm >=4.62.0\n          - xarray >=2023.1.0\n          - h5netcdf >=1.0.2\n          - cryptography >=38.0.0\n          - threadpoolctl >=3.1.0\n          - setuptools >=59.5.0\n          - cython >=0.29.0,<3.0.0\n          - testfixtures\n          - numpy >=1.19.0\n\n      test:\n        imports:\n          - geowombat\n        requires:\n          - pytest\n        source_files:\n          - tests\n        commands:\n          #- pytest tests   #RUN ALL TESTS \n          - pytest tests/test_clip.py\n          - pytest tests/test_config.py\n          - pytest tests/test_conreg.py\n          - pytest tests/test_extract.py\n          - pytest tests/test_gdal.py\n          - pytest tests/test_moving.py\n        # temp files not compatible with windows ??\n          - pytest tests/test_nodata.py  # [not win]\n          - pytest tests/test_open.py\n          - pytest tests/test_properties.py\n        # - pytest tests/test_rad.py  # [not py==38 or not py==39]\n          - pytest tests/test_rasterio.py  # [not win]\n          - pytest tests/test_scaling.py\n          # - pytest tests/test_series.py  # [not win] only in test options\n          - pytest tests/test_sops.py\n          - pytest tests/test_vi.py\n          - pytest tests/test_write.py  # [not win]\n          - pytest tests/test_xarray.py\n          \n\n\n    - name: geowombat-coreg\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - earthpy\n          - pyfftw ==0.13.1\n          - bottleneck\n          - cartopy\n          - cmocean\n          - dill\n          - geoarray >=0.15.0\n          - geojson\n          - folium >=0.6.0,!=0.12.0\n          - pykrige\n          - arosics\n          - py-tools-ds  \n      test:\n        imports:\n          - geowombat\n        requires:\n          - pytest\n        source_files:\n          - tests\n        commands:\n          - pytest tests/test_coreg.py  # [not win] \n\n\n    - name: geowombat-docs\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - numpydoc\n          - sphinx\n          - sphinx-automodapi\n          - sphinxcontrib-bibtex <2.0.0\n          #- sphinx_tabs\n          - pydata-sphinx-theme ==0.13.1\n          - sphinx-book-theme >=1.0.0\n          - sphinx-copybutton >=0.5.0\n          - sphinx-autodoc-typehints\n          - ipython\n      test:\n        imports:\n          - geowombat\n\n    - name: geowombat-ml\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat') }}\n          - scikit-learn =1.2.0\n          - lightgbm\n          - gw-sklearn-xarray  \n      test:\n        imports:\n          - geowombat\n        requires:\n          - pytest\n        source_files:\n          - tests\n        commands:\n          - pytest tests/ml_test.py\n          \n\n    - name: geowombat-perf\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - rtree\n          - pygeos\n          - netCDF4\n          - ray-default >=2.3.0  # [not osx] \n      test:\n        imports:\n          - geowombat\n\n    - name: geowombat-stac\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - stackstac  \n          - pystac-client\n          - sat-search\n          - planetary-computer\n          - Rich\n          - wget  # [not win]  \n      test:\n        imports:\n          - geowombat\n\n\n    - name: geowombat-tests  # [not osx and py==38 or not lnx and py==38 or not win] \n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - testfixtures\n          - jax  # [not win]\n          - jaxlib  # [not win]\n          - pre-commit\n          - black\n          - flake8\n          - docformatter\n          - isort   \n      test:\n        imports:\n          - geowombat\n      test:\n        imports:\n          - geowombat\n        requires:\n          - pytest\n        source_files:\n          - tests\n        commands:\n          - pytest tests/test_series.py  # [not win]\n\n\n    - name: geowombat-view\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - bokeh\n          - descartes  \n      test:\n        imports:\n          - geowombat\n\n    - name: geowombat-view\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - gsutil\n          - requests  \n      test:\n        imports:\n          - geowombat\n\n    - name: geowombat-web\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - gsutil\n          - requests \n      test:\n        imports:\n          - geowombat\n\n\n    - name: geowombat-zarr\n      requirements:\n        host:\n          - python\n        run:\n          - python \n          - {{ pin_subpackage('geowombat', exact=True) }}\n          - zarr\n          - numcodecs \n      test:\n        imports:\n          - geowombat\n\nabout:\n  home: https://github.com/jgrss/geowombat\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE.txt\n  summary: GeoWombat provides utilities to process geospatial raster data.\n  doc_url: https://geowombat.readthedocs.io/\n  dev_url: https://github.com/jgrss\n\nextra:\n  recipe-maintainers:\n    - mxr-conda\n    - jgrss\n    - mmann1123\n\n# notes:\n# build in mamba  https://conda-forge.org/docs/maintainer/maintainer_faq.html#mfaq-mamba-local\n# build local `python build-locally.py`\n# optional extras example https://github.com/conda-forge/ray-packages-feedstock/blob/main/recipe/meta.yaml\n#https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html?highlight=subpackages#implicit-metapackages\n# wget -qO- https://github.com/jgrss/geowombat/archive/refs/tags/v2.1.16.tar.gz | sha256sum\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -7552,8 +9724,8 @@
    ]
   }
  },
- "url": "https://github.com/jgrss/geowombat/archive/v2.1.17.tar.gz",
- "version": "2.1.17",
+ "url": "https://github.com/jgrss/geowombat/archive/v2.1.22.tar.gz",
+ "version": "2.1.22",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/geowombat.json"
  },
@@ -7569,8 +9741,7 @@
   },
   "build": {
    "number": "1",
-   "script": "PYTHON setup.py build && pip install .",
-   "skip": true
+   "script": "PYTHON setup.py build && pip install ."
   },
   "extra": {
    "recipe-maintainers": [
@@ -8431,11 +10602,295 @@
       "geowombat"
      ]
     }
+   },
+   {
+    "name": "geowombat",
+    "requirements": {
+     "build": [
+      "c_compiler_stub"
+     ],
+     "host": [
+      "python",
+      "setuptools >=59.5.0",
+      "wheel",
+      "cython >=0.29.0,<3.0.0",
+      "numpy",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "dask-core >=2023.1.0",
+      "distributed >=2023.1.0",
+      "geopandas >=0.8.0",
+      "joblib >=0.16.0",
+      "matplotlib-base >=3.3.0",
+      "pandas >=1.0.0",
+      "pyproj >=3.0.0,<=3.4.0",
+      "rasterio >=1.3.0,<2.0.0",
+      "retry",
+      "requests >=2.20.0",
+      "scikit-learn >=0.23.0",
+      "scipy >=1.5.0",
+      "shapely >=1.7.0",
+      "tqdm >=4.62.0",
+      "xarray >=2023.1.0",
+      "h5netcdf >=1.0.2",
+      "cryptography >=38.0.0",
+      "threadpoolctl >=3.1.0",
+      "setuptools >=59.5.0",
+      "cython >=0.29.0,<3.0.0",
+      "testfixtures",
+      "numpy >=1.19.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/test_clip.py",
+      "pytest tests/test_config.py",
+      "pytest tests/test_conreg.py",
+      "pytest tests/test_extract.py",
+      "pytest tests/test_gdal.py",
+      "pytest tests/test_moving.py",
+      "pytest tests/test_open.py",
+      "pytest tests/test_properties.py",
+      "pytest tests/test_scaling.py",
+      "pytest tests/test_sops.py",
+      "pytest tests/test_vi.py",
+      "pytest tests/test_xarray.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-coreg",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "earthpy",
+      "pyfftw ==0.13.1",
+      "bottleneck",
+      "cartopy",
+      "cmocean",
+      "dill",
+      "geoarray >=0.15.0",
+      "geojson",
+      "folium >=0.6.0,!=0.12.0",
+      "pykrige",
+      "arosics",
+      "py-tools-ds"
+     ]
+    },
+    "test": {
+     "commands": null,
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-docs",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "numpydoc",
+      "sphinx",
+      "sphinx-automodapi",
+      "sphinxcontrib-bibtex <2.0.0",
+      "pydata-sphinx-theme ==0.13.1",
+      "sphinx-book-theme >=1.0.0",
+      "sphinx-copybutton >=0.5.0",
+      "sphinx-autodoc-typehints",
+      "ipython"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-ml",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "scikit-learn =1.2.0",
+      "lightgbm",
+      "gw-sklearn-xarray"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pytest tests/ml_test.py"
+     ],
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-perf",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "rtree",
+      "pygeos",
+      "netCDF4",
+      "ray-default >=2.3.0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-stac",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "testfixtures",
+      "pre-commit",
+      "black",
+      "flake8",
+      "docformatter",
+      "isort"
+     ]
+    },
+    "test": {
+     "commands": null,
+     "imports": [
+      "geowombat"
+     ],
+     "requires": [
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "bokeh",
+      "descartes"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-view",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-web",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "gsutil",
+      "requests"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
+   },
+   {
+    "name": "geowombat-zarr",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "geowombat",
+      "zarr",
+      "numcodecs"
+     ]
+    },
+    "test": {
+     "imports": [
+      "geowombat"
+     ]
+    }
    }
   ],
   "package": {
    "name": "geowombat",
-   "version": "2.1.17"
+   "version": "2.1.22"
   },
   "requirements": {
    "build": [
@@ -8477,8 +10932,8 @@
    ]
   },
   "source": {
-   "sha256": "efa188b3884a0321ba0396a5408035225f1e8514e29befa9b149d5feb06a167b",
-   "url": "https://github.com/jgrss/geowombat/archive/v2.1.17.tar.gz"
+   "sha256": "5986aab2a88facc9751852f24f59ffce95e242090f008170da6b54c1712ab965",
+   "url": "https://github.com/jgrss/geowombat/archive/v2.1.22.tar.gz"
   },
   "test": {
    "commands": [
