@@ -37,7 +37,7 @@
   },
   "package": {
    "name": "hatch",
-   "version": "1.9.7"
+   "version": "1.10.0"
   },
   "requirements": {
    "host": [
@@ -48,36 +48,48 @@
    ],
    "run": [
     "click >=8.0.6",
-    "hatchling <1.22",
+    "hatchling >=1.24.2",
     "httpx >=0.22.0",
     "hyperlink >=21.0.0",
     "keyring >=23.5.0",
-    "pexpect >=4.8",
+    "packaging >=23.2",
+    "pexpect >=4.8,<5",
     "platformdirs >=2.5.0",
     "python >=3.8",
     "rich >=11.2.0",
     "shellingham >=1.4.0",
     "tomli-w >=1.0",
-    "tomlkit >=0.10.1",
-    "userpath >=1.7",
-    "virtualenv <20.26.0",
+    "tomlkit >=0.11.1",
+    "userpath >=1.7,<2",
+    "virtualenv >=20.26.1",
+    "uv >=0.1.35",
     "zstandard <1.0"
    ]
   },
   "source": {
-   "sha256": "19a7b82179f94f2adddbad76aa7e65ab90cad55ab103d53827637935c9e6624c",
-   "url": "https://pypi.io/packages/source/h/hatch/hatch-1.9.7.tar.gz"
+   "sha256": "0d68a7d3efa225bedb7a8bb773a347fdc16d5e064aef5fb0411de57cc9abd08a",
+   "url": "https://pypi.io/packages/source/h/hatch/hatch-1.10.0.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check",
-    "hatch --help"
+    "hatch --help",
+    "pytest --ignore tests/backend -ra -k \"not test_already_installed_update_flag and not test_already_installed_update_prompt and not test_installation and not test_all and not test_pypirc\""
    ],
    "imports": [
     "hatch"
    ],
    "requires": [
-    "pip"
+    "pip",
+    "pytest",
+    "pytest-mock",
+    "pytest-xdist",
+    "git",
+    "rust"
+   ],
+   "source_files": [
+    "tests",
+    "pyproject.toml",
+    "hatch.toml"
    ]
   }
  },
@@ -103,6 +115,7 @@
     "httpx",
     "hyperlink",
     "keyring",
+    "packaging",
     "pexpect",
     "platformdirs",
     "python",
@@ -111,6 +124,7 @@
     "tomli-w",
     "tomlkit",
     "userpath",
+    "uv",
     "virtualenv",
     "zstandard"
    ]
@@ -118,7 +132,12 @@
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "git",
+    "pip",
+    "pytest",
+    "pytest-mock",
+    "pytest-xdist",
+    "rust"
    ]
   }
  },
@@ -146,7 +165,7 @@
   },
   "package": {
    "name": "hatch",
-   "version": "1.9.7"
+   "version": "1.10.0"
   },
   "requirements": {
    "host": [
@@ -157,36 +176,48 @@
    ],
    "run": [
     "click >=8.0.6",
-    "hatchling <1.22",
+    "hatchling >=1.24.2",
     "httpx >=0.22.0",
     "hyperlink >=21.0.0",
     "keyring >=23.5.0",
-    "pexpect >=4.8",
+    "packaging >=23.2",
+    "pexpect >=4.8,<5",
     "platformdirs >=2.5.0",
     "python >=3.8",
     "rich >=11.2.0",
     "shellingham >=1.4.0",
     "tomli-w >=1.0",
-    "tomlkit >=0.10.1",
-    "userpath >=1.7",
-    "virtualenv <20.26.0",
+    "tomlkit >=0.11.1",
+    "userpath >=1.7,<2",
+    "virtualenv >=20.26.1",
+    "uv >=0.1.35",
     "zstandard <1.0"
    ]
   },
   "source": {
-   "sha256": "19a7b82179f94f2adddbad76aa7e65ab90cad55ab103d53827637935c9e6624c",
-   "url": "https://pypi.io/packages/source/h/hatch/hatch-1.9.7.tar.gz"
+   "sha256": "0d68a7d3efa225bedb7a8bb773a347fdc16d5e064aef5fb0411de57cc9abd08a",
+   "url": "https://pypi.io/packages/source/h/hatch/hatch-1.10.0.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check",
-    "hatch --help"
+    "hatch --help",
+    "pytest --ignore tests/backend -ra -k \"not test_already_installed_update_flag and not test_already_installed_update_prompt and not test_installation and not test_all and not test_pypirc\""
    ],
    "imports": [
     "hatch"
    ],
    "requires": [
-    "pip"
+    "pip",
+    "pytest",
+    "pytest-mock",
+    "pytest-xdist",
+    "git",
+    "rust"
+   ],
+   "source_files": [
+    "tests",
+    "pyproject.toml",
+    "hatch.toml"
    ]
   }
  },
@@ -204,7 +235,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/hatch.json"
  },
- "raw_meta_yaml": "{% set name = \"hatch\" %}\n{% set version = \"1.9.7\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/hatch-{{ version }}.tar.gz\n  sha256: 19a7b82179f94f2adddbad76aa7e65ab90cad55ab103d53827637935c9e6624c\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n  entry_points:\n    - hatch = hatch.cli:main\n\nrequirements:\n  host:\n    - pip\n    - python >=3.8\n    - hatchling >=1.21.0\n    - hatch-vcs >=0.4.0\n  run:\n    - click >=8.0.6\n    - hatchling <1.22\n    - httpx >=0.22.0\n    - hyperlink >=21.0.0\n    - keyring >=23.5.0\n    - pexpect >=4.8\n    - platformdirs >=2.5.0\n    - python >=3.8\n    - rich >=11.2.0\n    - shellingham >=1.4.0\n    - tomli-w >=1.0\n    - tomlkit >=0.10.1\n    - userpath >=1.7\n    - virtualenv <20.26.0\n    - zstandard <1.0\n\ntest:\n  imports:\n    - hatch\n  commands:\n    - pip check\n    - hatch --help\n  requires:\n    - pip\n\nabout:\n  home: https://hatch.pypa.io/latest/\n  summary: Modern, extensible Python project management\n  dev_url: https://github.com/pypa/hatch\n  license: MIT\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - ofek\n    - henryiii\n",
+ "raw_meta_yaml": "{% set name = \"hatch\" %}\n{% set version = \"1.10.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/hatch-{{ version }}.tar.gz\n  sha256: 0d68a7d3efa225bedb7a8bb773a347fdc16d5e064aef5fb0411de57cc9abd08a\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n  entry_points:\n    - hatch = hatch.cli:main\n\nrequirements:\n  host:\n    - pip\n    - python >=3.8\n    - hatchling >=1.21.0\n    - hatch-vcs >=0.4.0\n  run:\n    - click >=8.0.6\n    - hatchling >=1.24.2\n    - httpx >=0.22.0\n    - hyperlink >=21.0.0\n    - keyring >=23.5.0\n    - packaging >=23.2\n    - pexpect >=4.8,<5\n    - platformdirs >=2.5.0\n    - python >=3.8\n    - rich >=11.2.0\n    - shellingham >=1.4.0\n    - tomli-w >=1.0\n    - tomlkit >=0.11.1\n    - userpath >=1.7,<2\n    - virtualenv >=20.26.1\n    - uv >=0.1.35\n    - zstandard <1.0\n\ntest:\n  source_files:\n    - tests\n    - pyproject.toml\n    - hatch.toml\n  imports:\n    - hatch\n  commands:\n    - hatch --help\n    - pytest --ignore tests/backend -ra -k \"not test_already_installed_update_flag and not test_already_installed_update_prompt and not test_installation and not test_all and not test_pypirc\"\n  requires:\n    - pip\n    - pytest\n    - pytest-mock\n    - pytest-xdist\n    - git\n    - rust\n\nabout:\n  home: https://hatch.pypa.io/latest/\n  summary: Modern, extensible Python project management\n  dev_url: https://github.com/pypa/hatch\n  license: MIT\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - ofek\n    - henryiii\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -214,6 +245,7 @@
    "httpx",
    "hyperlink",
    "keyring",
+   "packaging",
    "pexpect",
    "pip",
    "platformdirs",
@@ -223,6 +255,7 @@
    "tomli-w",
    "tomlkit",
    "userpath",
+   "uv",
    "virtualenv",
    "zstandard"
   ]
@@ -249,6 +282,7 @@
     "httpx",
     "hyperlink",
     "keyring",
+    "packaging",
     "pexpect",
     "platformdirs",
     "python",
@@ -257,6 +291,7 @@
     "tomli-w",
     "tomlkit",
     "userpath",
+    "uv",
     "virtualenv",
     "zstandard"
    ]
@@ -264,7 +299,12 @@
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "git",
+    "pip",
+    "pytest",
+    "pytest-mock",
+    "pytest-xdist",
+    "rust"
    ]
   }
  },
@@ -287,31 +327,38 @@
    "__set__": true,
    "elements": [
     "click >=8.0.6",
-    "hatchling <1.22",
+    "hatchling >=1.24.2",
     "httpx >=0.22.0",
     "hyperlink >=21.0.0",
     "keyring >=23.5.0",
-    "pexpect >=4.8",
+    "packaging >=23.2",
+    "pexpect >=4.8,<5",
     "platformdirs >=2.5.0",
     "python >=3.8",
     "rich >=11.2.0",
     "shellingham >=1.4.0",
     "tomli-w >=1.0",
-    "tomlkit >=0.10.1",
-    "userpath >=1.7",
-    "virtualenv <20.26.0",
+    "tomlkit >=0.11.1",
+    "userpath >=1.7,<2",
+    "uv >=0.1.35",
+    "virtualenv >=20.26.1",
     "zstandard <1.0"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "git",
+    "pip",
+    "pytest",
+    "pytest-mock",
+    "pytest-xdist",
+    "rust"
    ]
   }
  },
- "url": "https://pypi.io/packages/source/h/hatch/hatch-1.9.7.tar.gz",
- "version": "1.9.7",
+ "url": "https://pypi.io/packages/source/h/hatch/hatch-1.10.0.tar.gz",
+ "version": "1.10.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/hatch.json"
  }
