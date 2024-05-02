@@ -26,7 +26,8 @@
   },
   "provider": {
    "linux_64": "github_actions"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "jaxlib",
  "hash_type": "sha256",
@@ -56,9 +57,9 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cuda_compiler_stub",
-    "sysroot_linux-64 2.17",
     "unzip",
     "bazel",
     "bazel >=5.1.1,<6",
@@ -139,6 +140,7 @@
     "bazel",
     "bazel-toolchain",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "flatbuffers",
@@ -146,7 +148,6 @@
     "libgrpc",
     "libprotobuf",
     "rsync",
-    "sysroot_linux-64",
     "unzip"
    ]
   },
@@ -221,6 +222,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "unzip",
     "bazel",
@@ -286,6 +288,7 @@
     "bazel",
     "bazel-toolchain",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "flatbuffers",
     "libabseil",
@@ -351,9 +354,9 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cuda_compiler_stub",
-    "sysroot_linux-64 2.17",
     "unzip",
     "bazel",
     "bazel >=5.1.1,<6",
@@ -398,9 +401,7 @@
     "cuda-nvcc"
    ],
    "run_constrained": [
-    "jax >=0.4.23",
-    "__osx >=10.14",
-    "__osx >=11.0"
+    "jax >=0.4.23"
    ]
   },
   "source": {
@@ -456,6 +457,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "unzip",
     "bazel",
@@ -485,8 +487,7 @@
     "ml_dtypes >=0.2.0"
    ],
    "run_constrained": [
-    "jax >=0.4.23",
-    "__osx >=10.14"
+    "jax >=0.4.23"
    ]
   },
   "source": {
@@ -522,6 +523,7 @@
     "bazel",
     "bazel-toolchain",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "flatbuffers",
     "libabseil",
@@ -587,6 +589,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "unzip",
     "bazel",
@@ -616,8 +619,7 @@
     "ml_dtypes >=0.2.0"
    ],
    "run_constrained": [
-    "jax >=0.4.23",
-    "__osx >=11.0"
+    "jax >=0.4.23"
    ]
   },
   "source": {
@@ -653,6 +655,7 @@
     "bazel",
     "bazel-toolchain",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "flatbuffers",
     "libabseil",
@@ -708,7 +711,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/jaxlib.json"
  },
- "raw_meta_yaml": "{% set version = \"0.4.23\" %}\n{% set number = 1 %}\n\n{% if cuda_compiler_version != \"None\" %}\n{% set number = number + 200 %}\n{% endif %}\n\n\npackage:\n  name: jaxlib\n  version: {{ version }}\n\nsource:\n  # only pull sources after upstream PyPI release...\n  url: https://github.com/google/jax/archive/jaxlib-v{{ version }}.tar.gz\n  sha256: e4c06d62ba54becffd91abc862627b8b11b79c5a77366af8843b819665b6d568\n  patches:\n    - patches/0001-Allow-for-custom-CUDA-build.patch\n    - patches/0002-xla-Support-third-party-build-of-boringssl.patch\n    - patches/0001-xla-Fix-abseil-headers.patch\n\nbuild:\n  number: {{ number }}\n  skip: true  # [win or py<39]\n  skip: true  # [cuda_compiler != \"None\" and aarch64]\n  skip: true  # [cuda_compiler_version == \"11.2\"]\n  string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != \"None\"]\n  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == \"None\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}                 # [cuda_compiler_version != \"None\"]\n    # For some reason we get 2.28. pin to 2.17\n    - sysroot_linux-64 2.17                  # [linux64]\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - unzip\n    - rsync  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    # Keep bazel listed twice here to help the migrators track dependencies\n    - bazel\n    - bazel >=5.1.1,<6\n    - bazel-toolchain >=0.1.10\n    # need protoc\n    - libprotobuf\n    # needs protoc-gen-grpc\n    - libgrpc\n    # needs flatc\n    - flatbuffers <2.0.6\n    # list libabseil here to ensure pinning correctly\n    - libabseil\n  host:\n    - cudnn             # [cuda_compiler_version != \"None\"]\n    - nccl              # [cuda_compiler_version != \"None\"]\n    - cuda-cupti-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-cudart-dev   # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-nvml-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-nvtx-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcublas-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusolver-dev   # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcurand-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcufft-dev      # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusparse-dev   # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - python\n    - pip\n    - numpy\n    - wheel\n    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != \"None\"]\n    # avoid not being able to pass `-C=--build-option=--python-tag=cp<x>` due to\n    # https://github.com/pypa/build/issues/202, which is being used by jaxlib in\n    # https://github.com/google/jax/blame/jaxlib-v0.4.15/jaxlib/tools/build_wheel.py\n    - python-build <1\n    # list libabseil here to ensure pinning correctly\n    - libabseil\n    - flatbuffers <2.0.6\n    - libgrpc\n    - openssl\n    - zlib\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - scipy >=1.9\n    - ml_dtypes >=0.2.0\n    - __cuda  # [cuda_compiler_version != \"None\"]\n    - cuda-nvcc  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n  run_constrained:\n    - jax >={{ version }}\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx]\n\ntest:\n  files:\n    - test_jaxlib.py\n  requires:\n    - pip\n  commands:\n    - pip check\n    - python test_jaxlib.py\n  imports:\n    - jaxlib\n    # Only this import actually triggers the load of XLA\n    - jaxlib.xla_client\n\nabout:\n  home: http://github.com/google/jax\n  license: Apache-2.0\n  license_file: LICENSE\n  summary: 'Composable transformations of Python+NumPy programs: differentiate, vectorize, JIT to GPU/TPU, and more'\n  dev_url: http://github.com/google/jax\n\nextra:\n  recipe-maintainers:\n    - ericmjl\n    - xhochy\n    - ngam\n",
+ "raw_meta_yaml": "{% set version = \"0.4.23\" %}\n{% set number = 1 %}\n\n{% if cuda_compiler_version != \"None\" %}\n{% set number = number + 200 %}\n{% endif %}\n\n\npackage:\n  name: jaxlib\n  version: {{ version }}\n\nsource:\n  # only pull sources after upstream PyPI release...\n  url: https://github.com/google/jax/archive/jaxlib-v{{ version }}.tar.gz\n  sha256: e4c06d62ba54becffd91abc862627b8b11b79c5a77366af8843b819665b6d568\n  patches:\n    - patches/0001-Allow-for-custom-CUDA-build.patch\n    - patches/0002-xla-Support-third-party-build-of-boringssl.patch\n    - patches/0001-xla-Fix-abseil-headers.patch\n\nbuild:\n  number: {{ number }}\n  skip: true  # [win or py<39]\n  skip: true  # [cuda_compiler != \"None\" and aarch64]\n  skip: true  # [cuda_compiler_version == \"11.2\"]\n  string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != \"None\"]\n  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == \"None\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}                 # [cuda_compiler_version != \"None\"]\n    # For some reason we get 2.28. pin to 2.17\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - unzip\n    - rsync  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    # Keep bazel listed twice here to help the migrators track dependencies\n    - bazel\n    - bazel >=5.1.1,<6\n    - bazel-toolchain >=0.1.10\n    # need protoc\n    - libprotobuf\n    # needs protoc-gen-grpc\n    - libgrpc\n    # needs flatc\n    - flatbuffers <2.0.6\n    # list libabseil here to ensure pinning correctly\n    - libabseil\n  host:\n    - cudnn             # [cuda_compiler_version != \"None\"]\n    - nccl              # [cuda_compiler_version != \"None\"]\n    - cuda-cupti-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-cudart-dev   # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-nvml-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-nvtx-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcublas-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusolver-dev   # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcurand-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcufft-dev      # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusparse-dev   # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - python\n    - pip\n    - numpy\n    - wheel\n    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != \"None\"]\n    # avoid not being able to pass `-C=--build-option=--python-tag=cp<x>` due to\n    # https://github.com/pypa/build/issues/202, which is being used by jaxlib in\n    # https://github.com/google/jax/blame/jaxlib-v0.4.15/jaxlib/tools/build_wheel.py\n    - python-build <1\n    # list libabseil here to ensure pinning correctly\n    - libabseil\n    - flatbuffers <2.0.6\n    - libgrpc\n    - openssl\n    - zlib\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - scipy >=1.9\n    - ml_dtypes >=0.2.0\n    - __cuda  # [cuda_compiler_version != \"None\"]\n    - cuda-nvcc  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n  run_constrained:\n    - jax >={{ version }}\n\ntest:\n  files:\n    - test_jaxlib.py\n  requires:\n    - pip\n  commands:\n    - pip check\n    - python test_jaxlib.py\n  imports:\n    - jaxlib\n    # Only this import actually triggers the load of XLA\n    - jaxlib.xla_client\n\nabout:\n  home: http://github.com/google/jax\n  license: Apache-2.0\n  license_file: LICENSE\n  summary: 'Composable transformations of Python+NumPy programs: differentiate, vectorize, JIT to GPU/TPU, and more'\n  dev_url: http://github.com/google/jax\n\nextra:\n  recipe-maintainers:\n    - ericmjl\n    - xhochy\n    - ngam\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -716,6 +719,7 @@
    "bazel",
    "bazel-toolchain",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cuda-cudart-dev",
    "cuda-cupti-dev",
    "cuda-nvcc",
@@ -743,7 +747,6 @@
    "python-build",
    "rsync",
    "scipy",
-   "sysroot_linux-64",
    "unzip",
    "wheel",
    "zlib"
@@ -756,6 +759,7 @@
     "bazel",
     "bazel-toolchain",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "flatbuffers",
@@ -763,7 +767,6 @@
     "libgrpc",
     "libprotobuf",
     "rsync",
-    "sysroot_linux-64",
     "unzip"
    ]
   },
@@ -771,6 +774,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda-cudart-dev",
     "cuda-cupti-dev",
     "cuda-nvml-dev",
@@ -802,6 +806,7 @@
    "elements": [
     "__cuda",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda-nvcc",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -827,6 +832,7 @@
     "bazel >=5.1.1,<6",
     "bazel-toolchain >=0.1.10",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "flatbuffers <2.0.6",
@@ -834,7 +840,6 @@
     "libgrpc",
     "libprotobuf",
     "rsync",
-    "sysroot_linux-64 2.17",
     "unzip"
    ]
   },
