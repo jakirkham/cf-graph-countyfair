@@ -23,14 +23,14 @@
   "about": {
    "home": "https://computing.llnl.gov/projects/sundials",
    "license": "BSD-3-Clause",
-   "license_file": "LICENSE",
+   "license_file": [
+    "sundials/LICENSE",
+    "superlu_mt/License.txt"
+   ],
    "summary": "SUite of Nonlinear and DIfferential/ALgebraic equation Solvers"
   },
   "build": {
-   "number": "0",
-   "run_exports": [
-    "sundials"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -38,36 +38,112 @@
     "jschueller"
    ]
   },
+  "outputs": [
+   {
+    "name": "sundials",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "run_exports": [
+     "sundials"
+    ],
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test ! -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-static",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-devel",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "sundials",
+   "name": "sundials-split",
    "version": "7.0.0"
   },
-  "requirements": {
-   "build": [
-    "cmake",
-    "ninja",
-    "c_compiler_stub",
-    "cxx_compiler_stub",
-    "fortran_compiler_stub"
-   ],
-   "host": [
-    "libblas",
-    "liblapack",
-    "suitesparse"
-   ],
-   "run": [
-    "suitesparse"
-   ]
-  },
-  "source": {
-   "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
-   "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f ${PREFIX}/include/sundials/sundials_band.h"
-   ]
-  }
+  "source": [
+   {
+    "folder": "sundials",
+    "patches": null,
+    "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
+    "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
+   },
+   {
+    "folder": "superlu_mt",
+    "sha256": "6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972",
+    "url": "https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip"
+   }
+  ]
  },
  "linux_64_requirements": {
   "build": {
@@ -103,14 +179,14 @@
   "about": {
    "home": "https://computing.llnl.gov/projects/sundials",
    "license": "BSD-3-Clause",
-   "license_file": "LICENSE",
+   "license_file": [
+    "sundials/LICENSE",
+    "superlu_mt/License.txt"
+   ],
    "summary": "SUite of Nonlinear and DIfferential/ALgebraic equation Solvers"
   },
   "build": {
-   "number": "0",
-   "run_exports": [
-    "sundials"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -118,36 +194,112 @@
     "jschueller"
    ]
   },
+  "outputs": [
+   {
+    "name": "sundials",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "run_exports": [
+     "sundials"
+    ],
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test ! -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-static",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-devel",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "sundials",
+   "name": "sundials-split",
    "version": "7.0.0"
   },
-  "requirements": {
-   "build": [
-    "cmake",
-    "ninja",
-    "c_compiler_stub",
-    "cxx_compiler_stub",
-    "fortran_compiler_stub"
-   ],
-   "host": [
-    "libblas",
-    "liblapack",
-    "suitesparse"
-   ],
-   "run": [
-    "suitesparse"
-   ]
-  },
-  "source": {
-   "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
-   "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f ${PREFIX}/include/sundials/sundials_band.h"
-   ]
-  }
+  "source": [
+   {
+    "folder": "sundials",
+    "patches": null,
+    "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
+    "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
+   },
+   {
+    "folder": "superlu_mt",
+    "sha256": "6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972",
+    "url": "https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip"
+   }
+  ]
  },
  "linux_aarch64_requirements": {
   "build": {
@@ -183,14 +335,14 @@
   "about": {
    "home": "https://computing.llnl.gov/projects/sundials",
    "license": "BSD-3-Clause",
-   "license_file": "LICENSE",
+   "license_file": [
+    "sundials/LICENSE",
+    "superlu_mt/License.txt"
+   ],
    "summary": "SUite of Nonlinear and DIfferential/ALgebraic equation Solvers"
   },
   "build": {
-   "number": "0",
-   "run_exports": [
-    "sundials"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -198,36 +350,112 @@
     "jschueller"
    ]
   },
+  "outputs": [
+   {
+    "name": "sundials",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "run_exports": [
+     "sundials"
+    ],
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test ! -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-static",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-devel",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "sundials",
+   "name": "sundials-split",
    "version": "7.0.0"
   },
-  "requirements": {
-   "build": [
-    "cmake",
-    "ninja",
-    "c_compiler_stub",
-    "cxx_compiler_stub",
-    "fortran_compiler_stub"
-   ],
-   "host": [
-    "libblas",
-    "liblapack",
-    "suitesparse"
-   ],
-   "run": [
-    "suitesparse"
-   ]
-  },
-  "source": {
-   "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
-   "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f ${PREFIX}/include/sundials/sundials_band.h"
-   ]
-  }
+  "source": [
+   {
+    "folder": "sundials",
+    "patches": null,
+    "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
+    "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
+   },
+   {
+    "folder": "superlu_mt",
+    "sha256": "6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972",
+    "url": "https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip"
+   }
+  ]
  },
  "linux_ppc64le_requirements": {
   "build": {
@@ -263,14 +491,14 @@
   "about": {
    "home": "https://computing.llnl.gov/projects/sundials",
    "license": "BSD-3-Clause",
-   "license_file": "LICENSE",
+   "license_file": [
+    "sundials/LICENSE",
+    "superlu_mt/License.txt"
+   ],
    "summary": "SUite of Nonlinear and DIfferential/ALgebraic equation Solvers"
   },
   "build": {
-   "number": "0",
-   "run_exports": [
-    "sundials"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -278,48 +506,606 @@
     "jschueller"
    ]
   },
+  "outputs": [
+   {
+    "name": "sundials",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "run_exports": [
+     "sundials"
+    ],
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test ! -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-static",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-devel",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "run_exports": [
+     "sundials"
+    ],
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test ! -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-static",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-devel",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "run_exports": [
+     "sundials"
+    ],
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test ! -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-static",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-devel",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "run_exports": [
+     "sundials"
+    ],
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test ! -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-static",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-devel",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "run_exports": [
+     "sundials"
+    ],
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test ! -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-static",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-devel",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub"
+     ],
+     "host": [
+      "libblas"
+     ],
+     "run": []
+    },
+    "run_exports": [
+     "sundials"
+    ],
+    "script": "bld-sundials.bat",
+    "test": {
+     "commands": [
+      "if not exist %LIBRARY_PREFIX%\\include\\sundials\\sundials_band.h (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\sundials_core.dll (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\sundials_core.lib (exit 1)",
+      "if exist %LIBRARY_PREFIX%\\lib\\sundials_core_static.lib (exit 1)"
+     ]
+    }
+   },
+   {
+    "name": "sundials-static",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub"
+     ],
+     "host": [
+      "libblas"
+     ],
+     "run": []
+    },
+    "script": "bld-sundials.bat",
+    "test": {
+     "commands": [
+      "if not exist %LIBRARY_PREFIX%\\include\\sundials\\sundials_band.h (exit 1)",
+      "if exist %LIBRARY_PREFIX%\\lib\\sundials_core.dll (exit 1)",
+      "if exist %LIBRARY_PREFIX%\\lib\\sundials_core.lib (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\sundials_core_static.lib (exit 1)"
+     ]
+    }
+   },
+   {
+    "name": "sundials-devel",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub"
+     ],
+     "host": [
+      "libblas"
+     ],
+     "run": []
+    },
+    "script": "bld-sundials.bat",
+    "test": {
+     "commands": [
+      "if not exist %LIBRARY_PREFIX%\\include\\sundials\\sundials_band.h (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\sundials_core.dll (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\sundials_core.lib (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\sundials_core_static.lib (exit 1)"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "sundials",
+   "name": "sundials-split",
    "version": "7.0.0"
   },
-  "requirements": {
-   "build": [
-    "cmake",
-    "ninja",
-    "c_compiler_stub",
-    "cxx_compiler_stub",
-    "fortran_compiler_stub"
-   ],
-   "host": [
-    "libblas",
-    "liblapack",
-    "suitesparse"
-   ],
-   "run": [
-    "suitesparse"
-   ]
-  },
-  "source": {
-   "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
-   "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
-  },
-  "test": {
-   "commands": null
-  }
+  "source": [
+   {
+    "folder": "sundials",
+    "patches": null,
+    "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
+    "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
+   },
+   {
+    "folder": "superlu_mt",
+    "sha256": "6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972",
+    "url": "https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip"
+   },
+   {
+    "folder": "sundials",
+    "patches": null,
+    "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
+    "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
+   },
+   {
+    "folder": "superlu_mt",
+    "sha256": "6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972",
+    "url": "https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip"
+   },
+   {
+    "folder": "sundials",
+    "patches": null,
+    "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
+    "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
+   },
+   {
+    "folder": "superlu_mt",
+    "sha256": "6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972",
+    "url": "https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip"
+   },
+   {
+    "folder": "sundials",
+    "patches": null,
+    "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
+    "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
+   },
+   {
+    "folder": "superlu_mt",
+    "sha256": "6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972",
+    "url": "https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip"
+   },
+   {
+    "folder": "sundials",
+    "patches": null,
+    "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
+    "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
+   },
+   {
+    "folder": "superlu_mt",
+    "sha256": "6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972",
+    "url": "https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip"
+   },
+   {
+    "folder": "sundials",
+    "patches": [
+     "fix-win-static-and-shared.patch"
+    ],
+    "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
+    "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
+   },
+   {
+    "folder": "superlu_mt",
+    "sha256": "6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972",
+    "url": "https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip"
+   }
+  ]
  },
- "name": "sundials",
+ "name": "sundials-split",
  "osx_64_meta_yaml": {
   "about": {
    "home": "https://computing.llnl.gov/projects/sundials",
    "license": "BSD-3-Clause",
-   "license_file": "LICENSE",
+   "license_file": [
+    "sundials/LICENSE",
+    "superlu_mt/License.txt"
+   ],
    "summary": "SUite of Nonlinear and DIfferential/ALgebraic equation Solvers"
   },
   "build": {
-   "number": "0",
-   "run_exports": [
-    "sundials"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -327,36 +1113,112 @@
     "jschueller"
    ]
   },
+  "outputs": [
+   {
+    "name": "sundials",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "run_exports": [
+     "sundials"
+    ],
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test ! -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-static",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-devel",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "sundials",
+   "name": "sundials-split",
    "version": "7.0.0"
   },
-  "requirements": {
-   "build": [
-    "cmake",
-    "ninja",
-    "c_compiler_stub",
-    "cxx_compiler_stub",
-    "fortran_compiler_stub"
-   ],
-   "host": [
-    "libblas",
-    "liblapack",
-    "suitesparse"
-   ],
-   "run": [
-    "suitesparse"
-   ]
-  },
-  "source": {
-   "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
-   "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f ${PREFIX}/include/sundials/sundials_band.h"
-   ]
-  }
+  "source": [
+   {
+    "folder": "sundials",
+    "patches": null,
+    "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
+    "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
+   },
+   {
+    "folder": "superlu_mt",
+    "sha256": "6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972",
+    "url": "https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip"
+   }
+  ]
  },
  "osx_64_requirements": {
   "build": {
@@ -392,14 +1254,14 @@
   "about": {
    "home": "https://computing.llnl.gov/projects/sundials",
    "license": "BSD-3-Clause",
-   "license_file": "LICENSE",
+   "license_file": [
+    "sundials/LICENSE",
+    "superlu_mt/License.txt"
+   ],
    "summary": "SUite of Nonlinear and DIfferential/ALgebraic equation Solvers"
   },
   "build": {
-   "number": "0",
-   "run_exports": [
-    "sundials"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -407,36 +1269,112 @@
     "jschueller"
    ]
   },
+  "outputs": [
+   {
+    "name": "sundials",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "run_exports": [
+     "sundials"
+    ],
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test ! -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-static",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   },
+   {
+    "name": "sundials-devel",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ],
+     "host": [
+      "libblas",
+      "liblapack",
+      "suitesparse"
+     ],
+     "run": [
+      "suitesparse"
+     ]
+    },
+    "script": "build-sundials.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/sundials/sundials_band.h",
+      "test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}",
+      "test -e ${PREFIX}/lib/libsundials_core.a"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "sundials",
+   "name": "sundials-split",
    "version": "7.0.0"
   },
-  "requirements": {
-   "build": [
-    "cmake",
-    "ninja",
-    "c_compiler_stub",
-    "cxx_compiler_stub",
-    "fortran_compiler_stub"
-   ],
-   "host": [
-    "libblas",
-    "liblapack",
-    "suitesparse"
-   ],
-   "run": [
-    "suitesparse"
-   ]
-  },
-  "source": {
-   "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
-   "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f ${PREFIX}/include/sundials/sundials_band.h"
-   ]
-  }
+  "source": [
+   {
+    "folder": "sundials",
+    "patches": null,
+    "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
+    "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
+   },
+   {
+    "folder": "superlu_mt",
+    "sha256": "6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972",
+    "url": "https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip"
+   }
+  ]
  },
  "osx_arm64_requirements": {
   "build": {
@@ -471,7 +1409,9 @@
  "outputs_names": {
   "__set__": true,
   "elements": [
-   "sundials"
+   "sundials",
+   "sundials-devel",
+   "sundials-static"
   ]
  },
  "parsing_error": false,
@@ -486,7 +1426,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/sundials.json"
  },
- "raw_meta_yaml": "{% set name = \"sundials\" %}\n{% set version = \"7.0.0\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/LLNL/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6\n\nbuild:\n  number: 0\n  run_exports:\n    - {{ pin_subpackage('sundials', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}  # [unix]\n  host:\n    - libblas\n    - liblapack  # [not win]\n    - suitesparse  # [not win]\n  run:\n    - suitesparse  # [not win]\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]\n\nabout:\n  home: https://computing.llnl.gov/projects/sundials\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: SUite of Nonlinear and DIfferential/ALgebraic equation Solvers\n\nextra:\n  recipe-maintainers:\n    - bjodah\n    - jschueller\n",
+ "raw_meta_yaml": "{% set name = \"sundials\" %}\n{% set version = \"7.0.0\" %}\n\npackage:\n  name: {{ name }}-split\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/LLNL/{{ name }}/archive/v{{ version }}.tar.gz\n    sha256: 63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6\n    folder: sundials\n    patches:\n      - fix-win-static-and-shared.patch  # [win]\n  - url: https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip\n    folder: superlu_mt\n    sha256: 6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972\n\nbuild:\n  number: 1\n\noutputs:\n  - name: {{ name }}\n    script: build-sundials.sh   # [unix]\n    script: bld-sundials.bat  # [win]\n    run_exports:\n      - {{ pin_subpackage('sundials', max_pin='x.x') }}\n    requirements:\n      build:\n        - cmake\n        - ninja\n        - {{ compiler('c') }}\n        - {{ compiler('cxx') }}\n        - {{ compiler('fortran') }}  # [unix]\n      host:\n        - libblas\n        - liblapack  # [not win]\n        - suitesparse  # [not win]\n      run:\n        - suitesparse  # [not win]\n    test:\n      commands:\n        - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]\n        - test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}  # [unix]\n        - test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}  # [unix]\n        - test ! -e ${PREFIX}/lib/libsundials_core.a  # [unix]\n        - if not exist %LIBRARY_PREFIX%\\include\\sundials\\sundials_band.h (exit 1)  # [win]\n        - if not exist %LIBRARY_PREFIX%\\lib\\sundials_core.dll (exit 1)  # [win]\n        - if not exist %LIBRARY_PREFIX%\\lib\\sundials_core.lib (exit 1)  # [win]\n        - if exist %LIBRARY_PREFIX%\\lib\\sundials_core_static.lib (exit 1)  # [win]\n\n  - name: {{ name }}-static\n    script: build-sundials.sh   # [unix]\n    script: bld-sundials.bat  # [win]\n    requirements:\n      build:\n        - cmake\n        - ninja\n        - {{ compiler('c') }}\n        - {{ compiler('cxx') }}\n        - {{ compiler('fortran') }}  # [unix]\n      host:\n        - libblas\n        - liblapack  # [not win]\n        - suitesparse  # [not win]\n      run:\n        - suitesparse  # [not win]\n    test:\n      commands:\n        - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]\n        - test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}  # [unix]\n        - test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}  # [unix]\n        - test -e ${PREFIX}/lib/libsundials_core.a  # [unix]\n        - if not exist %LIBRARY_PREFIX%\\include\\sundials\\sundials_band.h (exit 1)  # [win]\n        - if exist %LIBRARY_PREFIX%\\lib\\sundials_core.dll (exit 1)  # [win]\n        - if exist %LIBRARY_PREFIX%\\lib\\sundials_core.lib (exit 1)  # [win]\n        - if not exist %LIBRARY_PREFIX%\\lib\\sundials_core_static.lib (exit 1)  # [win]\n\n  - name: {{ name }}-devel\n    script: build-sundials.sh   # [unix]\n    script: bld-sundials.bat  # [win]\n    requirements:\n      build:\n        - cmake\n        - ninja\n        - {{ compiler('c') }}\n        - {{ compiler('cxx') }}\n        - {{ compiler('fortran') }}  # [unix]\n      host:\n        - libblas\n        - liblapack  # [not win]\n        - suitesparse  # [not win]\n      run:\n        - suitesparse  # [not win]\n    test:\n      commands:\n        - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]\n        - test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}  # [unix]\n        - test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}  # [unix]\n        - test -e ${PREFIX}/lib/libsundials_core.a  # [unix]\n        - if not exist %LIBRARY_PREFIX%\\include\\sundials\\sundials_band.h (exit 1)  # [win]\n        - if not exist %LIBRARY_PREFIX%\\lib\\sundials_core.dll (exit 1)  # [win]\n        - if not exist %LIBRARY_PREFIX%\\lib\\sundials_core.lib (exit 1)  # [win]\n        - if not exist %LIBRARY_PREFIX%\\lib\\sundials_core_static.lib (exit 1)  # [win]\n\nabout:\n  home: https://computing.llnl.gov/projects/sundials\n  license: BSD-3-Clause\n  license_file:\n    - sundials/LICENSE\n    - superlu_mt/License.txt\n  summary: SUite of Nonlinear and DIfferential/ALgebraic equation Solvers\n\nextra:\n  recipe-maintainers:\n    - bjodah\n    - jschueller\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -576,14 +1516,14 @@
   "about": {
    "home": "https://computing.llnl.gov/projects/sundials",
    "license": "BSD-3-Clause",
-   "license_file": "LICENSE",
+   "license_file": [
+    "sundials/LICENSE",
+    "superlu_mt/License.txt"
+   ],
    "summary": "SUite of Nonlinear and DIfferential/ALgebraic equation Solvers"
   },
   "build": {
-   "number": "0",
-   "run_exports": [
-    "sundials"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -591,29 +1531,102 @@
     "jschueller"
    ]
   },
+  "outputs": [
+   {
+    "name": "sundials",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub"
+     ],
+     "host": [
+      "libblas"
+     ],
+     "run": []
+    },
+    "run_exports": [
+     "sundials"
+    ],
+    "script": "bld-sundials.bat",
+    "test": {
+     "commands": [
+      "if not exist %LIBRARY_PREFIX%\\include\\sundials\\sundials_band.h (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\sundials_core.dll (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\sundials_core.lib (exit 1)",
+      "if exist %LIBRARY_PREFIX%\\lib\\sundials_core_static.lib (exit 1)"
+     ]
+    }
+   },
+   {
+    "name": "sundials-static",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub"
+     ],
+     "host": [
+      "libblas"
+     ],
+     "run": []
+    },
+    "script": "bld-sundials.bat",
+    "test": {
+     "commands": [
+      "if not exist %LIBRARY_PREFIX%\\include\\sundials\\sundials_band.h (exit 1)",
+      "if exist %LIBRARY_PREFIX%\\lib\\sundials_core.dll (exit 1)",
+      "if exist %LIBRARY_PREFIX%\\lib\\sundials_core.lib (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\sundials_core_static.lib (exit 1)"
+     ]
+    }
+   },
+   {
+    "name": "sundials-devel",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja",
+      "c_compiler_stub",
+      "cxx_compiler_stub"
+     ],
+     "host": [
+      "libblas"
+     ],
+     "run": []
+    },
+    "script": "bld-sundials.bat",
+    "test": {
+     "commands": [
+      "if not exist %LIBRARY_PREFIX%\\include\\sundials\\sundials_band.h (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\sundials_core.dll (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\sundials_core.lib (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\sundials_core_static.lib (exit 1)"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "sundials",
+   "name": "sundials-split",
    "version": "7.0.0"
   },
-  "requirements": {
-   "build": [
-    "cmake",
-    "ninja",
-    "c_compiler_stub",
-    "cxx_compiler_stub"
-   ],
-   "host": [
-    "libblas"
-   ],
-   "run": []
-  },
-  "source": {
-   "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
-   "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
-  },
-  "test": {
-   "commands": null
-  }
+  "source": [
+   {
+    "folder": "sundials",
+    "patches": [
+     "fix-win-static-and-shared.patch"
+    ],
+    "sha256": "63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6",
+    "url": "https://github.com/LLNL/sundials/archive/v7.0.0.tar.gz"
+   },
+   {
+    "folder": "superlu_mt",
+    "sha256": "6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972",
+    "url": "https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip"
+   }
+  ]
  },
  "win_64_requirements": {
   "build": {
