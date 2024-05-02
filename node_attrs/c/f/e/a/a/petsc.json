@@ -2,6 +2,10 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "azure": {
+   "free_disk_space": true,
+   "store_build_artifacts": false
+  },
   "build_platform": {
    "linux_aarch64": "linux_64",
    "linux_ppc64le": "linux_64",
@@ -34,12 +38,18 @@
    "summary": "PETSc: Portable, Extensible Toolkit for Scientific Computation"
   },
   "build": {
-   "number": "1",
+   "ignore_run_exports_from": [
+    "cuda_compiler_stub"
+   ],
+   "number": "202",
    "run_exports": [
     "petsc",
     "petsc * complex_*"
    ],
-   "string": "complex_h1234567_1",
+   "script_env": [
+    "CUDA_CONDA_TARGET_NAME="
+   ],
+   "string": "complex_cuda11_h1234567_202",
    "track_features": [
     "petsc_complex"
    ]
@@ -52,7 +62,8 @@
     "davidbrochart",
     "SylvainCorlay",
     "martinRenou",
-    "matthiasdiener"
+    "matthiasdiener",
+    "stefanozampini"
    ]
   },
   "package": {
@@ -65,6 +76,7 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
+    "cuda_compiler_stub",
     "make",
     "pkg-config",
     "python",
@@ -77,7 +89,7 @@
     "cmake",
     "openmpi",
     "yaml",
-    "hypre 2.28",
+    "hypre",
     "metis",
     "parmetis",
     "libptscotch",
@@ -89,7 +101,10 @@
     "suitesparse",
     "hdf5",
     "hdf5 * mpi_openmpi_*",
-    "fftw * mpi_openmpi_*"
+    "fftw * mpi_openmpi_*",
+    "cuda-version 11.8",
+    "cudatoolkit",
+    "cuda-version 12.4"
    ],
    "run": [
     "openmpi",
@@ -106,13 +121,16 @@
     "suitesparse",
     "hdf5",
     "hdf5 * mpi_openmpi_*",
-    "fftw * mpi_openmpi_*"
+    "fftw * mpi_openmpi_*",
+    "cuda-version >=11.2,<12",
+    "cudatoolkit >=11.2,<12"
    ]
   },
   "source": {
    "patches": [
     "ignore-not-invalid.patch",
-    "no-cppflags-in-pkgconfig-cflags.patch"
+    "no-cppflags-in-pkgconfig-cflags.patch",
+    "target-cudadir.patch"
    ],
    "sha256": "7ff8b692bceb7d7a8f51e2f45ccb20af00ba9395d7e1eee8816d46eb1c4c4b27",
    "url": "https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-3.21.1.tar.gz"
@@ -126,14 +144,15 @@
    "files": [
     "tests/ex1.c",
     "tests/ex1f.F90",
+    "tests/testdlopen.c",
     "tests/makefile"
    ],
    "requires": [
     "pkg-config",
+    "make",
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "fortran_compiler_stub",
-    "make"
+    "fortran_compiler_stub"
    ]
   }
  },
@@ -143,6 +162,7 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "gnuconfig",
@@ -155,6 +175,8 @@
    "__set__": true,
    "elements": [
     "cmake",
+    "cuda-version",
+    "cudatoolkit",
     "fftw",
     "hdf5",
     "hypre",
@@ -177,6 +199,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cuda-version",
+    "cudatoolkit",
     "fftw",
     "hdf5",
     "hypre",
@@ -215,12 +239,18 @@
    "summary": "PETSc: Portable, Extensible Toolkit for Scientific Computation"
   },
   "build": {
-   "number": "1",
+   "ignore_run_exports_from": [
+    "cuda_compiler_stub"
+   ],
+   "number": "202",
    "run_exports": [
     "petsc",
     "petsc * complex_*"
    ],
-   "string": "complex_h1234567_1",
+   "script_env": [
+    "CUDA_CONDA_TARGET_NAME="
+   ],
+   "string": "complex_cuda11_h1234567_202",
    "track_features": [
     "petsc_complex"
    ]
@@ -233,7 +263,8 @@
     "davidbrochart",
     "SylvainCorlay",
     "martinRenou",
-    "matthiasdiener"
+    "matthiasdiener",
+    "stefanozampini"
    ]
   },
   "package": {
@@ -246,6 +277,7 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
+    "cuda_compiler_stub",
     "make",
     "pkg-config",
     "python",
@@ -258,7 +290,7 @@
     "cmake",
     "openmpi",
     "yaml",
-    "hypre 2.28",
+    "hypre",
     "metis",
     "parmetis",
     "libptscotch",
@@ -270,7 +302,10 @@
     "suitesparse",
     "hdf5",
     "hdf5 * mpi_openmpi_*",
-    "fftw * mpi_openmpi_*"
+    "fftw * mpi_openmpi_*",
+    "cuda-version 11.8",
+    "cudatoolkit",
+    "cuda-version 12.4"
    ],
    "run": [
     "openmpi",
@@ -287,13 +322,16 @@
     "suitesparse",
     "hdf5",
     "hdf5 * mpi_openmpi_*",
-    "fftw * mpi_openmpi_*"
+    "fftw * mpi_openmpi_*",
+    "cuda-version >=11.2,<12",
+    "cudatoolkit >=11.2,<12"
    ]
   },
   "source": {
    "patches": [
     "ignore-not-invalid.patch",
-    "no-cppflags-in-pkgconfig-cflags.patch"
+    "no-cppflags-in-pkgconfig-cflags.patch",
+    "target-cudadir.patch"
    ],
    "sha256": "7ff8b692bceb7d7a8f51e2f45ccb20af00ba9395d7e1eee8816d46eb1c4c4b27",
    "url": "https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-3.21.1.tar.gz"
@@ -307,14 +345,15 @@
    "files": [
     "tests/ex1.c",
     "tests/ex1f.F90",
+    "tests/testdlopen.c",
     "tests/makefile"
    ],
    "requires": [
     "pkg-config",
+    "make",
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "fortran_compiler_stub",
-    "make"
+    "fortran_compiler_stub"
    ]
   }
  },
@@ -324,6 +363,7 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "gnuconfig",
@@ -336,6 +376,8 @@
    "__set__": true,
    "elements": [
     "cmake",
+    "cuda-version",
+    "cudatoolkit",
     "fftw",
     "hdf5",
     "hypre",
@@ -358,6 +400,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cuda-version",
+    "cudatoolkit",
     "fftw",
     "hdf5",
     "hypre",
@@ -396,12 +440,18 @@
    "summary": "PETSc: Portable, Extensible Toolkit for Scientific Computation"
   },
   "build": {
-   "number": "1",
+   "ignore_run_exports_from": [
+    "cuda_compiler_stub"
+   ],
+   "number": "202",
    "run_exports": [
     "petsc",
     "petsc * complex_*"
    ],
-   "string": "complex_h1234567_1",
+   "script_env": [
+    "CUDA_CONDA_TARGET_NAME="
+   ],
+   "string": "complex_cuda11_h1234567_202",
    "track_features": [
     "petsc_complex"
    ]
@@ -414,7 +464,8 @@
     "davidbrochart",
     "SylvainCorlay",
     "martinRenou",
-    "matthiasdiener"
+    "matthiasdiener",
+    "stefanozampini"
    ]
   },
   "package": {
@@ -427,6 +478,7 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
+    "cuda_compiler_stub",
     "make",
     "pkg-config",
     "python",
@@ -439,7 +491,7 @@
     "cmake",
     "openmpi",
     "yaml",
-    "hypre 2.28",
+    "hypre",
     "metis",
     "parmetis",
     "libptscotch",
@@ -451,7 +503,10 @@
     "suitesparse",
     "hdf5",
     "hdf5 * mpi_openmpi_*",
-    "fftw * mpi_openmpi_*"
+    "fftw * mpi_openmpi_*",
+    "cuda-version 11.8",
+    "cudatoolkit",
+    "cuda-version 12.4"
    ],
    "run": [
     "openmpi",
@@ -468,13 +523,16 @@
     "suitesparse",
     "hdf5",
     "hdf5 * mpi_openmpi_*",
-    "fftw * mpi_openmpi_*"
+    "fftw * mpi_openmpi_*",
+    "cuda-version >=11.2,<12",
+    "cudatoolkit >=11.2,<12"
    ]
   },
   "source": {
    "patches": [
     "ignore-not-invalid.patch",
-    "no-cppflags-in-pkgconfig-cflags.patch"
+    "no-cppflags-in-pkgconfig-cflags.patch",
+    "target-cudadir.patch"
    ],
    "sha256": "7ff8b692bceb7d7a8f51e2f45ccb20af00ba9395d7e1eee8816d46eb1c4c4b27",
    "url": "https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-3.21.1.tar.gz"
@@ -488,14 +546,15 @@
    "files": [
     "tests/ex1.c",
     "tests/ex1f.F90",
+    "tests/testdlopen.c",
     "tests/makefile"
    ],
    "requires": [
     "pkg-config",
+    "make",
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "fortran_compiler_stub",
-    "make"
+    "fortran_compiler_stub"
    ]
   }
  },
@@ -505,6 +564,7 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "gnuconfig",
@@ -517,6 +577,8 @@
    "__set__": true,
    "elements": [
     "cmake",
+    "cuda-version",
+    "cudatoolkit",
     "fftw",
     "hdf5",
     "hypre",
@@ -539,6 +601,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cuda-version",
+    "cudatoolkit",
     "fftw",
     "hdf5",
     "hypre",
@@ -577,12 +641,16 @@
    "summary": "PETSc: Portable, Extensible Toolkit for Scientific Computation"
   },
   "build": {
-   "number": "1",
+   "ignore_run_exports_from": null,
+   "number": "202",
    "run_exports": [
     "petsc",
     "petsc * complex_*"
    ],
-   "string": "complex_h1234567_1",
+   "script_env": [
+    "CUDA_CONDA_TARGET_NAME="
+   ],
+   "string": "complex_h1234567_202",
    "track_features": [
     "petsc_complex"
    ]
@@ -595,7 +663,8 @@
     "davidbrochart",
     "SylvainCorlay",
     "martinRenou",
-    "matthiasdiener"
+    "matthiasdiener",
+    "stefanozampini"
    ]
   },
   "package": {
@@ -608,6 +677,7 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
+    "cuda_compiler_stub",
     "make",
     "pkg-config",
     "python",
@@ -620,7 +690,7 @@
     "cmake",
     "openmpi",
     "yaml",
-    "hypre 2.28",
+    "hypre",
     "metis",
     "parmetis",
     "libptscotch",
@@ -632,7 +702,10 @@
     "suitesparse",
     "hdf5",
     "hdf5 * mpi_openmpi_*",
-    "fftw * mpi_openmpi_*"
+    "fftw * mpi_openmpi_*",
+    "cuda-version 11.8",
+    "cudatoolkit",
+    "cuda-version 12.4"
    ],
    "run": [
     "openmpi",
@@ -649,13 +722,16 @@
     "suitesparse",
     "hdf5",
     "hdf5 * mpi_openmpi_*",
-    "fftw * mpi_openmpi_*"
+    "fftw * mpi_openmpi_*",
+    "cuda-version >=11.2,<12",
+    "cudatoolkit >=11.2,<12"
    ]
   },
   "source": {
    "patches": [
     "ignore-not-invalid.patch",
-    "no-cppflags-in-pkgconfig-cflags.patch"
+    "no-cppflags-in-pkgconfig-cflags.patch",
+    "target-cudadir.patch"
    ],
    "sha256": "7ff8b692bceb7d7a8f51e2f45ccb20af00ba9395d7e1eee8816d46eb1c4c4b27",
    "url": "https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-3.21.1.tar.gz"
@@ -669,14 +745,15 @@
    "files": [
     "tests/ex1.c",
     "tests/ex1f.F90",
+    "tests/testdlopen.c",
     "tests/makefile"
    ],
    "requires": [
     "pkg-config",
+    "make",
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "fortran_compiler_stub",
-    "make"
+    "fortran_compiler_stub"
    ]
   }
  },
@@ -692,12 +769,16 @@
    "summary": "PETSc: Portable, Extensible Toolkit for Scientific Computation"
   },
   "build": {
-   "number": "1",
+   "ignore_run_exports_from": null,
+   "number": "202",
    "run_exports": [
     "petsc",
     "petsc * complex_*"
    ],
-   "string": "complex_h1234567_1",
+   "script_env": [
+    "CUDA_CONDA_TARGET_NAME="
+   ],
+   "string": "complex_h1234567_202",
    "track_features": [
     "petsc_complex"
    ]
@@ -710,7 +791,8 @@
     "davidbrochart",
     "SylvainCorlay",
     "martinRenou",
-    "matthiasdiener"
+    "matthiasdiener",
+    "stefanozampini"
    ]
   },
   "package": {
@@ -735,7 +817,7 @@
     "cmake",
     "openmpi",
     "yaml",
-    "hypre 2.28",
+    "hypre",
     "metis",
     "parmetis",
     "libptscotch",
@@ -770,7 +852,8 @@
   "source": {
    "patches": [
     "ignore-not-invalid.patch",
-    "no-cppflags-in-pkgconfig-cflags.patch"
+    "no-cppflags-in-pkgconfig-cflags.patch",
+    "target-cudadir.patch"
    ],
    "sha256": "7ff8b692bceb7d7a8f51e2f45ccb20af00ba9395d7e1eee8816d46eb1c4c4b27",
    "url": "https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-3.21.1.tar.gz"
@@ -784,14 +867,15 @@
    "files": [
     "tests/ex1.c",
     "tests/ex1f.F90",
+    "tests/testdlopen.c",
     "tests/makefile"
    ],
    "requires": [
     "pkg-config",
+    "make",
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "fortran_compiler_stub",
-    "make"
+    "fortran_compiler_stub"
    ]
   }
  },
@@ -873,12 +957,16 @@
    "summary": "PETSc: Portable, Extensible Toolkit for Scientific Computation"
   },
   "build": {
-   "number": "1",
+   "ignore_run_exports_from": null,
+   "number": "202",
    "run_exports": [
     "petsc",
     "petsc * complex_*"
    ],
-   "string": "complex_h1234567_1",
+   "script_env": [
+    "CUDA_CONDA_TARGET_NAME="
+   ],
+   "string": "complex_h1234567_202",
    "track_features": [
     "petsc_complex"
    ]
@@ -891,7 +979,8 @@
     "davidbrochart",
     "SylvainCorlay",
     "martinRenou",
-    "matthiasdiener"
+    "matthiasdiener",
+    "stefanozampini"
    ]
   },
   "package": {
@@ -916,7 +1005,7 @@
     "cmake",
     "openmpi",
     "yaml",
-    "hypre 2.28",
+    "hypre",
     "metis",
     "parmetis",
     "libptscotch",
@@ -951,7 +1040,8 @@
   "source": {
    "patches": [
     "ignore-not-invalid.patch",
-    "no-cppflags-in-pkgconfig-cflags.patch"
+    "no-cppflags-in-pkgconfig-cflags.patch",
+    "target-cudadir.patch"
    ],
    "sha256": "7ff8b692bceb7d7a8f51e2f45ccb20af00ba9395d7e1eee8816d46eb1c4c4b27",
    "url": "https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-3.21.1.tar.gz"
@@ -965,14 +1055,15 @@
    "files": [
     "tests/ex1.c",
     "tests/ex1f.F90",
+    "tests/testdlopen.c",
     "tests/makefile"
    ],
    "requires": [
     "pkg-config",
+    "make",
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "fortran_compiler_stub",
-    "make"
+    "fortran_compiler_stub"
    ]
   }
  },
@@ -1060,13 +1151,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/petsc.json"
  },
- "raw_meta_yaml": "{% set version = \"3.21.1\" %}\n{% set build = 1 %}\n\n{% set mpi = mpi or 'mpich' %}\n{% if scalar == \"real\" %}\n{% set build = build + 100 %}\n{% endif %}\n\npackage:\n  name: petsc\n  version: {{ version }}\n\nsource:\n  url: https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-{{ version }}.tar.gz\n  sha256: 7ff8b692bceb7d7a8f51e2f45ccb20af00ba9395d7e1eee8816d46eb1c4c4b27\n  patches:\n    - ignore-not-invalid.patch\n    - no-cppflags-in-pkgconfig-cflags.patch\n\nbuild:\n  skip: true  # [win]\n  number: {{ build }}\n  string: {{ scalar }}_h{{ PKG_HASH }}_{{ build }}\n  run_exports:\n    - {{ pin_subpackage('petsc', max_pin='x.x') }}\n    - petsc * {{ scalar }}_*\n  track_features:\n    - petsc_complex  # [scalar == \"complex\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}\n    - make\n    - pkg-config\n    - python\n    - gnuconfig   # [unix]\n    - {{ mpi }}  # [mpi == 'openmpi' and build_platform != target_platform]\n  host:\n    - libblas\n    - libcblas\n    - liblapack\n    - cmake\n    - {{ mpi }}\n    - yaml\n    # FIXME: unpin hypre after next petsc release\n    - hypre 2.28\n    - metis\n    - parmetis\n    - libptscotch\n    - scalapack\n    - superlu\n    - superlu_dist\n    - libscotch\n    - mumps-mpi\n    - suitesparse\n    - hdf5\n    - hdf5 * mpi_{{ mpi }}_*\n    - fftw * mpi_{{ mpi }}_*\n  run:\n    - {{ mpi }}\n    - yaml\n    - hypre\n    - metis\n    - parmetis\n    - libptscotch\n    - scalapack\n    - superlu\n    - superlu_dist\n    - libscotch\n    - mumps-mpi\n    - suitesparse\n    - hdf5\n    - hdf5 * mpi_{{ mpi }}_*\n    - fftw * mpi_{{ mpi }}_*\n\ntest:\n  requires:\n    - pkg-config\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}\n    - make\n  files:\n    - tests/ex1.c\n    - tests/ex1f.F90\n    - tests/makefile\n  commands:\n    - pkg-config --validate PETSc\n    - pkg-config --cflags PETSc\n    - pkg-config --libs PETSc\n\nabout:\n  home: https://www.mcs.anl.gov/petsc/\n  summary: 'PETSc: Portable, Extensible Toolkit for Scientific Computation'\n  license: BSD-2-Clause\n  license_file: LICENSE\n  license_family: BSD\n  dev_url: https://gitlab.com/petsc/petsc\n  doc_url: https://petsc.org/release/docs/manual/\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n    - dalcinl\n    - minrk\n    - davidbrochart\n    - SylvainCorlay\n    - martinRenou\n    - matthiasdiener\n",
+ "raw_meta_yaml": "{% set version = \"3.21.1\" %}\n{% set build = 2 %}\n\n{% set mpi = mpi or 'mpich' %}\n{% if scalar == \"real\" %}\n{% set build = build + 100 %}\n{% endif %}\n{% set build = build + 200 %}  # [cuda_compiler_version == \"None\"]\n\n{% set cuda_target_name = \"x86_64-linux\" %}  # [linux64]\n{% set cuda_target_name = \"ppc64le-linux\" %}  # [ppc64le]\n{% set cuda_target_name = \"sbsa-linux\" %}  # [aarch64]\n{% set cuda_target_name = \"\" %}  # [osx]\n\n{% if cuda_compiler_version == \"None\" %}\n{% set cuda_major = 0 %}\n{% else %}\n{% set cuda_major = environ.get(\"cuda_compiler_version\", \"11.8\").split(\".\")[0] | int %}\n{% endif %}\n\npackage:\n  name: petsc\n  version: {{ version }}\n\nsource:\n  url: https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-{{ version }}.tar.gz\n  sha256: 7ff8b692bceb7d7a8f51e2f45ccb20af00ba9395d7e1eee8816d46eb1c4c4b27\n  patches:\n    - ignore-not-invalid.patch\n    - no-cppflags-in-pkgconfig-cflags.patch\n    - target-cudadir.patch\n\nbuild:\n  skip: true  # [win]\n  skip: true  # [cuda_compiler_version not in (\"None\", \"11.8\", \"12.4\")]\n  number: {{ build }}\n  # Allow petsc4py to use the cuda variant\n  string: {{ scalar }}_h{{ PKG_HASH }}_{{ build }}                       # [cuda_compiler_version == \"None\"]\n  string: {{ scalar }}_cuda{{ cuda_major }}_h{{ PKG_HASH }}_{{ build }}  # [cuda_compiler_version != \"None\"]\n  script_env:\n    - CUDA_CONDA_TARGET_NAME={{ cuda_target_name }}\n  run_exports:\n    - {{ pin_subpackage('petsc', max_pin='x.x') }}\n    - petsc * {{ scalar }}_*\n  track_features:\n    - petsc_complex  # [scalar == \"complex\"]\n  # Allow using 11.2 with 11.8 or 12.x with 12.4\n  ignore_run_exports_from:\n    - {{ compiler('cuda') }}  # [cuda_compiler_version != \"None\"]\n    - cudatoolkit             # [(cuda_compiler_version or \"\").startswith(\"11\")]\n    {% if cuda_major >= 12 %}\n    - cuda-cudart-dev\n    - cuda-nvtx-dev\n    - libcublas-dev\n    - libcufft-dev\n    - libcurand-dev\n    - libcusolver-dev\n    - libcusparse-dev\n    {% endif %}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}\n    - {{ compiler('cuda') }}  # [cuda_compiler_version != \"None\"]\n    - make\n    - pkg-config\n    - python\n    - gnuconfig   # [unix]\n    - {{ mpi }}  # [mpi == 'openmpi' and build_platform != target_platform]\n  host:\n    - libblas\n    - libcblas\n    - liblapack\n    - cmake\n    - {{ mpi }}\n    - yaml\n    - hypre\n    - metis\n    - parmetis\n    - libptscotch\n    - scalapack\n    - superlu\n    - superlu_dist\n    - libscotch\n    - mumps-mpi\n    - suitesparse\n    - hdf5\n    - hdf5 * mpi_{{ mpi }}_*\n    - fftw * mpi_{{ mpi }}_*\n    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != \"None\"]\n    - cudatoolkit                               # [(cuda_compiler_version or \"\").startswith(\"11\")]\n    {% if cuda_major >= 12 %}\n    - cuda-cudart-dev\n    - cuda-nvtx-dev\n    - libcublas-dev\n    - libcufft-dev\n    - libcurand-dev\n    - libcusolver-dev\n    - libcusparse-dev\n    {% endif %}\n  run:\n    - {{ mpi }}\n    - yaml\n    - hypre\n    - metis\n    - parmetis\n    - libptscotch\n    - scalapack\n    - superlu\n    - superlu_dist\n    - libscotch\n    - mumps-mpi\n    - suitesparse\n    - hdf5\n    - hdf5 * mpi_{{ mpi }}_*\n    - fftw * mpi_{{ mpi }}_*\n    - cuda-version >={{ cuda_major }}.2,<{{ cuda_major+1 }}  # [(cuda_compiler_version or \"\").startswith(\"11\")]\n    - cudatoolkit >={{ cuda_major }}.2,<{{ cuda_major+1 }}   # [(cuda_compiler_version or \"\").startswith(\"11\")]\n    {% if cuda_major >= 12 %}\n    - cuda-version >={{ cuda_major }}.0,<{{ cuda_major+1 }}\n    - cuda-cudart\n    - cuda-nvtx\n    - libcublas\n    - libcufft\n    - libcurand\n    - libcusolver\n    - libcusparse\n    - {{ pin_compatible('cuda-nvtx', min_pin='x', max_pin='x') }}\n    - {{ pin_compatible('cuda-cudart', min_pin='x', max_pin='x') }}\n    - {{ pin_compatible('libcublas', min_pin='x', max_pin='x') }}\n    - {{ pin_compatible('libcufft', min_pin='x', max_pin='x') }}\n    - {{ pin_compatible('libcurand', min_pin='x', max_pin='x') }}\n    - {{ pin_compatible('libcusolver', min_pin='x', max_pin='x') }}\n    - {{ pin_compatible('libcusparse', min_pin='x', max_pin='x') }}\n    {% endif %}\n\ntest:\n  requires:\n    - pkg-config\n    - make\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}\n  files:\n    - tests/ex1.c\n    - tests/ex1f.F90\n    - tests/testdlopen.c\n    - tests/makefile\n  commands:\n    - pkg-config --validate PETSc\n    - pkg-config --cflags PETSc\n    - pkg-config --libs PETSc\n\nabout:\n  home: https://www.mcs.anl.gov/petsc/\n  summary: 'PETSc: Portable, Extensible Toolkit for Scientific Computation'\n  license: BSD-2-Clause\n  license_file: LICENSE\n  license_family: BSD\n  dev_url: https://gitlab.com/petsc/petsc\n  doc_url: https://petsc.org/release/docs/manual/\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n    - dalcinl\n    - minrk\n    - davidbrochart\n    - SylvainCorlay\n    - martinRenou\n    - matthiasdiener\n    - stefanozampini\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
    "c_stdlib_stub",
    "cmake",
+   "cuda-version",
+   "cuda_compiler_stub",
+   "cudatoolkit",
    "cxx_compiler_stub",
    "fftw",
    "fortran_compiler_stub",
@@ -1098,6 +1192,7 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "gnuconfig",
@@ -1112,6 +1207,9 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cmake",
+    "cuda-version",
+    "cuda_compiler_stub",
+    "cudatoolkit",
     "cxx_compiler_stub",
     "fftw",
     "fortran_compiler_stub",
@@ -1138,6 +1236,9 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "cuda-version",
+    "cuda_compiler_stub",
+    "cudatoolkit",
     "cxx_compiler_stub",
     "fftw",
     "fortran_compiler_stub",
@@ -1174,6 +1275,7 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "gnuconfig",
@@ -1186,10 +1288,13 @@
    "__set__": true,
    "elements": [
     "cmake",
+    "cuda-version 11.8",
+    "cuda-version 12.4",
+    "cudatoolkit",
     "fftw * mpi_openmpi_*",
     "hdf5",
     "hdf5 * mpi_openmpi_*",
-    "hypre 2.28",
+    "hypre",
     "libblas",
     "libcblas",
     "liblapack",
@@ -1209,6 +1314,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cuda-version >=11.2,<12",
+    "cudatoolkit >=11.2,<12",
     "fftw * mpi_openmpi_*",
     "hdf5",
     "hdf5 * mpi_openmpi_*",
