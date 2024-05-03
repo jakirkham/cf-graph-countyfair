@@ -24,12 +24,16 @@
   },
   "build": {
    "ignore_run_exports_from": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "cuda_compiler_stub",
+    "cuda-cudart-dev"
    ],
    "missing_dso_whitelist": [
-    "*libcuda.so*"
+    "*libcuda.so*",
+    "*libcudart.so*",
+    "*libnvidia-ml.so*"
    ],
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "ucc"
    ]
@@ -56,7 +60,11 @@
    ],
    "host": [
     "ucx",
-    "cuda-version 11.8"
+    "cuda-version 11.8",
+    "cudatoolkit",
+    "cuda-version 12.0",
+    "cuda-cudart-dev",
+    "cuda-nvml-dev"
    ],
    "run": [
     "ucx"
@@ -107,7 +115,10 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cuda-cudart-dev",
+    "cuda-nvml-dev",
     "cuda-version",
+    "cudatoolkit",
     "ucx"
    ]
   },
@@ -133,12 +144,16 @@
   },
   "build": {
    "ignore_run_exports_from": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "cuda_compiler_stub",
+    "cuda-cudart-dev"
    ],
    "missing_dso_whitelist": [
-    "*libcuda.so*"
+    "*libcuda.so*",
+    "*libcudart.so*",
+    "*libnvidia-ml.so*"
    ],
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "ucc"
    ]
@@ -165,7 +180,11 @@
    ],
    "host": [
     "ucx",
-    "cuda-version 11.8"
+    "cuda-version 11.8",
+    "cudatoolkit",
+    "cuda-version 12.0",
+    "cuda-cudart-dev",
+    "cuda-nvml-dev"
    ],
    "run": [
     "ucx"
@@ -214,15 +233,18 @@
  "pr_info": {
   "__lazy_json__": "pr_info/ucc.json"
  },
- "raw_meta_yaml": "{% set version = \"1.2.0\" %}\n\npackage:\n  name: ucc\n  version: {{ version }}\n\nsource:\n  url: https://github.com/openucx/ucc/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: c1552797600835c0cf401b82dc89c4d27d5717f4fb805d41daca8e19f65e509d\n  patches:\n    # Apply upstream fix for CUDA versions pre-12.2\n    # xref: https://github.com/openucx/ucc/pull/847\n    - 0001-EC-CUDA-fix-build-with-12.2-and-older-arch-847.patch\n\nbuild:\n  skip: True  # [not linux]\n  skip: True  # [cuda_compiler_version == \"None\"]\n  skip: True  # [cuda_compiler_version == \"11.2\"]\n  number: 0\n  run_exports:\n    - {{ pin_subpackage(\"ucc\") }}\n  missing_dso_whitelist:\n    - '*libcuda.so*'\n  ignore_run_exports_from:\n    # CXX standard library is unused\n    - {{ compiler('cxx') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - automake\n    - libtool\n    - make\n  host:\n    - ucx\n    - cuda-version {{ cuda_compiler_version }}\n    - cuda-cudart-dev  # [(cuda_compiler_version or \"None\").startswith(\"12\")]\n  run:\n    - {{ pin_compatible(\"ucx\", max_pin=\"x.x.x\") }}\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/ucc_info\n    - test -f $PREFIX/include/ucc/api/ucc_def.h\n    - test -f $PREFIX/include/ucc/api/ucc_status.h\n    - test -f $PREFIX/include/ucc/api/ucc_version.h\n    - test -f $PREFIX/include/ucc/api/ucc.h\n    - test -f $PREFIX/lib/cmake/ucc/ucc-targets.cmake\n    - test -f $PREFIX/lib/cmake/ucc/ucc-config-version.cmake\n    - test -f $PREFIX/lib/cmake/ucc/ucc-config.cmake\n    - test -f $PREFIX/lib/libucc.so.1\n    - test -f $PREFIX/lib/ucc/libucc_mc_cuda.so.1\n    - test -f $PREFIX/lib/ucc/libucc_mc_cpu.so.1\n    - test -f $PREFIX/lib/ucc/libucc_tl_self.so.1\n    - test -f $PREFIX/lib/ucc/libucc_tl_ucp.so.1\n    - test -f $PREFIX/lib/ucc/libucc_cl_basic.so.1\n    - test -f $PREFIX/lib/ucc/libucc_cl_hier.so.1\n    - test -f $PREFIX/lib/ucc/libucc_ec_cuda.so.1\n    - test -f $PREFIX/lib/ucc/libucc_ec_cpu.so.1\n\n\nabout:\n  home: https://github.com/openucx/ucc\n  summary: 'UCC is a collective communication operations API and library.'\n  description: |\n    UCC is a collective communication operations API and library that is\n    flexible, complete, and feature-rich for current and emerging\n    programming models and runtimes.\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - sandeepd-nv\n    - leofang\n",
+ "raw_meta_yaml": "{% set version = \"1.2.0\" %}\n\npackage:\n  name: ucc\n  version: {{ version }}\n\nsource:\n  url: https://github.com/openucx/ucc/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: c1552797600835c0cf401b82dc89c4d27d5717f4fb805d41daca8e19f65e509d\n  patches:\n    # Apply upstream fix for CUDA versions pre-12.2\n    # xref: https://github.com/openucx/ucc/pull/847\n    - 0001-EC-CUDA-fix-build-with-12.2-and-older-arch-847.patch\n\nbuild:\n  skip: True  # [not linux]\n  skip: True  # [cuda_compiler_version not in (\"11.8\", \"12.0\")]\n  number: 1\n  run_exports:\n    - {{ pin_subpackage(\"ucc\") }}\n  missing_dso_whitelist:\n    - '*libcuda.so*'\n    - '*libcudart.so*'\n    - '*libnvidia-ml.so*'\n  ignore_run_exports_from:\n    # CXX standard library is unused\n    - {{ compiler('cxx') }}\n    # allow CPU-only use cases (xref: conda-forge/ucx-split-feedstock#173)\n    - {{ compiler(\"cuda\") }}\n    - cuda-cudart-dev          # [(cuda_compiler_version or \"None\").startswith(\"12\")]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - automake\n    - libtool\n    - make\n  host:\n    - ucx\n    - cuda-version {{ cuda_compiler_version }}\n    - cudatoolkit      # [(cuda_compiler_version or \"None\").startswith(\"11\")]\n    - cuda-cudart-dev  # [(cuda_compiler_version or \"None\").startswith(\"12\")]\n    - cuda-nvml-dev            # [(cuda_compiler_version or \"None\").startswith(\"12\")]\n  run:\n    - {{ pin_compatible(\"ucx\", max_pin=\"x.x.x\") }}\n    # since ucc depends on ucx, we let ucx handles the optional cudart dependency, and\n    # no need to add run_constrained\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/ucc_info\n    - test -f $PREFIX/include/ucc/api/ucc_def.h\n    - test -f $PREFIX/include/ucc/api/ucc_status.h\n    - test -f $PREFIX/include/ucc/api/ucc_version.h\n    - test -f $PREFIX/include/ucc/api/ucc.h\n    - test -f $PREFIX/lib/cmake/ucc/ucc-targets.cmake\n    - test -f $PREFIX/lib/cmake/ucc/ucc-config-version.cmake\n    - test -f $PREFIX/lib/cmake/ucc/ucc-config.cmake\n    - test -f $PREFIX/lib/libucc.so.1\n    - test -f $PREFIX/lib/ucc/libucc_mc_cuda.so.1\n    - test -f $PREFIX/lib/ucc/libucc_mc_cpu.so.1\n    - test -f $PREFIX/lib/ucc/libucc_tl_self.so.1\n    - test -f $PREFIX/lib/ucc/libucc_tl_ucp.so.1\n    - test -f $PREFIX/lib/ucc/libucc_cl_basic.so.1\n    - test -f $PREFIX/lib/ucc/libucc_cl_hier.so.1\n    - test -f $PREFIX/lib/ucc/libucc_ec_cuda.so.1\n    - test -f $PREFIX/lib/ucc/libucc_ec_cpu.so.1\n\n\nabout:\n  home: https://github.com/openucx/ucc\n  summary: 'UCC is a collective communication operations API and library.'\n  description: |\n    UCC is a collective communication operations API and library that is\n    flexible, complete, and feature-rich for current and emerging\n    programming models and runtimes.\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - sandeepd-nv\n    - leofang\n",
  "req": {
   "__set__": true,
   "elements": [
    "automake",
    "c_compiler_stub",
    "c_stdlib_stub",
+   "cuda-cudart-dev",
+   "cuda-nvml-dev",
    "cuda-version",
    "cuda_compiler_stub",
+   "cudatoolkit",
    "cxx_compiler_stub",
    "libtool",
    "make",
@@ -247,8 +269,11 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "cuda-cudart-dev",
+    "cuda-nvml-dev",
     "cuda-version",
     "cuda_compiler_stub",
+    "cudatoolkit",
     "cxx_compiler_stub",
     "ucx"
    ]
@@ -285,7 +310,11 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cuda-cudart-dev",
+    "cuda-nvml-dev",
     "cuda-version 11.8",
+    "cuda-version 12.0",
+    "cudatoolkit",
     "ucx"
    ]
   },
