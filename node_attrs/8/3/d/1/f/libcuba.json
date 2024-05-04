@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "libcuba",
  "hash_type": "sha256",
@@ -206,6 +210,77 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "home": "https://feynarts.de/cuba/",
+   "license": "LGPL-3.0-only",
+   "license_family": "LGPL",
+   "license_file": "COPYING",
+   "summary": "Cuba - a library for multidimensional numerical integration"
+  },
+  "build": {
+   "number": "0",
+   "run_exports": [
+    "libcuba"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jschueller"
+   ]
+  },
+  "package": {
+   "name": "libcuba",
+   "version": "4.2.2"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "ninja"
+   ]
+  },
+  "source": {
+   "patches": [
+    "0001-Add-CMake-script.patch",
+    "0002-Fix-build-on-MinGW.patch",
+    "0003-Fix-build-on-MSVC.patch",
+    "0005-Hardlink-KorobovCoeff.c.patch"
+   ],
+   "sha256": "8d9f532fd2b9561da2272c156ef7be5f3960953e4519c638759f1b52fe03ed52",
+   "url": "https://feynarts.de/cuba/Cuba-4.2.2.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "test -f ${PREFIX}/include/cuba.h",
+    "test -f ${PREFIX}/lib/libcuba${SHLIB_EXT}"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -216,6 +291,7 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
