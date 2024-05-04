@@ -39,7 +39,7 @@
   },
   "package": {
    "name": "herbie-data",
-   "version": "2024.3.1"
+   "version": "2024.5.0"
   },
   "requirements": {
    "host": [
@@ -49,20 +49,25 @@
     "setuptools_scm"
    ],
    "run": [
+    "cartopy",
     "cfgrib >=0.9.10.1",
     "curl",
+    "matplotlib",
     "metpy",
     "numpy",
     "pandas",
     "python >=3.9",
     "pygrib",
+    "pyproj",
+    "requests",
+    "scikit-learn",
     "toml",
     "xarray"
    ]
   },
   "source": {
-   "sha256": "fc8ae10b45efc6c02045a01d57af446ed9c60b78050bff72bb331d18c773a1b9",
-   "url": "https://pypi.io/packages/source/h/herbie-data/herbie-data-2024.3.1.tar.gz"
+   "sha256": "50fb2e0d9169584c9ebb154ce7dc272d3c83ee4319e55e929fcc8e821439596e",
+   "url": "https://pypi.io/packages/source/h/herbie-data/herbie_data-2024.5.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -94,13 +99,18 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cartopy",
     "cfgrib",
     "curl",
+    "matplotlib",
     "metpy",
     "numpy",
     "pandas",
     "pygrib",
+    "pyproj",
     "python",
+    "requests",
+    "scikit-learn",
     "toml",
     "xarray"
    ]
@@ -138,7 +148,7 @@
   },
   "package": {
    "name": "herbie-data",
-   "version": "2024.3.1"
+   "version": "2024.5.0"
   },
   "requirements": {
    "host": [
@@ -148,20 +158,25 @@
     "setuptools_scm"
    ],
    "run": [
+    "cartopy",
     "cfgrib >=0.9.10.1",
     "curl",
+    "matplotlib",
     "metpy",
     "numpy",
     "pandas",
     "python >=3.9",
     "pygrib",
+    "pyproj",
+    "requests",
+    "scikit-learn",
     "toml",
     "xarray"
    ]
   },
   "source": {
-   "sha256": "fc8ae10b45efc6c02045a01d57af446ed9c60b78050bff72bb331d18c773a1b9",
-   "url": "https://pypi.io/packages/source/h/herbie-data/herbie-data-2024.3.1.tar.gz"
+   "sha256": "50fb2e0d9169584c9ebb154ce7dc272d3c83ee4319e55e929fcc8e821439596e",
+   "url": "https://pypi.io/packages/source/h/herbie-data/herbie_data-2024.5.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -190,18 +205,23 @@
  "pr_info": {
   "__lazy_json__": "pr_info/herbie-data.json"
  },
- "raw_meta_yaml": "{% set name = \"herbie-data\" %}\n{% set version = \"2024.3.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: fc8ae10b45efc6c02045a01d57af446ed9c60b78050bff72bb331d18c773a1b9\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  script_env:\n    - PYTHONIOENCODING=utf8\n\nrequirements:\n  host:\n    - pip\n    - python >=3.9\n    - setuptools\n    - setuptools_scm\n\n  run:\n    - cfgrib >=0.9.10.1\n    - curl\n    - metpy\n    - numpy\n    - pandas\n    - python >=3.9\n    - pygrib\n    - toml\n    #- wgrib2  # [linux]\n    - xarray\n\ntest:\n  commands:\n    - pip check\n  imports:\n    - herbie\n    - herbie.models\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/blaylockbk/Herbie\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Download numerical weather prediction GRIB2 model data.\n  description: |\n    Herbie is a python package that downloads recent and archived numerical weather\n    prediction (NWP) model output from different cloud archive sources. Its most\n    popular capability is to download HRRR model data. NWP data in GRIB2 format\n    can be read with xarray+cfgrib. Much of this data is made available through the\n    NOAA Open Data Dissemination (NODD) Program (formerly the Big Data Program)\n    which has made weather data more accessible than ever before.\n  doc_url: https://herbie.readthedocs.io/\n  dev_url: https://github.com/blaylockbk/Herbie\n\nextra:\n  recipe-maintainers:\n    - blaylockbk\n",
+ "raw_meta_yaml": "{% set name = \"herbie-data\" %}\n{% set version = \"2024.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz\n  sha256: 50fb2e0d9169584c9ebb154ce7dc272d3c83ee4319e55e929fcc8e821439596e\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  script_env:\n    - PYTHONIOENCODING=utf8\n\nrequirements:\n  host:\n    - pip\n    - python >=3.9\n    - setuptools\n    - setuptools_scm\n\n  run:\n    - cartopy\n    - cfgrib >=0.9.10.1\n    - curl\n    - matplotlib\n    - metpy\n    - numpy\n    - pandas\n    - python >=3.9\n    - pygrib\n    - pyproj\n    - requests\n    - scikit-learn\n    - toml\n    #- wgrib2  # [linux]\n    - xarray\n\ntest:\n  commands:\n    - pip check\n  imports:\n    - herbie\n    - herbie.models\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/blaylockbk/Herbie\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Download numerical weather prediction GRIB2 model data.\n  description: |\n    Herbie is a python package that downloads recent and archived numerical weather\n    prediction (NWP) model output from different cloud archive sources. Its most\n    popular capability is to download HRRR model data. NWP data in GRIB2 format\n    can be read with xarray+cfgrib. Much of this data is made available through the\n    NOAA Open Data Dissemination (NODD) Program (formerly the Big Data Program)\n    which has made weather data more accessible than ever before.\n  doc_url: https://herbie.readthedocs.io/\n  dev_url: https://github.com/blaylockbk/Herbie\n\nextra:\n  recipe-maintainers:\n    - blaylockbk\n",
  "req": {
   "__set__": true,
   "elements": [
+   "cartopy",
    "cfgrib",
    "curl",
+   "matplotlib",
    "metpy",
    "numpy",
    "pandas",
    "pip",
    "pygrib",
+   "pyproj",
    "python",
+   "requests",
+   "scikit-learn",
    "setuptools",
    "setuptools_scm",
    "toml",
@@ -225,13 +245,18 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cartopy",
     "cfgrib",
     "curl",
+    "matplotlib",
     "metpy",
     "numpy",
     "pandas",
     "pygrib",
+    "pyproj",
     "python",
+    "requests",
+    "scikit-learn",
     "toml",
     "xarray"
    ]
@@ -261,13 +286,18 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cartopy",
     "cfgrib >=0.9.10.1",
     "curl",
+    "matplotlib",
     "metpy",
     "numpy",
     "pandas",
     "pygrib",
+    "pyproj",
     "python >=3.9",
+    "requests",
+    "scikit-learn",
     "toml",
     "xarray"
    ]
@@ -279,8 +309,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/h/herbie-data/herbie-data-2024.3.1.tar.gz",
- "version": "2024.3.1",
+ "url": "https://pypi.io/packages/source/h/herbie-data/herbie_data-2024.5.0.tar.gz",
+ "version": "2024.5.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/herbie-data.json"
  }
