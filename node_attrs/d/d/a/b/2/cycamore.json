@@ -16,7 +16,7 @@
  "linux_64_meta_yaml": {
   "about": {
    "home": "http://fuelcycle.org/",
-   "license": "BSD 3-clause",
+   "license": "BSD-3-Clause",
    "license_file": "LICENSE.rst",
    "summary": "The Cyclus additional modules repository."
   },
@@ -31,36 +31,43 @@
     "bam241",
     "katyhuff",
     "FlanFlanagan",
-    "stompsjo"
+    "stompsjo",
+    "bennibbelink"
    ]
   },
   "package": {
    "name": "cycamore",
-   "version": "1.5.5"
+   "version": "1.6.0"
   },
   "requirements": {
    "build": [
     "cmake",
+    "make",
     "pkg-config",
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ],
    "host": [
     "python",
-    "cyclus 1.5.5"
+    "cyclus 1.6.0"
    ],
    "run": [
     "python",
-    "cyclus 1.5.5"
+    "cyclus 1.6.0"
    ]
   },
   "source": {
-   "fn": "cycamore-1.5.5-18f33b9a084678ef691fa64b164eeca185f2da69a2e294f73ee6740280b46896.tar.gz",
-   "sha256": "18f33b9a084678ef691fa64b164eeca185f2da69a2e294f73ee6740280b46896",
-   "url": "https://github.com/cyclus/cycamore/archive/1.5.5.tar.gz"
+   "git_rev": "1.6.0",
+   "git_url": "https://github.com/cyclus/cycamore.git"
   },
   "test": {
+   "requires": [
+    "pytest",
+    "pytables"
+   ],
    "source_files": [
+    "input",
     "tests"
    ]
   }
@@ -70,8 +77,10 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
+    "make",
     "pkg-config"
    ]
   },
@@ -91,13 +100,16 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pytables",
+    "pytest"
+   ]
   }
  },
  "meta_yaml": {
   "about": {
    "home": "http://fuelcycle.org/",
-   "license": "BSD 3-clause",
+   "license": "BSD-3-Clause",
    "license_file": "LICENSE.rst",
    "summary": "The Cyclus additional modules repository."
   },
@@ -112,36 +124,43 @@
     "bam241",
     "katyhuff",
     "FlanFlanagan",
-    "stompsjo"
+    "stompsjo",
+    "bennibbelink"
    ]
   },
   "package": {
    "name": "cycamore",
-   "version": "1.5.5"
+   "version": "1.6.0"
   },
   "requirements": {
    "build": [
     "cmake",
+    "make",
     "pkg-config",
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ],
    "host": [
     "python",
-    "cyclus 1.5.5"
+    "cyclus 1.6.0"
    ],
    "run": [
     "python",
-    "cyclus 1.5.5"
+    "cyclus 1.6.0"
    ]
   },
   "source": {
-   "fn": "cycamore-1.5.5-18f33b9a084678ef691fa64b164eeca185f2da69a2e294f73ee6740280b46896.tar.gz",
-   "sha256": "18f33b9a084678ef691fa64b164eeca185f2da69a2e294f73ee6740280b46896",
-   "url": "https://github.com/cyclus/cycamore/archive/1.5.5.tar.gz"
+   "git_rev": "1.6.0",
+   "git_url": "https://github.com/cyclus/cycamore.git"
   },
   "test": {
+   "requires": [
+    "pytest",
+    "pytables"
+   ],
    "source_files": [
+    "input",
     "tests"
    ]
   }
@@ -160,14 +179,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cycamore.json"
  },
- "raw_meta_yaml": "{% set version = \"1.5.5\" %}\n{% set sha256 = \"18f33b9a084678ef691fa64b164eeca185f2da69a2e294f73ee6740280b46896\" %}\n{% set variant = \"openblas\" %}\n\npackage:\n  name: cycamore\n  version: {{ version }}\n\nsource:\n  fn: cycamore-{{ version }}-{{ sha256 }}.tar.gz\n  url: https://github.com/cyclus/cycamore/archive/{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  skip: True  # [win or osx or py<=27]\n  detect_binary_files_with_prefix: true\n\nrequirements:\n  build:\n    - cmake\n    - pkg-config\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - cyclus {{ version }}\n  run:\n    - python\n    - cyclus {{ version }}\n\ntest:\n  source_files:\n    - tests\n\nabout:\n  home: http://fuelcycle.org/\n  license: BSD 3-clause\n  license_file: LICENSE.rst\n  summary: \"The Cyclus additional modules repository.\"\n\nextra:\n  recipe-maintainers:\n    - scopatz\n    - gonuke\n    - bam241\n    - katyhuff\n    - FlanFlanagan\n    - stompsjo\n",
+ "raw_meta_yaml": "{% set version = \"1.6.0\" %}\n\npackage:\n  name: cycamore\n  version: {{ version }}\n\nsource:\n  git_url: https://github.com/cyclus/cycamore.git\n  git_rev: 1.6.0\n\nbuild:\n  number: 0\n  skip: True  # [win or osx or py<=27]\n  detect_binary_files_with_prefix: true\n\nrequirements:\n  build:\n    - cmake\n    - make\n    - pkg-config\n    - {{ stdlib('c') }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - cyclus {{ version }}\n  run:\n    - python\n    - cyclus {{ version }}\n\ntest:\n  requires:\n    - pytest\n    - pytables\n  source_files:\n    - input\n    - tests\n\nabout:\n  home: http://fuelcycle.org/\n  license: BSD-3-Clause\n  license_file: LICENSE.rst\n  summary: \"The Cyclus additional modules repository.\"\n\nextra:\n  recipe-maintainers:\n    - scopatz\n    - gonuke\n    - bam241\n    - katyhuff\n    - FlanFlanagan\n    - stompsjo\n    - bennibbelink\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "cyclus",
+   "make",
    "pkg-config",
    "python"
   ]
@@ -177,8 +198,10 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
+    "make",
     "pkg-config"
    ]
   },
@@ -186,6 +209,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cyclus",
     "python"
@@ -195,6 +219,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cyclus",
     "python"
@@ -202,7 +227,10 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pytables",
+    "pytest"
+   ]
   }
  },
  "strong_exports": false,
@@ -211,32 +239,37 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
+    "make",
     "pkg-config"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "cyclus 1.5.5",
+    "cyclus 1.6.0",
     "python"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "cyclus 1.5.5",
+    "cyclus 1.6.0",
     "python"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pytables",
+    "pytest"
+   ]
   }
  },
- "url": "https://github.com/cyclus/cycamore/archive/1.5.5.tar.gz",
- "version": "1.5.5",
+ "url": null,
+ "version": "1.6.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/cycamore.json"
  }
