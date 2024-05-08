@@ -24,7 +24,7 @@
    "summary": "csp is a high performance reactive stream processing library, written in C++ and Python"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "SP_DIR/csp/lib"
    ],
@@ -49,6 +49,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
@@ -115,6 +116,7 @@
    "elements": [
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -182,7 +184,7 @@
    "summary": "csp is a high performance reactive stream processing library, written in C++ and Python"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "SP_DIR/csp/lib"
    ],
@@ -207,6 +209,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
@@ -248,8 +251,7 @@
     "pytz",
     "rapidjson",
     "ruamel.yaml",
-    "sqlalchemy",
-    "__osx >=10.15"
+    "sqlalchemy"
    ]
   },
   "source": {
@@ -280,7 +282,7 @@
    "summary": "csp is a high performance reactive stream processing library, written in C++ and Python"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "SP_DIR/csp/lib"
    ],
@@ -305,6 +307,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
@@ -336,7 +339,6 @@
     "zlib"
    ],
    "run": [
-    "__osx >=10.15",
     "python",
     "numpy",
     "openssl",
@@ -372,6 +374,7 @@
    "elements": [
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -408,7 +411,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "numpy",
     "openssl",
     "packaging",
@@ -443,14 +445,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/csp.json"
  },
- "raw_meta_yaml": "{% set name = \"csp\" %}\n{% set version = \"0.0.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name [0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 53258f6359df7bb94e7a581f3c0aee7dd483d4dcf11708c6a2c8b74d1a18b30d\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  script:\n    - export CSP_USE_VCPKG=0  # [not win]\n    - {{ PYTHON }} -m pip install . -vv --no-deps  # [not win]\n    - set PSP_GENERATOR=Visual Studio 16 2019  # [win]\n    - set CSP_USE_VCPKG=0  # [win]\n    - {{ PYTHON }} setup.py build_ext install --single-version-externally-managed  --record=record.txt  # [win]\n  rpaths:\n    - {{ SP_DIR }}/csp/lib\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [not win]\n    - bison\n    - flex\n  host:\n    - python\n    - brotli\n    - cmake\n    - cyrus-sasl\n    - exprtk\n    - gtest\n    - libarrow =15\n    - libboost-headers\n    - libparquet =15\n    - libprotobuf\n    - librdkafka\n    - lz4-c\n    - numpy\n    - openssl\n    - pip\n    - pyarrow =15\n    - rapidjson\n    - ruamel.yaml\n    - scikit-build\n    - setuptools >=69\n    - websocketpp\n    - zlib\n  run:\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n    - python\n    - {{ pin_compatible('numpy') }}\n    - backports.zoneinfo  # [py<39]\n    - openssl\n    - packaging\n    - pandas <2.2\n    - pyarrow =15\n    - psutil\n    - pytz\n    - rapidjson\n    - ruamel.yaml\n    - sqlalchemy\n\ntest:\n  requires:\n    - pip\n  commands:\n    - pip check\n  imports:\n    - csp\n\nabout:\n  home: http://github.com/point72/csp\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: csp is a high performance reactive stream processing library, written in C++ and Python\n  description: csp is a high performance reactive stream processing library, written in C++ and Python\n  dev_url: https://github.com/point72/csp\n\nextra:\n  recipe-maintainers:\n    - ptomecek\n    - alexddobkin\n    - robambalu\n    - AdamGlustein\n    - timkpaine\n",
+ "raw_meta_yaml": "{% set name = \"csp\" %}\n{% set version = \"0.0.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name [0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 53258f6359df7bb94e7a581f3c0aee7dd483d4dcf11708c6a2c8b74d1a18b30d\n\nbuild:\n  number: 1\n  skip: true  # [win]\n  script:\n    - export CSP_USE_VCPKG=0  # [not win]\n    - {{ PYTHON }} -m pip install . -vv --no-deps  # [not win]\n    - set PSP_GENERATOR=Visual Studio 16 2019  # [win]\n    - set CSP_USE_VCPKG=0  # [win]\n    - {{ PYTHON }} setup.py build_ext install --single-version-externally-managed  --record=record.txt  # [win]\n  rpaths:\n    - {{ SP_DIR }}/csp/lib\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [not win]\n    - bison\n    - flex\n  host:\n    - python\n    - brotli\n    - cmake\n    - cyrus-sasl\n    - exprtk\n    - gtest\n    - libarrow =15\n    - libboost-headers\n    - libparquet =15\n    - libprotobuf\n    - librdkafka\n    - lz4-c\n    - numpy\n    - openssl\n    - pip\n    - pyarrow =15\n    - rapidjson\n    - ruamel.yaml\n    - scikit-build\n    - setuptools >=69\n    - websocketpp\n    - zlib\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - backports.zoneinfo  # [py<39]\n    - openssl\n    - packaging\n    - pandas <2.2\n    - pyarrow =15\n    - psutil\n    - pytz\n    - rapidjson\n    - ruamel.yaml\n    - sqlalchemy\n\ntest:\n  requires:\n    - pip\n  commands:\n    - pip check\n  imports:\n    - csp\n\nabout:\n  home: http://github.com/point72/csp\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: csp is a high performance reactive stream processing library, written in C++ and Python\n  description: csp is a high performance reactive stream processing library, written in C++ and Python\n  dev_url: https://github.com/point72/csp\n\nextra:\n  recipe-maintainers:\n    - ptomecek\n    - alexddobkin\n    - robambalu\n    - AdamGlustein\n    - timkpaine\n",
  "req": {
   "__set__": true,
   "elements": [
-   "__osx",
    "bison",
    "brotli",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "cyrus-sasl",
@@ -488,6 +490,7 @@
    "elements": [
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -499,6 +502,7 @@
    "elements": [
     "brotli",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "cyrus-sasl",
@@ -526,8 +530,8 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numpy",
     "openssl",
@@ -556,6 +560,7 @@
    "elements": [
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -592,7 +597,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx >=10.15",
     "numpy",
     "openssl",
     "packaging",
