@@ -23,7 +23,7 @@
    "summary": "Non-uniform fast Fourier transform library of types 1,2,3 in dimensions 1,2,3"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -43,6 +43,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja"
      ],
@@ -107,6 +108,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cuda_compiler_stub",
       "cmake",
       "ninja"
@@ -164,6 +166,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja"
      ],
@@ -228,6 +231,134 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cuda_compiler_stub",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "nccl",
+      "cuda-cupti-dev",
+      "cuda-cudart-dev",
+      "cuda-nvml-dev",
+      "cuda-nvtx-dev",
+      "libcufft-dev",
+      "cuda-version 12.0",
+      "fftw",
+      "libgomp"
+     ]
+    },
+    "script": "build_finufft.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/cufinufft.h",
+      "test -e ${PREFIX}/lib/libcufinufft${SHLIB_EXT}"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "cufinufft",
+    "requirements": {
+     "host": [
+      "python",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libcufinufft"
+     ]
+    },
+    "script": "build_finufft.sh",
+    "test": {
+     "imports": [
+      "cufinufft"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "ignore_run_exports": null,
+     "run_exports": [
+      "libfinufft"
+     ],
+     "skip": true
+    },
+    "name": "libfinufft",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "fftw",
+      "libgomp"
+     ]
+    },
+    "script": "build_finufft.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/finufft.h",
+      "test -e ${PREFIX}/lib/libfinufft${SHLIB_EXT}",
+      "test ! -f ${PREFIX}/lib/libfinufft_static.a"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true
+    },
+    "name": "finufft",
+    "requirements": {
+     "host": [
+      "python",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libfinufft"
+     ]
+    },
+    "script": "build_finufft.sh",
+    "test": {
+     "commands": [
+      "python python/finufft/test/run_accuracy_tests.py"
+     ],
+     "imports": [
+      "finufft"
+     ],
+     "source_files": [
+      "python/finufft/test"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "nccl",
+      "fftw",
+      "libgomp"
+     ],
+     "run_exports": [
+      "libcufinufft"
+     ]
+    },
+    "name": "libcufinufft",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cuda_compiler_stub",
       "cmake",
       "ninja"
@@ -291,6 +422,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -300,8 +432,13 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cuda-cudart-dev",
+    "cuda-cupti-dev",
+    "cuda-nvml-dev",
+    "cuda-nvtx-dev",
     "cuda-version",
     "fftw",
+    "libcufft-dev",
     "libgomp",
     "nccl",
     "pip",
@@ -332,7 +469,7 @@
    "summary": "Non-uniform fast Fourier transform library of types 1,2,3 in dimensions 1,2,3"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -352,6 +489,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja"
      ],
@@ -416,6 +554,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cuda_compiler_stub",
       "cmake",
       "ninja"
@@ -473,6 +612,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja"
      ],
@@ -537,6 +677,134 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cuda_compiler_stub",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "nccl",
+      "cuda-cupti-dev",
+      "cuda-cudart-dev",
+      "cuda-nvml-dev",
+      "cuda-nvtx-dev",
+      "libcufft-dev",
+      "cuda-version 12.0",
+      "fftw",
+      "libgomp"
+     ]
+    },
+    "script": "build_finufft.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/cufinufft.h",
+      "test -e ${PREFIX}/lib/libcufinufft${SHLIB_EXT}"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "cufinufft",
+    "requirements": {
+     "host": [
+      "python",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libcufinufft"
+     ]
+    },
+    "script": "build_finufft.sh",
+    "test": {
+     "imports": [
+      "cufinufft"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "ignore_run_exports": null,
+     "run_exports": [
+      "libfinufft"
+     ],
+     "skip": true
+    },
+    "name": "libfinufft",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "fftw",
+      "libgomp"
+     ]
+    },
+    "script": "build_finufft.sh",
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/finufft.h",
+      "test -e ${PREFIX}/lib/libfinufft${SHLIB_EXT}",
+      "test ! -f ${PREFIX}/lib/libfinufft_static.a"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true
+    },
+    "name": "finufft",
+    "requirements": {
+     "host": [
+      "python",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libfinufft"
+     ]
+    },
+    "script": "build_finufft.sh",
+    "test": {
+     "commands": [
+      "python python/finufft/test/run_accuracy_tests.py"
+     ],
+     "imports": [
+      "finufft"
+     ],
+     "source_files": [
+      "python/finufft/test"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "nccl",
+      "fftw",
+      "libgomp"
+     ],
+     "run_exports": [
+      "libcufinufft"
+     ]
+    },
+    "name": "libcufinufft",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cuda_compiler_stub",
       "cmake",
       "ninja"
@@ -592,6 +860,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja"
      ],
@@ -656,6 +925,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cuda_compiler_stub",
       "cmake",
       "ninja"
@@ -708,128 +978,6 @@
      ],
      "run_exports": [
       "libfinufft"
-     ]
-    },
-    "name": "libfinufft",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "cmake",
-      "ninja",
-      "python"
-     ],
-     "host": [
-      "fftw"
-     ]
-    },
-    "script": "build_finufft.bat",
-    "test": {
-     "commands": [
-      "if not exist %LIBRARY_PREFIX%\\include\\finufft.h (exit 1)",
-      "if not exist %LIBRARY_PREFIX%\\bin\\finufft.dll (exit 1)",
-      "if not exist %LIBRARY_PREFIX%\\lib\\finufft.lib (exit 1)"
-     ]
-    },
-    "version": "2.2.0"
-   },
-   {
-    "build": {
-     "noarch": "python"
-    },
-    "name": "finufft",
-    "requirements": {
-     "host": [
-      "python",
-      "pip"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libfinufft"
-     ]
-    },
-    "script": "build_finufft.bat",
-    "test": {
-     "commands": [
-      "python python/finufft/test/run_accuracy_tests.py"
-     ],
-     "imports": [
-      "finufft"
-     ],
-     "source_files": [
-      "python/finufft/test"
-     ]
-    },
-    "version": "2.2.0"
-   },
-   {
-    "build": {
-     "ignore_run_exports": [
-      "nccl",
-      "fftw",
-      "libgomp"
-     ],
-     "run_exports": [
-      "libcufinufft"
-     ],
-     "skip": true
-    },
-    "name": "libcufinufft",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "cuda_compiler_stub",
-      "cmake",
-      "ninja"
-     ],
-     "host": [
-      "nccl",
-      "cuda-version None",
-      "fftw",
-      "libgomp"
-     ]
-    },
-    "script": "build_finufft.bat",
-    "test": {
-     "commands": [
-      "test -f ${PREFIX}/include/cufinufft.h",
-      "test -e ${PREFIX}/lib/libcufinufft${SHLIB_EXT}"
-     ]
-    },
-    "version": "2.2.0"
-   },
-   {
-    "build": {
-     "noarch": "python",
-     "skip": true
-    },
-    "name": "cufinufft",
-    "requirements": {
-     "host": [
-      "python",
-      "pip"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libcufinufft"
-     ]
-    },
-    "script": "build_finufft.sh",
-    "test": {
-     "imports": [
-      "cufinufft"
-     ]
-    },
-    "version": "2.2.0"
-   },
-   {
-    "build": {
-     "ignore_run_exports": [
-      "python"
-     ],
-     "run_exports": [
-      "libfinufft"
      ],
      "skip": true
     },
@@ -837,6 +985,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja",
       "python"
@@ -895,12 +1044,14 @@
      ],
      "run_exports": [
       "libcufinufft"
-     ]
+     ],
+     "skip": true
     },
     "name": "libcufinufft",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cuda_compiler_stub",
       "cmake",
       "ninja"
@@ -912,7 +1063,6 @@
       "libgomp"
      ]
     },
-    "script": "build_finufft.bat",
     "test": {
      "commands": [
       "test -f ${PREFIX}/include/cufinufft.h",
@@ -923,7 +1073,261 @@
    },
    {
     "build": {
+     "noarch": "python",
+     "skip": true
+    },
+    "name": "cufinufft",
+    "requirements": {
+     "host": [
+      "python",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libcufinufft"
+     ]
+    },
+    "script": "build_finufft.sh",
+    "test": {
+     "imports": [
+      "cufinufft"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "python"
+     ],
+     "run_exports": [
+      "libfinufft"
+     ],
+     "skip": true
+    },
+    "name": "libfinufft",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "fftw"
+     ]
+    },
+    "script": "build_finufft.bat",
+    "test": {
+     "commands": [
+      "if not exist %LIBRARY_PREFIX%\\include\\finufft.h (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\bin\\finufft.dll (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\finufft.lib (exit 1)"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true
+    },
+    "name": "finufft",
+    "requirements": {
+     "host": [
+      "python",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libfinufft"
+     ]
+    },
+    "script": "build_finufft.bat",
+    "test": {
+     "commands": [
+      "python python/finufft/test/run_accuracy_tests.py"
+     ],
+     "imports": [
+      "finufft"
+     ],
+     "source_files": [
+      "python/finufft/test"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "nccl",
+      "fftw",
+      "libgomp"
+     ],
+     "run_exports": [
+      "libcufinufft"
+     ],
+     "skip": true
+    },
+    "name": "libcufinufft",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cuda_compiler_stub",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "nccl",
+      "cuda-cupti-dev",
+      "cuda-cudart-dev",
+      "cuda-nvml-dev",
+      "cuda-nvtx-dev",
+      "libcufft-dev",
+      "cuda-version 12.0",
+      "fftw",
+      "libgomp"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/cufinufft.h",
+      "test -e ${PREFIX}/lib/libcufinufft${SHLIB_EXT}"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true
+    },
+    "name": "cufinufft",
+    "requirements": {
+     "host": [
+      "python",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libcufinufft"
+     ]
+    },
+    "script": "build_finufft.sh",
+    "test": {
+     "imports": [
+      "cufinufft"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "python"
+     ],
+     "run_exports": [
+      "libfinufft"
+     ]
+    },
+    "name": "libfinufft",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "fftw"
+     ]
+    },
+    "script": "build_finufft.bat",
+    "test": {
+     "commands": [
+      "if not exist %LIBRARY_PREFIX%\\include\\finufft.h (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\bin\\finufft.dll (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\finufft.lib (exit 1)"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
      "noarch": "python"
+    },
+    "name": "finufft",
+    "requirements": {
+     "host": [
+      "python",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libfinufft"
+     ]
+    },
+    "script": "build_finufft.bat",
+    "test": {
+     "commands": [
+      "python python/finufft/test/run_accuracy_tests.py"
+     ],
+     "imports": [
+      "finufft"
+     ],
+     "source_files": [
+      "python/finufft/test"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "nccl",
+      "fftw",
+      "libgomp"
+     ],
+     "run_exports": [
+      "libcufinufft"
+     ],
+     "skip": true
+    },
+    "name": "libcufinufft",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cuda_compiler_stub",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "nccl",
+      "cuda-version None",
+      "fftw",
+      "libgomp"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/cufinufft.h",
+      "test -e ${PREFIX}/lib/libcufinufft${SHLIB_EXT}"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true
     },
     "name": "cufinufft",
     "requirements": {
@@ -971,7 +1375,7 @@
    "summary": "Non-uniform fast Fourier transform library of types 1,2,3 in dimensions 1,2,3"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -991,6 +1395,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja"
      ],
@@ -1055,6 +1460,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cuda_compiler_stub",
       "cmake",
       "ninja"
@@ -1119,6 +1525,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -1169,15 +1576,21 @@
  "pr_info": {
   "__lazy_json__": "pr_info/finufft-split.json"
  },
- "raw_meta_yaml": "{% set name = \"finufft\" %}\n{% set version = \"2.2.0\" %}\n\npackage:\n  name: finufft-split\n  version: {{ version }}\n\nsource:\n  url: https://github.com/flatironinstitute/finufft/archive/v{{ version }}.tar.gz\n  sha256: 0dac7f8f2648fbf5c448cf23a331766e29a7c87b86365d28efb1793b4b023ac1\n  patches:\n    - 0001-python-extension.patch\n    - 0002-cufinufft-no-static.patch\n    - 0003-cufinufft-python-extension.patch\n\nbuild:\n  number: 0\n\noutputs:\n  - name: libfinufft\n    version: {{ version }}\n    script: build_finufft.sh   # [unix]\n    script: build_finufft.bat  # [win]\n    build:\n      skip: True  # [cuda_compiler_version != \"None\"]\n      run_exports:\n        - {{ pin_subpackage('libfinufft', max_pin='x.x') }}\n      ignore_run_exports:\n        - python  # [win]\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - cmake\n        - ninja\n        - python  # [win]\n      host:\n        - fftw\n        - llvm-openmp  # [osx]\n        - libgomp  # [linux]\n    test:\n      commands:\n        - test -f ${PREFIX}/include/finufft.h  # [unix]\n        - if not exist %LIBRARY_PREFIX%\\include\\finufft.h (exit 1)  # [win]\n\n        - test -e ${PREFIX}/lib/libfinufft${SHLIB_EXT}  # [unix]\n        - test ! -f ${PREFIX}/lib/libfinufft_static.a   # [unix]\n\n        - if not exist %LIBRARY_PREFIX%\\bin\\finufft.dll (exit 1)  # [win]\n        - if not exist %LIBRARY_PREFIX%\\lib\\finufft.lib (exit 1)  # [win]\n\n  - name: finufft\n    version: {{ version }}\n    script: build_finufft.sh   # [unix]\n    script: build_finufft.bat  # [win]\n    build:\n      skip: True  # [cuda_compiler_version != \"None\"]\n      noarch: python\n    requirements:\n      host:\n        - python\n        - pip\n      run:\n        - python\n        - numpy\n        - {{ pin_subpackage('libfinufft', exact=True) }}\n    test:\n      imports:\n        - finufft\n      source_files:\n        - python/finufft/test\n      commands:\n        - python python/finufft/test/run_accuracy_tests.py\n\n  - name: libcufinufft\n    version: {{ version }}\n    script: build_finufft.sh   # [unix]\n    script: build_finufft.bat  # [win]\n    build:\n      skip: True  # [cuda_compiler_version == \"None\"]\n      run_exports:\n        - {{ pin_subpackage('libcufinufft', max_pin='x.x') }}\n      ignore_run_exports:\n        - nccl\n        - fftw\n        - libgomp\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ compiler('cuda') }}\n        - cmake\n        - ninja\n      host:\n        - nccl\n        - cuda-cupti-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n        - cuda-cudart-dev   # [(cuda_compiler_version or \"\").startswith(\"12\")]\n        - cuda-nvml-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n        - cuda-nvtx-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n        - libcufft-dev      # [(cuda_compiler_version or \"\").startswith(\"12\")]\n        - cuda-version {{ cuda_compiler_version }}\n        - fftw\n        - libgomp\n    test:\n      commands:\n        - test -f ${PREFIX}/include/cufinufft.h\n        - test -e ${PREFIX}/lib/libcufinufft${SHLIB_EXT}\n\n  - name: cufinufft\n    version: {{ version }}\n    script: build_finufft.sh\n    build:\n      skip: True  # [cuda_compiler_version == \"None\"]\n      noarch: python\n    requirements:\n      host:\n        - python\n        - pip\n      run:\n        - python\n        - numpy\n        - {{ pin_subpackage('libcufinufft', exact=True) }}\n    test:\n      imports:\n        - cufinufft\n\nabout:\n  home: https://github.com/flatironinstitute/finufft\n  summary: 'Non-uniform fast Fourier transform library of types 1,2,3 in dimensions 1,2,3'\n  license: Apache-2.0\n  license_file: LICENSE\n  doc_url: https://finufft.readthedocs.io\n  dev_url: https://github.com/flatironinstitute/finufft\n\nextra:\n  recipe-maintainers:\n    - dfm\n    - lgarrison\n",
+ "raw_meta_yaml": "{% set name = \"finufft\" %}\n{% set version = \"2.2.0\" %}\n\npackage:\n  name: finufft-split\n  version: {{ version }}\n\nsource:\n  url: https://github.com/flatironinstitute/finufft/archive/v{{ version }}.tar.gz\n  sha256: 0dac7f8f2648fbf5c448cf23a331766e29a7c87b86365d28efb1793b4b023ac1\n  patches:\n    - 0001-python-extension.patch\n    - 0002-cufinufft-no-static.patch\n    - 0003-cufinufft-python-extension.patch\n\nbuild:\n  number: 1\n\noutputs:\n  - name: libfinufft\n    version: {{ version }}\n    script: build_finufft.sh   # [unix]\n    script: build_finufft.bat  # [win]\n    build:\n      skip: True  # [cuda_compiler_version != \"None\"]\n      run_exports:\n        - {{ pin_subpackage('libfinufft', max_pin='x.x') }}\n      ignore_run_exports:\n        - python  # [win]\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ stdlib(\"c\") }}\n        - cmake\n        - ninja\n        - python  # [win]\n      host:\n        - fftw\n        - llvm-openmp  # [osx]\n        - libgomp  # [linux]\n    test:\n      commands:\n        - test -f ${PREFIX}/include/finufft.h  # [unix]\n        - if not exist %LIBRARY_PREFIX%\\include\\finufft.h (exit 1)  # [win]\n\n        - test -e ${PREFIX}/lib/libfinufft${SHLIB_EXT}  # [unix]\n        - test ! -f ${PREFIX}/lib/libfinufft_static.a   # [unix]\n\n        - if not exist %LIBRARY_PREFIX%\\bin\\finufft.dll (exit 1)  # [win]\n        - if not exist %LIBRARY_PREFIX%\\lib\\finufft.lib (exit 1)  # [win]\n\n  - name: finufft\n    version: {{ version }}\n    script: build_finufft.sh   # [unix]\n    script: build_finufft.bat  # [win]\n    build:\n      skip: True  # [cuda_compiler_version != \"None\"]\n      noarch: python\n    requirements:\n      host:\n        - python\n        - pip\n      run:\n        - python\n        - numpy\n        - {{ pin_subpackage('libfinufft', exact=True) }}\n    test:\n      imports:\n        - finufft\n      source_files:\n        - python/finufft/test\n      commands:\n        - python python/finufft/test/run_accuracy_tests.py\n\n  - name: libcufinufft\n    version: {{ version }}\n    script: build_finufft.sh   # [unix]\n    build:\n      skip: True  # [win or cuda_compiler_version == \"None\"]\n      run_exports:\n        - {{ pin_subpackage('libcufinufft', max_pin='x.x') }}\n      ignore_run_exports:\n        - nccl\n        - fftw\n        - libgomp\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ stdlib(\"c\") }}\n        - {{ compiler('cuda') }}\n        - cmake\n        - ninja\n      host:\n        - nccl\n        - cuda-cupti-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n        - cuda-cudart-dev   # [(cuda_compiler_version or \"\").startswith(\"12\")]\n        - cuda-nvml-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n        - cuda-nvtx-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n        - libcufft-dev      # [(cuda_compiler_version or \"\").startswith(\"12\")]\n        - cuda-version {{ cuda_compiler_version }}\n        - fftw\n        - libgomp\n    test:\n      commands:\n        - test -f ${PREFIX}/include/cufinufft.h\n        - test -e ${PREFIX}/lib/libcufinufft${SHLIB_EXT}\n\n  - name: cufinufft\n    version: {{ version }}\n    script: build_finufft.sh\n    build:\n      skip: True  # [win or cuda_compiler_version == \"None\"]\n      noarch: python\n    requirements:\n      host:\n        - python\n        - pip\n      run:\n        - python\n        - numpy\n        - {{ pin_subpackage('libcufinufft', exact=True) }}\n    test:\n      imports:\n        - cufinufft\n\nabout:\n  home: https://github.com/flatironinstitute/finufft\n  summary: 'Non-uniform fast Fourier transform library of types 1,2,3 in dimensions 1,2,3'\n  license: Apache-2.0\n  license_file: LICENSE\n  doc_url: https://finufft.readthedocs.io\n  dev_url: https://github.com/flatironinstitute/finufft\n\nextra:\n  recipe-maintainers:\n    - dfm\n    - lgarrison\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
+   "cuda-cudart-dev",
+   "cuda-cupti-dev",
+   "cuda-nvml-dev",
+   "cuda-nvtx-dev",
    "cuda-version",
    "cuda_compiler_stub",
    "cxx_compiler_stub",
    "fftw",
+   "libcufft-dev",
    "libcufinufft",
    "libfinufft",
    "libgomp",
@@ -1193,6 +1606,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -1203,11 +1617,17 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "ctng-compilers",
+    "cuda-cudart-dev",
+    "cuda-cupti-dev",
+    "cuda-nvml-dev",
+    "cuda-nvtx-dev",
     "cuda-version",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "fftw",
+    "libcufft-dev",
     "libgomp",
     "llvm-openmp",
     "nccl",
@@ -1219,6 +1639,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "ctng-compilers",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -1239,6 +1660,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -1249,9 +1671,15 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cuda-cudart-dev",
+    "cuda-cupti-dev",
+    "cuda-nvml-dev",
+    "cuda-nvtx-dev",
     "cuda-version 11.8",
+    "cuda-version 12.0",
     "cuda-version None",
     "fftw",
+    "libcufft-dev",
     "libgomp",
     "llvm-openmp",
     "nccl",
@@ -1288,7 +1716,7 @@
    "summary": "Non-uniform fast Fourier transform library of types 1,2,3 in dimensions 1,2,3"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -1304,12 +1732,14 @@
      ],
      "run_exports": [
       "libfinufft"
-     ]
+     ],
+     "skip": true
     },
     "name": "libfinufft",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja",
       "python"
@@ -1330,7 +1760,8 @@
    },
    {
     "build": {
-     "noarch": "python"
+     "noarch": "python",
+     "skip": true
     },
     "name": "finufft",
     "requirements": {
@@ -1374,18 +1805,18 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cuda_compiler_stub",
       "cmake",
       "ninja"
      ],
      "host": [
       "nccl",
-      "cuda-version None",
+      "cuda-version 11.8",
       "fftw",
       "libgomp"
      ]
     },
-    "script": "build_finufft.bat",
     "test": {
      "commands": [
       "test -f ${PREFIX}/include/cufinufft.h",
@@ -1433,6 +1864,7 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cmake",
       "ninja",
       "python"
@@ -1491,24 +1923,30 @@
      ],
      "run_exports": [
       "libcufinufft"
-     ]
+     ],
+     "skip": true
     },
     "name": "libcufinufft",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
+      "c_stdlib_stub",
       "cuda_compiler_stub",
       "cmake",
       "ninja"
      ],
      "host": [
       "nccl",
-      "cuda-version 11.8",
+      "cuda-cupti-dev",
+      "cuda-cudart-dev",
+      "cuda-nvml-dev",
+      "cuda-nvtx-dev",
+      "libcufft-dev",
+      "cuda-version 12.0",
       "fftw",
       "libgomp"
      ]
     },
-    "script": "build_finufft.bat",
     "test": {
      "commands": [
       "test -f ${PREFIX}/include/cufinufft.h",
@@ -1519,7 +1957,131 @@
    },
    {
     "build": {
+     "noarch": "python",
+     "skip": true
+    },
+    "name": "cufinufft",
+    "requirements": {
+     "host": [
+      "python",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libcufinufft"
+     ]
+    },
+    "script": "build_finufft.sh",
+    "test": {
+     "imports": [
+      "cufinufft"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "python"
+     ],
+     "run_exports": [
+      "libfinufft"
+     ]
+    },
+    "name": "libfinufft",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "fftw"
+     ]
+    },
+    "script": "build_finufft.bat",
+    "test": {
+     "commands": [
+      "if not exist %LIBRARY_PREFIX%\\include\\finufft.h (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\bin\\finufft.dll (exit 1)",
+      "if not exist %LIBRARY_PREFIX%\\lib\\finufft.lib (exit 1)"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
      "noarch": "python"
+    },
+    "name": "finufft",
+    "requirements": {
+     "host": [
+      "python",
+      "pip"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libfinufft"
+     ]
+    },
+    "script": "build_finufft.bat",
+    "test": {
+     "commands": [
+      "python python/finufft/test/run_accuracy_tests.py"
+     ],
+     "imports": [
+      "finufft"
+     ],
+     "source_files": [
+      "python/finufft/test"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "nccl",
+      "fftw",
+      "libgomp"
+     ],
+     "run_exports": [
+      "libcufinufft"
+     ],
+     "skip": true
+    },
+    "name": "libcufinufft",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cuda_compiler_stub",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "nccl",
+      "cuda-version None",
+      "fftw",
+      "libgomp"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f ${PREFIX}/include/cufinufft.h",
+      "test -e ${PREFIX}/lib/libcufinufft${SHLIB_EXT}"
+     ]
+    },
+    "version": "2.2.0"
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true
     },
     "name": "cufinufft",
     "requirements": {
@@ -1560,6 +2122,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -1570,8 +2133,13 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cuda-cudart-dev",
+    "cuda-cupti-dev",
+    "cuda-nvml-dev",
+    "cuda-nvtx-dev",
     "cuda-version",
     "fftw",
+    "libcufft-dev",
     "libgomp",
     "nccl",
     "pip",
