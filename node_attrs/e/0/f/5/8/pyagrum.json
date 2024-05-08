@@ -53,6 +53,7 @@
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -106,6 +107,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -179,6 +181,7 @@
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -232,6 +235,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -305,6 +309,7 @@
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "curl",
     "7za"
@@ -385,6 +390,7 @@
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -438,6 +444,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -511,6 +518,7 @@
     "cmake",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -564,6 +572,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -625,12 +634,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyagrum.json"
  },
- "raw_meta_yaml": "{% set version = \"1.13.2\" %} \n\npackage:\n  name: pyagrum\n  version: {{ version }}\n\nsource:\n  fn: pyagrum-{{ version }}.tar.bz2\n  url: https://gitlab.com/agrumery/aGrUM/-/archive/{{ version }}/aGrUM-{{ version }}.tar.bz2\n  sha256: a57238e60b56c5d65dd1f7a1fcd49dfa22816621a58de48f59a8d38e23c18b89\n\nbuild:\n  number: 0\n  skip: true  # [py<38]\n  run_exports:\n    - {{ pin_subpackage('pyagrum', max_pin='x.x.x') }}\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - cmake\n    - make  # [unix]\n    - {{ compiler('c') }}  # [unix]\n    - {{ compiler('cxx') }}  # [unix] \n    - curl  # [win]\n    - 7za  # [win]\n  host:\n    - python\n    - numpy\n    - pydot\n    - six\n    - matplotlib-base\n    - IPython\n    - ipykernel\n    - pandas\n    - matplotlib-inline\n    - scikit-learn\n    - scipy\n  run:\n    - python\n    - numpy\n    - pydot\n    - six\n    - matplotlib-base\n    - IPython\n    - ipykernel\n    - pandas\n    - matplotlib-inline\n    - scikit-learn\n    - scipy\n\ntest:\n  requires:\n    - ipykernel\n  imports:\n    - pyAgrum\n    - pyAgrum.lib.bn2roc\n    - pyAgrum.lib.bn2scores\n    - pyAgrum.lib.bn_vs_bn\n    - pyAgrum.lib.dynamicBN\n    - pyAgrum.lib.notebook\n\nabout:\n  home: http://agrum.gitlab.io/\n  license: LGPL-3.0-only\n  license_file: COPYRIGHT.txt\n  summary: pyAgrum is a scientific C++ and Python library dedicated to Bayesian Networks and other Probabilistic Graphical Models. It provides a high-level interface to the part of aGrUM allowing to create, model, learn, use, calculate with and embed Bayesian Networks and other graphical models. Some specific (Python and\n    C++) codes are added in order to simplify and extend the aGrUM API.\n\nextra:\n  recipe-maintainers:\n    - jschueller\n    - ltorti\n    - aspard\n",
+ "raw_meta_yaml": "{% set version = \"1.13.2\" %} \n\npackage:\n  name: pyagrum\n  version: {{ version }}\n\nsource:\n  fn: pyagrum-{{ version }}.tar.bz2\n  url: https://gitlab.com/agrumery/aGrUM/-/archive/{{ version }}/aGrUM-{{ version }}.tar.bz2\n  sha256: a57238e60b56c5d65dd1f7a1fcd49dfa22816621a58de48f59a8d38e23c18b89\n\nbuild:\n  number: 0\n  skip: true  # [py<38]\n  run_exports:\n    - {{ pin_subpackage('pyagrum', max_pin='x.x.x') }}\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - cmake\n    - make  # [unix]\n    - {{ compiler('c') }}  # [unix]\n    - {{ stdlib(\"c\") }}    # [unix]\n    - {{ compiler('cxx') }}  # [unix] \n    - curl  # [win]\n    - 7za  # [win]\n  host:\n    - python\n    - numpy\n    - pydot\n    - six\n    - matplotlib-base\n    - IPython\n    - ipykernel\n    - pandas\n    - matplotlib-inline\n    - scikit-learn\n    - scipy\n  run:\n    - python\n    - numpy\n    - pydot\n    - six\n    - matplotlib-base\n    - IPython\n    - ipykernel\n    - pandas\n    - matplotlib-inline\n    - scikit-learn\n    - scipy\n\ntest:\n  requires:\n    - ipykernel\n  imports:\n    - pyAgrum\n    - pyAgrum.lib.bn2roc\n    - pyAgrum.lib.bn2scores\n    - pyAgrum.lib.bn_vs_bn\n    - pyAgrum.lib.dynamicBN\n    - pyAgrum.lib.notebook\n\nabout:\n  home: http://agrum.gitlab.io/\n  license: LGPL-3.0-only\n  license_file: COPYRIGHT.txt\n  summary: pyAgrum is a scientific C++ and Python library dedicated to Bayesian Networks and other Probabilistic Graphical Models. It provides a high-level interface to the part of aGrUM allowing to create, model, learn, use, calculate with and embed Bayesian Networks and other graphical models. Some specific (Python and\n    C++) codes are added in order to simplify and extend the aGrUM API.\n\nextra:\n  recipe-maintainers:\n    - jschueller\n    - ltorti\n    - aspard\n",
  "req": {
   "__set__": true,
   "elements": [
    "7za",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "curl",
    "cxx_compiler_stub",
@@ -654,6 +664,7 @@
    "elements": [
     "7za",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "curl",
     "cxx_compiler_stub",
@@ -664,6 +675,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "ipykernel",
     "ipython",
@@ -682,6 +694,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "ipykernel",
     "ipython",
@@ -710,6 +723,7 @@
    "elements": [
     "7za",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "curl",
     "cxx_compiler_stub",
