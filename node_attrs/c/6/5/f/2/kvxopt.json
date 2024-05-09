@@ -33,7 +33,7 @@
    "summary": "Convex optimization package and Suite Sparse interface"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -46,7 +46,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -125,7 +126,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -173,7 +175,7 @@
    "summary": "Convex optimization package and Suite Sparse interface"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -186,7 +188,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -265,7 +268,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -313,7 +317,7 @@
    "summary": "Convex optimization package and Suite Sparse interface"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -326,7 +330,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -405,7 +410,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -453,7 +459,7 @@
    "summary": "Convex optimization package and Suite Sparse interface"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -466,7 +472,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -698,7 +705,7 @@
    "summary": "Convex optimization package and Suite Sparse interface"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -711,7 +718,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -790,7 +798,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -838,7 +847,7 @@
    "summary": "Convex optimization package and Suite Sparse interface"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -851,7 +860,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -926,7 +936,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -982,11 +993,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/kvxopt.json"
  },
- "raw_meta_yaml": "{% set version = \"1.3.2.1\" %}\n{% set suitesparse_for_win_version = \"7.7.0\" %}\n\n# This recipe is based on CVXOPT's recipe:\n# https://github.com/conda-forge/cvxopt-feedstock/blob/master/recipe\npackage:\n  name: kvxopt\n  version: {{ version }}\n\n\nsource:\n  - url: https://pypi.io/packages/source/k/kvxopt/kvxopt-{{ version }}.tar.gz\n    sha256: 312df18c11286a2b0ee582e63474b39f685f494425f70308976a3c46c0e6cb45\n\n  # on windows, building suitesparse in directly works much better than trying to build it separately and link it in\n  - url: https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/v{{ suitesparse_for_win_version }}.tar.gz  # [win]\n    sha256: 529b067f5d80981f45ddf6766627b8fc5af619822f068f342aab776e683df4f3  # [win]\n    folder: suitesparse  # [win]\n\n\nbuild:\n  skip: true  # [py<35]\n  number: 1\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n  host:\n    - libblas\n    - liblapack\n    - python\n    - setuptools\n    - gsl\n    - fftw\n    - dsdp\n    - glpk\n    - libosqp\n    # suitesparse is linked against on windows, and compiled-in on windows, because yeah, windows.\n    - suitesparse          # [not win]\n    - setuptools_scm  # For versioning\n  run:\n    - python\n    - gsl\n    - fftw\n    - dsdp\n    - glpk\n    - libosqp\n    - suitesparse          # [not win]\n\n\ntest:\n  imports:\n    - kvxopt\n    - kvxopt.base\n    - kvxopt.blas\n    - kvxopt.cholmod\n    - kvxopt.lapack\n    - kvxopt.misc_solvers\n    - kvxopt.umfpack\n    - kvxopt.glpk\n    - kvxopt.fftw\n    - kvxopt.klu\n    - kvxopt.osqp\n    - kvxopt.fftw\n    - kvxopt.gsl\n    - kvxopt.glpk\n  source_files:\n    - tests/*\n    - examples/*\n  requires:\n    - pytest\n\nabout:\n  home: https://github.com/sanurielf/kvxopt\n  license: GPL-3.0-or-later\n  license_file: LICENSE\n  summary: Convex optimization package and Suite Sparse interface\n  doc_url: https://github.com/sanurielf/kvxopt\n  dev_url: https://github.com/sanurielf/kvxopt\n\nextra:\n  recipe-maintainers:\n    - sanurielf\n",
+ "raw_meta_yaml": "{% set version = \"1.3.2.1\" %}\n{% set suitesparse_for_win_version = \"7.7.0\" %}\n\n# This recipe is based on CVXOPT's recipe:\n# https://github.com/conda-forge/cvxopt-feedstock/blob/master/recipe\npackage:\n  name: kvxopt\n  version: {{ version }}\n\n\nsource:\n  - url: https://pypi.io/packages/source/k/kvxopt/kvxopt-{{ version }}.tar.gz\n    sha256: 312df18c11286a2b0ee582e63474b39f685f494425f70308976a3c46c0e6cb45\n\n  # on windows, building suitesparse in directly works much better than trying to build it separately and link it in\n  - url: https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/v{{ suitesparse_for_win_version }}.tar.gz  # [win]\n    sha256: 529b067f5d80981f45ddf6766627b8fc5af619822f068f342aab776e683df4f3  # [win]\n    folder: suitesparse  # [win]\n\n\nbuild:\n  skip: true  # [py<35]\n  number: 2\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - libblas\n    - liblapack\n    - python\n    - setuptools\n    - gsl\n    - fftw\n    - dsdp\n    - glpk\n    - libosqp\n    # suitesparse is linked against on windows, and compiled-in on windows, because yeah, windows.\n    - suitesparse          # [not win]\n    - setuptools_scm  # For versioning\n  run:\n    - python\n    - gsl\n    - fftw\n    - dsdp\n    - glpk\n    - libosqp\n    - suitesparse          # [not win]\n\n\ntest:\n  imports:\n    - kvxopt\n    - kvxopt.base\n    - kvxopt.blas\n    - kvxopt.cholmod\n    - kvxopt.lapack\n    - kvxopt.misc_solvers\n    - kvxopt.umfpack\n    - kvxopt.glpk\n    - kvxopt.fftw\n    - kvxopt.klu\n    - kvxopt.osqp\n    - kvxopt.fftw\n    - kvxopt.gsl\n    - kvxopt.glpk\n  source_files:\n    - tests/*\n    - examples/*\n  requires:\n    - pytest\n\nabout:\n  home: https://github.com/sanurielf/kvxopt\n  license: GPL-3.0-or-later\n  license_file: LICENSE\n  summary: Convex optimization package and Suite Sparse interface\n  doc_url: https://github.com/sanurielf/kvxopt\n  dev_url: https://github.com/sanurielf/kvxopt\n\nextra:\n  recipe-maintainers:\n    - sanurielf\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "dsdp",
    "fftw",
    "glpk",
@@ -1004,13 +1016,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "dsdp",
     "fftw",
     "glpk",
@@ -1028,6 +1042,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "dsdp",
     "fftw",
     "glpk",
@@ -1049,7 +1064,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -1102,7 +1118,7 @@
    "summary": "Convex optimization package and Suite Sparse interface"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -1115,7 +1131,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -1222,7 +1239,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
