@@ -64,21 +64,25 @@
     "rebound",
     "pooch",
     "tqdm",
-    "numba"
+    "numba",
+    "httpretty"
    ]
   },
   "source": {
-   "sha256": "4dfde5cfaf397ecf99de9b9a3a89feb5a2b1aac5c46a429bfdfb47c4c41524e4",
+   "patches": [
+    "0001-demo-quicktest.sh-fix-for-new-command-line-directory.patch"
+   ],
+   "sha256": "7940e8e14b74247c88b5c66c0b9fad713c17d69175eb0da8a4706fa8147af1ed",
    "url": "https://github.com/dirac-institute/sorcha/archive/v0.6.4.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
     "sorcha --help",
-    "makeConfigSorcha --help",
     "makeSLURMscript --help",
     "createResultsSQLDatabase --help",
     "bootstrap_sorcha_data_files --help",
+    "sorcha_copy_configs --help",
     "bash -x ./demo/quicktest.sh"
    ],
    "imports": [
@@ -89,7 +93,6 @@
    ],
    "source_files": [
     "demo/quicktest.sh",
-    "data/detectors_corners.csv",
     "demo/baseline_v2.0_1yr.db",
     "demo/sorcha_config_demo.ini",
     "demo/sspp_testset_colours.txt",
@@ -117,6 +120,7 @@
     "assist",
     "astropy",
     "healpy",
+    "httpretty",
     "matplotlib-base",
     "numba",
     "numpy",
@@ -188,21 +192,25 @@
     "rebound",
     "pooch",
     "tqdm",
-    "numba"
+    "numba",
+    "httpretty"
    ]
   },
   "source": {
-   "sha256": "4dfde5cfaf397ecf99de9b9a3a89feb5a2b1aac5c46a429bfdfb47c4c41524e4",
+   "patches": [
+    "0001-demo-quicktest.sh-fix-for-new-command-line-directory.patch"
+   ],
+   "sha256": "7940e8e14b74247c88b5c66c0b9fad713c17d69175eb0da8a4706fa8147af1ed",
    "url": "https://github.com/dirac-institute/sorcha/archive/v0.6.4.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
     "sorcha --help",
-    "makeConfigSorcha --help",
     "makeSLURMscript --help",
     "createResultsSQLDatabase --help",
     "bootstrap_sorcha_data_files --help",
+    "sorcha_copy_configs --help",
     "bash -x ./demo/quicktest.sh"
    ],
    "imports": [
@@ -213,7 +221,6 @@
    ],
    "source_files": [
     "demo/quicktest.sh",
-    "data/detectors_corners.csv",
     "demo/baseline_v2.0_1yr.db",
     "demo/sorcha_config_demo.ini",
     "demo/sspp_testset_colours.txt",
@@ -235,13 +242,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/sorcha.json"
  },
- "raw_meta_yaml": "{% set name = \"sorcha\" %}\n{% set version = \"0.6.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/dirac-institute/sorcha/archive/v{{ version }}.tar.gz\n  sha256: 4dfde5cfaf397ecf99de9b9a3a89feb5a2b1aac5c46a429bfdfb47c4c41524e4\n#   path: /Users/mjuric/projects/github.com/mjuric/sorcha\n\nbuild:\n  entry_points:\n    - sorcha = sorcha.sorcha:main\n    - makeConfigSorcha = sorcha.utilities.makeConfigPP:main\n    - makeSLURMscript = sorcha.utilities.makeSLURMscript:main\n    - createResultsSQLDatabase = sorcha.utilities.createResultsSQLDatabase:main\n    - bootstrap_sorcha_data_files = sorcha.utilities.retrieve_ephemeris_data_files:main\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools >=62\n    - setuptools-scm >=7.0\n    - pip\n  run:\n    - python >=3.8\n    - numpy\n    - pandas >=2.0\n    - astropy\n    - matplotlib-base\n    - sbpy\n    - pytables\n    - spiceypy\n    - healpy\n    - assist\n    - rebound\n    - pooch\n    - tqdm\n    - numba\n\ntest:\n  imports:\n    - sorcha\n  commands:\n    - pip check\n    - sorcha --help\n    - makeConfigSorcha --help\n    - makeSLURMscript --help\n    - createResultsSQLDatabase --help\n    - bootstrap_sorcha_data_files --help\n    - bash -x ./demo/quicktest.sh\n  requires:\n    - pip\n  source_files:\n    - demo/quicktest.sh\n    - data/detectors_corners.csv\n    - demo/baseline_v2.0_1yr.db\n    - demo/sorcha_config_demo.ini\n    - demo/sspp_testset_colours.txt\n    - demo/sspp_testset_orbits.des\n\nabout:\n  home: https://github.com/dirac-institute/sorcha\n  summary: The survey simulator post processing code for the LSST\n  license: BSD-3-Clause AND GPL-3.0-only\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - drewoldag\n    - mschwamb\n    - mjuric\n",
+ "raw_meta_yaml": "{% set name = \"sorcha\" %}\n{% set version = \"0.6.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/dirac-institute/sorcha/archive/v{{ version }}.tar.gz\n  sha256: 7940e8e14b74247c88b5c66c0b9fad713c17d69175eb0da8a4706fa8147af1ed\n#   path: /Users/mjuric/projects/github.com/mjuric/sorcha\n  patches:\n    - 0001-demo-quicktest.sh-fix-for-new-command-line-directory.patch\n\nbuild:\n  entry_points:\n    - sorcha = sorcha.sorcha:main\n    - makeConfigSorcha = sorcha.utilities.makeConfigPP:main\n    - makeSLURMscript = sorcha.utilities.makeSLURMscript:main\n    - createResultsSQLDatabase = sorcha.utilities.createResultsSQLDatabase:main\n    - bootstrap_sorcha_data_files = sorcha.utilities.retrieve_ephemeris_data_files:main\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools >=62\n    - setuptools-scm >=7.0\n    - pip\n  run:\n    - python >=3.8\n    - numpy\n    - pandas >=2.0\n    - astropy\n    - matplotlib-base\n    - sbpy\n    - pytables\n    - spiceypy\n    - healpy\n    - assist\n    - rebound\n    - pooch\n    - tqdm\n    - numba\n    - httpretty # HACK to work around ads package's missing requirement (at least v0.12.4)\n\ntest:\n  imports:\n    - sorcha\n  commands:\n    - pip check\n    - sorcha --help\n#    - sorcha_bootstrap_data_files --help\n#    - sorcha_copy_configs  --help\n#    - sorcha_copy_demo_files --help\n#    - sorcha_create_results_db --help\n#    - sorcha_demo_command --help\n    - makeSLURMscript --help\n    - createResultsSQLDatabase --help\n    - bootstrap_sorcha_data_files --help\n    - sorcha_copy_configs --help    \n    - bash -x ./demo/quicktest.sh\n  requires:\n    - pip\n  source_files:\n    - demo/quicktest.sh\n    - demo/baseline_v2.0_1yr.db\n    - demo/sorcha_config_demo.ini\n    - demo/sspp_testset_colours.txt\n    - demo/sspp_testset_orbits.des\n\nabout:\n  home: https://github.com/dirac-institute/sorcha\n  summary: The survey simulator post processing code for the LSST\n  license: BSD-3-Clause AND GPL-3.0-only\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - drewoldag\n    - mschwamb\n    - mjuric\n",
  "req": {
   "__set__": true,
   "elements": [
    "assist",
    "astropy",
    "healpy",
+   "httpretty",
    "matplotlib-base",
    "numba",
    "numpy",
@@ -278,6 +286,7 @@
     "assist",
     "astropy",
     "healpy",
+    "httpretty",
     "matplotlib-base",
     "numba",
     "numpy",
@@ -319,6 +328,7 @@
     "assist",
     "astropy",
     "healpy",
+    "httpretty",
     "matplotlib-base",
     "numba",
     "numpy",
