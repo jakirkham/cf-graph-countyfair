@@ -15,18 +15,17 @@
  "hash_type": "sha256",
  "linux_64_meta_yaml": {
   "about": {
+   "description": "OptiMask: extracting the largest (non-contiguous) submatrix without NaN",
    "home": "https://github.com/CyrilJl/optimask",
    "license": "MIT",
    "license_file": "LICENSE",
    "summary": "OptiMask: extracting the largest (non-contiguous) submatrix without NaN"
   },
   "build": {
-   "noarch": "python",
    "number": "0",
    "script": [
-    "PYTHON -m pip install . -vv --no-deps --no-build-isolation",
-    "PYTHON setup.py build_ext --inplace",
-    "PYTHON setup.py sdist"
+    "PYTHON setup.py build_ext",
+    "PYTHON -m pip install . -vv"
    ]
   },
   "extra": {
@@ -51,7 +50,8 @@
    ],
    "run": [
     "python",
-    "numpy"
+    "numpy",
+    "pandas"
    ]
   },
   "source": {
@@ -68,8 +68,7 @@
    "requires": [
     "pip",
     "numpy",
-    "pandas",
-    "cython"
+    "pandas"
    ]
   }
  },
@@ -94,13 +93,13 @@
    "__set__": true,
    "elements": [
     "numpy",
+    "pandas",
     "python"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "cython",
     "numpy",
     "pandas",
     "pip"
@@ -109,18 +108,17 @@
  },
  "meta_yaml": {
   "about": {
+   "description": "OptiMask: extracting the largest (non-contiguous) submatrix without NaN",
    "home": "https://github.com/CyrilJl/optimask",
    "license": "MIT",
    "license_file": "LICENSE",
    "summary": "OptiMask: extracting the largest (non-contiguous) submatrix without NaN"
   },
   "build": {
-   "noarch": "python",
    "number": "0",
    "script": [
-    "PYTHON -m pip install . -vv --no-deps --no-build-isolation",
-    "PYTHON setup.py build_ext --inplace",
-    "PYTHON setup.py sdist"
+    "PYTHON setup.py build_ext",
+    "PYTHON -m pip install . -vv"
    ]
   },
   "extra": {
@@ -145,7 +143,8 @@
    ],
    "run": [
     "python",
-    "numpy"
+    "numpy",
+    "pandas"
    ]
   },
   "source": {
@@ -162,8 +161,7 @@
    "requires": [
     "pip",
     "numpy",
-    "pandas",
-    "cython"
+    "pandas"
    ]
   }
  },
@@ -181,7 +179,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/optimask.json"
  },
- "raw_meta_yaml": "{% set name = \"optimask\" %}\n{% set version = \"1.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/optimask-{{ version }}.tar.gz\n  sha256: 03a44dc098ad12ae88766bb57ed0cb4b653e97c22a088eb7c0160af01730cfa7\n\nbuild:\n  noarch: python\n  script: \n    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n    - {{ PYTHON }} setup.py build_ext --inplace\n    - {{ PYTHON }} setup.py sdist\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - python                                # [build_platform != target_platform]\n    - cython                                # [build_platform != target_platform]\n    - numpy                                 # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - cython\n    - numpy\n    - pandas\n  run:\n    - python\n    - {{ pin_compatible(\"numpy\") }}\n\ntest:\n  imports:\n    - optimask\n  commands:\n    - pip check\n  requires:\n    - pip\n    - numpy\n    - pandas\n    - cython\n\nabout:\n  home: https://github.com/CyrilJl/optimask\n  summary: 'OptiMask: extracting the largest (non-contiguous) submatrix without NaN'\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - CyrilJl\n",
+ "raw_meta_yaml": "{% set name = \"optimask\" %}\n{% set version = \"1.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/optimask-{{ version }}.tar.gz\n  sha256: 03a44dc098ad12ae88766bb57ed0cb4b653e97c22a088eb7c0160af01730cfa7\n\nbuild:\n  script:\n    - {{ PYTHON }} setup.py build_ext\n    - {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - cross-python_{{ target_platform }}    # [build_platform != target_platform]\n    - python                                # [build_platform != target_platform]\n    - cython                                # [build_platform != target_platform]\n    - numpy                                # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - cython\n    - numpy\n    - pandas\n  run:\n    - python\n    - {{ pin_compatible(\"numpy\") }}\n    - numpy\n    - pandas\n\ntest:\n  imports:\n    - optimask\n  commands:\n    - pip check\n  requires:\n    - pip\n    - numpy\n    - pandas\n\nabout:\n  home: https://github.com/CyrilJl/optimask\n  summary: 'OptiMask: extracting the largest (non-contiguous) submatrix without NaN'\n  description: 'OptiMask: extracting the largest (non-contiguous) submatrix without NaN'\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - CyrilJl\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -216,13 +214,13 @@
    "elements": [
     "c_compiler_stub",
     "numpy",
+    "pandas",
     "python"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "cython",
     "numpy",
     "pandas",
     "pip"
@@ -251,13 +249,13 @@
    "__set__": true,
    "elements": [
     "numpy",
+    "pandas",
     "python"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "cython",
     "numpy",
     "pandas",
     "pip"
