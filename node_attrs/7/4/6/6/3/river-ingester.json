@@ -22,7 +22,7 @@
    "summary": "High-throughput, structured, and persistent streaming"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "river-ingester"
    ]
@@ -39,6 +39,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config"
@@ -69,6 +70,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -106,7 +108,7 @@
    "summary": "High-throughput, structured, and persistent streaming"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "river-ingester"
    ]
@@ -123,6 +125,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config"
@@ -136,8 +139,7 @@
    ],
    "run": [
     "spdlog",
-    "river-cpp 1.0.11",
-    "__osx >=10.13"
+    "river-cpp 1.0.11"
    ]
   },
   "source": {
@@ -160,7 +162,7 @@
    "summary": "High-throughput, structured, and persistent streaming"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "river-ingester"
    ]
@@ -177,6 +179,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config"
@@ -190,8 +193,7 @@
    ],
    "run": [
     "spdlog",
-    "river-cpp 1.0.11",
-    "__osx >=10.13"
+    "river-cpp 1.0.11"
    ]
   },
   "source": {
@@ -208,6 +210,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -227,7 +230,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "river-cpp",
     "spdlog"
    ]
@@ -251,11 +253,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/river-ingester.json"
  },
- "raw_meta_yaml": "{% set name = \"river-ingester\" %}\n{% set version = \"1.0.11\" %}\n\n# appease linter\n{% if libarrow is undefined %}\n{% set libarrow = \"15\" %}\n{% endif %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pbotros/river/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 04f6712d220a97fde76e3ed5998832c4a7ba790137cf656f8c2d1290077b8eaf\n\nbuild:\n  number: 1\n  run_exports:\n    - {{ pin_subpackage(\"river-ingester\", max_pin=\"x.x\") }}\n  # The ingester currently doesn't build on Windows, though admittedly not\n  # much effort was put in to get this working. Redis runs on Linux/Mac\n  # only anyways, so you'll need a Linux/Mac machine in the mix regardless.\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [not win]\n    - ninja  # [win]\n    - pkg-config\n  host:\n    - libboost-devel\n    - libarrow\n    {% if libarrow.split(\".\")[0] | int >= 14 %}\n    - libparquet\n    {% endif %}\n    - spdlog\n    - river-cpp {{ version }}\n  run:\n    - spdlog\n    - river-cpp {{ version }}\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.13\") }}  # [osx and x86_64]\n\ntest:\n  commands:\n    - test -f ${PREFIX}/bin/river-ingester  # [osx]\n    - test -f ${PREFIX}/bin/river-ingester  # [linux]\n\nabout:\n  home: https://github.com/pbotros/river\n  summary: High-throughput, structured, and persistent streaming\n  description: |\n    A high-throughput, structured streaming framework built atop Redis Streams, with optional support for persistence-to-disk. C++ and Python support.\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - pbotros\n",
+ "raw_meta_yaml": "{% set name = \"river-ingester\" %}\n{% set version = \"1.0.11\" %}\n\n# appease linter\n{% if libarrow is undefined %}\n{% set libarrow = \"15\" %}\n{% endif %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pbotros/river/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 04f6712d220a97fde76e3ed5998832c4a7ba790137cf656f8c2d1290077b8eaf\n\nbuild:\n  number: 2\n  run_exports:\n    - {{ pin_subpackage(\"river-ingester\", max_pin=\"x.x\") }}\n  # The ingester currently doesn't build on Windows, though admittedly not\n  # much effort was put in to get this working. Redis runs on Linux/Mac\n  # only anyways, so you'll need a Linux/Mac machine in the mix regardless.\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - make  # [not win]\n    - ninja  # [win]\n    - pkg-config\n  host:\n    - libboost-devel\n    - libarrow\n    {% if libarrow.split(\".\")[0] | int >= 14 %}\n    - libparquet\n    {% endif %}\n    - spdlog\n    - river-cpp {{ version }}\n  run:\n    - spdlog\n    - river-cpp {{ version }}\n\ntest:\n  commands:\n    - test -f ${PREFIX}/bin/river-ingester  # [osx]\n    - test -f ${PREFIX}/bin/river-ingester  # [linux]\n\nabout:\n  home: https://github.com/pbotros/river\n  summary: High-throughput, structured, and persistent streaming\n  description: |\n    A high-throughput, structured streaming framework built atop Redis Streams, with optional support for persistence-to-disk. C++ and Python support.\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - pbotros\n",
  "req": {
   "__set__": true,
   "elements": [
-   "__osx",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "libarrow",
@@ -271,6 +273,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -280,6 +283,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libarrow",
     "libboost-devel",
@@ -291,7 +295,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "river-cpp",
     "spdlog"
@@ -307,6 +311,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -326,7 +331,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx >=10.13",
     "river-cpp 1.0.11",
     "spdlog"
    ]
