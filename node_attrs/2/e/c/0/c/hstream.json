@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "hint-all"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -22,7 +25,7 @@
   },
   "build": {
    "entry_points": [
-    "hstream = hstream.runner:run"
+    "hstream = hstream.cli:cli"
    ],
    "noarch": "python",
    "number": "0",
@@ -35,29 +38,27 @@
   },
   "package": {
    "name": "hstream",
-   "version": "0.0.20"
+   "version": "0.1.0"
   },
   "requirements": {
    "host": [
     "pip",
-    "python >=3.6"
+    "python >=3.10,<4.0",
+    "poetry-core"
    ],
    "run": [
-    "fastapi >=0.85,<1.dev0",
-    "jinja2 >=3.1,<4.dev0",
-    "markdown >=3.4,<4.dev0",
-    "matplotlib-base",
-    "python >=3.6",
-    "python-multipart",
-    "starlette-context ==0.3.4",
-    "uvicorn >=0.19,<1.dev0",
-    "watchfiles >=0.18,<1.dev0",
-    "yattag >=1.14,<2.dev0"
+    "python >=3.10,<4.0",
+    "cherrypy >=18.9.0,<19.0.0",
+    "click >=8.1.7,<9.0.0",
+    "yattag >=1.15.2,<2.0.0",
+    "ipdb >=0.13.13,<0.14.0",
+    "markdown >=3.6,<4.0",
+    "beautifulsoup4 >=4.12,<5.0"
    ]
   },
   "source": {
-   "sha256": "a080208df85af49334e3a5f847bb2815c282558f6e9fea90c003d8711992b7d7",
-   "url": "https://pypi.io/packages/source/h/hstream/hstream-0.0.20.tar.gz"
+   "sha256": "992e8e22e9fc83b6c65224a0264733be2a6983d0d9db8e347fa76e316e46bc6f",
+   "url": "https://pypi.io/packages/source/h/hstream/hstream-0.1.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -74,21 +75,19 @@
    "__set__": true,
    "elements": [
     "pip",
+    "poetry-core",
     "python"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "fastapi",
-    "jinja2",
+    "beautifulsoup4",
+    "cherrypy",
+    "click",
+    "ipdb",
     "markdown",
-    "matplotlib-base",
     "python",
-    "python-multipart",
-    "starlette-context",
-    "uvicorn",
-    "watchfiles",
     "yattag"
    ]
   },
@@ -106,7 +105,7 @@
   },
   "build": {
    "entry_points": [
-    "hstream = hstream.runner:run"
+    "hstream = hstream.cli:cli"
    ],
    "noarch": "python",
    "number": "0",
@@ -119,29 +118,27 @@
   },
   "package": {
    "name": "hstream",
-   "version": "0.0.20"
+   "version": "0.1.0"
   },
   "requirements": {
    "host": [
     "pip",
-    "python >=3.6"
+    "python >=3.10,<4.0",
+    "poetry-core"
    ],
    "run": [
-    "fastapi >=0.85,<1.dev0",
-    "jinja2 >=3.1,<4.dev0",
-    "markdown >=3.4,<4.dev0",
-    "matplotlib-base",
-    "python >=3.6",
-    "python-multipart",
-    "starlette-context ==0.3.4",
-    "uvicorn >=0.19,<1.dev0",
-    "watchfiles >=0.18,<1.dev0",
-    "yattag >=1.14,<2.dev0"
+    "python >=3.10,<4.0",
+    "cherrypy >=18.9.0,<19.0.0",
+    "click >=8.1.7,<9.0.0",
+    "yattag >=1.15.2,<2.0.0",
+    "ipdb >=0.13.13,<0.14.0",
+    "markdown >=3.6,<4.0",
+    "beautifulsoup4 >=4.12,<5.0"
    ]
   },
   "source": {
-   "sha256": "a080208df85af49334e3a5f847bb2815c282558f6e9fea90c003d8711992b7d7",
-   "url": "https://pypi.io/packages/source/h/hstream/hstream-0.0.20.tar.gz"
+   "sha256": "992e8e22e9fc83b6c65224a0264733be2a6983d0d9db8e347fa76e316e46bc6f",
+   "url": "https://pypi.io/packages/source/h/hstream/hstream-0.1.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -163,20 +160,18 @@
  "pr_info": {
   "__lazy_json__": "pr_info/hstream.json"
  },
- "raw_meta_yaml": "{% set name = \"hstream\" %}\n{% set version = \"0.0.20\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/hstream-{{ version }}.tar.gz\n  sha256: a080208df85af49334e3a5f847bb2815c282558f6e9fea90c003d8711992b7d7\n\nbuild:\n  entry_points:\n    - hstream = hstream.runner:run\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - pip\n    - python >=3.6\n  run:\n    - fastapi >=0.85,<1.dev0\n    - jinja2 >=3.1,<4.dev0\n    - markdown >=3.4,<4.dev0\n    - matplotlib-base\n    - python >=3.6\n    - python-multipart\n    - starlette-context ==0.3.4\n    - uvicorn >=0.19,<1.dev0\n    - watchfiles >=0.18,<1.dev0\n    - yattag >=1.14,<2.dev0\n\ntest:\n  commands:\n    - hstream --help\n\nabout:\n  home: https://github.com/conradbez/hstream\n  summary: Create python webapps with ease\n  license: BSD-3-Clause\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - thewchan\n",
+ "raw_meta_yaml": "{% set name = \"hstream\" %}\n{% set version = \"0.1.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/hstream-{{ version }}.tar.gz\n  sha256: 992e8e22e9fc83b6c65224a0264733be2a6983d0d9db8e347fa76e316e46bc6f\n\nbuild:\n  entry_points:\n    - hstream = hstream.cli:cli\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - pip\n    - python >=3.10,<4.0\n    - poetry-core\n  run:\n    - python >=3.10,<4.0\n    - cherrypy >=18.9.0,<19.0.0\n    - click >=8.1.7,<9.0.0\n    - yattag >=1.15.2,<2.0.0\n    - ipdb >=0.13.13,<0.14.0\n    - markdown >=3.6,<4.0\n    - beautifulsoup4 >=4.12,<5.0\n\ntest:\n  commands:\n    - hstream --help\n\nabout:\n  home: https://github.com/conradbez/hstream\n  summary: Create python webapps with ease\n  license: BSD-3-Clause\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - thewchan\n",
  "req": {
   "__set__": true,
   "elements": [
-   "fastapi",
-   "jinja2",
+   "beautifulsoup4",
+   "cherrypy",
+   "click",
+   "ipdb",
    "markdown",
-   "matplotlib-base",
    "pip",
+   "poetry-core",
    "python",
-   "python-multipart",
-   "starlette-context",
-   "uvicorn",
-   "watchfiles",
    "yattag"
   ]
  },
@@ -189,21 +184,19 @@
    "__set__": true,
    "elements": [
     "pip",
+    "poetry-core",
     "python"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "fastapi",
-    "jinja2",
+    "beautifulsoup4",
+    "cherrypy",
+    "click",
+    "ipdb",
     "markdown",
-    "matplotlib-base",
     "python",
-    "python-multipart",
-    "starlette-context",
-    "uvicorn",
-    "watchfiles",
     "yattag"
    ]
   },
@@ -222,22 +215,20 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6"
+    "poetry-core",
+    "python >=3.10,<4.0"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "fastapi >=0.85,<1.dev0",
-    "jinja2 >=3.1,<4.dev0",
-    "markdown >=3.4,<4.dev0",
-    "matplotlib-base",
-    "python >=3.6",
-    "python-multipart",
-    "starlette-context ==0.3.4",
-    "uvicorn >=0.19,<1.dev0",
-    "watchfiles >=0.18,<1.dev0",
-    "yattag >=1.14,<2.dev0"
+    "beautifulsoup4 >=4.12,<5.0",
+    "cherrypy >=18.9.0,<19.0.0",
+    "click >=8.1.7,<9.0.0",
+    "ipdb >=0.13.13,<0.14.0",
+    "markdown >=3.6,<4.0",
+    "python >=3.10,<4.0",
+    "yattag >=1.15.2,<2.0.0"
    ]
   },
   "test": {
@@ -245,8 +236,8 @@
    "elements": []
   }
  },
- "url": "https://pypi.io/packages/source/h/hstream/hstream-0.0.20.tar.gz",
- "version": "0.0.20",
+ "url": "https://pypi.io/packages/source/h/hstream/hstream-0.1.0.tar.gz",
+ "version": "0.1.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/hstream.json"
  }
