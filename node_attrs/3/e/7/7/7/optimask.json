@@ -22,7 +22,7 @@
    "summary": "OptiMask: extracting the largest (non-contiguous) submatrix without NaN"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "PYTHON setup.py build_ext",
     "PYTHON -m pip install . -vv"
@@ -39,7 +39,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "setuptools"
    ],
    "host": [
     "python",
@@ -76,7 +77,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "setuptools"
    ]
   },
   "host": {
@@ -115,7 +117,7 @@
    "summary": "OptiMask: extracting the largest (non-contiguous) submatrix without NaN"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "PYTHON setup.py build_ext",
     "PYTHON -m pip install . -vv"
@@ -132,7 +134,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "setuptools"
    ],
    "host": [
     "python",
@@ -166,6 +169,101 @@
   }
  },
  "name": "optimask",
+ "osx_64_meta_yaml": {
+  "about": {
+   "description": "OptiMask: extracting the largest (non-contiguous) submatrix without NaN",
+   "home": "https://github.com/CyrilJl/optimask",
+   "license": "MIT",
+   "license_file": "LICENSE",
+   "summary": "OptiMask: extracting the largest (non-contiguous) submatrix without NaN"
+  },
+  "build": {
+   "number": "2",
+   "script": [
+    "PYTHON setup.py build_ext",
+    "PYTHON -m pip install . -vv"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "CyrilJl"
+   ]
+  },
+  "package": {
+   "name": "optimask",
+   "version": "1.1"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "setuptools"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "cython",
+    "numpy",
+    "pandas"
+   ],
+   "run": [
+    "python",
+    "numpy",
+    "pandas"
+   ]
+  },
+  "source": {
+   "sha256": "03a44dc098ad12ae88766bb57ed0cb4b653e97c22a088eb7c0160af01730cfa7",
+   "url": "https://pypi.io/packages/source/o/optimask/optimask-1.1.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "optimask"
+   ],
+   "requires": [
+    "pip",
+    "numpy",
+    "pandas"
+   ]
+  }
+ },
+ "osx_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "setuptools"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "cython",
+    "numpy",
+    "pandas",
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "numpy",
+    "pandas",
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "numpy",
+    "pandas",
+    "pip"
+   ]
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -174,12 +272,14 @@
  },
  "parsing_error": false,
  "platforms": [
-  "linux_64"
+  "linux_64",
+  "osx_64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/optimask.json"
  },
- "raw_meta_yaml": "{% set name = \"optimask\" %}\n{% set version = \"1.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/optimask-{{ version }}.tar.gz\n  sha256: 03a44dc098ad12ae88766bb57ed0cb4b653e97c22a088eb7c0160af01730cfa7\n\nbuild:\n  script:\n    - {{ PYTHON }} setup.py build_ext\n    - {{ PYTHON }} -m pip install . -vv\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - cross-python_{{ target_platform }}    # [build_platform != target_platform]\n    - python                                # [build_platform != target_platform]\n    - cython                                # [build_platform != target_platform]\n    - numpy                                # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - cython\n    - numpy\n    - pandas\n  run:\n    - python\n    - {{ pin_compatible(\"numpy\") }}\n    - numpy\n    - pandas\n\ntest:\n  imports:\n    - optimask\n  commands:\n    - pip check\n  requires:\n    - pip\n    - numpy\n    - pandas\n\nabout:\n  home: https://github.com/CyrilJl/optimask\n  summary: 'OptiMask: extracting the largest (non-contiguous) submatrix without NaN'\n  description: 'OptiMask: extracting the largest (non-contiguous) submatrix without NaN'\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - CyrilJl\n",
+ "raw_meta_yaml": "{% set name = \"optimask\" %}\n{% set version = \"1.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/optimask-{{ version }}.tar.gz\n  sha256: 03a44dc098ad12ae88766bb57ed0cb4b653e97c22a088eb7c0160af01730cfa7\n\nbuild:\n  script:\n    - {{ PYTHON }} setup.py build_ext\n    - {{ PYTHON }} -m pip install . -vv\n  number: 2\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - cross-python_{{ target_platform }}    # [build_platform != target_platform]\n    - python                                # [build_platform != target_platform]\n    - cython                                # [build_platform != target_platform]\n    - numpy                                # [build_platform != target_platform]\n    - setuptools\n  host:\n    - python\n    - pip\n    - cython\n    - numpy\n    - pandas\n  run:\n    - python\n    - {{ pin_compatible(\"numpy\") }}\n    - numpy\n    - pandas\n\ntest:\n  imports:\n    - optimask\n  commands:\n    - pip check\n  requires:\n    - pip\n    - numpy\n    - pandas\n\nabout:\n  home: https://github.com/CyrilJl/optimask\n  summary: 'OptiMask: extracting the largest (non-contiguous) submatrix without NaN'\n  description: 'OptiMask: extracting the largest (non-contiguous) submatrix without NaN'\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - CyrilJl\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -188,14 +288,16 @@
    "numpy",
    "pandas",
    "pip",
-   "python"
+   "python",
+   "setuptools"
   ]
  },
  "requirements": {
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "setuptools"
    ]
   },
   "host": {
@@ -232,7 +334,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "setuptools"
    ]
   },
   "host": {
@@ -266,5 +369,100 @@
  "version": "1.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/optimask.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "description": "OptiMask: extracting the largest (non-contiguous) submatrix without NaN",
+   "home": "https://github.com/CyrilJl/optimask",
+   "license": "MIT",
+   "license_file": "LICENSE",
+   "summary": "OptiMask: extracting the largest (non-contiguous) submatrix without NaN"
+  },
+  "build": {
+   "number": "2",
+   "script": [
+    "PYTHON setup.py build_ext",
+    "PYTHON -m pip install . -vv"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "CyrilJl"
+   ]
+  },
+  "package": {
+   "name": "optimask",
+   "version": "1.1"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "setuptools"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "cython",
+    "numpy",
+    "pandas"
+   ],
+   "run": [
+    "python",
+    "numpy",
+    "pandas"
+   ]
+  },
+  "source": {
+   "sha256": "03a44dc098ad12ae88766bb57ed0cb4b653e97c22a088eb7c0160af01730cfa7",
+   "url": "https://pypi.io/packages/source/o/optimask/optimask-1.1.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "optimask"
+   ],
+   "requires": [
+    "pip",
+    "numpy",
+    "pandas"
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "setuptools"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "cython",
+    "numpy",
+    "pandas",
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "numpy",
+    "pandas",
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "numpy",
+    "pandas",
+    "pip"
+   ]
+  }
  }
 }
