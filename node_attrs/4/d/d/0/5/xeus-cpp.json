@@ -35,7 +35,7 @@
    "ignore_run_exports": [
     "zlib"
    ],
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "xeus-cpp"
    ]
@@ -146,7 +146,7 @@
    "ignore_run_exports": [
     "zlib"
    ],
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "xeus-cpp"
    ]
@@ -257,7 +257,7 @@
    "ignore_run_exports": [
     "zlib"
    ],
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "xeus-cpp"
    ]
@@ -290,7 +290,8 @@
     "cpp-argparse >=2.9,<3.1",
     "nlohmann_json ==3.11.2",
     "zlib",
-    "cppinterop"
+    "cppinterop",
+    "dirent >=1.21,<2.0"
    ],
    "run": [
     "cppzmq",
@@ -306,7 +307,8 @@
   },
   "test": {
    "commands": [
-    "test -f ${PREFIX}/bin/xcpp"
+    "test -f ${PREFIX}/bin/xcpp",
+    "if exist %LIBRARY_PREFIX%\\bin\\xcpp.exe (exit 0) else (exit 1)"
    ],
    "requires": [
     "jupyter_kernel_test"
@@ -329,7 +331,7 @@
    "ignore_run_exports": [
     "zlib"
    ],
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "xeus-cpp"
    ]
@@ -440,7 +442,7 @@
    "ignore_run_exports": [
     "zlib"
    ],
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "xeus-cpp"
    ]
@@ -547,12 +549,13 @@
   "linux_64",
   "linux_aarch64",
   "osx_64",
-  "osx_arm64"
+  "osx_arm64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/xeus-cpp.json"
  },
- "raw_meta_yaml": "{% set name = \"xeus-cpp\" %}\n{% set version = \"0.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/compiler-research/xeus-cpp/archive/{{ version }}.tar.gz\n  sha256: 28b07534ff322ebe17fab1997cdf60d0fb811ee1d7fd518742a5d0d157e70e25\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n  ignore_run_exports:\n    - zlib\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [unix]\n  host:\n    - zeromq\n    - cppzmq >=4.6.0,<5\n    - xeus-zmq >=1.0.1,<2.0\n    - xeus >=3.0.0,<4\n    - xtl >=0.7.7,<0.8\n    - pugixml\n    - cpp-argparse >=2.9,<3.1\n    - nlohmann_json ==3.11.2\n    - dirent >=1.21,<2.0  # [win]\n    - zlib\n    - cppinterop\n  run:\n    # Even though cppzmq, xtl and nlohmann_json are header-only,\n    # they are used at runtime by the c++ interpreter.\n    - {{ pin_compatible('cppzmq', max_pin='x.x') }}\n    - {{ pin_compatible('xtl', max_pin='x.x') }}\n    - {{ pin_compatible('nlohmann_json', max_pin='x.x.x') }}\n    - cppinterop\n\ntest:\n  requires:\n    - jupyter_kernel_test\n  commands:\n    - test -f ${PREFIX}/bin/xcpp  # [unix]\n    - if exist %LIBRARY_PREFIX%\\bin\\xcpp.exe (exit 0) else (exit 1)  # [win]\n\nabout:\n  home: https://github.com/compiler-research/xeus-cpp\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Jupyter kernel for the C++ programming language\n  description: Jupyter kernel for the C++ programming languague, based on clang\n  doc_url: https://github.com/compiler-research/xeus-cpp\n  dev_url: https://github.com/compiler-research/xeus-cpp\n\nextra:\n  recipe-maintainers:\n    - vgvassilev\n    - alexander-penev\n    - SylvainCorlay\n    - JohanMabille\n",
+ "raw_meta_yaml": "{% set name = \"xeus-cpp\" %}\n{% set version = \"0.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/compiler-research/xeus-cpp/archive/{{ version }}.tar.gz\n  sha256: 28b07534ff322ebe17fab1997cdf60d0fb811ee1d7fd518742a5d0d157e70e25\n\nbuild:\n  number: 1\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n  ignore_run_exports:\n    - zlib\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [unix]\n  host:\n    - zeromq\n    - cppzmq >=4.6.0,<5\n    - xeus-zmq >=1.0.1,<2.0\n    - xeus >=3.0.0,<4\n    - xtl >=0.7.7,<0.8\n    - pugixml\n    - cpp-argparse >=2.9,<3.1\n    - nlohmann_json ==3.11.2\n    - dirent >=1.21,<2.0  # [win]\n    - zlib\n    - cppinterop\n  run:\n    # Even though cppzmq, xtl and nlohmann_json are header-only,\n    # they are used at runtime by the c++ interpreter.\n    - {{ pin_compatible('cppzmq', max_pin='x.x') }}\n    - {{ pin_compatible('xtl', max_pin='x.x') }}\n    - {{ pin_compatible('nlohmann_json', max_pin='x.x.x') }}\n    - cppinterop\n\ntest:\n  requires:\n    - jupyter_kernel_test\n  commands:\n    - test -f ${PREFIX}/bin/xcpp  # [unix]\n    - if exist %LIBRARY_PREFIX%\\bin\\xcpp.exe (exit 0) else (exit 1)  # [win]\n\nabout:\n  home: https://github.com/compiler-research/xeus-cpp\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Jupyter kernel for the C++ programming language\n  description: Jupyter kernel for the C++ programming languague, based on clang\n  doc_url: https://github.com/compiler-research/xeus-cpp\n  dev_url: https://github.com/compiler-research/xeus-cpp\n\nextra:\n  recipe-maintainers:\n    - vgvassilev\n    - alexander-penev\n    - SylvainCorlay\n    - JohanMabille\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -561,6 +564,7 @@
    "cppinterop",
    "cppzmq",
    "cxx_compiler_stub",
+   "dirent",
    "make",
    "nlohmann_json",
    "pugixml",
@@ -587,6 +591,7 @@
     "cppinterop",
     "cppzmq",
     "cxx_compiler_stub",
+    "dirent",
     "nlohmann_json",
     "pugixml",
     "xeus",
@@ -629,6 +634,7 @@
     "cpp-argparse >=2.9,<3.1",
     "cppinterop",
     "cppzmq >=4.6.0,<5",
+    "dirent >=1.21,<2.0",
     "nlohmann_json ==3.11.2",
     "pugixml",
     "xeus >=3.0.0,<4",
@@ -658,5 +664,116 @@
  "version": "0.4.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/xeus-cpp.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "description": "Jupyter kernel for the C++ programming languague, based on clang",
+   "dev_url": "https://github.com/compiler-research/xeus-cpp",
+   "doc_url": "https://github.com/compiler-research/xeus-cpp",
+   "home": "https://github.com/compiler-research/xeus-cpp",
+   "license": "BSD-3-Clause",
+   "license_family": "BSD",
+   "license_file": "LICENSE",
+   "summary": "Jupyter kernel for the C++ programming language"
+  },
+  "build": {
+   "ignore_run_exports": [
+    "zlib"
+   ],
+   "number": "1",
+   "run_exports": [
+    "xeus-cpp"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "vgvassilev",
+    "alexander-penev",
+    "SylvainCorlay",
+    "JohanMabille"
+   ]
+  },
+  "package": {
+   "name": "xeus-cpp",
+   "version": "0.4.0"
+  },
+  "requirements": {
+   "build": [
+    "cxx_compiler_stub",
+    "cmake"
+   ],
+   "host": [
+    "zeromq",
+    "cppzmq >=4.6.0,<5",
+    "xeus-zmq >=1.0.1,<2.0",
+    "xeus >=3.0.0,<4",
+    "xtl >=0.7.7,<0.8",
+    "pugixml",
+    "cpp-argparse >=2.9,<3.1",
+    "nlohmann_json ==3.11.2",
+    "dirent >=1.21,<2.0",
+    "zlib",
+    "cppinterop"
+   ],
+   "run": [
+    "cppzmq",
+    "xtl",
+    "nlohmann_json",
+    "cppinterop"
+   ]
+  },
+  "source": {
+   "fn": "xeus-cpp-0.4.0.tar.gz",
+   "sha256": "28b07534ff322ebe17fab1997cdf60d0fb811ee1d7fd518742a5d0d157e70e25",
+   "url": "https://github.com/compiler-research/xeus-cpp/archive/0.4.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "if exist %LIBRARY_PREFIX%\\bin\\xcpp.exe (exit 0) else (exit 1)"
+   ],
+   "requires": [
+    "jupyter_kernel_test"
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "cmake",
+    "cxx_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "cpp-argparse",
+    "cppinterop",
+    "cppzmq",
+    "dirent",
+    "nlohmann_json",
+    "pugixml",
+    "xeus",
+    "xeus-zmq",
+    "xtl",
+    "zeromq",
+    "zlib"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "cppinterop",
+    "cppzmq",
+    "nlohmann_json",
+    "xtl"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "jupyter_kernel_test"
+   ]
+  }
  }
 }
