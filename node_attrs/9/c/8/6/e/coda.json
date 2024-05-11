@@ -32,7 +32,7 @@
    "summary": "CODA is the Common Data Access framework that allows reading of scientific data from various data formats, including structured ascii, structured binary, XML, netCDF, CDF, HDF4, HDF5, GRIB, RINEX and SP3. It provides a single consistent hierarchical view on data independent of the underlying storage format."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
@@ -82,6 +83,7 @@
    "elements": [
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -118,7 +120,7 @@
    "summary": "CODA is the Common Data Access framework that allows reading of scientific data from various data formats, including structured ascii, structured binary, XML, netCDF, CDF, HDF4, HDF5, GRIB, RINEX and SP3. It provides a single consistent hierarchical view on data independent of the underlying storage format."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -132,6 +134,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
@@ -168,6 +171,7 @@
    "elements": [
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -204,7 +208,7 @@
    "summary": "CODA is the Common Data Access framework that allows reading of scientific data from various data formats, including structured ascii, structured binary, XML, netCDF, CDF, HDF4, HDF5, GRIB, RINEX and SP3. It provides a single consistent hierarchical view on data independent of the underlying storage format."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -218,6 +222,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
@@ -254,6 +259,7 @@
    "elements": [
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -290,7 +296,7 @@
    "summary": "CODA is the Common Data Access framework that allows reading of scientific data from various data formats, including structured ascii, structured binary, XML, netCDF, CDF, HDF4, HDF5, GRIB, RINEX and SP3. It provides a single consistent hierarchical view on data independent of the underlying storage format."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -304,6 +310,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
@@ -348,7 +355,7 @@
    "summary": "CODA is the Common Data Access framework that allows reading of scientific data from various data formats, including structured ascii, structured binary, XML, netCDF, CDF, HDF4, HDF5, GRIB, RINEX and SP3. It provides a single consistent hierarchical view on data independent of the underlying storage format."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -362,6 +369,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
@@ -398,6 +406,7 @@
    "elements": [
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -434,7 +443,7 @@
    "summary": "CODA is the Common Data Access framework that allows reading of scientific data from various data formats, including structured ascii, structured binary, XML, netCDF, CDF, HDF4, HDF5, GRIB, RINEX and SP3. It provides a single consistent hierarchical view on data independent of the underlying storage format."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -448,6 +457,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
@@ -484,6 +494,7 @@
    "elements": [
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -529,12 +540,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/coda.json"
  },
- "raw_meta_yaml": "{% set version = \"2.25.2\" %}\n\npackage:\n  name: coda\n  version: {{ version }}\n\nsource:\n  url: https://github.com/stcorp/coda/releases/download/{{ version }}/coda-{{ version }}.tar.gz\n  sha256: a8168f6bace24909303e941087896a198c3794b64793d4194bb835ec8852b383\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [not win]\n    - bison  # [not win]\n    - flex  # [not win]\n    - m2-bison  # [win]\n    - m2-flex  # [win]\n\n  host:\n    - python\n    - hdf4\n    - hdf5\n\n  run:\n    - python\n    - cffi  # [python_impl != 'pypy']\n    - numpy\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libcoda$SHLIB_EXT  # [unix]\n    - if not exist \"%LIBRARY_PREFIX%/lib/libcoda.lib\" exit 1  # [win]\n    - if not exist \"%LIBRARY_PREFIX%/bin/codacmp.exe\" exit 1  # [win]\n  imports:\n    - coda\n\nabout:\n  home: https://github.com/stcorp/coda\n  license: BSD-3-Clause-Clear\n  license_family: BSD\n  license_file: COPYING\n  summary: CODA is the Common Data Access framework that allows reading of scientific data from various data formats, including structured ascii, structured binary, XML, netCDF, CDF, HDF4, HDF5, GRIB, RINEX and SP3. It provides a single consistent hierarchical view on data independent of the underlying storage format.\n\nextra:\n  recipe-maintainers:\n    - svniemeijer\n",
+ "raw_meta_yaml": "{% set version = \"2.25.2\" %}\n\npackage:\n  name: coda\n  version: {{ version }}\n\nsource:\n  url: https://github.com/stcorp/coda/releases/download/{{ version }}/coda-{{ version }}.tar.gz\n  sha256: a8168f6bace24909303e941087896a198c3794b64793d4194bb835ec8852b383\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [not win]\n    - bison  # [not win]\n    - flex  # [not win]\n    - m2-bison  # [win]\n    - m2-flex  # [win]\n\n  host:\n    - python\n    - hdf4\n    - hdf5\n\n  run:\n    - python\n    - cffi  # [python_impl != 'pypy']\n    - numpy\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libcoda$SHLIB_EXT  # [unix]\n    - if not exist \"%LIBRARY_PREFIX%/lib/libcoda.lib\" exit 1  # [win]\n    - if not exist \"%LIBRARY_PREFIX%/bin/codacmp.exe\" exit 1  # [win]\n  imports:\n    - coda\n\nabout:\n  home: https://github.com/stcorp/coda\n  license: BSD-3-Clause-Clear\n  license_family: BSD\n  license_file: COPYING\n  summary: CODA is the Common Data Access framework that allows reading of scientific data from various data formats, including structured ascii, structured binary, XML, netCDF, CDF, HDF4, HDF5, GRIB, RINEX and SP3. It provides a single consistent hierarchical view on data independent of the underlying storage format.\n\nextra:\n  recipe-maintainers:\n    - svniemeijer\n",
  "req": {
   "__set__": true,
   "elements": [
    "bison",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cffi",
    "cmake",
    "cxx_compiler_stub",
@@ -554,6 +566,7 @@
    "elements": [
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -566,6 +579,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "hdf4",
     "hdf5",
@@ -576,6 +590,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cffi",
     "cxx_compiler_stub",
     "numpy",
@@ -594,6 +609,7 @@
    "elements": [
     "bison",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flex",
@@ -637,7 +653,7 @@
    "summary": "CODA is the Common Data Access framework that allows reading of scientific data from various data formats, including structured ascii, structured binary, XML, netCDF, CDF, HDF4, HDF5, GRIB, RINEX and SP3. It provides a single consistent hierarchical view on data independent of the underlying storage format."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -651,6 +667,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "m2-bison",
@@ -686,6 +703,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "m2-bison",
