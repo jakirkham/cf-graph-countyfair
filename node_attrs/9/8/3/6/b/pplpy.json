@@ -33,7 +33,7 @@
    "summary": "This Python package provides a wrapper to the C++ Parma Polyhedra Library (PPL)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "export CXXFLAGS=\"$CXXFLAGS -std=c++11\"",
     "export CFLAGS=\"$CFLAGS -std=c++11\"",
@@ -53,6 +53,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -91,6 +92,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -135,7 +137,7 @@
    "summary": "This Python package provides a wrapper to the C++ Parma Polyhedra Library (PPL)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "export CXXFLAGS=\"$CXXFLAGS -std=c++11\"",
     "export CFLAGS=\"$CFLAGS -std=c++11\"",
@@ -155,6 +157,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -193,6 +196,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -237,7 +241,7 @@
    "summary": "This Python package provides a wrapper to the C++ Parma Polyhedra Library (PPL)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "export CXXFLAGS=\"$CXXFLAGS -std=c++11\"",
     "export CFLAGS=\"$CFLAGS -std=c++11\"",
@@ -257,6 +261,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -295,6 +300,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -339,7 +345,7 @@
    "summary": "This Python package provides a wrapper to the C++ Parma Polyhedra Library (PPL)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "export CXXFLAGS=\"$CXXFLAGS -std=c++11\"",
     "export CFLAGS=\"$CFLAGS -std=c++11\"",
@@ -359,6 +365,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -403,7 +410,7 @@
    "summary": "This Python package provides a wrapper to the C++ Parma Polyhedra Library (PPL)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "export CXXFLAGS=\"$CXXFLAGS -std=c++11\"",
     "export CFLAGS=\"$CFLAGS -std=c++11\"",
@@ -423,6 +430,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -461,6 +469,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -505,7 +514,7 @@
    "summary": "This Python package provides a wrapper to the C++ Parma Polyhedra Library (PPL)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "export CXXFLAGS=\"$CXXFLAGS -std=c++11\"",
     "export CFLAGS=\"$CFLAGS -std=c++11\"",
@@ -525,6 +534,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -563,6 +573,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -614,11 +625,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pplpy.json"
  },
- "raw_meta_yaml": "{% set name = \"pplpy\" %}\n{% set version = \"0.8.9\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: db7a3b571d6ef053f75137975e947c3a1c1e45a30bab90eaf215b4e5cc15797e\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  script:\n    # Needs mem_fun_ref removed in C++17\n    - export CXXFLAGS=\"$CXXFLAGS -std=c++11\"\n    - export CFLAGS=\"$CFLAGS -std=c++11\"\n    - {{ PYTHON }} -m pip install . -vv --no-build-isolation\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - cysignals                              # [build_platform != target_platform]\n    - gmpy2                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - ppl\n    - python\n    - cysignals\n    - cython\n    - pip\n    - gmp\n    - mpfr\n    - mpc\n    - gmpy2\n  run:\n    - python\n    - cysignals\n    - gmp\n    - mpfr\n    - mpc\n    - gmpy2\n    - {{ pin_compatible(\"ppl\", max_pin=\"x.x\") }}\n\ntest:\n  imports:\n    - ppl\n\nabout:\n  home: https://www.sagemath.org/pplpy/\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: LICENSE.txt\n  summary: This Python package provides a wrapper to the C++ Parma Polyhedra Library (PPL).\n  dev_url: https://github.com/sagemath/pplpy\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - videlec\n",
+ "raw_meta_yaml": "{% set name = \"pplpy\" %}\n{% set version = \"0.8.9\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: db7a3b571d6ef053f75137975e947c3a1c1e45a30bab90eaf215b4e5cc15797e\n\nbuild:\n  number: 1\n  skip: true  # [win]\n  script:\n    # Needs mem_fun_ref removed in C++17\n    - export CXXFLAGS=\"$CXXFLAGS -std=c++11\"\n    - export CFLAGS=\"$CFLAGS -std=c++11\"\n    - {{ PYTHON }} -m pip install . -vv --no-build-isolation\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - cysignals                              # [build_platform != target_platform]\n    - gmpy2                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n  host:\n    - ppl\n    - python\n    - cysignals\n    - cython\n    - pip\n    - gmp\n    - mpfr\n    - mpc\n    - gmpy2\n  run:\n    - python\n    - cysignals\n    - gmp\n    - mpfr\n    - mpc\n    - gmpy2\n    - {{ pin_compatible(\"ppl\", max_pin=\"x.x\") }}\n\ntest:\n  imports:\n    - ppl\n\nabout:\n  home: https://www.sagemath.org/pplpy/\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: LICENSE.txt\n  summary: This Python package provides a wrapper to the C++ Parma Polyhedra Library (PPL).\n  dev_url: https://github.com/sagemath/pplpy\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - videlec\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "cysignals",
    "cython",
@@ -636,6 +648,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -643,6 +656,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cysignals",
     "cython",
@@ -659,6 +673,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cysignals",
     "gmp",
@@ -680,6 +695,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
