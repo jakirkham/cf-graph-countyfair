@@ -27,7 +27,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . --no-deps -vv"
   },
   "extra": {
@@ -43,7 +43,9 @@
   "requirements": {
    "host": [
     "python >=3.8",
-    "pip"
+    "pip",
+    "setuptools >=61.0",
+    "setuptools-scm >=8.0"
    ],
    "run": [
     "qcelemental",
@@ -59,7 +61,9 @@
   },
   "test": {
    "commands": [
+    "test -f $SP_DIR/qcmanybody/__init__.py",
     "pip check",
+    "python -c \"import qcmanybody as qc;assert qc.__version__ == '0.2.0', f'{qc.__version__=} differs from recipe=\\'0.2.0\\''\"",
     "pytest --pyargs qcmanybody"
    ],
    "imports": [
@@ -81,7 +85,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "setuptools-scm"
    ]
   },
   "run": {
@@ -117,7 +123,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . --no-deps -vv"
   },
   "extra": {
@@ -133,7 +139,9 @@
   "requirements": {
    "host": [
     "python >=3.8",
-    "pip"
+    "pip",
+    "setuptools >=61.0",
+    "setuptools-scm >=8.0"
    ],
    "run": [
     "qcelemental",
@@ -149,7 +157,9 @@
   },
   "test": {
    "commands": [
+    "test -f $SP_DIR/qcmanybody/__init__.py",
     "pip check",
+    "python -c \"import qcmanybody as qc;assert qc.__version__ == '0.2.0', f'{qc.__version__=} differs from recipe=\\'0.2.0\\''\"",
     "pytest --pyargs qcmanybody"
    ],
    "imports": [
@@ -176,7 +186,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/qcmanybody.json"
  },
- "raw_meta_yaml": "{% set name = \"qcmanybody\" %}\n{% set version = \"0.2.0\" %}\n{% set sha256 = \"d8a4bff40344b474998e4a952cbd403615dba7a8ace0c7257fea60aa9c037f62\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n  run:\n    - qcelemental\n    - qcengine\n    - numpy\n    - pydantic >=1.8.2\n    - python >=3.8.0\n\ntest:\n  imports:\n    - qcmanybody\n  requires:\n    - pytest >=7.0.0\n    - zstandard\n    - pip\n  commands:\n    - pip check\n    - pytest --pyargs qcmanybody\n\nabout:\n  home: https://github.com/MolSSI/QCManyBody\n  dev_url: https://github.com/MolSSI/QCManyBody\n  doc_url: https://molssi.github.io/QCManyBody/\n  doc_source_url: https://github.com/MolSSI/QCManyBody/blob/main/docs/index.md\n  license: BSD-3-Clause\n  license_url: https://opensource.org/licenses/BSD-3-Clause\n  license_file: LICENSE\n  license_family: BSD\n  summary: QCManyBody is an intermolecular many-body expansion module with QCArchive integration\n\nextra:\n  recipe-maintainers:\n    - loriab\n    - bennybp\n",
+ "raw_meta_yaml": "{% set name = \"qcmanybody\" %}\n{% set version = \"0.2.0\" %}\n{% set sha256 = \"d8a4bff40344b474998e4a952cbd403615dba7a8ace0c7257fea60aa9c037f62\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  noarch: python\n  number: 1\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n    - setuptools >=61.0\n    - setuptools-scm >=8.0\n  run:\n    - qcelemental\n    - qcengine\n    - numpy\n    - pydantic >=1.8.2\n    - python >=3.8.0\n\ntest:\n  imports:\n    - qcmanybody\n  requires:\n    - pytest >=7.0.0\n    - zstandard\n    - pip\n  commands:\n    - test -f $SP_DIR/qcmanybody/__init__.py\n    - pip check\n    - python -c \"import qcmanybody as qc;assert qc.__version__ == '{{ version }}', f'{qc.__version__=} differs from recipe=\\'{{ version }}\\''\"\n    - pytest --pyargs qcmanybody\n\nabout:\n  home: https://github.com/MolSSI/QCManyBody\n  dev_url: https://github.com/MolSSI/QCManyBody\n  doc_url: https://molssi.github.io/QCManyBody/\n  doc_source_url: https://github.com/MolSSI/QCManyBody/blob/main/docs/index.md\n  license: BSD-3-Clause\n  license_url: https://opensource.org/licenses/BSD-3-Clause\n  license_file: LICENSE\n  license_family: BSD\n  summary: QCManyBody is an intermolecular many-body expansion module with QCArchive integration\n\nextra:\n  recipe-maintainers:\n    - loriab\n    - bennybp\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -185,7 +195,9 @@
    "pydantic",
    "python",
    "qcelemental",
-   "qcengine"
+   "qcengine",
+   "setuptools",
+   "setuptools-scm"
   ]
  },
  "requirements": {
@@ -197,7 +209,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "setuptools-scm"
    ]
   },
   "run": {
@@ -229,7 +243,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.8"
+    "python >=3.8",
+    "setuptools >=61.0",
+    "setuptools-scm >=8.0"
    ]
   },
   "run": {
