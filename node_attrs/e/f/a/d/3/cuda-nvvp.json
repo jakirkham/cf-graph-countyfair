@@ -14,6 +14,11 @@
    "branch_name": "main",
    "tooling_branch_name": "main"
   },
+  "os_version": {
+   "linux_64": "cos7",
+   "linux_aarch64": "cos7",
+   "linux_ppc64le": "cos7"
+  },
   "provider": {
    "linux_aarch64": "default",
    "linux_ppc64le": "default"
@@ -32,7 +37,7 @@
    "summary": "NVIDIA Visual Profiler to visualize and optimize the performance of your application."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -46,7 +51,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cuda-version 12.4"
@@ -73,6 +79,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -106,7 +113,7 @@
    "summary": "NVIDIA Visual Profiler to visualize and optimize the performance of your application."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -120,7 +127,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cuda-version 12.4"
@@ -147,6 +155,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -180,7 +189,7 @@
    "summary": "NVIDIA Visual Profiler to visualize and optimize the performance of your application."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -194,7 +203,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cuda-version 12.4"
@@ -234,11 +244,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cuda-nvvp.json"
  },
- "raw_meta_yaml": "{% set name = \"cuda-nvvp\" %}\n{% set version = \"12.4.127\" %}\n{% set cuda_version = \"12.4\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvvp/{{ platform }}/cuda_nvvp-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: 94c8b79180f382edaf13d93c3a4dadff43833d0dd624448968eec4f3685c2982  # [linux64]\n  sha256: 83ea88a78128acbf1d488f43c6207c1babbef5a5ef06f7604fbefbec0ac01f87  # [ppc64le]\n  sha256: 80593019abbd1aec121d2048ec9e6ffa0adc3a7eeb5f6451ceb593af54ac2c03  # [win]\n\nbuild:\n  number: 1\n  skip: true  # [osx or aarch64]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n  host:\n    - cuda-version {{ cuda_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n    - cuda-nvdisasm\n    - cuda-nvprof\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/nvvp      # [linux]\n    - test -f $PREFIX/libnvvp/nvvp  # [linux]\n    - if not exist %LIBRARY_BIN%\\nvvp.bat exit 1     # [win]\n    - if not exist %PREFIX%\\libnvvp\\nvvp.exe exit 1  # [win]\n\nabout:\n  home: https://developer.nvidia.com/nvidia-visual-profiler\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: NVIDIA Visual Profiler to visualize and optimize the performance of your application.\n  description: |\n    NVIDIA Visual Profiler to visualize and optimize the performance of your\n    application.\n  doc_url: https://docs.nvidia.com/cuda/profiler-users-guide/index.html\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
+ "raw_meta_yaml": "{% set name = \"cuda-nvvp\" %}\n{% set version = \"12.4.127\" %}\n{% set cuda_version = \"12.4\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvvp/{{ platform }}/cuda_nvvp-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: 94c8b79180f382edaf13d93c3a4dadff43833d0dd624448968eec4f3685c2982  # [linux64]\n  sha256: 83ea88a78128acbf1d488f43c6207c1babbef5a5ef06f7604fbefbec0ac01f87  # [ppc64le]\n  sha256: 80593019abbd1aec121d2048ec9e6ffa0adc3a7eeb5f6451ceb593af54ac2c03  # [win]\n\nbuild:\n  number: 2\n  skip: true  # [osx or aarch64]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - cuda-version {{ cuda_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n    - cuda-nvdisasm\n    - cuda-nvprof\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/nvvp      # [linux]\n    - test -f $PREFIX/libnvvp/nvvp  # [linux]\n    - if not exist %LIBRARY_BIN%\\nvvp.bat exit 1     # [win]\n    - if not exist %PREFIX%\\libnvvp\\nvvp.exe exit 1  # [win]\n\nabout:\n  home: https://developer.nvidia.com/nvidia-visual-profiler\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: NVIDIA Visual Profiler to visualize and optimize the performance of your application.\n  description: |\n    NVIDIA Visual Profiler to visualize and optimize the performance of your\n    application.\n  doc_url: https://docs.nvidia.com/cuda/profiler-users-guide/index.html\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cuda-nvdisasm",
    "cuda-nvprof",
    "cuda-version",
@@ -250,6 +261,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -257,6 +269,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda-version",
     "cxx_compiler_stub"
    ]
@@ -265,6 +278,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda-nvdisasm",
     "cuda-nvprof",
     "cuda-version",
@@ -282,6 +296,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -320,7 +335,7 @@
    "summary": "NVIDIA Visual Profiler to visualize and optimize the performance of your application."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -334,7 +349,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cuda-version 12.4"
@@ -361,6 +377,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
