@@ -4,7 +4,8 @@
  "conda-forge.yml": {
   "build_platform": {
    "linux_aarch64": "linux_64",
-   "linux_ppc64le": "linux_64"
+   "linux_ppc64le": "linux_64",
+   "osx_arm64": "osx_64"
   },
   "conda_build": {
    "error_overlinking": true
@@ -13,7 +14,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "age",
  "hash_type": "sha256",
@@ -293,6 +295,11 @@
     "folder": "src",
     "sha256": "f1f3dbade631976701cd295aa89308681318d73118f5673cced13f127a91178c",
     "url": "https://github.com/FiloSottile/age/archive/refs/tags/v1.1.1.tar.gz"
+   },
+   {
+    "folder": "src",
+    "sha256": "f1f3dbade631976701cd295aa89308681318d73118f5673cced13f127a91178c",
+    "url": "https://github.com/FiloSottile/age/archive/refs/tags/v1.1.1.tar.gz"
    }
   ],
   "test": {
@@ -374,6 +381,77 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/FiloSottile/age",
+   "home": "https://github.com/FiloSottile/age",
+   "license": "BSD-3-Clause",
+   "license_file": [
+    "src/LICENSE",
+    "library_licenses/"
+   ],
+   "summary": "age is a simple, modern and secure file encryption tool, format, and Go library."
+  },
+  "build": {
+   "number": "0",
+   "script": [
+    "cd src",
+    "go-licenses save . --save_path ../library_licenses",
+    "go build -v -o $PREFIX/bin/age ./cmd/age",
+    "go build -v -o $PREFIX/bin/age-keygen ./cmd/age-keygen",
+    "chmod -R u+w $(go env GOPATH) && rm -r $(go env GOPATH)"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "pavelzw"
+   ]
+  },
+  "package": {
+   "name": "age",
+   "version": "1.1.1"
+  },
+  "requirements": {
+   "build": [
+    "go-nocgo_compiler_stub",
+    "go-licenses"
+   ]
+  },
+  "source": [
+   {
+    "folder": "src",
+    "sha256": "f1f3dbade631976701cd295aa89308681318d73118f5673cced13f127a91178c",
+    "url": "https://github.com/FiloSottile/age/archive/refs/tags/v1.1.1.tar.gz"
+   }
+  ],
+  "test": {
+   "commands": [
+    "age --help",
+    "age-keygen --help"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "go-licenses",
+    "go-nocgo_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -386,6 +464,7 @@
   "linux_aarch64",
   "linux_ppc64le",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
