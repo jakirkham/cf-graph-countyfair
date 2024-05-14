@@ -14,6 +14,11 @@
    "branch_name": "main",
    "tooling_branch_name": "main"
   },
+  "os_version": {
+   "linux_64": "cos7",
+   "linux_aarch64": "cos7",
+   "linux_ppc64le": "cos7"
+  },
   "provider": {
    "linux_aarch64": "default",
    "linux_ppc64le": "default"
@@ -32,7 +37,7 @@
    "summary": "Prunes host object files and libraries to only contain device code"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -46,7 +51,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cuda-version 12.4"
@@ -70,6 +76,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -101,7 +108,7 @@
    "summary": "Prunes host object files and libraries to only contain device code"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -115,7 +122,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cuda-version 12.4"
@@ -139,6 +147,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -170,7 +179,7 @@
    "summary": "Prunes host object files and libraries to only contain device code"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -184,7 +193,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cuda-version 12.4"
@@ -208,6 +218,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -239,7 +250,7 @@
    "summary": "Prunes host object files and libraries to only contain device code"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -253,7 +264,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cuda-version 12.4"
@@ -290,11 +302,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cuda-nvprune.json"
  },
- "raw_meta_yaml": "{% set name = \"cuda-nvprune\" %}\n{% set version = \"12.4.127\" %}\n{% set cuda_version = \"12.4\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"linux-sbsa\" %}  # [aarch64]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvprune/{{ platform }}/cuda_nvprune-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: 85d348b08d1e652ac2fd6377d1f837aa1aeaf7f784aa451175fd5ea58fd3b28b  # [linux64]\n  sha256: 28b297f44bf568b7e477ede212457216c215ffceb53e0610d942e573b95fec05  # [ppc64le]\n  sha256: ec6b7ed538496507b99274b5361f36cf84ad18048892e0c6ebf74336c0181b15  # [aarch64]\n  sha256: a322bb849e8974e759d1287977dd237d4ca240159e70fe3e131df600a7cf4d32  # [win]\n\nbuild:\n  number: 1\n  skip: true  # [osx]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n  host:\n    - cuda-version {{ cuda_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/nvprune  # [unix]\n    - if not exist %LIBRARY_BIN%\\\\nvprune.exe exit 1  # [win]\n\nabout:\n  home: https://developer.nvidia.com/cuda-toolkit\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: Prunes host object files and libraries to only contain device code\n  description: |\n    Prunes host object files and libraries to only contain device code for the\n    specified targets.\n  doc_url: https://docs.nvidia.com/cuda/index.html\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
+ "raw_meta_yaml": "{% set name = \"cuda-nvprune\" %}\n{% set version = \"12.4.127\" %}\n{% set cuda_version = \"12.4\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"linux-sbsa\" %}  # [aarch64]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvprune/{{ platform }}/cuda_nvprune-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: 85d348b08d1e652ac2fd6377d1f837aa1aeaf7f784aa451175fd5ea58fd3b28b  # [linux64]\n  sha256: 28b297f44bf568b7e477ede212457216c215ffceb53e0610d942e573b95fec05  # [ppc64le]\n  sha256: ec6b7ed538496507b99274b5361f36cf84ad18048892e0c6ebf74336c0181b15  # [aarch64]\n  sha256: a322bb849e8974e759d1287977dd237d4ca240159e70fe3e131df600a7cf4d32  # [win]\n\nbuild:\n  number: 2\n  skip: true  # [osx]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - cuda-version {{ cuda_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/nvprune  # [unix]\n    - if not exist %LIBRARY_BIN%\\\\nvprune.exe exit 1  # [win]\n\nabout:\n  home: https://developer.nvidia.com/cuda-toolkit\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: Prunes host object files and libraries to only contain device code\n  description: |\n    Prunes host object files and libraries to only contain device code for the\n    specified targets.\n  doc_url: https://docs.nvidia.com/cuda/index.html\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cuda-version",
    "cxx_compiler_stub"
   ]
@@ -304,6 +317,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -311,6 +325,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda-version",
     "cxx_compiler_stub"
    ]
@@ -319,6 +334,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda-version",
     "cxx_compiler_stub"
    ]
@@ -334,6 +350,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -370,7 +387,7 @@
    "summary": "Prunes host object files and libraries to only contain device code"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -384,7 +401,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cuda-version 12.4"
@@ -408,6 +426,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
