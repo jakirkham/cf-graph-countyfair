@@ -43,7 +43,7 @@
   },
   "package": {
    "name": "auto-ts",
-   "version": "0.0.90"
+   "version": "0.0.92"
   },
   "requirements": {
    "host": [
@@ -72,8 +72,8 @@
    ]
   },
   "source": {
-   "sha256": "9e1ea178ee19e874a3ffa747b877594b68d01bb7c8b4f2346fa12bab6257a137",
-   "url": "https://pypi.io/packages/source/a/auto-ts/auto_ts-0.0.90.tar.gz"
+   "sha256": "e62c0fec5591d5c107762118e6ab3b2a90a964680ae5e82b82126640f579074f",
+   "url": "https://pypi.io/packages/source/a/auto-ts/auto_ts-0.0.92.tar.gz"
   },
   "test": {
    "commands": [
@@ -159,7 +159,7 @@
   },
   "package": {
    "name": "auto-ts",
-   "version": "0.0.90"
+   "version": "0.0.92"
   },
   "requirements": {
    "host": [
@@ -188,8 +188,8 @@
    ]
   },
   "source": {
-   "sha256": "9e1ea178ee19e874a3ffa747b877594b68d01bb7c8b4f2346fa12bab6257a137",
-   "url": "https://pypi.io/packages/source/a/auto-ts/auto_ts-0.0.90.tar.gz"
+   "sha256": "e62c0fec5591d5c107762118e6ab3b2a90a964680ae5e82b82126640f579074f",
+   "url": "https://pypi.io/packages/source/a/auto-ts/auto_ts-0.0.92.tar.gz"
   },
   "test": {
    "commands": [
@@ -217,7 +217,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/auto-ts.json"
  },
- "raw_meta_yaml": "{% set name = \"auto-ts\" %}\n{% set version = \"0.0.90\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/auto_ts-{{ version }}.tar.gz\n  sha256: 9e1ea178ee19e874a3ffa747b877594b68d01bb7c8b4f2346fa12bab6257a137\n\nbuild:\n  number: 0\n  noarch: python\n  script: \n    ## Show the rendered recipe\n    - echo -e \"\\n>>> Show recipe '{{ name }}/meta.yaml' <<<\\n\\n\"\n    - echo -e $(cat $RECIPE_DIR/meta.yaml)  # [not win]\n    ## Ensure inclusion of requirements.txt\n    {% set reqfile = \"requirements.txt\" %}\n    {% set reqsource = name ~ \".egg-info/requires.txt\" %}\n    # IF {{ reqfile }} is NOT PRESENT, COPY {{ reqfile }} from {{ reqsource }}\n    - echo -e \"\\n>>> ENSURE INCLUSION OF '{{ reqfile }}' <<<\\n\\n\"\n    - if [ ! -f {{ reqfile }} ] && [ -f {{ reqsource }} ]; then cp {{ reqsource }} {{ reqfile }}; fi  # [not win]\n    #- copy {{ name }}.egg-info\\requires.txt {{ reqfile }}  # [win]\n    - copy {{ reqsource | replace('/', '\\\\') }} {{ reqfile }}  # [win]\n    ## Ensure exclusion of tests folder\n    {% set testsfolder = \"test\" %}\n    - echo -e \"\\n>>> ENSURE EXCLUSION OF '{{ testsfolder }}' <<<\\n\\n\"\n    - rm -rf {{ testsfolder }}  # [not win]\n    - rmdir /s /q \"{{ testsfolder | replace('/', '\\\\') }}\"  # [win] \n    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n  run:\n    - python >=3.7\n    - ipython\n    - jupyter\n    - pmdarima\n    - numpy\n    - xlrd\n    - pandas\n    - matplotlib-base\n    - seaborn\n    - prophet\n    - scikit-learn >=0.24.0\n    - statsmodels\n    - xgboost >=2.0\n    - prettytable\n    - dask-core >=2022.1.0\n    - pyyaml >=5.4.1\n    - gputil >=1.4.0\n    - distributed >=2022.2.0\n\ntest:\n  imports:\n    - auto_ts\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/AutoViML/Auto_TS\n  summary: Automatically Build Multiple Time Series models fast - now with Facebook Prophet!\n  license: Apache-2.0\n  license_file: LICENSE\n  description: |\n    Automatically build multiple Time Series models using a Single Line of Code. Now updated with Dask.\n\n    ![banner](https://github.com/AutoViML/Auto_TS/raw/master/images/logo.png)\n\n    `auto_timeseries` is a complex model building utility for time series data. Since it automates many\n    Tasks involved in a complex endeavor, it assumes many intelligent defaults. But you can change them.\n    Auto_Timeseries will rapidly build predictive models based on Statsmodels ARIMA, Seasonal ARIMA, Prophet\n    and Scikit-Learn ML. It will automatically select the best model which gives best score specified.\n\n    PyPI: [https://pypi.org/project/{{ name | lower }}/](https://pypi.org/project/{{ name | lower }}/)\n    ---\n    :fire: The conda-forge recipe was generated with [Conda-Forger App](https://sugatoray-conda-forger.streamlit.app/).\n\n  dev_url: https://github.com/AutoViML/Auto_TS\n  doc_url: https://github.com/AutoViML/Auto_TS\n\nextra:\n  recipe-maintainers:\n    - sugatoray\n",
+ "raw_meta_yaml": "{% set reqfile = \"requirements.txt\" %}\n{% set testsfolder = \"test\" %}\n{% set name = \"auto-ts\" %}\n{% set version = \"0.0.92\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/auto_ts-{{ version }}.tar.gz\n  sha256: e62c0fec5591d5c107762118e6ab3b2a90a964680ae5e82b82126640f579074f\n\nbuild:\n  number: 0\n  noarch: python\n  script:\n    ## Show the rendered recipe\n    - echo -e \"\\n>>> Show recipe '{{ name }}/meta.yaml' <<<\\n\\n\"\n    - echo -e $(cat $RECIPE_DIR/meta.yaml)  # [not win]\n    ## Ensure inclusion of requirements.txt\n    {% set reqfile = \"requirements.txt\" %}\n    {% set reqsource = name ~ \".egg-info/requires.txt\" %}\n    # IF {{ reqfile }} is NOT PRESENT, COPY {{ reqfile }} from {{ reqsource }}\n    - echo -e \"\\n>>> ENSURE INCLUSION OF '{{ reqfile }}' <<<\\n\\n\"\n    - if [ ! -f {{ reqfile }} ] && [ -f {{ reqsource }} ]; then cp {{ reqsource }} {{ reqfile }}; fi  # [not win]\n    #- copy {{ name }}.egg-info\\requires.txt {{ reqfile }}  # [win]\n    - copy {{ reqsource | replace('/', '\\\\') }} {{ reqfile }}  # [win]\n    ## Ensure exclusion of tests folder\n    {% set testsfolder = \"test\" %}\n    - echo -e \"\\n>>> ENSURE EXCLUSION OF '{{ testsfolder }}' <<<\\n\\n\"\n    - rm -rf {{ testsfolder }}  # [not win]\n    - rmdir /s /q \"{{ testsfolder | replace('/', '\\\\') }}\"  # [win] \n    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n  run:\n    - python >=3.7\n    - ipython\n    - jupyter\n    - pmdarima\n    - numpy\n    - xlrd\n    - pandas\n    - matplotlib-base\n    - seaborn\n    - prophet\n    - scikit-learn >=0.24.0\n    - statsmodels\n    - xgboost >=2.0\n    - prettytable\n    - dask-core >=2022.1.0\n    - pyyaml >=5.4.1\n    - gputil >=1.4.0\n    - distributed >=2022.2.0\n\ntest:\n  imports:\n    - auto_ts\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/AutoViML/Auto_TS\n  summary: Automatically Build Multiple Time Series models fast - now with Facebook Prophet!\n  license: Apache-2.0\n  license_file: LICENSE\n  description: |\n    Automatically build multiple Time Series models using a Single Line of Code. Now updated with Dask.\n\n    ![banner](https://github.com/AutoViML/Auto_TS/raw/master/images/logo.png)\n\n    `auto_timeseries` is a complex model building utility for time series data. Since it automates many\n    Tasks involved in a complex endeavor, it assumes many intelligent defaults. But you can change them.\n    Auto_Timeseries will rapidly build predictive models based on Statsmodels ARIMA, Seasonal ARIMA, Prophet\n    and Scikit-Learn ML. It will automatically select the best model which gives best score specified.\n\n    PyPI: [https://pypi.org/project/{{ name | lower }}/](https://pypi.org/project/{{ name | lower }}/)\n    ---\n    :fire: The conda-forge recipe was generated with [Conda-Forger App](https://sugatoray-conda-forger.streamlit.app/).\n\n  dev_url: https://github.com/AutoViML/Auto_TS\n  doc_url: https://github.com/AutoViML/Auto_TS\n\nextra:\n  recipe-maintainers:\n    - sugatoray\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -327,8 +327,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/a/auto-ts/auto_ts-0.0.90.tar.gz",
- "version": "0.0.90",
+ "url": "https://pypi.io/packages/source/a/auto-ts/auto_ts-0.0.92.tar.gz",
+ "version": "0.0.92",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/auto-ts.json"
  }
