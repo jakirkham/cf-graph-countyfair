@@ -28,7 +28,7 @@
    "summary": "libstempo - a Python wrapper for tempo2"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -44,7 +44,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cython",
@@ -66,6 +67,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "distutils.patch"
+   ],
    "sha256": "8fabb22b466f1b14d52293fb34f819c8238d21f8fbb4c1455aae7808b34ea2af",
    "url": "https://pypi.io/packages/source/l/libstempo/libstempo-2.4.6.tar.gz"
   },
@@ -91,6 +95,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -137,7 +142,7 @@
    "summary": "libstempo - a Python wrapper for tempo2"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -153,7 +158,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cython",
@@ -175,6 +181,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "distutils.patch"
+   ],
    "sha256": "8fabb22b466f1b14d52293fb34f819c8238d21f8fbb4c1455aae7808b34ea2af",
    "url": "https://pypi.io/packages/source/l/libstempo/libstempo-2.4.6.tar.gz"
   },
@@ -208,7 +217,7 @@
    "summary": "libstempo - a Python wrapper for tempo2"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -224,7 +233,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cython",
@@ -246,6 +256,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "distutils.patch"
+   ],
    "sha256": "8fabb22b466f1b14d52293fb34f819c8238d21f8fbb4c1455aae7808b34ea2af",
    "url": "https://pypi.io/packages/source/l/libstempo/libstempo-2.4.6.tar.gz"
   },
@@ -271,6 +284,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -319,12 +333,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libstempo.json"
  },
- "raw_meta_yaml": "{% set name = \"libstempo\" %}\n{% set version = \"2.4.6\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 8fabb22b466f1b14d52293fb34f819c8238d21f8fbb4c1455aae7808b34ea2af\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - cython\n    - numpy\n    - pip\n    - python\n    - setuptools\n    - tempo2 >=2020.11.1\n  run:\n    - astropy >=4.1\n    - ephem >=3.7.7.1\n    - matplotlib-base\n    - {{ pin_compatible('numpy') }}\n    - python\n    - pyerfa\n    - scipy\n    - tempo2 >=2020.11.1\n\ntest:\n  imports:\n    - libstempo\n  requires:\n    - pytest\n  files:\n    - test_fakepulsar.py\n    - test_imports.py\n    - test_pulsar.py\n  commands:\n    # run units tests\n    - python -m pytest test*.py -v -ra\n\nabout:\n  home: http://vallis.github.io/libstempo/\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: libstempo - a Python wrapper for tempo2\n  doc_url: http://vallis.github.io/libstempo/\n  dev_url: https://github.com/vallis/libstempo\n  description: |\n    A Python wrapper for tempo2.\nextra:\n  recipe-maintainers:\n    - mattpitkin\n    - jellis18\n",
+ "raw_meta_yaml": "{% set name = \"libstempo\" %}\n{% set version = \"2.4.6\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 8fabb22b466f1b14d52293fb34f819c8238d21f8fbb4c1455aae7808b34ea2af\n  patches:\n    - distutils.patch\n\nbuild:\n  number: 1\n  skip: true  # [win]\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - cython\n    - numpy\n    - pip\n    - python\n    - setuptools\n    - tempo2 >=2020.11.1\n  run:\n    - astropy >=4.1\n    - ephem >=3.7.7.1\n    - matplotlib-base\n    - {{ pin_compatible('numpy') }}\n    - python\n    - pyerfa\n    - scipy\n    - tempo2 >=2020.11.1\n\ntest:\n  imports:\n    - libstempo\n  requires:\n    - pytest\n  files:\n    - test_fakepulsar.py\n    - test_imports.py\n    - test_pulsar.py\n  commands:\n    # run units tests\n    - python -m pytest test*.py -v -ra\n\nabout:\n  home: http://vallis.github.io/libstempo/\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: libstempo - a Python wrapper for tempo2\n  doc_url: http://vallis.github.io/libstempo/\n  dev_url: https://github.com/vallis/libstempo\n  description: |\n    A Python wrapper for tempo2.\nextra:\n  recipe-maintainers:\n    - mattpitkin\n    - jellis18\n",
  "req": {
   "__set__": true,
   "elements": [
    "astropy",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "cython",
    "ephem",
@@ -343,6 +358,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -350,6 +366,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython",
     "numpy",
@@ -364,6 +381,7 @@
    "elements": [
     "astropy",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "ephem",
     "matplotlib-base",
@@ -387,6 +405,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
