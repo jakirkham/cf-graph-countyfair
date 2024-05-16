@@ -2,6 +2,10 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,7 +13,12 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "azure"
+  },
+  "test": "native"
  },
  "feedstock_name": "cutlass",
  "hash_type": "sha256",
@@ -22,15 +31,18 @@
    "summary": "CUDA Templates for Linear Algebra Subroutines"
   },
   "build": {
-   "number": "0",
-   "run_exports": [
-    "cutlass"
-   ]
+   "ignore_run_exports_from": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cuda_compiler_stub"
+   ],
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "h-vetinari",
-    "RaulPPelaez"
+    "RaulPPelaez",
+    "leofang"
    ]
   },
   "package": {
@@ -39,18 +51,15 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "cuda_compiler_stub",
     "cmake",
-    "make"
+    "ninja"
    ],
-   "host": [
-    "cudnn",
-    "libcublas-dev"
-   ],
-   "run": [
-    "cudnn"
+   "run_constrained": [
+    "cuda-version >=11.0.*,<13.a0"
    ]
   },
   "source": {
@@ -59,12 +68,11 @@
   },
   "test": {
    "commands": [
-    "test -f $PREFIX/lib/libcutlass.so",
-    "test ! -f $PREFIX/lib/libcutlass.a",
-    "test -f $PREFIX/include/cutlass/library/handle.h || (echo \"library/handle.h not found\" && exit 1)",
-    "test -f $PREFIX/include/cutlass/library/library.h || (echo \"library/library.h not found\" && exit 1)",
-    "test -f $PREFIX/include/cutlass/library/operation_table.h || (echo \"library/operation_table.h not found\" && exit 1)",
-    "test -f $PREFIX/include/cutlass/library/singleton.h || (echo \"library/singleton.h not found\" && exit 1)"
+    "tree $CONDA_PREFIX/include/cutlass",
+    "tree $CONDA_PREFIX/include/cute"
+   ],
+   "requires": [
+    "tree"
    ]
   }
  },
@@ -73,28 +81,188 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
-    "make"
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
-   "elements": [
-    "cudnn",
-    "libcublas-dev"
-   ]
+   "elements": []
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "cudnn"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
+   "elements": [
+    "tree"
+   ]
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/NVIDIA/cutlass",
+   "home": "https://github.com/NVIDIA/cutlass",
+   "license": "BSD-3-Clause",
+   "license_file": "LICENSE.txt",
+   "summary": "CUDA Templates for Linear Algebra Subroutines"
+  },
+  "build": {
+   "ignore_run_exports_from": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cuda_compiler_stub"
+   ],
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "h-vetinari",
+    "RaulPPelaez",
+    "leofang"
+   ]
+  },
+  "package": {
+   "name": "cutlass",
+   "version": "3.1.0"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cuda_compiler_stub",
+    "cmake",
+    "ninja"
+   ],
+   "run_constrained": [
+    "cuda-version >=11.0.*,<13.a0"
+   ]
+  },
+  "source": {
+   "sha256": "821aa2e5b709a2e5d3922dcf2c5d445b4898a6ef8bac683cfb00125eafbca029",
+   "url": "https://github.com/NVIDIA/cutlass/archive/refs/tags/v3.1.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "tree $CONDA_PREFIX/include/cutlass",
+    "tree $CONDA_PREFIX/include/cute"
+   ],
+   "requires": [
+    "tree"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cuda_compiler_stub",
+    "cxx_compiler_stub",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
    "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "tree"
+   ]
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/NVIDIA/cutlass",
+   "home": "https://github.com/NVIDIA/cutlass",
+   "license": "BSD-3-Clause",
+   "license_file": "LICENSE.txt",
+   "summary": "CUDA Templates for Linear Algebra Subroutines"
+  },
+  "build": {
+   "ignore_run_exports_from": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cuda_compiler_stub"
+   ],
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "h-vetinari",
+    "RaulPPelaez",
+    "leofang"
+   ]
+  },
+  "package": {
+   "name": "cutlass",
+   "version": "3.1.0"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cuda_compiler_stub",
+    "cmake",
+    "ninja"
+   ],
+   "run_constrained": [
+    "cuda-version >=11.0.*,<13.a0"
+   ]
+  },
+  "source": {
+   "sha256": "821aa2e5b709a2e5d3922dcf2c5d445b4898a6ef8bac683cfb00125eafbca029",
+   "url": "https://github.com/NVIDIA/cutlass/archive/refs/tags/v3.1.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "tree $CONDA_PREFIX/include/cutlass",
+    "tree $CONDA_PREFIX/include/cute"
+   ],
+   "requires": [
+    "tree"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cuda_compiler_stub",
+    "cxx_compiler_stub",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "tree"
+   ]
   }
  },
  "meta_yaml": {
@@ -106,15 +274,18 @@
    "summary": "CUDA Templates for Linear Algebra Subroutines"
   },
   "build": {
-   "number": "0",
-   "run_exports": [
-    "cutlass"
-   ]
+   "ignore_run_exports_from": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cuda_compiler_stub"
+   ],
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "h-vetinari",
-    "RaulPPelaez"
+    "RaulPPelaez",
+    "leofang"
    ]
   },
   "package": {
@@ -123,18 +294,15 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "cuda_compiler_stub",
     "cmake",
-    "make"
+    "ninja"
    ],
-   "host": [
-    "cudnn",
-    "libcublas-dev"
-   ],
-   "run": [
-    "cudnn"
+   "run_constrained": [
+    "cuda-version >=11.0.*,<13.a0"
    ]
   },
   "source": {
@@ -143,13 +311,12 @@
   },
   "test": {
    "commands": [
-    "test -f $PREFIX/lib/libcutlass.so",
-    "test ! -f $PREFIX/lib/libcutlass.a",
-    "test -f $PREFIX/include/cutlass/library/handle.h || (echo \"library/handle.h not found\" && exit 1)",
-    "test -f $PREFIX/include/cutlass/library/library.h || (echo \"library/library.h not found\" && exit 1)",
-    "test -f $PREFIX/include/cutlass/library/operation_table.h || (echo \"library/operation_table.h not found\" && exit 1)",
-    "test -f $PREFIX/include/cutlass/library/singleton.h || (echo \"library/singleton.h not found\" && exit 1)"
-   ]
+    "tree $CONDA_PREFIX/include/cutlass",
+    "tree $CONDA_PREFIX/include/cute",
+    "tree %CONDA_PREFIX%\\Library\\include\\cutlass",
+    "tree %CONDA_PREFIX%\\Library\\include\\cute"
+   ],
+   "requires": null
   }
  },
  "name": "cutlass",
@@ -161,22 +328,24 @@
  },
  "parsing_error": false,
  "platforms": [
-  "linux_64"
+  "linux_64",
+  "linux_aarch64",
+  "linux_ppc64le",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/cutlass.json"
  },
- "raw_meta_yaml": "{% set version = \"3.1.0\" %}\n\npackage:\n  name: cutlass\n  version: {{ version }}\n\nsource:\n  url: https://github.com/NVIDIA/cutlass/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 821aa2e5b709a2e5d3922dcf2c5d445b4898a6ef8bac683cfb00125eafbca029\n\nbuild:\n  number: 0\n  skip: true  # [not linux]\n  # cutlass 3.1 requires CUDA >=11.4\n  skip: true  # [not (cuda_compiler_version or \"\").startswith(\"12\")]\n  run_exports:\n    - {{ pin_subpackage('cutlass', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - cmake\n    - make\n  host:\n    - cudnn\n    - libcublas-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n  run:\n    - cudnn\ntest:\n  commands:\n    # shared:\n    - test -f $PREFIX/lib/libcutlass.so               # [linux]\n    - if not exist %LIBRARY_BIN%\\cutlass.dll exit 1   # [win]\n\n    # absence of static libraries (windows uses same extension for\n    # static libs and the \"import library\" needed to load a DLL):\n    - test ! -f $PREFIX/lib/libcutlass.a              # [not win]\n\n    # headers:\n    # This list should be substantially longer, but upstream just globs\n    # all *.h files. These are the headers required for triton, but\n    # relevant headers can be added as needed/desired.\n    {% for each_header in [\"library/handle.h\", \"library/library.h\",\n                           \"library/operation_table.h\", \"library/singleton.h\"] %}\n    - test -f $PREFIX/include/cutlass/{{ each_header }} || (echo \"{{ each_header }} not found\" && exit 1)  # [unix]\n    - if not exist %LIBRARY_INC%\\cutlass\\{{ \"\\\\\".join(each_header.split(\"/\")) }} exit 1                    # [win]\n    {% endfor %}\n\nabout:\n  home: https://github.com/NVIDIA/cutlass\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: CUDA Templates for Linear Algebra Subroutines\n  dev_url: https://github.com/NVIDIA/cutlass\n\nextra:\n  recipe-maintainers:\n    - h-vetinari\n    - RaulPPelaez\n",
+ "raw_meta_yaml": "{% set version = \"3.1.0\" %}\n\npackage:\n  name: cutlass\n  version: {{ version }}\n\nsource:\n  url: https://github.com/NVIDIA/cutlass/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 821aa2e5b709a2e5d3922dcf2c5d445b4898a6ef8bac683cfb00125eafbca029\n\nbuild:\n  number: 1\n  skip: true  # [osx or cuda_compiler_version not in (\"12.0\",)]\n  ignore_run_exports_from:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n\nrequirements:\n  build:\n    - {{ stdlib('c') }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - cmake\n    - ninja\n  run_constrained:\n    - cuda-version >=11.0.*,<13.a0\n\ntest:\n  requires:\n    - tree  # [linux]\n  commands:\n    # headers:\n    - tree $CONDA_PREFIX/include/cutlass  # [linux]\n    - tree $CONDA_PREFIX/include/cute  # [linux]\n    - tree %CONDA_PREFIX%\\Library\\include\\cutlass  # [win]\n    - tree %CONDA_PREFIX%\\Library\\include\\cute  # [win]\n\nabout:\n  home: https://github.com/NVIDIA/cutlass\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: CUDA Templates for Linear Algebra Subroutines\n  dev_url: https://github.com/NVIDIA/cutlass\n\nextra:\n  recipe-maintainers:\n    - h-vetinari\n    - RaulPPelaez\n    - leofang\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cuda_compiler_stub",
-   "cudnn",
    "cxx_compiler_stub",
-   "libcublas-dev",
-   "make"
+   "ninja"
   ]
  },
  "requirements": {
@@ -184,28 +353,28 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
-    "make"
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda_compiler_stub",
-    "cudnn",
-    "cxx_compiler_stub",
-    "libcublas-dev"
+    "cxx_compiler_stub"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda_compiler_stub",
-    "cudnn",
     "cxx_compiler_stub"
    ]
   },
@@ -220,24 +389,20 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
-    "make"
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
-   "elements": [
-    "cudnn",
-    "libcublas-dev"
-   ]
+   "elements": []
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "cudnn"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -248,5 +413,82 @@
  "version": "3.1.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/cutlass.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/NVIDIA/cutlass",
+   "home": "https://github.com/NVIDIA/cutlass",
+   "license": "BSD-3-Clause",
+   "license_file": "LICENSE.txt",
+   "summary": "CUDA Templates for Linear Algebra Subroutines"
+  },
+  "build": {
+   "ignore_run_exports_from": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cuda_compiler_stub"
+   ],
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "h-vetinari",
+    "RaulPPelaez",
+    "leofang"
+   ]
+  },
+  "package": {
+   "name": "cutlass",
+   "version": "3.1.0"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cuda_compiler_stub",
+    "cmake",
+    "ninja"
+   ],
+   "run_constrained": [
+    "cuda-version >=11.0.*,<13.a0"
+   ]
+  },
+  "source": {
+   "sha256": "821aa2e5b709a2e5d3922dcf2c5d445b4898a6ef8bac683cfb00125eafbca029",
+   "url": "https://github.com/NVIDIA/cutlass/archive/refs/tags/v3.1.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "tree %CONDA_PREFIX%\\Library\\include\\cutlass",
+    "tree %CONDA_PREFIX%\\Library\\include\\cute"
+   ],
+   "requires": null
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cuda_compiler_stub",
+    "cxx_compiler_stub",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
  }
 }
