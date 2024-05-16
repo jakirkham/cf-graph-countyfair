@@ -34,7 +34,7 @@
    "summary": "Ocean-compatible collection of greedy/brute-force solvers/samplers"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -48,7 +48,8 @@
   },
   "requirements": {
    "build": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -79,6 +80,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -111,7 +113,7 @@
    "summary": "Ocean-compatible collection of greedy/brute-force solvers/samplers"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -125,7 +127,8 @@
   },
   "requirements": {
    "build": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -156,6 +159,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -188,7 +192,7 @@
    "summary": "Ocean-compatible collection of greedy/brute-force solvers/samplers"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -202,7 +206,8 @@
   },
   "requirements": {
    "build": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -233,6 +238,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -265,7 +271,7 @@
    "summary": "Ocean-compatible collection of greedy/brute-force solvers/samplers"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -279,7 +285,8 @@
   },
   "requirements": {
    "build": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -315,7 +322,7 @@
    "summary": "Ocean-compatible collection of greedy/brute-force solvers/samplers"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -329,7 +336,8 @@
   },
   "requirements": {
    "build": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -360,6 +368,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -392,7 +401,7 @@
    "summary": "Ocean-compatible collection of greedy/brute-force solvers/samplers"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -406,7 +415,8 @@
   },
   "requirements": {
    "build": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -437,6 +447,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -479,10 +490,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/dwave-greedy.json"
  },
- "raw_meta_yaml": "{% set name = \"dwave-greedy\" %}\n{% set version = \"0.3.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/dwave-greedy-{{ version }}.tar.gz\n  sha256: 806c02d6c3f260ef5bf063d4932f43dfb52a0ea00f9db0b0d34d9b15691a011a\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('cxx') }}\n  host:\n    - pip\n    - python\n  run:\n    - dwave-samplers >=1.0.0\n    - python\n\ntest:\n  imports:\n    - greedy\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/dwavesystems/dwave-greedy\n  summary: Ocean-compatible collection of greedy/brute-force solvers/samplers\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - BastianZim\n",
+ "raw_meta_yaml": "{% set name = \"dwave-greedy\" %}\n{% set version = \"0.3.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/dwave-greedy-{{ version }}.tar.gz\n  sha256: 806c02d6c3f260ef5bf063d4932f43dfb52a0ea00f9db0b0d34d9b15691a011a\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 1\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - pip\n    - python\n  run:\n    - dwave-samplers >=1.0.0\n    - python\n\ntest:\n  imports:\n    - greedy\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/dwavesystems/dwave-greedy\n  summary: Ocean-compatible collection of greedy/brute-force solvers/samplers\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - BastianZim\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "dwave-samplers",
    "pip",
@@ -493,12 +505,14 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pip",
     "python"
@@ -507,6 +521,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "dwave-samplers",
     "python"
@@ -524,6 +539,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -561,7 +577,7 @@
    "summary": "Ocean-compatible collection of greedy/brute-force solvers/samplers"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -575,7 +591,8 @@
   },
   "requirements": {
    "build": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -606,6 +623,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
