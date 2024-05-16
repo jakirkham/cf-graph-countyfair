@@ -24,7 +24,7 @@
    "summary": "hpp-gepetto-viewer subpackage of Humanoid Path Planner suite"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "hpp-gepetto-viewer"
    ]
@@ -42,6 +42,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -93,6 +94,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
@@ -152,7 +154,7 @@
    "summary": "hpp-gepetto-viewer subpackage of Humanoid Path Planner suite"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "hpp-gepetto-viewer"
    ]
@@ -170,6 +172,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -229,7 +232,7 @@
    "summary": "hpp-gepetto-viewer subpackage of Humanoid Path Planner suite"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "hpp-gepetto-viewer"
    ]
@@ -247,6 +250,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -297,6 +301,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "doxygen",
@@ -358,11 +363,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/hpp-gepetto-viewer.json"
  },
- "raw_meta_yaml": "{% set name = \"hpp-gepetto-viewer\" %}\n{% set version = \"5.0.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/humanoid-path-planner/hpp-gepetto-viewer/releases/download/v{{ version }}/hpp-gepetto-viewer-{{ version }}.tar.gz\n  sha256: 4ff58706dd8a388753faca7fa6e17e84a920e917c1db00c742dd5ed1dea17fe5\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  run_exports:\n    - {{ pin_subpackage(name|lower, max_pin='x.x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - make\n    - pkg-config\n    - doxygen\n    - python                              # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - {{ cdt('mesa-libgl-devel') }}       # [linux]\n    - {{ cdt('mesa-dri-drivers') }}       # [linux]\n    - {{ cdt('libselinux-devel') }}       # [linux]\n  host:\n    - hpp-util  {{ version }}\n    - hpp-statistics  {{ version }}\n    - hpp-pinocchio  {{ version }}\n    - hpp-constraints  {{ version }}\n    - hpp-core  {{ version }}\n    - hpp-template-corba  {{ version }}\n    - hpp-corbaserver  {{ version }}\n    - hpp-manipulation  {{ version }}\n    - hpp-manipulation-urdf  {{ version }}\n    - hpp-manipulation-corba  {{ version }}\n    - gepetto-viewer-corba\n    - gepetto-viewer\n    - libboost-devel\n    - assimp\n    - octomap\n    - urdfdom\n    - qt-main\n    - openscenegraph\n    - openscenegraph-osgqt\n    - python\n  run:\n    - numpy\n    - python\n\ntest:\n  requires:\n    - pkg-config\n    - hpp-corbaserver  {{ version }}\n  commands:\n    - pkg-config --modversion {{ name }}\n\nabout:\n  home: https://github.com/humanoid-path-planner/{{ name }}\n  license: LGPL-3.0-or-later\n  license_file: COPYING\n  summary: {{ name }} subpackage of Humanoid Path Planner suite\n  description: |\n    HPP (Humanoid Path Planner) is a collection of software packages implementing\n    path planning functionalities for a humanoid robot. The core functionalities are well\n    suited to solve classical path planning problems. It can be extended to path planning\n    for other types of robots like digital actors for instance.\n  doc_url: https://gepettoweb.laas.fr/hpp/hpp-doc/doxygen-html/index.html\n  dev_url: https://github.com/humanoid-path-planner/{{ name }}\n\nextra:\n  recipe-maintainers:\n    - ymontmarin\n    - jcarpent\n",
+ "raw_meta_yaml": "{% set name = \"hpp-gepetto-viewer\" %}\n{% set version = \"5.0.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/humanoid-path-planner/hpp-gepetto-viewer/releases/download/v{{ version }}/hpp-gepetto-viewer-{{ version }}.tar.gz\n  sha256: 4ff58706dd8a388753faca7fa6e17e84a920e917c1db00c742dd5ed1dea17fe5\n\nbuild:\n  number: 1\n  skip: true  # [win]\n  run_exports:\n    - {{ pin_subpackage(name|lower, max_pin='x.x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - make\n    - pkg-config\n    - doxygen\n    - python                              # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - {{ cdt('mesa-libgl-devel') }}       # [linux]\n    - {{ cdt('mesa-dri-drivers') }}       # [linux]\n    - {{ cdt('libselinux-devel') }}       # [linux]\n  host:\n    - hpp-util  {{ version }}\n    - hpp-statistics  {{ version }}\n    - hpp-pinocchio  {{ version }}\n    - hpp-constraints  {{ version }}\n    - hpp-core  {{ version }}\n    - hpp-template-corba  {{ version }}\n    - hpp-corbaserver  {{ version }}\n    - hpp-manipulation  {{ version }}\n    - hpp-manipulation-urdf  {{ version }}\n    - hpp-manipulation-corba  {{ version }}\n    - gepetto-viewer-corba\n    - gepetto-viewer\n    - libboost-devel\n    - assimp\n    - octomap\n    - urdfdom\n    - qt-main\n    - openscenegraph\n    - openscenegraph-osgqt\n    - python\n  run:\n    - numpy\n    - python\n\ntest:\n  requires:\n    - pkg-config\n    - hpp-corbaserver  {{ version }}\n  commands:\n    - pkg-config --modversion {{ name }}\n\nabout:\n  home: https://github.com/humanoid-path-planner/{{ name }}\n  license: LGPL-3.0-or-later\n  license_file: COPYING\n  summary: {{ name }} subpackage of Humanoid Path Planner suite\n  description: |\n    HPP (Humanoid Path Planner) is a collection of software packages implementing\n    path planning functionalities for a humanoid robot. The core functionalities are well\n    suited to solve classical path planning problems. It can be extended to path planning\n    for other types of robots like digital actors for instance.\n  doc_url: https://gepettoweb.laas.fr/hpp/hpp-doc/doxygen-html/index.html\n  dev_url: https://github.com/humanoid-path-planner/{{ name }}\n\nextra:\n  recipe-maintainers:\n    - ymontmarin\n    - jcarpent\n",
  "req": {
   "__set__": true,
   "elements": [
    "assimp",
+   "c_stdlib_stub",
    "cdt_stub",
    "cmake",
    "cxx_compiler_stub",
@@ -395,6 +401,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
@@ -407,6 +414,7 @@
    "__set__": true,
    "elements": [
     "assimp",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gepetto-viewer",
     "gepetto-viewer-corba",
@@ -432,6 +440,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numpy",
     "python"
@@ -450,6 +459,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
