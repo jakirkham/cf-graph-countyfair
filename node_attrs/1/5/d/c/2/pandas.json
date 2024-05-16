@@ -6,6 +6,7 @@
    "store_build_artifacts": true
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
    "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
@@ -36,7 +37,7 @@
    "summary": "Powerful data structures for data analysis, time series, and statistics"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "MESON_ARGS_REDUCED=\"$(echo $MESON_ARGS | sed 's/--buildtype release //g')\"",
     "PYTHON -m pip install -vv --no-deps --ignore-installed . -Csetup-args=${MESON_ARGS_REDUCED// / -Csetup-args=}"
@@ -65,6 +66,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -79,7 +81,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "python-dateutil >=2.8.1",
     "pytz >=2020.1",
     "python-tzdata >=2022a"
@@ -92,7 +93,7 @@
   "test": {
    "commands": [
     "pip check",
-    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db and not arm_slow', '-k', 'not (_not_a_real_test or test_rolling_var_numerical_issues or test_std_timedelta64_skipna_false or test_value_counts_normalized[M8[ns]] or test_to_datetime_format_YYYYMMDD_with_nat or (TestReductions and test_median_2d))', '--no-strict-data-files'])\""
+    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db', '-k', 'not (_not_a_real_test)', '--no-strict-data-files'])\""
    ],
    "imports": [
     "pandas"
@@ -114,6 +115,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -133,7 +135,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "python-dateutil",
     "python-tzdata",
@@ -164,7 +165,7 @@
    "summary": "Powerful data structures for data analysis, time series, and statistics"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "MESON_ARGS_REDUCED=\"$(echo $MESON_ARGS | sed 's/--buildtype release //g')\"",
     "PYTHON -m pip install -vv --no-deps --ignore-installed . -Csetup-args=${MESON_ARGS_REDUCED// / -Csetup-args=}"
@@ -193,6 +194,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -207,7 +209,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "python-dateutil >=2.8.1",
     "pytz >=2020.1",
     "python-tzdata >=2022a"
@@ -220,7 +221,7 @@
   "test": {
    "commands": [
     "pip check",
-    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db and not arm_slow', '-k', 'not (_not_a_real_test or test_rolling_var_numerical_issues or test_std_timedelta64_skipna_false or test_value_counts_normalized[M8[ns]] or test_to_datetime_format_YYYYMMDD_with_nat or (TestReductions and test_median_2d))', '--no-strict-data-files'])\""
+    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db', '-k', 'not (_not_a_real_test)', '--no-strict-data-files'])\""
    ],
    "imports": [
     "pandas"
@@ -242,6 +243,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -261,7 +263,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "python-dateutil",
     "python-tzdata",
@@ -292,11 +293,9 @@
    "summary": "Powerful data structures for data analysis, time series, and statistics"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "export PYTHONUNBUFFERED=1",
-    "export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig",
-    "echo \"python = '${PREFIX}/bin/python'\" >> ${CONDA_PREFIX}/meson_cross_file.txt",
     "MESON_ARGS_REDUCED=\"$(echo $MESON_ARGS | sed 's/--buildtype release //g')\"",
     "PYTHON -m pip install -vv --no-deps --ignore-installed . -Csetup-args=${MESON_ARGS_REDUCED// / -Csetup-args=}"
    ]
@@ -324,6 +323,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -338,7 +338,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "python-dateutil >=2.8.1",
     "pytz >=2020.1",
     "python-tzdata >=2022a"
@@ -351,7 +350,7 @@
   "test": {
    "commands": [
     "pip check",
-    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db and not arm_slow', '-k', 'not (_not_a_real_test or test_rolling_var_numerical_issues or test_std_timedelta64_skipna_false or test_value_counts_normalized[M8[ns]] or test_to_datetime_format_YYYYMMDD_with_nat or (TestReductions and test_median_2d))', '--no-strict-data-files'])\""
+    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db', '-k', 'not (_not_a_real_test)', '--no-strict-data-files'])\""
    ],
    "imports": [
     "pandas"
@@ -373,6 +372,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -392,7 +392,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "python-dateutil",
     "python-tzdata",
@@ -423,13 +422,11 @@
    "summary": "Powerful data structures for data analysis, time series, and statistics"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "MESON_ARGS_REDUCED=\"$(echo $MESON_ARGS | sed 's/--buildtype release //g')\"",
     "PYTHON -m pip install -vv --no-deps --ignore-installed . -Csetup-args=${MESON_ARGS_REDUCED// / -Csetup-args=}",
     "export PYTHONUNBUFFERED=1",
-    "export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig",
-    "echo \"python = '${PREFIX}/bin/python'\" >> ${CONDA_PREFIX}/meson_cross_file.txt",
     "PYTHON -m pip install -vv --no-deps --ignore-installed ."
    ]
   },
@@ -456,6 +453,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -470,7 +468,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "python-dateutil >=2.8.1",
     "pytz >=2020.1",
     "python-tzdata >=2022a"
@@ -483,7 +480,7 @@
   "test": {
    "commands": [
     "pip check",
-    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db and not arm_slow', '-k', 'not (_not_a_real_test or test_rolling_var_numerical_issues or test_std_timedelta64_skipna_false or test_value_counts_normalized[M8[ns]] or test_to_datetime_format_YYYYMMDD_with_nat or (TestReductions and test_median_2d))', '--no-strict-data-files'])\""
+    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db', '-k', 'not (_not_a_real_test)', '--no-strict-data-files'])\""
    ],
    "imports": [
     "pandas"
@@ -511,7 +508,7 @@
    "summary": "Powerful data structures for data analysis, time series, and statistics"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "MESON_ARGS_REDUCED=\"$(echo $MESON_ARGS | sed 's/--buildtype release //g')\"",
     "PYTHON -m pip install -vv --no-deps --ignore-installed . -Csetup-args=${MESON_ARGS_REDUCED// / -Csetup-args=}"
@@ -540,6 +537,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -554,7 +552,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "python-dateutil >=2.8.1",
     "pytz >=2020.1",
     "python-tzdata >=2022a"
@@ -567,7 +564,7 @@
   "test": {
    "commands": [
     "pip check",
-    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db and not arm_slow', '-k', 'not (_not_a_real_test or test_rolling_var_numerical_issues or test_std_timedelta64_skipna_false or test_value_counts_normalized[M8[ns]] or test_to_datetime_format_YYYYMMDD_with_nat or (TestReductions and test_median_2d))', '--no-strict-data-files'])\""
+    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db', '-k', 'not (_not_a_real_test)', '--no-strict-data-files'])\""
    ],
    "imports": [
     "pandas"
@@ -589,6 +586,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -608,7 +606,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "python-dateutil",
     "python-tzdata",
@@ -639,7 +636,7 @@
    "summary": "Powerful data structures for data analysis, time series, and statistics"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "MESON_ARGS_REDUCED=\"$(echo $MESON_ARGS | sed 's/--buildtype release //g')\"",
     "PYTHON -m pip install -vv --no-deps --ignore-installed . -Csetup-args=${MESON_ARGS_REDUCED// / -Csetup-args=}"
@@ -668,6 +665,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -682,7 +680,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "python-dateutil >=2.8.1",
     "pytz >=2020.1",
     "python-tzdata >=2022a"
@@ -695,7 +692,7 @@
   "test": {
    "commands": [
     "pip check",
-    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db and not arm_slow', '-k', 'not (_not_a_real_test or test_rolling_var_numerical_issues or test_std_timedelta64_skipna_false or test_value_counts_normalized[M8[ns]] or test_to_datetime_format_YYYYMMDD_with_nat or (TestReductions and test_median_2d))', '--no-strict-data-files'])\""
+    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db', '-k', 'not (_not_a_real_test)', '--no-strict-data-files'])\""
    ],
    "imports": [
     "pandas"
@@ -717,6 +714,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -736,7 +734,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "python-dateutil",
     "python-tzdata",
@@ -775,11 +772,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pandas.json"
  },
- "raw_meta_yaml": "{% set tests_to_skip = \"_not_a_real_test\" %}\n{% set version = \"2.2.2\" %}\n\npackage:\n  name: pandas\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pandas-dev/pandas/releases/download/v{{ version }}/pandas-{{ version }}.tar.gz\n  sha256: 9e79019aba43cb4fda9e4d983f8e88ca0373adbb697ae9c6c43093218de28b54\n\nbuild:\n  number: 0\n  script:\n    - export PYTHONUNBUFFERED=1  # [ppc64le]\n    # Cross-compilation stuff vendored from numpy-feedstock\n    # necessary for cross-compilation to point to the right env\n    - export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig  # [ppc64le]\n    - echo \"python = '${PREFIX}/bin/python'\" >> ${CONDA_PREFIX}/meson_cross_file.txt  # [ppc64le]\n    - MESON_ARGS_REDUCED=\"$(echo $MESON_ARGS | sed 's/--buildtype release //g')\"  # [unix]\n    - {{ PYTHON }} -m pip install -vv --no-deps --ignore-installed . -Csetup-args=${MESON_ARGS_REDUCED// / -Csetup-args=}  # [unix]\n    - {{ PYTHON }} -m pip install -vv --no-deps --ignore-installed .  # [not unix]\n  skip: true  # [py<39]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython >=3.0.5                         # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - meson-python                           # [build_platform != target_platform]\n    - ninja                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip\n    - cython >=3.0.5\n    - numpy\n    - versioneer\n    - meson =1.2.1\n    - meson-python =0.13.1\n    - tomli  # [py<311]\n    - ninja\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - python-dateutil >=2.8.1\n    - pytz >=2020.1\n    - python-tzdata >=2022a\n\ntest:\n  imports:\n    - pandas\n  commands:\n    - pip check\n    # Skip test suite on PyPy as it segfaults there\n    # xref: https://github.com/conda-forge/pandas-feedstock/issues/148\n    #\n    # Also skip `test_rolling_var_numerical_issues` on `ppc64le` as it is a known test failure.\n    # xref: https://github.com/conda-forge/pandas-feedstock/issues/149\n    {% set markers = [\"not clipboard\", \"not single_cpu\", \"not slow\", \"not network\", \"not db\"] %}\n    {% set markers = markers + [\"not arm_slow\"] %}   # [aarch64 or ppc64le]\n    {% set extra_args = [\"-m \" + \" and \".join(markers)] %}\n    {% set tests_to_skip = \"_not_a_real_test\" %}\n    {% set tests_to_skip = tests_to_skip + \" or test_rolling_var_numerical_issues\" %}           # [ppc64le]\n    {% set tests_to_skip = tests_to_skip + \" or test_std_timedelta64_skipna_false\" %}           # [ppc64le]\n    {% set tests_to_skip = tests_to_skip + \" or test_value_counts_normalized[M8[ns]]\" %}        # [ppc64le]\n    {% set tests_to_skip = tests_to_skip + \" or test_to_datetime_format_YYYYMMDD_with_nat\" %}   # [ppc64le]\n    {% set tests_to_skip = tests_to_skip + \" or (TestReductions and test_median_2d)\" %}         # [ppc64le]\n    {% set extra_args = extra_args + [\"-k\", \"not (\" + tests_to_skip + \")\", \"--no-strict-data-files\"] %}\n    - python -c \"import pandas; pandas.test(extra_args={{ extra_args }})\"  # [python_impl == \"cpython\"]\n  requires:\n    - pip\n    - pytest >=6.0\n    - pytest-xdist >=1.31\n    - pytest-cov\n    - boto3\n    - hypothesis\n    - numpy\n    - psutil\n    - tomli  # [py<311]\n\nabout:\n  home: http://pandas.pydata.org\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: >-\n    Powerful data structures for data analysis, time series, and statistics\n  doc_url: https://pandas.pydata.org/docs/\n  dev_url: https://github.com/pandas-dev/pandas\n\nextra:\n  recipe-maintainers:\n    - jreback\n    - jorisvandenbossche\n    - msarahan\n    - ocefpaf\n    - TomAugspurger\n    - WillAyd\n    - simonjayhawkins\n    - mroeschke\n    - datapythonista\n    - phofl\n    - lithomas1\n    - marcogorelli\n",
+ "raw_meta_yaml": "{% set version = \"2.2.2\" %}\n\npackage:\n  name: pandas\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pandas-dev/pandas/releases/download/v{{ version }}/pandas-{{ version }}.tar.gz\n  sha256: 9e79019aba43cb4fda9e4d983f8e88ca0373adbb697ae9c6c43093218de28b54\n\nbuild:\n  number: 1\n  script:\n    - export PYTHONUNBUFFERED=1  # [ppc64le]\n    # Cross-compilation stuff vendored from numpy-feedstock\n    # necessary for cross-compilation to point to the right env\n    - export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig                                    # [build_platform != target_platform]\n    - echo \"python = '${PREFIX}/bin/python'\" >> ${CONDA_PREFIX}/meson_cross_file.txt  # [build_platform != target_platform]\n    - MESON_ARGS_REDUCED=\"$(echo $MESON_ARGS | sed 's/--buildtype release //g')\"  # [unix]\n    - {{ PYTHON }} -m pip install -vv --no-deps --ignore-installed . -Csetup-args=${MESON_ARGS_REDUCED// / -Csetup-args=}  # [unix]\n    - {{ PYTHON }} -m pip install -vv --no-deps --ignore-installed .  # [not unix]\n  skip: true  # [py<39]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython >=3.0.5                         # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - meson-python                           # [build_platform != target_platform]\n    - ninja                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip\n    - cython >=3.0.5\n    - numpy\n    - versioneer\n    - meson =1.2.1\n    - meson-python =0.13.1\n    - tomli  # [py<311]\n    - ninja\n  run:\n    - python\n    - python-dateutil >=2.8.1\n    - pytz >=2020.1\n    - python-tzdata >=2022a\n\ntest:\n  imports:\n    - pandas\n  commands:\n    - pip check\n    # Skip test suite on PyPy as it segfaults there\n    # xref: https://github.com/conda-forge/pandas-feedstock/issues/148\n    #\n    # do not run test suite in emulation because it takes ~5h; rely on upstream CI for aarch\n    {% set markers = [\"not clipboard\", \"not single_cpu\", \"not slow\", \"not network\", \"not db\"] %}\n    {% set extra_args = [\"-m \" + \" and \".join(markers)] %}\n    {% set tests_to_skip = \"_not_a_real_test\" %}\n    {% set extra_args = extra_args + [\"-k\", \"not (\" + tests_to_skip + \")\", \"--no-strict-data-files\"] %}\n    - python -c \"import pandas; pandas.test(extra_args={{ extra_args }})\"  # [(build_platform == target_platform) and (python_impl == \"cpython\")]\n  requires:\n    - pip\n    - pytest >=6.0\n    - pytest-xdist >=1.31\n    - pytest-cov\n    - boto3\n    - hypothesis\n    - numpy\n    - psutil\n    - tomli  # [py<311]\n\nabout:\n  home: http://pandas.pydata.org\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: >-\n    Powerful data structures for data analysis, time series, and statistics\n  doc_url: https://pandas.pydata.org/docs/\n  dev_url: https://github.com/pandas-dev/pandas\n\nextra:\n  recipe-maintainers:\n    - jreback\n    - jorisvandenbossche\n    - msarahan\n    - ocefpaf\n    - TomAugspurger\n    - WillAyd\n    - simonjayhawkins\n    - mroeschke\n    - datapythonista\n    - phofl\n    - lithomas1\n    - marcogorelli\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "cython",
    "meson",
@@ -799,6 +797,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -806,6 +805,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython",
     "meson",
@@ -821,8 +821,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "numpy",
     "python",
     "python-dateutil",
     "python-tzdata",
@@ -849,6 +849,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -868,7 +869,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "python-dateutil >=2.8.1",
     "python-tzdata >=2022a",
@@ -904,7 +904,7 @@
    "summary": "Powerful data structures for data analysis, time series, and statistics"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "PYTHON -m pip install -vv --no-deps --ignore-installed ."
    ]
@@ -932,6 +932,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -946,7 +947,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "python-dateutil >=2.8.1",
     "pytz >=2020.1",
     "python-tzdata >=2022a"
@@ -959,7 +959,7 @@
   "test": {
    "commands": [
     "pip check",
-    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db and not arm_slow', '-k', 'not (_not_a_real_test or test_rolling_var_numerical_issues or test_std_timedelta64_skipna_false or test_value_counts_normalized[M8[ns]] or test_to_datetime_format_YYYYMMDD_with_nat or (TestReductions and test_median_2d))', '--no-strict-data-files'])\""
+    "python -c \"import pandas; pandas.test(extra_args=['-m not clipboard and not single_cpu and not slow and not network and not db', '-k', 'not (_not_a_real_test)', '--no-strict-data-files'])\""
    ],
    "imports": [
     "pandas"
@@ -981,6 +981,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -1000,7 +1001,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "python-dateutil",
     "python-tzdata",
