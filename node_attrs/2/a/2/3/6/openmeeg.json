@@ -31,7 +31,7 @@
    "summary": "A C++ package for solving the forward problems of electroencephalography (EEG) and magnetoencephalography (MEG).\n"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -50,6 +50,7 @@
     "ninja",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
+    "c_stdlib_stub",
     "libgomp",
     "swig"
    ],
@@ -65,7 +66,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "libgfortran",
     "libgfortran5",
     "libopenblas",
@@ -101,6 +101,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -130,7 +131,6 @@
     "libgfortran5",
     "libmatio",
     "libopenblas",
-    "numpy",
     "python",
     "zlib"
    ]
@@ -152,7 +152,7 @@
    "summary": "A C++ package for solving the forward problems of electroencephalography (EEG) and magnetoencephalography (MEG).\n"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -171,6 +171,7 @@
     "ninja",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
+    "c_stdlib_stub",
     "libgomp",
     "swig",
     "llvm-openmp",
@@ -188,7 +189,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "libgfortran",
     "libgfortran5",
     "libopenblas",
@@ -231,7 +231,7 @@
    "summary": "A C++ package for solving the forward problems of electroencephalography (EEG) and magnetoencephalography (MEG).\n"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -250,6 +250,7 @@
     "ninja",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
+    "c_stdlib_stub",
     "llvm-openmp",
     "swig"
    ],
@@ -265,7 +266,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "libgfortran",
     "libgfortran5",
     "libopenblas",
@@ -301,6 +301,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -330,7 +331,6 @@
     "libgfortran5",
     "libmatio",
     "libopenblas",
-    "numpy",
     "python",
     "zlib"
    ]
@@ -352,7 +352,7 @@
    "summary": "A C++ package for solving the forward problems of electroencephalography (EEG) and magnetoencephalography (MEG).\n"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -371,6 +371,7 @@
     "ninja",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
+    "c_stdlib_stub",
     "llvm-openmp",
     "swig"
    ],
@@ -386,7 +387,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "libgfortran",
     "libgfortran5",
     "libopenblas",
@@ -422,6 +422,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -451,7 +452,6 @@
     "libgfortran5",
     "libmatio",
     "libopenblas",
-    "numpy",
     "python",
     "zlib"
    ]
@@ -481,10 +481,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/openmeeg.json"
  },
- "raw_meta_yaml": "{% set name = \"openmeeg\" %}\n{% set version = \"2.5.8\" %}\n{% set build_number = 0 %}\n{% set sha256 = \"29f75346a87ef268bb03a56e9c863c9b97105dfc1fd6be4ddbb1354edb302c86\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/{{ name }}/{{ name }}/archive/{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\n# https://conda-forge.org/docs/maintainer/knowledge_base.html\nbuild:\n  number: {{ build_number }}\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - cmake >=3.19\n    - make\n    - ninja  # [not win]\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}  # just for OpenBLAS to link properly\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux]\n    - pthread-stubs  # [win]\n    - swig\n\n  host:\n    - python\n    - numpy\n    - hdf5\n    - openblas\n    - zlib\n    - libmatio\n    - setuptools >=68.0.0\n    - wheel >=0.37.0\n\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - libgfortran  # [not win]\n    - libgfortran5  # [not win]\n    - ucrt  # [win]\n    - libopenblas\n    - zlib\n    - libmatio\n\ntest:\n  imports:\n    - openmeeg\n  requires:\n    - pytest  # [not win]\n    - pytest <8  # [win]\n    - packaging\n    - pip\n  source_files:\n    - data\n  commands:\n    - om_minverser --help\n    - python -c \"from packaging.version import parse; import openmeeg; print(openmeeg.__version__); assert parse(openmeeg.__version__) == parse('{{ version }}')\"\n    - pip check\n    - pip show openmeeg\n\nabout:\n  home: https://openmeeg.github.io/\n  license: CECILL-B\n  license_file: LICENSE.txt\n  summary: >\n    A C++ package for solving the forward problems of electroencephalography (EEG) and magnetoencephalography (MEG).\n\nextra:\n  recipe-maintainers:\n    - agramfort\n    - larsoner\n",
+ "raw_meta_yaml": "{% set name = \"openmeeg\" %}\n{% set version = \"2.5.8\" %}\n{% set build_number = 1 %}\n{% set sha256 = \"29f75346a87ef268bb03a56e9c863c9b97105dfc1fd6be4ddbb1354edb302c86\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/{{ name }}/{{ name }}/archive/{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\n# https://conda-forge.org/docs/maintainer/knowledge_base.html\nbuild:\n  number: {{ build_number }}\n  skip: True  # [py<39]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - cmake >=3.19\n    - make\n    - ninja  # [not win]\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}  # just for OpenBLAS to link properly\n    - {{ stdlib(\"c\") }}\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux]\n    - pthread-stubs  # [win]\n    - swig\n\n  host:\n    - python\n    - numpy\n    - hdf5\n    - openblas\n    - zlib\n    - libmatio\n    - setuptools >=68.0.0\n    - wheel >=0.37.0\n\n  run:\n    - python\n    - libgfortran  # [not win]\n    - libgfortran5  # [not win]\n    - ucrt  # [win]\n    - libopenblas\n    - zlib\n    - libmatio\n\ntest:\n  imports:\n    - openmeeg\n  requires:\n    - pytest  # [not win]\n    - pytest <8  # [win]\n    - packaging\n    - pip\n  source_files:\n    - data\n  commands:\n    - om_minverser --help\n    - python -c \"from packaging.version import parse; import openmeeg; print(openmeeg.__version__); assert parse(openmeeg.__version__) == parse('{{ version }}')\"\n    - pip check\n    - pip show openmeeg\n\nabout:\n  home: https://openmeeg.github.io/\n  license: CECILL-B\n  license_file: LICENSE.txt\n  summary: >\n    A C++ package for solving the forward problems of electroencephalography (EEG) and magnetoencephalography (MEG).\n\nextra:\n  recipe-maintainers:\n    - agramfort\n    - larsoner\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "fortran_compiler_stub",
@@ -512,6 +513,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -526,6 +528,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -543,6 +546,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -550,7 +554,6 @@
     "libgfortran5",
     "libmatio",
     "libopenblas",
-    "numpy",
     "openmp",
     "python",
     "ucrt",
@@ -571,6 +574,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake >=3.19",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -602,7 +606,6 @@
     "libgfortran5",
     "libmatio",
     "libopenblas",
-    "numpy",
     "python",
     "ucrt",
     "zlib"
@@ -631,7 +634,7 @@
    "summary": "A C++ package for solving the forward problems of electroencephalography (EEG) and magnetoencephalography (MEG).\n"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -649,6 +652,7 @@
     "make",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
+    "c_stdlib_stub",
     "pthread-stubs",
     "swig"
    ],
@@ -664,7 +668,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "ucrt",
     "libopenblas",
     "zlib",
@@ -699,6 +702,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
@@ -725,7 +729,6 @@
    "elements": [
     "libmatio",
     "libopenblas",
-    "numpy",
     "python",
     "ucrt",
     "zlib"
