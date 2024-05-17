@@ -32,8 +32,8 @@
    "summary": "PyTorch Extension Library of Optimized Scatter Operations"
   },
   "build": {
-   "number": "5",
-   "string": "cpu_py39h1234567_5"
+   "number": "6",
+   "string": "cpu_py39h1234567_6"
   },
   "extra": {
    "recipe-maintainers": [
@@ -52,9 +52,9 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "cuda_compiler_stub",
-    "sysroot_linux-64 ==2.17"
+    "cuda_compiler_stub"
    ],
    "host": [
     "python",
@@ -62,9 +62,6 @@
     "pytorch",
     "pytorch =*=cuda*",
     "pytest-runner",
-    "libcusparse-dev",
-    "libcublas-dev",
-    "libcusolver-dev",
     "pytorch =*=cpu*"
    ],
    "run": [
@@ -91,17 +88,14 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda_compiler_stub",
-    "cxx_compiler_stub",
-    "sysroot_linux-64"
+    "cxx_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "libcublas-dev",
-    "libcusolver-dev",
-    "libcusparse-dev",
     "pip",
     "pytest-runner",
     "python",
@@ -129,8 +123,8 @@
    "summary": "PyTorch Extension Library of Optimized Scatter Operations"
   },
   "build": {
-   "number": "5",
-   "string": "cpu_py39h1234567_5"
+   "number": "6",
+   "string": "cpu_py39h1234567_6"
   },
   "extra": {
    "recipe-maintainers": [
@@ -149,9 +143,9 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "cuda_compiler_stub",
-    "sysroot_linux-64 ==2.17"
+    "cuda_compiler_stub"
    ],
    "host": [
     "python",
@@ -159,9 +153,6 @@
     "pytorch",
     "pytorch =*=cuda*",
     "pytest-runner",
-    "libcusparse-dev",
-    "libcublas-dev",
-    "libcusolver-dev",
     "pytorch =*=cpu*"
    ],
    "run": [
@@ -193,8 +184,8 @@
    "summary": "PyTorch Extension Library of Optimized Scatter Operations"
   },
   "build": {
-   "number": "5",
-   "string": "cpu_py39h1234567_5"
+   "number": "6",
+   "string": "cpu_py39h1234567_6"
   },
   "extra": {
    "recipe-maintainers": [
@@ -213,6 +204,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -245,6 +237,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -278,8 +271,8 @@
    "summary": "PyTorch Extension Library of Optimized Scatter Operations"
   },
   "build": {
-   "number": "5",
-   "string": "cpu_py39h1234567_5"
+   "number": "6",
+   "string": "cpu_py39h1234567_6"
   },
   "extra": {
    "recipe-maintainers": [
@@ -298,6 +291,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -330,6 +324,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -369,22 +364,19 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pytorch_scatter.json"
  },
- "raw_meta_yaml": "{% set version = \"2.1.2\" %}\n# see github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion\n{% set torch_proc_type = \"cuda\" if cuda_compiler_version != \"None\" else \"cpu\" %}\n\npackage:\n  name: pytorch_scatter\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/t/torch_scatter/torch_scatter-{{ version }}.tar.gz\n  sha256: 69b3aa435f2424ac6a1bfb6ff702da6eb73b33ca0db38fb26989c74159258e47\n\nbuild:\n  number: 5\n  string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != \"None\"]\n  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == \"None\"]\n  skip: true  # [win]\n  # as of pytorch 1.13, conda-forge only builds for CUDA 11.2+, see\n  # https://github.com/conda-forge/conda-forge-pinning-feedstock/issues/3491\n  skip: true  # [cuda_compiler_version in (\"10.2\", \"11.0\", \"11.1\")]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}                 # [cuda_compiler_version not in (undefined, 'None')]\n    - sysroot_linux-64 ==2.17                # [linux64]\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - pytorch                                # [build_platform != target_platform]\n    - pytorch =*={{ torch_proc_type }}*      # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - pytorch\n    - pytorch =*={{ torch_proc_type }}*\n    - pytest-runner\n    - libcusparse-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcublas-dev      # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusolver-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n  run:\n    - python\n    - python-wget\n  run_constrained:\n    # additional run constraint to the one from the (version-only) run_export;\n    # constraining the CPU builds to CPU pytorch isn't 100% necessary, but cleaner\n    - pytorch =*={{ torch_proc_type }}*\n\ntest:\n  imports:\n    - torch_scatter\nabout:\n  home: https://github.com/rusty1s/pytorch_scatter\n  summary: PyTorch Extension Library of Optimized Scatter Operations\n  license: MIT\n  license_file: LICENSE\n  dev_url: https://github.com/rusty1s/pytorch_scatter\n\nextra:\n  recipe-maintainers:\n    - Tobias-Fischer\n    - mxr-conda\n    - rluria14\n    - oblute\n    - ndmaxar\n    - benjaminrwilson\n    - Tobias-Fischer\n",
+ "raw_meta_yaml": "{% set version = \"2.1.2\" %}\n# see github.com/conda-forge/conda-forge.github.io/issues/1059 for naming discussion\n{% set torch_proc_type = \"cuda\" if cuda_compiler_version != \"None\" else \"cpu\" %}\n\npackage:\n  name: pytorch_scatter\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/t/torch_scatter/torch_scatter-{{ version }}.tar.gz\n  sha256: 69b3aa435f2424ac6a1bfb6ff702da6eb73b33ca0db38fb26989c74159258e47\n\nbuild:\n  number: 6\n  string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != \"None\"]\n  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == \"None\"]\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}                 # [cuda_compiler_version not in (undefined, 'None')]\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - pytorch                                # [build_platform != target_platform]\n    - pytorch =*={{ torch_proc_type }}*      # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - pytorch\n    - pytorch =*={{ torch_proc_type }}*\n    - pytest-runner\n    - libcusparse-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcublas-dev      # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusolver-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libxcrypt          # [linux and py<39]\n  run:\n    - python\n    - python-wget\n  run_constrained:\n    # additional run constraint to the one from the (version-only) run_export;\n    # constraining the CPU builds to CPU pytorch isn't 100% necessary, but cleaner\n    - pytorch =*={{ torch_proc_type }}*\n\ntest:\n  imports:\n    - torch_scatter\nabout:\n  home: https://github.com/rusty1s/pytorch_scatter\n  summary: PyTorch Extension Library of Optimized Scatter Operations\n  license: MIT\n  license_file: LICENSE\n  dev_url: https://github.com/rusty1s/pytorch_scatter\n\nextra:\n  recipe-maintainers:\n    - Tobias-Fischer\n    - mxr-conda\n    - rluria14\n    - oblute\n    - ndmaxar\n    - benjaminrwilson\n    - Tobias-Fischer\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cuda_compiler_stub",
    "cxx_compiler_stub",
-   "libcublas-dev",
-   "libcusolver-dev",
-   "libcusparse-dev",
    "pip",
    "pytest-runner",
    "python",
    "python-wget",
-   "pytorch",
-   "sysroot_linux-64"
+   "pytorch"
   ]
  },
  "requirements": {
@@ -392,20 +384,18 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda_compiler_stub",
-    "cxx_compiler_stub",
-    "sysroot_linux-64"
+    "cxx_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
-    "libcublas-dev",
-    "libcusolver-dev",
-    "libcusparse-dev",
     "pip",
     "pytest-runner",
     "python",
@@ -416,6 +406,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "python",
@@ -433,17 +424,14 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda_compiler_stub",
-    "cxx_compiler_stub",
-    "sysroot_linux-64 ==2.17"
+    "cxx_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "libcublas-dev",
-    "libcusolver-dev",
-    "libcusparse-dev",
     "pip",
     "pytest-runner",
     "python",
