@@ -3,6 +3,7 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -30,7 +31,7 @@
    "summary": "ECMWF ecCodes Copyright 2017- ECMWF."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -51,7 +52,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -63,7 +65,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "cffi",
     "findlibs",
     "attrs",
@@ -86,7 +87,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -107,7 +109,6 @@
     "cffi",
     "eccodes",
     "findlibs",
-    "numpy",
     "python"
    ]
   },
@@ -126,7 +127,7 @@
    "summary": "ECMWF ecCodes Copyright 2017- ECMWF."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -147,7 +148,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -159,7 +161,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "cffi",
     "findlibs",
     "attrs",
@@ -182,7 +183,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -203,7 +205,6 @@
     "cffi",
     "eccodes",
     "findlibs",
-    "numpy",
     "python"
    ]
   },
@@ -222,7 +223,7 @@
    "summary": "ECMWF ecCodes Copyright 2017- ECMWF."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -243,7 +244,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -255,7 +257,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "cffi",
     "findlibs",
     "attrs",
@@ -285,7 +286,7 @@
    "summary": "ECMWF ecCodes Copyright 2017- ECMWF."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -306,7 +307,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -318,7 +320,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "cffi",
     "findlibs",
     "attrs",
@@ -341,7 +342,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -362,7 +364,6 @@
     "cffi",
     "eccodes",
     "findlibs",
-    "numpy",
     "python"
    ]
   },
@@ -381,7 +382,7 @@
    "summary": "ECMWF ecCodes Copyright 2017- ECMWF."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -402,7 +403,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -414,7 +416,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "cffi",
     "findlibs",
     "attrs",
@@ -437,7 +438,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -458,7 +460,6 @@
     "cffi",
     "eccodes",
     "findlibs",
-    "numpy",
     "python"
    ]
   },
@@ -484,12 +485,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/python-eccodes.json"
  },
- "raw_meta_yaml": "{% set version = \"1.7.0\" %}\n# See https://github.com/ecmwf/eccodes-python/blob/{{ version }}/gribapi/__init__.py#L17\n{% set eccodes_version = \"2.31.0\" %}\n\npackage:\n  name: python-eccodes\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ecmwf/eccodes-python/archive/{{ version }}.tar.gz\n  sha256: 68227124c5f88ff6c8f345779e9e058dfd086b4a966cf615a4f8b28cdcc1e3cc\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - cffi                                   # [build_platform != target_platform]\n    - {{ compiler('c') }}\n  host:\n    - python\n    - pip\n    - numpy\n    - cffi\n    - findlibs\n    - eccodes >={{ eccodes_version }}\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - cffi\n    - findlibs\n    - attrs\n    - eccodes >={{ eccodes_version }}\n\ntest:\n  imports:\n    - eccodes\n    - gribapi\n    - gribapi._bindings  # [not win]\n\nabout:\n  home: https://software.ecmwf.int/wiki/display/ECC/ecCodes+Home\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: ECMWF ecCodes Copyright 2017- ECMWF.\n  dev_url: https://github.com/ecmwf/eccodes-python\n\nextra:\n  recipe-maintainers:\n    - kmuehlbauer\n    - pelson\n    - ocefpaf\n    - kynan\n    - dtip\n    - iainrussell\n    - shahramn\n    - xylar\n    - zklaus\n",
+ "raw_meta_yaml": "{% set version = \"1.7.0\" %}\n# See https://github.com/ecmwf/eccodes-python/blob/{{ version }}/gribapi/__init__.py#L17\n{% set eccodes_version = \"2.31.0\" %}\n\npackage:\n  name: python-eccodes\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ecmwf/eccodes-python/archive/{{ version }}.tar.gz\n  sha256: 68227124c5f88ff6c8f345779e9e058dfd086b4a966cf615a4f8b28cdcc1e3cc\n\nbuild:\n  number: 2\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - cffi                                   # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip\n    - numpy\n    - cffi\n    - findlibs\n    - eccodes >={{ eccodes_version }}\n  run:\n    - python\n    - cffi\n    - findlibs\n    - attrs\n    - eccodes >={{ eccodes_version }}\n\ntest:\n  imports:\n    - eccodes\n    - gribapi\n    - gribapi._bindings  # [not win]\n\nabout:\n  home: https://software.ecmwf.int/wiki/display/ECC/ecCodes+Home\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: ECMWF ecCodes Copyright 2017- ECMWF.\n  dev_url: https://github.com/ecmwf/eccodes-python\n\nextra:\n  recipe-maintainers:\n    - kmuehlbauer\n    - pelson\n    - ocefpaf\n    - kynan\n    - dtip\n    - iainrussell\n    - shahramn\n    - xylar\n    - zklaus\n",
  "req": {
   "__set__": true,
   "elements": [
    "attrs",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cffi",
    "eccodes",
    "findlibs",
@@ -502,13 +504,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cffi",
     "eccodes",
     "findlibs",
@@ -522,10 +526,10 @@
    "elements": [
     "attrs",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cffi",
     "eccodes",
     "findlibs",
-    "numpy",
     "python"
    ]
   },
@@ -539,7 +543,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -560,7 +565,6 @@
     "cffi",
     "eccodes >=2.31.0",
     "findlibs",
-    "numpy",
     "python"
    ]
   },
@@ -584,7 +588,7 @@
    "summary": "ECMWF ecCodes Copyright 2017- ECMWF."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -605,7 +609,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -617,7 +622,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "cffi",
     "findlibs",
     "attrs",
@@ -639,7 +643,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -660,7 +665,6 @@
     "cffi",
     "eccodes",
     "findlibs",
-    "numpy",
     "python"
    ]
   },
