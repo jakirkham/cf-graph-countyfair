@@ -24,8 +24,11 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": [
+    "export SETUPTOOLS_SCM_PRETEND_VERSION=$PKG_VERSION",
+    "PYTHON -m pip install . -vv"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -40,6 +43,7 @@
   "requirements": {
    "host": [
     "python >=3.6",
+    "setuptools_scm",
     "pip"
    ],
    "run": [
@@ -73,7 +77,8 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools_scm"
    ]
   },
   "run": {
@@ -101,8 +106,11 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": [
+    "export SETUPTOOLS_SCM_PRETEND_VERSION=$PKG_VERSION",
+    "PYTHON -m pip install . -vv"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -117,6 +125,7 @@
   "requirements": {
    "host": [
     "python >=3.6",
+    "setuptools_scm",
     "pip"
    ],
    "run": [
@@ -155,13 +164,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/sigtools.json"
  },
- "raw_meta_yaml": "{% set name = \"sigtools\" %}\n{% set version = \"4.0.1\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/sigtools-{{ version }}.tar.gz\n  sha256: 4b8e135a9cd4d2ea00da670c093372d74e672ba3abb87f4c98d8e73dea54445c\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n  run:\n    - python >=3.6\n    - attrs\n\ntest:\n  imports:\n    - sigtools\n    - sigtools.tests\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: http://sigtools.readthedocs.io/\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Utilities for working with inspect.Signature objects.\n  dev_url: https://github.com/epsy/sigtools\n\nextra:\n  recipe-maintainers:\n    - proinsias\n    - dstansby\n",
+ "raw_meta_yaml": "{% set name = \"sigtools\" %}\n{% set version = \"4.0.1\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/sigtools-{{ version }}.tar.gz\n  sha256: 4b8e135a9cd4d2ea00da670c093372d74e672ba3abb87f4c98d8e73dea54445c\n\nbuild:\n  number: 1\n  noarch: python\n  script:\n    - set \"SETUPTOOLS_SCM_PRETEND_VERSION=%PKG_VERSION%\"  # [win]\n    - export SETUPTOOLS_SCM_PRETEND_VERSION=$PKG_VERSION  # [unix]\n    - {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.6\n    - setuptools_scm\n    - pip\n  run:\n    - python >=3.6\n    - attrs\n\ntest:\n  imports:\n    - sigtools\n    - sigtools.tests\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: http://sigtools.readthedocs.io/\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Utilities for working with inspect.Signature objects.\n  dev_url: https://github.com/epsy/sigtools\n\nextra:\n  recipe-maintainers:\n    - proinsias\n    - dstansby\n",
  "req": {
   "__set__": true,
   "elements": [
    "attrs",
    "pip",
-   "python"
+   "python",
+   "setuptools_scm"
   ]
  },
  "requirements": {
@@ -173,7 +183,8 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools_scm"
    ]
   },
   "run": {
@@ -200,7 +211,8 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6"
+    "python >=3.6",
+    "setuptools_scm"
    ]
   },
   "run": {
