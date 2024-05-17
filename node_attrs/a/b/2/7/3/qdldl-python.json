@@ -29,7 +29,7 @@
    "summary": "Python interface to the QDLDL free LDL factorization routine for quasi-definite linear systems"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -61,7 +61,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy"
    ]
   },
@@ -114,7 +113,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scipy"
    ]
@@ -136,7 +134,7 @@
    "summary": "Python interface to the QDLDL free LDL factorization routine for quasi-definite linear systems"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -168,7 +166,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy"
    ]
   },
@@ -221,7 +218,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scipy"
    ]
@@ -243,7 +239,7 @@
    "summary": "Python interface to the QDLDL free LDL factorization routine for quasi-definite linear systems"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -275,7 +271,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy"
    ]
   },
@@ -322,7 +317,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scipy"
    ]
@@ -344,7 +338,7 @@
    "summary": "Python interface to the QDLDL free LDL factorization routine for quasi-definite linear systems"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -376,7 +370,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy"
    ]
   },
@@ -416,7 +409,7 @@
    "summary": "Python interface to the QDLDL free LDL factorization routine for quasi-definite linear systems"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -448,7 +441,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy"
    ]
   },
@@ -501,7 +493,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scipy"
    ]
@@ -523,7 +514,7 @@
    "summary": "Python interface to the QDLDL free LDL factorization routine for quasi-definite linear systems"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -555,7 +546,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy"
    ]
   },
@@ -608,7 +598,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scipy"
    ]
@@ -638,7 +627,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/qdldl-python.json"
  },
- "raw_meta_yaml": "{% set version = \"0.1.7.post2\" %}\n{% set lib_ver = version.split(\".\")[:3] | join(\".\") %}\n\npackage:\n  name: qdldl-python\n  version: {{ version }}\n\nsource:\n  url: https://github.com/osqp/qdldl-python/archive/refs/tags/v.{{ version }}.tar.gz\n  sha256: fa3294d5be792df52e53aaa4373c37f36f66661a86b8629bda8691b39245dcb5\n  patches:\n    - patches/0001-use-Ninja-everywhere.patch\n    - patches/0002-build-against-conda-forge-s-libqdldl.patch\n    - patches/0003-build-qdldlamd-as-shared-lib-and-install-it.patch\n    - patches/0004-Do-not-pass-CMAKE_GENERATOR-as-variable.patch\n\nbuild:\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - ninja\n  host:\n    - python\n    - pip\n    - libqdldl ={{ lib_ver }}\n    - numpy\n    - pybind11\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - scipy\n\ntest:\n  requires:\n    - pytest\n  imports:\n    - qdldl\n  # Disabled tests due to issues in QEMU, see https://github.com/scipy/scipy/issues/14560\n  source_files:   # [not ppc64le]\n    - tests/        # [not ppc64le]\n  commands:   # [not ppc64le]\n    - pytest tests  # [not ppc64le]\n\nabout:\n  home: https://github.com/oxfordcontrol/qdldl-python\n  license: Apache-2.0\n  license_file: LICENSE\n  summary: Python interface to the QDLDL free LDL factorization routine for quasi-definite linear systems\n\n  description: |\n    Python interface to the [QDLDL](https://github.com/oxfordcontrol/qdldl/) free\n    LDL factorization routine for quasi-definite linear systems: `Ax = b`.\n  dev_url: https://github.com/oxfordcontrol/qdldl-python\n\nextra:\n  recipe-maintainers:\n    - adament\n    - bstellato\n    - gbanjac\n    - h-vetinari\n",
+ "raw_meta_yaml": "{% set version = \"0.1.7.post2\" %}\n{% set lib_ver = version.split(\".\")[:3] | join(\".\") %}\n\npackage:\n  name: qdldl-python\n  version: {{ version }}\n\nsource:\n  url: https://github.com/osqp/qdldl-python/archive/refs/tags/v.{{ version }}.tar.gz\n  sha256: fa3294d5be792df52e53aaa4373c37f36f66661a86b8629bda8691b39245dcb5\n  patches:\n    - patches/0001-use-Ninja-everywhere.patch\n    - patches/0002-build-against-conda-forge-s-libqdldl.patch\n    - patches/0003-build-qdldlamd-as-shared-lib-and-install-it.patch\n    - patches/0004-Do-not-pass-CMAKE_GENERATOR-as-variable.patch\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - ninja\n  host:\n    - python\n    - pip\n    - libqdldl ={{ lib_ver }}\n    - numpy\n    - pybind11\n  run:\n    - python\n    - scipy\n\ntest:\n  requires:\n    - pytest\n  imports:\n    - qdldl\n  # Disabled tests due to issues in QEMU, see https://github.com/scipy/scipy/issues/14560\n  source_files:   # [not ppc64le]\n    - tests/        # [not ppc64le]\n  commands:   # [not ppc64le]\n    - pytest tests  # [not ppc64le]\n\nabout:\n  home: https://github.com/oxfordcontrol/qdldl-python\n  license: Apache-2.0\n  license_file: LICENSE\n  summary: Python interface to the QDLDL free LDL factorization routine for quasi-definite linear systems\n\n  description: |\n    Python interface to the [QDLDL](https://github.com/oxfordcontrol/qdldl/) free\n    LDL factorization routine for quasi-definite linear systems: `Ax = b`.\n  dev_url: https://github.com/oxfordcontrol/qdldl-python\n\nextra:\n  recipe-maintainers:\n    - adament\n    - bstellato\n    - gbanjac\n    - h-vetinari\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -685,7 +674,6 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
-    "numpy",
     "python",
     "scipy"
    ]
@@ -722,7 +710,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scipy"
    ]
@@ -749,7 +736,7 @@
    "summary": "Python interface to the QDLDL free LDL factorization routine for quasi-definite linear systems"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -781,7 +768,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy"
    ]
   },
@@ -834,7 +820,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scipy"
    ]
