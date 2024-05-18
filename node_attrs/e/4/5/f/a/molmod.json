@@ -31,7 +31,7 @@
    "summary": "MolMod is a collection of molecular modelling tools for python."
   },
   "build": {
-   "number": "9",
+   "number": "10",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -47,7 +47,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -62,8 +63,7 @@
     "pip",
     "cython >=0.24.1,<3",
     "future",
-    "setuptools",
-    "numpy"
+    "setuptools"
    ]
   },
   "source": {
@@ -86,7 +86,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -105,7 +106,6 @@
    "elements": [
     "cython",
     "future",
-    "numpy",
     "pip",
     "python",
     "setuptools"
@@ -128,7 +128,7 @@
    "summary": "MolMod is a collection of molecular modelling tools for python."
   },
   "build": {
-   "number": "9",
+   "number": "10",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -144,7 +144,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -159,8 +160,7 @@
     "pip",
     "cython >=0.24.1,<3",
     "future",
-    "setuptools",
-    "numpy"
+    "setuptools"
    ]
   },
   "source": {
@@ -192,7 +192,7 @@
    "summary": "MolMod is a collection of molecular modelling tools for python."
   },
   "build": {
-   "number": "9",
+   "number": "10",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -208,7 +208,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -223,8 +224,7 @@
     "pip",
     "cython >=0.24.1,<3",
     "future",
-    "setuptools",
-    "numpy"
+    "setuptools"
    ]
   },
   "source": {
@@ -247,7 +247,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -266,7 +267,6 @@
    "elements": [
     "cython",
     "future",
-    "numpy",
     "pip",
     "python",
     "setuptools"
@@ -292,11 +292,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/molmod.json"
  },
- "raw_meta_yaml": "{% set name = \"molmod\" %}\n{% set version = \"1.4.8\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 08cc526080aee04659ff5d08f8d26ab6973afef62becb9ae21cb11bb5b632177\n  patches:\n    - numpy.patch\n\nbuild:\n  number: 9\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n  host:\n    - python\n    - pip\n    - numpy >=1.16.0\n    - cython >=0.24.1,<3\n    - future\n    - setuptools\n  run:\n    - python\n    - pip\n    - cython >=0.24.1,<3\n    - future\n    - setuptools\n    - {{ pin_compatible(\"numpy\") }}\n\ntest:\n  imports:\n    - molmod\n  commands:\n    - pip check\n\nabout:\n  home: http://molmod.github.io/molmod\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: LICENSE.txt\n  summary: MolMod is a collection of molecular modelling tools for python.\n\n  description: |\n    MolMod is a collection of molecular modelling tools for python. It is\n    used by other software developed at the CMM, including Yaff, TAMkin\n    and Zeobuilder.\n  doc_url: http://molmod.github.io/molmod/\n  dev_url: https://github.com/molmod/molmod\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n    - tovrstra\n    - lvduyfhu\n",
+ "raw_meta_yaml": "{% set name = \"molmod\" %}\n{% set version = \"1.4.8\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 08cc526080aee04659ff5d08f8d26ab6973afef62becb9ae21cb11bb5b632177\n  patches:\n    - numpy.patch\n\nbuild:\n  number: 10\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip\n    - numpy >=1.16.0\n    - cython >=0.24.1,<3\n    - future\n    - setuptools\n  run:\n    - python\n    - pip\n    - cython >=0.24.1,<3\n    - future\n    - setuptools\n\ntest:\n  imports:\n    - molmod\n  commands:\n    - pip check\n\nabout:\n  home: http://molmod.github.io/molmod\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: LICENSE.txt\n  summary: MolMod is a collection of molecular modelling tools for python.\n\n  description: |\n    MolMod is a collection of molecular modelling tools for python. It is\n    used by other software developed at the CMM, including Yaff, TAMkin\n    and Zeobuilder.\n  doc_url: http://molmod.github.io/molmod/\n  dev_url: https://github.com/molmod/molmod\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n    - tovrstra\n    - lvduyfhu\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cython",
    "future",
    "numpy",
@@ -309,13 +310,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "future",
     "numpy",
@@ -328,9 +331,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "future",
-    "numpy",
     "pip",
     "python",
     "setuptools"
@@ -346,7 +349,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -365,7 +369,6 @@
    "elements": [
     "cython >=0.24.1,<3",
     "future",
-    "numpy",
     "pip",
     "python",
     "setuptools"
@@ -393,7 +396,7 @@
    "summary": "MolMod is a collection of molecular modelling tools for python."
   },
   "build": {
-   "number": "9",
+   "number": "10",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -409,7 +412,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -424,8 +428,7 @@
     "pip",
     "cython >=0.24.1,<3",
     "future",
-    "setuptools",
-    "numpy"
+    "setuptools"
    ]
   },
   "source": {
@@ -448,7 +451,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -467,7 +471,6 @@
    "elements": [
     "cython",
     "future",
-    "numpy",
     "pip",
     "python",
     "setuptools"
