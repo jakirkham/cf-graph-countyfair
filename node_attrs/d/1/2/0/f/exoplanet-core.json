@@ -28,7 +28,7 @@
    "summary": "The compiled backend for exoplanet"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -44,6 +44,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake"
    ],
@@ -55,7 +56,6 @@
     "setuptools_scm"
    ],
    "run": [
-    "numpy",
     "python"
    ]
   },
@@ -74,6 +74,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
@@ -91,7 +92,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -111,7 +111,7 @@
    "summary": "The compiled backend for exoplanet"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -127,6 +127,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake"
    ],
@@ -138,7 +139,6 @@
     "setuptools_scm"
    ],
    "run": [
-    "numpy",
     "python"
    ]
   },
@@ -164,7 +164,7 @@
    "summary": "The compiled backend for exoplanet"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -180,6 +180,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake"
    ],
@@ -191,7 +192,6 @@
     "setuptools_scm"
    ],
    "run": [
-    "numpy",
     "python"
    ]
   },
@@ -210,6 +210,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
@@ -227,7 +228,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -247,7 +247,7 @@
    "summary": "The compiled backend for exoplanet"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -263,6 +263,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake"
    ],
@@ -274,7 +275,6 @@
     "setuptools_scm"
    ],
    "run": [
-    "numpy",
     "python"
    ]
   },
@@ -293,6 +293,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
@@ -310,7 +311,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -335,11 +335,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/exoplanet-core.json"
  },
- "raw_meta_yaml": "{% set name = \"exoplanet-core\" %}\n{% set version = \"0.3.0\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/exoplanet_core-{{ version }}.tar.gz\n  sha256: 4a738d690179133f581b5db86ab942f0f76118dc987eeaa48f7fc044ca6c4d55\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n  host:\n    - numpy\n    - pip\n    - pybind11 >=2.6\n    - python\n    - setuptools_scm\n  run:\n    - {{ pin_compatible('numpy') }}\n    - python\n\ntest:\n  imports:\n    - exoplanet_core\n\nabout:\n  home: https://docs.exoplanet.codes\n  summary: The compiled backend for exoplanet\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  doc_url: https://docs.exoplanet.codes\n  dev_url: https://github.com/exoplanet-dev/exoplanet-core\n\nextra:\n  recipe-maintainers:\n    - mwcraig\n    - dfm\n",
+ "raw_meta_yaml": "{% set name = \"exoplanet-core\" %}\n{% set version = \"0.3.0\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/exoplanet_core-{{ version }}.tar.gz\n  sha256: 4a738d690179133f581b5db86ab942f0f76118dc987eeaa48f7fc044ca6c4d55\n\nbuild:\n  number: 2\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - cmake\n  host:\n    - numpy\n    - pip\n    - pybind11 >=2.6\n    - python\n    - setuptools_scm\n  run:\n    - python\n\ntest:\n  imports:\n    - exoplanet_core\n\nabout:\n  home: https://docs.exoplanet.codes\n  summary: The compiled backend for exoplanet\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  doc_url: https://docs.exoplanet.codes\n  dev_url: https://github.com/exoplanet-dev/exoplanet-core\n\nextra:\n  recipe-maintainers:\n    - mwcraig\n    - dfm\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "numpy",
@@ -354,6 +355,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
@@ -362,6 +364,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numpy",
     "pip",
@@ -374,8 +377,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "numpy",
     "python"
    ]
   },
@@ -390,6 +393,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
@@ -407,7 +411,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -432,7 +435,7 @@
    "summary": "The compiled backend for exoplanet"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -448,6 +451,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake"
    ],
@@ -459,7 +463,6 @@
     "setuptools_scm"
    ],
    "run": [
-    "numpy",
     "python"
    ]
   },
@@ -478,6 +481,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
@@ -495,7 +499,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
