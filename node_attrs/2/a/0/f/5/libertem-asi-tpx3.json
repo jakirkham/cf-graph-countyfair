@@ -25,7 +25,7 @@
    "summary": "LiberTEM support for ASI TPX3 detectors"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
     "PYTHON -m pip install . -vv"
@@ -46,16 +46,17 @@
    "build": [
     "python",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "rust",
     "cargo-bundle-licenses"
    ],
    "host": [
     "python",
-    "maturin >=0.13,<0.14",
+    "maturin >=1.3.1,<2",
     "pip",
     "rust",
-    "numpy >=1.6.1,<1.24.0"
+    "numpy >=1.6.1,<2"
    ],
    "run": [
     "python",
@@ -83,6 +84,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "python",
@@ -125,7 +127,7 @@
    "summary": "LiberTEM support for ASI TPX3 detectors"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
     "PYTHON -m pip install . -vv"
@@ -146,16 +148,17 @@
    "build": [
     "python",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "rust",
     "cargo-bundle-licenses"
    ],
    "host": [
     "python",
-    "maturin >=0.13,<0.14",
+    "maturin >=1.3.1,<2",
     "pip",
     "rust",
-    "numpy >=1.6.1,<1.24.0"
+    "numpy >=1.6.1,<2"
    ],
    "run": [
     "python",
@@ -191,7 +194,7 @@
    "summary": "LiberTEM support for ASI TPX3 detectors"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
     "PYTHON -m pip install . -vv"
@@ -212,16 +215,17 @@
    "build": [
     "python",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "rust",
     "cargo-bundle-licenses"
    ],
    "host": [
     "python",
-    "maturin >=0.13,<0.14",
+    "maturin >=1.3.1,<2",
     "pip",
     "rust",
-    "numpy >=1.6.1,<1.24.0"
+    "numpy >=1.6.1,<2"
    ],
    "run": [
     "python",
@@ -249,6 +253,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "python",
@@ -294,11 +299,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libertem-asi-tpx3.json"
  },
- "raw_meta_yaml": "{% set name = \"libertem-asi-tpx3\" %}\n{% set version = \"0.2.11\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/libertem_asi_tpx3-{{ version }}.tar.gz\n  sha256: 1417135fb4a4b62b9b1e5cc52fbaf327f2634dfcb6788473b40c6c985d330f7d\n\nbuild:\n  skip: True  # [py<37]\n  script:\n    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml\n    - {{ PYTHON }} -m pip install . -vv\n  number: 1\n\nrequirements:\n  build:\n    - python  \n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - rust\n    - cargo-bundle-licenses\n  host:\n    - python\n    - maturin >=0.13,<0.14\n    - pip\n    - rust\n    - numpy >=1.6.1,<1.24.0\n  run:\n    - python\n    - {{ pin_compatible('numpy', max_pin='x.x') }}\n\ntest:\n  imports:\n    - libertem_asi_tpx3\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/LiberTEM/LiberTEM-rs/\n  summary: LiberTEM support for ASI TPX3 detectors\n  license: MIT\n  license_file:\n    - LICENSE\n    - THIRDPARTY.yml\n  description: |\n    A Rust+Python library for receiving sparse array\n    streams from Amsterdam Scientific Instruments\n    CheeTah TPX3 detectors.\n\nextra:\n  recipe-maintainers:\n    - sk1p\n    - uellue\n    - matbryan52\n",
+ "raw_meta_yaml": "{% set name = \"libertem-asi-tpx3\" %}\n{% set version = \"0.2.11\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/libertem_asi_tpx3-{{ version }}.tar.gz\n  sha256: 1417135fb4a4b62b9b1e5cc52fbaf327f2634dfcb6788473b40c6c985d330f7d\n\nbuild:\n  skip: True  # [py<37]\n  script:\n    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml\n    - {{ PYTHON }} -m pip install . -vv\n  number: 2\n\nrequirements:\n  build:\n    - python  \n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - rust\n    - cargo-bundle-licenses\n  host:\n    - python\n    - maturin >=1.3.1,<2\n    - pip\n    - rust\n    - numpy >=1.6.1,<2\n  run:\n    - python\n    - {{ pin_compatible('numpy', max_pin='x.x') }}\n\ntest:\n  imports:\n    - libertem_asi_tpx3\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/LiberTEM/LiberTEM-rs/\n  summary: LiberTEM support for ASI TPX3 detectors\n  license: MIT\n  license_file:\n    - LICENSE\n    - THIRDPARTY.yml\n  description: |\n    A Rust+Python library for receiving sparse array\n    streams from Amsterdam Scientific Instruments\n    CheeTah TPX3 detectors.\n\nextra:\n  recipe-maintainers:\n    - sk1p\n    - uellue\n    - matbryan52\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cargo-bundle-licenses",
    "cxx_compiler_stub",
    "maturin",
@@ -313,6 +319,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "python",
@@ -323,6 +330,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "maturin",
     "numpy",
@@ -335,6 +343,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numpy",
     "python"
@@ -353,6 +362,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "python",
@@ -362,8 +372,8 @@
   "host": {
    "__set__": true,
    "elements": [
-    "maturin >=0.13,<0.14",
-    "numpy >=1.6.1,<1.24.0",
+    "maturin >=1.3.1,<2",
+    "numpy >=1.6.1,<2",
     "pip",
     "python",
     "rust"
@@ -400,7 +410,7 @@
    "summary": "LiberTEM support for ASI TPX3 detectors"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
     "PYTHON -m pip install . -vv"
@@ -421,16 +431,17 @@
    "build": [
     "python",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "rust",
     "cargo-bundle-licenses"
    ],
    "host": [
     "python",
-    "maturin >=0.13,<0.14",
+    "maturin >=1.3.1,<2",
     "pip",
     "rust",
-    "numpy >=1.6.1,<1.24.0"
+    "numpy >=1.6.1,<2"
    ],
    "run": [
     "python",
@@ -458,6 +469,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "python",
