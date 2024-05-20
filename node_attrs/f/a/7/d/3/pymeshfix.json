@@ -24,7 +24,7 @@
    "summary": "Python Wrapper for MeshFix to easily repair holes in surface meshes"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -40,6 +40,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cython >=0.29.32",
     "python"
    ],
@@ -52,8 +53,7 @@
    ],
    "run": [
     "python",
-    "pyvista >=0.23.0",
-    "numpy"
+    "pyvista >=0.23.0"
    ]
   },
   "source": {
@@ -79,6 +79,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython",
     "python"
@@ -97,7 +98,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "pyvista"
    ]
@@ -117,7 +117,7 @@
    "summary": "Python Wrapper for MeshFix to easily repair holes in surface meshes"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -133,6 +133,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cython >=0.29.32",
     "python"
    ],
@@ -145,8 +146,7 @@
    ],
    "run": [
     "python",
-    "pyvista >=0.23.0",
-    "numpy"
+    "pyvista >=0.23.0"
    ]
   },
   "source": {
@@ -157,15 +157,11 @@
    "url": "https://pypi.io/packages/source/p/pymeshfix/pymeshfix-0.16.1.tar.gz"
   },
   "test": {
-   "commands": [
-    "pip check"
-   ],
+   "commands": null,
    "imports": [
     "pymeshfix"
    ],
-   "requires": [
-    "pip"
-   ]
+   "requires": null
   }
  },
  "name": "pymeshfix",
@@ -177,7 +173,7 @@
    "summary": "Python Wrapper for MeshFix to easily repair holes in surface meshes"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -193,6 +189,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cython >=0.29.32",
     "python"
    ],
@@ -205,8 +202,7 @@
    ],
    "run": [
     "python",
-    "pyvista >=0.23.0",
-    "numpy"
+    "pyvista >=0.23.0"
    ]
   },
   "source": {
@@ -232,6 +228,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython",
     "python"
@@ -250,7 +247,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "pyvista"
    ]
@@ -277,10 +273,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pymeshfix.json"
  },
- "raw_meta_yaml": "{% set name = \"pymeshfix\" %}\n{% set version = \"0.16.1\" %}\n\npackage:\n  name: pymeshfix\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 52a8c1c8076dc29d4412a7283717088f68deda0ce155b7e3100e278434c91612\n  patches:\n    # This can be removed once the sdist is Python 3.11 compatible\n    - force_cython.patch\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cython >=0.29.32\n    - python\n  host:\n    - cython >=0.29.32\n    - numpy\n    - pip\n    - python\n    - glew\n  run:\n    - python\n    - pyvista >=0.23.0\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - pymeshfix\n  commands:      # [py!=311 or not win]\n    - pip check  # [py!=311 or not win]\n  requires:      # [py!=311 or not win]\n    - pip        # [py!=311 or not win]\n\nabout:\n  home: https://github.com/pyvista/pymeshfix\n  summary: Python Wrapper for MeshFix to easily repair holes in surface meshes\n  license: GPL-3.0-only\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - akaszynski\n    - larsoner\n",
+ "raw_meta_yaml": "{% set name = \"pymeshfix\" %}\n{% set version = \"0.16.1\" %}\n\npackage:\n  name: pymeshfix\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 52a8c1c8076dc29d4412a7283717088f68deda0ce155b7e3100e278434c91612\n  patches:\n    # This can be removed once the sdist is Python 3.11 compatible\n    - force_cython.patch\n\nbuild:\n  number: 2\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cython >=0.29.32\n    - python\n  host:\n    - cython >=0.29.32\n    - numpy\n    - pip\n    - python\n    - glew\n  run:\n    - python\n    - pyvista >=0.23.0\n\ntest:\n  imports:\n    - pymeshfix\n  commands:\n    - pip check  # [(py!=312 and py!=311) or not win]\n  requires:\n    - pip        # [(py!=312 and py!=311) or not win]\n\nabout:\n  home: https://github.com/pyvista/pymeshfix\n  summary: Python Wrapper for MeshFix to easily repair holes in surface meshes\n  license: GPL-3.0-only\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - akaszynski\n    - larsoner\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "cython",
    "glew",
@@ -294,6 +291,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython",
     "python"
@@ -302,6 +300,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython",
     "glew",
@@ -313,17 +312,15 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "numpy",
     "python",
     "pyvista"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "pip"
-   ]
+   "elements": []
   }
  },
  "strong_exports": false,
@@ -331,6 +328,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython >=0.29.32",
     "python"
@@ -349,16 +347,13 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "pyvista >=0.23.0"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "pip"
-   ]
+   "elements": []
   }
  },
  "url": "https://pypi.io/packages/source/p/pymeshfix/pymeshfix-0.16.1.tar.gz",
@@ -374,7 +369,7 @@
    "summary": "Python Wrapper for MeshFix to easily repair holes in surface meshes"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -390,6 +385,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cython >=0.29.32",
     "python"
    ],
@@ -402,8 +398,7 @@
    ],
    "run": [
     "python",
-    "pyvista >=0.23.0",
-    "numpy"
+    "pyvista >=0.23.0"
    ]
   },
   "source": {
@@ -414,15 +409,18 @@
    "url": "https://pypi.io/packages/source/p/pymeshfix/pymeshfix-0.16.1.tar.gz"
   },
   "test": {
+   "commands": null,
    "imports": [
     "pymeshfix"
-   ]
+   ],
+   "requires": null
   }
  },
  "win_64_requirements": {
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython",
     "python"
@@ -441,7 +439,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "pyvista"
    ]

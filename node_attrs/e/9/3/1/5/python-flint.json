@@ -30,7 +30,7 @@
    "summary": "Python bindings for Flint and Arb"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "PYTHON -m pip install . -vvv"
    ]
@@ -48,7 +48,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -82,7 +83,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -120,7 +122,7 @@
    "summary": "Python bindings for Flint and Arb"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "PYTHON -m pip install . -vvv"
    ]
@@ -138,7 +140,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -172,7 +175,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -210,7 +214,7 @@
    "summary": "Python bindings for Flint and Arb"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "PYTHON -m pip install . -vvv"
    ]
@@ -228,7 +232,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -262,7 +267,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -300,7 +306,7 @@
    "summary": "Python bindings for Flint and Arb"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "PYTHON -m pip install . -vvv",
     "set \"INCLUDE=%INCLUDE%;%LIBRARY_INC%\\\\flint\"",
@@ -320,7 +326,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -363,7 +370,7 @@
    "summary": "Python bindings for Flint and Arb"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "PYTHON -m pip install . -vvv"
    ]
@@ -381,7 +388,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -415,7 +423,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -453,7 +462,7 @@
    "summary": "Python bindings for Flint and Arb"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "PYTHON -m pip install . -vvv"
    ]
@@ -471,7 +480,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -504,7 +514,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -548,11 +559,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/python-flint.json"
  },
- "raw_meta_yaml": "{% set name = \"python-flint\" %}\n{% set version = \"0.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 0358f05548d477e23c79dbe15b2449e12e4b3d76af41fb16a4c7d035065b12cd\n\nbuild:\n  number: 1\n  script:\n    - set \"INCLUDE=%INCLUDE%;%LIBRARY_INC%\\\\flint\"  # [win]\n    - {{ PYTHON }} -m pip install . --global-option=build_ext --global-option=-DMSC_USE_DLL -vvv    # [win]\n    - {{ PYTHON }} -m pip install . -vvv    # [unix]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - cross-python_{{ target_platform }}    # [build_platform != target_platform]\n    - python                                # [build_platform != target_platform]\n    - cython                                # [build_platform != target_platform]\n    - pip                                   # [build_platform != target_platform]\n    - numpy                                 # [build_platform != target_platform]\n  host:\n    - python\n    - cython\n    - pip\n    - numpy\n    - libflint\n    - mpfr\n    - pypy3.9 7.3.11  # [python_impl == \"pypy\"]\n    - mpir    # [win]\n    - gmp     # [unix]\n  run:\n    - python\n\ntest:\n  requires:\n    - pypy3.9 7.3.11  # [python_impl == \"pypy\"]\n  imports:\n    - flint\n  commands:\n    - python -m flint.test\n\nabout:\n  home: https://github.com/fredrik-johansson/python-flint\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Python bindings for Flint and Arb\n  doc_url: http://fredrikj.net/python-flint\n  dev_url: https://github.com/fredrik-johansson/python-flint\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - saraedum\n    - jan-janssen\n",
+ "raw_meta_yaml": "{% set name = \"python-flint\" %}\n{% set version = \"0.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 0358f05548d477e23c79dbe15b2449e12e4b3d76af41fb16a4c7d035065b12cd\n\nbuild:\n  number: 2\n  script:\n    - set \"INCLUDE=%INCLUDE%;%LIBRARY_INC%\\\\flint\"  # [win]\n    - {{ PYTHON }} -m pip install . --global-option=build_ext --global-option=-DMSC_USE_DLL -vvv    # [win]\n    - {{ PYTHON }} -m pip install . -vvv    # [unix]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - cross-python_{{ target_platform }}    # [build_platform != target_platform]\n    - python                                # [build_platform != target_platform]\n    - cython                                # [build_platform != target_platform]\n    - pip                                   # [build_platform != target_platform]\n    - numpy                                 # [build_platform != target_platform]\n  host:\n    - python\n    - cython\n    - pip\n    - numpy\n    - libflint\n    - mpfr\n    - pypy3.9 7.3.11  # [python_impl == \"pypy\"]\n    - mpir    # [win]\n    - gmp     # [unix]\n  run:\n    - python\n\ntest:\n  requires:\n    - pypy3.9 7.3.11  # [python_impl == \"pypy\"]\n  imports:\n    - flint\n  commands:\n    - python -m flint.test\n\nabout:\n  home: https://github.com/fredrik-johansson/python-flint\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Python bindings for Flint and Arb\n  doc_url: http://fredrikj.net/python-flint\n  dev_url: https://github.com/fredrik-johansson/python-flint\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - saraedum\n    - jan-janssen\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cython",
    "gmp",
    "libflint",
@@ -568,13 +580,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "gmp",
     "libflint",
@@ -590,6 +604,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "python"
    ]
   },
@@ -603,7 +618,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -647,7 +663,7 @@
    "summary": "Python bindings for Flint and Arb"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": [
     "set \"INCLUDE=%INCLUDE%;%LIBRARY_INC%\\\\flint\"",
     "PYTHON -m pip install . --global-option=build_ext --global-option=-DMSC_USE_DLL -vvv"
@@ -666,7 +682,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -700,7 +717,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
