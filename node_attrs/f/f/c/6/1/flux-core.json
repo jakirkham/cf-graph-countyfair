@@ -25,7 +25,7 @@
    "summary": "core services for the Flux resource management framework"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "flux-core"
    ]
@@ -43,6 +43,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "pkgconfig",
     "jq"
@@ -97,6 +98,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "jq",
     "make",
     "pkgconfig"
@@ -156,7 +158,7 @@
    "summary": "core services for the Flux resource management framework"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "flux-core"
    ]
@@ -174,6 +176,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "pkgconfig",
     "jq"
@@ -237,12 +240,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/flux-core.json"
  },
- "raw_meta_yaml": "{% set name = \"flux-core\" %}\n{% set version = \"0.59.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz\n  sha256: 465d24294b92962d156ad49768ea804ff848d5c0b3470d80e07ebf24cd255f2d\n  patches:\n    - centos6.patch  # This patch can be removed once the conda-forge reference is updated\n\nbuild:\n  number: 0\n  skip: true  # [not linux]\n  run_exports:\n    - {{ pin_subpackage('flux-core', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - make\n    - pkgconfig\n    - jq\n  host:\n    - python\n    - zeromq\n    - lz4-c\n    - libarchive\n    - lua\n    - libhwloc\n    - sqlite\n    - cffi\n    - jsonschema\n    - aspell\n    - valgrind\n    - pyyaml\n    - czmq\n    - jansson\n    - sphinx\n    - ply\n    - lua-luaposix\n    - libuuid\n    - ncurses\n  run:\n    - python\n    - czmq\n    - {{ mpi }}\n    - cffi\n    - ply\n    - lua-luaposix\n    - pyyaml\n    - jsonschema\n\ntest:\n  commands:\n    - flux --help\n\nabout:\n  home: https://flux-framework.org\n  summary: core services for the Flux resource management framework\n  description: |\n    flux-core implements the lowest level services and interfaces for the\n    Flux resource manager framework. It is intended to be the first \n    building block used in the construction of a site-composed Flux \n    resource manager.\n  license: LGPL-3.0-or-later\n  license_family: GPL\n  license_file: LICENSE\n  doc_url: https://flux-framework.readthedocs.io/\n  dev_url: https://github.com/simplejson/simplejson\n\nextra:\n  recipe-maintainers:\n    - grondo\n    - jan-janssen\n",
+ "raw_meta_yaml": "{% set name = \"flux-core\" %}\n{% set version = \"0.59.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/flux-framework/flux-core/releases/download/v{{ version }}/flux-core-{{ version }}.tar.gz\n  sha256: 465d24294b92962d156ad49768ea804ff848d5c0b3470d80e07ebf24cd255f2d\n  patches:\n    - centos6.patch  # This patch can be removed once the conda-forge reference is updated\n\nbuild:\n  number: 1\n  skip: true  # [not linux]\n  run_exports:\n    - {{ pin_subpackage('flux-core', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - make\n    - pkgconfig\n    - jq\n  host:\n    - python\n    - zeromq\n    - lz4-c\n    - libarchive\n    - lua\n    - libhwloc\n    - sqlite\n    - cffi\n    - jsonschema\n    - aspell\n    - valgrind\n    - pyyaml\n    - czmq\n    - jansson\n    - sphinx\n    - ply\n    - lua-luaposix\n    - libuuid\n    - ncurses\n  run:\n    - python\n    - czmq\n    - {{ mpi }}\n    - cffi\n    - ply\n    - lua-luaposix\n    - pyyaml\n    - jsonschema\n\ntest:\n  commands:\n    - flux --help\n\nabout:\n  home: https://flux-framework.org\n  summary: core services for the Flux resource management framework\n  description: |\n    flux-core implements the lowest level services and interfaces for the\n    Flux resource manager framework. It is intended to be the first \n    building block used in the construction of a site-composed Flux \n    resource manager.\n  license: LGPL-3.0-or-later\n  license_family: GPL\n  license_file: LICENSE\n  doc_url: https://flux-framework.readthedocs.io/\n  dev_url: https://github.com/simplejson/simplejson\n\nextra:\n  recipe-maintainers:\n    - grondo\n    - jan-janssen\n",
  "req": {
   "__set__": true,
   "elements": [
    "aspell",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cffi",
    "czmq",
    "jansson",
@@ -272,6 +276,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "jq",
     "make",
     "pkgconfig"
@@ -282,6 +287,7 @@
    "elements": [
     "aspell",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cffi",
     "czmq",
     "jansson",
@@ -306,6 +312,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cffi",
     "czmq",
     "jsonschema",
@@ -327,6 +334,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "jq",
     "make",
     "pkgconfig"
