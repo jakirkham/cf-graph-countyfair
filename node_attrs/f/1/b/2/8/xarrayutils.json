@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "update-grayskull"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -26,7 +29,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -35,17 +38,16 @@
   },
   "package": {
    "name": "xarrayutils",
-   "version": "2.0.0"
+   "version": "2.0.1"
   },
   "requirements": {
    "host": [
-    "python >=3.8",
-    "pip",
-    "pytest-runner"
+    "python >=3.9",
+    "pip"
    ],
    "run": [
-    "python >=3.8",
-    "xarray",
+    "python >=3.9",
+    "xarray >=0.14.1",
     "numpy",
     "matplotlib-base",
     "scipy",
@@ -54,12 +56,21 @@
    ]
   },
   "source": {
-   "sha256": "463c53af98d6a0c18e78e7841d5c6f29d58eb44a483786666271dcc80506c6bb",
-   "url": "https://pypi.io/packages/source/x/xarrayutils/xarrayutils-2.0.0.tar.gz"
+   "patches": [
+    "drop_versioneer.patch"
+   ],
+   "sha256": "e157d6cf6a7e166e5a50a15d64cb2022af46bc30211a11e3f5a63f6985b7ceb9",
+   "url": "https://pypi.io/packages/source/x/xarrayutils/xarrayutils-2.0.1.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "xarrayutils"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -72,7 +83,6 @@
    "__set__": true,
    "elements": [
     "pip",
-    "pytest-runner",
     "python"
    ]
   },
@@ -90,7 +100,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
@@ -106,7 +118,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -115,17 +127,16 @@
   },
   "package": {
    "name": "xarrayutils",
-   "version": "2.0.0"
+   "version": "2.0.1"
   },
   "requirements": {
    "host": [
-    "python >=3.8",
-    "pip",
-    "pytest-runner"
+    "python >=3.9",
+    "pip"
    ],
    "run": [
-    "python >=3.8",
-    "xarray",
+    "python >=3.9",
+    "xarray >=0.14.1",
     "numpy",
     "matplotlib-base",
     "scipy",
@@ -134,12 +145,21 @@
    ]
   },
   "source": {
-   "sha256": "463c53af98d6a0c18e78e7841d5c6f29d58eb44a483786666271dcc80506c6bb",
-   "url": "https://pypi.io/packages/source/x/xarrayutils/xarrayutils-2.0.0.tar.gz"
+   "patches": [
+    "drop_versioneer.patch"
+   ],
+   "sha256": "e157d6cf6a7e166e5a50a15d64cb2022af46bc30211a11e3f5a63f6985b7ceb9",
+   "url": "https://pypi.io/packages/source/x/xarrayutils/xarrayutils-2.0.1.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "xarrayutils"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -157,7 +177,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/xarrayutils.json"
  },
- "raw_meta_yaml": "{% set name = \"xarrayutils\" %}\n{% set version = \"2.0.0\" %}\n{% set sha = \"463c53af98d6a0c18e78e7841d5c6f29d58eb44a483786666271dcc80506c6bb\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha }}\n\nbuild:\n  noarch: python\n\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n    - pytest-runner\n  run:\n    - python >=3.8\n    - xarray\n    - numpy\n    - matplotlib-base\n    - scipy\n    - astropy\n    - dask\n\ntest:\n  imports:\n    - xarrayutils\n\nabout:\n  home: https://github.com/jbusecke/xarrayutils\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: A collection of various tools for data analysis built on top of xarray and xgcm\n\n  description: This package contains a variety of utility functions I have used in the past few years for data analysis.\n  dev_url: https://github.com/jbusecke/xarrayutils\n\nextra:\n  recipe-maintainers:\n    - jbusecke\n",
+ "raw_meta_yaml": "{% set name = \"xarrayutils\" %}\n{% set version = \"2.0.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/xarrayutils-{{ version }}.tar.gz\n  sha256: e157d6cf6a7e166e5a50a15d64cb2022af46bc30211a11e3f5a63f6985b7ceb9\n  patches:\n    - drop_versioneer.patch\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.9\n    - pip\n  run:\n    - python >=3.9\n    - xarray >=0.14.1\n    - numpy\n    - matplotlib-base\n    - scipy\n    - astropy\n    - dask\n\ntest:\n  imports:\n    - xarrayutils\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/jbusecke/xarrayutils\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: A collection of various tools for data analysis built on top of xarray and xgcm\n\n  description: This package contains a variety of utility functions I have used in the past few years for data analysis.\n  dev_url: https://github.com/jbusecke/xarrayutils\n\nextra:\n  recipe-maintainers:\n    - jbusecke\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -166,7 +186,6 @@
    "matplotlib-base",
    "numpy",
    "pip",
-   "pytest-runner",
    "python",
    "scipy",
    "xarray"
@@ -181,7 +200,6 @@
    "__set__": true,
    "elements": [
     "pip",
-    "pytest-runner",
     "python"
    ]
   },
@@ -199,7 +217,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
@@ -212,8 +232,7 @@
    "__set__": true,
    "elements": [
     "pip",
-    "pytest-runner",
-    "python >=3.8"
+    "python >=3.9"
    ]
   },
   "run": {
@@ -223,18 +242,20 @@
     "dask",
     "matplotlib-base",
     "numpy",
-    "python >=3.8",
+    "python >=3.9",
     "scipy",
-    "xarray"
+    "xarray >=0.14.1"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
- "url": "https://pypi.io/packages/source/x/xarrayutils/xarrayutils-2.0.0.tar.gz",
- "version": "2.0.0",
+ "url": "https://pypi.io/packages/source/x/xarrayutils/xarrayutils-2.0.1.tar.gz",
+ "version": "2.0.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/xarrayutils.json"
  }
