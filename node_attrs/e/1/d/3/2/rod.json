@@ -26,7 +26,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -42,7 +42,7 @@
   },
   "requirements": {
    "host": [
-    "python >=3.8",
+    "python >=3.10",
     "wheel",
     "setuptools >=45",
     "setuptools-scm >=6.2",
@@ -51,8 +51,10 @@
    "run": [
     "trimesh",
     "resolve-robotics-uri-py",
-    "python >=3.8",
+    "python >=3.10",
     "coloredlogs",
+    "gz-tools2",
+    "libsdformat13",
     "mashumaro",
     "numpy",
     "packaging",
@@ -66,13 +68,21 @@
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "pytest -vv --pyargs rod tests/"
    ],
    "imports": [
     "rod"
    ],
    "requires": [
-    "pip"
+    "git",
+    "idyntree",
+    "pip",
+    "pytest",
+    "robot_descriptions"
+   ],
+   "source_files": [
+    "tests/*"
    ]
   }
  },
@@ -95,6 +105,8 @@
    "__set__": true,
    "elements": [
     "coloredlogs",
+    "gz-tools2",
+    "libsdformat13",
     "mashumaro",
     "numpy",
     "packaging",
@@ -108,7 +120,11 @@
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "git",
+    "idyntree",
+    "pip",
+    "pytest",
+    "robot_descriptions"
    ]
   }
  },
@@ -122,7 +138,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -138,7 +154,7 @@
   },
   "requirements": {
    "host": [
-    "python >=3.8",
+    "python >=3.10",
     "wheel",
     "setuptools >=45",
     "setuptools-scm >=6.2",
@@ -147,8 +163,10 @@
    "run": [
     "trimesh",
     "resolve-robotics-uri-py",
-    "python >=3.8",
+    "python >=3.10",
     "coloredlogs",
+    "gz-tools2",
+    "libsdformat13",
     "mashumaro",
     "numpy",
     "packaging",
@@ -162,13 +180,21 @@
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "pytest -vv --pyargs rod tests/"
    ],
    "imports": [
     "rod"
    ],
    "requires": [
-    "pip"
+    "git",
+    "idyntree",
+    "pip",
+    "pytest",
+    "robot_descriptions"
+   ],
+   "source_files": [
+    "tests/*"
    ]
   }
  },
@@ -186,11 +212,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/rod.json"
  },
- "raw_meta_yaml": "{% set name = \"rod\" %}\n{% set version = \"0.3.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/rod-{{ version }}.tar.gz\n  sha256: 2516cc7864c3d6060b20b6921bd3d53103626fe995ea27fee4b3b78941fe2173\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - wheel\n    - setuptools >=45\n    - setuptools-scm >=6.2\n    - pip\n  run:\n    - trimesh\n    - resolve-robotics-uri-py\n    - python >=3.8\n    - coloredlogs\n    - mashumaro\n    - numpy\n    - packaging\n    - scipy\n    - xmltodict\n\ntest:\n  imports:\n    - rod\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/ami-iit/rod\n  summary: The ultimate Python tool for RObot Descriptions processing.\n  dev_url: https://github.com/ami-iit/rod\n  license: BSD-3-Clause\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - diegoferigo\n    - traversaro\n    - flferretti\n",
+ "raw_meta_yaml": "{% set name = \"rod\" %}\n{% set version = \"0.3.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/rod-{{ version }}.tar.gz\n  sha256: 2516cc7864c3d6060b20b6921bd3d53103626fe995ea27fee4b3b78941fe2173\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 1\n\nrequirements:\n  host:\n    - python >=3.10\n    - wheel\n    - setuptools >=45\n    - setuptools-scm >=6.2\n    - pip\n  run:\n    - trimesh\n    - resolve-robotics-uri-py\n    - python >=3.10\n    - coloredlogs\n    - gz-tools2\n    - libsdformat13\n    - mashumaro\n    - numpy\n    - packaging\n    - scipy\n    - xmltodict\n\ntest:\n  imports:\n    - rod\n  commands:\n    - pip check\n    - pytest -vv --pyargs rod tests/\n  source_files:\n    - tests/*\n  requires:\n    - git\n    - idyntree\n    - pip\n    - pytest\n    - robot_descriptions\n\nabout:\n  home: https://github.com/ami-iit/rod\n  summary: The ultimate Python tool for RObot Descriptions processing.\n  dev_url: https://github.com/ami-iit/rod\n  license: BSD-3-Clause\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - diegoferigo\n    - traversaro\n    - flferretti\n",
  "req": {
   "__set__": true,
   "elements": [
    "coloredlogs",
+   "gz-tools2",
+   "libsdformat13",
    "mashumaro",
    "numpy",
    "packaging",
@@ -224,6 +252,8 @@
    "__set__": true,
    "elements": [
     "coloredlogs",
+    "gz-tools2",
+    "libsdformat13",
     "mashumaro",
     "numpy",
     "packaging",
@@ -237,7 +267,11 @@
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "git",
+    "idyntree",
+    "pip",
+    "pytest",
+    "robot_descriptions"
    ]
   }
  },
@@ -251,7 +285,7 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.8",
+    "python >=3.10",
     "setuptools >=45",
     "setuptools-scm >=6.2",
     "wheel"
@@ -261,10 +295,12 @@
    "__set__": true,
    "elements": [
     "coloredlogs",
+    "gz-tools2",
+    "libsdformat13",
     "mashumaro",
     "numpy",
     "packaging",
-    "python >=3.8",
+    "python >=3.10",
     "resolve-robotics-uri-py",
     "scipy",
     "trimesh",
@@ -274,7 +310,11 @@
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "git",
+    "idyntree",
+    "pip",
+    "pytest",
+    "robot_descriptions"
    ]
   }
  },
