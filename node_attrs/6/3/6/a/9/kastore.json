@@ -31,7 +31,7 @@
    "entry_points": [
     "kastore=kastore.__main__:main"
    ],
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . --no-deps -vv"
   },
   "extra": {
@@ -45,7 +45,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "setuptools",
@@ -56,7 +57,6 @@
    "run": [
     "setuptools",
     "python",
-    "numpy",
     "importlib_metadata",
     "six",
     "humanize"
@@ -79,7 +79,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -96,7 +97,6 @@
    "elements": [
     "humanize",
     "importlib_metadata",
-    "numpy",
     "python",
     "setuptools",
     "six"
@@ -122,7 +122,7 @@
    "entry_points": [
     "kastore=kastore.__main__:main"
    ],
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . --no-deps -vv"
   },
   "extra": {
@@ -136,7 +136,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "setuptools",
@@ -147,7 +148,6 @@
    "run": [
     "setuptools",
     "python",
-    "numpy",
     "importlib_metadata",
     "six",
     "humanize"
@@ -182,7 +182,7 @@
    "entry_points": [
     "kastore=kastore.__main__:main"
    ],
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . --no-deps -vv"
   },
   "extra": {
@@ -196,7 +196,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "setuptools",
@@ -207,7 +208,6 @@
    "run": [
     "setuptools",
     "python",
-    "numpy",
     "importlib_metadata",
     "six",
     "humanize"
@@ -230,7 +230,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -247,7 +248,6 @@
    "elements": [
     "humanize",
     "importlib_metadata",
-    "numpy",
     "python",
     "setuptools",
     "six"
@@ -273,11 +273,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/kastore.json"
  },
- "raw_meta_yaml": "{% set name = \"kastore\" %}\n{% set version = \"0.3.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: e62c506aa553895573e169f67ee9d4c1889182a3627a50108760352c3f8df85e\n\nbuild:\n  number: 2\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n  entry_points:\n    - kastore=kastore.__main__:main\n\n# Following the guidance here for building against numpy:\n# https://conda-forge.org/docs/meta.html#building-against-numpy\nrequirements:\n  build:\n    - {{ compiler('c') }}\n  host:\n    - setuptools\n    - python\n    - pip\n    - numpy\n  run:\n    - setuptools\n    - python\n    - {{ pin_compatible('numpy') }}\n    - importlib_metadata\n    - six\n    - humanize\n\ntest:\n  imports:\n    - kastore\n\n  commands:\n    - kastore --help\n\nabout:\n  home: http://github.com/kastore/kastore\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Write-once-read-many key-array store\n  description: Simple key-value store for arrays of numerical data.\n  doc_url: http://kastore.readthedocs.io/en/stable\n  dev_url: https://github.com/tskit-dev/kastore\n\nextra:\n  recipe-maintainers:\n    - jeromekelleher\n",
+ "raw_meta_yaml": "{% set name = \"kastore\" %}\n{% set version = \"0.3.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: e62c506aa553895573e169f67ee9d4c1889182a3627a50108760352c3f8df85e\n\nbuild:\n  number: 3\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n  entry_points:\n    - kastore=kastore.__main__:main\n\n# Following the guidance here for building against numpy:\n# https://conda-forge.org/docs/meta.html#building-against-numpy\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - setuptools\n    - python\n    - pip\n    - numpy\n  run:\n    - setuptools\n    - python\n    - importlib_metadata\n    - six\n    - humanize\n\ntest:\n  imports:\n    - kastore\n\n  commands:\n    - kastore --help\n\nabout:\n  home: http://github.com/kastore/kastore\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Write-once-read-many key-array store\n  description: Simple key-value store for arrays of numerical data.\n  doc_url: http://kastore.readthedocs.io/en/stable\n  dev_url: https://github.com/tskit-dev/kastore\n\nextra:\n  recipe-maintainers:\n    - jeromekelleher\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "humanize",
    "importlib_metadata",
    "numpy",
@@ -291,13 +292,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "numpy",
     "pip",
     "python",
@@ -308,9 +311,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "humanize",
     "importlib_metadata",
-    "numpy",
     "python",
     "setuptools",
     "six"
@@ -326,7 +329,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -343,7 +347,6 @@
    "elements": [
     "humanize",
     "importlib_metadata",
-    "numpy",
     "python",
     "setuptools",
     "six"
@@ -374,7 +377,7 @@
    "entry_points": [
     "kastore=kastore.__main__:main"
    ],
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . --no-deps -vv"
   },
   "extra": {
@@ -388,7 +391,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "setuptools",
@@ -399,7 +403,6 @@
    "run": [
     "setuptools",
     "python",
-    "numpy",
     "importlib_metadata",
     "six",
     "humanize"
@@ -422,7 +425,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -439,7 +443,6 @@
    "elements": [
     "humanize",
     "importlib_metadata",
-    "numpy",
     "python",
     "setuptools",
     "six"
