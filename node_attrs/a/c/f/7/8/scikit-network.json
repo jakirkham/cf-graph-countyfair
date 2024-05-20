@@ -33,7 +33,7 @@
    "summary": "Graph algorithms"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv --no-build-isolation"
   },
   "extra": {
@@ -48,6 +48,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libgomp"
    ],
@@ -59,7 +60,6 @@
     "python"
    ],
    "run": [
-    "numpy",
     "python",
     "scipy >=1.7.3"
    ]
@@ -91,6 +91,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libgomp"
    ]
@@ -108,7 +109,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scipy"
    ]
@@ -135,7 +135,7 @@
    "summary": "Graph algorithms"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv --no-build-isolation"
   },
   "extra": {
@@ -150,6 +150,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libgomp",
     "llvm-openmp",
@@ -163,7 +164,6 @@
     "python"
    ],
    "run": [
-    "numpy",
     "python",
     "scipy >=1.7.3"
    ]
@@ -204,7 +204,7 @@
    "summary": "Graph algorithms"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv --no-build-isolation"
   },
   "extra": {
@@ -219,6 +219,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "llvm-openmp"
    ],
@@ -230,7 +231,6 @@
     "python"
    ],
    "run": [
-    "numpy",
     "python",
     "scipy >=1.7.3"
    ]
@@ -262,6 +262,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "llvm-openmp"
    ]
@@ -279,7 +280,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scipy"
    ]
@@ -306,7 +306,7 @@
    "summary": "Graph algorithms"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv --no-build-isolation"
   },
   "extra": {
@@ -321,6 +321,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "llvm-openmp"
    ],
@@ -332,7 +333,6 @@
     "python"
    ],
    "run": [
-    "numpy",
     "python",
     "scipy >=1.7.3"
    ]
@@ -364,6 +364,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "llvm-openmp"
    ]
@@ -381,7 +382,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scipy"
    ]
@@ -411,11 +411,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/scikit-network.json"
  },
- "raw_meta_yaml": "{% set version = \"0.31.0\" %}\n\npackage:\n  name: scikit-network\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/s/scikit-network/scikit-network-{{ version }}.tar.gz\n  sha256: b26d6704ff1f8367eae7c2061b3731c33d5a25c479f9d27e11481f3c2887609e\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv --no-build-isolation\n  number: 2\n  skip: true  # [py<38]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - pytest-runner                          # [build_platform != target_platform]\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - llvm-openmp   # [osx]\n    - libgomp       # [linux]\n    - intel-openmp  # [win]\n  host:\n    - cython\n    - numpy\n    - pip\n    - pytest-runner\n    - python\n  run:\n    - {{ pin_compatible('numpy', lower_bound='1.22.4') }}\n    - python\n    - scipy >=1.7.3\n\ntest:\n  source_files:\n    - sknetwork/*/tests\n    - sknetwork/test_*.py\n  imports:\n    - sknetwork\n  commands:\n    - pip check\n  requires:\n    - coverage\n    - pip\n    - pytest\n\nabout:\n  home: https://github.com/sknetwork-team/scikit-network\n  summary: Graph algorithms\n  license: BSD-3-Clause\n  license_file:\n    - LICENSE\n  doc_url: https://scikit-network.readthedocs.io\n  doc_source_url: https://github.com/sknetwork-team/scikit-network/tree/v{{ version }}/docs\n  description: |-\n    Python package for the analysis of large graphs:\n    - Memory-efficient representation of graphs as sparse matrices in scipy format\n    - Fast algorithms\n    - Simple API inspired by scikit-learn\n\n\nextra:\n  recipe-maintainers:\n    - bollwyvl\n",
+ "raw_meta_yaml": "{% set version = \"0.31.0\" %}\n\npackage:\n  name: scikit-network\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/s/scikit-network/scikit-network-{{ version }}.tar.gz\n  sha256: b26d6704ff1f8367eae7c2061b3731c33d5a25c479f9d27e11481f3c2887609e\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv --no-build-isolation\n  number: 3\n  skip: true  # [py<38]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - pytest-runner                          # [build_platform != target_platform]\n    - {{ compiler(\"c\") }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - llvm-openmp   # [osx]\n    - libgomp       # [linux]\n    - intel-openmp  # [win]\n  host:\n    - cython\n    - numpy\n    - pip\n    - pytest-runner\n    - python\n  run:\n    - python\n    - scipy >=1.7.3\n\ntest:\n  source_files:\n    - sknetwork/*/tests\n    - sknetwork/test_*.py\n  imports:\n    - sknetwork\n  commands:\n    - pip check\n  requires:\n    - coverage\n    - pip\n    - pytest\n\nabout:\n  home: https://github.com/sknetwork-team/scikit-network\n  summary: Graph algorithms\n  license: BSD-3-Clause\n  license_file:\n    - LICENSE\n  doc_url: https://scikit-network.readthedocs.io\n  doc_source_url: https://github.com/sknetwork-team/scikit-network/tree/v{{ version }}/docs\n  description: |-\n    Python package for the analysis of large graphs:\n    - Memory-efficient representation of graphs as sparse matrices in scipy format\n    - Fast algorithms\n    - Simple API inspired by scikit-learn\n\n\nextra:\n  recipe-maintainers:\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "cython",
    "intel-openmp",
@@ -433,6 +434,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "intel-openmp",
     "libgomp",
@@ -443,6 +445,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "cython",
@@ -457,9 +460,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
-    "numpy",
     "openmp",
     "python",
     "scipy"
@@ -480,6 +483,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "intel-openmp",
     "libgomp",
@@ -499,7 +503,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scipy >=1.7.3"
    ]
@@ -531,7 +534,7 @@
    "summary": "Graph algorithms"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv --no-build-isolation"
   },
   "extra": {
@@ -546,6 +549,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "intel-openmp"
    ],
@@ -557,7 +561,6 @@
     "python"
    ],
    "run": [
-    "numpy",
     "python",
     "scipy >=1.7.3"
    ]
@@ -589,6 +592,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "intel-openmp"
    ]
@@ -606,7 +610,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scipy"
    ]
