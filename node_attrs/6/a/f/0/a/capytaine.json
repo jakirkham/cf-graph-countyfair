@@ -28,7 +28,7 @@
    "entry_points": [
     "capytaine = capytaine.ui.cli:main"
    ],
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . --no-deps -vv"
   },
   "extra": {
@@ -43,7 +43,8 @@
   "requirements": {
    "build": [
     "fortran_compiler_stub",
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -54,7 +55,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy",
     "pandas",
     "xarray",
@@ -88,6 +88,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -104,7 +105,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "pandas",
     "python",
     "rich",
@@ -132,7 +132,7 @@
    "entry_points": [
     "capytaine = capytaine.ui.cli:main"
    ],
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . --no-deps -vv"
   },
   "extra": {
@@ -148,8 +148,10 @@
    "build": [
     "fortran_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "llvm-openmp",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub"
    ],
    "host": [
@@ -164,7 +166,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy",
     "pandas",
     "xarray",
@@ -207,7 +208,7 @@
    "entry_points": [
     "capytaine = capytaine.ui.cli:main"
    ],
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . --no-deps -vv"
   },
   "extra": {
@@ -223,6 +224,7 @@
    "build": [
     "fortran_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "llvm-openmp"
    ],
    "host": [
@@ -235,7 +237,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy",
     "pandas",
     "xarray",
@@ -270,6 +271,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "llvm-openmp"
    ]
@@ -289,7 +291,6 @@
    "__set__": true,
    "elements": [
     "llvm-openmp",
-    "numpy",
     "pandas",
     "python",
     "rich",
@@ -320,17 +321,19 @@
  "pr_info": {
   "__lazy_json__": "pr_info/capytaine.json"
  },
- "raw_meta_yaml": "{% set version = \"2.1\" %}\n{% set hash = \"f1945c02609fe16f58b691e7ad2f297087980fa6e7d1d1ca5826e478204e408e\" %}\n\npackage:\n  name: capytaine\n  version: {{ version }}\n\nsource:\n  url: https://github.com/capytaine/capytaine/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: {{ hash }}\n\nbuild:\n  skip: True  # [py<38]\n  skip: True  # [python_impl == 'pypy']\n  number: 0\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n  entry_points:\n    - capytaine = capytaine.ui.cli:main\n\nrequirements:\n  build:\n    - {{ compiler('fortran') }}  # [unix]\n    - {{ compiler('c') }}  # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - llvm-openmp  # [osx]\n  host:\n    - python\n    - pip\n    - numpy <=1.26.2\n    - meson-python\n    - charset-normalizer\n    - llvm-openmp  # [osx]\n    - m2w64-toolchain  # [win]\n    - libpython  # [win]\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - scipy\n    - pandas\n    - xarray\n    - rich\n    - llvm-openmp  # [osx]\n\ntest:\n  imports:\n    - capytaine\n  requires:\n    - pytest\n    - pip\n  source_files:\n    - pytest/*.py\n    - pytest/**/*\n  commands:\n    - pytest\n    - capytaine --help\n\nabout:\n  home: https://github.com/capytaine/capytaine\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: LICENSE\n  summary: A Python-based linear potential flow solver based on Nemoh\n\nextra:\n  recipe-maintainers:\n    - mancellin\n",
+ "raw_meta_yaml": "{% set version = \"2.1\" %}\n{% set hash = \"f1945c02609fe16f58b691e7ad2f297087980fa6e7d1d1ca5826e478204e408e\" %}\n\npackage:\n  name: capytaine\n  version: {{ version }}\n\nsource:\n  url: https://github.com/capytaine/capytaine/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: {{ hash }}\n\nbuild:\n  skip: True  # [py<38]\n  skip: True  # [python_impl == 'pypy']\n  number: 1\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n  entry_points:\n    - capytaine = capytaine.ui.cli:main\n\nrequirements:\n  build:\n    - {{ compiler('fortran') }}  # [unix]\n    - {{ compiler('c') }}  # [unix]\n    - {{ stdlib(\"c\") }}    # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ stdlib(\"m2w64_c\") }}    # [win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - llvm-openmp  # [osx]\n  host:\n    - python\n    - pip\n    - numpy <=1.26.2\n    - meson-python\n    - charset-normalizer\n    - llvm-openmp  # [osx]\n    - m2w64-toolchain  # [win]\n    - libpython  # [win]\n  run:\n    - python\n    - scipy\n    - pandas\n    - xarray\n    - rich\n    - llvm-openmp  # [osx]\n\ntest:\n  imports:\n    - capytaine\n  requires:\n    - pytest\n    - pip\n  source_files:\n    - pytest/*.py\n    - pytest/**/*\n  commands:\n    - pytest\n    - capytaine --help\n\nabout:\n  home: https://github.com/capytaine/capytaine\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: LICENSE\n  summary: A Python-based linear potential flow solver based on Nemoh\n\nextra:\n  recipe-maintainers:\n    - mancellin\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "charset-normalizer",
    "fortran_compiler_stub",
    "libpython",
    "llvm-openmp",
    "m2w64-toolchain",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "meson-python",
    "numpy",
@@ -347,9 +350,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "llvm-openmp",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub"
    ]
   },
@@ -357,6 +362,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "charset-normalizer",
     "fortran_compiler_stub",
     "libpython",
@@ -373,9 +379,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "llvm-openmp",
-    "numpy",
     "openmp",
     "pandas",
     "python",
@@ -398,9 +404,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "llvm-openmp",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub"
    ]
   },
@@ -421,7 +429,6 @@
    "__set__": true,
    "elements": [
     "llvm-openmp",
-    "numpy",
     "pandas",
     "python",
     "rich",
@@ -454,7 +461,7 @@
    "entry_points": [
     "capytaine = capytaine.ui.cli:main"
    ],
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . --no-deps -vv"
   },
   "extra": {
@@ -469,6 +476,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub"
    ],
    "host": [
@@ -482,7 +490,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy",
     "pandas",
     "xarray",
@@ -516,6 +523,7 @@
    "__set__": true,
    "elements": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub"
    ]
   },
@@ -534,7 +542,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "pandas",
     "python",
     "rich",
