@@ -29,7 +29,7 @@
    "summary": "HiGHS is a high performance serial and parallel solver for large scale sparse linear optimization problems"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -44,8 +44,9 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
-    "cmake",
-    "make"
+    "cmake >=3.15",
+    "make",
+    "c_stdlib_stub"
    ]
   },
   "source": {
@@ -63,6 +64,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -93,7 +95,7 @@
    "summary": "HiGHS is a high performance serial and parallel solver for large scale sparse linear optimization problems"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -108,8 +110,9 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
-    "cmake",
-    "make"
+    "cmake >=3.15",
+    "make",
+    "c_stdlib_stub"
    ]
   },
   "source": {
@@ -137,7 +140,7 @@
    "summary": "HiGHS is a high performance serial and parallel solver for large scale sparse linear optimization problems"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -152,8 +155,9 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
-    "cmake",
-    "make"
+    "cmake >=3.15",
+    "make",
+    "c_stdlib_stub"
    ]
   },
   "source": {
@@ -170,6 +174,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -200,7 +205,7 @@
    "summary": "HiGHS is a high performance serial and parallel solver for large scale sparse linear optimization problems"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -215,8 +220,9 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
-    "cmake",
-    "make"
+    "cmake >=3.15",
+    "make",
+    "c_stdlib_stub"
    ]
   },
   "source": {
@@ -233,6 +239,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -267,10 +274,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/highs.json"
  },
- "raw_meta_yaml": "{% set name = \"HiGHS\" %}\n{% set version = \"1.7.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ERGO-Code/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: d10175ad66e7f113ac5dc00c9d6650a620663a6884fbf2942d6eb7a3d854604f\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [unix]\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/highs/Highs.h  # [unix]\n    - test -f ${PREFIX}/lib/libhighs.so  # [linux]\n    - if not exist %LIBRARY_PREFIX%\\include\\highs\\Highs.h (exit 1)  # [win]\n\nabout:\n  home: https://github.com/ERGO-Code/HiGHS\n  summary: HiGHS is a high performance serial and parallel solver for large scale sparse linear optimization problems\n  description: |\n    HiGHS is a high performance serial and parallel solver for large scale sparse linear optimization problems\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE.txt\n  doc_url: https://highs.dev\n  dev_url: https://github.com/ERGO-Code/HiGHS\n\nextra:\n  recipe-maintainers:\n    - julian-belina\n    - DerThorsten\n    - julian-belina\n",
+ "raw_meta_yaml": "{% set name = \"HiGHS\" %}\n{% set version = \"1.7.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ERGO-Code/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: d10175ad66e7f113ac5dc00c9d6650a620663a6884fbf2942d6eb7a3d854604f\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake >=3.15\n    - make  # [unix]\n    - {{ stdlib(\"c\") }}\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/highs/Highs.h  # [unix]\n    - test -f ${PREFIX}/lib/libhighs.so  # [linux]\n    - if not exist %LIBRARY_PREFIX%\\include\\highs\\Highs.h (exit 1)  # [win]\n\nabout:\n  home: https://github.com/ERGO-Code/HiGHS\n  summary: HiGHS is a high performance serial and parallel solver for large scale sparse linear optimization problems\n  description: |\n    HiGHS is a high performance serial and parallel solver for large scale sparse linear optimization problems\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE.txt\n  doc_url: https://highs.dev\n  dev_url: https://github.com/ERGO-Code/HiGHS\n\nextra:\n  recipe-maintainers:\n    - julian-belina\n    - DerThorsten\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "make"
@@ -280,6 +288,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -288,12 +297,14 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -307,7 +318,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "cmake",
+    "c_stdlib_stub",
+    "cmake >=3.15",
     "cxx_compiler_stub",
     "make"
    ]
@@ -342,7 +354,7 @@
    "summary": "HiGHS is a high performance serial and parallel solver for large scale sparse linear optimization problems"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -357,7 +369,8 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
-    "cmake"
+    "cmake >=3.15",
+    "c_stdlib_stub"
    ]
   },
   "source": {
@@ -374,6 +387,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
