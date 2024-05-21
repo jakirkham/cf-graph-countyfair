@@ -21,7 +21,7 @@
    "summary": "A python interface to Philipp Kr\u00E4henb\u00FChl's fully-connected (dense) CRF code."
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "script": [
     "rm -f pydensecrf/densecrf.cpp pydensecrf/eigen.cpp",
     "PYTHON -m pip install . -vv"
@@ -39,6 +39,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -48,8 +49,7 @@
     "numpy"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -76,6 +76,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -91,7 +92,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -110,7 +110,7 @@
    "summary": "A python interface to Philipp Kr\u00E4henb\u00FChl's fully-connected (dense) CRF code."
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "script": [
     "rm -f pydensecrf/densecrf.cpp pydensecrf/eigen.cpp",
     "PYTHON -m pip install . -vv",
@@ -129,6 +129,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -138,8 +139,7 @@
     "numpy"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -170,7 +170,7 @@
    "summary": "A python interface to Philipp Kr\u00E4henb\u00FChl's fully-connected (dense) CRF code."
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "script": [
     "rm -f pydensecrf/densecrf.cpp pydensecrf/eigen.cpp",
     "PYTHON -m pip install . -vv"
@@ -188,6 +188,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -197,8 +198,7 @@
     "numpy"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -225,6 +225,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -240,7 +241,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -266,11 +266,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pydensecrf.json"
  },
- "raw_meta_yaml": "{% set name = \"pydensecrf\" %}\n{% set version = \"1.0rc3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pydensecrf-{{ version }}.tar.gz\n  sha256: 08be1603af2bede05c7697b6018e8e3059de7cc181e4e784b334889dcc749aa5\n  patches:\n    # we can drop this one in the next release\n    - backport_108.patch\n\nbuild:\n  number: 5\n  script:\n    # ensure that we re-cythonize these\n    - rm -f pydensecrf/densecrf.cpp pydensecrf/eigen.cpp  # [not win]\n    - del pydensecrf\\densecrf.cpp pydensecrf\\eigen.cpp  # [win]\n    - {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip\n    - cython >=0.22,<3\n    - msinttypes  # [win and py<35]\n    - numpy\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - pydensecrf\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: http://github.com/lucasb-eyer/pydensecrf\n  license: MIT\n  summary: \"A python interface to Philipp Kr\u00E4henb\u00FChl's fully-connected (dense) CRF code.\"\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n",
+ "raw_meta_yaml": "{% set name = \"pydensecrf\" %}\n{% set version = \"1.0rc3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pydensecrf-{{ version }}.tar.gz\n  sha256: 08be1603af2bede05c7697b6018e8e3059de7cc181e4e784b334889dcc749aa5\n  patches:\n    # we can drop this one in the next release\n    - backport_108.patch\n\nbuild:\n  number: 6\n  script:\n    # ensure that we re-cythonize these\n    - rm -f pydensecrf/densecrf.cpp pydensecrf/eigen.cpp  # [not win]\n    - del pydensecrf\\densecrf.cpp pydensecrf\\eigen.cpp  # [win]\n    - {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip\n    - cython >=0.22,<3\n    - msinttypes  # [win and py<35]\n    - numpy\n  run:\n    - python\n\ntest:\n  imports:\n    - pydensecrf\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: http://github.com/lucasb-eyer/pydensecrf\n  license: MIT\n  summary: \"A python interface to Philipp Kr\u00E4henb\u00FChl's fully-connected (dense) CRF code.\"\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "cython",
    "numpy",
@@ -283,6 +284,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -290,6 +292,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython",
     "numpy",
@@ -301,8 +304,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "numpy",
     "python"
    ]
   },
@@ -319,6 +322,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -334,7 +338,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -358,7 +361,7 @@
    "summary": "A python interface to Philipp Kr\u00E4henb\u00FChl's fully-connected (dense) CRF code."
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "script": [
     "del pydensecrf\\densecrf.cpp pydensecrf\\eigen.cpp",
     "PYTHON -m pip install . -vv"
@@ -376,6 +379,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -385,8 +389,7 @@
     "numpy"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -413,6 +416,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -428,7 +432,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
