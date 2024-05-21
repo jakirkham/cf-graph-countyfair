@@ -30,9 +30,10 @@
    "ignore_run_exports_from": [
     "cairo",
     "freetype",
-    "libboost-devel"
+    "libboost-devel",
+    "pyside6"
    ],
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "qt6molecularnetwork"
    ]
@@ -72,6 +73,7 @@
       "python",
       "cmake-build-extension",
       "pyside6",
+      "qt6-main",
       "versioneer",
       "eigen",
       "libboost-devel",
@@ -116,6 +118,7 @@
     "libboost-devel",
     "eigen",
     "qt6-main",
+    "pyside6",
     "rdkit",
     "versioneer"
    ],
@@ -196,9 +199,10 @@
    "ignore_run_exports_from": [
     "cairo",
     "freetype",
-    "libboost-devel"
+    "libboost-devel",
+    "pyside6"
    ],
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "qt6molecularnetwork"
    ]
@@ -238,6 +242,7 @@
       "python",
       "cmake-build-extension",
       "pyside6",
+      "qt6-main",
       "versioneer",
       "eigen",
       "libboost-devel",
@@ -287,6 +292,7 @@
       "python",
       "cmake-build-extension",
       "pyside6",
+      "qt6-main",
       "versioneer",
       "eigen",
       "libboost-devel",
@@ -338,6 +344,7 @@
       "python",
       "cmake-build-extension",
       "pyside6",
+      "qt6-main",
       "versioneer",
       "eigen",
       "libboost-devel",
@@ -383,6 +390,7 @@
     "libboost-devel",
     "eigen",
     "qt6-main",
+    "pyside6",
     "rdkit",
     "versioneer",
     "rdkit-dev"
@@ -421,9 +429,10 @@
    "ignore_run_exports_from": [
     "cairo",
     "freetype",
-    "libboost-devel"
+    "libboost-devel",
+    "pyside6"
    ],
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "qt6molecularnetwork"
    ]
@@ -459,6 +468,7 @@
       "python",
       "cmake-build-extension",
       "pyside6",
+      "qt6-main",
       "versioneer",
       "eigen",
       "libboost-devel",
@@ -502,6 +512,7 @@
     "libboost-devel",
     "eigen",
     "qt6-main",
+    "pyside6",
     "rdkit",
     "versioneer"
    ],
@@ -582,7 +593,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/qtmolecularnetwork.json"
  },
- "raw_meta_yaml": "{% set version = \"0.7.5\" %}\n\npackage:\n  name: qt6molecularnetwork\n  version: {{ version }}\n\nsource:\n  url: https://github.com/metgem/QtMolecularNetwork/archive/v{{ version }}.tar.gz\n  sha256: 47ef9e120fe47c14b82a9b3cf0939c354a33c7d5e138922d3a19e2929efa295c\n\nbuild:\n  number: 0\n  run_exports:\n    - {{ pin_subpackage('qt6molecularnetwork', max_pin='x.x.x') }}\n  ignore_run_exports_from:\n    # Just used to satisfy CMake; not used in shared library\n    - cairo\n    - freetype\n    - libboost-devel\n\nrequirements:\n  build:\n    - cmake\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - make                                    # [not win]\n    - {{ cdt('mesa-libgl-devel') }}           # [linux]\n    - {{ cdt('mesa-libegl-devel') }}          # [linux]\n    - {{ cdt('mesa-dri-drivers') }}           # [linux]\n    - {{ cdt('libglvnd-opengl') }}            # [linux]\n    - {{ cdt('libselinux') }}                 # [linux]\n    - {{ cdt('libxdamage') }}                 # [linux]\n    - {{ cdt('libxxf86vm') }}                 # [linux]\n    - {{ cdt('libxext') }}                    # [linux]\n  host:\n    - cairo\n    - freetype\n    - libboost-devel\n    - eigen\n    - qt6-main\n    - {{ pin_compatible('rdkit', max_pin='x.x') }}\n    - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}      # [win]\n    - versioneer\n    - tomli              # [py<311]\n  run:\n    - {{ pin_compatible('rdkit', max_pin='x.x') }}\n\n\ntest:\n  commands:\n    - if not exist %LIBRARY_BIN%\\qt6molecularnetwork.dll exit 1                                     # [win]\n    - if not exist %LIBRARY_INC%\\qt6molecularnetwork\\node.h exit 1                                  # [win]\n    - if not exist %LIBRARY_LIB%\\cmake\\qt6molecularnetwork\\qt6molecularnetworkConfig.cmake exit 1   # [win]\n    - test -f $PREFIX/lib/libqt6molecularnetwork${SHLIB_EXT}                                        # [unix]\n    - test -f $PREFIX/include/qt6molecularnetwork/node.h                                            # [unix]\n    - test -f $PREFIX/lib/cmake/qt6molecularnetwork/qt6molecularnetworkConfig.cmake                 # [unix]\n\noutputs:\n  - name: qt6molecularnetwork\n  - name: pyside6mn\n    script: build-python.sh  # [unix]\n    script: bld-python.bat  # [win]\n    build:\n      skip: true  # [py<39]\n      ignore_run_exports_from:\n      # Just used for shiboken/pyside2 not used for python module\n        - clangdev  # [not osx]\n        - libcxx    # [not osx]\n        - libboost-devel\n    requirements:\n      build:\n        - {{ compiler('c') }}\n        - {{ stdlib(\"c\") }}\n        - {{ compiler('cxx') }}\n        - clangdev\n        - cmake\n        - make                                # [not win]\n        - libcxx                              # [linux]\n        - {{ cdt('mesa-libgl-devel') }}       # [linux]\n        - {{ cdt('mesa-dri-drivers') }}       # [linux]\n        - {{ cdt('libselinux') }}             # [linux]\n        - {{ cdt('libxdamage') }}             # [linux]\n        - {{ cdt('libxxf86vm') }}             # [linux]\n        - {{ cdt('libxext') }}                # [linux]\n      host:\n        - {{ pin_subpackage('qt6molecularnetwork', exact=True) }}\n        - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}  # [win]\n        - {{ pin_compatible('rdkit', max_pin='x.x') }}\n        - python\n        - cmake-build-extension\n        - {{ pin_compatible('pyside6', max_pin='x.x') }}\n        - versioneer\n        - eigen\n        - libboost-devel\n        - pip\n        - setuptools\n        - cairo\n        - freetype\n      run:\n        - python\n        - {{ pin_subpackage('qt6molecularnetwork', exact=True) }}\n        - {{ pin_compatible('rdkit', max_pin='x.x') }}\n        - pywin32                             # [win]\n        - pyside6\n        - tinycss2\n    test:\n      imports:\n        - PySide6MolecularNetwork\n        - PySide6MolecularNetwork.qmn\n\nabout:\n  home: https://github.com/metgem/QtMolecularNetwork\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: 'LICENSE'\n  summary: 'Widgets used for visualisation of graph in MetGem'\n  description: 'Widgets used for visualisation of graph in `MetGem`'\n  dev_url: 'https://github.com/metgem/QtMolecularNetwork'\n\nextra:\n  recipe-maintainers:\n    - n-elie\n",
+ "raw_meta_yaml": "{% set version = \"0.7.5\" %}\n\npackage:\n  name: qt6molecularnetwork\n  version: {{ version }}\n\nsource:\n  url: https://github.com/metgem/QtMolecularNetwork/archive/v{{ version }}.tar.gz\n  sha256: 47ef9e120fe47c14b82a9b3cf0939c354a33c7d5e138922d3a19e2929efa295c\n\nbuild:\n  number: 1\n  run_exports:\n    - {{ pin_subpackage('qt6molecularnetwork', max_pin='x.x.x') }}\n  ignore_run_exports_from:\n    # Just used to satisfy CMake; not used in shared library\n    - cairo\n    - freetype\n    - libboost-devel\n    # Just used to make sure that the package is not built for a Qt version\n    # that is not available through pyside6\n    - pyside6\n\nrequirements:\n  build:\n    - cmake\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - make                                    # [not win]\n    - {{ cdt('mesa-libgl-devel') }}           # [linux]\n    - {{ cdt('mesa-libegl-devel') }}          # [linux]\n    - {{ cdt('mesa-dri-drivers') }}           # [linux]\n    - {{ cdt('libglvnd-opengl') }}            # [linux]\n    - {{ cdt('libselinux') }}                 # [linux]\n    - {{ cdt('libxdamage') }}                 # [linux]\n    - {{ cdt('libxxf86vm') }}                 # [linux]\n    - {{ cdt('libxext') }}                    # [linux]\n  host:\n    - cairo\n    - freetype\n    - libboost-devel\n    - eigen\n    - qt6-main\n    # Just used to make sure that the package is not built for a Qt version\n    # that is not available through pyside6\n    - pyside6\n    - {{ pin_compatible('rdkit', max_pin='x.x') }}\n    - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}      # [win]\n    - versioneer\n    - tomli              # [py<311]\n  run:\n    - {{ pin_compatible('rdkit', max_pin='x.x') }}\n\n\ntest:\n  commands:\n    - if not exist %LIBRARY_BIN%\\qt6molecularnetwork.dll exit 1                                     # [win]\n    - if not exist %LIBRARY_INC%\\qt6molecularnetwork\\node.h exit 1                                  # [win]\n    - if not exist %LIBRARY_LIB%\\cmake\\qt6molecularnetwork\\qt6molecularnetworkConfig.cmake exit 1   # [win]\n    - test -f $PREFIX/lib/libqt6molecularnetwork${SHLIB_EXT}                                        # [unix]\n    - test -f $PREFIX/include/qt6molecularnetwork/node.h                                            # [unix]\n    - test -f $PREFIX/lib/cmake/qt6molecularnetwork/qt6molecularnetworkConfig.cmake                 # [unix]\n\noutputs:\n  - name: qt6molecularnetwork\n  - name: pyside6mn\n    script: build-python.sh  # [unix]\n    script: bld-python.bat  # [win]\n    build:\n      skip: true  # [py<39]\n      ignore_run_exports_from:\n      # Just used for shiboken/pyside2 not used for python module\n        - clangdev  # [not osx]\n        - libcxx    # [not osx]\n        - libboost-devel\n    requirements:\n      build:\n        - {{ compiler('c') }}\n        - {{ stdlib(\"c\") }}\n        - {{ compiler('cxx') }}\n        - clangdev\n        - cmake\n        - make                                # [not win]\n        - libcxx                              # [linux]\n        - {{ cdt('mesa-libgl-devel') }}       # [linux]\n        - {{ cdt('mesa-dri-drivers') }}       # [linux]\n        - {{ cdt('libselinux') }}             # [linux]\n        - {{ cdt('libxdamage') }}             # [linux]\n        - {{ cdt('libxxf86vm') }}             # [linux]\n        - {{ cdt('libxext') }}                # [linux]\n      host:\n        - {{ pin_subpackage('qt6molecularnetwork', exact=True) }}\n        - {{ pin_compatible('rdkit-dev', max_pin='x.x') }}  # [win]\n        - {{ pin_compatible('rdkit', max_pin='x.x') }}\n        - python\n        - cmake-build-extension\n        - {{ pin_compatible('pyside6', max_pin='x.x') }}\n        - {{ pin_compatible('qt6-main', max_pin='x.x') }}\n        - versioneer\n        - eigen\n        - libboost-devel\n        - pip\n        - setuptools\n        - cairo\n        - freetype\n      run:\n        - python\n        - {{ pin_subpackage('qt6molecularnetwork', exact=True) }}\n        - {{ pin_compatible('rdkit', max_pin='x.x') }}\n        - pywin32                             # [win]\n        - pyside6\n        - tinycss2\n    test:\n      imports:\n        - PySide6MolecularNetwork\n        - PySide6MolecularNetwork.qmn\n\nabout:\n  home: https://github.com/metgem/QtMolecularNetwork\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: 'LICENSE'\n  summary: 'Widgets used for visualisation of graph in MetGem'\n  description: 'Widgets used for visualisation of graph in `MetGem`'\n  dev_url: 'https://github.com/metgem/QtMolecularNetwork'\n\nextra:\n  recipe-maintainers:\n    - n-elie\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -736,9 +747,10 @@
    "ignore_run_exports_from": [
     "cairo",
     "freetype",
-    "libboost-devel"
+    "libboost-devel",
+    "pyside6"
    ],
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "qt6molecularnetwork"
    ]
@@ -776,6 +788,7 @@
       "python",
       "cmake-build-extension",
       "pyside6",
+      "qt6-main",
       "versioneer",
       "eigen",
       "libboost-devel",
@@ -819,6 +832,7 @@
     "libboost-devel",
     "eigen",
     "qt6-main",
+    "pyside6",
     "rdkit",
     "rdkit-dev",
     "versioneer"
