@@ -32,7 +32,7 @@
    "summary": "Extend the SQLite core to support fully fledged Spatial SQL capabilities"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "libspatialite"
    ]
@@ -59,7 +59,8 @@
     "make",
     "gnuconfig",
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "sqlite",
@@ -95,6 +96,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "libtool",
@@ -139,7 +141,7 @@
    "summary": "Extend the SQLite core to support fully fledged Spatial SQL capabilities"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "libspatialite"
    ]
@@ -166,7 +168,8 @@
     "make",
     "gnuconfig",
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "sqlite",
@@ -202,6 +205,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "libtool",
@@ -353,7 +357,7 @@
    "summary": "Extend the SQLite core to support fully fledged Spatial SQL capabilities"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "libspatialite"
    ]
@@ -380,7 +384,8 @@
     "make",
     "gnuconfig",
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "sqlite",
@@ -422,7 +427,7 @@
    "summary": "Extend the SQLite core to support fully fledged Spatial SQL capabilities"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "libspatialite"
    ]
@@ -446,7 +451,8 @@
     "make",
     "gnuconfig",
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libiconv",
@@ -483,6 +489,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "make",
@@ -528,7 +535,7 @@
    "summary": "Extend the SQLite core to support fully fledged Spatial SQL capabilities"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "libspatialite"
    ]
@@ -552,7 +559,8 @@
     "make",
     "gnuconfig",
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libiconv",
@@ -589,6 +597,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "make",
@@ -636,7 +645,6 @@
  "platforms": [
   "linux_64",
   "linux_aarch64",
-  "linux_ppc64le",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -644,13 +652,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libspatialite.json"
  },
- "raw_meta_yaml": "{% set version = \"5.1.0\" %}\n\npackage:\n  name: libspatialite\n  version: {{ version }}\n\nsource:\n  url: https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-{{ version }}.tar.gz\n  sha256: 43be2dd349daffe016dd1400c5d11285828c22fea35ca5109f21f3ed50605080\n  patches:\n    # Patch Win to fix build path\n    - 0001-win_fix_paths.patch  # [win]\n    # Patch configure for OSX to make sure we get dylib, not so\n    - 0002-osx_fix_lib_ext.patch  # [osx]\n    # Skip some tests that fail\n    - skip_tests.patch\n    # GH71 build issue\n    #- gh71_check_drop_rename.patch\n\nbuild:\n  number: 5\n  skip: true  # [win and vc<14]\n  run_exports:\n    # No idea.  Staying with minor version pin.\n    - {{ pin_subpackage('libspatialite', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - autoconf  # [linux]\n    - automake  # [linux]\n    - libtool   # [linux]\n    - pkg-config  # [not win]\n    - make  # [unix]\n    - gnuconfig  # [unix]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - libiconv  # [osx]\n    - sqlite\n    - geos\n    - proj\n    - freexl >=2\n    - zlib\n    - libxml2\n    - librttopo\n  run:\n    - libiconv  # [osx]\n    - sqlite\n    - geos\n    - proj\n    - freexl >=2\n    - zlib\n    - libxml2\n    - librttopo\n\nabout:\n  home: https://www.gaia-gis.it/fossil/libspatialite/index\n  license: MPL-1.1\n  license_file: COPYING\n  summary: Extend the SQLite core to support fully fledged Spatial SQL capabilities\n\nextra:\n  recipe-maintainers:\n    - akrherz\n    - danclewley\n    - gillins\n    - ocefpaf\n    - xylar\n",
+ "raw_meta_yaml": "{% set version = \"5.1.0\" %}\n\npackage:\n  name: libspatialite\n  version: {{ version }}\n\nsource:\n  url: https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-{{ version }}.tar.gz\n  sha256: 43be2dd349daffe016dd1400c5d11285828c22fea35ca5109f21f3ed50605080\n  patches:\n    # Patch Win to fix build path\n    - 0001-win_fix_paths.patch  # [win]\n    # Patch configure for OSX to make sure we get dylib, not so\n    - 0002-osx_fix_lib_ext.patch  # [osx]\n    # Skip some tests that fail\n    - skip_tests.patch\n    # GH71 build issue\n    #- gh71_check_drop_rename.patch\n\nbuild:\n  number: 6\n  skip: true  # [(win and vc<14) or ppc64le]\n  run_exports:\n    # No idea.  Staying with minor version pin.\n    - {{ pin_subpackage('libspatialite', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - autoconf  # [linux]\n    - automake  # [linux]\n    - libtool   # [linux]\n    - pkg-config  # [not win]\n    - make  # [unix]\n    - gnuconfig  # [unix]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - libiconv  # [osx]\n    - sqlite\n    - geos\n    - proj\n    - freexl >=2\n    - zlib\n    - libxml2\n    - librttopo\n  run:\n    - libiconv  # [osx]\n    - sqlite\n    - geos\n    - proj\n    - freexl >=2\n    - zlib\n    - libxml2\n    - librttopo\n\nabout:\n  home: https://www.gaia-gis.it/fossil/libspatialite/index\n  license: MPL-1.1\n  license_file: COPYING\n  summary: Extend the SQLite core to support fully fledged Spatial SQL capabilities\n\nextra:\n  recipe-maintainers:\n    - akrherz\n    - danclewley\n    - gillins\n    - ocefpaf\n    - xylar\n",
  "req": {
   "__set__": true,
   "elements": [
    "autoconf",
    "automake",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "freexl",
    "geos",
@@ -673,6 +682,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "libtool",
@@ -684,6 +694,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "freexl",
     "geos",
@@ -699,6 +710,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "freexl",
     "geos",
@@ -723,6 +735,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "libtool",
@@ -774,7 +787,7 @@
    "summary": "Extend the SQLite core to support fully fledged Spatial SQL capabilities"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "libspatialite"
    ]
@@ -795,7 +808,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "sqlite",
@@ -830,6 +844,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
