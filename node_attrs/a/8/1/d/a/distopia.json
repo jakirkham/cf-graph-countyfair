@@ -26,7 +26,7 @@
    "summary": "Fast distance calculations using explicitly vectorised SIMD"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -45,6 +45,7 @@
    "build": [
     "cxx_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -58,8 +59,7 @@
     "make"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -83,6 +83,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -103,7 +104,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -127,7 +127,7 @@
    "summary": "Fast distance calculations using explicitly vectorised SIMD"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -146,6 +146,7 @@
    "build": [
     "cxx_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -159,8 +160,7 @@
     "make"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -193,7 +193,7 @@
    "summary": "Fast distance calculations using explicitly vectorised SIMD"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -212,6 +212,7 @@
    "build": [
     "cxx_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -225,8 +226,7 @@
     "make"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -250,6 +250,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -270,7 +271,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -296,11 +296,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/distopia.json"
  },
- "raw_meta_yaml": "{% set name = \"distopia\" %}\n{% set version = \"0.2.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/distopia-{{ version }}.tar.gz\n  sha256: a304d0000a397a2cb97f8c82d02655478eec8df20a858e82c2021bfaaf441d7f\n\nbuild:\n  script: \"{{ PYTHON }} -m pip install . -vv\"\n  number: 2\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ compiler('c') }}\n    - cmake\n    - make \n  host:\n    - python\n    - pip\n    - numpy\n    - scikit-build\n    - cython\n    - versioneer >=0.26\n    - make\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - distopia\n  requires:\n    - pip\n  commands:\n    - pip check\n\nabout:\n  home: https://github.com/MDAnalysis/distopia\n  summary: Fast distance calculations using explicitly vectorised SIMD\n  description: |\n    Distopia is a package to rapidly calculate distances under periodic boundary conditions. \n    Explicit SIMD vectorisation allows awesome speedups over autovectorised code.\n    The distopia package consists of consists of the python layer (distopia)\n    and a C++ library (libdistopia) that does the heavy lifting.\n\n  license: MIT\n  license_file:\n    - LICENSE.txt\n\n\n  doc_url: https://www.mdanalysis.org/distopia/\n  dev_url: https://github.com/MDAnalysis/distopia\n\nextra:\n  recipe-maintainers:\n    - IAlibay\n    - hmacdope\n    - richardjgowers\n    - orbeckst\n",
+ "raw_meta_yaml": "{% set name = \"distopia\" %}\n{% set version = \"0.2.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/distopia-{{ version }}.tar.gz\n  sha256: a304d0000a397a2cb97f8c82d02655478eec8df20a858e82c2021bfaaf441d7f\n\nbuild:\n  script: \"{{ PYTHON }} -m pip install . -vv\"\n  number: 3\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - make \n  host:\n    - python\n    - pip\n    - numpy\n    - scikit-build\n    - cython\n    - versioneer >=0.26\n    - make\n  run:\n    - python\n\ntest:\n  imports:\n    - distopia\n  requires:\n    - pip\n  commands:\n    - pip check\n\nabout:\n  home: https://github.com/MDAnalysis/distopia\n  summary: Fast distance calculations using explicitly vectorised SIMD\n  description: |\n    Distopia is a package to rapidly calculate distances under periodic boundary conditions. \n    Explicit SIMD vectorisation allows awesome speedups over autovectorised code.\n    The distopia package consists of consists of the python layer (distopia)\n    and a C++ library (libdistopia) that does the heavy lifting.\n\n  license: MIT\n  license_file:\n    - LICENSE.txt\n\n\n  doc_url: https://www.mdanalysis.org/distopia/\n  dev_url: https://github.com/MDAnalysis/distopia\n\nextra:\n  recipe-maintainers:\n    - IAlibay\n    - hmacdope\n    - richardjgowers\n    - orbeckst\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "cython",
@@ -317,6 +318,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -326,6 +328,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython",
     "make",
@@ -340,8 +343,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "numpy",
     "python"
    ]
   },
@@ -358,6 +361,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -378,7 +382,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -407,7 +410,7 @@
    "summary": "Fast distance calculations using explicitly vectorised SIMD"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -426,6 +429,7 @@
    "build": [
     "cxx_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -439,8 +443,7 @@
     "make"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -464,6 +467,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -484,7 +488,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
