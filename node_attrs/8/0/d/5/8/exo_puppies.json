@@ -26,7 +26,7 @@
    "entry_points": [
     "pup = puppies.__main__:main"
    ],
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -40,7 +40,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "numpy",
@@ -52,8 +53,7 @@
     "matplotlib-base >=1.3.1",
     "mc3 >=3.0.6",
     "python",
-    "scipy >=1.4.1",
-    "numpy"
+    "scipy >=1.4.1"
    ]
   },
   "source": {
@@ -77,7 +77,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -94,7 +95,6 @@
     "astropy",
     "matplotlib-base",
     "mc3",
-    "numpy",
     "python",
     "scipy"
    ]
@@ -119,7 +119,7 @@
    "entry_points": [
     "pup = puppies.__main__:main"
    ],
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -133,7 +133,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "numpy",
@@ -145,8 +146,7 @@
     "matplotlib-base >=1.3.1",
     "mc3 >=3.0.6",
     "python",
-    "scipy >=1.4.1",
-    "numpy"
+    "scipy >=1.4.1"
    ]
   },
   "source": {
@@ -180,7 +180,7 @@
    "entry_points": [
     "pup = puppies.__main__:main"
    ],
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -194,7 +194,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "numpy",
@@ -206,8 +207,7 @@
     "matplotlib-base >=1.3.1",
     "mc3 >=3.0.6",
     "python",
-    "scipy >=1.4.1",
-    "numpy"
+    "scipy >=1.4.1"
    ]
   },
   "source": {
@@ -231,7 +231,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -248,7 +249,6 @@
     "astropy",
     "matplotlib-base",
     "mc3",
-    "numpy",
     "python",
     "scipy"
    ]
@@ -274,12 +274,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/exo_puppies.json"
  },
- "raw_meta_yaml": "{% set name = \"exo_puppies\" %}\n{% set version = \"0.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/exo_puppies-{{ version }}.tar.gz\n  sha256: 672d6cfcb9bc6f6380cc1c4dd6984fe02ee90a4ae026766722583f4f77ea759d\n\nbuild:\n  entry_points:\n    - pup = puppies.__main__:main\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n  skip: true  # [win]\n  skip: true  # [py<36]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n  host:\n    - numpy\n    - pip\n    - python\n  run:\n    - astropy >=3.1\n    - matplotlib-base >=1.3.1\n    - mc3 >=3.0.6\n    - python\n    - scipy >=1.4.1\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - puppies\n  commands:\n    - pip check\n    - pup --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/pcubillos/puppies\n  summary: The Public Photometry Pipeline for Exoplanets\n  license: GPL-2.0\n  license_file: LICENSE\n  dev_url: https://github.com/pcubillos/puppies\n  doc_url: https://puppies.readthedocs.io/en/latest/index.html\n\nextra:\n  recipe-maintainers:\n    - pcubillos\n",
+ "raw_meta_yaml": "{% set name = \"exo_puppies\" %}\n{% set version = \"0.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/exo_puppies-{{ version }}.tar.gz\n  sha256: 672d6cfcb9bc6f6380cc1c4dd6984fe02ee90a4ae026766722583f4f77ea759d\n\nbuild:\n  entry_points:\n    - pup = puppies.__main__:main\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 1\n  skip: true  # [win]\n  skip: true  # [py<36]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - numpy\n    - pip\n    - python\n  run:\n    - astropy >=3.1\n    - matplotlib-base >=1.3.1\n    - mc3 >=3.0.6\n    - python\n    - scipy >=1.4.1\n\ntest:\n  imports:\n    - puppies\n  commands:\n    - pip check\n    - pup --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/pcubillos/puppies\n  summary: The Public Photometry Pipeline for Exoplanets\n  license: GPL-2.0\n  license_file: LICENSE\n  dev_url: https://github.com/pcubillos/puppies\n  doc_url: https://puppies.readthedocs.io/en/latest/index.html\n\nextra:\n  recipe-maintainers:\n    - pcubillos\n",
  "req": {
   "__set__": true,
   "elements": [
    "astropy",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "matplotlib-base",
    "mc3",
    "numpy",
@@ -292,13 +293,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "numpy",
     "pip",
     "python"
@@ -309,9 +312,9 @@
    "elements": [
     "astropy",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "matplotlib-base",
     "mc3",
-    "numpy",
     "python",
     "scipy"
    ]
@@ -328,7 +331,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -345,7 +349,6 @@
     "astropy >=3.1",
     "matplotlib-base >=1.3.1",
     "mc3 >=3.0.6",
-    "numpy",
     "python",
     "scipy >=1.4.1"
    ]
