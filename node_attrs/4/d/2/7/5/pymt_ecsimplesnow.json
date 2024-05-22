@@ -23,7 +23,7 @@
    "summary": "Python package that wraps the ECSimpleSnow model."
   },
   "build": {
-   "number": "6",
+   "number": "7",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   },
   "extra": {
@@ -38,6 +38,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ],
    "host": [
@@ -45,13 +46,12 @@
     "pip",
     "cython",
     "numpy >=1.14",
-    "model_metadata",
+    "model_metadata =0.7.0",
     "bmi-fortran =1.2",
     "ecsimplesnow"
    ],
    "run": [
     "python",
-    "numpy",
     "bmi-fortran =1.2",
     "ecsimplesnow"
    ]
@@ -71,6 +71,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -91,7 +92,6 @@
    "elements": [
     "bmi-fortran",
     "ecsimplesnow",
-    "numpy",
     "python"
    ]
   },
@@ -110,7 +110,7 @@
    "summary": "Python package that wraps the ECSimpleSnow model."
   },
   "build": {
-   "number": "6",
+   "number": "7",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   },
   "extra": {
@@ -125,6 +125,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ],
    "host": [
@@ -132,13 +133,12 @@
     "pip",
     "cython",
     "numpy >=1.14",
-    "model_metadata",
+    "model_metadata =0.7.0",
     "bmi-fortran =1.2",
     "ecsimplesnow"
    ],
    "run": [
     "python",
-    "numpy",
     "bmi-fortran =1.2",
     "ecsimplesnow"
    ]
@@ -164,7 +164,7 @@
    "summary": "Python package that wraps the ECSimpleSnow model."
   },
   "build": {
-   "number": "6",
+   "number": "7",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   },
   "extra": {
@@ -179,6 +179,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ],
    "host": [
@@ -186,13 +187,12 @@
     "pip",
     "cython",
     "numpy >=1.14",
-    "model_metadata",
+    "model_metadata =0.7.0",
     "bmi-fortran =1.2",
     "ecsimplesnow"
    ],
    "run": [
     "python",
-    "numpy",
     "bmi-fortran =1.2",
     "ecsimplesnow"
    ]
@@ -212,6 +212,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -232,7 +233,6 @@
    "elements": [
     "bmi-fortran",
     "ecsimplesnow",
-    "numpy",
     "python"
    ]
   },
@@ -255,12 +255,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pymt_ecsimplesnow.json"
  },
- "raw_meta_yaml": "{% set name = \"pymt_ecsimplesnow\" %}\n{% set version = \"0.2.6\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pymt-lab/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: f62c8112dbacfc2a65c45c63bb3c3cfdd22dee4f943ace47ab64e88cd54eb502\n\nbuild:\n  number: 6\n  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv\n  skip: true  # [win]\n  skip: true  # [unix and py<=35]\n  skip: true  # [py>=312]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('fortran') }}\n  host:\n    - python\n    - pip\n    - cython\n    - numpy >=1.14\n    - model_metadata\n    - bmi-fortran =1.2\n    - ecsimplesnow\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - bmi-fortran =1.2\n    - ecsimplesnow\n\ntest:\n  imports:\n    - pymt_ecsimplesnow\n\nabout:\n  home: https://github.com/pymt-lab/pymt_ecsimplesnow\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Python package that wraps the ECSimpleSnow model.\n  dev_url: https://github.com/pymt-lab/pymt_ecsimplesnow\n\nextra:\n  recipe-maintainers:\n    - mdpiper\n",
+ "raw_meta_yaml": "{% set name = \"pymt_ecsimplesnow\" %}\n{% set version = \"0.2.6\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pymt-lab/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: f62c8112dbacfc2a65c45c63bb3c3cfdd22dee4f943ace47ab64e88cd54eb502\n\nbuild:\n  number: 7\n  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv\n  skip: true  # [win]\n  skip: true  # [unix and py<=35]\n  skip: true  # [py>=312]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('fortran') }}\n  host:\n    - python\n    - pip\n    - cython\n    - numpy >=1.14\n    - model_metadata =0.7.0\n    - bmi-fortran =1.2\n    - ecsimplesnow\n  run:\n    - python\n    - bmi-fortran =1.2\n    - ecsimplesnow\n\ntest:\n  imports:\n    - pymt_ecsimplesnow\n\nabout:\n  home: https://github.com/pymt-lab/pymt_ecsimplesnow\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Python package that wraps the ECSimpleSnow model.\n  dev_url: https://github.com/pymt-lab/pymt_ecsimplesnow\n\nextra:\n  recipe-maintainers:\n    - mdpiper\n",
  "req": {
   "__set__": true,
   "elements": [
    "bmi-fortran",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cython",
    "ecsimplesnow",
    "fortran_compiler_stub",
@@ -275,6 +276,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -283,6 +285,7 @@
    "elements": [
     "bmi-fortran",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "ecsimplesnow",
     "fortran_compiler_stub",
@@ -297,9 +300,9 @@
    "elements": [
     "bmi-fortran",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ecsimplesnow",
     "fortran_compiler_stub",
-    "numpy",
     "python"
    ]
   },
@@ -314,6 +317,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -323,7 +327,7 @@
     "bmi-fortran =1.2",
     "cython",
     "ecsimplesnow",
-    "model_metadata",
+    "model_metadata =0.7.0",
     "numpy >=1.14",
     "pip",
     "python"
@@ -334,7 +338,6 @@
    "elements": [
     "bmi-fortran =1.2",
     "ecsimplesnow",
-    "numpy",
     "python"
    ]
   },
