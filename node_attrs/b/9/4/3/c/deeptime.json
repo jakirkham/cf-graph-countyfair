@@ -29,7 +29,7 @@
    "summary": "Python library for analysis of time series data including dimensionality reduction, clustering, and Markov model estimation."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -47,6 +47,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake >=3.18",
     "make",
@@ -69,7 +70,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy",
     "scikit-learn",
     "threadpoolctl"
@@ -90,6 +90,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "cython",
@@ -117,7 +118,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scikit-learn",
     "scipy",
@@ -141,7 +141,7 @@
    "summary": "Python library for analysis of time series data including dimensionality reduction, clustering, and Markov model estimation."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -159,6 +159,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake >=3.18",
     "make",
@@ -182,7 +183,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy",
     "scikit-learn",
     "threadpoolctl"
@@ -211,7 +211,7 @@
    "summary": "Python library for analysis of time series data including dimensionality reduction, clustering, and Markov model estimation."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -229,6 +229,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake >=3.18",
     "make",
@@ -251,7 +252,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy",
     "scikit-learn",
     "threadpoolctl"
@@ -272,6 +272,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "cython",
@@ -299,7 +300,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scikit-learn",
     "scipy",
@@ -323,7 +323,7 @@
    "summary": "Python library for analysis of time series data including dimensionality reduction, clustering, and Markov model estimation."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -341,6 +341,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake >=3.18",
     "make",
@@ -363,7 +364,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy",
     "scikit-learn",
     "threadpoolctl"
@@ -384,6 +384,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "cython",
@@ -411,7 +412,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scikit-learn",
     "scipy",
@@ -439,11 +439,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/deeptime.json"
  },
- "raw_meta_yaml": "{% set name = \"deeptime\" %}\n{% set version = \"0.4.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/{{ name }}-ml/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 710f936a66aecb8830ed693bbce8af41f34672bf0e77db6bc11cf7d7e1421df0\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [py<36]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake >=3.18\n    - make  # [not win]\n    - versioneer ==0.28\n    - cython\n    - scipy\n\n  host:\n    - python\n    - cython\n    - pip\n    - numpy\n    - scipy\n    - tomli  # [py<311]\n    - pybind11\n    - ninja\n    - cmake >=3.18\n    - scikit-build\n    - versioneer ==0.28\n    - llvm-openmp  # [osx]\n    - libgomp  # [linux]\n\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - scipy\n    - scikit-learn\n    - threadpoolctl\n\ntest:\n  imports:\n    - deeptime\n\nabout:\n  home: https://github.com/deeptime-ml/deeptime\n  license: LGPL-3.0-or-later\n  license_family: GPL\n  license_file: LICENSE.txt\n  summary: Python library for analysis of time series data including dimensionality reduction, clustering, and Markov model estimation.\n\n  description: |\n    Deeptime is a Python library for analysis for time series data. \n    In particular, methods for dimensionality reduction, clustering, \n    and Markov model estimation are implemented.\n  doc_url: https://deeptime-ml.github.io/\n  dev_url: https://github.com/deeptime-ml/deeptime\n\nextra:\n  recipe-maintainers:\n    - clonker\n    - marscher\n    - MaaikeG\n    - thempel\n",
+ "raw_meta_yaml": "{% set name = \"deeptime\" %}\n{% set version = \"0.4.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/{{ name }}-ml/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 710f936a66aecb8830ed693bbce8af41f34672bf0e77db6bc11cf7d7e1421df0\n\nbuild:\n  number: 2\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [py<36]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - cmake >=3.18\n    - make  # [not win]\n    - versioneer ==0.28\n    - cython\n    - scipy\n\n  host:\n    - python\n    - cython\n    - pip\n    - numpy\n    - scipy\n    - tomli  # [py<311]\n    - pybind11\n    - ninja\n    - cmake >=3.18\n    - scikit-build\n    - versioneer ==0.28\n    - llvm-openmp  # [osx]\n    - libgomp  # [linux]\n\n  run:\n    - python\n    - scipy\n    - scikit-learn\n    - threadpoolctl\n\ntest:\n  imports:\n    - deeptime\n\nabout:\n  home: https://github.com/deeptime-ml/deeptime\n  license: LGPL-3.0-or-later\n  license_family: GPL\n  license_file: LICENSE.txt\n  summary: Python library for analysis of time series data including dimensionality reduction, clustering, and Markov model estimation.\n\n  description: |\n    Deeptime is a Python library for analysis for time series data. \n    In particular, methods for dimensionality reduction, clustering, \n    and Markov model estimation are implemented.\n  doc_url: https://deeptime-ml.github.io/\n  dev_url: https://github.com/deeptime-ml/deeptime\n\nextra:\n  recipe-maintainers:\n    - clonker\n    - marscher\n    - MaaikeG\n    - thempel\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "cython",
@@ -467,6 +468,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "cython",
@@ -479,6 +481,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ctng-compilers",
     "cxx_compiler_stub",
@@ -500,9 +503,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
-    "numpy",
     "openmp",
     "python",
     "scikit-learn",
@@ -521,6 +524,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake >=3.18",
     "cxx_compiler_stub",
     "cython",
@@ -549,7 +553,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scikit-learn",
     "scipy",
@@ -578,7 +581,7 @@
    "summary": "Python library for analysis of time series data including dimensionality reduction, clustering, and Markov model estimation."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -596,6 +599,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake >=3.18",
     "versioneer ==0.28",
@@ -616,7 +620,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "scipy",
     "scikit-learn",
     "threadpoolctl"
@@ -637,6 +640,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "cython",
@@ -662,7 +666,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "scikit-learn",
     "scipy",
