@@ -32,9 +32,8 @@
    "summary": "GROMACS is a versatile package to perform molecular dynamics."
   },
   "build": {
-   "number": "103",
-   "skip": true,
-   "string": ""
+   "number": "104",
+   "string": "nompi_dblprec_h1234567_4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -56,9 +55,7 @@
     "pocl",
     "python >=3.7",
     "perl",
-    "libgomp",
-    "cuda_compiler_stub",
-    "coreutils"
+    "libgomp"
    ],
    "host": [
     "ocl-icd",
@@ -68,8 +65,7 @@
    "run": [
     "ocl-icd",
     "fftw",
-    "libhwloc 2.*",
-    "__cuda"
+    "libhwloc 2.*"
    ]
   },
   "source": {
@@ -87,8 +83,6 @@
    "__set__": true,
    "elements": [
     "cmake",
-    "coreutils",
-    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "libgomp",
     "make",
@@ -108,7 +102,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__cuda",
     "fftw",
     "libhwloc",
     "ocl-icd"
@@ -131,9 +124,8 @@
    "summary": "GROMACS is a versatile package to perform molecular dynamics."
   },
   "build": {
-   "number": "103",
-   "skip": true,
-   "string": "nompi_dblprec_h1234567_3"
+   "number": "104",
+   "string": "nompi_dblprec_h1234567_4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -156,8 +148,6 @@
     "python >=3.7",
     "perl",
     "libgomp",
-    "cuda_compiler_stub",
-    "coreutils",
     "llvm-openmp"
    ],
    "host": [
@@ -170,7 +160,6 @@
     "ocl-icd",
     "fftw",
     "libhwloc 2.*",
-    "__cuda",
     "khronos-opencl-icd-loader",
     "ocl_icd_wrapper_apple"
    ]
@@ -198,8 +187,8 @@
    "summary": "GROMACS is a versatile package to perform molecular dynamics."
   },
   "build": {
-   "number": "103",
-   "string": "nompi_dblprec_h1234567_3"
+   "number": "104",
+   "string": "nompi_dblprec_h1234567_4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -292,8 +281,8 @@
    "summary": "GROMACS is a versatile package to perform molecular dynamics."
   },
   "build": {
-   "number": "103",
-   "string": "nompi_dblprec_h1234567_3"
+   "number": "104",
+   "string": "nompi_dblprec_h1234567_4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -389,14 +378,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/gromacs.json"
  },
- "raw_meta_yaml": "# Update from download page, e.g. https://manual.gromacs.org/documentation/2021/download.html\n# For latest release, see\n# https://manual.gromacs.org/documentation/\n{% set name = \"gromacs\" %}\n{% set version = \"2023.4\" %}\n{% set build = 3 %}\n{% set build = build + 100 %}  # [mpi == 'nompi' and double == 'no' and cuda_compiler_version == \"None\"]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://ftp.gromacs.org/gromacs/gromacs-{{ version }}.tar.gz\n  sha256: e5d6c4d9e7ccacfaccb0888619bd21b5ea8911f82b410e68d6db5d40f695f231\n\nbuild:\n  number: {{ build }}\n  string: >-\n    nompi_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [mpi == 'nompi' and double == 'no' and cuda_compiler_version == \"None\"]\n    mpi_{{ mpi }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [mpi != 'nompi' and double == 'no' and cuda_compiler_version == \"None\"]\n    nompi_dblprec_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [mpi == 'nompi' and double == 'yes' and cuda_compiler_version == \"None\"]\n    mpi_{{ mpi }}_dblprec_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [mpi != 'nompi' and double == 'yes' and cuda_compiler_version == \"None\"]\n    nompi_cuda_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [mpi == 'nompi' and double == 'no' and cuda_compiler_version != \"None\"]\n  skip: true  # [win or cuda_compiler_version not in (\"11.2\", \"None\")]\n  skip: true  # [mpi == \"openmpi\" and arm64]\n  skip: true  # [double == \"yes\" and cuda_compiler_version != \"None\"]\n\nrequirements:\n  build:\n    - make\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}  # [cuda_compiler_version != \"None\"]\n    - cmake >=3.18.4\n    - pocl\n    - python >=3.7\n    - perl\n    - libgomp  # [linux]\n    - llvm-openmp  # [osx]\n    - coreutils  # [cuda_compiler_version != \"None\"]\n  host:\n    - ocl-icd  # [linux and cuda_compiler_version == \"None\"]\n    - khronos-opencl-icd-loader  # [osx]\n    - libhwloc 2.*\n    - fftw\n    - {{ mpi }}  # [mpi != 'nompi']\n  run:\n    - ocl-icd  # [linux and cuda_compiler_version == \"None\"]\n    - khronos-opencl-icd-loader  # [osx]\n    - ocl_icd_wrapper_apple  # [osx]\n    - fftw\n    - libhwloc 2.*\n    - {{ mpi }}  # [mpi != 'nompi']\n    - __cuda  # [not osx and cuda_compiler_version != \"None\"]\n\ntest:\n  commands:\n    - gmx -version  # [mpi == 'nompi' and double == 'no']\n    - gmx_d -version  # [mpi == 'nompi' and double == 'yes']\n    - export OMPI_MCA_plm=isolated  # [mpi == \"openmpi\" and linux]\n    - export OMPI_MCA_btl_vader_single_copy_mechanism=none  # [mpi == \"openmpi\" and linux]\n    - export OMPI_MCA_rmaps_base_oversubscribe=yes  # [mpi == \"openmpi\" and linux]\n    - gmx_mpi -version  # [mpi != 'nompi' and double == 'no']\n    - gmx_mpi_d -version  # [mpi != 'nompi' and double == 'yes']:\n\nabout:\n  home: https://www.gromacs.org/\n  license: LGPL-2.1-or-later\n  license_family: LGPL\n  license_file: COPYING\n  summary: GROMACS is a versatile package to perform molecular dynamics.\n  description: |\n    GROMACS is a versatile package to perform molecular dynamics, i.e. \n    simulate the Newtonian equations of motion for systems with hundreds \n    to millions of particles. It is primarily designed for biochemical \n    molecules like proteins, lipids and nucleic acids that have a lot of\n    complicated bonded interactions, but since GROMACS is extremely fast\n    at calculating the nonbonded interactions (that usually dominate\n    simulations) many groups are also using it for research on\n    non-biological systems, e.g. polymers.\n  doc_url: https://manual.gromacs.org/\n  dev_url: https://gitlab.com/gromacs/gromacs\n\nextra:\n  recipe-maintainers:\n    - douglowe\n    - jan-janssen\n    - mabraham\n    - simonbray\n",
+ "raw_meta_yaml": "# Update from download page, e.g. https://manual.gromacs.org/documentation/2021/download.html\n# For latest release, see\n# https://manual.gromacs.org/documentation/\n{% set name = \"gromacs\" %}\n{% set version = \"2023.4\" %}\n{% set build = 4 %}\n{% set build = build + 100 %}  # [mpi == 'nompi' and double == 'no' and cuda_compiler_version == \"None\"]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://ftp.gromacs.org/gromacs/gromacs-{{ version }}.tar.gz\n  sha256: e5d6c4d9e7ccacfaccb0888619bd21b5ea8911f82b410e68d6db5d40f695f231\n\nbuild:\n  number: {{ build }}\n  string: >-\n    nompi_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [mpi == 'nompi' and double == 'no' and cuda_compiler_version == \"None\"]\n    mpi_{{ mpi }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [mpi != 'nompi' and double == 'no' and cuda_compiler_version == \"None\"]\n    nompi_dblprec_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [mpi == 'nompi' and double == 'yes' and cuda_compiler_version == \"None\"]\n    mpi_{{ mpi }}_dblprec_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [mpi != 'nompi' and double == 'yes' and cuda_compiler_version == \"None\"]\n    nompi_cuda_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [mpi == 'nompi' and double == 'no' and cuda_compiler_version != \"None\"]\n  skip: true  # [win or cuda_compiler_version not in (\"11.2\", \"None\")]\n  skip: true  # [mpi == \"openmpi\" and arm64]\n  skip: true  # [double == \"yes\" and cuda_compiler_version != \"None\"]\n\nrequirements:\n  build:\n    - make\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}  # [cuda_compiler_version != \"None\"]\n    - cmake >=3.18.4\n    - pocl\n    - python >=3.7\n    - perl\n    - libgomp  # [linux]\n    - llvm-openmp  # [osx]\n    - coreutils  # [cuda_compiler_version != \"None\"]\n  host:\n    - ocl-icd  # [linux and cuda_compiler_version == \"None\"]\n    - khronos-opencl-icd-loader  # [osx]\n    - libhwloc 2.*\n    - fftw\n    - {{ mpi }}  # [mpi != 'nompi']\n  run:\n    - ocl-icd  # [linux and cuda_compiler_version == \"None\"]\n    - khronos-opencl-icd-loader  # [osx]\n    - ocl_icd_wrapper_apple  # [osx]\n    - fftw\n    - libhwloc 2.*\n    - {{ mpi }}  # [mpi != 'nompi']\n    - __cuda  # [not osx and cuda_compiler_version != \"None\"]\n\ntest:\n  commands:\n    - gmx -version  # [mpi == 'nompi' and double == 'no']\n    - gmx_d -version  # [mpi == 'nompi' and double == 'yes']\n    - export OMPI_MCA_plm=isolated  # [mpi == \"openmpi\" and linux]\n    - export OMPI_MCA_btl_vader_single_copy_mechanism=none  # [mpi == \"openmpi\" and linux]\n    - export OMPI_MCA_rmaps_base_oversubscribe=yes  # [mpi == \"openmpi\" and linux]\n    - gmx_mpi -version  # [mpi != 'nompi' and double == 'no']\n    - gmx_mpi_d -version  # [mpi != 'nompi' and double == 'yes']:\n\nabout:\n  home: https://www.gromacs.org/\n  license: LGPL-2.1-or-later\n  license_family: LGPL\n  license_file: COPYING\n  summary: GROMACS is a versatile package to perform molecular dynamics.\n  description: |\n    GROMACS is a versatile package to perform molecular dynamics, i.e. \n    simulate the Newtonian equations of motion for systems with hundreds \n    to millions of particles. It is primarily designed for biochemical \n    molecules like proteins, lipids and nucleic acids that have a lot of\n    complicated bonded interactions, but since GROMACS is extremely fast\n    at calculating the nonbonded interactions (that usually dominate\n    simulations) many groups are also using it for research on\n    non-biological systems, e.g. polymers.\n  doc_url: https://manual.gromacs.org/\n  dev_url: https://gitlab.com/gromacs/gromacs\n\nextra:\n  recipe-maintainers:\n    - douglowe\n    - jan-janssen\n    - mabraham\n    - simonbray\n",
  "req": {
   "__set__": true,
   "elements": [
-   "__cuda",
    "cmake",
-   "coreutils",
-   "cuda_compiler_stub",
    "cxx_compiler_stub",
    "fftw",
    "khronos-opencl-icd-loader",
@@ -416,8 +402,6 @@
    "__set__": true,
    "elements": [
     "cmake",
-    "coreutils",
-    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "libgomp",
     "llvm-openmp",
@@ -431,7 +415,6 @@
    "__set__": true,
    "elements": [
     "ctng-compilers",
-    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "fftw",
     "khronos-opencl-icd-loader",
@@ -443,9 +426,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__cuda",
     "ctng-compilers",
-    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "fftw",
     "khronos-opencl-icd-loader",
@@ -466,8 +447,6 @@
    "__set__": true,
    "elements": [
     "cmake >=3.18.4",
-    "coreutils",
-    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "libgomp",
     "llvm-openmp",
@@ -489,7 +468,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__cuda",
     "fftw",
     "khronos-opencl-icd-loader",
     "libhwloc 2.*",
