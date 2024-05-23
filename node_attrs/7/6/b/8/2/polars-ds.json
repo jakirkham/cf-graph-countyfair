@@ -44,7 +44,7 @@
   },
   "package": {
    "name": "polars-ds",
-   "version": "0.4.4"
+   "version": "0.4.5"
   },
   "requirements": {
    "build": [
@@ -67,8 +67,8 @@
    ]
   },
   "source": {
-   "sha256": "0746453ba8236a0c24bfc14b278c02814a690202f1116c7fcb9c67434ae49e90",
-   "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.4.tar.gz"
+   "sha256": "fae63d884fa7179454e0b7f533c85c329712a8c34c4430a6430a5598604b523e",
+   "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.5.tar.gz"
   },
   "test": {
    "commands": [
@@ -139,7 +139,7 @@
   },
   "package": {
    "name": "polars-ds",
-   "version": "0.4.4"
+   "version": "0.4.5"
   },
   "requirements": {
    "build": [
@@ -162,8 +162,8 @@
    ]
   },
   "source": {
-   "sha256": "0746453ba8236a0c24bfc14b278c02814a690202f1116c7fcb9c67434ae49e90",
-   "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.4.tar.gz"
+   "sha256": "fae63d884fa7179454e0b7f533c85c329712a8c34c4430a6430a5598604b523e",
+   "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.5.tar.gz"
   },
   "test": {
    "commands": [
@@ -234,7 +234,7 @@
   },
   "package": {
    "name": "polars-ds",
-   "version": "0.4.4"
+   "version": "0.4.5"
   },
   "requirements": {
    "build": [
@@ -258,8 +258,8 @@
    ]
   },
   "source": {
-   "sha256": "0746453ba8236a0c24bfc14b278c02814a690202f1116c7fcb9c67434ae49e90",
-   "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.4.tar.gz"
+   "sha256": "fae63d884fa7179454e0b7f533c85c329712a8c34c4430a6430a5598604b523e",
+   "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.5.tar.gz"
   },
   "test": {
    "commands": [
@@ -296,7 +296,7 @@
   },
   "package": {
    "name": "polars-ds",
-   "version": "0.4.4"
+   "version": "0.4.5"
   },
   "requirements": {
    "build": [
@@ -319,8 +319,8 @@
    ]
   },
   "source": {
-   "sha256": "0746453ba8236a0c24bfc14b278c02814a690202f1116c7fcb9c67434ae49e90",
-   "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.4.tar.gz"
+   "sha256": "fae63d884fa7179454e0b7f533c85c329712a8c34c4430a6430a5598604b523e",
+   "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.5.tar.gz"
   },
   "test": {
    "commands": [
@@ -391,7 +391,7 @@
   },
   "package": {
    "name": "polars-ds",
-   "version": "0.4.4"
+   "version": "0.4.5"
   },
   "requirements": {
    "build": [
@@ -414,8 +414,8 @@
    ]
   },
   "source": {
-   "sha256": "0746453ba8236a0c24bfc14b278c02814a690202f1116c7fcb9c67434ae49e90",
-   "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.4.tar.gz"
+   "sha256": "fae63d884fa7179454e0b7f533c85c329712a8c34c4430a6430a5598604b523e",
+   "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.5.tar.gz"
   },
   "test": {
    "commands": [
@@ -481,7 +481,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/polars-ds.json"
  },
- "raw_meta_yaml": "{% set name = \"polars-ds\" %}\n{% set version = \"0.4.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/polars_ds-{{ version }}.tar.gz\n  sha256: 0746453ba8236a0c24bfc14b278c02814a690202f1116c7fcb9c67434ae49e90\n\nbuild:\n  skip: true  # [py<38]\n  number: 0\n\nrequirements:\n  build:\n    - python                              # [build_platform != target_platform]\n    # there is no cross-python for linux-64 -> win-64\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform and not target_platform == \"win-64\"]\n    - crossenv                            # [build_platform != target_platform]\n    - maturin >=1.2.1,<2                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}  # [win]\n    - {{ stdlib(\"c\") }}      # [not (build_platform != target_platform and target_platform == \"win-64\")]\n    - {{ compiler('rust') }}\n    - make\n    - cargo-bundle-licenses\n    - cargo-feature\n  host:\n    # this is a hacky way to do cross-compilation from linux to windows\n    - python              # [not (build_platform == \"linux-64\" and target_platform == \"win-64\")]\n    - maturin >=1.2,<2.0  # [not (build_platform == \"linux-64\" and target_platform == \"win-64\")]\n    - pip                 # [not (build_platform == \"linux-64\" and target_platform == \"win-64\")]\n  run:\n    - python\n    - polars >=0.20.6\n    - typing-extensions  # [py<=311]\n\ntest:\n  imports:\n    - polars_ds\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/abstractqqq/polars_ds_extension\n  doc_url: https://polars-ds-extension.readthedocs.io/\n  summary: Polars extension for general data science use cases\n  license: MIT\n  license_file:\n    - LICENSE.txt\n    - THIRDPARTY.yml\n\nextra:\n  recipe-maintainers:\n    - thewchan\n    - xhochy\n",
+ "raw_meta_yaml": "{% set name = \"polars-ds\" %}\n{% set version = \"0.4.5\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/polars_ds-{{ version }}.tar.gz\n  sha256: fae63d884fa7179454e0b7f533c85c329712a8c34c4430a6430a5598604b523e\n\nbuild:\n  skip: true  # [py<38]\n  number: 0\n\nrequirements:\n  build:\n    - python                              # [build_platform != target_platform]\n    # there is no cross-python for linux-64 -> win-64\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform and not target_platform == \"win-64\"]\n    - crossenv                            # [build_platform != target_platform]\n    - maturin >=1.2.1,<2                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}  # [win]\n    - {{ stdlib(\"c\") }}      # [not (build_platform != target_platform and target_platform == \"win-64\")]\n    - {{ compiler('rust') }}\n    - make\n    - cargo-bundle-licenses\n    - cargo-feature\n  host:\n    # this is a hacky way to do cross-compilation from linux to windows\n    - python              # [not (build_platform == \"linux-64\" and target_platform == \"win-64\")]\n    - maturin >=1.2,<2.0  # [not (build_platform == \"linux-64\" and target_platform == \"win-64\")]\n    - pip                 # [not (build_platform == \"linux-64\" and target_platform == \"win-64\")]\n  run:\n    - python\n    - polars >=0.20.6\n    - typing-extensions  # [py<=311]\n\ntest:\n  imports:\n    - polars_ds\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/abstractqqq/polars_ds_extension\n  doc_url: https://polars-ds-extension.readthedocs.io/\n  summary: Polars extension for general data science use cases\n  license: MIT\n  license_file:\n    - LICENSE.txt\n    - THIRDPARTY.yml\n\nextra:\n  recipe-maintainers:\n    - thewchan\n    - xhochy\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -578,8 +578,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.4.tar.gz",
- "version": "0.4.4",
+ "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.5.tar.gz",
+ "version": "0.4.5",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/polars-ds.json"
  },
@@ -605,7 +605,7 @@
   },
   "package": {
    "name": "polars-ds",
-   "version": "0.4.4"
+   "version": "0.4.5"
   },
   "requirements": {
    "build": [
@@ -629,8 +629,8 @@
    ]
   },
   "source": {
-   "sha256": "0746453ba8236a0c24bfc14b278c02814a690202f1116c7fcb9c67434ae49e90",
-   "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.4.tar.gz"
+   "sha256": "fae63d884fa7179454e0b7f533c85c329712a8c34c4430a6430a5598604b523e",
+   "url": "https://pypi.io/packages/source/p/polars-ds/polars_ds-0.4.5.tar.gz"
   },
   "test": {
    "commands": [
