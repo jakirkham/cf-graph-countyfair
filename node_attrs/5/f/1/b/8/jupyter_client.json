@@ -53,7 +53,7 @@
   },
   "package": {
    "name": "jupyter_client",
-   "version": "8.6.1"
+   "version": "8.6.2"
   },
   "requirements": {
    "host": [
@@ -72,15 +72,16 @@
    ]
   },
   "source": {
-   "sha256": "e842515e2bab8e19186d89fdfea7abd15e39dd581f94e399f00e2af5a1652d3f",
-   "url": "https://pypi.io/packages/source/j/jupyter_client/jupyter_client-8.6.1.tar.gz"
+   "sha256": "2bda14d55ee5ba58552a8c53ae43d215ad9868853489213f37da060ced54d8df",
+   "url": "https://pypi.io/packages/source/j/jupyter_client/jupyter_client-8.6.2.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
     "jupyter kernelspec list",
     "jupyter run -h",
-    "pytest -vv --cov=jupyter_client --cov=branch --cov-report=term-missing:skip-covered --no-cov-on-fail -k \"not (signal_kernel_subprocesses or start_parallel_thread_kernels or start_parallel_process_kernels or open_tunnel or load_ips or input_request or tcp_cinfo) \""
+    "coverage run --source=jupyter_client --branch -m pytest -vv --tb=long --color=yes -k \"not (signal_kernel_subprocesses or start_parallel_thread_kernels or start_parallel_process_kernels or open_tunnel or load_ips or input_request or tcp_cinfo)\"",
+    "coverage report --show-missing --skip-covered --fail-under=73"
    ],
    "downstreams": [
     "ipywidgets",
@@ -92,10 +93,10 @@
    "requires": [
     "coverage",
     "ipykernel >=6.14",
+    "pandoc",
     "paramiko",
     "pip",
-    "pytest",
-    "pytest-cov",
+    "pytest <8.2",
     "pytest-jupyter-client >=0.4.1",
     "pytest-timeout"
    ],
@@ -134,10 +135,10 @@
    "elements": [
     "coverage",
     "ipykernel",
+    "pandoc",
     "paramiko",
     "pip",
     "pytest",
-    "pytest-cov",
     "pytest-jupyter-client",
     "pytest-timeout"
    ]
@@ -179,7 +180,7 @@
   },
   "package": {
    "name": "jupyter_client",
-   "version": "8.6.1"
+   "version": "8.6.2"
   },
   "requirements": {
    "host": [
@@ -198,15 +199,16 @@
    ]
   },
   "source": {
-   "sha256": "e842515e2bab8e19186d89fdfea7abd15e39dd581f94e399f00e2af5a1652d3f",
-   "url": "https://pypi.io/packages/source/j/jupyter_client/jupyter_client-8.6.1.tar.gz"
+   "sha256": "2bda14d55ee5ba58552a8c53ae43d215ad9868853489213f37da060ced54d8df",
+   "url": "https://pypi.io/packages/source/j/jupyter_client/jupyter_client-8.6.2.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
     "jupyter kernelspec list",
     "jupyter run -h",
-    "pytest -vv --cov=jupyter_client --cov=branch --cov-report=term-missing:skip-covered --no-cov-on-fail -k \"not (signal_kernel_subprocesses or start_parallel_thread_kernels or start_parallel_process_kernels or open_tunnel or load_ips or input_request or tcp_cinfo) \""
+    "coverage run --source=jupyter_client --branch -m pytest -vv --tb=long --color=yes -k \"not (signal_kernel_subprocesses or start_parallel_thread_kernels or start_parallel_process_kernels or open_tunnel or load_ips or input_request or tcp_cinfo)\"",
+    "coverage report --show-missing --skip-covered --fail-under=73"
    ],
    "downstreams": [
     "ipywidgets",
@@ -218,10 +220,10 @@
    "requires": [
     "coverage",
     "ipykernel >=6.14",
+    "pandoc",
     "paramiko",
     "pip",
-    "pytest",
-    "pytest-cov",
+    "pytest <8.2",
     "pytest-jupyter-client >=0.4.1",
     "pytest-timeout"
    ],
@@ -244,7 +246,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/jupyter_client.json"
  },
- "raw_meta_yaml": "{% set version = \"8.6.1\" %}\n{% set pytest_args = \"-k \\\"not (signal_kernel_subprocesses or start_parallel_thread_kernels or start_parallel_process_kernels or open_tunnel or load_ips or input_request or tcp_cinfo) \\\"\" %}\n\npackage:\n  name: jupyter_client\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/j/jupyter_client/jupyter_client-{{ version }}.tar.gz\n  sha256: e842515e2bab8e19186d89fdfea7abd15e39dd581f94e399f00e2af5a1652d3f\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n  entry_points:\n    - jupyter-kernel = jupyter_client.kernelapp:main\n    - jupyter-kernelspec = jupyter_client.kernelspecapp:KernelSpecApp.launch_instance\n    - jupyter-run = jupyter_client.runapp:main\n\nrequirements:\n  host:\n    - pip\n    - hatchling >=1.5\n    - python >=3.8\n  run:\n    - importlib_metadata >=4.8.3\n    - jupyter_core >=4.12,!=5.0.*\n    - python >=3.8\n    - python-dateutil >=2.8.2\n    - pyzmq >=23.0\n    - tornado >=6.2\n    - traitlets >=5.3\n\ntest:\n  source_files:\n    - tests\n  requires:\n    - coverage\n    - ipykernel >=6.14\n    - paramiko\n    - pip\n    - pytest\n    - pytest-cov\n    - pytest-jupyter-client >=0.4.1\n    - pytest-timeout\n  imports:\n    - jupyter_client\n  commands:\n    - pip check\n    - jupyter kernelspec list\n    - jupyter run -h\n    - pytest -vv --cov=jupyter_client --cov=branch --cov-report=term-missing:skip-covered --no-cov-on-fail {{ pytest_args }}\n  downstreams:\n    - ipywidgets\n    - jupyter_server\n\nabout:\n  home: https://jupyter.org\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: jupyter_client contains the reference implementation of the Jupyter protocol.\n  dev_url: https://github.com/jupyter/jupyter_client\n  doc_url: https://jupyter-client.readthedocs.io/en/stable/\n  doc_source_url: https://github.com/jupyter/jupyter_client/tree/master/docs\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - minrk\n    - pelson\n    - ocefpaf\n    - carreau\n    - SylvainCorlay\n    - bollwyvl\n    - davidbrochart\n    - blink1073\n",
+ "raw_meta_yaml": "{% set version = \"8.6.2\" %}\n\npackage:\n  name: jupyter_client\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/j/jupyter_client/jupyter_client-{{ version }}.tar.gz\n  sha256: 2bda14d55ee5ba58552a8c53ae43d215ad9868853489213f37da060ced54d8df\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n  entry_points:\n    - jupyter-kernel = jupyter_client.kernelapp:main\n    - jupyter-kernelspec = jupyter_client.kernelspecapp:KernelSpecApp.launch_instance\n    - jupyter-run = jupyter_client.runapp:main\n\nrequirements:\n  host:\n    - pip\n    - hatchling >=1.5\n    - python >=3.8\n  run:\n    - importlib_metadata >=4.8.3\n    - jupyter_core >=4.12,!=5.0.*\n    - python >=3.8\n    - python-dateutil >=2.8.2\n    - pyzmq >=23.0\n    - tornado >=6.2\n    - traitlets >=5.3\n\ntest:\n  source_files:\n    - tests\n  requires:\n    - coverage\n    - ipykernel >=6.14\n    - pandoc\n    - paramiko\n    - pip\n    - pytest <8.2\n    - pytest-jupyter-client >=0.4.1\n    - pytest-timeout\n  imports:\n    - jupyter_client\n  commands:\n    - pip check\n    - jupyter kernelspec list\n    - jupyter run -h\n    - coverage run --source=jupyter_client --branch -m pytest -vv --tb=long --color=yes -k \"not (signal_kernel_subprocesses or start_parallel_thread_kernels or start_parallel_process_kernels or open_tunnel or load_ips or input_request or tcp_cinfo)\"\n    - coverage report --show-missing --skip-covered --fail-under=73\n  downstreams:\n    - ipywidgets\n    - jupyter_server\n\nabout:\n  home: https://jupyter.org\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: jupyter_client contains the reference implementation of the Jupyter protocol.\n  dev_url: https://github.com/jupyter/jupyter_client\n  doc_url: https://jupyter-client.readthedocs.io/en/stable/\n  doc_source_url: https://github.com/jupyter/jupyter_client/tree/master/docs\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - minrk\n    - pelson\n    - ocefpaf\n    - carreau\n    - SylvainCorlay\n    - bollwyvl\n    - davidbrochart\n    - blink1073\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -289,10 +291,10 @@
    "elements": [
     "coverage",
     "ipykernel",
+    "pandoc",
     "paramiko",
     "pip",
     "pytest",
-    "pytest-cov",
     "pytest-jupyter-client",
     "pytest-timeout"
    ]
@@ -329,17 +331,17 @@
    "elements": [
     "coverage",
     "ipykernel >=6.14",
+    "pandoc",
     "paramiko",
     "pip",
-    "pytest",
-    "pytest-cov",
+    "pytest <8.2",
     "pytest-jupyter-client >=0.4.1",
     "pytest-timeout"
    ]
   }
  },
- "url": "https://pypi.io/packages/source/j/jupyter_client/jupyter_client-8.6.1.tar.gz",
- "version": "8.6.1",
+ "url": "https://pypi.io/packages/source/j/jupyter_client/jupyter_client-8.6.2.tar.gz",
+ "version": "8.6.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/jupyter_client.json"
  }
