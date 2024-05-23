@@ -34,6 +34,7 @@
   },
   "extra": {
    "recipe-maintainers": [
+    "isuruf",
     "LehMaxence",
     "ihnorton",
     "Shelnutt2"
@@ -48,19 +49,21 @@
     "make",
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "automake",
     "libtool",
     "binutils"
    ],
    "host": [
     "zlib",
-    "openssl 1.1*"
-   ],
-   "run": []
+    "openssl"
+   ]
   },
   "source": {
-   "fn": "v1.0.2.tar.gz",
    "md5": "4dd1aaacff63781087e89097f9b02542",
+   "patches": [
+    "fix-msvc.diff"
+   ],
    "url": "https://github.com/capnproto/capnproto/archive/v1.0.2.tar.gz"
   },
   "test": {
@@ -90,6 +93,7 @@
     "automake",
     "binutils",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -129,6 +133,7 @@
   },
   "extra": {
    "recipe-maintainers": [
+    "isuruf",
     "LehMaxence",
     "ihnorton",
     "Shelnutt2"
@@ -143,6 +148,7 @@
     "make",
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "automake",
     "libtool",
     "binutils",
@@ -150,16 +156,14 @@
    ],
    "host": [
     "zlib",
-    "openssl 1.1*"
-   ],
-   "run": [
-    "__osx >=10.12",
-    "__osx >=11.0"
+    "openssl"
    ]
   },
   "source": {
-   "fn": "v1.0.2.tar.gz",
    "md5": "4dd1aaacff63781087e89097f9b02542",
+   "patches": [
+    "fix-msvc.diff"
+   ],
    "url": "https://github.com/capnproto/capnproto/archive/v1.0.2.tar.gz"
   },
   "test": {
@@ -206,6 +210,7 @@
   },
   "extra": {
    "recipe-maintainers": [
+    "isuruf",
     "LehMaxence",
     "ihnorton",
     "Shelnutt2"
@@ -220,21 +225,21 @@
     "make",
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "automake",
     "libtool",
     "binutils"
    ],
    "host": [
     "zlib",
-    "openssl 1.1*"
-   ],
-   "run": [
-    "__osx >=10.12"
+    "openssl"
    ]
   },
   "source": {
-   "fn": "v1.0.2.tar.gz",
    "md5": "4dd1aaacff63781087e89097f9b02542",
+   "patches": [
+    "fix-msvc.diff"
+   ],
    "url": "https://github.com/capnproto/capnproto/archive/v1.0.2.tar.gz"
   },
   "test": {
@@ -264,6 +269,7 @@
     "automake",
     "binutils",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -278,9 +284,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "__osx"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -305,6 +309,7 @@
   },
   "extra": {
    "recipe-maintainers": [
+    "isuruf",
     "LehMaxence",
     "ihnorton",
     "Shelnutt2"
@@ -319,21 +324,21 @@
     "make",
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "automake",
     "libtool",
     "binutils"
    ],
    "host": [
     "zlib",
-    "openssl 1.1*"
-   ],
-   "run": [
-    "__osx >=11.0"
+    "openssl"
    ]
   },
   "source": {
-   "fn": "v1.0.2.tar.gz",
    "md5": "4dd1aaacff63781087e89097f9b02542",
+   "patches": [
+    "fix-msvc.diff"
+   ],
    "url": "https://github.com/capnproto/capnproto/archive/v1.0.2.tar.gz"
   },
   "test": {
@@ -357,6 +362,7 @@
     "automake",
     "binutils",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -371,9 +377,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "__osx"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -396,14 +400,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/capnproto.json"
  },
- "raw_meta_yaml": "{% set version = \"1.0.2\" %}\n\npackage:\n  name: capnproto\n  version: {{ version }}\n\nsource:\n  fn: v{{ version }}.tar.gz\n  url: https://github.com/capnproto/capnproto/archive/v{{ version }}.tar.gz\n  md5: 4dd1aaacff63781087e89097f9b02542\n\nbuild:\n  number: 1\n  run_exports:\n    # soname changes with every release\n    # https://abi-laboratory.pro/index.php?view=timeline&l=capnproto\n    - {{ pin_subpackage('capnproto', max_pin='x.x.x') }}\n  ignore_prefix_files:\n    - bin/capnp\n\nrequirements:\n  build:\n    - cmake  # [win]\n    - make  # [not win]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - automake   # [unix]\n    - libtool    # [unix]\n    - binutils    # [unix]\n  host:\n    - zlib\n    - openssl 1.1*\n  run:\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx]\n\ntest:\n  source_files:\n    - c++/samples\n  commands:\n    - capnp --help  # [not (osx and arm64)]\n    - capnpc --help  # [not (osx and arm64)]\n    - capnpc-c++ --help  # [not (osx and arm64)]\n    - capnpc-capnp --help  # [not (osx and arm64)]\n\n    - capnpc -I\"$PREFIX/include\" -oc++ c++/samples/addressbook.capnp  # [unix and (not (osx and arm64))]\n    - test -f c++/samples/addressbook.capnp.c++  # [unix and (not (osx and arm64))]\n\n    - capnpc -I\"%LIBRARY_INC%\" -oc++ c++/samples/addressbook.capnp  # [win]\n    - if not exist c++/samples/addressbook.capnp.c++ exit 1  # [win]\n\n    - test -d \"$PREFIX/include/capnp\"  # [unix]\n    - if not exist %LIBRARY_INC%\\\\capnp exit 1  # [win]\n\n    - test -f \"$PREFIX/lib/libcapnp${SHLIB_EXT}\"  # [unix]\n    - test -f \"$PREFIX/lib/libcapnpc${SHLIB_EXT}\"  # [unix]\n    - test -f \"$PREFIX/lib/libcapnp-rpc${SHLIB_EXT}\"  # [unix]\n    - test -f \"$PREFIX/lib/libkj${SHLIB_EXT}\"  # [unix]\n    - test -f \"$PREFIX/lib/libkj-async${SHLIB_EXT}\"  # [unix]\n    - if not exist %LIBRARY_LIB%\\\\capnp.lib exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\kj.lib exit 1  # [win]\n\nabout:\n  home: http://capnproto.org\n  license_file: LICENSE\n  license: MIT\n  summary: An insanely fast data interchange format and capability-based RPC system.\n\nextra:\n  recipe-maintainers:\n    - LehMaxence\n    - ihnorton\n    - Shelnutt2\n",
+ "raw_meta_yaml": "{% set version = \"1.0.2\" %}\n\npackage:\n  name: capnproto\n  version: {{ version }}\n\nsource:\n  url: https://github.com/capnproto/capnproto/archive/v{{ version }}.tar.gz\n  md5: 4dd1aaacff63781087e89097f9b02542\n  patches:\n    # MSVC miscompiles async.c++ file when /O2 is given\n    - fix-msvc.diff\n\nbuild:\n  number: 1\n  run_exports:\n    # soname changes with every release\n    # https://abi-laboratory.pro/index.php?view=timeline&l=capnproto\n    - {{ pin_subpackage('capnproto', max_pin='x.x.x') }}\n  ignore_prefix_files:\n    - bin/capnp\n\nrequirements:\n  build:\n    - cmake  # [win]\n    - make  # [not win]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - automake   # [unix]\n    - libtool    # [unix]\n    - binutils    # [unix]\n  host:\n    - zlib\n    - openssl\n\ntest:\n  source_files:\n    - c++/samples\n  commands:\n    - capnp --help  # [not (osx and arm64)]\n    - capnpc --help  # [not (osx and arm64)]\n    - capnpc-c++ --help  # [not (osx and arm64)]\n    - capnpc-capnp --help  # [not (osx and arm64)]\n\n    - capnpc -I\"$PREFIX/include\" -oc++ c++/samples/addressbook.capnp  # [unix and (not (osx and arm64))]\n    - test -f c++/samples/addressbook.capnp.c++  # [unix and (not (osx and arm64))]\n\n    - capnpc -I\"%LIBRARY_INC%\" -oc++ c++/samples/addressbook.capnp  # [win]\n    - if not exist c++/samples/addressbook.capnp.c++ exit 1  # [win]\n\n    - test -d \"$PREFIX/include/capnp\"  # [unix]\n    - if not exist %LIBRARY_INC%\\\\capnp exit 1  # [win]\n\n    - test -f \"$PREFIX/lib/libcapnp${SHLIB_EXT}\"  # [unix]\n    - test -f \"$PREFIX/lib/libcapnpc${SHLIB_EXT}\"  # [unix]\n    - test -f \"$PREFIX/lib/libcapnp-rpc${SHLIB_EXT}\"  # [unix]\n    - test -f \"$PREFIX/lib/libkj${SHLIB_EXT}\"  # [unix]\n    - test -f \"$PREFIX/lib/libkj-async${SHLIB_EXT}\"  # [unix]\n    - if not exist %LIBRARY_LIB%\\\\capnp.lib exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\kj.lib exit 1  # [win]\n\nabout:\n  home: http://capnproto.org\n  license_file: LICENSE\n  license: MIT\n  summary: An insanely fast data interchange format and capability-based RPC system.\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - LehMaxence\n    - ihnorton\n    - Shelnutt2\n",
  "req": {
   "__set__": true,
   "elements": [
-   "__osx",
    "automake",
    "binutils",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "libtool",
@@ -419,6 +423,7 @@
     "automake",
     "binutils",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libtool",
@@ -429,6 +434,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "openssl",
     "zlib"
@@ -437,8 +443,8 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -455,6 +461,7 @@
     "automake",
     "binutils",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libtool",
@@ -464,16 +471,13 @@
   "host": {
    "__set__": true,
    "elements": [
-    "openssl 1.1*",
+    "openssl",
     "zlib"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "__osx >=10.12",
-    "__osx >=11.0"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -503,6 +507,7 @@
   },
   "extra": {
    "recipe-maintainers": [
+    "isuruf",
     "LehMaxence",
     "ihnorton",
     "Shelnutt2"
@@ -516,17 +521,19 @@
    "build": [
     "cmake",
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "zlib",
-    "openssl 1.1*"
-   ],
-   "run": []
+    "openssl"
+   ]
   },
   "source": {
-   "fn": "v1.0.2.tar.gz",
    "md5": "4dd1aaacff63781087e89097f9b02542",
+   "patches": [
+    "fix-msvc.diff"
+   ],
    "url": "https://github.com/capnproto/capnproto/archive/v1.0.2.tar.gz"
   },
   "test": {
@@ -551,6 +558,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
