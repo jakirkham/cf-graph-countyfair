@@ -23,7 +23,7 @@
    "summary": "Anti-Grain Geometry 2.4 for Python with Cython"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv --disable-pip-version-check"
   },
   "extra": {
@@ -40,6 +40,7 @@
    "build": [
     "pkg-config",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -53,8 +54,7 @@
     "zlib"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -73,6 +73,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -93,7 +94,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -112,7 +112,7 @@
    "summary": "Anti-Grain Geometry 2.4 for Python with Cython"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv --disable-pip-version-check"
   },
   "extra": {
@@ -129,6 +129,7 @@
    "build": [
     "pkg-config",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -142,8 +143,7 @@
     "zlib"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -168,7 +168,7 @@
    "summary": "Anti-Grain Geometry 2.4 for Python with Cython"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv --disable-pip-version-check"
   },
   "extra": {
@@ -185,6 +185,7 @@
    "build": [
     "pkg-config",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -198,8 +199,7 @@
     "zlib"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -218,6 +218,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -238,7 +239,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -262,11 +262,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/celiagg.json"
  },
- "raw_meta_yaml": "{% set version = \"2.1.4\" %}\n\npackage:\n  name: celiagg\n  version: {{ version }}\n\nsource:\n  fn: celiagg-{{ version }}.tar.gz\n  url: https://github.com/celiagg/celiagg/archive/{{ version }}.tar.gz\n  sha256: 4d8ca9144e84db644f72cec2c166615a1acc54385f9888c40527d1c53c42cc75\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv --disable-pip-version-check\n\nrequirements:\n  build:\n    - pkg-config  # [not win]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - make  # [unix]\n  host:\n    - python\n    - pip\n    - setuptools\n    - numpy\n    - cython\n    - freetype  # [not win]\n    # Needs zlib development files to find freetype with pkg-config\n    - zlib      # [not win]\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - celiagg\n\nabout:\n  home: https://github.com/celiagg/celiagg\n  license: MIT\n  license_file: LICENSE\n  summary: Anti-Grain Geometry 2.4 for Python with Cython\n\n  description: |\n    celiagg is a Cython wrapper for the popular Anti-Grain Geometry 2D vector\n    graphics library.\n  dev_url: https://github.com/celiagg/celiagg\n\nextra:\n  recipe-maintainers:\n    - jwiggins\n    - hmaarrfk\n",
+ "raw_meta_yaml": "{% set version = \"2.1.4\" %}\n\npackage:\n  name: celiagg\n  version: {{ version }}\n\nsource:\n  fn: celiagg-{{ version }}.tar.gz\n  url: https://github.com/celiagg/celiagg/archive/{{ version }}.tar.gz\n  sha256: 4d8ca9144e84db644f72cec2c166615a1acc54385f9888c40527d1c53c42cc75\n\nbuild:\n  number: 2\n  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv --disable-pip-version-check\n\nrequirements:\n  build:\n    - pkg-config  # [not win]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - make  # [unix]\n  host:\n    - python\n    - pip\n    - setuptools\n    - numpy\n    - cython\n    - freetype  # [not win]\n    # Needs zlib development files to find freetype with pkg-config\n    - zlib      # [not win]\n  run:\n    - python\n\ntest:\n  imports:\n    - celiagg\n\nabout:\n  home: https://github.com/celiagg/celiagg\n  license: MIT\n  license_file: LICENSE\n  summary: Anti-Grain Geometry 2.4 for Python with Cython\n\n  description: |\n    celiagg is a Cython wrapper for the popular Anti-Grain Geometry 2D vector\n    graphics library.\n  dev_url: https://github.com/celiagg/celiagg\n\nextra:\n  recipe-maintainers:\n    - jwiggins\n    - hmaarrfk\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "cython",
    "freetype",
@@ -284,6 +285,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -293,6 +295,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython",
     "freetype",
@@ -307,8 +310,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "numpy",
     "python"
    ]
   },
@@ -323,6 +326,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -343,7 +347,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -367,7 +370,7 @@
    "summary": "Anti-Grain Geometry 2.4 for Python with Cython"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv --disable-pip-version-check"
   },
   "extra": {
@@ -383,6 +386,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -393,8 +397,7 @@
     "cython"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -413,6 +416,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -429,7 +433,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
