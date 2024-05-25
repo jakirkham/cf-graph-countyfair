@@ -36,11 +36,12 @@
   },
   "package": {
    "name": "openxr-sdk",
-   "version": "1.1.36"
+   "version": "1.1.37"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "cmake",
@@ -53,8 +54,8 @@
    ]
   },
   "source": {
-   "sha256": "3e16213fb73ba2c3f78634e04b0904c15aef1cc280b26f36f29edbb5cd6d23c4",
-   "url": "https://github.com/KhronosGroup/OpenXR-SDK/archive/release-1.1.36.tar.gz"
+   "sha256": "9992a28866b8bbef62ea1fd5f467880c144534719a965012fc3127b7ea57505c",
+   "url": "https://github.com/KhronosGroup/OpenXR-SDK/archive/release-1.1.37.tar.gz"
   },
   "test": {
    "commands": [
@@ -69,6 +70,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
@@ -112,11 +114,12 @@
   },
   "package": {
    "name": "openxr-sdk",
-   "version": "1.1.36"
+   "version": "1.1.37"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "cmake",
@@ -129,8 +132,8 @@
    ]
   },
   "source": {
-   "sha256": "3e16213fb73ba2c3f78634e04b0904c15aef1cc280b26f36f29edbb5cd6d23c4",
-   "url": "https://github.com/KhronosGroup/OpenXR-SDK/archive/release-1.1.36.tar.gz"
+   "sha256": "9992a28866b8bbef62ea1fd5f467880c144534719a965012fc3127b7ea57505c",
+   "url": "https://github.com/KhronosGroup/OpenXR-SDK/archive/release-1.1.37.tar.gz"
   },
   "test": {
    "commands": [
@@ -159,11 +162,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/openxr-sdk.json"
  },
- "raw_meta_yaml": "{% set name = \"openxr-sdk\" %}\n{% set version = \"1.1.36\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/KhronosGroup/OpenXR-SDK/archive/release-{{ version }}.tar.gz\n  sha256: 3e16213fb73ba2c3f78634e04b0904c15aef1cc280b26f36f29edbb5cd6d23c4\n\nbuild:\n  number: 0\n  skip: true  # [osx]\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - make                               # [not win]\n    - cmake\n    - pkg-config\n    - {{ cdt('mesa-libgl-devel') }}  # [linux]\n    - {{ cdt('mesa-dri-drivers') }}  # [linux]\n    - {{ cdt('libselinux') }}  # [linux]\n    - {{ cdt('libxdamage') }}  # [linux]\n    - {{ cdt('libxxf86vm') }}  # [linux]\n    - {{ cdt('libxext') }}     # [linux]\n  host:\n    - jsoncpp\n    - xorg-libxfixes  # [linux]\n\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/openxr/openxr.h  # [not win]\n    - test -f ${PREFIX}/lib/libopenxr_loader.so  # [linux]\n    - test -f ${PREFIX}/lib/cmake/openxr/OpenXRConfig.cmake  # [not win]\n    - if exist %PREFIX%\\\\Library\\\\include\\\\openxr\\\\openxr.h (exit 0) else (exit 1)  # [win]\n    - if exist $PREFIX$\\\\Library\\\\lib\\\\openxr_loader.lib (exit 0) else (exit 1)  # [win]\n    - if exist $PREFIX$\\\\Library\\\\bin\\\\openxr_loader.dll (exit 0) else (exit 1)  # [win]\n    - if exist %PREFIX%\\\\Library\\\\cmake\\\\OpenXRConfig.cmake (exit 0) else (exit 1)  # [win]\n\nabout:\n  home: https://github.com/KhronosGroup/OpenXR-SDK\n  license: Apache-2.0\n  license_file: LICENSE\n  summary: OpenXR headers and loader.\n\nextra:\n  recipe-maintainers:\n    - traversaro\n",
+ "raw_meta_yaml": "{% set name = \"openxr-sdk\" %}\n{% set version = \"1.1.37\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/KhronosGroup/OpenXR-SDK/archive/release-{{ version }}.tar.gz\n  sha256: 9992a28866b8bbef62ea1fd5f467880c144534719a965012fc3127b7ea57505c\n\nbuild:\n  number: 0\n  skip: true  # [osx]\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - make                               # [not win]\n    - cmake\n    - pkg-config\n    - {{ cdt('mesa-libgl-devel') }}  # [linux]\n    - {{ cdt('mesa-dri-drivers') }}  # [linux]\n    - {{ cdt('libselinux') }}  # [linux]\n    - {{ cdt('libxdamage') }}  # [linux]\n    - {{ cdt('libxxf86vm') }}  # [linux]\n    - {{ cdt('libxext') }}     # [linux]\n  host:\n    - jsoncpp\n    - xorg-libxfixes  # [linux]\n\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/openxr/openxr.h  # [not win]\n    - test -f ${PREFIX}/lib/libopenxr_loader.so  # [linux]\n    - test -f ${PREFIX}/lib/cmake/openxr/OpenXRConfig.cmake  # [not win]\n    - if exist %PREFIX%\\\\Library\\\\include\\\\openxr\\\\openxr.h (exit 0) else (exit 1)  # [win]\n    - if exist $PREFIX$\\\\Library\\\\lib\\\\openxr_loader.lib (exit 0) else (exit 1)  # [win]\n    - if exist $PREFIX$\\\\Library\\\\bin\\\\openxr_loader.dll (exit 0) else (exit 1)  # [win]\n    - if exist %PREFIX%\\\\Library\\\\cmake\\\\OpenXRConfig.cmake (exit 0) else (exit 1)  # [win]\n\nabout:\n  home: https://github.com/KhronosGroup/OpenXR-SDK\n  license: Apache-2.0\n  license_file: LICENSE\n  summary: OpenXR headers and loader.\n\nextra:\n  recipe-maintainers:\n    - traversaro\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cdt_stub",
    "cmake",
    "cxx_compiler_stub",
@@ -178,6 +182,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
@@ -189,6 +194,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "jsoncpp",
     "xorg-libxfixes"
@@ -198,6 +204,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -212,6 +219,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
@@ -235,8 +243,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/KhronosGroup/OpenXR-SDK/archive/release-1.1.36.tar.gz",
- "version": "1.1.36",
+ "url": "https://github.com/KhronosGroup/OpenXR-SDK/archive/release-1.1.37.tar.gz",
+ "version": "1.1.37",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/openxr-sdk.json"
  },
@@ -260,11 +268,12 @@
   },
   "package": {
    "name": "openxr-sdk",
-   "version": "1.1.36"
+   "version": "1.1.37"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "pkg-config"
@@ -274,8 +283,8 @@
    ]
   },
   "source": {
-   "sha256": "3e16213fb73ba2c3f78634e04b0904c15aef1cc280b26f36f29edbb5cd6d23c4",
-   "url": "https://github.com/KhronosGroup/OpenXR-SDK/archive/release-1.1.36.tar.gz"
+   "sha256": "9992a28866b8bbef62ea1fd5f467880c144534719a965012fc3127b7ea57505c",
+   "url": "https://github.com/KhronosGroup/OpenXR-SDK/archive/release-1.1.37.tar.gz"
   },
   "test": {
    "commands": [
@@ -291,6 +300,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "pkg-config"
