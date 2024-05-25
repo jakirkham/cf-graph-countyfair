@@ -37,12 +37,12 @@
    "summary": "GPU-Enabled, Zero-Copy AMReX Python Bindings including AI/ML"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "pyamrex * mpi_openmpi_*",
     "pyamrex 24.05"
    ],
-   "string": "mpi_openmpi_pyh1234567_0"
+   "string": "mpi_openmpi_pyh1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -162,12 +162,12 @@
    "summary": "GPU-Enabled, Zero-Copy AMReX Python Bindings including AI/ML"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "pyamrex * mpi_openmpi_*",
     "pyamrex 24.05"
    ],
-   "string": "mpi_openmpi_pyh1234567_0"
+   "string": "mpi_openmpi_pyh1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -287,12 +287,12 @@
    "summary": "GPU-Enabled, Zero-Copy AMReX Python Bindings including AI/ML"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "pyamrex * mpi_openmpi_*",
     "pyamrex 24.05"
    ],
-   "string": "mpi_openmpi_pyh1234567_0"
+   "string": "mpi_openmpi_pyh1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -412,13 +412,13 @@
    "summary": "GPU-Enabled, Zero-Copy AMReX Python Bindings including AI/ML"
   },
   "build": {
-   "number": "100",
+   "number": "101",
    "run_exports": [
     "pyamrex * mpi_openmpi_*",
     "pyamrex 24.05",
     "pyamrex * nompi_*"
    ],
-   "string": "nompi_pyh1234567_100"
+   "string": "nompi_pyh1234567_101"
   },
   "extra": {
    "recipe-maintainers": [
@@ -502,12 +502,12 @@
    "summary": "GPU-Enabled, Zero-Copy AMReX Python Bindings including AI/ML"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "pyamrex * mpi_openmpi_*",
     "pyamrex 24.05"
    ],
-   "string": "mpi_openmpi_pyh1234567_0"
+   "string": "mpi_openmpi_pyh1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -629,12 +629,12 @@
    "summary": "GPU-Enabled, Zero-Copy AMReX Python Bindings including AI/ML"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "pyamrex * mpi_openmpi_*",
     "pyamrex 24.05"
    ],
-   "string": "mpi_openmpi_pyh1234567_0"
+   "string": "mpi_openmpi_pyh1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -762,7 +762,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyamrex.json"
  },
- "raw_meta_yaml": "{% set name = \"pyamrex\" %}\n{% set version = \"24.05\" %}\n{% set build = 0 %}\n\n# ensure mpi is defined (needed for conda-smithy recipe-lint)\n{% set mpi = mpi or 'nompi' %}\n\n# prioritize nompi variant via build number\n{% if mpi == 'nompi' %}\n{% set build = build + 100 %}\n{% endif %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/AMReX-Codes/pyamrex/archive/refs/tags/{{ version }}.tar.gz\n  sha256: 557aef0a0bfe76cbf6e91d6be3d01c16c75f717a6400b83358beea7cbea2b42c\n  patches:\n    # Build: MPMD w/ MPI Only\n    - 316.patch\n\nbuild:\n  number: {{ build }}\n\n  skip: true  # [python_impl == 'pypy']\n\n  # add build string so packages can depend on\n  # mpi or nompi variants\n  # dependencies:\n  # `pkg * mpi_mpich_*` for mpich\n  # `pkg * mpi_*` for any mpi\n  # `pkg * nompi_*` for no mpi\n  {% if mpi == 'nompi' %}\n  {% set mpi_prefix = \"nompi\" %}\n  {% else %}\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  {% endif %}\n  string: {{ mpi_prefix }}_py{{ py }}h{{ PKG_HASH }}_{{ build }}\n\n  run_exports:\n    # strict runtime dependency on build-time MPI flavor\n    - {{ name }} * {{ mpi_prefix }}_*\n    # Releases are not (yet) compatible:\n    # There is no ABI compatibility check or guarantee between AMReX releases.\n    - pyamrex {{ version }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - clang         # [win]\n    - cmake\n    - lld           # [win]\n    - make          # [unix]\n    - ninja         # [win]\n    - libgomp       # [linux]\n    - llvm-openmp   # [osx or win]\n    - pkgconfig\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n    # In OpenMPI, the compiler wrappers are binaries and the wrappers in build\n    # can use host libraries by adding OPAL_PREFIX and in mpich, compiler\n    # wrappers are bash scripts and wrappers in build can't use host libraries.\n    - openmpi  # [mpi == \"openmpi\" and (build_platform != target_platform)]\n  host:\n    - amrex >={{ version }} {{ mpi_prefix }}_*\n    - {{ mpi }}  # [mpi != 'nompi']\n    - numpy\n    - pip\n    - pybind11\n    - pybind11-abi\n    - python\n    - setuptools\n    - wheel\n  run:\n    - amrex >={{ version }} {{ mpi_prefix }}_*\n    - {{ mpi }}  # [mpi != 'nompi']\n    - mpi4py     # [mpi != 'nompi']\n    - {{ pin_compatible('numpy') }}\n    - python\n    - libcxx  # [osx]\n\ntest:\n  requires:\n    - pytest\n  imports:\n    - amrex\n  source_files:\n    - tests/*\n\nabout:\n  home: https://pyamrex.readthedocs.io\n  license: BSD-3-Clause-LBNL\n  license_family: BSD\n  license_file: LICENSE\n  summary: GPU-Enabled, Zero-Copy AMReX Python Bindings including AI/ML\n\n  description: |\n    The Python binding pyAMReX bridges the compute in AMReX block-structured\n    codes and data science: it provides zero-copy application GPU data access\n    for AI/ML, in situ analysis, application coupling and enables rapid,\n    massively parallel prototyping. pyAMReX enhances the Block-Structured AMR\n    Software Framework AMReX and its applications.\n    AMReX is a software framework containing all the functionality to write\n    massively parallel, block-structured adaptive mesh refinement (AMR)\n    applications.\n\n  doc_url: https://pyamrex.readthedocs.io\n  dev_url: https://github.com/AMReX-Codes/pyamrex\n\nextra:\n  recipe-maintainers:\n    - atmyers\n    - ax3l\n    - dpgrote\n    - RemiLehe\n    - roelof-groenewald\n    - WeiqunZhang\n",
+ "raw_meta_yaml": "{% set name = \"pyamrex\" %}\n{% set version = \"24.05\" %}\n{% set build = 1 %}\n\n# ensure mpi is defined (needed for conda-smithy recipe-lint)\n{% set mpi = mpi or 'nompi' %}\n\n# prioritize nompi variant via build number\n{% if mpi == 'nompi' %}\n{% set build = build + 100 %}\n{% endif %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/AMReX-Codes/pyamrex/archive/refs/tags/{{ version }}.tar.gz\n  sha256: 557aef0a0bfe76cbf6e91d6be3d01c16c75f717a6400b83358beea7cbea2b42c\n  patches:\n    # Build: MPMD w/ MPI Only\n    - 316.patch\n\nbuild:\n  number: {{ build }}\n\n  skip: true  # [python_impl == 'pypy']\n\n  # add build string so packages can depend on\n  # mpi or nompi variants\n  # dependencies:\n  # `pkg * mpi_mpich_*` for mpich\n  # `pkg * mpi_*` for any mpi\n  # `pkg * nompi_*` for no mpi\n  {% if mpi == 'nompi' %}\n  {% set mpi_prefix = \"nompi\" %}\n  {% else %}\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  {% endif %}\n  string: {{ mpi_prefix }}_py{{ py }}h{{ PKG_HASH }}_{{ build }}\n\n  run_exports:\n    # strict runtime dependency on build-time MPI flavor\n    - {{ name }} * {{ mpi_prefix }}_*\n    # Releases are not (yet) compatible:\n    # There is no ABI compatibility check or guarantee between AMReX releases.\n    - pyamrex {{ version }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - clang         # [win]\n    - cmake\n    - lld           # [win]\n    - make          # [unix]\n    - ninja         # [win]\n    - libgomp       # [linux]\n    - llvm-openmp   # [osx or win]\n    - pkgconfig\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n    # In OpenMPI, the compiler wrappers are binaries and the wrappers in build\n    # can use host libraries by adding OPAL_PREFIX and in mpich, compiler\n    # wrappers are bash scripts and wrappers in build can't use host libraries.\n    - openmpi  # [mpi == \"openmpi\" and (build_platform != target_platform)]\n  host:\n    - amrex >={{ version }} {{ mpi_prefix }}_*\n    - {{ mpi }}  # [mpi != 'nompi']\n    - numpy\n    - pip\n    - pybind11\n    - pybind11-abi\n    - python\n    - setuptools\n    - wheel\n  run:\n    - amrex >={{ version }} {{ mpi_prefix }}_*\n    - {{ mpi }}  # [mpi != 'nompi']\n    - mpi4py     # [mpi != 'nompi']\n    - {{ pin_compatible('numpy') }}\n    - python\n    - libcxx  # [osx]\n\ntest:\n  requires:\n    - pytest\n  imports:\n    - amrex\n  source_files:\n    - tests/*\n\nabout:\n  home: https://pyamrex.readthedocs.io\n  license: BSD-3-Clause-LBNL\n  license_family: BSD\n  license_file: LICENSE\n  summary: GPU-Enabled, Zero-Copy AMReX Python Bindings including AI/ML\n\n  description: |\n    The Python binding pyAMReX bridges the compute in AMReX block-structured\n    codes and data science: it provides zero-copy application GPU data access\n    for AI/ML, in situ analysis, application coupling and enables rapid,\n    massively parallel prototyping. pyAMReX enhances the Block-Structured AMR\n    Software Framework AMReX and its applications.\n    AMReX is a software framework containing all the functionality to write\n    massively parallel, block-structured adaptive mesh refinement (AMR)\n    applications.\n\n  doc_url: https://pyamrex.readthedocs.io\n  dev_url: https://github.com/AMReX-Codes/pyamrex\n\nextra:\n  recipe-maintainers:\n    - atmyers\n    - ax3l\n    - dpgrote\n    - RemiLehe\n    - roelof-groenewald\n    - WeiqunZhang\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -918,12 +918,12 @@
    "summary": "GPU-Enabled, Zero-Copy AMReX Python Bindings including AI/ML"
   },
   "build": {
-   "number": "100",
+   "number": "101",
    "run_exports": [
     "pyamrex * nompi_*",
     "pyamrex 24.05"
    ],
-   "string": "nompi_pyh1234567_100"
+   "string": "nompi_pyh1234567_101"
   },
   "extra": {
    "recipe-maintainers": [
