@@ -6,6 +6,7 @@
    "automerge": true
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
    "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
@@ -37,8 +38,8 @@
    "summary": "high performance preconditioners for sparse linear systems"
   },
   "build": {
-   "number": "0",
-   "string": "mpi_openmpi_h1234567_0"
+   "number": "1",
+   "string": "mpi_openmpi_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -57,6 +58,7 @@
    "build": [
     "cmake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -86,6 +88,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -122,8 +125,8 @@
    "summary": "high performance preconditioners for sparse linear systems"
   },
   "build": {
-   "number": "0",
-   "string": "mpi_openmpi_h1234567_0"
+   "number": "1",
+   "string": "mpi_openmpi_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -142,6 +145,7 @@
    "build": [
     "cmake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -171,6 +175,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -207,8 +212,8 @@
    "summary": "high performance preconditioners for sparse linear systems"
   },
   "build": {
-   "number": "0",
-   "string": "mpi_openmpi_h1234567_0"
+   "number": "1",
+   "string": "mpi_openmpi_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -227,6 +232,7 @@
    "build": [
     "cmake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -256,6 +262,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -292,8 +299,8 @@
    "summary": "high performance preconditioners for sparse linear systems"
   },
   "build": {
-   "number": "0",
-   "string": "mpi_openmpi_h1234567_0"
+   "number": "1",
+   "string": "mpi_openmpi_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -312,6 +319,7 @@
    "build": [
     "cmake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -350,8 +358,8 @@
    "summary": "high performance preconditioners for sparse linear systems"
   },
   "build": {
-   "number": "0",
-   "string": "mpi_openmpi_h1234567_0"
+   "number": "1",
+   "string": "mpi_openmpi_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -370,6 +378,7 @@
    "build": [
     "cmake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -399,6 +408,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -435,8 +445,8 @@
    "summary": "high performance preconditioners for sparse linear systems"
   },
   "build": {
-   "number": "0",
-   "string": "mpi_openmpi_h1234567_0"
+   "number": "1",
+   "string": "mpi_openmpi_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -455,6 +465,7 @@
    "build": [
     "cmake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -484,6 +495,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -525,11 +537,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/hypre.json"
  },
- "raw_meta_yaml": "{% set name = \"hypre\" %}\n{% set version = \"2.31.0\" %}\n{% set sha256 = \"9a7916e2ac6615399de5010eb39c604417bb3ea3109ac90e199c5c63b0cb4334\" %}\n{% set build = 0 %}\n\n{% set mpi = mpi or 'mpich' %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/hypre-space/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: {{ build }}\n  skip: true  # [win]\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  string: {{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build }}\n\nrequirements:\n  build:\n    - cmake\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - make\n    - {{ mpi }}  # [build_platform != target_platform and mpi == \"openmpi\"]\n  host:\n    - libblas\n    - liblapack\n    - {{ mpi }}\n  run:\n    - {{ mpi }}\n\ntest:\n  commands:\n    - test -f $PREFIX/include/HYPRE.h\n    - test -f $PREFIX/lib/libHYPRE.dylib  # [osx]\n    - test -f $PREFIX/lib/libHYPRE.so  # [linux]\n\nabout:\n  home: https://www.llnl.gov/casc/hypre/\n  license: Apache-2.0\n  license_family: Apache\n  license_file: COPYRIGHT\n  summary: high performance preconditioners for sparse linear systems\n  description: |\n    HYPRE is a library of high performance preconditioners and solvers featuring\n    multigrid methods for the solution of large, sparse linear systems of equations\n    on massively parallel computers.\n  dev_url: https://github.com/hypre-space/hypre\n  doc_url: https://hypre.readthedocs.io\n\nextra:\n  recipe-maintainers:\n    - dalcinl\n    - minrk\n    - davidbrochart\n    - SylvainCorlay\n    - matthiasdiener\n",
+ "raw_meta_yaml": "{% set name = \"hypre\" %}\n{% set version = \"2.31.0\" %}\n{% set sha256 = \"9a7916e2ac6615399de5010eb39c604417bb3ea3109ac90e199c5c63b0cb4334\" %}\n{% set build = 1 %}\n\n{% set mpi = mpi or 'mpich' %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/hypre-space/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: {{ build }}\n  skip: true  # [win]\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  string: {{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build }}\n\nrequirements:\n  build:\n    - cmake\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - make\n    - {{ mpi }}  # [build_platform != target_platform and mpi == \"openmpi\"]\n  host:\n    - libblas\n    - liblapack\n    - {{ mpi }}\n  run:\n    - {{ mpi }}\n\ntest:\n  commands:\n    - test -f $PREFIX/include/HYPRE.h\n    - test -f $PREFIX/lib/libHYPRE.dylib  # [osx]\n    - test -f $PREFIX/lib/libHYPRE.so  # [linux]\n\nabout:\n  home: https://www.llnl.gov/casc/hypre/\n  license: Apache-2.0\n  license_family: Apache\n  license_file: COPYRIGHT\n  summary: high performance preconditioners for sparse linear systems\n  description: |\n    HYPRE is a library of high performance preconditioners and solvers featuring\n    multigrid methods for the solution of large, sparse linear systems of equations\n    on massively parallel computers.\n  dev_url: https://github.com/hypre-space/hypre\n  doc_url: https://hypre.readthedocs.io\n\nextra:\n  recipe-maintainers:\n    - dalcinl\n    - minrk\n    - davidbrochart\n    - SylvainCorlay\n    - matthiasdiener\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "libblas",
@@ -543,6 +556,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -552,6 +566,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libblas",
     "liblapack",
@@ -562,6 +577,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "openmpi"
    ]
@@ -577,6 +593,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
