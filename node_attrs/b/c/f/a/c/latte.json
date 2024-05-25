@@ -25,11 +25,11 @@
    "summary": "Open source density functional tight binding molecular dynamics."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "latte * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_3"
+   "string": "mpi_openmpi_h1234567_4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -43,6 +43,7 @@
   "requirements": {
    "build": [
     "fortran_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "cmake"
    ],
@@ -66,6 +67,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -100,11 +102,11 @@
    "summary": "Open source density functional tight binding molecular dynamics."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "latte * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_3"
+   "string": "mpi_openmpi_h1234567_4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -118,6 +120,7 @@
   "requirements": {
    "build": [
     "fortran_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "cmake"
    ],
@@ -150,11 +153,11 @@
    "summary": "Open source density functional tight binding molecular dynamics."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "latte * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_3"
+   "string": "mpi_openmpi_h1234567_4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -168,6 +171,7 @@
   "requirements": {
    "build": [
     "fortran_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "cmake"
    ],
@@ -191,6 +195,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -227,10 +232,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/latte.json"
  },
- "raw_meta_yaml": "{% set name = \"latte\" %}\n{% set version = \"1.2.2\" %}\n{% set build = 3 %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/lanl/LATTE/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: b54d62676a4a9355f5698823b86866640afd707137dfbdcfbf8832ffc75b9b35\n\n{% if mpi == \"nompi\" %}\n{% set build = build + 100 %}\n{% endif %}\nbuild:\n  number: {{ build }}\n  skip: True  # [win]\n\n  {% if mpi != \"nompi\" %}\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  {% else %}\n  {% set mpi_prefix = \"nompi\" %}\n  {% endif %}\n  string: {{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build }}\n\n  {% if mpi != \"nompi\" %}\n  run_exports:\n    - {{ name }} * {{ mpi_prefix }}_*\n  {% endif %}\n\nrequirements:\n  build:\n    - {{ compiler('fortran') }}\n    - make\n    - cmake\n  host:\n    - {{ mpi }}  # [mpi != \"nompi\"]\n    - libblas\n    - liblapack\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/liblatte.a\n\nabout:\n  home: https://github.com/lanl/LATTE\n  license: GPL-2.0-only\n  license_family: GPL\n  license_file: LICENSE_GPL-2.0\n  summary: 'Open source density functional tight binding molecular dynamics.'\n  description: |\n    Open source density functional tight binding molecular dynamics.\n  doc_url: https://github.com/lanl/LATTE\n  dev_url: https://github.com/lanl/LATTE\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n",
+ "raw_meta_yaml": "{% set name = \"latte\" %}\n{% set version = \"1.2.2\" %}\n{% set build = 4 %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/lanl/LATTE/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: b54d62676a4a9355f5698823b86866640afd707137dfbdcfbf8832ffc75b9b35\n\n{% if mpi == \"nompi\" %}\n{% set build = build + 100 %}\n{% endif %}\nbuild:\n  number: {{ build }}\n  skip: True  # [win]\n\n  {% if mpi != \"nompi\" %}\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  {% else %}\n  {% set mpi_prefix = \"nompi\" %}\n  {% endif %}\n  string: {{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build }}\n\n  {% if mpi != \"nompi\" %}\n  run_exports:\n    - {{ name }} * {{ mpi_prefix }}_*\n  {% endif %}\n\nrequirements:\n  build:\n    - {{ compiler('fortran') }}\n    - {{ stdlib(\"c\") }}\n    - make\n    - cmake\n  host:\n    - {{ mpi }}  # [mpi != \"nompi\"]\n    - libblas\n    - liblapack\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/liblatte.a\n\nabout:\n  home: https://github.com/lanl/LATTE\n  license: GPL-2.0-only\n  license_family: GPL\n  license_file: LICENSE_GPL-2.0\n  summary: 'Open source density functional tight binding molecular dynamics.'\n  description: |\n    Open source density functional tight binding molecular dynamics.\n  doc_url: https://github.com/lanl/LATTE\n  dev_url: https://github.com/lanl/LATTE\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "fortran_compiler_stub",
    "libblas",
@@ -243,6 +249,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -251,6 +258,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "libblas",
     "liblapack",
@@ -260,6 +268,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -273,6 +282,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
