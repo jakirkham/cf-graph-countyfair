@@ -34,8 +34,7 @@
    "summary": "Steel Bank Common Lisp (SBCL) is a high performance Common Lisp compiler"
   },
   "build": {
-   "number": "3",
-   "script_env": null
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -67,7 +66,7 @@
    "commands": [
     "sbcl --version",
     "sbcl --help",
-    "sbcl --eval '(print \"hello world\")' --quit"
+    "sbcl --noinform --disable-debugger --eval \"(print (require :asdf))\" --disable-debugger --eval \"(quit)\""
    ]
   }
  },
@@ -106,8 +105,7 @@
    "summary": "Steel Bank Common Lisp (SBCL) is a high performance Common Lisp compiler"
   },
   "build": {
-   "number": "3",
-   "script_env": null
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -139,7 +137,7 @@
    "commands": [
     "sbcl --version",
     "sbcl --help",
-    "sbcl --eval '(print \"hello world\")' --quit"
+    "sbcl --noinform --disable-debugger --eval \"(print (require :asdf))\" --disable-debugger --eval \"(quit)\""
    ]
   }
  },
@@ -178,10 +176,7 @@
    "summary": "Steel Bank Common Lisp (SBCL) is a high performance Common Lisp compiler"
   },
   "build": {
-   "number": "3",
-   "script_env": [
-    "MSI_FILE=sbcl-2.4.4-x86-64-windows-binary.msi"
-   ]
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -219,18 +214,18 @@
     "url": "http://prdownloads.sourceforge.net/sbcl/sbcl-1.4.2-arm64-linux-binary.tar.bz2"
    },
    {
-    "patches": null,
-    "sha256": "6f504b9282c83842c0601600f5e0663209b53b133125ec3334ff7a0bd0037ca6",
-    "url": "http://prdownloads.sourceforge.net/sbcl/sbcl-2.2.9-x86-64-darwin-binary.tar.bz2"
+    "folder": "sbcl-source",
+    "patches": [
+     "patches/0001-osx-update-flags-zstd.patch",
+     "patches/0002-osx-update-rpath-sbcl.patch"
+    ],
+    "sha256": "8a932627b3f1d8e9618f1cdc225edcb002456804697e2c87d140683764a106d5",
+    "url": "http://prdownloads.sourceforge.net/sbcl/sbcl-2.4.4-source.tar.bz2"
    },
    {
     "patches": null,
     "sha256": "1d01fac2d9748f769c9246a0a11a2c011d7843337f8f06ca144f5a500e10c117",
     "url": "http://prdownloads.sourceforge.net/sbcl/sbcl-2.4.0-arm64-darwin-binary.tar.bz2"
-   },
-   {
-    "sha256": "2cf132de1688b6e7d108128525446ae3de0fb7b98e3af016a1278593878be5a2",
-    "url": "http://prdownloads.sourceforge.net/sbcl/sbcl-2.4.4-x86-64-windows-binary.msi"
    },
    {
     "folder": "sbcl-source",
@@ -246,7 +241,57 @@
    "commands": [
     "sbcl --version",
     "sbcl --help",
-    "sbcl --eval '(print \"hello world\")' --quit",
+    "sbcl --noinform --disable-debugger --eval \"(print (require :asdf))\" --disable-debugger --eval \"(quit)\"",
+    "test -f ${PREFIX}/etc/conda/activate.d/sbcl-activate.sh",
+    "test -f ${PREFIX}/etc/conda/deactivate.d/sbcl-deactivate.sh",
+    "test -f ${PREFIX}/bin/sbcl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/asdf.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/uiop.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-aclrepl.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-aclrepl.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-bsd-sockets.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-bsd-sockets.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-capstone.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-capstone.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-cltl2.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-cltl2.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-concurrency.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-concurrency.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-cover.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-cover.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-executable.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-executable.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-gmp.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-gmp.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-grovel.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-grovel.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-introspect.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-introspect.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-md5.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-md5.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-mpfr.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-mpfr.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-posix.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-posix.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-queue.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-queue.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-rotate-byte.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-rotate-byte.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-rt.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-rt.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-simd.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-simd.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-simple-streams.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-simple-streams.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-sprof.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-sprof.fasl",
+    "test -f ${PREFIX}/lib/sbcl/sbcl.core",
+    "test -f ${PREFIX}/lib/sbcl/sbcl.mk",
+    "test -f ${PREFIX}/share/doc/sbcl/BUGS",
+    "test -f ${PREFIX}/share/doc/sbcl/COPYING",
+    "test -f ${PREFIX}/share/doc/sbcl/CREDITS",
+    "test -f ${PREFIX}/share/doc/sbcl/NEWS",
+    "test -f ${PREFIX}/share/man/man1/sbcl.1",
     "if not exist %PREFIX%\\\\etc\\\\conda\\\\activate.d\\\\sbcl-activate.bat exit /b 1",
     "if not exist %PREFIX%\\\\etc\\\\conda\\\\deactivate.d\\\\sbcl-deactivate.bat exit /b 1",
     "if not exist %PREFIX%\\\\bin\\\\sbcl.exe exit 1",
@@ -296,8 +341,7 @@
     "if not exist %PREFIX%\\\\share\\\\doc\\\\sbcl\\\\COPYING exit 1",
     "if not exist %PREFIX%\\\\share\\\\doc\\\\sbcl\\\\CREDITS exit 1",
     "if not exist %PREFIX%\\\\share\\\\doc\\\\sbcl\\\\NEWS exit 1",
-    "if not exist %PREFIX%\\\\share\\\\man\\\\man1\\\\sbcl.1 exit 1",
-    "sbcl --noinform --disable-debugger --eval \"(print (require :asdf))\" --disable-debugger --eval \"(quit)\""
+    "if not exist %PREFIX%\\\\share\\\\man\\\\man1\\\\sbcl.1 exit 1"
    ]
   }
  },
@@ -315,8 +359,7 @@
    "summary": "Steel Bank Common Lisp (SBCL) is a high performance Common Lisp compiler"
   },
   "build": {
-   "number": "3",
-   "script_env": null
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -327,7 +370,7 @@
   },
   "package": {
    "name": "sbcl",
-   "version": "2.2.9"
+   "version": "2.4.4"
   },
   "requirements": {
    "build": [
@@ -335,20 +378,76 @@
     "c_stdlib_stub",
     "make"
    ],
-   "host": []
+   "host": [
+    "zstd"
+   ]
   },
   "source": [
    {
-    "patches": null,
-    "sha256": "6f504b9282c83842c0601600f5e0663209b53b133125ec3334ff7a0bd0037ca6",
-    "url": "http://prdownloads.sourceforge.net/sbcl/sbcl-2.2.9-x86-64-darwin-binary.tar.bz2"
+    "folder": "sbcl-source",
+    "patches": [
+     "patches/0001-osx-update-flags-zstd.patch",
+     "patches/0002-osx-update-rpath-sbcl.patch"
+    ],
+    "sha256": "8a932627b3f1d8e9618f1cdc225edcb002456804697e2c87d140683764a106d5",
+    "url": "http://prdownloads.sourceforge.net/sbcl/sbcl-2.4.4-source.tar.bz2"
    }
   ],
   "test": {
    "commands": [
+    "test -f ${PREFIX}/etc/conda/activate.d/sbcl-activate.sh",
+    "test -f ${PREFIX}/etc/conda/deactivate.d/sbcl-deactivate.sh",
+    "test -f ${PREFIX}/bin/sbcl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/asdf.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/uiop.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-aclrepl.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-aclrepl.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-bsd-sockets.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-bsd-sockets.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-capstone.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-capstone.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-cltl2.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-cltl2.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-concurrency.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-concurrency.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-cover.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-cover.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-executable.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-executable.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-gmp.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-gmp.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-grovel.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-grovel.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-introspect.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-introspect.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-md5.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-md5.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-mpfr.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-mpfr.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-posix.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-posix.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-queue.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-queue.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-rotate-byte.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-rotate-byte.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-rt.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-rt.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-simd.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-simd.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-simple-streams.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-simple-streams.fasl",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-sprof.asd",
+    "test -f ${PREFIX}/lib/sbcl/contrib/sb-sprof.fasl",
+    "test -f ${PREFIX}/lib/sbcl/sbcl.core",
+    "test -f ${PREFIX}/lib/sbcl/sbcl.mk",
+    "test -f ${PREFIX}/share/doc/sbcl/BUGS",
+    "test -f ${PREFIX}/share/doc/sbcl/COPYING",
+    "test -f ${PREFIX}/share/doc/sbcl/CREDITS",
+    "test -f ${PREFIX}/share/doc/sbcl/NEWS",
+    "test -f ${PREFIX}/share/man/man1/sbcl.1",
     "sbcl --version",
     "sbcl --help",
-    "sbcl --eval '(print \"hello world\")' --quit"
+    "sbcl --noinform --disable-debugger --eval \"(print (require :asdf))\" --disable-debugger --eval \"(quit)\""
    ]
   }
  },
@@ -363,7 +462,9 @@
   },
   "host": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "zstd"
+   ]
   },
   "run": {
    "__set__": true,
@@ -387,8 +488,7 @@
    "summary": "Steel Bank Common Lisp (SBCL) is a high performance Common Lisp compiler"
   },
   "build": {
-   "number": "3",
-   "script_env": null
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -420,7 +520,7 @@
    "commands": [
     "sbcl --version",
     "sbcl --help",
-    "sbcl --eval '(print \"hello world\")' --quit"
+    "sbcl --noinform --disable-debugger --eval \"(print (require :asdf))\" --disable-debugger --eval \"(quit)\""
    ]
   }
  },
@@ -463,7 +563,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/sbcl.json"
  },
- "raw_meta_yaml": "{% set linux_version = \"2.2.11\" %}\n{% set aarch64_version = \"1.4.2\" %}\n{% set osx_version = \"2.2.9\" %}\n{% set osx_arm64_version = \"2.4.0\" %}\n{% set win_64_version = \"2.4.4\" %}\n\npackage:\n  name: sbcl\n  version: {{ linux_version }}       # [linux64]\n  version: {{ aarch64_version }}     # [aarch64]\n  version: {{ osx_version }}         # [osx and x86_64]\n  version: {{ osx_arm64_version }}   # [osx and arm64]\n  version: {{ win_64_version }}      # [win and x86_64]\n\nsource:\n  - url: http://prdownloads.sourceforge.net/sbcl/sbcl-{{ linux_version }}-x86-64-linux-binary.tar.bz2      # [linux64]\n    sha256: 477a885b260c8cf8c794e0c9af0769303706f11e51367dad48e5b402ad0a9493                               # [linux64]\n  - url: http://prdownloads.sourceforge.net/sbcl/sbcl-{{ aarch64_version }}-arm64-linux-binary.tar.bz2     # [aarch64]\n    sha256: ddac6499f36c18ecbce9822a53ef3914c0def5276a457446a456c62999b16d36                               # [aarch64]\n  - url: http://prdownloads.sourceforge.net/sbcl/sbcl-{{ osx_version }}-x86-64-darwin-binary.tar.bz2       # [osx and x86_64]\n    sha256: 6f504b9282c83842c0601600f5e0663209b53b133125ec3334ff7a0bd0037ca6                               # [osx and x86_64]\n  - url: http://prdownloads.sourceforge.net/sbcl/sbcl-{{ osx_arm64_version }}-arm64-darwin-binary.tar.bz2  # [osx and arm64]\n    sha256: 1d01fac2d9748f769c9246a0a11a2c011d7843337f8f06ca144f5a500e10c117                               # [osx and arm64]\n  - url: http://prdownloads.sourceforge.net/sbcl/sbcl-{{ win_64_version }}-x86-64-windows-binary.msi       # [win and x86_64]\n    sha256: 2cf132de1688b6e7d108128525446ae3de0fb7b98e3af016a1278593878be5a2                               # [win and x86_64]\n  - url: http://prdownloads.sourceforge.net/sbcl/sbcl-{{ win_64_version }}-source.tar.bz2                  # [win and x86_64]\n    sha256: 8a932627b3f1d8e9618f1cdc225edcb002456804697e2c87d140683764a106d5                               # [win and x86_64]\n    folder: sbcl-source                                                                                    # [win and x86_64]\n    patches:\n      - patches/0001-win-use-env-xargs.sh.patch  # [win]\n      - patches/0002-win-update-flags-zstd.patch  # [win]\n\nbuild:\n  number: 3\n  script_env:\n    - MSI_FILE=sbcl-{{ win_64_version }}-x86-64-windows-binary.msi  # [win and x86_64]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}  # [not win]\n    - {{ stdlib('c') }}  # [not win]\n    # Current windows gcc toolchain (v5.3) segfaulta when building SBCL, need >=12\n    # Using experimental msys2 toolchain for now\n    - mingw-w64-ucrt-x86_64-gcc  # [win]\n    - mingw-w64-ucrt-x86_64-gcc-libs  # [win]\n    - mingw-w64-ucrt-x86_64-zstd  # [win]\n    - make\n  host:\n    # zstd is required to compile SBCL with 'compressed core saves' enabled\n    - zstd  # [win]\n\ntest:\n  commands:\n    - if not exist %PREFIX%\\\\etc\\\\conda\\\\activate.d\\\\sbcl-activate.bat exit /b 1  # [win]\n    - if not exist %PREFIX%\\\\etc\\\\conda\\\\deactivate.d\\\\sbcl-deactivate.bat exit /b 1  # [win]\n\n    - if not exist %PREFIX%\\\\bin\\\\sbcl.exe exit 1  # [win]\n\n    - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\contrib\\\\asdf.fasl exit 1  # [win]\n    - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\contrib\\\\uiop.fasl exit 1  # [win]\n\n    # Not all contribs are built on Windows - Note this is for when unix builds from source\n    # - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\contrib\\\\sb-perf.asd exit 1  # [not win]\n    # - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\contrib\\\\sb-perf.fasl exit 1  # [not win]\n    {% set contribs = [\n      \"sb-aclrepl\", \"sb-bsd-sockets\", \"sb-capstone\", \"sb-cltl2\", \"sb-concurrency\", \"sb-cover\",\n      \"sb-executable\", \"sb-gmp\", \"sb-grovel\", \"sb-introspect\", \"sb-md5\", \"sb-mpfr\",\n      \"sb-posix\", \"sb-queue\", \"sb-rotate-byte\", \"sb-rt\", \"sb-simd\", \"sb-simple-streams\", \"sb-sprof\",\n    ] %}\n    {% for contrib in contribs %}\n    - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\contrib\\\\{{ contrib }}.asd exit 1  # [win]\n    - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\contrib\\\\{{ contrib }}.fasl exit 1  # [win]\n    {% endfor %}\n\n    - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\sbcl.core exit 1  # [win]\n    - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\sbcl.mk exit 1  # [win]\n    - if not exist %PREFIX%\\\\share\\\\doc\\\\sbcl\\\\BUGS exit 1  # [win]\n    - if not exist %PREFIX%\\\\share\\\\doc\\\\sbcl\\\\COPYING exit 1  # [win]\n    - if not exist %PREFIX%\\\\share\\\\doc\\\\sbcl\\\\CREDITS exit 1  # [win]\n    - if not exist %PREFIX%\\\\share\\\\doc\\\\sbcl\\\\NEWS exit 1  # [win]\n    - if not exist %PREFIX%\\\\share\\\\man\\\\man1\\\\sbcl.1 exit 1  # [win]\n\n    # Additional functionality tests\n    - sbcl --version\n    - sbcl --help\n    - sbcl --eval '(print \"hello world\")' --quit  # [not win]\n    - sbcl --noinform --disable-debugger --eval \"(print (require :asdf))\" --disable-debugger --eval \"(quit)\"  # [win]\n\nabout:\n  home: http://www.sbcl.org\n  license: BSD-2-Clause AND MIT\n  summary: Steel Bank Common Lisp (SBCL) is a high performance Common Lisp compiler\n  description: |\n    Steel Bank Common Lisp (SBCL) is a high performance Common Lisp compiler.\n    It is open source / free software, with a permissive license. In addition to the\n    compiler and runtime system for ANSI Common Lisp, it provides an interactive\n    environment including a debugger, a statistical profiler, a code coverage tool,\n    and many other extensions.\n  doc_url: http://www.sbcl.org/manual/index.html\n  license_file:\n    - COPYING\n    - CREDITS\n\nextra:\n  recipe-maintainers:\n    - MementoRC\n    - wolfv\n    - Tobias-Fischer\n",
+ "raw_meta_yaml": "{% set linux_version = \"2.2.11\" %}\n{% set aarch64_version = \"1.4.2\" %}\n{% set osx_arm64_version = \"2.4.0\" %}\n{% set version = \"2.4.4\" %}\n\npackage:\n  name: sbcl\n  version: {{ linux_version }}       # [linux64]\n  version: {{ aarch64_version }}     # [aarch64]\n  version: {{ osx_arm64_version }}   # [osx and arm64]\n  version: {{ version }}             # [(win or osx) and x86_64]\n\nsource:\n  - url: http://prdownloads.sourceforge.net/sbcl/sbcl-{{ linux_version }}-x86-64-linux-binary.tar.bz2      # [linux64]\n    sha256: 477a885b260c8cf8c794e0c9af0769303706f11e51367dad48e5b402ad0a9493                               # [linux64]\n  - url: http://prdownloads.sourceforge.net/sbcl/sbcl-{{ aarch64_version }}-arm64-linux-binary.tar.bz2     # [aarch64]\n    sha256: ddac6499f36c18ecbce9822a53ef3914c0def5276a457446a456c62999b16d36                               # [aarch64]\n  - url: http://prdownloads.sourceforge.net/sbcl/sbcl-{{ osx_arm64_version }}-arm64-darwin-binary.tar.bz2  # [osx and arm64]\n    sha256: 1d01fac2d9748f769c9246a0a11a2c011d7843337f8f06ca144f5a500e10c117                               # [osx and arm64]\n  - url: http://prdownloads.sourceforge.net/sbcl/sbcl-{{ version }}-source.tar.bz2                         # [(win or osx) and x86_64]\n    sha256: 8a932627b3f1d8e9618f1cdc225edcb002456804697e2c87d140683764a106d5                               # [(win or osx) and x86_64]\n    folder: sbcl-source                                                                                    # [(win or osx) and x86_64]\n    patches:\n      - patches/0001-osx-update-flags-zstd.patch  # [osx and x86_64]\n      - patches/0002-osx-update-rpath-sbcl.patch  # [osx and x86_64]\n      - patches/0001-win-use-env-xargs.sh.patch  # [win and x86_64]\n      - patches/0002-win-update-flags-zstd.patch  # [win and x86_64]\n\nbuild:\n  number: 5\n\nrequirements:\n  build:\n    - {{ compiler('c') }}  # [not win]\n    - {{ stdlib('c') }}  # [not win]\n    # Current windows gcc toolchain (v5.3) segfaults when building SBCL, need >=12\n    # Using experimental msys2 toolchain for now\n    - mingw-w64-ucrt-x86_64-gcc  # [win]\n    - mingw-w64-ucrt-x86_64-gcc-libs  # [win]\n    - mingw-w64-ucrt-x86_64-zstd  # [win]\n    - make\n  host:\n    - zstd  # [win or (osx and x86_64)]\n\ntest:\n  commands:\n    - test -f ${PREFIX}/etc/conda/activate.d/sbcl-activate.sh  # [osx and x86_64]\n    - test -f ${PREFIX}/etc/conda/deactivate.d/sbcl-deactivate.sh  # [osx and x86_64]\n    - if not exist %PREFIX%\\\\etc\\\\conda\\\\activate.d\\\\sbcl-activate.bat exit /b 1  # [win]\n    - if not exist %PREFIX%\\\\etc\\\\conda\\\\deactivate.d\\\\sbcl-deactivate.bat exit /b 1  # [win]\n\n    - test -f ${PREFIX}/bin/sbcl  # [osx and x86_64]\n    - if not exist %PREFIX%\\\\bin\\\\sbcl.exe exit 1  # [win]\n\n    - test -f ${PREFIX}/lib/sbcl/contrib/asdf.fasl  # [osx and x86_64]\n    - test -f ${PREFIX}/lib/sbcl/contrib/uiop.fasl  # [osx and x86_64]\n    - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\contrib\\\\asdf.fasl exit 1  # [win]\n    - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\contrib\\\\uiop.fasl exit 1  # [win]\n\n    # Not all contribs are built on Windows - Note this is for when unix builds from source\n    # - test -f  ${PREFIX}/lib/sbcl/contrib/sb-perf.asd  # [linux]\n    # - test -f  ${PREFIX}/lib/sbcl/contrib/sb-perf.fasl  # [linux]\n    {% set contribs = [\n      \"sb-aclrepl\", \"sb-bsd-sockets\", \"sb-capstone\", \"sb-cltl2\", \"sb-concurrency\", \"sb-cover\",\n      \"sb-executable\", \"sb-gmp\", \"sb-grovel\", \"sb-introspect\", \"sb-md5\", \"sb-mpfr\",\n      \"sb-posix\", \"sb-queue\", \"sb-rotate-byte\", \"sb-rt\", \"sb-simd\", \"sb-simple-streams\", \"sb-sprof\",\n    ] %}\n    {% for contrib in contribs %}\n    - test -f ${PREFIX}/lib/sbcl/contrib/{{ contrib }}.asd  # [osx and x86_64]\n    - test -f ${PREFIX}/lib/sbcl/contrib/{{ contrib }}.fasl  # [osx and x86_64]\n    - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\contrib\\\\{{ contrib }}.asd exit 1  # [win]\n    - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\contrib\\\\{{ contrib }}.fasl exit 1  # [win]\n    {% endfor %}\n\n    - test -f ${PREFIX}/lib/sbcl/sbcl.core  # [osx and x86_64]\n    - test -f ${PREFIX}/lib/sbcl/sbcl.mk  # [osx and x86_64]\n    - test -f ${PREFIX}/share/doc/sbcl/BUGS  # [osx and x86_64]\n    - test -f ${PREFIX}/share/doc/sbcl/COPYING  # [osx and x86_64]\n    - test -f ${PREFIX}/share/doc/sbcl/CREDITS  # [osx and x86_64]\n    - test -f ${PREFIX}/share/doc/sbcl/NEWS  # [osx and x86_64]\n    - test -f ${PREFIX}/share/man/man1/sbcl.1  # [osx and x86_64]\n    - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\sbcl.core exit 1  # [win]\n    - if not exist %PREFIX%\\\\lib\\\\sbcl\\\\sbcl.mk exit 1  # [win]\n    - if not exist %PREFIX%\\\\share\\\\doc\\\\sbcl\\\\BUGS exit 1  # [win]\n    - if not exist %PREFIX%\\\\share\\\\doc\\\\sbcl\\\\COPYING exit 1  # [win]\n    - if not exist %PREFIX%\\\\share\\\\doc\\\\sbcl\\\\CREDITS exit 1  # [win]\n    - if not exist %PREFIX%\\\\share\\\\doc\\\\sbcl\\\\NEWS exit 1  # [win]\n    - if not exist %PREFIX%\\\\share\\\\man\\\\man1\\\\sbcl.1 exit 1  # [win]\n\n    # Additional functionality tests\n    - sbcl --version\n    - sbcl --help\n    - sbcl --noinform --disable-debugger --eval \"(print (require :asdf))\" --disable-debugger --eval \"(quit)\"\n\nabout:\n  home: http://www.sbcl.org\n  license: BSD-2-Clause AND MIT\n  summary: Steel Bank Common Lisp (SBCL) is a high performance Common Lisp compiler\n  description: |\n    Steel Bank Common Lisp (SBCL) is a high performance Common Lisp compiler.\n    It is open source / free software, with a permissive license. In addition to the\n    compiler and runtime system for ANSI Common Lisp, it provides an interactive\n    environment including a debugger, a statistical profiler, a code coverage tool,\n    and many other extensions.\n  doc_url: http://www.sbcl.org/manual/index.html\n  license_file:\n    - COPYING\n    - CREDITS\n\nextra:\n  recipe-maintainers:\n    - MementoRC\n    - wolfv\n    - Tobias-Fischer\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -555,10 +655,7 @@
    "summary": "Steel Bank Common Lisp (SBCL) is a high performance Common Lisp compiler"
   },
   "build": {
-   "number": "3",
-   "script_env": [
-    "MSI_FILE=sbcl-2.4.4-x86-64-windows-binary.msi"
-   ]
+   "number": "5"
   },
   "extra": {
    "recipe-maintainers": [
@@ -583,10 +680,6 @@
    ]
   },
   "source": [
-   {
-    "sha256": "2cf132de1688b6e7d108128525446ae3de0fb7b98e3af016a1278593878be5a2",
-    "url": "http://prdownloads.sourceforge.net/sbcl/sbcl-2.4.4-x86-64-windows-binary.msi"
-   },
    {
     "folder": "sbcl-source",
     "patches": [
