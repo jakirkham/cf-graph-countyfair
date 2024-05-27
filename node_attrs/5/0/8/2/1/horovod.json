@@ -44,8 +44,8 @@
     "*/libc10*.so",
     "*/libtorch*.so"
    ],
-   "number": "3",
-   "string": "cuda_mpi_openmpi_h1234567_3"
+   "number": "4",
+   "string": "cuda_mpi_openmpi_h1234567_4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -59,10 +59,12 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake >=3.13",
     "make",
     "flatbuffers",
-    "cuda_compiler_stub"
+    "cuda_compiler_stub",
+    "flatbuffers 23.5.26"
    ],
    "host": [
     "python",
@@ -82,13 +84,18 @@
     "flatbuffers",
     "libboost-headers",
     "lbfgspp",
+    "cffi >=1.4.0",
     "nccl",
+    "cuda-version 12.0",
     "tensorflow * cuda*",
     "pytorch * cuda*",
     "cuda-cudart-dev",
     "cuda-nvtx-dev",
+    "cuda-version 11.8",
     "tensorflow 2.14.*",
-    "pytorch 2.0.*"
+    "pytorch 2.0.*",
+    "flatbuffers 23.5.26",
+    "setuptools <70"
    ],
    "run": [
     "python",
@@ -98,6 +105,7 @@
     "psutil",
     "openmpi",
     "mpi4py",
+    "cffi >=1.4.0",
     "nccl"
    ],
    "run_constrained": [
@@ -119,17 +127,18 @@
   "test": {
    "commands": [
     "pip check",
-    "horovodrun -h"
+    "horovodrun -h",
+    "TF_USE_LEGACY_KERAS=1 python -c \"import horovod.tensorflow\""
    ],
    "imports": [
     "horovod",
-    "horovod.tensorflow",
     "horovod.torch"
    ],
    "requires": [
     "pip",
     "tensorflow",
-    "pytorch"
+    "pytorch",
+    "tf-keras 2.16"
    ]
   }
  },
@@ -137,6 +146,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -147,9 +157,11 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cffi",
     "cloudpickle",
     "cuda-cudart-dev",
     "cuda-nvtx-dev",
+    "cuda-version",
     "flatbuffers",
     "lbfgspp",
     "libboost-headers",
@@ -170,6 +182,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cffi",
     "cloudpickle",
     "mpi4py",
     "nccl",
@@ -185,7 +198,8 @@
    "elements": [
     "pip",
     "pytorch",
-    "tensorflow"
+    "tensorflow",
+    "tf-keras"
    ]
   }
  },
@@ -216,8 +230,8 @@
     "*/libtensorflow_cc.*.dylib",
     "*/torch/lib/*.dylib"
    ],
-   "number": "3",
-   "string": "cpu_mpi_openmpi_h1234567_3"
+   "number": "4",
+   "string": "cpu_mpi_openmpi_h1234567_4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -231,10 +245,12 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake >=3.13",
     "make",
     "flatbuffers",
-    "cuda_compiler_stub"
+    "cuda_compiler_stub",
+    "flatbuffers 23.5.26"
    ],
    "host": [
     "python",
@@ -254,13 +270,18 @@
     "flatbuffers",
     "libboost-headers",
     "lbfgspp",
+    "cffi >=1.4.0",
     "nccl",
+    "cuda-version 12.0",
     "tensorflow * cuda*",
     "pytorch * cuda*",
     "cuda-cudart-dev",
     "cuda-nvtx-dev",
+    "cuda-version 11.8",
     "tensorflow 2.14.*",
-    "pytorch 2.0.*"
+    "pytorch 2.0.*",
+    "flatbuffers 23.5.26",
+    "setuptools <70"
    ],
    "run": [
     "python",
@@ -270,6 +291,7 @@
     "psutil",
     "openmpi",
     "mpi4py",
+    "cffi >=1.4.0",
     "nccl"
    ],
    "run_constrained": [
@@ -291,17 +313,18 @@
   "test": {
    "commands": [
     "pip check",
-    "horovodrun -h"
+    "horovodrun -h",
+    "TF_USE_LEGACY_KERAS=1 python -c \"import horovod.tensorflow\""
    ],
    "imports": [
     "horovod",
-    "horovod.tensorflow",
     "horovod.torch"
    ],
    "requires": [
     "pip",
     "tensorflow",
-    "pytorch"
+    "pytorch",
+    "tf-keras 2.16"
    ]
   }
  },
@@ -328,8 +351,8 @@
     "*/_pywrap_tensorflow_internal.so",
     "*/torch/lib/*.dylib"
    ],
-   "number": "3",
-   "string": "cpu_mpi_openmpi_h1234567_3"
+   "number": "4",
+   "string": "cpu_mpi_openmpi_h1234567_4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -343,6 +366,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake >=3.13",
     "make",
     "flatbuffers"
@@ -364,7 +388,8 @@
     "pytorch * cpu*",
     "flatbuffers",
     "libboost-headers",
-    "lbfgspp"
+    "lbfgspp",
+    "cffi >=1.4.0"
    ],
    "run": [
     "python",
@@ -373,7 +398,8 @@
     "packaging",
     "psutil",
     "openmpi",
-    "mpi4py"
+    "mpi4py",
+    "cffi >=1.4.0"
    ],
    "run_constrained": [
     "tensorflow cpu*",
@@ -392,17 +418,18 @@
   "test": {
    "commands": [
     "pip check",
-    "horovodrun -h"
+    "horovodrun -h",
+    "TF_USE_LEGACY_KERAS=1 python -c \"import horovod.tensorflow\""
    ],
    "imports": [
     "horovod",
-    "horovod.tensorflow",
     "horovod.torch"
    ],
    "requires": [
     "pip",
     "tensorflow",
-    "pytorch"
+    "pytorch",
+    "tf-keras 2.16"
    ]
   }
  },
@@ -410,6 +437,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flatbuffers",
@@ -419,6 +447,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cffi",
     "cloudpickle",
     "flatbuffers",
     "lbfgspp",
@@ -439,6 +468,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cffi",
     "cloudpickle",
     "mpi4py",
     "openmpi",
@@ -453,7 +483,8 @@
    "elements": [
     "pip",
     "pytorch",
-    "tensorflow"
+    "tensorflow",
+    "tf-keras"
    ]
   }
  },
@@ -479,8 +510,8 @@
     "*/_pywrap_tensorflow_internal.so",
     "*/torch/lib/*.dylib"
    ],
-   "number": "3",
-   "string": "cpu_mpi_openmpi_h1234567_3"
+   "number": "4",
+   "string": "cpu_mpi_openmpi_h1234567_4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -494,6 +525,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake >=3.13",
     "make",
     "flatbuffers"
@@ -515,7 +547,8 @@
     "pytorch * cpu*",
     "flatbuffers",
     "libboost-headers",
-    "lbfgspp"
+    "lbfgspp",
+    "cffi >=1.4.0"
    ],
    "run": [
     "python",
@@ -524,7 +557,8 @@
     "packaging",
     "psutil",
     "openmpi",
-    "mpi4py"
+    "mpi4py",
+    "cffi >=1.4.0"
    ],
    "run_constrained": [
     "tensorflow cpu*",
@@ -543,17 +577,18 @@
   "test": {
    "commands": [
     "pip check",
-    "horovodrun -h"
+    "horovodrun -h",
+    "TF_USE_LEGACY_KERAS=1 python -c \"import horovod.tensorflow\""
    ],
    "imports": [
     "horovod",
-    "horovod.tensorflow",
     "horovod.torch"
    ],
    "requires": [
     "pip",
     "tensorflow",
-    "pytorch"
+    "pytorch",
+    "tf-keras 2.16"
    ]
   }
  },
@@ -561,6 +596,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "flatbuffers",
@@ -570,6 +606,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cffi",
     "cloudpickle",
     "flatbuffers",
     "lbfgspp",
@@ -590,6 +627,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cffi",
     "cloudpickle",
     "mpi4py",
     "openmpi",
@@ -604,7 +642,8 @@
    "elements": [
     "pip",
     "pytorch",
-    "tensorflow"
+    "tensorflow",
+    "tf-keras"
    ]
   }
  },
@@ -623,14 +662,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/horovod.json"
  },
- "raw_meta_yaml": "{% set name = \"horovod\" %}\n{% set version = \"0.28.1\" %}\n{% set proc_type = \"cuda\" if cuda_compiler_version != \"None\" else \"cpu\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/horovod/horovod/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 88fbcd2815083607a5d27962f323eae5752e3eb96511aaac98258f280cac0f8e\n  patches:\n    - 0001-pass-cmake-args.patch\n    - 0002-skip-python-for-crosscompiling.patch\n    - 3998.patch\n\nbuild:\n  number: 3\n  skip: true  # [win]\n  skip: true  # [py<39]\n  string: {{ proc_type }}_mpi_{{ mpi }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}\n  ignore_run_exports_from:\n    - flatbuffers\n    - tensorflow\n    - pytorch\n  # Horovod supports multiple frameworks, and the package is built against TensorFlow and PyTorch.\n  # However, usually, the user only uses one of them simultaneously. (by importing either horovod.tensorflow or horovod.torch)\n  # Thus, TensorFlow and PyTorch are not listed in the `run` section, but in the `run_constrained` section.\n  # Users can manually install Horovod and only one of them.\n  # Both TensorFlow and PyTorch libraries are listed in `missing_dso_whitelist`, and a test is added to ensure Horovod libraries can be \n  # correctly loaded when TensorFlow and PyTorch are installed.\n  # (horovod.tensorflow loads Horovod TensorFlow library and horovod.torch loads Horovod PyTorch library)\n  missing_dso_whitelist:\n    - \"*/libtensorflow_framework.so.*\"  # [linux]\n    - \"*/libtensorflow_cc.so.*\"  # [linux]\n    - \"*/torch/lib/*.so\"  # [linux]\n    - \"*/libtensorflow_framework.*.dylib\"  # [osx]\n    - \"*/libtensorflow_cc.*.dylib\"  # [osx]\n    - \"*/_pywrap_tensorflow_internal.so\"\n    - \"*/torch/lib/*.dylib\"  # [osx]\n    - \"*/libc10*.so\"  # [linux]\n    - \"*/libtorch*.so\"  # [linux]\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}  # [cuda_compiler_version != 'None']\n    - cmake >=3.13\n    - make  # [unix]\n    - python  # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - flatbuffers\n    - {{ mpi }}  # [build_platform != target_platform and mpi == \"openmpi\"]\n  host:\n    - python\n    - pip\n    - wheel\n    - setuptools\n    - pyyaml\n    - cloudpickle\n    - packaging\n    - psutil\n    - nccl  # [cuda_compiler_version != 'None']\n    - {{ mpi }}\n    - mpi4py\n    - tensorflow  # [not (cuda_compiler_version or \"\").startswith(\"11\")]\n    - tensorflow * {{ proc_type }}*\n    - pytorch  # [not (cuda_compiler_version or \"\").startswith(\"11\")]\n    - pytorch * {{ proc_type }}*\n    # https://github.com/conda-forge/tensorflow-feedstock/pull/367#issuecomment-1890751416\n    - tensorflow 2.14.*  # [(cuda_compiler_version or \"\").startswith(\"11\")]\n    - pytorch 2.0.*  # [(cuda_compiler_version or \"\").startswith(\"11\")]\n    # for flatc\n    - flatbuffers\n    - libboost-headers\n    - lbfgspp\n    - cuda-cudart-dev  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-nvtx-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n\n  run:\n    - python\n    - pyyaml\n    - cloudpickle\n    - packaging \n    - psutil\n    - nccl  # [cuda_compiler_version != 'None']\n    - {{ mpi }}\n    - mpi4py\n\n  run_constrained:\n    - {{ pin_compatible('tensorflow', max_pin='x.x') }} {{ proc_type }}*\n    - {{ pin_compatible('pytorch', max_pin='x.x') }} {{ proc_type }}*\n\ntest:\n  requires:\n    - pip\n    - tensorflow\n    - pytorch \n  imports:\n    - horovod\n    - horovod.tensorflow\n    - horovod.torch\n  commands:\n    - pip check\n    - horovodrun -h\n\nabout:\n  home: https://horovod.ai/\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: 'Distributed training framework for TensorFlow, Keras, PyTorch, and Apache MXNet.'\n  doc_url: https://horovod.readthedocs.io/\n  dev_url: https://github.com/horovod/horovod\n\nextra:\n  recipe-maintainers:\n    - njzjz\n",
+ "raw_meta_yaml": "{% set name = \"horovod\" %}\n{% set version = \"0.28.1\" %}\n{% set proc_type = \"cuda\" if cuda_compiler_version != \"None\" else \"cpu\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/horovod/horovod/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 88fbcd2815083607a5d27962f323eae5752e3eb96511aaac98258f280cac0f8e\n  patches:\n    - 0001-pass-cmake-args.patch\n    - 0002-skip-python-for-crosscompiling.patch\n    - 3998.patch\n\nbuild:\n  number: 4\n  skip: true  # [win]\n  skip: true  # [py<39]\n  skip: ture  # [py>=312 and cuda_compiler_version in (\"11.2\", \"11.8\")]\n  string: {{ proc_type }}_mpi_{{ mpi }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}\n  ignore_run_exports_from:\n    - flatbuffers\n    - tensorflow\n    - pytorch\n  # Horovod supports multiple frameworks, and the package is built against TensorFlow and PyTorch.\n  # However, usually, the user only uses one of them simultaneously. (by importing either horovod.tensorflow or horovod.torch)\n  # Thus, TensorFlow and PyTorch are not listed in the `run` section, but in the `run_constrained` section.\n  # Users can manually install Horovod and only one of them.\n  # Both TensorFlow and PyTorch libraries are listed in `missing_dso_whitelist`, and a test is added to ensure Horovod libraries can be \n  # correctly loaded when TensorFlow and PyTorch are installed.\n  # (horovod.tensorflow loads Horovod TensorFlow library and horovod.torch loads Horovod PyTorch library)\n  missing_dso_whitelist:\n    - \"*/libtensorflow_framework.so.*\"  # [linux]\n    - \"*/libtensorflow_cc.so.*\"  # [linux]\n    - \"*/torch/lib/*.so\"  # [linux]\n    - \"*/libtensorflow_framework.*.dylib\"  # [osx]\n    - \"*/libtensorflow_cc.*.dylib\"  # [osx]\n    - \"*/_pywrap_tensorflow_internal.so\"\n    - \"*/torch/lib/*.dylib\"  # [osx]\n    - \"*/libc10*.so\"  # [linux]\n    - \"*/libtorch*.so\"  # [linux]\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cuda') }}  # [cuda_compiler_version != 'None']\n    - cmake >=3.13\n    - make  # [unix]\n    - python  # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - flatbuffers 23.5.26  # [(cuda_compiler_version or \"\").startswith(\"11\")]\n    - flatbuffers  # [not (cuda_compiler_version or \"\").startswith(\"11\")]\n    - {{ mpi }}  # [build_platform != target_platform and mpi == \"openmpi\"]\n  host:\n    - python\n    - pip\n    - wheel\n    - setuptools\n    - pyyaml\n    - cloudpickle\n    - packaging\n    - psutil\n    - nccl  # [cuda_compiler_version != 'None']\n    - {{ mpi }}\n    - mpi4py\n    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != \"None\"]\n    - tensorflow  # [not (cuda_compiler_version or \"\").startswith(\"11\")]\n    - tensorflow * {{ proc_type }}*\n    - pytorch  # [not (cuda_compiler_version or \"\").startswith(\"11\")]\n    - pytorch * {{ proc_type }}*\n    # https://github.com/conda-forge/tensorflow-feedstock/pull/367#issuecomment-1890751416\n    - tensorflow 2.14.*  # [(cuda_compiler_version or \"\").startswith(\"11\")]\n    - pytorch 2.0.*  # [(cuda_compiler_version or \"\").startswith(\"11\")]\n    - flatbuffers 23.5.26  # [(cuda_compiler_version or \"\").startswith(\"11\")]\n    # pytorch 2.0 uses pkg_resources.packaging, removed in setuptools 70\n    - setuptools <70  # [(cuda_compiler_version or \"\").startswith(\"11\")]\n    # for flatc\n    - flatbuffers  # [not (cuda_compiler_version or \"\").startswith(\"11\")]\n    - libboost-headers\n    - lbfgspp\n    - cuda-cudart-dev  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-nvtx-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cffi >=1.4.0\n\n  run:\n    - python\n    - pyyaml\n    - cloudpickle\n    - packaging \n    - psutil\n    - nccl  # [cuda_compiler_version != 'None']\n    - {{ mpi }}\n    - mpi4py\n    - cffi >=1.4.0\n\n  run_constrained:\n    - {{ pin_compatible('tensorflow', max_pin='x.x') }} {{ proc_type }}*\n    - {{ pin_compatible('pytorch', max_pin='x.x') }} {{ proc_type }}*\n\ntest:\n  requires:\n    - pip\n    - tensorflow\n    - pytorch \n    # Fix ModuleNotFoundError: No module named 'keras._tf_keras'\n    - tf-keras {{ tensorflow }}  # [not (cuda_compiler_version or \"\").startswith(\"11\")]\n  imports:\n    - horovod\n    # Need to set TF_USE_LEGACY_KERAS=1 until keras 3.3 can be used\n    # - horovod.tensorflow\n    - horovod.torch\n  commands:\n    - pip check\n    - horovodrun -h\n    - TF_USE_LEGACY_KERAS=1 python -c \"import horovod.tensorflow\"\n\nabout:\n  home: https://horovod.ai/\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: 'Distributed training framework for TensorFlow, Keras, PyTorch, and Apache MXNet.'\n  doc_url: https://horovod.readthedocs.io/\n  dev_url: https://github.com/horovod/horovod\n\nextra:\n  recipe-maintainers:\n    - njzjz\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
+   "cffi",
    "cloudpickle",
    "cmake",
    "cuda-cudart-dev",
    "cuda-nvtx-dev",
+   "cuda-version",
    "cuda_compiler_stub",
    "cxx_compiler_stub",
    "flatbuffers",
@@ -655,6 +697,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -665,9 +708,12 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
+    "cffi",
     "cloudpickle",
     "cuda-cudart-dev",
     "cuda-nvtx-dev",
+    "cuda-version",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "flatbuffers",
@@ -690,6 +736,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
+    "cffi",
     "cloudpickle",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -707,7 +755,8 @@
    "elements": [
     "pip",
     "pytorch",
-    "tensorflow"
+    "tensorflow",
+    "tf-keras"
    ]
   }
  },
@@ -716,20 +765,26 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake >=3.13",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "flatbuffers",
+    "flatbuffers 23.5.26",
     "make"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "cffi >=1.4.0",
     "cloudpickle",
     "cuda-cudart-dev",
     "cuda-nvtx-dev",
+    "cuda-version 11.8",
+    "cuda-version 12.0",
     "flatbuffers",
+    "flatbuffers 23.5.26",
     "lbfgspp",
     "libboost-headers",
     "mpi4py",
@@ -745,6 +800,7 @@
     "pytorch 2.0.*",
     "pyyaml",
     "setuptools",
+    "setuptools <70",
     "tensorflow",
     "tensorflow * cpu*",
     "tensorflow * cuda*",
@@ -755,6 +811,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cffi >=1.4.0",
     "cloudpickle",
     "mpi4py",
     "nccl",
@@ -770,7 +827,8 @@
    "elements": [
     "pip",
     "pytorch",
-    "tensorflow"
+    "tensorflow",
+    "tf-keras 2.16"
    ]
   }
  },
