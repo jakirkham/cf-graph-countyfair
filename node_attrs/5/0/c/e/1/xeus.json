@@ -35,7 +35,7 @@
    "summary": "C++ implementation of the Jupyter Kernel protocol"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "xeus"
    ]
@@ -56,7 +56,8 @@
     "cmake",
     "make",
     "pkg-config",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "nlohmann_json",
@@ -84,6 +85,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -118,7 +120,7 @@
    "summary": "C++ implementation of the Jupyter Kernel protocol"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "xeus"
    ]
@@ -139,7 +141,8 @@
     "cmake",
     "make",
     "pkg-config",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "nlohmann_json",
@@ -167,6 +170,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -201,7 +205,7 @@
    "summary": "C++ implementation of the Jupyter Kernel protocol"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "xeus"
    ]
@@ -222,7 +226,8 @@
     "cmake",
     "make",
     "pkg-config",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "nlohmann_json",
@@ -250,6 +255,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -284,7 +290,7 @@
    "summary": "C++ implementation of the Jupyter Kernel protocol"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "xeus"
    ]
@@ -305,7 +311,8 @@
     "cmake",
     "make",
     "pkg-config",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "nlohmann_json",
@@ -345,7 +352,7 @@
    "summary": "C++ implementation of the Jupyter Kernel protocol"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "xeus"
    ]
@@ -366,7 +373,8 @@
     "cmake",
     "make",
     "pkg-config",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "nlohmann_json"
@@ -393,6 +401,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -426,7 +435,7 @@
    "summary": "C++ implementation of the Jupyter Kernel protocol"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "xeus"
    ]
@@ -447,7 +456,8 @@
     "cmake",
     "make",
     "pkg-config",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "nlohmann_json"
@@ -474,6 +484,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -513,10 +524,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/xeus.json"
  },
- "raw_meta_yaml": "{% set name = \"xeus\" %}\n{% set version = \"5.0.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/jupyter-xeus/xeus/archive/{{ version }}.tar.gz\n  sha256: eabe5dc274ad31a972e1249b070af609e6ad1adfa4c954fb120bcdc556dd6fc4\n\nbuild:\n  number: 0\n  skip: true  # [win and vc<14]\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n\nrequirements:\n  build:\n    - cmake\n    - make  # [unix]\n    - pkg-config  # [unix]\n    - {{ compiler('cxx') }}\n  host:\n    - nlohmann_json\n    - libuuid  # [linux]\n  # zeromq and libuuid have run_exports sections. No need to add them as run\n  # requirements. xeus headers expose headers from nlohmann_json  but does\n  # not depend on it at runtime.\n  run_constrained:\n    - {{ pin_compatible('nlohmann_json', max_pin='x.x.x') }}\n\ntest:\n  commands:\n    - test -d ${PREFIX}/include/xeus  # [unix]\n    - test -f ${PREFIX}/include/xeus/xeus.hpp  # [unix]\n    - test -f ${PREFIX}/lib/cmake/xeus/xeusConfig.cmake  # [unix]\n    - test -f ${PREFIX}/lib/cmake/xeus/xeusConfigVersion.cmake  # [unix]\n    - if not exist %LIBRARY_INC%\\\\xeus\\\\xeus.hpp (exit 1)  # [win]\n    - if not exist %LIBRARY_LIB%\\\\cmake\\\\xeus\\\\xeusConfig.cmake (exit 0)  # [win]\n    - if not exist %LIBRARY_LIB%\\\\cmake\\\\xeus\\\\xeusConfigVersion.cmake (exit 0)  # [win]\n\nabout:\n  home: https://github.com/jupyter-xeus/xeus\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: C++ implementation of the Jupyter Kernel protocol\n  description: xeus is a library meant to facilitate the implementation of kernels for Jupyter. It takes the burden of implementing the Jupyter Kernel protocol so developers can focus on implementing the interpreter part of the Kernel.\n  doc_url: https://xeus.readthedocs.io\n  dev_url: https://github.com/jupyter-xeus/xeus\n\nextra:\n  recipe-maintainers:\n    - SylvainCorlay\n    - JohanMabille\n    - martinRenou\n",
+ "raw_meta_yaml": "{% set name = \"xeus\" %}\n{% set version = \"5.0.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/jupyter-xeus/xeus/archive/{{ version }}.tar.gz\n  sha256: eabe5dc274ad31a972e1249b070af609e6ad1adfa4c954fb120bcdc556dd6fc4\n\nbuild:\n  number: 1\n  skip: true  # [win and vc<14]\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n\nrequirements:\n  build:\n    - cmake\n    - make  # [unix]\n    - pkg-config  # [unix]\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n  host:\n    - nlohmann_json\n    - libuuid  # [linux]\n  # zeromq and libuuid have run_exports sections. No need to add them as run\n  # requirements. xeus headers expose headers from nlohmann_json  but does\n  # not depend on it at runtime.\n  run_constrained:\n    - {{ pin_compatible('nlohmann_json', max_pin='x.x.x') }}\n\ntest:\n  commands:\n    - test -d ${PREFIX}/include/xeus  # [unix]\n    - test -f ${PREFIX}/include/xeus/xeus.hpp  # [unix]\n    - test -f ${PREFIX}/lib/cmake/xeus/xeusConfig.cmake  # [unix]\n    - test -f ${PREFIX}/lib/cmake/xeus/xeusConfigVersion.cmake  # [unix]\n    - if not exist %LIBRARY_INC%\\\\xeus\\\\xeus.hpp (exit 1)  # [win]\n    - if not exist %LIBRARY_LIB%\\\\cmake\\\\xeus\\\\xeusConfig.cmake (exit 0)  # [win]\n    - if not exist %LIBRARY_LIB%\\\\cmake\\\\xeus\\\\xeusConfigVersion.cmake (exit 0)  # [win]\n\nabout:\n  home: https://github.com/jupyter-xeus/xeus\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: C++ implementation of the Jupyter Kernel protocol\n  description: xeus is a library meant to facilitate the implementation of kernels for Jupyter. It takes the burden of implementing the Jupyter Kernel protocol so developers can focus on implementing the interpreter part of the Kernel.\n  doc_url: https://xeus.readthedocs.io\n  dev_url: https://github.com/jupyter-xeus/xeus\n\nextra:\n  recipe-maintainers:\n    - SylvainCorlay\n    - JohanMabille\n    - martinRenou\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "libuuid",
@@ -529,6 +541,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -538,6 +551,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libuuid",
     "nlohmann_json"
@@ -546,6 +560,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -559,6 +574,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -598,7 +614,7 @@
    "summary": "C++ implementation of the Jupyter Kernel protocol"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "xeus"
    ]
@@ -617,7 +633,8 @@
   "requirements": {
    "build": [
     "cmake",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "nlohmann_json"
@@ -643,6 +660,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
