@@ -23,6 +23,9 @@
    "branch_name": "main",
    "tooling_branch_name": "main"
   },
+  "os_version": {
+   "linux_64": "cos7"
+  },
   "test": "native_and_emulated"
  },
  "feedstock_name": "dgl",
@@ -50,13 +53,13 @@
    "missing_dso_whitelist": [
     "*/libcuda.*"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/",
     "SP_DIR/torch/lib/",
     "SP_DIR/dgl/"
    ],
-   "string": "cuda120py39h1234567_0"
+   "string": "cuda120py39h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -75,13 +78,13 @@
     "git",
     "libgomp",
     "make",
-    "sysroot_linux-64 2.17",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub"
    ],
    "host": [
-    "cuda-version 11.2",
+    "cuda-version 11.8",
     "cudnn",
     "cython <3",
     "dlpack ==0.7",
@@ -99,8 +102,6 @@
     "pytorch",
     "pytorch =*=*cuda*",
     "setuptools",
-    "cuda-version 11.8",
-    "pytorch =*=*cpu*",
     "cuda-version 12.0",
     "libcublas-dev",
     "libcufft-dev",
@@ -109,7 +110,8 @@
     "libcusparse-dev",
     "cuda-cudart-dev",
     "cuda-nvrtc-dev",
-    "cuda-nvtx-dev"
+    "cuda-nvtx-dev",
+    "pytorch =*=*cpu*"
    ],
    "run": [
     "networkx >=2.1",
@@ -434,13 +436,13 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "git",
     "libgomp",
-    "make",
-    "sysroot_linux-64"
+    "make"
    ]
   },
   "host": {
@@ -517,13 +519,13 @@
     "gklib"
    ],
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/",
     "SP_DIR/torch/lib/",
     "SP_DIR/dgl/"
    ],
-   "string": "cuda120py39h1234567_0"
+   "string": "cuda120py39h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -542,14 +544,14 @@
     "git",
     "libgomp",
     "make",
-    "sysroot_linux-64 2.17",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "llvm-openmp"
    ],
    "host": [
-    "cuda-version 11.2",
+    "cuda-version 11.8",
     "cudnn",
     "cython <3",
     "dlpack ==0.7",
@@ -567,8 +569,6 @@
     "pytorch",
     "pytorch =*=*cuda*",
     "setuptools",
-    "cuda-version 11.8",
-    "pytorch =*=*cpu*",
     "cuda-version 12.0",
     "libcublas-dev",
     "libcufft-dev",
@@ -577,7 +577,8 @@
     "libcusparse-dev",
     "cuda-cudart-dev",
     "cuda-nvrtc-dev",
-    "cuda-nvtx-dev"
+    "cuda-nvtx-dev",
+    "pytorch =*=*cpu*"
    ],
    "run": [
     "networkx >=2.1",
@@ -595,6 +596,54 @@
    ]
   },
   "source": [
+   {
+    "patches": [
+     "fix_clang_errors.patch",
+     "fix_libdgl_sparse_pytorch_location_logic.patch",
+     "control_make_parallelism.patch"
+    ],
+    "sha256": "a728fe7167da5ae5eb6ff9f455938c802acb1b477924eb6abb124aba61099a6c",
+    "url": "https://github.com/dmlc/dgl/archive/v2.0.0.tar.gz"
+   },
+   {
+    "folder": "third_party/pcg",
+    "sha256": "79f23706ed0cbc1bb57ea35d50d0abed66898b8f7b0bcf2aaecdfd234863b060",
+    "url": "https://github.com/imneme/pcg-cpp/archive/428802d1a5634f96bcd0705fab379ff0113bcf13.tar.gz"
+   },
+   {
+    "folder": "third_party/libxsmm",
+    "sha256": "5ee733ccbfe8b79f61e4ea87e5defbbaf51f80a851eb3cf00a0946e4d230d999",
+    "url": "https://github.com/libxsmm/libxsmm/archive/80090603e43f6ddc870cc42e1403dd0af07744cc.tar.gz"
+   },
+   {
+    "folder": "third_party/cccl",
+    "sha256": "59bcccb6d7c054323fafb76ff0932c33ed9c3fac969c3eef2a521ad0980639fc",
+    "url": "https://github.com/NVIDIA/cccl/archive/4d5c181cb4e67b14e7d1fdeb45cf0104119bfb09.tar.gz"
+   },
+   {
+    "patches": [
+     "fix_clang_errors.patch",
+     "fix_libdgl_sparse_pytorch_location_logic.patch",
+     "control_make_parallelism.patch"
+    ],
+    "sha256": "a728fe7167da5ae5eb6ff9f455938c802acb1b477924eb6abb124aba61099a6c",
+    "url": "https://github.com/dmlc/dgl/archive/v2.0.0.tar.gz"
+   },
+   {
+    "folder": "third_party/pcg",
+    "sha256": "79f23706ed0cbc1bb57ea35d50d0abed66898b8f7b0bcf2aaecdfd234863b060",
+    "url": "https://github.com/imneme/pcg-cpp/archive/428802d1a5634f96bcd0705fab379ff0113bcf13.tar.gz"
+   },
+   {
+    "folder": "third_party/libxsmm",
+    "sha256": "5ee733ccbfe8b79f61e4ea87e5defbbaf51f80a851eb3cf00a0946e4d230d999",
+    "url": "https://github.com/libxsmm/libxsmm/archive/80090603e43f6ddc870cc42e1403dd0af07744cc.tar.gz"
+   },
+   {
+    "folder": "third_party/cccl",
+    "sha256": "59bcccb6d7c054323fafb76ff0932c33ed9c3fac969c3eef2a521ad0980639fc",
+    "url": "https://github.com/NVIDIA/cccl/archive/4d5c181cb4e67b14e7d1fdeb45cf0104119bfb09.tar.gz"
+   },
    {
     "patches": [
      "fix_clang_errors.patch",
@@ -1063,7 +1112,7 @@
     "gklib"
    ],
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/",
     "SP_DIR/torch/lib/",
@@ -1088,6 +1137,7 @@
     "llvm-openmp",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -1123,6 +1173,30 @@
    ]
   },
   "source": [
+   {
+    "patches": [
+     "fix_clang_errors.patch",
+     "fix_libdgl_sparse_pytorch_location_logic.patch",
+     "control_make_parallelism.patch"
+    ],
+    "sha256": "a728fe7167da5ae5eb6ff9f455938c802acb1b477924eb6abb124aba61099a6c",
+    "url": "https://github.com/dmlc/dgl/archive/v2.0.0.tar.gz"
+   },
+   {
+    "folder": "third_party/pcg",
+    "sha256": "79f23706ed0cbc1bb57ea35d50d0abed66898b8f7b0bcf2aaecdfd234863b060",
+    "url": "https://github.com/imneme/pcg-cpp/archive/428802d1a5634f96bcd0705fab379ff0113bcf13.tar.gz"
+   },
+   {
+    "folder": "third_party/libxsmm",
+    "sha256": "5ee733ccbfe8b79f61e4ea87e5defbbaf51f80a851eb3cf00a0946e4d230d999",
+    "url": "https://github.com/libxsmm/libxsmm/archive/80090603e43f6ddc870cc42e1403dd0af07744cc.tar.gz"
+   },
+   {
+    "folder": "third_party/cccl",
+    "sha256": "59bcccb6d7c054323fafb76ff0932c33ed9c3fac969c3eef2a521ad0980639fc",
+    "url": "https://github.com/NVIDIA/cccl/archive/4d5c181cb4e67b14e7d1fdeb45cf0104119bfb09.tar.gz"
+   },
    {
     "patches": [
      "fix_clang_errors.patch",
@@ -1214,6 +1288,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "git",
@@ -1285,7 +1360,7 @@
     "gklib"
    ],
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/",
     "SP_DIR/torch/lib/",
@@ -1310,6 +1385,7 @@
     "llvm-openmp",
     "make",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -1416,6 +1492,30 @@
     "folder": "third_party/cccl",
     "sha256": "59bcccb6d7c054323fafb76ff0932c33ed9c3fac969c3eef2a521ad0980639fc",
     "url": "https://github.com/NVIDIA/cccl/archive/4d5c181cb4e67b14e7d1fdeb45cf0104119bfb09.tar.gz"
+   },
+   {
+    "patches": [
+     "fix_clang_errors.patch",
+     "fix_libdgl_sparse_pytorch_location_logic.patch",
+     "control_make_parallelism.patch"
+    ],
+    "sha256": "a728fe7167da5ae5eb6ff9f455938c802acb1b477924eb6abb124aba61099a6c",
+    "url": "https://github.com/dmlc/dgl/archive/v2.0.0.tar.gz"
+   },
+   {
+    "folder": "third_party/pcg",
+    "sha256": "79f23706ed0cbc1bb57ea35d50d0abed66898b8f7b0bcf2aaecdfd234863b060",
+    "url": "https://github.com/imneme/pcg-cpp/archive/428802d1a5634f96bcd0705fab379ff0113bcf13.tar.gz"
+   },
+   {
+    "folder": "third_party/libxsmm",
+    "sha256": "5ee733ccbfe8b79f61e4ea87e5defbbaf51f80a851eb3cf00a0946e4d230d999",
+    "url": "https://github.com/libxsmm/libxsmm/archive/80090603e43f6ddc870cc42e1403dd0af07744cc.tar.gz"
+   },
+   {
+    "folder": "third_party/cccl",
+    "sha256": "59bcccb6d7c054323fafb76ff0932c33ed9c3fac969c3eef2a521ad0980639fc",
+    "url": "https://github.com/NVIDIA/cccl/archive/4d5c181cb4e67b14e7d1fdeb45cf0104119bfb09.tar.gz"
    }
   ],
   "test": {
@@ -1436,6 +1536,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "git",
@@ -1501,11 +1602,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/dgl.json"
  },
- "raw_meta_yaml": "{% set name = \"dgl\" %}\n{% set version = \"2.0.0\" %}\n{% set torch_proc_type = \"cuda\" if cuda_compiler_version != \"None\" else \"cpu\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/dmlc/dgl/archive/v{{ version }}.tar.gz\n    sha256: a728fe7167da5ae5eb6ff9f455938c802acb1b477924eb6abb124aba61099a6c\n    patches:\n      - fix_clang_errors.patch\n      - fix_libdgl_sparse_pytorch_location_logic.patch\n      - control_make_parallelism.patch\n\n  - url: https://github.com/imneme/pcg-cpp/archive/428802d1a5634f96bcd0705fab379ff0113bcf13.tar.gz\n    sha256: 79f23706ed0cbc1bb57ea35d50d0abed66898b8f7b0bcf2aaecdfd234863b060\n    folder: third_party/pcg\n\n  - url: https://github.com/libxsmm/libxsmm/archive/80090603e43f6ddc870cc42e1403dd0af07744cc.tar.gz\n    sha256: 5ee733ccbfe8b79f61e4ea87e5defbbaf51f80a851eb3cf00a0946e4d230d999\n    folder: third_party/libxsmm\n\n  - url: https://github.com/NVIDIA/cccl/archive/4d5c181cb4e67b14e7d1fdeb45cf0104119bfb09.tar.gz\n    sha256: 59bcccb6d7c054323fafb76ff0932c33ed9c3fac969c3eef2a521ad0980639fc\n    folder: third_party/cccl\n\nbuild:\n  skip: true  # [win or py<39]\n  number: 0\n  rpaths:\n    - lib/\n      # PyTorch libs are in site-packages instead of with other shared objects\n    - {{ SP_DIR }}/torch/lib/\n      # DGL libs are in site-packages instead of with other shared objects\n    - {{ SP_DIR }}/dgl/\n  missing_dso_whitelist:\n    - '*/libcuda.*'  # [linux64]\n  string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != \"None\"]\n  ignore_run_exports:\n    - gklib\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython <3                              # [build_platform != target_platform]\n    - pytorch                                # [build_platform != target_platform]\n    - pytorch =*=*{{ torch_proc_type }}*     # [build_platform != target_platform]\n    - libtorch                               # [build_platform != target_platform]\n    - cmake >=3.20\n    - git\n    - libgomp      # [linux]\n    - llvm-openmp  # [osx]\n    - make\n    - sysroot_{{ target_platform }} 2.17  # [linux]\n    - {{ compiler('c') }}\n    - {{ compiler('cuda') }}  # [cuda_compiler_version not in (undefined, 'None')]\n    - {{ compiler('cxx') }}\n  host:\n    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version not in (undefined, 'None')]\n    - cudnn                                     # [cuda_compiler_version not in (undefined, 'None')]\n    - cython <3\n    - dlpack ==0.7\n    - dmlc ==0.5\n    - gklib ==5.1.1  # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/5396#issuecomment-1900607226\n    - libblas\n    - libcublas-dev      # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcufft-dev       # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcurand-dev      # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusolver-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusparse-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-cudart-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-nvrtc-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-nvtx-dev      # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcblas\n    - liblapack\n    - liblapacke\n    - metis ==5.1.1\n    - nanoflann <=1.4.2\n    - parallel-hashmap\n    - python\n    - libtorch\n    - pytorch  # duplicate dep to pick up conda-forge pinnings\n    - pytorch =*=*{{ torch_proc_type }}*\n    - setuptools\n  run:\n    - networkx >=2.1\n    - numpy >=1.14.0\n    - pandas  # not a core dependency, but leaks in the 'import dgl' test via dgl.data \n    - psutil >=5.8.0\n    - python\n    - pytorch =*=*{{ torch_proc_type }}*\n    - requests >=2.19.0\n    - scipy >=1.1.0\n    - tensorflow\n    - torchdata >=0.5.0\n    - tqdm\n\ntest:\n  requires:\n    - pip\n  imports:\n    - dgl\n    - dgl.sparse\n  commands:\n    - pip check || true  # Get the output of pip check but don't care if it fails\n\nabout:\n  home: https://github.com/dmlc/dgl\n  license: Apache-2.0\n  license_file:\n    - LICENSE\n    - third_party/pcg/LICENSE-APACHE.txt\n    - third_party/pcg/LICENSE-MIT.txt\n    - third_party/libxsmm/LICENSE.md\n    - third_party/cccl/LICENSE\n    - HugeCTR_gpu_cache_license.txt\n  summary: A deep graph library\n  description: |\n    DGL is an easy-to-use, high performance and scalable Python package for deep\n     learning on graphs. DGL is framework agnostic, meaning if a deep graph\n     model is a component of an end-to-end application, the rest of the logics\n     can be implemented in any major frameworks, such as PyTorch, Apache MXNet\n     or TensorFlow.\n  doc_url: https://docs.dgl.ai/en/latest/\n\nextra:\n  recipe-maintainers:\n    - frozenbugs\n    - mikemhenry\n    - hmacdope\n",
+ "raw_meta_yaml": "{% set name = \"dgl\" %}\n{% set version = \"2.0.0\" %}\n{% set torch_proc_type = \"cuda\" if cuda_compiler_version != \"None\" else \"cpu\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/dmlc/dgl/archive/v{{ version }}.tar.gz\n    sha256: a728fe7167da5ae5eb6ff9f455938c802acb1b477924eb6abb124aba61099a6c\n    patches:\n      - fix_clang_errors.patch\n      - fix_libdgl_sparse_pytorch_location_logic.patch\n      - control_make_parallelism.patch\n\n  - url: https://github.com/imneme/pcg-cpp/archive/428802d1a5634f96bcd0705fab379ff0113bcf13.tar.gz\n    sha256: 79f23706ed0cbc1bb57ea35d50d0abed66898b8f7b0bcf2aaecdfd234863b060\n    folder: third_party/pcg\n\n  - url: https://github.com/libxsmm/libxsmm/archive/80090603e43f6ddc870cc42e1403dd0af07744cc.tar.gz\n    sha256: 5ee733ccbfe8b79f61e4ea87e5defbbaf51f80a851eb3cf00a0946e4d230d999\n    folder: third_party/libxsmm\n\n  - url: https://github.com/NVIDIA/cccl/archive/4d5c181cb4e67b14e7d1fdeb45cf0104119bfb09.tar.gz\n    sha256: 59bcccb6d7c054323fafb76ff0932c33ed9c3fac969c3eef2a521ad0980639fc\n    folder: third_party/cccl\n\nbuild:\n  skip: true  # [win or py<39]\n  number: 1\n  rpaths:\n    - lib/\n      # PyTorch libs are in site-packages instead of with other shared objects\n    - {{ SP_DIR }}/torch/lib/\n      # DGL libs are in site-packages instead of with other shared objects\n    - {{ SP_DIR }}/dgl/\n  missing_dso_whitelist:\n    - '*/libcuda.*'  # [linux64]\n  string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != \"None\"]\n  ignore_run_exports:\n    - gklib\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython <3                              # [build_platform != target_platform]\n    - pytorch                                # [build_platform != target_platform]\n    - pytorch =*=*{{ torch_proc_type }}*     # [build_platform != target_platform]\n    - libtorch                               # [build_platform != target_platform]\n    - cmake >=3.20\n    - git\n    - libgomp      # [linux]\n    - llvm-openmp  # [osx]\n    - make\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cuda') }}  # [cuda_compiler_version not in (undefined, 'None')]\n    - {{ compiler('cxx') }}\n  host:\n    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version not in (undefined, 'None')]\n    - cudnn                                     # [cuda_compiler_version not in (undefined, 'None')]\n    - cython <3\n    - dlpack ==0.7\n    - dmlc ==0.5\n    - gklib ==5.1.1  # https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/5396#issuecomment-1900607226\n    - libblas\n    - libcublas-dev      # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcufft-dev       # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcurand-dev      # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusolver-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusparse-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-cudart-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-nvrtc-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-nvtx-dev      # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcblas\n    - liblapack\n    - liblapacke\n    - metis ==5.1.1\n    - nanoflann <=1.4.2\n    - parallel-hashmap\n    - python\n    - libtorch\n    - pytorch  # duplicate dep to pick up conda-forge pinnings\n    - pytorch =*=*{{ torch_proc_type }}*\n    - setuptools\n  run:\n    - networkx >=2.1\n    - numpy >=1.14.0\n    - pandas  # not a core dependency, but leaks in the 'import dgl' test via dgl.data \n    - psutil >=5.8.0\n    - python\n    - pytorch =*=*{{ torch_proc_type }}*\n    - requests >=2.19.0\n    - scipy >=1.1.0\n    - tensorflow\n    - torchdata >=0.5.0\n    - tqdm\n\ntest:\n  requires:\n    - pip\n  imports:\n    - dgl\n    - dgl.sparse\n  commands:\n    - pip check || true  # Get the output of pip check but don't care if it fails\n\nabout:\n  home: https://github.com/dmlc/dgl\n  license: Apache-2.0\n  license_file:\n    - LICENSE\n    - third_party/pcg/LICENSE-APACHE.txt\n    - third_party/pcg/LICENSE-MIT.txt\n    - third_party/libxsmm/LICENSE.md\n    - third_party/cccl/LICENSE\n    - HugeCTR_gpu_cache_license.txt\n  summary: A deep graph library\n  description: |\n    DGL is an easy-to-use, high performance and scalable Python package for deep\n     learning on graphs. DGL is framework agnostic, meaning if a deep graph\n     model is a component of an end-to-end application, the rest of the logics\n     can be implemented in any major frameworks, such as PyTorch, Apache MXNet\n     or TensorFlow.\n  doc_url: https://docs.dgl.ai/en/latest/\n\nextra:\n  recipe-maintainers:\n    - frozenbugs\n    - mikemhenry\n    - hmacdope\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cuda-cudart-dev",
    "cuda-nvrtc-dev",
@@ -1544,7 +1646,6 @@
    "requests",
    "scipy",
    "setuptools",
-   "sysroot_linux-64",
    "tensorflow",
    "torchdata",
    "tqdm"
@@ -1555,20 +1656,21 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "git",
     "libgomp",
     "llvm-openmp",
-    "make",
-    "sysroot_linux-64"
+    "make"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cuda-cudart-dev",
     "cuda-nvrtc-dev",
@@ -1604,6 +1706,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -1634,14 +1737,14 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake >=3.20",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "git",
     "libgomp",
     "llvm-openmp",
-    "make",
-    "sysroot_linux-64 2.17"
+    "make"
    ]
   },
   "host": {
@@ -1650,7 +1753,6 @@
     "cuda-cudart-dev",
     "cuda-nvrtc-dev",
     "cuda-nvtx-dev",
-    "cuda-version 11.2",
     "cuda-version 11.8",
     "cuda-version 12.0",
     "cudnn",
