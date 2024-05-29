@@ -45,11 +45,12 @@
   },
   "package": {
    "name": "gemmi",
-   "version": "0.6.5"
+   "version": "0.6.6"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make"
@@ -68,8 +69,8 @@
    ]
   },
   "source": {
-   "sha256": "9159506a16e0d22bbeeefc4d34137099318307db1b2bebf06fb2ae501571b19c",
-   "url": "https://github.com/project-gemmi/gemmi/archive/v0.6.5.tar.gz"
+   "sha256": "722369495f7374bb938d14da2c3a9f8444b753e2d9536cf097c161a53dbbae19",
+   "url": "https://github.com/project-gemmi/gemmi/archive/v0.6.6.tar.gz"
   },
   "test": {
    "commands": [
@@ -95,6 +96,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -151,11 +153,12 @@
   },
   "package": {
    "name": "gemmi",
-   "version": "0.6.5"
+   "version": "0.6.6"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
@@ -175,8 +178,8 @@
    ]
   },
   "source": {
-   "sha256": "9159506a16e0d22bbeeefc4d34137099318307db1b2bebf06fb2ae501571b19c",
-   "url": "https://github.com/project-gemmi/gemmi/archive/v0.6.5.tar.gz"
+   "sha256": "722369495f7374bb938d14da2c3a9f8444b753e2d9536cf097c161a53dbbae19",
+   "url": "https://github.com/project-gemmi/gemmi/archive/v0.6.6.tar.gz"
   },
   "test": {
    "commands": [
@@ -223,11 +226,12 @@
   },
   "package": {
    "name": "gemmi",
-   "version": "0.6.5"
+   "version": "0.6.6"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make"
@@ -246,8 +250,8 @@
    ]
   },
   "source": {
-   "sha256": "9159506a16e0d22bbeeefc4d34137099318307db1b2bebf06fb2ae501571b19c",
-   "url": "https://github.com/project-gemmi/gemmi/archive/v0.6.5.tar.gz"
+   "sha256": "722369495f7374bb938d14da2c3a9f8444b753e2d9536cf097c161a53dbbae19",
+   "url": "https://github.com/project-gemmi/gemmi/archive/v0.6.6.tar.gz"
   },
   "test": {
    "commands": [
@@ -273,6 +277,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -329,11 +334,12 @@
   },
   "package": {
    "name": "gemmi",
-   "version": "0.6.5"
+   "version": "0.6.6"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make"
@@ -352,8 +358,8 @@
    ]
   },
   "source": {
-   "sha256": "9159506a16e0d22bbeeefc4d34137099318307db1b2bebf06fb2ae501571b19c",
-   "url": "https://github.com/project-gemmi/gemmi/archive/v0.6.5.tar.gz"
+   "sha256": "722369495f7374bb938d14da2c3a9f8444b753e2d9536cf097c161a53dbbae19",
+   "url": "https://github.com/project-gemmi/gemmi/archive/v0.6.6.tar.gz"
   },
   "test": {
    "commands": [
@@ -379,6 +385,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -426,11 +433,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/gemmi.json"
  },
- "raw_meta_yaml": "{% set name = \"gemmi\" %}\n{% set version = \"0.6.5\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/project-gemmi/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 9159506a16e0d22bbeeefc4d34137099318307db1b2bebf06fb2ae501571b19c\n\nbuild:\n  number: 0\n  script:\n    - {{ PYTHON }} -m pip install . -vv --config-settings=\"cmake.args=-DBUILD_GEMMI_PROGRAM=ON;-DUSE_ZLIB_NG=ON\"\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [not win]\n    - ninja  # [win]\n  host:\n    - python\n    - pybind11\n    - scikit-build-core\n    - pip\n    - zlib-ng\n    - pybind11-stubgen\n    - numpy         # [py<=310]\n    - numpy >=1.26  # [py>310]\n  run:\n    - python\n\ntest:\n  source_files:\n    - tests\n    - examples\n  commands:\n    - gemmi --help\n    - pip check\n    - python -m unittest discover -s tests -v\n  imports:\n    - gemmi\n  requires:\n    - pip\n    - numpy\n\nabout:\n  home: https://project-gemmi.github.io/\n  license: MPL-2.0\n  license_family: OTHER\n  license_file: LICENSE.txt\n  summary: Macromolecular crystallography library and utilities.\n  doc_url: https://gemmi.readthedocs.io/\n  dev_url: https://github.com/project-gemmi/gemmi\n\nextra:\n  recipe-maintainers:\n    - ndevenish\n    - wojdyr\n    - mcs07\n",
+ "raw_meta_yaml": "{% set name = \"gemmi\" %}\n{% set version = \"0.6.6\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/project-gemmi/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 722369495f7374bb938d14da2c3a9f8444b753e2d9536cf097c161a53dbbae19\n\nbuild:\n  number: 0\n  script:\n    - {{ PYTHON }} -m pip install . -vv --config-settings=\"cmake.args=-DBUILD_GEMMI_PROGRAM=ON;-DUSE_ZLIB_NG=ON\"\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [not win]\n    - ninja  # [win]\n  host:\n    - python\n    - pybind11\n    - scikit-build-core\n    - pip\n    - zlib-ng\n    - pybind11-stubgen\n    - numpy         # [py<=310]\n    - numpy >=1.26  # [py>310]\n  run:\n    - python\n\ntest:\n  source_files:\n    - tests\n    - examples\n  commands:\n    - gemmi --help\n    - pip check\n    - python -m unittest discover -s tests -v\n  imports:\n    - gemmi\n  requires:\n    - pip\n    - numpy\n\nabout:\n  home: https://project-gemmi.github.io/\n  license: MPL-2.0\n  license_family: OTHER\n  license_file: LICENSE.txt\n  summary: Macromolecular crystallography library and utilities.\n  doc_url: https://gemmi.readthedocs.io/\n  dev_url: https://github.com/project-gemmi/gemmi\n\nextra:\n  recipe-maintainers:\n    - ndevenish\n    - wojdyr\n    - mcs07\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "make",
@@ -449,6 +457,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -459,6 +468,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numpy",
     "pip",
@@ -473,6 +483,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "python"
    ]
@@ -491,6 +502,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -523,8 +535,8 @@
    ]
   }
  },
- "url": "https://github.com/project-gemmi/gemmi/archive/v0.6.5.tar.gz",
- "version": "0.6.5",
+ "url": "https://github.com/project-gemmi/gemmi/archive/v0.6.6.tar.gz",
+ "version": "0.6.6",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/gemmi.json"
  },
@@ -553,11 +565,12 @@
   },
   "package": {
    "name": "gemmi",
-   "version": "0.6.5"
+   "version": "0.6.6"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "ninja"
@@ -576,8 +589,8 @@
    ]
   },
   "source": {
-   "sha256": "9159506a16e0d22bbeeefc4d34137099318307db1b2bebf06fb2ae501571b19c",
-   "url": "https://github.com/project-gemmi/gemmi/archive/v0.6.5.tar.gz"
+   "sha256": "722369495f7374bb938d14da2c3a9f8444b753e2d9536cf097c161a53dbbae19",
+   "url": "https://github.com/project-gemmi/gemmi/archive/v0.6.6.tar.gz"
   },
   "test": {
    "commands": [
@@ -603,6 +616,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
