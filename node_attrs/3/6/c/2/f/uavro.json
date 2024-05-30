@@ -22,7 +22,7 @@
    "summary": "Very fast avro file to dataframe reader"
   },
   "build": {
-   "number": "1004",
+   "number": "1005",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   },
   "extra": {
@@ -36,7 +36,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -48,8 +49,7 @@
     "python",
     "pandas",
     "cython",
-    "fastparquet",
-    "numpy"
+    "fastparquet"
    ]
   },
   "source": {
@@ -72,7 +72,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -89,7 +90,6 @@
    "elements": [
     "cython",
     "fastparquet",
-    "numpy",
     "pandas",
     "python"
    ]
@@ -110,7 +110,7 @@
    "summary": "Very fast avro file to dataframe reader"
   },
   "build": {
-   "number": "1004",
+   "number": "1005",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   },
   "extra": {
@@ -124,7 +124,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -137,8 +138,7 @@
     "python",
     "pandas",
     "cython",
-    "fastparquet",
-    "numpy"
+    "fastparquet"
    ]
   },
   "source": {
@@ -167,7 +167,7 @@
    "summary": "Very fast avro file to dataframe reader"
   },
   "build": {
-   "number": "1004",
+   "number": "1005",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   },
   "extra": {
@@ -181,7 +181,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -193,8 +194,7 @@
     "python",
     "pandas",
     "cython",
-    "fastparquet",
-    "numpy"
+    "fastparquet"
    ]
   },
   "source": {
@@ -217,7 +217,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -234,7 +235,6 @@
    "elements": [
     "cython",
     "fastparquet",
-    "numpy",
     "pandas",
     "python"
    ]
@@ -261,11 +261,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/uavro.json"
  },
- "raw_meta_yaml": "{% set name = \"uavro\" %}\n{% set version = \"0.1.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/uavro-{{ version }}.tar.gz\n  sha256: 4c26012b9218ae07e81573958331c24a77e8964556fc768223aae4f11b647cdf\n\nbuild:\n  number: 1004\n  script: \"{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv\"\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n  host:\n    - python\n    - cython\n    - numpy\n    - pip\n    - msinttypes  # [win]\n  run:\n    - python\n    - pandas\n    - cython\n    - fastparquet\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - uavro\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/martindurant/uavro\n  license: MIT\n  license_family: MIT\n  license_file: '{{ environ[\"RECIPE_DIR\"] }}/LICENSE.txt'\n  summary: 'Very fast avro file to dataframe reader'\n\nextra:\n  recipe-maintainers:\n    - martindurant\n",
+ "raw_meta_yaml": "{% set name = \"uavro\" %}\n{% set version = \"0.1.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/uavro-{{ version }}.tar.gz\n  sha256: 4c26012b9218ae07e81573958331c24a77e8964556fc768223aae4f11b647cdf\n\nbuild:\n  number: 1005\n  script: \"{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv\"\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - cython\n    - numpy\n    - pip\n    - msinttypes  # [win]\n  run:\n    - python\n    - pandas\n    - cython\n    - fastparquet\n\ntest:\n  imports:\n    - uavro\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/martindurant/uavro\n  license: MIT\n  license_family: MIT\n  license_file: '{{ environ[\"RECIPE_DIR\"] }}/LICENSE.txt'\n  summary: 'Very fast avro file to dataframe reader'\n\nextra:\n  recipe-maintainers:\n    - martindurant\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cython",
    "fastparquet",
    "msinttypes",
@@ -279,13 +280,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "msinttypes",
     "numpy",
@@ -297,9 +300,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "fastparquet",
-    "numpy",
     "pandas",
     "python"
    ]
@@ -316,7 +319,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -334,7 +338,6 @@
    "elements": [
     "cython",
     "fastparquet",
-    "numpy",
     "pandas",
     "python"
    ]
@@ -360,7 +363,7 @@
    "summary": "Very fast avro file to dataframe reader"
   },
   "build": {
-   "number": "1004",
+   "number": "1005",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   },
   "extra": {
@@ -374,7 +377,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -387,8 +391,7 @@
     "python",
     "pandas",
     "cython",
-    "fastparquet",
-    "numpy"
+    "fastparquet"
    ]
   },
   "source": {
@@ -411,7 +414,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -429,7 +433,6 @@
    "elements": [
     "cython",
     "fastparquet",
-    "numpy",
     "pandas",
     "python"
    ]
