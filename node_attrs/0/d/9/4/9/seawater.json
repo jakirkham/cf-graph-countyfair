@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "update-grayskull"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -16,13 +19,17 @@
  "linux_64_meta_yaml": {
   "about": {
    "home": "https://github.com/pyoceans/python-seawater",
-   "license": "MIT",
-   "summary": "Seawater Library for Python."
+   "license": "MIT AND LicenseRef-CSIRO",
+   "license_file": [
+    "LICENSE.txt",
+    "LICENSE.CSIRO"
+   ],
+   "summary": "Seawater Library for Python"
   },
   "build": {
    "noarch": "python",
-   "number": "1",
-   "script": "python -m pip install --no-deps --ignore-installed ."
+   "number": "0",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -31,27 +38,35 @@
   },
   "package": {
    "name": "seawater",
-   "version": "3.3.4"
+   "version": "3.3.5"
   },
   "requirements": {
    "host": [
-    "pip",
-    "python",
-    "setuptools"
+    "python >=3.8",
+    "setuptools >=42",
+    "setuptools-scm",
+    "wheel",
+    "pip"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python >=3.8",
+    "numpy",
+    "scipy"
    ]
   },
   "source": {
-   "fn": "seawater-3.3.4.tar.gz",
-   "sha256": "8fecf37d69fbe5f2bf50855aab38f9438b44ee4195e925edfa9e544f75cfecc8",
-   "url": "https://github.com/pyoceans/python-seawater/archive/v3.3.4.tar.gz"
+   "sha256": "ed3443330d76e5054ad6e3f60ac5a1e407f703504887be9352c35a9d77fd6fa8",
+   "url": "https://pypi.io/packages/source/s/seawater/seawater-3.3.5.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "seawater"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -65,31 +80,40 @@
    "elements": [
     "pip",
     "python",
-    "setuptools"
+    "setuptools",
+    "setuptools-scm",
+    "wheel"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "numpy",
-    "python"
+    "python",
+    "scipy"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
   "about": {
    "home": "https://github.com/pyoceans/python-seawater",
-   "license": "MIT",
-   "summary": "Seawater Library for Python."
+   "license": "MIT AND LicenseRef-CSIRO",
+   "license_file": [
+    "LICENSE.txt",
+    "LICENSE.CSIRO"
+   ],
+   "summary": "Seawater Library for Python"
   },
   "build": {
    "noarch": "python",
-   "number": "1",
-   "script": "python -m pip install --no-deps --ignore-installed ."
+   "number": "0",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -98,27 +122,35 @@
   },
   "package": {
    "name": "seawater",
-   "version": "3.3.4"
+   "version": "3.3.5"
   },
   "requirements": {
    "host": [
-    "pip",
-    "python",
-    "setuptools"
+    "python >=3.8",
+    "setuptools >=42",
+    "setuptools-scm",
+    "wheel",
+    "pip"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python >=3.8",
+    "numpy",
+    "scipy"
    ]
   },
   "source": {
-   "fn": "seawater-3.3.4.tar.gz",
-   "sha256": "8fecf37d69fbe5f2bf50855aab38f9438b44ee4195e925edfa9e544f75cfecc8",
-   "url": "https://github.com/pyoceans/python-seawater/archive/v3.3.4.tar.gz"
+   "sha256": "ed3443330d76e5054ad6e3f60ac5a1e407f703504887be9352c35a9d77fd6fa8",
+   "url": "https://pypi.io/packages/source/s/seawater/seawater-3.3.5.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "seawater"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -136,14 +168,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/seawater.json"
  },
- "raw_meta_yaml": "{% set version = \"3.3.4\" %}\n\npackage:\n  name: seawater\n  version: {{ version }}\n\nsource:\n  fn: seawater-{{ version }}.tar.gz\n  url: https://github.com/pyoceans/python-seawater/archive/v{{ version }}.tar.gz\n  sha256: 8fecf37d69fbe5f2bf50855aab38f9438b44ee4195e925edfa9e544f75cfecc8\n\nbuild:\n  noarch: python\n  number: 1\n  script: python -m pip install --no-deps --ignore-installed .\n\nrequirements:\n  host:\n    - pip\n    - python\n    - setuptools\n  run:\n    - python\n    - numpy\n\ntest:\n  imports:\n    - seawater\n\nabout:\n  home: https://github.com/pyoceans/python-seawater\n  license: MIT\n  summary: 'Seawater Library for Python.'\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n",
+ "raw_meta_yaml": "{% set name = \"seawater\" %}\n{% set version = \"3.3.5\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/seawater-{{ version }}.tar.gz\n  sha256: ed3443330d76e5054ad6e3f60ac5a1e407f703504887be9352c35a9d77fd6fa8\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools >=42\n    - setuptools-scm\n    - wheel\n    - pip\n  run:\n    - python >=3.8\n    - numpy\n    - scipy\n\ntest:\n  imports:\n    - seawater\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/pyoceans/python-seawater\n  summary: Seawater Library for Python\n  license: MIT AND LicenseRef-CSIRO\n  license_file:\n    - LICENSE.txt\n    - LICENSE.CSIRO\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n",
  "req": {
   "__set__": true,
   "elements": [
    "numpy",
    "pip",
    "python",
-   "setuptools"
+   "scipy",
+   "setuptools",
+   "setuptools-scm",
+   "wheel"
   ]
  },
  "requirements": {
@@ -156,19 +191,24 @@
    "elements": [
     "pip",
     "python",
-    "setuptools"
+    "setuptools",
+    "setuptools-scm",
+    "wheel"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "numpy",
-    "python"
+    "python",
+    "scipy"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
@@ -181,24 +221,29 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python",
-    "setuptools"
+    "python >=3.8",
+    "setuptools >=42",
+    "setuptools-scm",
+    "wheel"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "numpy",
-    "python"
+    "python >=3.8",
+    "scipy"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
- "url": "https://github.com/pyoceans/python-seawater/archive/v3.3.4.tar.gz",
- "version": "3.3.4",
+ "url": "https://pypi.io/packages/source/s/seawater/seawater-3.3.5.tar.gz",
+ "version": "3.3.5",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/seawater.json"
  }
