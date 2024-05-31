@@ -34,27 +34,28 @@
   },
   "package": {
    "name": "libuvw",
-   "version": "3.3.0"
+   "version": "3.4.0"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config"
    ],
    "host": [
-    "libuv 1.47"
+    "libuv 1.48"
    ],
    "run": [
-    "libuv 1.47"
+    "libuv 1.48"
    ]
   },
   "source": {
-   "fn": "libuvw-3.3.0.tar.gz",
-   "sha256": "aabb17d3d8f0b3481b44e981c889dd4a2a6a3f1a96a4d01055e669f4b7d37d0e",
-   "url": "https://github.com/skypjack/uvw/archive/v3.3.0_libuv_v1.47.tar.gz"
+   "fn": "libuvw-3.4.0.tar.gz",
+   "sha256": "c16600573871a5feeb524234b378ab832c8971b2a68d030c6bd0e3077d416ade",
+   "url": "https://github.com/skypjack/uvw/archive/v3.4.0_libuv_v1.48.tar.gz"
   },
   "test": {
    "commands": [
@@ -68,6 +69,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -112,27 +114,28 @@
   },
   "package": {
    "name": "libuvw",
-   "version": "3.3.0"
+   "version": "3.4.0"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config"
    ],
    "host": [
-    "libuv 1.47"
+    "libuv 1.48"
    ],
    "run": [
-    "libuv 1.47"
+    "libuv 1.48"
    ]
   },
   "source": {
-   "fn": "libuvw-3.3.0.tar.gz",
-   "sha256": "aabb17d3d8f0b3481b44e981c889dd4a2a6a3f1a96a4d01055e669f4b7d37d0e",
-   "url": "https://github.com/skypjack/uvw/archive/v3.3.0_libuv_v1.47.tar.gz"
+   "fn": "libuvw-3.4.0.tar.gz",
+   "sha256": "c16600573871a5feeb524234b378ab832c8971b2a68d030c6bd0e3077d416ade",
+   "url": "https://github.com/skypjack/uvw/archive/v3.4.0_libuv_v1.48.tar.gz"
   },
   "test": {
    "commands": [
@@ -165,27 +168,28 @@
   },
   "package": {
    "name": "libuvw",
-   "version": "3.3.0"
+   "version": "3.4.0"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config"
    ],
    "host": [
-    "libuv 1.47"
+    "libuv 1.48"
    ],
    "run": [
-    "libuv 1.47"
+    "libuv 1.48"
    ]
   },
   "source": {
-   "fn": "libuvw-3.3.0.tar.gz",
-   "sha256": "aabb17d3d8f0b3481b44e981c889dd4a2a6a3f1a96a4d01055e669f4b7d37d0e",
-   "url": "https://github.com/skypjack/uvw/archive/v3.3.0_libuv_v1.47.tar.gz"
+   "fn": "libuvw-3.4.0.tar.gz",
+   "sha256": "c16600573871a5feeb524234b378ab832c8971b2a68d030c6bd0e3077d416ade",
+   "url": "https://github.com/skypjack/uvw/archive/v3.4.0_libuv_v1.48.tar.gz"
   },
   "test": {
    "commands": [
@@ -199,6 +203,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -237,11 +242,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libuvw.json"
  },
- "raw_meta_yaml": "{% set name = \"libuvw\" %}\n{% set version = \"3.3.0\" %}\n{% set libuv_version = \"1.47\" %}\n{% set sha256 = \"aabb17d3d8f0b3481b44e981c889dd4a2a6a3f1a96a4d01055e669f4b7d37d0e\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/skypjack/uvw/archive/v{{ version }}_libuv_v{{ libuv_version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [unix]\n    - pkg-config\n  host:\n    # Since libuv is not in the conda-forge-pinning-feedstock yet, we need to select a libuv version explicitly\n    - libuv {{ libuv_version }}\n  run:\n    # Since libuv is lacking a run_exports, we need to pin the version used at runtime; see https://github.com/conda-forge/libuv-feedstock/pull/58\n    - libuv {{ libuv_version }}\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/uvw.hpp            # [unix]\n    - test -f ${PREFIX}/lib/libuvw${SHLIB_EXT}     # [not win]\n    - if not exist %LIBRARY_INC%\\uvw.hpp (exit 1)  # [win]\n    - if not exist %LIBRARY_LIB%\\uvw.lib (exit 1)  # [win]\n\nabout:\n  home: https://github.com/skypjack/uvw\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: A C++ wrapper for libuv, a multi-platform support library with a focus on asynchronous I/O\n\nextra:\n  recipe-maintainers:\n    - asafkahlon\n",
+ "raw_meta_yaml": "{% set name = \"libuvw\" %}\n{% set version = \"3.4.0\" %}\n{% set libuv_version = \"1.48\" %}\n{% set sha256 = \"c16600573871a5feeb524234b378ab832c8971b2a68d030c6bd0e3077d416ade\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/skypjack/uvw/archive/v{{ version }}_libuv_v{{ libuv_version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - cmake\n    - make  # [unix]\n    - pkg-config\n  host:\n    # Since libuv is not in the conda-forge-pinning-feedstock yet, we need to select a libuv version explicitly\n    - libuv {{ libuv_version }}\n  run:\n    # Since libuv is lacking a run_exports, we need to pin the version used at runtime; see https://github.com/conda-forge/libuv-feedstock/pull/58\n    - libuv {{ libuv_version }}\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/uvw.hpp            # [unix]\n    - test -f ${PREFIX}/lib/libuvw${SHLIB_EXT}     # [not win]\n    - if not exist %LIBRARY_INC%\\uvw.hpp (exit 1)  # [win]\n    - if not exist %LIBRARY_LIB%\\uvw.lib (exit 1)  # [win]\n\nabout:\n  home: https://github.com/skypjack/uvw\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: A C++ wrapper for libuv, a multi-platform support library with a focus on asynchronous I/O\n\nextra:\n  recipe-maintainers:\n    - asafkahlon\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "libuv",
@@ -254,6 +260,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -264,6 +271,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libuv"
    ]
@@ -272,6 +280,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libuv"
    ]
@@ -287,6 +296,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -296,13 +306,13 @@
   "host": {
    "__set__": true,
    "elements": [
-    "libuv 1.47"
+    "libuv 1.48"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "libuv 1.47"
+    "libuv 1.48"
    ]
   },
   "test": {
@@ -310,8 +320,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/skypjack/uvw/archive/v3.3.0_libuv_v1.47.tar.gz",
- "version": "3.3.0",
+ "url": "https://github.com/skypjack/uvw/archive/v3.4.0_libuv_v1.48.tar.gz",
+ "version": "3.4.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/libuvw.json"
  },
@@ -336,26 +346,27 @@
   },
   "package": {
    "name": "libuvw",
-   "version": "3.3.0"
+   "version": "3.4.0"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "pkg-config"
    ],
    "host": [
-    "libuv 1.47"
+    "libuv 1.48"
    ],
    "run": [
-    "libuv 1.47"
+    "libuv 1.48"
    ]
   },
   "source": {
-   "fn": "libuvw-3.3.0.tar.gz",
-   "sha256": "aabb17d3d8f0b3481b44e981c889dd4a2a6a3f1a96a4d01055e669f4b7d37d0e",
-   "url": "https://github.com/skypjack/uvw/archive/v3.3.0_libuv_v1.47.tar.gz"
+   "fn": "libuvw-3.4.0.tar.gz",
+   "sha256": "c16600573871a5feeb524234b378ab832c8971b2a68d030c6bd0e3077d416ade",
+   "url": "https://github.com/skypjack/uvw/archive/v3.4.0_libuv_v1.48.tar.gz"
   },
   "test": {
    "commands": [
@@ -369,6 +380,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "pkg-config"
