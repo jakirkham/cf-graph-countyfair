@@ -17,13 +17,20 @@
   "about": {
    "home": "https://github.com/p-j-smith/lipyphilic",
    "license": "GPL-2.0-or-later",
-   "license_file": "LICENSE",
+   "license_file": [
+    "LICENSE",
+    "THIRDPARTY.yml"
+   ],
    "summary": "A Python toolkit for analysing MD simulations of lipid membranes"
   },
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": [
+    "PYTHON -m pip install . -vv",
+    "cd rust",
+    "cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -32,32 +39,36 @@
   },
   "package": {
    "name": "lipyphilic",
-   "version": "0.10.0"
+   "version": "0.11.0"
   },
   "requirements": {
+   "build": [
+    "rust_compiler_stub",
+    "maturin <2.0",
+    "cargo-bundle-licenses"
+   ],
    "host": [
-    "pip",
-    "pytest-runner",
-    "python >=3.7"
+    "python >=3.10",
+    "maturin <2.0",
+    "pip"
    ],
    "run": [
-    "freud >=2.4.1",
-    "mdanalysis >=2.0",
-    "tidynamics",
-    "numpy >=1.16",
-    "pandas >=1.1",
-    "python >=3.6",
+    "python >=3.10",
+    "attrs",
+    "numpy",
     "scipy",
-    "tqdm",
-    "mock",
-    "cython",
-    "matplotlib",
-    "seaborn"
+    "pandas",
+    "matplotlib-base",
+    "mdanalysis",
+    "freud",
+    "tidynamics",
+    "seaborn",
+    "tqdm"
    ]
   },
   "source": {
-   "sha256": "cd00b2caa3553e5bb1e206f0852308bfbb9c6f2753f13b8c51b6075db9ddfba6",
-   "url": "https://pypi.io/packages/source/l/lipyphilic/lipyphilic-0.10.0.tar.gz"
+   "sha256": "db58466f4a78962cd274f19c08dc7413f360ca22ce86f3bea908716a3943657d",
+   "url": "https://pypi.io/packages/source/l/lipyphilic/lipyphilic-0.11.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -65,7 +76,10 @@
    ],
    "imports": [
     "lipyphilic",
-    "lipyphilic.lib"
+    "lipyphilic.analysis",
+    "lipyphilic.leaflets",
+    "lipyphilic.transformations",
+    "lipyphilic.plotting"
    ],
    "requires": [
     "pip"
@@ -75,24 +89,27 @@
  "linux_64_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "cargo-bundle-licenses",
+    "maturin",
+    "rust_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "maturin",
     "pip",
-    "pytest-runner",
     "python"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "cython",
+    "attrs",
     "freud",
-    "matplotlib",
+    "matplotlib-base",
     "mdanalysis",
-    "mock",
     "numpy",
     "pandas",
     "python",
@@ -113,13 +130,20 @@
   "about": {
    "home": "https://github.com/p-j-smith/lipyphilic",
    "license": "GPL-2.0-or-later",
-   "license_file": "LICENSE",
+   "license_file": [
+    "LICENSE",
+    "THIRDPARTY.yml"
+   ],
    "summary": "A Python toolkit for analysing MD simulations of lipid membranes"
   },
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": [
+    "PYTHON -m pip install . -vv",
+    "cd rust",
+    "cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -128,32 +152,36 @@
   },
   "package": {
    "name": "lipyphilic",
-   "version": "0.10.0"
+   "version": "0.11.0"
   },
   "requirements": {
+   "build": [
+    "rust_compiler_stub",
+    "maturin <2.0",
+    "cargo-bundle-licenses"
+   ],
    "host": [
-    "pip",
-    "pytest-runner",
-    "python >=3.7"
+    "python >=3.10",
+    "maturin <2.0",
+    "pip"
    ],
    "run": [
-    "freud >=2.4.1",
-    "mdanalysis >=2.0",
-    "tidynamics",
-    "numpy >=1.16",
-    "pandas >=1.1",
-    "python >=3.6",
+    "python >=3.10",
+    "attrs",
+    "numpy",
     "scipy",
-    "tqdm",
-    "mock",
-    "cython",
-    "matplotlib",
-    "seaborn"
+    "pandas",
+    "matplotlib-base",
+    "mdanalysis",
+    "freud",
+    "tidynamics",
+    "seaborn",
+    "tqdm"
    ]
   },
   "source": {
-   "sha256": "cd00b2caa3553e5bb1e206f0852308bfbb9c6f2753f13b8c51b6075db9ddfba6",
-   "url": "https://pypi.io/packages/source/l/lipyphilic/lipyphilic-0.10.0.tar.gz"
+   "sha256": "db58466f4a78962cd274f19c08dc7413f360ca22ce86f3bea908716a3943657d",
+   "url": "https://pypi.io/packages/source/l/lipyphilic/lipyphilic-0.11.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -161,7 +189,10 @@
    ],
    "imports": [
     "lipyphilic",
-    "lipyphilic.lib"
+    "lipyphilic.analysis",
+    "lipyphilic.leaflets",
+    "lipyphilic.transformations",
+    "lipyphilic.plotting"
    ],
    "requires": [
     "pip"
@@ -182,20 +213,21 @@
  "pr_info": {
   "__lazy_json__": "pr_info/lipyphilic.json"
  },
- "raw_meta_yaml": "{% set name = \"lipyphilic\" %}\n{% set version = \"0.10.0\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/lipyphilic-{{ version }}.tar.gz\n  sha256: cd00b2caa3553e5bb1e206f0852308bfbb9c6f2753f13b8c51b6075db9ddfba6\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - pip\n    - pytest-runner\n    - python >=3.7\n  run:\n    - freud >=2.4.1\n    - mdanalysis >=2.0\n    - tidynamics\n    - numpy >=1.16\n    - pandas >=1.1\n    - python >=3.6\n    - scipy\n    - tqdm\n    - mock # required by MDAnalysis\n    - cython # required by gsd and Freud\n    - matplotlib\n    - seaborn\n\ntest:\n  imports:\n    - lipyphilic\n    - lipyphilic.lib\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/p-j-smith/lipyphilic\n  summary: A Python toolkit for analysing MD simulations of lipid membranes\n  license: GPL-2.0-or-later\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - p-j-smith\n",
+ "raw_meta_yaml": "{% set name = \"lipyphilic\" %}\n{% set version = \"0.11.0\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/lipyphilic-{{ version }}.tar.gz\n  sha256: db58466f4a78962cd274f19c08dc7413f360ca22ce86f3bea908716a3943657d\n\nbuild:\n  number: 0\n  noarch: python\n  script:\n    - {{ PYTHON }} -m pip install . -vv\n    - cd rust\n    - cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('rust') }}\n    - maturin <2.0\n    - cargo-bundle-licenses\n  host:\n    - python >=3.10\n    - maturin <2.0\n    - pip\n  run:\n    - python >=3.10\n    - attrs\n    - numpy\n    - scipy\n    - pandas\n    - matplotlib-base\n    - mdanalysis\n    - freud\n    - tidynamics\n    - seaborn\n    - tqdm\n\ntest:\n  imports:\n    - lipyphilic\n    - lipyphilic.analysis\n    - lipyphilic.leaflets\n    - lipyphilic.transformations\n    - lipyphilic.plotting\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/p-j-smith/lipyphilic\n  summary: A Python toolkit for analysing MD simulations of lipid membranes\n  license: GPL-2.0-or-later\n  license_file:\n    - LICENSE\n    - THIRDPARTY.yml\n\nextra:\n  recipe-maintainers:\n    - p-j-smith\n",
  "req": {
   "__set__": true,
   "elements": [
-   "cython",
+   "attrs",
+   "cargo-bundle-licenses",
    "freud",
-   "matplotlib",
+   "matplotlib-base",
+   "maturin",
    "mdanalysis",
-   "mock",
    "numpy",
    "pandas",
    "pip",
-   "pytest-runner",
    "python",
+   "rust_compiler_stub",
    "scipy",
    "seaborn",
    "tidynamics",
@@ -205,24 +237,27 @@
  "requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "cargo-bundle-licenses",
+    "maturin",
+    "rust_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "maturin",
     "pip",
-    "pytest-runner",
     "python"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "cython",
+    "attrs",
     "freud",
-    "matplotlib",
+    "matplotlib-base",
     "mdanalysis",
-    "mock",
     "numpy",
     "pandas",
     "python",
@@ -243,27 +278,30 @@
  "total_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "cargo-bundle-licenses",
+    "maturin <2.0",
+    "rust_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "maturin <2.0",
     "pip",
-    "pytest-runner",
-    "python >=3.7"
+    "python >=3.10"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "cython",
-    "freud >=2.4.1",
-    "matplotlib",
-    "mdanalysis >=2.0",
-    "mock",
-    "numpy >=1.16",
-    "pandas >=1.1",
-    "python >=3.6",
+    "attrs",
+    "freud",
+    "matplotlib-base",
+    "mdanalysis",
+    "numpy",
+    "pandas",
+    "python >=3.10",
     "scipy",
     "seaborn",
     "tidynamics",
@@ -277,8 +315,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/l/lipyphilic/lipyphilic-0.10.0.tar.gz",
- "version": "0.10.0",
+ "url": "https://pypi.io/packages/source/l/lipyphilic/lipyphilic-0.11.0.tar.gz",
+ "version": "0.11.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/lipyphilic.json"
  }
