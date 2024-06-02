@@ -12,7 +12,12 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "noarch_platforms": [
+   "linux_64",
+   "osx_64",
+   "win_64"
+  ]
  },
  "feedstock_name": "pyperclip",
  "hash_type": "sha256",
@@ -23,17 +28,18 @@
    "home": "https://github.com/asweigart/pyperclip",
    "license": "BSD-3-Clause",
    "license_family": "BSD",
-   "license_file": "RECIPE_DIR/LICENSE.txt",
+   "license_file": "LICENSE.txt",
    "summary": "A cross-platform clipboard module for Python. (only handles plain text for now)"
   },
   "build": {
    "noarch": "python",
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   },
   "extra": {
    "recipe-maintainers": [
-    "jan-janssen"
+    "jan-janssen",
+    "ehfd"
    ]
   },
   "package": {
@@ -46,7 +52,10 @@
     "pip"
    ],
    "run": [
-    "python >=3.6"
+    "python >=3.6",
+    "__linux",
+    "xclip",
+    "xsel"
    ]
   },
   "source": {
@@ -75,7 +84,10 @@
   "run": {
    "__set__": true,
    "elements": [
-    "python"
+    "__linux",
+    "python",
+    "xclip",
+    "xsel"
    ]
   },
   "test": {
@@ -90,17 +102,18 @@
    "home": "https://github.com/asweigart/pyperclip",
    "license": "BSD-3-Clause",
    "license_family": "BSD",
-   "license_file": "RECIPE_DIR/LICENSE.txt",
+   "license_file": "LICENSE.txt",
    "summary": "A cross-platform clipboard module for Python. (only handles plain text for now)"
   },
   "build": {
    "noarch": "python",
-   "number": "2",
+   "number": "3",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   },
   "extra": {
    "recipe-maintainers": [
-    "jan-janssen"
+    "jan-janssen",
+    "ehfd"
    ]
   },
   "package": {
@@ -113,7 +126,13 @@
     "pip"
    ],
    "run": [
-    "python >=3.6"
+    "python >=3.6",
+    "__linux",
+    "xclip",
+    "xsel",
+    "__osx",
+    "pyobjc-framework-cocoa",
+    "__win"
    ]
   },
   "source": {
@@ -128,6 +147,78 @@
   }
  },
  "name": "pyperclip",
+ "osx_64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/asweigart/pyperclip",
+   "doc_url": "https://pyperclip.readthedocs.io",
+   "home": "https://github.com/asweigart/pyperclip",
+   "license": "BSD-3-Clause",
+   "license_family": "BSD",
+   "license_file": "LICENSE.txt",
+   "summary": "A cross-platform clipboard module for Python. (only handles plain text for now)"
+  },
+  "build": {
+   "noarch": "python",
+   "number": "3",
+   "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jan-janssen",
+    "ehfd"
+   ]
+  },
+  "package": {
+   "name": "pyperclip",
+   "version": "1.8.2"
+  },
+  "requirements": {
+   "host": [
+    "python >=3.6",
+    "pip"
+   ],
+   "run": [
+    "python >=3.6",
+    "__osx",
+    "pyobjc-framework-cocoa"
+   ]
+  },
+  "source": {
+   "fn": "pyperclip-1.8.2.tar.gz",
+   "sha256": "105254a8b04934f0bc84e9c24eb360a591aaf6535c9def5f29d92af107a9bf57",
+   "url": "https://pypi.org/packages/source/p/pyperclip/pyperclip-1.8.2.tar.gz"
+  },
+  "test": {
+   "imports": [
+    "pyperclip"
+   ]
+  }
+ },
+ "osx_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": []
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "__osx",
+    "pyobjc-framework-cocoa",
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -136,17 +227,25 @@
  },
  "parsing_error": false,
  "platforms": [
-  "linux_64"
+  "linux_64",
+  "osx_64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/pyperclip.json"
  },
- "raw_meta_yaml": "{% set name = \"pyperclip\" %}\n{% set version = \"1.8.2\" %}\n{% set bundle = \"tar.gz\" %}\n{% set hash = \"105254a8b04934f0bc84e9c24eb360a591aaf6535c9def5f29d92af107a9bf57\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.{{ bundle }}\n  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ bundle }}\n  sha256: {{ hash }}\n\nbuild:\n  noarch: python\n  number: 2\n  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n\n  run:\n    - python >=3.6\n\ntest:\n  imports:\n    - pyperclip\n\nabout:\n  home: https://github.com/asweigart/pyperclip\n  license_file: {{ RECIPE_DIR }}/LICENSE.txt\n  license: BSD-3-Clause\n  license_family: BSD\n  summary: A cross-platform clipboard module for Python. (only handles plain text for now)\n  dev_url: https://github.com/asweigart/pyperclip\n  doc_url: https://pyperclip.readthedocs.io\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n",
+ "raw_meta_yaml": "{% set name = \"pyperclip\" %}\n{% set version = \"1.8.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 105254a8b04934f0bc84e9c24eb360a591aaf6535c9def5f29d92af107a9bf57\n\nbuild:\n  noarch: python\n  number: 3\n  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n\n  run:\n    - python >=3.6\n    - __linux  # [linux]\n    - __osx  # [osx]\n    - __win  # [win]\n    - xclip  # [linux]\n    - xsel  # [linux]\n    - pyobjc-framework-cocoa  # [osx]\n\ntest:\n  imports:\n    - pyperclip\n\nabout:\n  home: https://github.com/asweigart/pyperclip\n  license_file: LICENSE.txt\n  license: BSD-3-Clause\n  license_family: BSD\n  summary: A cross-platform clipboard module for Python. (only handles plain text for now)\n  dev_url: https://github.com/asweigart/pyperclip\n  doc_url: https://pyperclip.readthedocs.io\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n    - ehfd\n",
  "req": {
   "__set__": true,
   "elements": [
+   "__linux",
+   "__osx",
+   "__win",
    "pip",
-   "python"
+   "pyobjc-framework-cocoa",
+   "python",
+   "xclip",
+   "xsel"
   ]
  },
  "requirements": {
@@ -164,7 +263,13 @@
   "run": {
    "__set__": true,
    "elements": [
-    "python"
+    "__linux",
+    "__osx",
+    "__win",
+    "pyobjc-framework-cocoa",
+    "python",
+    "xclip",
+    "xsel"
    ]
   },
   "test": {
@@ -188,7 +293,13 @@
   "run": {
    "__set__": true,
    "elements": [
-    "python >=3.6"
+    "__linux",
+    "__osx",
+    "__win",
+    "pyobjc-framework-cocoa",
+    "python >=3.6",
+    "xclip",
+    "xsel"
    ]
   },
   "test": {
@@ -200,5 +311,75 @@
  "version": "1.8.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pyperclip.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/asweigart/pyperclip",
+   "doc_url": "https://pyperclip.readthedocs.io",
+   "home": "https://github.com/asweigart/pyperclip",
+   "license": "BSD-3-Clause",
+   "license_family": "BSD",
+   "license_file": "LICENSE.txt",
+   "summary": "A cross-platform clipboard module for Python. (only handles plain text for now)"
+  },
+  "build": {
+   "noarch": "python",
+   "number": "3",
+   "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jan-janssen",
+    "ehfd"
+   ]
+  },
+  "package": {
+   "name": "pyperclip",
+   "version": "1.8.2"
+  },
+  "requirements": {
+   "host": [
+    "python >=3.6",
+    "pip"
+   ],
+   "run": [
+    "python >=3.6",
+    "__win"
+   ]
+  },
+  "source": {
+   "fn": "pyperclip-1.8.2.tar.gz",
+   "sha256": "105254a8b04934f0bc84e9c24eb360a591aaf6535c9def5f29d92af107a9bf57",
+   "url": "https://pypi.org/packages/source/p/pyperclip/pyperclip-1.8.2.tar.gz"
+  },
+  "test": {
+   "imports": [
+    "pyperclip"
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": []
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "__win",
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
  }
 }
