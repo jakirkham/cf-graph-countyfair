@@ -38,39 +38,38 @@
   "extra": {
    "recipe-maintainers": [
     "nelson-liu",
-    "shahin"
+    "shahin",
+    "thewchan"
    ]
   },
   "package": {
    "name": "pyhocon",
-   "version": "0.3.60"
+   "version": "0.3.61"
   },
   "requirements": {
    "host": [
     "pip",
-    "python >=3.6",
-    "pyparsing >=2.0.3",
-    "asset",
-    "setuptools"
+    "python >=3.6"
    ],
    "run": [
     "python >=3.6",
-    "pyparsing >=2.0.3",
-    "asset",
-    "setuptools"
+    "pyparsing >=2,<4"
    ]
   },
   "source": {
-   "fn": "pyhocon-0.3.60.tar.gz",
-   "sha256": "ea18520ea126981e5320a72281f1a5fef2c27923f70cc54e1bd241c26525fd4b",
-   "url": "https://pypi.io/packages/source/p/pyhocon/pyhocon-0.3.60.tar.gz"
+   "sha256": "1354d772e990076d111c7da2412ee031387fcd9dfeb5e4359c68d887c0ac8f57",
+   "url": "https://github.com/chimpler/pyhocon/archive/refs/tags/0.3.61.tar.gz"
   },
   "test": {
    "commands": [
+    "pip check",
     "pyhocon --help"
    ],
    "imports": [
     "pyhocon"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -82,25 +81,22 @@
   "host": {
    "__set__": true,
    "elements": [
-    "asset",
     "pip",
-    "pyparsing",
-    "python",
-    "setuptools"
+    "python"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "asset",
     "pyparsing",
-    "python",
-    "setuptools"
+    "python"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
@@ -125,39 +121,38 @@
   "extra": {
    "recipe-maintainers": [
     "nelson-liu",
-    "shahin"
+    "shahin",
+    "thewchan"
    ]
   },
   "package": {
    "name": "pyhocon",
-   "version": "0.3.60"
+   "version": "0.3.61"
   },
   "requirements": {
    "host": [
     "pip",
-    "python >=3.6",
-    "pyparsing >=2.0.3",
-    "asset",
-    "setuptools"
+    "python >=3.6"
    ],
    "run": [
     "python >=3.6",
-    "pyparsing >=2.0.3",
-    "asset",
-    "setuptools"
+    "pyparsing >=2,<4"
    ]
   },
   "source": {
-   "fn": "pyhocon-0.3.60.tar.gz",
-   "sha256": "ea18520ea126981e5320a72281f1a5fef2c27923f70cc54e1bd241c26525fd4b",
-   "url": "https://pypi.io/packages/source/p/pyhocon/pyhocon-0.3.60.tar.gz"
+   "sha256": "1354d772e990076d111c7da2412ee031387fcd9dfeb5e4359c68d887c0ac8f57",
+   "url": "https://github.com/chimpler/pyhocon/archive/refs/tags/0.3.61.tar.gz"
   },
   "test": {
    "commands": [
+    "pip check",
     "pyhocon --help"
    ],
    "imports": [
     "pyhocon"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -175,15 +170,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyhocon.json"
  },
- "raw_meta_yaml": "{% set pkgname = \"pyhocon\" %}\n{% set version = \"0.3.60\" %}\n\npackage:\n  name: {{ pkgname }}\n  version: {{ version }}\n\nsource:\n  fn: {{ pkgname }}-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/{{ pkgname[0] }}/{{ pkgname }}/{{ pkgname }}-{{ version }}.tar.gz\n  sha256: ea18520ea126981e5320a72281f1a5fef2c27923f70cc54e1bd241c26525fd4b\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n  entry_points:\n    - pyhocon=pyhocon.tool:main\n\nrequirements:\n  host:\n    - pip\n    - python >=3.6\n    - pyparsing >=2.0.3\n    - asset\n    - setuptools\n\n  run:\n    - python >=3.6\n    - pyparsing >=2.0.3\n    - asset\n    - setuptools\n\ntest:\n  imports:\n    - pyhocon\n\n  commands:\n    - pyhocon --help\n\nabout:\n  home: http://github.com/chimpler/pyhocon/\n  license: Apache-2.0\n  license_family: APACHE\n  license_file: LICENSE\n  summary: HOCON parser for Python\n  description: HOCON parser for Python\n  doc_url: https://pythonhosted.org/pyhocon/\n  dev_url: http://github.com/chimpler/pyhocon/\n\nextra:\n  recipe-maintainers:\n    - nelson-liu\n    - shahin\n",
+ "raw_meta_yaml": "{% set name = \"pyhocon\" %}\n{% set version = \"0.3.61\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/chimpler/{{ name }}/archive/refs/tags/{{ version }}.tar.gz\n  sha256: 1354d772e990076d111c7da2412ee031387fcd9dfeb5e4359c68d887c0ac8f57\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n  entry_points:\n    - pyhocon=pyhocon.tool:main\n\nrequirements:\n  host:\n    - pip\n    - python >=3.6\n\n  run:\n    - python >=3.6\n    - pyparsing >=2,<4\n\ntest:\n  imports:\n    - pyhocon\n\n  commands:\n    - pip check\n    - pyhocon --help\n\n  requires:\n    - pip\n\nabout:\n  home: http://github.com/chimpler/pyhocon/\n  license: Apache-2.0\n  license_family: APACHE\n  license_file: LICENSE\n  summary: HOCON parser for Python\n  description: HOCON parser for Python\n  doc_url: https://pythonhosted.org/pyhocon/\n  dev_url: http://github.com/chimpler/pyhocon/\n\nextra:\n  recipe-maintainers:\n    - nelson-liu\n    - shahin\n    - thewchan\n",
  "req": {
   "__set__": true,
   "elements": [
-   "asset",
    "pip",
    "pyparsing",
-   "python",
-   "setuptools"
+   "python"
   ]
  },
  "requirements": {
@@ -194,25 +187,22 @@
   "host": {
    "__set__": true,
    "elements": [
-    "asset",
     "pip",
-    "pyparsing",
-    "python",
-    "setuptools"
+    "python"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "asset",
     "pyparsing",
-    "python",
-    "setuptools"
+    "python"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
@@ -224,29 +214,26 @@
   "host": {
    "__set__": true,
    "elements": [
-    "asset",
     "pip",
-    "pyparsing >=2.0.3",
-    "python >=3.6",
-    "setuptools"
+    "python >=3.6"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "asset",
-    "pyparsing >=2.0.3",
-    "python >=3.6",
-    "setuptools"
+    "pyparsing >=2,<4",
+    "python >=3.6"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
- "url": "https://pypi.io/packages/source/p/pyhocon/pyhocon-0.3.60.tar.gz",
- "version": "0.3.60",
+ "url": "https://github.com/chimpler/pyhocon/archive/refs/tags/0.3.61.tar.gz",
+ "version": "0.3.61",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pyhocon.json"
  }
