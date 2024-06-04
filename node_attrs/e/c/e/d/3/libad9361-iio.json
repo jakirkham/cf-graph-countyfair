@@ -10,7 +10,6 @@
    "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
-  "build_with_mambabuild": false,
   "conda_build": {
    "pkg_format": "2"
   },
@@ -39,42 +38,103 @@
    "summary": "IIO AD9361 library for filter design and handling, multi-chip sync, etc. "
   },
   "build": {
-   "number": "3",
-   "run_exports": [
-    "libad9361-iio"
-   ]
+   "number": "0"
   },
   "extra": {
+   "feedstock-name": "libad9361-iio",
    "recipe-maintainers": [
     "ryanvolz"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "run_exports": [
+      "libad9361-iio-c"
+     ]
+    },
+    "name": "libad9361-iio-c",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libiio"
+     ]
+    },
+    "script": "install_libad9361.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/include/ad9361.h",
+      "test -f $PREFIX/include/ad9361-wrapper.h",
+      "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "string": "py_0"
+    },
+    "name": "pylibad9361",
+    "requirements": {
+     "build": [
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libad9361-iio-c",
+      "pip",
+      "pylibiio",
+      "python >=3.6",
+      "setuptools"
+     ],
+     "run": [
+      "libad9361-iio-c",
+      "pylibiio",
+      "python"
+     ]
+    },
+    "script": "install_pylibad9361.sh",
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic",
+     "run_exports": [
+      "libad9361-iio-c"
+     ],
+     "string": "0"
+    },
+    "name": "libad9361-iio",
+    "requirements": {
+     "run": [
+      "libad9361-iio-c",
+      "pylibad9361 0.3 py_0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "libad9361-iio",
-   "version": "0.2"
-  },
-  "requirements": {
-   "build": [
-    "c_compiler_stub",
-    "cmake",
-    "cdt_stub",
-    "make"
-   ],
-   "host": [
-    "libiio"
-   ]
+   "name": "libad9361-iio-split",
+   "version": "0.3"
   },
   "source": {
    "patches": null,
-   "sha256": "f0d935eb7f70fde8596d98e9eb1f311b408b87662fc1fff45ae3ed455697b747",
-   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f $PREFIX/include/ad9361.h",
-    "test -f $PREFIX/include/ad9361-wrapper.h",
-    "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
-   ]
+   "sha256": "1dc35dd997e1938a97489fa1f349ee16889f9de8901a2c7af46184468dc90598",
+   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.3.tar.gz"
   }
  },
  "linux_64_requirements": {
@@ -82,7 +142,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cdt_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ]
@@ -90,12 +150,22 @@
   "host": {
    "__set__": true,
    "elements": [
-    "libiio"
+    "libad9361-iio-c",
+    "libiio",
+    "pip",
+    "pylibiio",
+    "python",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "libad9361-iio-c",
+    "pylibad9361",
+    "pylibiio",
+    "python"
+   ]
   },
   "test": {
    "__set__": true,
@@ -114,41 +184,105 @@
    "summary": "IIO AD9361 library for filter design and handling, multi-chip sync, etc. "
   },
   "build": {
-   "number": "3",
-   "run_exports": [
-    "libad9361-iio"
-   ]
+   "number": "0"
   },
   "extra": {
+   "feedstock-name": "libad9361-iio",
    "recipe-maintainers": [
     "ryanvolz"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "run_exports": [
+      "libad9361-iio-c"
+     ]
+    },
+    "name": "libad9361-iio-c",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libiio"
+     ]
+    },
+    "script": "install_libad9361.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/include/ad9361.h",
+      "test -f $PREFIX/include/ad9361-wrapper.h",
+      "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true,
+     "string": "py_0"
+    },
+    "name": "pylibad9361",
+    "requirements": {
+     "build": [
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libad9361-iio-c",
+      "pip",
+      "pylibiio",
+      "python >=3.6",
+      "setuptools"
+     ],
+     "run": [
+      "libad9361-iio-c",
+      "pylibiio",
+      "python"
+     ]
+    },
+    "script": "install_pylibad9361.sh",
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic",
+     "run_exports": [
+      "libad9361-iio-c"
+     ],
+     "skip": true,
+     "string": "0"
+    },
+    "name": "libad9361-iio",
+    "requirements": {
+     "run": [
+      "libad9361-iio-c",
+      "pylibad9361 0.3 py_0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "libad9361-iio",
-   "version": "0.2"
-  },
-  "requirements": {
-   "build": [
-    "c_compiler_stub",
-    "cmake",
-    "make"
-   ],
-   "host": [
-    "libiio"
-   ]
+   "name": "libad9361-iio-split",
+   "version": "0.3"
   },
   "source": {
    "patches": null,
-   "sha256": "f0d935eb7f70fde8596d98e9eb1f311b408b87662fc1fff45ae3ed455697b747",
-   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f $PREFIX/include/ad9361.h",
-    "test -f $PREFIX/include/ad9361-wrapper.h",
-    "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
-   ]
+   "sha256": "1dc35dd997e1938a97489fa1f349ee16889f9de8901a2c7af46184468dc90598",
+   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.3.tar.gz"
   }
  },
  "linux_aarch64_requirements": {
@@ -156,6 +290,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ]
@@ -163,12 +298,22 @@
   "host": {
    "__set__": true,
    "elements": [
-    "libiio"
+    "libad9361-iio-c",
+    "libiio",
+    "pip",
+    "pylibiio",
+    "python",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "libad9361-iio-c",
+    "pylibad9361",
+    "pylibiio",
+    "python"
+   ]
   },
   "test": {
    "__set__": true,
@@ -187,41 +332,105 @@
    "summary": "IIO AD9361 library for filter design and handling, multi-chip sync, etc. "
   },
   "build": {
-   "number": "3",
-   "run_exports": [
-    "libad9361-iio"
-   ]
+   "number": "0"
   },
   "extra": {
+   "feedstock-name": "libad9361-iio",
    "recipe-maintainers": [
     "ryanvolz"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "run_exports": [
+      "libad9361-iio-c"
+     ]
+    },
+    "name": "libad9361-iio-c",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libiio"
+     ]
+    },
+    "script": "install_libad9361.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/include/ad9361.h",
+      "test -f $PREFIX/include/ad9361-wrapper.h",
+      "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true,
+     "string": "py_0"
+    },
+    "name": "pylibad9361",
+    "requirements": {
+     "build": [
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libad9361-iio-c",
+      "pip",
+      "pylibiio",
+      "python >=3.6",
+      "setuptools"
+     ],
+     "run": [
+      "libad9361-iio-c",
+      "pylibiio",
+      "python"
+     ]
+    },
+    "script": "install_pylibad9361.sh",
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic",
+     "run_exports": [
+      "libad9361-iio-c"
+     ],
+     "skip": true,
+     "string": "0"
+    },
+    "name": "libad9361-iio",
+    "requirements": {
+     "run": [
+      "libad9361-iio-c",
+      "pylibad9361 0.3 py_0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "libad9361-iio",
-   "version": "0.2"
-  },
-  "requirements": {
-   "build": [
-    "c_compiler_stub",
-    "cmake",
-    "make"
-   ],
-   "host": [
-    "libiio"
-   ]
+   "name": "libad9361-iio-split",
+   "version": "0.3"
   },
   "source": {
    "patches": null,
-   "sha256": "f0d935eb7f70fde8596d98e9eb1f311b408b87662fc1fff45ae3ed455697b747",
-   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f $PREFIX/include/ad9361.h",
-    "test -f $PREFIX/include/ad9361-wrapper.h",
-    "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
-   ]
+   "sha256": "1dc35dd997e1938a97489fa1f349ee16889f9de8901a2c7af46184468dc90598",
+   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.3.tar.gz"
   }
  },
  "linux_ppc64le_requirements": {
@@ -229,6 +438,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ]
@@ -236,12 +446,22 @@
   "host": {
    "__set__": true,
    "elements": [
-    "libiio"
+    "libad9361-iio-c",
+    "libiio",
+    "pip",
+    "pylibiio",
+    "python",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "libad9361-iio-c",
+    "pylibad9361",
+    "pylibiio",
+    "python"
+   ]
   },
   "test": {
    "__set__": true,
@@ -260,50 +480,512 @@
    "summary": "IIO AD9361 library for filter design and handling, multi-chip sync, etc. "
   },
   "build": {
-   "number": "3",
-   "run_exports": [
-    "libad9361-iio"
-   ]
+   "number": "0"
   },
   "extra": {
+   "feedstock-name": "libad9361-iio",
    "recipe-maintainers": [
     "ryanvolz"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "run_exports": [
+      "libad9361-iio-c"
+     ]
+    },
+    "name": "libad9361-iio-c",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libiio"
+     ]
+    },
+    "script": "install_libad9361.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/include/ad9361.h",
+      "test -f $PREFIX/include/ad9361-wrapper.h",
+      "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "string": "py_0"
+    },
+    "name": "pylibad9361",
+    "requirements": {
+     "build": [
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libad9361-iio-c",
+      "pip",
+      "pylibiio",
+      "python >=3.6",
+      "setuptools"
+     ],
+     "run": [
+      "libad9361-iio-c",
+      "pylibiio",
+      "python"
+     ]
+    },
+    "script": "install_pylibad9361.sh",
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic",
+     "run_exports": [
+      "libad9361-iio-c"
+     ],
+     "string": "0"
+    },
+    "name": "libad9361-iio",
+    "requirements": {
+     "run": [
+      "libad9361-iio-c",
+      "pylibad9361 0.3 py_0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "libad9361-iio-c"
+     ]
+    },
+    "name": "libad9361-iio-c",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libiio"
+     ]
+    },
+    "script": "install_libad9361.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/include/ad9361.h",
+      "test -f $PREFIX/include/ad9361-wrapper.h",
+      "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true,
+     "string": "py_0"
+    },
+    "name": "pylibad9361",
+    "requirements": {
+     "build": [
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libad9361-iio-c",
+      "pip",
+      "pylibiio",
+      "python >=3.6",
+      "setuptools"
+     ],
+     "run": [
+      "libad9361-iio-c",
+      "pylibiio",
+      "python"
+     ]
+    },
+    "script": "install_pylibad9361.sh",
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic",
+     "run_exports": [
+      "libad9361-iio-c"
+     ],
+     "skip": true,
+     "string": "0"
+    },
+    "name": "libad9361-iio",
+    "requirements": {
+     "run": [
+      "libad9361-iio-c",
+      "pylibad9361 0.3 py_0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "libad9361-iio-c"
+     ]
+    },
+    "name": "libad9361-iio-c",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libiio"
+     ]
+    },
+    "script": "install_libad9361.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/include/ad9361.h",
+      "test -f $PREFIX/include/ad9361-wrapper.h",
+      "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true,
+     "string": "py_0"
+    },
+    "name": "pylibad9361",
+    "requirements": {
+     "build": [
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libad9361-iio-c",
+      "pip",
+      "pylibiio",
+      "python >=3.6",
+      "setuptools"
+     ],
+     "run": [
+      "libad9361-iio-c",
+      "pylibiio",
+      "python"
+     ]
+    },
+    "script": "install_pylibad9361.sh",
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic",
+     "run_exports": [
+      "libad9361-iio-c"
+     ],
+     "skip": true,
+     "string": "0"
+    },
+    "name": "libad9361-iio",
+    "requirements": {
+     "run": [
+      "libad9361-iio-c",
+      "pylibad9361 0.3 py_0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "libad9361-iio-c"
+     ]
+    },
+    "name": "libad9361-iio-c",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libiio"
+     ]
+    },
+    "script": "install_libad9361.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/include/ad9361.h",
+      "test -f $PREFIX/include/ad9361-wrapper.h",
+      "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true,
+     "string": "py_0"
+    },
+    "name": "pylibad9361",
+    "requirements": {
+     "build": [
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libad9361-iio-c",
+      "pip",
+      "pylibiio",
+      "python >=3.6",
+      "setuptools"
+     ],
+     "run": [
+      "libad9361-iio-c",
+      "pylibiio",
+      "python"
+     ]
+    },
+    "script": "install_pylibad9361.sh",
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic",
+     "run_exports": [
+      "libad9361-iio-c"
+     ],
+     "skip": true,
+     "string": "0"
+    },
+    "name": "libad9361-iio",
+    "requirements": {
+     "run": [
+      "libad9361-iio-c",
+      "pylibad9361 0.3 py_0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "libad9361-iio-c"
+     ]
+    },
+    "name": "libad9361-iio-c",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libiio"
+     ]
+    },
+    "script": "install_libad9361.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/include/ad9361.h",
+      "test -f $PREFIX/include/ad9361-wrapper.h",
+      "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true,
+     "string": "py_0"
+    },
+    "name": "pylibad9361",
+    "requirements": {
+     "build": [
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libad9361-iio-c",
+      "pip",
+      "pylibiio",
+      "python >=3.6",
+      "setuptools"
+     ],
+     "run": [
+      "libad9361-iio-c",
+      "pylibiio",
+      "python"
+     ]
+    },
+    "script": "install_pylibad9361.sh",
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic",
+     "run_exports": [
+      "libad9361-iio-c"
+     ],
+     "skip": true,
+     "string": "0"
+    },
+    "name": "libad9361-iio",
+    "requirements": {
+     "run": [
+      "libad9361-iio-c",
+      "pylibad9361 0.3 py_0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "libad9361-iio-c"
+     ]
+    },
+    "name": "libad9361-iio-c",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "libiio"
+     ]
+    },
+    "script": "install_libad9361.bat",
+    "test": {
+     "commands": [
+      "if not exist %PREFIX%\\\\Library\\\\include\\\\ad9361.h exit 1",
+      "if not exist %PREFIX%\\\\Library\\\\include\\\\ad9361-wrapper.h exit 1",
+      "if not exist %PREFIX%\\\\Library\\\\bin\\\\libad9361.dll exit 1",
+      "if not exist %PREFIX%\\\\Library\\\\lib\\\\libad9361.lib exit 1"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true,
+     "string": "py_0"
+    },
+    "name": "pylibad9361",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "libad9361-iio-c",
+      "pip",
+      "pylibiio",
+      "python >=3.6",
+      "setuptools"
+     ],
+     "run": [
+      "libad9361-iio-c",
+      "pylibiio",
+      "python"
+     ]
+    },
+    "script": "install_pylibad9361.bat",
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic",
+     "run_exports": [
+      "libad9361-iio-c"
+     ],
+     "skip": true,
+     "string": "0"
+    },
+    "name": "libad9361-iio",
+    "requirements": {
+     "run": [
+      "libad9361-iio-c",
+      "pylibad9361 0.3 py_0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "libad9361-iio",
-   "version": "0.2"
-  },
-  "requirements": {
-   "build": [
-    "c_compiler_stub",
-    "cmake",
-    "cdt_stub",
-    "make",
-    "ninja"
-   ],
-   "host": [
-    "libiio"
-   ]
+   "name": "libad9361-iio-split",
+   "version": "0.3"
   },
   "source": {
    "patches": null,
-   "sha256": "f0d935eb7f70fde8596d98e9eb1f311b408b87662fc1fff45ae3ed455697b747",
-   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f $PREFIX/include/ad9361.h",
-    "test -f $PREFIX/include/ad9361-wrapper.h",
-    "test -f $PREFIX/lib/libad9361${SHLIB_EXT}",
-    "if not exist %PREFIX%\\\\Library\\\\include\\\\ad9361.h exit 1",
-    "if not exist %PREFIX%\\\\Library\\\\include\\\\ad9361-wrapper.h exit 1",
-    "if not exist %PREFIX%\\\\Library\\\\bin\\\\libad9361.dll exit 1",
-    "if not exist %PREFIX%\\\\Library\\\\lib\\\\libad9361.lib exit 1"
-   ]
+   "sha256": "1dc35dd997e1938a97489fa1f349ee16889f9de8901a2c7af46184468dc90598",
+   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.3.tar.gz"
   }
  },
- "name": "libad9361-iio",
+ "name": "libad9361-iio-split",
  "osx_64_meta_yaml": {
   "about": {
    "description": "This is a simple library used for userspace which manages multi-chip sync (on\nplatforms [FMCOMMS5] where multiple AD9361 devices are use) and can create AD9361\nspecific FIR filters on the fly\n",
@@ -316,44 +998,108 @@
    "summary": "IIO AD9361 library for filter design and handling, multi-chip sync, etc. "
   },
   "build": {
-   "number": "3",
-   "run_exports": [
-    "libad9361-iio"
-   ]
+   "number": "0"
   },
   "extra": {
+   "feedstock-name": "libad9361-iio",
    "recipe-maintainers": [
     "ryanvolz"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "run_exports": [
+      "libad9361-iio-c"
+     ]
+    },
+    "name": "libad9361-iio-c",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libiio"
+     ]
+    },
+    "script": "install_libad9361.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/include/ad9361.h",
+      "test -f $PREFIX/include/ad9361-wrapper.h",
+      "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true,
+     "string": "py_0"
+    },
+    "name": "pylibad9361",
+    "requirements": {
+     "build": [
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libad9361-iio-c",
+      "pip",
+      "pylibiio",
+      "python >=3.6",
+      "setuptools"
+     ],
+     "run": [
+      "libad9361-iio-c",
+      "pylibiio",
+      "python"
+     ]
+    },
+    "script": "install_pylibad9361.sh",
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic",
+     "run_exports": [
+      "libad9361-iio-c"
+     ],
+     "skip": true,
+     "string": "0"
+    },
+    "name": "libad9361-iio",
+    "requirements": {
+     "run": [
+      "libad9361-iio-c",
+      "pylibad9361 0.3 py_0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "libad9361-iio",
-   "version": "0.2"
-  },
-  "requirements": {
-   "build": [
-    "c_compiler_stub",
-    "cmake",
-    "make"
-   ],
-   "host": [
-    "libiio"
-   ]
+   "name": "libad9361-iio-split",
+   "version": "0.3"
   },
   "source": {
    "patches": [
     "0001-Remove-ifdefs-for-special-location-for-IIO-header-on.patch",
-    "0001-Make-Framework-creation-optional-through-OSX_FRAMEWO.patch"
+    "0002-Make-Framework-creation-optional-through-OSX_FRAMEWO.patch"
    ],
-   "sha256": "f0d935eb7f70fde8596d98e9eb1f311b408b87662fc1fff45ae3ed455697b747",
-   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f $PREFIX/include/ad9361.h",
-    "test -f $PREFIX/include/ad9361-wrapper.h",
-    "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
-   ]
+   "sha256": "1dc35dd997e1938a97489fa1f349ee16889f9de8901a2c7af46184468dc90598",
+   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.3.tar.gz"
   }
  },
  "osx_64_requirements": {
@@ -361,6 +1107,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ]
@@ -368,12 +1115,22 @@
   "host": {
    "__set__": true,
    "elements": [
-    "libiio"
+    "libad9361-iio-c",
+    "libiio",
+    "pip",
+    "pylibiio",
+    "python",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "libad9361-iio-c",
+    "pylibad9361",
+    "pylibiio",
+    "python"
+   ]
   },
   "test": {
    "__set__": true,
@@ -392,44 +1149,108 @@
    "summary": "IIO AD9361 library for filter design and handling, multi-chip sync, etc. "
   },
   "build": {
-   "number": "3",
-   "run_exports": [
-    "libad9361-iio"
-   ]
+   "number": "0"
   },
   "extra": {
+   "feedstock-name": "libad9361-iio",
    "recipe-maintainers": [
     "ryanvolz"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "run_exports": [
+      "libad9361-iio-c"
+     ]
+    },
+    "name": "libad9361-iio-c",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libiio"
+     ]
+    },
+    "script": "install_libad9361.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/include/ad9361.h",
+      "test -f $PREFIX/include/ad9361-wrapper.h",
+      "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true,
+     "string": "py_0"
+    },
+    "name": "pylibad9361",
+    "requirements": {
+     "build": [
+      "cmake",
+      "make"
+     ],
+     "host": [
+      "libad9361-iio-c",
+      "pip",
+      "pylibiio",
+      "python >=3.6",
+      "setuptools"
+     ],
+     "run": [
+      "libad9361-iio-c",
+      "pylibiio",
+      "python"
+     ]
+    },
+    "script": "install_pylibad9361.sh",
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic",
+     "run_exports": [
+      "libad9361-iio-c"
+     ],
+     "skip": true,
+     "string": "0"
+    },
+    "name": "libad9361-iio",
+    "requirements": {
+     "run": [
+      "libad9361-iio-c",
+      "pylibad9361 0.3 py_0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "libad9361-iio",
-   "version": "0.2"
-  },
-  "requirements": {
-   "build": [
-    "c_compiler_stub",
-    "cmake",
-    "make"
-   ],
-   "host": [
-    "libiio"
-   ]
+   "name": "libad9361-iio-split",
+   "version": "0.3"
   },
   "source": {
    "patches": [
     "0001-Remove-ifdefs-for-special-location-for-IIO-header-on.patch",
-    "0001-Make-Framework-creation-optional-through-OSX_FRAMEWO.patch"
+    "0002-Make-Framework-creation-optional-through-OSX_FRAMEWO.patch"
    ],
-   "sha256": "f0d935eb7f70fde8596d98e9eb1f311b408b87662fc1fff45ae3ed455697b747",
-   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "test -f $PREFIX/include/ad9361.h",
-    "test -f $PREFIX/include/ad9361-wrapper.h",
-    "test -f $PREFIX/lib/libad9361${SHLIB_EXT}"
-   ]
+   "sha256": "1dc35dd997e1938a97489fa1f349ee16889f9de8901a2c7af46184468dc90598",
+   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.3.tar.gz"
   }
  },
  "osx_arm64_requirements": {
@@ -437,6 +1258,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ]
@@ -444,12 +1266,22 @@
   "host": {
    "__set__": true,
    "elements": [
-    "libiio"
+    "libad9361-iio-c",
+    "libiio",
+    "pip",
+    "pylibiio",
+    "python",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "libad9361-iio-c",
+    "pylibad9361",
+    "pylibiio",
+    "python"
+   ]
   },
   "test": {
    "__set__": true,
@@ -459,7 +1291,9 @@
  "outputs_names": {
   "__set__": true,
   "elements": [
-   "libad9361-iio"
+   "libad9361-iio",
+   "libad9361-iio-c",
+   "pylibad9361"
   ]
  },
  "parsing_error": false,
@@ -474,16 +1308,22 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libad9361-iio.json"
  },
- "raw_meta_yaml": "{% set name = \"libad9361-iio\" %}\n{% set version = \"0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/analogdevicesinc/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: f0d935eb7f70fde8596d98e9eb1f311b408b87662fc1fff45ae3ed455697b747\n  patches:\n    - 0001-Remove-ifdefs-for-special-location-for-IIO-header-on.patch  # [osx]\n    - 0001-Make-Framework-creation-optional-through-OSX_FRAMEWO.patch  # [osx]\n\nbuild:\n  number: 3\n  run_exports:\n    - {{ pin_subpackage('libad9361-iio', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - cmake\n    - {{ cdt('libudev-devel') }}  # [linux and cdt_name=='cos6']\n    - make  # [not win]\n    - ninja  # [win]\n  host:\n    - libiio\n\ntest:\n  commands:\n    # verify that headers get installed\n    - test -f $PREFIX/include/ad9361.h  # [not win]\n    - test -f $PREFIX/include/ad9361-wrapper.h  # [not win]\n    - if not exist %PREFIX%\\\\Library\\\\include\\\\ad9361.h exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\include\\\\ad9361-wrapper.h exit 1  # [win]\n\n    # verify that libraries get installed\n    - test -f $PREFIX/lib/libad9361${SHLIB_EXT}  # [not win]\n    - if not exist %PREFIX%\\\\Library\\\\bin\\\\libad9361.dll exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\lib\\\\libad9361.lib exit 1  # [win]\n\nabout:\n  home: https://github.com/analogdevicesinc/libad9361-iio\n  license: LGPL-2.1-or-later\n  license_family: LGPL\n  license_file: LICENSE\n  summary: 'IIO AD9361 library for filter design and handling, multi-chip sync, etc. '\n  description: |\n    This is a simple library used for userspace which manages multi-chip sync (on\n    platforms [FMCOMMS5] where multiple AD9361 devices are use) and can create AD9361\n    specific FIR filters on the fly\n  doc_url: https://analogdevicesinc.github.io/libad9361-iio\n  dev_url: https://github.com/analogdevicesinc/libad9361-iio\n\nextra:\n  recipe-maintainers:\n    - ryanvolz\n",
+ "raw_meta_yaml": "{% set version = \"0.3\" %}\n{% set build = 0 %}\n\npackage:\n  name: libad9361-iio-split\n  version: {{ version }}\n\nsource:\n  url: https://github.com/analogdevicesinc/libad9361-iio/archive/v{{ version }}.tar.gz\n  sha256: 1dc35dd997e1938a97489fa1f349ee16889f9de8901a2c7af46184468dc90598\n  patches:\n    - 0001-Remove-ifdefs-for-special-location-for-IIO-header-on.patch  # [osx]\n    - 0002-Make-Framework-creation-optional-through-OSX_FRAMEWO.patch  # [osx]\n\nbuild:\n  number: {{ build }}\n\noutputs:\n  - name: libad9361-iio-c\n    script: install_libad9361.bat  # [win]\n    script: install_libad9361.sh  # [not win]\n    build:\n      run_exports:\n        - {{ pin_subpackage('libad9361-iio-c', max_pin='x') }}\n    requirements:\n      build:\n        - {{ compiler('c') }}\n        - {{ stdlib('c') }}\n        - cmake\n        - make  # [not win]\n        - ninja  # [win]\n      host:\n        - libiio\n    test:\n      commands:\n        # verify that headers get installed\n        - test -f $PREFIX/include/ad9361.h  # [not win]\n        - test -f $PREFIX/include/ad9361-wrapper.h  # [not win]\n        - if not exist %PREFIX%\\\\Library\\\\include\\\\ad9361.h exit 1  # [win]\n        - if not exist %PREFIX%\\\\Library\\\\include\\\\ad9361-wrapper.h exit 1  # [win]\n\n        # verify that libraries get installed\n        - test -f $PREFIX/lib/libad9361${SHLIB_EXT}  # [not win]\n        - if not exist %PREFIX%\\\\Library\\\\bin\\\\libad9361.dll exit 1  # [win]\n        - if not exist %PREFIX%\\\\Library\\\\lib\\\\libad9361.lib exit 1  # [win]\n\n  - name: pylibad9361\n    script: install_pylibad9361.bat  # [win]\n    script: install_pylibad9361.sh  # [not win]\n    build:\n      skip: true  # [not linux64]\n      string: py_{{ build }}\n      noarch: python\n    requirements:\n      build:\n        - cmake\n        - make  # [not win]\n        - ninja  # [win]\n        # cross-compilation dependencies\n        - python >=3.6                        # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n      host:\n        - {{ pin_subpackage('libad9361-iio-c', exact=True) }}\n        - pip\n        - pylibiio\n        - python >=3.6\n        - setuptools\n      run:\n        - {{ pin_subpackage('libad9361-iio-c', max_pin='x') }}\n        - pylibiio\n        - python\n    test:\n      imports:\n        - ad9361\n\n  - name: libad9361-iio\n    build:\n      skip: true  # [not linux64]\n      string: {{ build }}\n      noarch: generic\n      run_exports:\n        - {{ pin_subpackage('libad9361-iio-c', max_pin='x') }}\n    requirements:\n      run:\n        - {{ pin_subpackage('libad9361-iio-c', max_pin='x') }}\n        - pylibad9361 {{ version }} py_{{ build }}\n    test:\n      imports:\n        - ad9361\n\nabout:\n  home: https://github.com/analogdevicesinc/libad9361-iio\n  license: LGPL-2.1-or-later\n  license_family: LGPL\n  license_file: LICENSE\n  summary: 'IIO AD9361 library for filter design and handling, multi-chip sync, etc. '\n  description: |\n    This is a simple library used for userspace which manages multi-chip sync (on\n    platforms [FMCOMMS5] where multiple AD9361 devices are use) and can create AD9361\n    specific FIR filters on the fly\n  doc_url: https://analogdevicesinc.github.io/libad9361-iio\n  dev_url: https://github.com/analogdevicesinc/libad9361-iio\n\nextra:\n  feedstock-name: libad9361-iio\n  recipe-maintainers:\n    - ryanvolz\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
-   "cdt_stub",
+   "c_stdlib_stub",
    "cmake",
+   "libad9361-iio-c",
    "libiio",
    "make",
-   "ninja"
+   "ninja",
+   "pip",
+   "pylibad9361",
+   "pylibiio",
+   "python",
+   "setuptools"
   ]
  },
  "requirements": {
@@ -491,7 +1331,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cdt_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "ninja"
@@ -501,13 +1341,24 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "libiio"
+    "c_stdlib_stub",
+    "libad9361-iio-c",
+    "libiio",
+    "pip",
+    "pylibiio",
+    "python",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "libad9361-iio-c",
+    "pylibad9361",
+    "pylibiio",
+    "python"
    ]
   },
   "test": {
@@ -521,7 +1372,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cdt_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "ninja"
@@ -530,20 +1381,30 @@
   "host": {
    "__set__": true,
    "elements": [
-    "libiio"
+    "libad9361-iio-c",
+    "libiio",
+    "pip",
+    "pylibiio",
+    "python >=3.6",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "libad9361-iio-c",
+    "pylibad9361 0.3 py_0",
+    "pylibiio",
+    "python"
+   ]
   },
   "test": {
    "__set__": true,
    "elements": []
   }
  },
- "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.2.tar.gz",
- "version": "0.2",
+ "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.3.tar.gz",
+ "version": "0.3",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/libad9361-iio.json"
  },
@@ -559,42 +1420,106 @@
    "summary": "IIO AD9361 library for filter design and handling, multi-chip sync, etc. "
   },
   "build": {
-   "number": "3",
-   "run_exports": [
-    "libad9361-iio"
-   ]
+   "number": "0"
   },
   "extra": {
+   "feedstock-name": "libad9361-iio",
    "recipe-maintainers": [
     "ryanvolz"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "run_exports": [
+      "libad9361-iio-c"
+     ]
+    },
+    "name": "libad9361-iio-c",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "libiio"
+     ]
+    },
+    "script": "install_libad9361.bat",
+    "test": {
+     "commands": [
+      "if not exist %PREFIX%\\\\Library\\\\include\\\\ad9361.h exit 1",
+      "if not exist %PREFIX%\\\\Library\\\\include\\\\ad9361-wrapper.h exit 1",
+      "if not exist %PREFIX%\\\\Library\\\\bin\\\\libad9361.dll exit 1",
+      "if not exist %PREFIX%\\\\Library\\\\lib\\\\libad9361.lib exit 1"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python",
+     "skip": true,
+     "string": "py_0"
+    },
+    "name": "pylibad9361",
+    "requirements": {
+     "build": [
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "libad9361-iio-c",
+      "pip",
+      "pylibiio",
+      "python >=3.6",
+      "setuptools"
+     ],
+     "run": [
+      "libad9361-iio-c",
+      "pylibiio",
+      "python"
+     ]
+    },
+    "script": "install_pylibad9361.bat",
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic",
+     "run_exports": [
+      "libad9361-iio-c"
+     ],
+     "skip": true,
+     "string": "0"
+    },
+    "name": "libad9361-iio",
+    "requirements": {
+     "run": [
+      "libad9361-iio-c",
+      "pylibad9361 0.3 py_0"
+     ]
+    },
+    "test": {
+     "imports": [
+      "ad9361"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "libad9361-iio",
-   "version": "0.2"
-  },
-  "requirements": {
-   "build": [
-    "c_compiler_stub",
-    "cmake",
-    "ninja"
-   ],
-   "host": [
-    "libiio"
-   ]
+   "name": "libad9361-iio-split",
+   "version": "0.3"
   },
   "source": {
    "patches": null,
-   "sha256": "f0d935eb7f70fde8596d98e9eb1f311b408b87662fc1fff45ae3ed455697b747",
-   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.2.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "if not exist %PREFIX%\\\\Library\\\\include\\\\ad9361.h exit 1",
-    "if not exist %PREFIX%\\\\Library\\\\include\\\\ad9361-wrapper.h exit 1",
-    "if not exist %PREFIX%\\\\Library\\\\bin\\\\libad9361.dll exit 1",
-    "if not exist %PREFIX%\\\\Library\\\\lib\\\\libad9361.lib exit 1"
-   ]
+   "sha256": "1dc35dd997e1938a97489fa1f349ee16889f9de8901a2c7af46184468dc90598",
+   "url": "https://github.com/analogdevicesinc/libad9361-iio/archive/v0.3.tar.gz"
   }
  },
  "win_64_requirements": {
@@ -602,6 +1527,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja"
    ]
@@ -609,12 +1535,22 @@
   "host": {
    "__set__": true,
    "elements": [
-    "libiio"
+    "libad9361-iio-c",
+    "libiio",
+    "pip",
+    "pylibiio",
+    "python",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "libad9361-iio-c",
+    "pylibad9361",
+    "pylibiio",
+    "python"
+   ]
   },
   "test": {
    "__set__": true,
