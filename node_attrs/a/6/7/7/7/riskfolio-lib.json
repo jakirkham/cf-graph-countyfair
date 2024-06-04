@@ -31,7 +31,8 @@
   },
   "extra": {
    "recipe-maintainers": [
-    "timkpaine"
+    "timkpaine",
+    "zklaus"
    ]
   },
   "outputs": [
@@ -55,12 +56,24 @@
   ],
   "package": {
    "name": "riskfolio-lib",
-   "version": "3.3.0"
+   "version": "4.1.0"
   },
   "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ],
    "host": [
     "python >=3.7",
-    "pip"
+    "pip",
+    "numpy",
+    "pybind11 >=2.10.1",
+    "scipy",
+    "setuptools",
+    "wheel",
+    "armadillo",
+    "carma"
    ],
    "run": [
     "python >=3.7",
@@ -78,8 +91,11 @@
    ]
   },
   "source": {
-   "sha256": "29d0ff046952304ee8362d914551d82cdb2aa663728a6b1df80365c589a626b4",
-   "url": "https://pypi.io/packages/source/R/Riskfolio-Lib/Riskfolio-Lib-3.3.0.tar.gz"
+   "patches": [
+    "devendor-armadillo-carma.patch"
+   ],
+   "sha256": "239614153dc429904d98033f71b30cf708c1c2244ad359b6ece135f02023f5a8",
+   "url": "https://pypi.io/packages/source/R/Riskfolio-Lib/Riskfolio-Lib-4.1.0.tar.gz"
   },
   "test": {
    "imports": [
@@ -90,13 +106,24 @@
  "linux_64_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "armadillo",
+    "carma",
+    "numpy",
     "pip",
-    "python"
+    "pybind11",
+    "python",
+    "scipy",
+    "setuptools",
+    "wheel"
    ]
   },
   "run": {
@@ -140,7 +167,8 @@
   },
   "extra": {
    "recipe-maintainers": [
-    "timkpaine"
+    "timkpaine",
+    "zklaus"
    ]
   },
   "outputs": [
@@ -164,12 +192,24 @@
   ],
   "package": {
    "name": "riskfolio-lib",
-   "version": "3.3.0"
+   "version": "4.1.0"
   },
   "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ],
    "host": [
     "python >=3.7",
-    "pip"
+    "pip",
+    "numpy",
+    "pybind11 >=2.10.1",
+    "scipy",
+    "setuptools",
+    "wheel",
+    "armadillo",
+    "carma"
    ],
    "run": [
     "python >=3.7",
@@ -187,8 +227,11 @@
    ]
   },
   "source": {
-   "sha256": "29d0ff046952304ee8362d914551d82cdb2aa663728a6b1df80365c589a626b4",
-   "url": "https://pypi.io/packages/source/R/Riskfolio-Lib/Riskfolio-Lib-3.3.0.tar.gz"
+   "patches": [
+    "devendor-armadillo-carma.patch"
+   ],
+   "sha256": "239614153dc429904d98033f71b30cf708c1c2244ad359b6ece135f02023f5a8",
+   "url": "https://pypi.io/packages/source/R/Riskfolio-Lib/Riskfolio-Lib-4.1.0.tar.gz"
   },
   "test": {
    "imports": [
@@ -211,36 +254,58 @@
  "pr_info": {
   "__lazy_json__": "pr_info/riskfolio-lib.json"
  },
- "raw_meta_yaml": "{% set name = \"Riskfolio-Lib\" %}\n{% set version = \"3.3.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 29d0ff046952304ee8362d914551d82cdb2aa663728a6b1df80365c589a626b4\n\nbuild:\n  number: 0\n  noarch: python\n  script:\n    - {{ PYTHON }} -m pip install . --no-deps -vv\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n  run:\n    - python >=3.7\n    - arch-py >=4.15\n    - astropy >=4.3.1\n    - cvxpy >=1.0.25\n    - matplotlib-base >=3.3.0\n    - networkx >=2.5.1\n    - numpy >=1.17.0\n    - pandas >=1.0.0\n    - scikit-learn >=0.22.0\n    - scipy >=1.0.1\n    - statsmodels >=0.10.1\n    - xlsxwriter >=1.3.7\n\ntest:\n  imports:\n    - riskfolio\n\noutputs:\n  - name: {{ name|lower }}\n  - name: riskfolio_lib\n    build:\n      noarch: python\n    requirements:\n      host:\n        - python\n      run:\n        - {{ pin_subpackage( name|lower , exact=True) }}\n\nabout:\n  home: https://github.com/dcajasn/Riskfolio-Lib\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE.txt\n  summary: Portfolio Optimization and Quantitative Strategic Asset Allocation in Python\n  dev_url: https://github.com/dcajasn/Riskfolio-Lib\n\nextra:\n  recipe-maintainers:\n    - timkpaine\n",
+ "raw_meta_yaml": "{% set name = \"Riskfolio-Lib\" %}\n{% set version = \"4.1.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 239614153dc429904d98033f71b30cf708c1c2244ad359b6ece135f02023f5a8\n  patches:\n    - devendor-armadillo-carma.patch\n\nbuild:\n  number: 0\n  noarch: python\n  script:\n    - {{ PYTHON }} -m pip install . --no-deps -vv\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}  \n  host:\n    - python >=3.7\n    - pip\n    - numpy\n    - pybind11 >=2.10.1\n    - scipy\n    - setuptools\n    - wheel\n    - armadillo\n    - carma\n  run:\n    - python >=3.7\n    - arch-py >=4.15\n    - astropy >=4.3.1\n    - cvxpy >=1.0.25\n    - matplotlib-base >=3.3.0\n    - networkx >=2.5.1\n    - numpy >=1.17.0\n    - pandas >=1.0.0\n    - scikit-learn >=0.22.0\n    - scipy >=1.0.1\n    - statsmodels >=0.10.1\n    - xlsxwriter >=1.3.7\n\ntest:\n  imports:\n    - riskfolio\n\noutputs:\n  - name: {{ name|lower }}\n  - name: riskfolio_lib\n    build:\n      noarch: python\n    requirements:\n      host:\n        - python\n      run:\n        - {{ pin_subpackage( name|lower , exact=True) }}\n\nabout:\n  home: https://github.com/dcajasn/Riskfolio-Lib\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE.txt\n  summary: Portfolio Optimization and Quantitative Strategic Asset Allocation in Python\n  dev_url: https://github.com/dcajasn/Riskfolio-Lib\n\nextra:\n  recipe-maintainers:\n    - timkpaine\n    - zklaus\n",
  "req": {
   "__set__": true,
   "elements": [
    "arch-py",
+   "armadillo",
    "astropy",
+   "c_compiler_stub",
+   "c_stdlib_stub",
+   "carma",
    "cvxpy",
+   "cxx_compiler_stub",
    "matplotlib-base",
    "networkx",
    "numpy",
    "pandas",
    "pip",
+   "pybind11",
    "python",
    "riskfolio-lib",
    "scikit-learn",
    "scipy",
+   "setuptools",
    "statsmodels",
+   "wheel",
    "xlsxwriter"
   ]
  },
  "requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "armadillo",
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "carma",
+    "cxx_compiler_stub",
+    "numpy",
     "pip",
-    "python"
+    "pybind11",
+    "python",
+    "scipy",
+    "setuptools",
+    "wheel"
    ]
   },
   "run": {
@@ -248,7 +313,10 @@
    "elements": [
     "arch-py",
     "astropy",
+    "c_compiler_stub",
+    "c_stdlib_stub",
     "cvxpy",
+    "cxx_compiler_stub",
     "matplotlib-base",
     "networkx",
     "numpy",
@@ -270,14 +338,25 @@
  "total_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "armadillo",
+    "carma",
+    "numpy",
     "pip",
+    "pybind11 >=2.10.1",
     "python",
-    "python >=3.7"
+    "python >=3.7",
+    "scipy",
+    "setuptools",
+    "wheel"
    ]
   },
   "run": {
@@ -303,8 +382,8 @@
    "elements": []
   }
  },
- "url": "https://pypi.io/packages/source/R/Riskfolio-Lib/Riskfolio-Lib-3.3.0.tar.gz",
- "version": "3.3.0",
+ "url": "https://pypi.io/packages/source/R/Riskfolio-Lib/Riskfolio-Lib-4.1.0.tar.gz",
+ "version": "4.1.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/riskfolio-lib.json"
  }
