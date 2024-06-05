@@ -3,6 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -31,7 +33,7 @@
    "summary": "ScaLAPACK is a library of high-performance linear algebra routines for parallel distributed memory machines"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -51,6 +53,7 @@
     "cmake",
     "fortran_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -81,6 +84,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -115,7 +119,7 @@
    "summary": "ScaLAPACK is a library of high-performance linear algebra routines for parallel distributed memory machines"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -135,6 +139,7 @@
     "cmake",
     "fortran_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -165,6 +170,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -199,7 +205,7 @@
    "summary": "ScaLAPACK is a library of high-performance linear algebra routines for parallel distributed memory machines"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -219,6 +225,7 @@
     "cmake",
     "fortran_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -249,6 +256,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -283,7 +291,7 @@
    "summary": "ScaLAPACK is a library of high-performance linear algebra routines for parallel distributed memory machines"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -303,6 +311,7 @@
     "cmake",
     "fortran_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -340,7 +349,7 @@
    "summary": "ScaLAPACK is a library of high-performance linear algebra routines for parallel distributed memory machines"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -360,6 +369,7 @@
     "cmake",
     "fortran_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -390,6 +400,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -424,7 +435,7 @@
    "summary": "ScaLAPACK is a library of high-performance linear algebra routines for parallel distributed memory machines"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -444,6 +455,7 @@
     "cmake",
     "fortran_compiler_stub",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -474,6 +486,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -515,11 +528,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/scalapack.json"
  },
- "raw_meta_yaml": "{% set name = \"scalapack\" %}\n{% set version = \"2.2.0\" %}\n{% set sha256 = \"40b9406c20735a9a3009d863318cb8d3e496fb073d201c5463df810e01ab2a57\" %}\n\n{% set mpi = mpi or 'mpich' %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: http://www.netlib.org/{{ name }}/{{ name }}-{{ version }}.tgz\n  sha256: {{ sha256 }}\n  patches:\n    - fortran_mangling_cross.patch\n\nbuild:\n  number: 1\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - cmake\n    - {{ compiler('fortran') }}\n    - {{ compiler('c') }}\n    - make\n    - {{ mpi }}  # [mpi == 'openmpi' and build_platform != target_platform]\n  host:\n    - libblas\n    - liblapack\n    - {{ mpi }}\n  run:\n    - {{ mpi }}\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libscalapack.dylib  # [osx]\n    - test -f $PREFIX/lib/libscalapack.so  # [linux]\n\nabout:\n  home: http://www.netlib.org/scalapack/\n  license: BSD-2-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: ScaLAPACK is a library of high-performance linear algebra routines for parallel distributed memory machines\n  description: |\n    ScaLAPACK is a library of high-performance linear algebra routines for parallel distributed\n    memory machines. ScaLAPACK solves dense and banded linear systems, least squares problems,\n    eigenvalue problems, and singular value problems.\n\nextra:\n  recipe-maintainers:\n    - dalcinl\n    - minrk\n    - davidbrochart\n    - SylvainCorlay\n    - traversaro\n",
+ "raw_meta_yaml": "{% set name = \"scalapack\" %}\n{% set version = \"2.2.0\" %}\n{% set sha256 = \"40b9406c20735a9a3009d863318cb8d3e496fb073d201c5463df810e01ab2a57\" %}\n\n{% set mpi = mpi or 'mpich' %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: http://www.netlib.org/{{ name }}/{{ name }}-{{ version }}.tgz\n  sha256: {{ sha256 }}\n  patches:\n    - fortran_mangling_cross.patch\n\nbuild:\n  number: 2\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - cmake\n    - {{ compiler('fortran') }}\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - make\n    - {{ mpi }}  # [mpi == 'openmpi' and build_platform != target_platform]\n  host:\n    - libblas\n    - liblapack\n    - {{ mpi }}\n  run:\n    - {{ mpi }}\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libscalapack.dylib  # [osx]\n    - test -f $PREFIX/lib/libscalapack.so  # [linux]\n\nabout:\n  home: http://www.netlib.org/scalapack/\n  license: BSD-2-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: ScaLAPACK is a library of high-performance linear algebra routines for parallel distributed memory machines\n  description: |\n    ScaLAPACK is a library of high-performance linear algebra routines for parallel distributed\n    memory machines. ScaLAPACK solves dense and banded linear systems, least squares problems,\n    eigenvalue problems, and singular value problems.\n\nextra:\n  recipe-maintainers:\n    - dalcinl\n    - minrk\n    - davidbrochart\n    - SylvainCorlay\n    - traversaro\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "fortran_compiler_stub",
    "libblas",
@@ -533,6 +547,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -542,6 +557,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "libblas",
     "liblapack",
@@ -552,6 +568,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "openmpi"
    ]
@@ -567,6 +584,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
