@@ -3,6 +3,7 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -29,7 +30,7 @@
    "summary": "python wrapper for Lance columnar format"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -109,6 +110,98 @@
    ]
   }
  },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "home": "https://github.com/lancedb/lance",
+   "license": "Apache-2.0",
+   "license_file": [
+    "LICENSE",
+    "python/LICENSE",
+    "THIRDPARTY.yml"
+   ],
+   "summary": "python wrapper for Lance columnar format"
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "yhori991"
+   ]
+  },
+  "package": {
+   "name": "pylance",
+   "version": "0.11.1"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "rust_compiler_stub",
+    "cargo-bundle-licenses",
+    "libprotobuf"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "maturin"
+   ],
+   "run": [
+    "python",
+    "numpy >=1.22",
+    "pyarrow >=12,<15.0.1"
+   ]
+  },
+  "source": {
+   "sha256": "c7807034ca3c45df27bc227ff55ef44271a4bee09e4a8fb19860bdb583056999",
+   "url": "https://github.com/lancedb/lance/archive/refs/tags/v0.11.1.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "lance"
+   ],
+   "requires": [
+    "pip"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cargo-bundle-licenses",
+    "libprotobuf",
+    "rust_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "maturin",
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "numpy",
+    "pyarrow",
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "pip"
+   ]
+  }
+ },
  "meta_yaml": {
   "about": {
    "home": "https://github.com/lancedb/lance",
@@ -121,7 +214,7 @@
    "summary": "python wrapper for Lance columnar format"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -180,7 +273,7 @@
    "summary": "python wrapper for Lance columnar format"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -272,7 +365,7 @@
    "summary": "python wrapper for Lance columnar format"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -361,6 +454,7 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -368,7 +462,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pylance.json"
  },
- "raw_meta_yaml": "{% set name = \"pylance\" %}\n{% set version = \"0.11.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/lancedb/lance/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: c7807034ca3c45df27bc227ff55ef44271a4bee09e4a8fb19860bdb583056999\n\nbuild:\n  number: 0\n  skip: true  # [py<39]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - maturin                                # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('rust') }}\n    - cargo-bundle-licenses\n    - libprotobuf\n  host:\n    - python\n    - pip\n    - maturin\n  run:\n    - python\n    - numpy >=1.22\n    - pyarrow >=12,<15.0.1\n\ntest:\n  imports:\n    - lance\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/lancedb/lance\n  summary: python wrapper for Lance columnar format\n  license: Apache-2.0\n  license_file:\n    - LICENSE\n    - python/LICENSE\n    - THIRDPARTY.yml\n\nextra:\n  recipe-maintainers:\n    - yhori991\n",
+ "raw_meta_yaml": "{% set name = \"pylance\" %}\n{% set version = \"0.11.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/lancedb/lance/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: c7807034ca3c45df27bc227ff55ef44271a4bee09e4a8fb19860bdb583056999\n\nbuild:\n  number: 1\n  skip: true  # [py<39]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - maturin                                # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('rust') }}\n    - cargo-bundle-licenses\n    - libprotobuf\n  host:\n    - python\n    - pip\n    - maturin\n  run:\n    - python\n    - numpy >=1.22\n    - pyarrow >=12,<15.0.1\n\ntest:\n  imports:\n    - lance\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/lancedb/lance\n  summary: python wrapper for Lance columnar format\n  license: Apache-2.0\n  license_file:\n    - LICENSE\n    - python/LICENSE\n    - THIRDPARTY.yml\n\nextra:\n  recipe-maintainers:\n    - yhori991\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -474,7 +568,7 @@
    "summary": "python wrapper for Lance columnar format"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
