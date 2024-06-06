@@ -40,11 +40,11 @@
    "ignore_run_exports_from": [
     "python"
    ],
-   "number": "615",
+   "number": "15",
    "run_exports": [
     "libopencv"
    ],
-   "string": "qt6_py312h1234567_615"
+   "string": "headless_py312h1234567_15"
   },
   "extra": {
    "recipe-maintainers": [
@@ -66,7 +66,7 @@
    },
    {
     "build": {
-     "string": "qt6_py310h1234567_615"
+     "string": "qt5_py310h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -90,7 +90,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py310h1234567_615"
+     "string": "qt5_py310h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -212,6 +212,1247 @@
    },
    {
     "build": {
+     "string": "headless_py310h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py310h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py38h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py38h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py38h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py38h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py38h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py38h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py39h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py39h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py39h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py39h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py311h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py311h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py311h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py311h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py311h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py311h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py312h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py312h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py312h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py312h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py312h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py312h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py310h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py310h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
      "string": "qt6_py310h1234567_615"
     },
     "name": "opencv",
@@ -285,7 +1526,7 @@
    },
    {
     "build": {
-     "string": "qt6_py38h1234567_615"
+     "string": "headless_py310h1234567_15"
     },
     "name": "opencv",
     "requirements": {
@@ -309,7 +1550,80 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py38h1234567_615"
+     "string": "headless_py310h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py38h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py38h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -431,7 +1745,7 @@
    },
    {
     "build": {
-     "string": "qt6_py38h1234567_615"
+     "string": "headless_py38h1234567_15"
     },
     "name": "opencv",
     "requirements": {
@@ -455,7 +1769,80 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py38h1234567_615"
+     "string": "headless_py38h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py39h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -577,7 +1964,7 @@
    },
    {
     "build": {
-     "string": "qt6_py39h1234567_615"
+     "string": "headless_py39h1234567_15"
     },
     "name": "opencv",
     "requirements": {
@@ -601,7 +1988,80 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py39h1234567_615"
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py39h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -723,7 +2183,7 @@
    },
    {
     "build": {
-     "string": "qt6_py39h1234567_615"
+     "string": "headless_py39h1234567_15"
     },
     "name": "opencv",
     "requirements": {
@@ -747,7 +2207,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py39h1234567_615"
+     "string": "headless_py39h1234567_15"
     },
     "name": "py-opencv",
     "requirements": {
@@ -796,7 +2256,7 @@
    },
    {
     "build": {
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py311h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -820,80 +2280,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py311h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -1015,7 +2402,7 @@
    },
    {
     "build": {
-     "string": "qt6_py311h1234567_615"
+     "string": "headless_py311h1234567_15"
     },
     "name": "opencv",
     "requirements": {
@@ -1039,7 +2426,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py311h1234567_615"
+     "string": "headless_py311h1234567_15"
     },
     "name": "py-opencv",
     "requirements": {
@@ -1088,7 +2475,7 @@
    },
    {
     "build": {
-     "string": "qt6_py311h1234567_615"
+     "string": "qt5_py312h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -1112,80 +2499,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py312h1234567_615"
+     "string": "qt5_py312h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -1307,7 +2621,7 @@
    },
    {
     "build": {
-     "string": "qt6_py312h1234567_615"
+     "string": "headless_py312h1234567_15"
     },
     "name": "opencv",
     "requirements": {
@@ -1331,1321 +2645,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py312h1234567_615"
+     "string": "headless_py312h1234567_15"
     },
     "name": "py-opencv",
     "requirements": {
@@ -2726,9 +2726,10 @@
     "libtiff",
     "libwebp",
     "openexr",
-    "qt6-main",
+    "qt-main",
     "zlib",
     "libopenvino-dev",
+    "qt6-main",
     "ffmpeg 7=lgpl_*"
    ]
   },
@@ -3961,6 +3962,7 @@
     "numpy",
     "openexr",
     "python",
+    "qt-main",
     "qt6-main",
     "zlib"
    ]
@@ -7092,7 +7094,7 @@
    },
    {
     "build": {
-     "string": "qt6_py310h1234567_615"
+     "string": "qt5_py310h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -7116,7 +7118,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py310h1234567_615"
+     "string": "qt5_py310h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -7190,2488 +7192,6 @@
       "py-opencv"
      ],
      "string": "qt6_py310h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py310h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py38h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
-      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list",
-      "test $(pip list | grep opencv-python | wc -l) -eq 2",
-      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py312h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py312h1234567_615"
     },
     "name": "py-opencv",
     "requirements": {
@@ -9793,6 +7313,152 @@
    },
    {
     "build": {
+     "string": "qt5_py38h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py38h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py38h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py38h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
      "string": "headless_py38h1234567_15"
     },
     "name": "opencv",
@@ -9866,7 +7532,7 @@
    },
    {
     "build": {
-     "string": "headless_py39h1234567_15"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -9890,7 +7556,80 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "headless_py39h1234567_15"
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py39h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py39h1234567_615"
     },
     "name": "py-opencv",
     "requirements": {
@@ -10012,6 +7751,371 @@
    },
    {
     "build": {
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py39h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py39h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py311h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py311h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py311h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py311h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
      "string": "headless_py311h1234567_15"
     },
     "name": "opencv",
@@ -10037,6 +8141,1466 @@
       "py-opencv"
      ],
      "string": "headless_py311h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py312h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py312h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py312h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py312h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py312h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py312h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py310h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py310h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py310h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py310h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py310h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py310h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py38h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py38h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py38h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py38h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py38h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py38h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py39h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py39h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py39h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py39h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py39h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py311h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py311h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py311h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py311h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py311h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py311h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py312h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py312h1234567_515"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt6_py312h1234567_615"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt6_py312h1234567_615"
     },
     "name": "py-opencv",
     "requirements": {
@@ -11515,6 +11079,7 @@
      "commands": [
       "python run_py_test.py",
       "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
       "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
       "pip check",
       "pip list",
@@ -11587,6 +11152,7 @@
      "commands": [
       "python run_py_test.py",
       "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
       "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
       "pip check",
       "pip list",
@@ -11659,6 +11225,7 @@
      "commands": [
       "python run_py_test.py",
       "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
       "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
       "pip check",
       "pip list",
@@ -11731,6 +11298,7 @@
      "commands": [
       "python run_py_test.py",
       "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
       "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
       "pip check",
       "pip list",
@@ -11803,6 +11371,7 @@
      "commands": [
       "python run_py_test.py",
       "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
       "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
       "pip check",
       "pip list",
@@ -11875,6 +11444,7 @@
      "commands": [
       "python run_py_test.py",
       "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2; assert 'Unknown' not in cv2.videoio_registry.getBackendName(cv2.CAP_V4L)\"",
       "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
       "pip check",
       "pip list",
@@ -12552,6 +12122,78 @@
    },
    {
     "build": {
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
      "string": "headless_py311h1234567_15"
     },
     "name": "opencv",
@@ -13056,7 +12698,7 @@
    },
    {
     "build": {
-     "string": "qt6_py310h1234567_615"
+     "string": "headless_py310h1234567_15"
     },
     "name": "opencv",
     "requirements": {
@@ -13080,7 +12722,367 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py310h1234567_615"
+     "string": "headless_py310h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py38h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py38h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py39h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py311h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py311h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "headless_py312h1234567_15"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "headless_py312h1234567_15"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "if [[ $($PYTHON -c 'import cv2; print(cv2.__version__)') != $PKG_VERSION ]]; then exit 1; fi",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list",
+      "test $(pip list | grep opencv-python | wc -l) -eq 2",
+      "test $(pip list | grep opencv-python-headless | wc -l) -eq 1"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py310h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py310h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -13194,7 +13196,7 @@
    },
    {
     "build": {
-     "string": "qt6_py38h1234567_615"
+     "string": "qt5_py38h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -13218,7 +13220,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py38h1234567_615"
+     "string": "qt5_py38h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -13332,7 +13334,7 @@
    },
    {
     "build": {
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -13356,7 +13358,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -13470,7 +13472,7 @@
    },
    {
     "build": {
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -13494,7 +13496,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -13564,6 +13566,75 @@
       "py-opencv"
      ],
      "string": "qt6_py39h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py311h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py311h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -13677,7 +13748,7 @@
    },
    {
     "build": {
-     "string": "qt6_py311h1234567_615"
+     "string": "qt5_py312h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -13701,7 +13772,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py311h1234567_615"
+     "string": "qt5_py312h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -13815,7 +13886,7 @@
    },
    {
     "build": {
-     "string": "qt6_py312h1234567_615"
+     "string": "qt5_py310h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -13839,7 +13910,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py312h1234567_615"
+     "string": "qt5_py310h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -13953,7 +14024,7 @@
    },
    {
     "build": {
-     "string": "qt6_py310h1234567_615"
+     "string": "qt5_py38h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -13977,7 +14048,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py310h1234567_615"
+     "string": "qt5_py38h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -14091,7 +14162,7 @@
    },
    {
     "build": {
-     "string": "qt6_py38h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -14115,7 +14186,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py38h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -14229,7 +14300,7 @@
    },
    {
     "build": {
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -14253,7 +14324,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -14367,7 +14438,7 @@
    },
    {
     "build": {
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py311h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -14391,76 +14462,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py311h1234567_615"
+     "string": "qt5_py311h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -14574,7 +14576,7 @@
    },
    {
     "build": {
-     "string": "qt6_py312h1234567_615"
+     "string": "qt5_py312h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -14598,7 +14600,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py312h1234567_615"
+     "string": "qt5_py312h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -14744,9 +14746,10 @@
     "libtiff",
     "libwebp",
     "openexr",
-    "qt6-main",
+    "qt-main",
     "zlib",
     "libopenvino-dev",
+    "qt6-main",
     "ffmpeg 7=lgpl_*"
    ]
   },
@@ -20852,6 +20855,7 @@
    "pkg-config",
    "py-opencv",
    "python",
+   "qt-main",
    "qt6-main",
    "zlib"
   ]
@@ -20898,6 +20902,7 @@
     "numpy",
     "openexr",
     "python",
+    "qt-main",
     "qt6-main",
     "zlib"
    ]
@@ -20967,6 +20972,7 @@
     "numpy",
     "openexr",
     "python",
+    "qt-main",
     "qt6-main",
     "zlib"
    ]
@@ -21037,7 +21043,7 @@
    },
    {
     "build": {
-     "string": "qt6_py310h1234567_615"
+     "string": "qt5_py310h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -21061,7 +21067,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py310h1234567_615"
+     "string": "qt5_py310h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -21175,7 +21181,7 @@
    },
    {
     "build": {
-     "string": "qt6_py38h1234567_615"
+     "string": "qt5_py38h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -21199,7 +21205,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py38h1234567_615"
+     "string": "qt5_py38h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -21313,7 +21319,7 @@
    },
    {
     "build": {
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -21337,7 +21343,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -21451,7 +21457,7 @@
    },
    {
     "build": {
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -21475,7 +21481,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -21545,6 +21551,75 @@
       "py-opencv"
      ],
      "string": "qt6_py39h1234567_615"
+    },
+    "name": "py-opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "numpy",
+      "libprotobuf"
+     ],
+     "run": [
+      "python",
+      "numpy",
+      "libopencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python run_py_test.py",
+      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
+      "pip check",
+      "pip list"
+     ],
+     "files": [
+      "run_py_test.py",
+      "color_palette_alpha.png",
+      "test_1_c1.jpg"
+     ],
+     "imports": [
+      "cv2",
+      "cv2.xfeatures2d",
+      "cv2.freetype"
+     ],
+     "requires": [
+      "pip"
+     ],
+     "source_files": [
+      "test.avi"
+     ]
+    }
+   },
+   {
+    "name": "libopencv"
+   },
+   {
+    "build": {
+     "string": "qt5_py311h1234567_515"
+    },
+    "name": "opencv",
+    "requirements": {
+     "host": [
+      "python",
+      "libprotobuf"
+     ],
+     "run": [
+      "libopencv",
+      "py-opencv"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo \"tested in other outputs\""
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "py-opencv"
+     ],
+     "string": "qt5_py311h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -21658,7 +21733,7 @@
    },
    {
     "build": {
-     "string": "qt6_py311h1234567_615"
+     "string": "qt5_py312h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -21682,7 +21757,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py311h1234567_615"
+     "string": "qt5_py312h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -21796,7 +21871,7 @@
    },
    {
     "build": {
-     "string": "qt6_py312h1234567_615"
+     "string": "qt5_py310h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -21820,7 +21895,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py312h1234567_615"
+     "string": "qt5_py310h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -21934,7 +22009,7 @@
    },
    {
     "build": {
-     "string": "qt6_py310h1234567_615"
+     "string": "qt5_py38h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -21958,7 +22033,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py310h1234567_615"
+     "string": "qt5_py38h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -22072,7 +22147,7 @@
    },
    {
     "build": {
-     "string": "qt6_py38h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -22096,7 +22171,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py38h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -22210,7 +22285,7 @@
    },
    {
     "build": {
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -22234,7 +22309,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py39h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -22348,7 +22423,7 @@
    },
    {
     "build": {
-     "string": "qt6_py39h1234567_615"
+     "string": "qt5_py311h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -22372,76 +22447,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py39h1234567_615"
-    },
-    "name": "py-opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "numpy",
-      "libprotobuf"
-     ],
-     "run": [
-      "python",
-      "numpy",
-      "libopencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python run_py_test.py",
-      "python -c \"import cv2, re; assert re.search('Lapack:\\s+YES', cv2.getBuildInformation())\"",
-      "pip check",
-      "pip list"
-     ],
-     "files": [
-      "run_py_test.py",
-      "color_palette_alpha.png",
-      "test_1_c1.jpg"
-     ],
-     "imports": [
-      "cv2",
-      "cv2.xfeatures2d",
-      "cv2.freetype"
-     ],
-     "requires": [
-      "pip"
-     ],
-     "source_files": [
-      "test.avi"
-     ]
-    }
-   },
-   {
-    "name": "libopencv"
-   },
-   {
-    "build": {
-     "string": "qt6_py311h1234567_615"
-    },
-    "name": "opencv",
-    "requirements": {
-     "host": [
-      "python",
-      "libprotobuf"
-     ],
-     "run": [
-      "libopencv",
-      "py-opencv"
-     ]
-    },
-    "test": {
-     "commands": [
-      "echo \"tested in other outputs\""
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "py-opencv"
-     ],
-     "string": "qt6_py311h1234567_615"
+     "string": "qt5_py311h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -22555,7 +22561,7 @@
    },
    {
     "build": {
-     "string": "qt6_py312h1234567_615"
+     "string": "qt5_py312h1234567_515"
     },
     "name": "opencv",
     "requirements": {
@@ -22579,7 +22585,7 @@
      "run_exports": [
       "py-opencv"
      ],
-     "string": "qt6_py312h1234567_615"
+     "string": "qt5_py312h1234567_515"
     },
     "name": "py-opencv",
     "requirements": {
@@ -22722,9 +22728,10 @@
     "libtiff",
     "libwebp",
     "openexr",
-    "qt6-main",
+    "qt-main",
     "zlib",
     "libopenvino-dev",
+    "qt6-main",
     "ffmpeg 7=lgpl_*"
    ]
   },
@@ -23612,6 +23619,7 @@
     "numpy",
     "openexr",
     "python",
+    "qt-main",
     "qt6-main",
     "zlib"
    ]

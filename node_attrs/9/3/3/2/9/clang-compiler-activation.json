@@ -38,14 +38,410 @@
   },
   "outputs": [
    {
-    "name": "clang_impl_osx-arm64",
+    "name": "clang_impl_osx-64",
+    "requirements": [
+     "clang 16.0.6",
+     "llvm-tools 16.0.6",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "compiler-rt 16.0.6",
+     "compiler-rt_osx-64 16.0.6",
+     "gcc_impl_linux-64"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 16.0.6",
+      "clang_impl_osx-64",
+      "gxx_impl_linux-64",
+      "libllvm16 16.0.6"
+     ],
+     "run": [
+      "clangxx 16.0.6",
+      "libcxx >=16",
+      "clang_osx-64",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 10.9",
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo x86_64-conda-linux-gnu",
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=16"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm16",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ],
+     "skip": true
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm16 16.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-64",
+    "requirements": [
+     "clang 17.0.6",
+     "llvm-tools 17.0.6",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "compiler-rt 17.0.6",
+     "compiler-rt_osx-64 17.0.6",
+     "gcc_impl_linux-64"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 17.0.6",
+      "clang_impl_osx-64",
+      "gxx_impl_linux-64",
+      "libllvm17 17.0.6"
+     ],
+     "run": [
+      "clangxx 17.0.6",
+      "libcxx >=17",
+      "clang_osx-64",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 10.9",
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo x86_64-conda-linux-gnu",
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=17"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm17",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ],
+     "skip": true
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 17.0.6",
+      "libcxx 17",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm17 17.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-64",
     "requirements": [
      "clang 18.1.6",
      "llvm-tools 18.1.6",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "compiler-rt 18.1.6",
+     "compiler-rt_osx-64 18.1.6",
+     "gcc_impl_linux-64"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 18.1.6",
+      "clang_impl_osx-64",
+      "gxx_impl_linux-64",
+      "libllvm18 18.1.6"
+     ],
+     "run": [
+      "clangxx 18.1.6",
+      "libcxx >=17",
+      "clang_osx-64",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 10.9",
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo x86_64-conda-linux-gnu",
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=17"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm18",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ],
+     "skip": true
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 18.1.6",
+      "libcxx 17",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm18 18.1.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-arm64",
+    "requirements": [
+     "clang 16.0.6",
+     "llvm-tools 16.0.6",
      "cctools_osx-arm64",
      "ld64_osx-arm64",
-     "compiler-rt 18.1.6",
-     "compiler-rt_osx-arm64 18.1.6",
+     "compiler-rt 16.0.6",
+     "compiler-rt_osx-arm64 16.0.6",
      "gcc_impl_linux-64"
     ],
     "script": "install-clang.sh",
@@ -76,14 +472,14 @@
     "requirements": {
      "build": [],
      "host": [
-      "clangxx 18.1.6",
+      "clangxx 16.0.6",
       "clang_impl_osx-arm64",
       "gxx_impl_linux-64",
-      "libllvm18 18.1.6"
+      "libllvm16 16.0.6"
      ],
      "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
+      "clangxx 16.0.6",
+      "libcxx >=16",
       "clang_osx-arm64",
       "gxx_impl_linux-64"
      ]
@@ -106,7 +502,7 @@
     "build": {
      "run_exports": {
       "strong": [
-       "libcxx >=17"
+       "libcxx >=16"
       ]
      }
     },
@@ -143,7 +539,7 @@
       "share/"
      ],
      "ignore_run_exports_from": [
-      "libllvm18",
+      "libllvm16",
       "clang_osx-arm64",
       "clangxx_osx-arm64"
      ],
@@ -153,13 +549,13 @@
     "requirements": {
      "build": [],
      "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
+      "clangxx 16.0.6",
+      "libcxx 16",
       "cctools_osx-arm64",
       "ld64_osx-arm64",
       "clang_osx-arm64",
       "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm16 16.0.6"
      ]
     },
     "script": "install-clang-bootstrap.sh",
@@ -173,12 +569,12 @@
    {
     "name": "clang_impl_osx-arm64",
     "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
+     "clang 17.0.6",
+     "llvm-tools 17.0.6",
      "cctools_osx-arm64",
      "ld64_osx-arm64",
-     "compiler-rt 18.1.6",
-     "compiler-rt_osx-arm64 18.1.6",
+     "compiler-rt 17.0.6",
+     "compiler-rt_osx-arm64 17.0.6",
      "gcc_impl_linux-64"
     ],
     "script": "install-clang.sh",
@@ -209,13 +605,13 @@
     "requirements": {
      "build": [],
      "host": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "clang_impl_osx-arm64",
       "gxx_impl_linux-64",
-      "libllvm18 18.1.6"
+      "libllvm17 17.0.6"
      ],
      "run": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "libcxx >=17",
       "clang_osx-arm64",
       "gxx_impl_linux-64"
@@ -276,7 +672,7 @@
       "share/"
      ],
      "ignore_run_exports_from": [
-      "libllvm18",
+      "libllvm17",
       "clang_osx-arm64",
       "clangxx_osx-arm64"
      ],
@@ -286,412 +682,13 @@
     "requirements": {
      "build": [],
      "host": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "libcxx 17",
       "cctools_osx-arm64",
       "ld64_osx-arm64",
       "clang_osx-arm64",
       "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6",
-     "compiler-rt_osx-arm64 18.1.6",
-     "gcc_impl_linux-64"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [],
-     "host": [
-      "clangxx 18.1.6",
-      "clang_impl_osx-arm64",
-      "gxx_impl_linux-64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64",
-      "gxx_impl_linux-64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 10.9",
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-conda-linux-gnu",
-      "echo aarch64",
-      "x86_64-conda-linux-gnu-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ],
-     "skip": true
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6",
-     "compiler-rt_osx-arm64 18.1.6",
-     "gcc_impl_linux-64"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [],
-     "host": [
-      "clangxx 18.1.6",
-      "clang_impl_osx-arm64",
-      "gxx_impl_linux-64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64",
-      "gxx_impl_linux-64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 10.9",
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-conda-linux-gnu",
-      "echo aarch64",
-      "x86_64-conda-linux-gnu-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ],
-     "skip": true
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6",
-     "compiler-rt_osx-arm64 18.1.6",
-     "gcc_impl_linux-64"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [],
-     "host": [
-      "clangxx 18.1.6",
-      "clang_impl_osx-arm64",
-      "gxx_impl_linux-64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64",
-      "gxx_impl_linux-64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 10.9",
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-conda-linux-gnu",
-      "echo aarch64",
-      "x86_64-conda-linux-gnu-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ],
-     "skip": true
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm17 17.0.6"
      ]
     },
     "script": "install-clang-bootstrap.sh",
@@ -842,8 +839,9 @@
   },
   "requirements": {
    "build": [
-    "libcxx 17",
-    "gcc_linux-64"
+    "libcxx 16",
+    "gcc_linux-64",
+    "libcxx 17"
    ]
   }
  },
@@ -858,30 +856,43 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cctools_osx-64",
     "cctools_osx-arm64",
+    "clang_impl_osx-64",
     "clang_impl_osx-arm64",
+    "clang_osx-64",
     "clang_osx-arm64",
     "clangxx",
+    "clangxx_osx-64",
     "clangxx_osx-arm64",
     "gxx_impl_linux-64",
+    "ld64_osx-64",
     "ld64_osx-arm64",
     "libcxx",
+    "libllvm16",
+    "libllvm17",
     "libllvm18"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "cctools_osx-64",
     "cctools_osx-arm64",
     "clang",
+    "clang_impl_osx-64",
     "clang_impl_osx-arm64",
+    "clang_osx-64",
     "clang_osx-arm64",
     "clangxx",
+    "clangxx_impl_osx-64",
     "clangxx_impl_osx-arm64",
     "compiler-rt",
+    "compiler-rt_osx-64",
     "compiler-rt_osx-arm64",
     "gcc_impl_linux-64",
     "gxx_impl_linux-64",
+    "ld64_osx-64",
     "ld64_osx-arm64",
     "libcxx",
     "llvm-tools"
@@ -913,14 +924,410 @@
   },
   "outputs": [
    {
-    "name": "clang_impl_osx-arm64",
+    "name": "clang_impl_osx-64",
+    "requirements": [
+     "clang 16.0.6",
+     "llvm-tools 16.0.6",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "compiler-rt 16.0.6",
+     "compiler-rt_osx-64 16.0.6",
+     "gcc_impl_linux-64"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 16.0.6",
+      "clang_impl_osx-64",
+      "gxx_impl_linux-64",
+      "libllvm16 16.0.6"
+     ],
+     "run": [
+      "clangxx 16.0.6",
+      "libcxx >=16",
+      "clang_osx-64",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 10.9",
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo x86_64-conda-linux-gnu",
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=16"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm16",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ],
+     "skip": true
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm16 16.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-64",
+    "requirements": [
+     "clang 17.0.6",
+     "llvm-tools 17.0.6",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "compiler-rt 17.0.6",
+     "compiler-rt_osx-64 17.0.6",
+     "gcc_impl_linux-64"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 17.0.6",
+      "clang_impl_osx-64",
+      "gxx_impl_linux-64",
+      "libllvm17 17.0.6"
+     ],
+     "run": [
+      "clangxx 17.0.6",
+      "libcxx >=17",
+      "clang_osx-64",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 10.9",
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo x86_64-conda-linux-gnu",
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=17"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm17",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ],
+     "skip": true
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 17.0.6",
+      "libcxx 17",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm17 17.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-64",
     "requirements": [
      "clang 18.1.6",
      "llvm-tools 18.1.6",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "compiler-rt 18.1.6",
+     "compiler-rt_osx-64 18.1.6",
+     "gcc_impl_linux-64"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 18.1.6",
+      "clang_impl_osx-64",
+      "gxx_impl_linux-64",
+      "libllvm18 18.1.6"
+     ],
+     "run": [
+      "clangxx 18.1.6",
+      "libcxx >=17",
+      "clang_osx-64",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 10.9",
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo x86_64-conda-linux-gnu",
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=17"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm18",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ],
+     "skip": true
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 18.1.6",
+      "libcxx 17",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm18 18.1.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-arm64",
+    "requirements": [
+     "clang 16.0.6",
+     "llvm-tools 16.0.6",
      "cctools_osx-arm64",
      "ld64_osx-arm64",
-     "compiler-rt 18.1.6",
-     "compiler-rt_osx-arm64 18.1.6",
+     "compiler-rt 16.0.6",
+     "compiler-rt_osx-arm64 16.0.6",
      "gcc_impl_linux-64"
     ],
     "script": "install-clang.sh",
@@ -951,13 +1358,146 @@
     "requirements": {
      "build": [],
      "host": [
-      "clangxx 18.1.6",
+      "clangxx 16.0.6",
       "clang_impl_osx-arm64",
       "gxx_impl_linux-64",
-      "libllvm18 18.1.6"
+      "libllvm16 16.0.6"
      ],
      "run": [
-      "clangxx 18.1.6",
+      "clangxx 16.0.6",
+      "libcxx >=16",
+      "clang_osx-arm64",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 10.9",
+      "echo 20.0.0",
+      "echo arm64",
+      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
+      "echo x86_64-conda-linux-gnu",
+      "echo aarch64",
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "arm64-apple-darwin20.0.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=16"
+      ]
+     }
+    },
+    "name": "clangxx_osx-arm64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-arm64",
+      "clang_osx-arm64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang++ --version",
+      "arm64-apple-darwin20.0.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm16",
+      "clang_osx-arm64",
+      "clangxx_osx-arm64"
+     ],
+     "skip": true
+    },
+    "name": "clang_bootstrap_osx-arm64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "cctools_osx-arm64",
+      "ld64_osx-arm64",
+      "clang_osx-arm64",
+      "clangxx_osx-arm64",
+      "libllvm16 16.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version",
+      "arm64-apple-darwin20.0.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-arm64",
+    "requirements": [
+     "clang 17.0.6",
+     "llvm-tools 17.0.6",
+     "cctools_osx-arm64",
+     "ld64_osx-arm64",
+     "compiler-rt 17.0.6",
+     "compiler-rt_osx-arm64 17.0.6",
+     "gcc_impl_linux-64"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "arm64-apple-darwin20.0.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-arm64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-arm64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-conda-linux-gnu-clang --version",
+      "arm64-apple-darwin20.0.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-arm64",
+    "requirements": {
+     "build": [],
+     "host": [
+      "clangxx 17.0.6",
+      "clang_impl_osx-arm64",
+      "gxx_impl_linux-64",
+      "libllvm17 17.0.6"
+     ],
+     "run": [
+      "clangxx 17.0.6",
       "libcxx >=17",
       "clang_osx-arm64",
       "gxx_impl_linux-64"
@@ -1018,7 +1558,7 @@
       "share/"
      ],
      "ignore_run_exports_from": [
-      "libllvm18",
+      "libllvm17",
       "clang_osx-arm64",
       "clangxx_osx-arm64"
      ],
@@ -1028,13 +1568,13 @@
     "requirements": {
      "build": [],
      "host": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "libcxx 17",
       "cctools_osx-arm64",
       "ld64_osx-arm64",
       "clang_osx-arm64",
       "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm17 17.0.6"
      ]
     },
     "script": "install-clang-bootstrap.sh",
@@ -1179,67 +1719,188 @@
     }
    },
    {
-    "name": "clang_impl_osx-arm64",
+    "name": "clang_impl_osx-64",
     "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6",
-     "compiler-rt_osx-arm64 18.1.6",
-     "gcc_impl_linux-64"
+     "clang 16.0.6",
+     "llvm-tools 16.0.6",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "compiler-rt 16.0.6"
     ],
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
+      "x86_64-apple-darwin13.4.0-clang --version"
      ]
     }
    },
    {
-    "name": "clang_osx-arm64",
+    "name": "clang_osx-64",
     "requirements": {
      "run": [
-      "clang_impl_osx-arm64"
+      "clang_impl_osx-64"
      ]
     },
     "script": "install-clang-scripts.sh",
     "test": {
      "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
+      "x86_64-apple-darwin13.4.0-clang --version"
      ]
     }
    },
    {
-    "name": "clangxx_impl_osx-arm64",
+    "name": "clangxx_impl_osx-64",
     "requirements": {
-     "build": [],
+     "build": [
+      "cctools_osx-64"
+     ],
      "host": [
-      "clangxx 18.1.6",
-      "clang_impl_osx-arm64",
-      "gxx_impl_linux-64",
-      "libllvm18 18.1.6"
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "clang_impl_osx-64",
+      "libllvm16 16.0.6"
      ],
      "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64",
-      "gxx_impl_linux-64"
+      "clangxx 16.0.6",
+      "libcxx >=16",
+      "clang_osx-64"
      ]
     },
     "script": "install-clangxx.sh",
     "test": {
      "commands": [
-      "echo 10.9",
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-conda-linux-gnu",
-      "echo aarch64",
-      "x86_64-conda-linux-gnu-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo x86_64-apple-darwin13.4.0",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=16"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm16",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ]
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-64"
+     ],
+     "host": [
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm16 16.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-64",
+    "requirements": [
+     "clang 17.0.6",
+     "llvm-tools 17.0.6",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "compiler-rt 17.0.6"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-64"
+     ],
+     "host": [
+      "clangxx 17.0.6",
+      "libcxx 17",
+      "clang_impl_osx-64",
+      "libllvm17 17.0.6"
+     ],
+     "run": [
+      "clangxx 17.0.6",
+      "libcxx >=17",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo x86_64-apple-darwin13.4.0",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
      ]
     }
    },
@@ -1251,18 +1912,144 @@
       ]
      }
     },
-    "name": "clangxx_osx-arm64",
+    "name": "clangxx_osx-64",
     "requirements": {
      "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
      ]
     },
     "script": "install-clangxx-scripts.sh",
     "test": {
      "commands": [
-      "x86_64-conda-linux-gnu-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm17",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ]
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-64"
+     ],
+     "host": [
+      "clangxx 17.0.6",
+      "libcxx 17",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm17 17.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-64",
+    "requirements": [
+     "clang 18.1.6",
+     "llvm-tools 18.1.6",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "compiler-rt 18.1.6"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-64"
+     ],
+     "host": [
+      "clangxx 18.1.6",
+      "libcxx 17",
+      "clang_impl_osx-64",
+      "libllvm18 18.1.6"
+     ],
+     "run": [
+      "clangxx 18.1.6",
+      "libcxx >=17",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo x86_64-apple-darwin13.4.0",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=17"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang++ --version"
      ]
     }
    },
@@ -1285,22 +2072,157 @@
      ],
      "ignore_run_exports_from": [
       "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ],
-     "skip": true
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ]
     },
-    "name": "clang_bootstrap_osx-arm64",
+    "name": "clang_bootstrap_osx-64",
     "requirements": {
-     "build": [],
+     "build": [
+      "cctools_osx-64"
+     ],
      "host": [
       "clangxx 18.1.6",
       "libcxx 17",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm18 18.1.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-arm64",
+    "requirements": [
+     "clang 16.0.6",
+     "llvm-tools 16.0.6",
+     "cctools_osx-64",
+     "cctools_osx-arm64",
+     "ld64_osx-arm64",
+     "ld64_osx-64",
+     "compiler-rt 16.0.6"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "arm64-apple-darwin20.0.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-arm64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-arm64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "arm64-apple-darwin20.0.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-arm64",
+    "requirements": {
+     "build": [
+      "cctools_osx-64"
+     ],
+     "host": [
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "clang_impl_osx-arm64",
+      "libllvm16 16.0.6"
+     ],
+     "run": [
+      "clangxx 16.0.6",
+      "libcxx >=16",
+      "clang_osx-arm64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 20.0.0",
+      "echo arm64",
+      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
+      "echo x86_64-apple-darwin13.4.0",
+      "echo aarch64",
+      "x86_64-apple-darwin13.4.0-clang++ --version",
+      "arm64-apple-darwin20.0.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=16"
+      ]
+     }
+    },
+    "name": "clangxx_osx-arm64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-arm64",
+      "clang_osx-arm64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang++ --version",
+      "arm64-apple-darwin20.0.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm16",
+      "clang_osx-arm64",
+      "clangxx_osx-arm64"
+     ]
+    },
+    "name": "clang_bootstrap_osx-arm64",
+    "requirements": {
+     "build": [
+      "cctools_osx-64"
+     ],
+     "host": [
+      "clangxx 16.0.6",
+      "libcxx 16",
       "cctools_osx-arm64",
       "ld64_osx-arm64",
       "clang_osx-arm64",
       "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm16 16.0.6"
      ]
     },
     "script": "install-clang-bootstrap.sh",
@@ -1314,18 +2236,18 @@
    {
     "name": "clang_impl_osx-arm64",
     "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
+     "clang 17.0.6",
+     "llvm-tools 17.0.6",
+     "cctools_osx-64",
      "cctools_osx-arm64",
      "ld64_osx-arm64",
-     "compiler-rt 18.1.6",
-     "compiler-rt_osx-arm64 18.1.6",
-     "gcc_impl_linux-64"
+     "ld64_osx-64",
+     "compiler-rt 17.0.6"
     ],
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version",
       "arm64-apple-darwin20.0.0-clang --version"
      ]
     }
@@ -1340,7 +2262,7 @@
     "script": "install-clang-scripts.sh",
     "test": {
      "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version",
       "arm64-apple-darwin20.0.0-clang --version"
      ]
     }
@@ -1348,30 +2270,30 @@
    {
     "name": "clangxx_impl_osx-arm64",
     "requirements": {
-     "build": [],
+     "build": [
+      "cctools_osx-64"
+     ],
      "host": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
+      "libcxx 17",
       "clang_impl_osx-arm64",
-      "gxx_impl_linux-64",
-      "libllvm18 18.1.6"
+      "libllvm17 17.0.6"
      ],
      "run": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "libcxx >=17",
-      "clang_osx-arm64",
-      "gxx_impl_linux-64"
+      "clang_osx-arm64"
      ]
     },
     "script": "install-clangxx.sh",
     "test": {
      "commands": [
-      "echo 10.9",
       "echo 20.0.0",
       "echo arm64",
       "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-conda-linux-gnu",
+      "echo x86_64-apple-darwin13.4.0",
       "echo aarch64",
-      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version",
       "arm64-apple-darwin20.0.0-clang++ --version"
      ]
     }
@@ -1394,7 +2316,7 @@
     "script": "install-clangxx-scripts.sh",
     "test": {
      "commands": [
-      "x86_64-conda-linux-gnu-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version",
       "arm64-apple-darwin20.0.0-clang++ --version"
      ]
     }
@@ -1417,289 +2339,24 @@
       "share/"
      ],
      "ignore_run_exports_from": [
-      "libllvm18",
+      "libllvm17",
       "clang_osx-arm64",
       "clangxx_osx-arm64"
-     ],
-     "skip": true
+     ]
     },
     "name": "clang_bootstrap_osx-arm64",
     "requirements": {
-     "build": [],
+     "build": [
+      "cctools_osx-64"
+     ],
      "host": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "libcxx 17",
       "cctools_osx-arm64",
       "ld64_osx-arm64",
       "clang_osx-arm64",
       "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6",
-     "compiler-rt_osx-arm64 18.1.6",
-     "gcc_impl_linux-64"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [],
-     "host": [
-      "clangxx 18.1.6",
-      "clang_impl_osx-arm64",
-      "gxx_impl_linux-64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64",
-      "gxx_impl_linux-64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 10.9",
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-conda-linux-gnu",
-      "echo aarch64",
-      "x86_64-conda-linux-gnu-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ],
-     "skip": true
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6",
-     "compiler-rt_osx-arm64 18.1.6",
-     "gcc_impl_linux-64"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [],
-     "host": [
-      "clangxx 18.1.6",
-      "clang_impl_osx-arm64",
-      "gxx_impl_linux-64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64",
-      "gxx_impl_linux-64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 10.9",
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-conda-linux-gnu",
-      "echo aarch64",
-      "x86_64-conda-linux-gnu-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-conda-linux-gnu-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ],
-     "skip": true
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm17 17.0.6"
      ]
     },
     "script": "install-clang-bootstrap.sh",
@@ -1845,67 +2502,199 @@
     }
    },
    {
-    "name": "clang_impl_osx-arm64",
+    "name": "clang_impl_osx-64",
     "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-64",
+     "clang 16.0.6",
+     "llvm-tools 16.0.6",
      "cctools_osx-arm64",
-     "ld64_osx-arm64",
+     "cctools_osx-64",
      "ld64_osx-64",
-     "compiler-rt 18.1.6"
+     "ld64_osx-arm64",
+     "compiler-rt 16.0.6"
     ],
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
+      "arm64-apple-darwin20.0.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
      ]
     }
    },
    {
-    "name": "clang_osx-arm64",
+    "name": "clang_osx-64",
     "requirements": {
      "run": [
-      "clang_impl_osx-arm64"
+      "clang_impl_osx-64"
      ]
     },
     "script": "install-clang-scripts.sh",
     "test": {
      "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
+      "arm64-apple-darwin20.0.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
      ]
     }
    },
    {
-    "name": "clangxx_impl_osx-arm64",
+    "name": "clangxx_impl_osx-64",
     "requirements": {
      "build": [
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ],
      "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "clang_impl_osx-64",
+      "libllvm16 16.0.6"
      ],
      "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
+      "clangxx 16.0.6",
+      "libcxx >=16",
+      "clang_osx-64"
      ]
     },
     "script": "install-clangxx.sh",
     "test": {
      "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-apple-darwin13.4.0",
-      "echo aarch64",
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo arm64-apple-darwin20.0.0",
+      "arm64-apple-darwin20.0.0-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=16"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm16",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ]
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-arm64"
+     ],
+     "host": [
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm16 16.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-64",
+    "requirements": [
+     "clang 17.0.6",
+     "llvm-tools 17.0.6",
+     "cctools_osx-arm64",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "ld64_osx-arm64",
+     "compiler-rt 17.0.6"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-arm64"
+     ],
+     "host": [
+      "clangxx 17.0.6",
+      "libcxx 17",
+      "clang_impl_osx-64",
+      "libllvm17 17.0.6"
+     ],
+     "run": [
+      "clangxx 17.0.6",
+      "libcxx >=17",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo arm64-apple-darwin20.0.0",
+      "arm64-apple-darwin20.0.0-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
      ]
     }
    },
@@ -1917,18 +2706,151 @@
       ]
      }
     },
-    "name": "clangxx_osx-arm64",
+    "name": "clangxx_osx-64",
     "requirements": {
      "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
      ]
     },
     "script": "install-clangxx-scripts.sh",
     "test": {
      "commands": [
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
+      "arm64-apple-darwin20.0.0-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm17",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ]
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-arm64"
+     ],
+     "host": [
+      "clangxx 17.0.6",
+      "libcxx 17",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm17 17.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-64",
+    "requirements": [
+     "clang 18.1.6",
+     "llvm-tools 18.1.6",
+     "cctools_osx-arm64",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "ld64_osx-arm64",
+     "compiler-rt 18.1.6"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-arm64"
+     ],
+     "host": [
+      "clangxx 18.1.6",
+      "libcxx 17",
+      "clang_impl_osx-64",
+      "libllvm18 18.1.6"
+     ],
+     "run": [
+      "clangxx 18.1.6",
+      "libcxx >=17",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo arm64-apple-darwin20.0.0",
+      "arm64-apple-darwin20.0.0-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=17"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
      ]
     }
    },
@@ -1951,577 +2873,41 @@
      ],
      "ignore_run_exports_from": [
       "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
+      "clang_osx-64",
+      "clangxx_osx-64"
      ]
     },
-    "name": "clang_bootstrap_osx-arm64",
+    "name": "clang_bootstrap_osx-64",
     "requirements": {
      "build": [
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ],
      "host": [
       "clangxx 18.1.6",
       "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
       "libllvm18 18.1.6"
      ]
     },
     "script": "install-clang-bootstrap.sh",
     "test": {
      "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
      ]
     }
    },
    {
     "name": "clang_impl_osx-arm64",
     "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-64",
+     "clang 16.0.6",
+     "llvm-tools 16.0.6",
      "cctools_osx-arm64",
      "ld64_osx-arm64",
-     "ld64_osx-64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-apple-darwin13.4.0",
-      "echo aarch64",
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-64",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "ld64_osx-64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-apple-darwin13.4.0",
-      "echo aarch64",
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-64",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "ld64_osx-64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-apple-darwin13.4.0",
-      "echo aarch64",
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-64",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "ld64_osx-64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-apple-darwin13.4.0",
-      "echo aarch64",
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6"
+     "compiler-rt 16.0.6"
     ],
     "script": "install-clang.sh",
     "test": {
@@ -2551,13 +2937,141 @@
       "cctools_osx-arm64"
      ],
      "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
+      "clangxx 16.0.6",
+      "libcxx 16",
       "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm16 16.0.6"
      ],
      "run": [
-      "clangxx 18.1.6",
+      "clangxx 16.0.6",
+      "libcxx >=16",
+      "clang_osx-arm64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 20.0.0",
+      "echo arm64",
+      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
+      "echo arm64-apple-darwin20.0.0",
+      "echo aarch64",
+      "arm64-apple-darwin20.0.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=16"
+      ]
+     }
+    },
+    "name": "clangxx_osx-arm64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-arm64",
+      "clang_osx-arm64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm16",
+      "clang_osx-arm64",
+      "clangxx_osx-arm64"
+     ]
+    },
+    "name": "clang_bootstrap_osx-arm64",
+    "requirements": {
+     "build": [
+      "cctools_osx-arm64"
+     ],
+     "host": [
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "cctools_osx-arm64",
+      "ld64_osx-arm64",
+      "clang_osx-arm64",
+      "clangxx_osx-arm64",
+      "libllvm16 16.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version",
+      "arm64-apple-darwin20.0.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-arm64",
+    "requirements": [
+     "clang 17.0.6",
+     "llvm-tools 17.0.6",
+     "cctools_osx-arm64",
+     "ld64_osx-arm64",
+     "compiler-rt 17.0.6"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-arm64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-arm64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-arm64",
+    "requirements": {
+     "build": [
+      "cctools_osx-arm64"
+     ],
+     "host": [
+      "clangxx 17.0.6",
+      "libcxx 17",
+      "clang_impl_osx-arm64",
+      "libllvm17 17.0.6"
+     ],
+     "run": [
+      "clangxx 17.0.6",
       "libcxx >=17",
       "clang_osx-arm64"
      ]
@@ -2614,7 +3128,7 @@
       "share/"
      ],
      "ignore_run_exports_from": [
-      "libllvm18",
+      "libllvm17",
       "clang_osx-arm64",
       "clangxx_osx-arm64"
      ]
@@ -2625,525 +3139,13 @@
       "cctools_osx-arm64"
      ],
      "host": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "libcxx 17",
       "cctools_osx-arm64",
       "ld64_osx-arm64",
       "clang_osx-arm64",
       "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo arm64-apple-darwin20.0.0",
-      "echo aarch64",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo arm64-apple-darwin20.0.0",
-      "echo aarch64",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo arm64-apple-darwin20.0.0",
-      "echo aarch64",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo arm64-apple-darwin20.0.0",
-      "echo aarch64",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm17 17.0.6"
      ]
     },
     "script": "install-clang-bootstrap.sh",
@@ -3289,9 +3291,12 @@
   },
   "requirements": {
    "build": [
-    "libcxx 17",
+    "libcxx 16",
     "gcc_linux-64",
+    "libcxx 17",
     "cctools_osx-64",
+    "clang 16.0.6",
+    "clang 17.0.6",
     "clang 18.1.6",
     "cctools_osx-arm64"
    ]
@@ -3319,15 +3324,396 @@
   },
   "outputs": [
    {
-    "name": "clang_impl_osx-arm64",
+    "name": "clang_impl_osx-64",
+    "requirements": [
+     "clang 16.0.6",
+     "llvm-tools 16.0.6",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "compiler-rt 16.0.6"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-64"
+     ],
+     "host": [
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "clang_impl_osx-64",
+      "libllvm16 16.0.6"
+     ],
+     "run": [
+      "clangxx 16.0.6",
+      "libcxx >=16",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo x86_64-apple-darwin13.4.0",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=16"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm16",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ]
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-64"
+     ],
+     "host": [
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm16 16.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-64",
+    "requirements": [
+     "clang 17.0.6",
+     "llvm-tools 17.0.6",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "compiler-rt 17.0.6"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-64"
+     ],
+     "host": [
+      "clangxx 17.0.6",
+      "libcxx 17",
+      "clang_impl_osx-64",
+      "libllvm17 17.0.6"
+     ],
+     "run": [
+      "clangxx 17.0.6",
+      "libcxx >=17",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo x86_64-apple-darwin13.4.0",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=17"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm17",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ]
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-64"
+     ],
+     "host": [
+      "clangxx 17.0.6",
+      "libcxx 17",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm17 17.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-64",
     "requirements": [
      "clang 18.1.6",
      "llvm-tools 18.1.6",
      "cctools_osx-64",
+     "ld64_osx-64",
+     "compiler-rt 18.1.6"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-64"
+     ],
+     "host": [
+      "clangxx 18.1.6",
+      "libcxx 17",
+      "clang_impl_osx-64",
+      "libllvm18 18.1.6"
+     ],
+     "run": [
+      "clangxx 18.1.6",
+      "libcxx >=17",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo x86_64-apple-darwin13.4.0",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=17"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm18",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ]
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-64"
+     ],
+     "host": [
+      "clangxx 18.1.6",
+      "libcxx 17",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm18 18.1.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-arm64",
+    "requirements": [
+     "clang 16.0.6",
+     "llvm-tools 16.0.6",
+     "cctools_osx-64",
      "cctools_osx-arm64",
      "ld64_osx-arm64",
      "ld64_osx-64",
-     "compiler-rt 18.1.6"
+     "compiler-rt 16.0.6"
     ],
     "script": "install-clang.sh",
     "test": {
@@ -3359,14 +3745,14 @@
       "cctools_osx-64"
      ],
      "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
+      "clangxx 16.0.6",
+      "libcxx 16",
       "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm16 16.0.6"
      ],
      "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
+      "clangxx 16.0.6",
+      "libcxx >=16",
       "clang_osx-arm64"
      ]
     },
@@ -3387,7 +3773,7 @@
     "build": {
      "run_exports": {
       "strong": [
-       "libcxx >=17"
+       "libcxx >=16"
       ]
      }
     },
@@ -3424,7 +3810,7 @@
       "share/"
      ],
      "ignore_run_exports_from": [
-      "libllvm18",
+      "libllvm16",
       "clang_osx-arm64",
       "clangxx_osx-arm64"
      ]
@@ -3435,13 +3821,13 @@
       "cctools_osx-64"
      ],
      "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
+      "clangxx 16.0.6",
+      "libcxx 16",
       "cctools_osx-arm64",
       "ld64_osx-arm64",
       "clang_osx-arm64",
       "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm16 16.0.6"
      ]
     },
     "script": "install-clang-bootstrap.sh",
@@ -3455,13 +3841,13 @@
    {
     "name": "clang_impl_osx-arm64",
     "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
+     "clang 17.0.6",
+     "llvm-tools 17.0.6",
      "cctools_osx-64",
      "cctools_osx-arm64",
      "ld64_osx-arm64",
      "ld64_osx-64",
-     "compiler-rt 18.1.6"
+     "compiler-rt 17.0.6"
     ],
     "script": "install-clang.sh",
     "test": {
@@ -3493,13 +3879,13 @@
       "cctools_osx-64"
      ],
      "host": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "libcxx 17",
       "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm17 17.0.6"
      ],
      "run": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "libcxx >=17",
       "clang_osx-arm64"
      ]
@@ -3558,7 +3944,7 @@
       "share/"
      ],
      "ignore_run_exports_from": [
-      "libllvm18",
+      "libllvm17",
       "clang_osx-arm64",
       "clangxx_osx-arm64"
      ]
@@ -3569,415 +3955,13 @@
       "cctools_osx-64"
      ],
      "host": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "libcxx 17",
       "cctools_osx-arm64",
       "ld64_osx-arm64",
       "clang_osx-arm64",
       "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-64",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "ld64_osx-64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-apple-darwin13.4.0",
-      "echo aarch64",
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-64",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "ld64_osx-64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-apple-darwin13.4.0",
-      "echo aarch64",
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-64",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "ld64_osx-64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo x86_64-apple-darwin13.4.0",
-      "echo aarch64",
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "x86_64-apple-darwin13.4.0-clang++ --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm17 17.0.6"
      ]
     },
     "script": "install-clang-bootstrap.sh",
@@ -4130,7 +4114,10 @@
   "requirements": {
    "build": [
     "cctools_osx-64",
+    "libcxx 16",
+    "clang 16.0.6",
     "libcxx 17",
+    "clang 17.0.6",
     "clang 18.1.6"
    ]
   }
@@ -4147,13 +4134,20 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cctools_osx-64",
     "cctools_osx-arm64",
+    "clang_impl_osx-64",
     "clang_impl_osx-arm64",
+    "clang_osx-64",
     "clang_osx-arm64",
     "clangxx",
+    "clangxx_osx-64",
     "clangxx_osx-arm64",
+    "ld64_osx-64",
     "ld64_osx-arm64",
     "libcxx",
+    "libllvm16",
+    "libllvm17",
     "libllvm18"
    ]
   },
@@ -4163,9 +4157,12 @@
     "cctools_osx-64",
     "cctools_osx-arm64",
     "clang",
+    "clang_impl_osx-64",
     "clang_impl_osx-arm64",
+    "clang_osx-64",
     "clang_osx-arm64",
     "clangxx",
+    "clangxx_impl_osx-64",
     "clangxx_impl_osx-arm64",
     "compiler-rt",
     "ld64_osx-64",
@@ -4200,13 +4197,412 @@
   },
   "outputs": [
    {
-    "name": "clang_impl_osx-arm64",
+    "name": "clang_impl_osx-64",
+    "requirements": [
+     "clang 16.0.6",
+     "llvm-tools 16.0.6",
+     "cctools_osx-arm64",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "ld64_osx-arm64",
+     "compiler-rt 16.0.6"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-arm64"
+     ],
+     "host": [
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "clang_impl_osx-64",
+      "libllvm16 16.0.6"
+     ],
+     "run": [
+      "clangxx 16.0.6",
+      "libcxx >=16",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo arm64-apple-darwin20.0.0",
+      "arm64-apple-darwin20.0.0-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=16"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm16",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ]
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-arm64"
+     ],
+     "host": [
+      "clangxx 16.0.6",
+      "libcxx 16",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm16 16.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-64",
+    "requirements": [
+     "clang 17.0.6",
+     "llvm-tools 17.0.6",
+     "cctools_osx-arm64",
+     "cctools_osx-64",
+     "ld64_osx-64",
+     "ld64_osx-arm64",
+     "compiler-rt 17.0.6"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-arm64"
+     ],
+     "host": [
+      "clangxx 17.0.6",
+      "libcxx 17",
+      "clang_impl_osx-64",
+      "libllvm17 17.0.6"
+     ],
+     "run": [
+      "clangxx 17.0.6",
+      "libcxx >=17",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo arm64-apple-darwin20.0.0",
+      "arm64-apple-darwin20.0.0-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=17"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm17",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ]
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-arm64"
+     ],
+     "host": [
+      "clangxx 17.0.6",
+      "libcxx 17",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm17 17.0.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-64",
     "requirements": [
      "clang 18.1.6",
      "llvm-tools 18.1.6",
      "cctools_osx-arm64",
+     "cctools_osx-64",
+     "ld64_osx-64",
      "ld64_osx-arm64",
      "compiler-rt 18.1.6"
+    ],
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_osx-64",
+    "requirements": {
+     "run": [
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-clang-scripts.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang --version"
+     ]
+    }
+   },
+   {
+    "name": "clangxx_impl_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-arm64"
+     ],
+     "host": [
+      "clangxx 18.1.6",
+      "libcxx 17",
+      "clang_impl_osx-64",
+      "libllvm18 18.1.6"
+     ],
+     "run": [
+      "clangxx 18.1.6",
+      "libcxx >=17",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx.sh",
+    "test": {
+     "commands": [
+      "echo 13.4.0",
+      "echo x86_64",
+      "echo _sysconfigdata_x86_64_apple_darwin13_4_0",
+      "echo arm64-apple-darwin20.0.0",
+      "arm64-apple-darwin20.0.0-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libcxx >=17"
+      ]
+     }
+    },
+    "name": "clangxx_osx-64",
+    "requirements": {
+     "run": [
+      "clangxx_impl_osx-64",
+      "clang_osx-64"
+     ]
+    },
+    "script": "install-clangxx-scripts.sh",
+    "test": {
+     "commands": [
+      "arm64-apple-darwin20.0.0-clang++ --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://llvm.org",
+     "license": "Apache-2.0",
+     "license_family": "Apache",
+     "license_file": "LLVM_LICENSE.txt",
+     "summary": "clang compiler components in one package for bootstrapping clang"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "include/",
+      "lib/",
+      "libexec/",
+      "share/"
+     ],
+     "ignore_run_exports_from": [
+      "libllvm18",
+      "clang_osx-64",
+      "clangxx_osx-64"
+     ]
+    },
+    "name": "clang_bootstrap_osx-64",
+    "requirements": {
+     "build": [
+      "cctools_osx-arm64"
+     ],
+     "host": [
+      "clangxx 18.1.6",
+      "libcxx 17",
+      "cctools_osx-64",
+      "ld64_osx-64",
+      "clang_osx-64",
+      "clangxx_osx-64",
+      "libllvm18 18.1.6"
+     ]
+    },
+    "script": "install-clang-bootstrap.sh",
+    "test": {
+     "commands": [
+      "x86_64-apple-darwin13.4.0-clang --version",
+      "x86_64-apple-darwin13.4.0-clang++ --version"
+     ]
+    }
+   },
+   {
+    "name": "clang_impl_osx-arm64",
+    "requirements": [
+     "clang 16.0.6",
+     "llvm-tools 16.0.6",
+     "cctools_osx-arm64",
+     "ld64_osx-arm64",
+     "compiler-rt 16.0.6"
     ],
     "script": "install-clang.sh",
     "test": {
@@ -4236,14 +4632,14 @@
       "cctools_osx-arm64"
      ],
      "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
+      "clangxx 16.0.6",
+      "libcxx 16",
       "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm16 16.0.6"
      ],
      "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
+      "clangxx 16.0.6",
+      "libcxx >=16",
       "clang_osx-arm64"
      ]
     },
@@ -4263,7 +4659,7 @@
     "build": {
      "run_exports": {
       "strong": [
-       "libcxx >=17"
+       "libcxx >=16"
       ]
      }
     },
@@ -4299,7 +4695,7 @@
       "share/"
      ],
      "ignore_run_exports_from": [
-      "libllvm18",
+      "libllvm16",
       "clang_osx-arm64",
       "clangxx_osx-arm64"
      ]
@@ -4310,13 +4706,13 @@
       "cctools_osx-arm64"
      ],
      "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
+      "clangxx 16.0.6",
+      "libcxx 16",
       "cctools_osx-arm64",
       "ld64_osx-arm64",
       "clang_osx-arm64",
       "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm16 16.0.6"
      ]
     },
     "script": "install-clang-bootstrap.sh",
@@ -4330,11 +4726,11 @@
    {
     "name": "clang_impl_osx-arm64",
     "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
+     "clang 17.0.6",
+     "llvm-tools 17.0.6",
      "cctools_osx-arm64",
      "ld64_osx-arm64",
-     "compiler-rt 18.1.6"
+     "compiler-rt 17.0.6"
     ],
     "script": "install-clang.sh",
     "test": {
@@ -4364,13 +4760,13 @@
       "cctools_osx-arm64"
      ],
      "host": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "libcxx 17",
       "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm17 17.0.6"
      ],
      "run": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "libcxx >=17",
       "clang_osx-arm64"
      ]
@@ -4427,7 +4823,7 @@
       "share/"
      ],
      "ignore_run_exports_from": [
-      "libllvm18",
+      "libllvm17",
       "clang_osx-arm64",
       "clangxx_osx-arm64"
      ]
@@ -4438,397 +4834,13 @@
       "cctools_osx-arm64"
      ],
      "host": [
-      "clangxx 18.1.6",
+      "clangxx 17.0.6",
       "libcxx 17",
       "cctools_osx-arm64",
       "ld64_osx-arm64",
       "clang_osx-arm64",
       "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo arm64-apple-darwin20.0.0",
-      "echo aarch64",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo arm64-apple-darwin20.0.0",
-      "echo aarch64",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
-     ]
-    },
-    "script": "install-clang-bootstrap.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_impl_osx-arm64",
-    "requirements": [
-     "clang 18.1.6",
-     "llvm-tools 18.1.6",
-     "cctools_osx-arm64",
-     "ld64_osx-arm64",
-     "compiler-rt 18.1.6"
-    ],
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clang_osx-arm64",
-    "requirements": {
-     "run": [
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-clang-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang --version"
-     ]
-    }
-   },
-   {
-    "name": "clangxx_impl_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "clang_impl_osx-arm64",
-      "libllvm18 18.1.6"
-     ],
-     "run": [
-      "clangxx 18.1.6",
-      "libcxx >=17",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx.sh",
-    "test": {
-     "commands": [
-      "echo 20.0.0",
-      "echo arm64",
-      "echo _sysconfigdata_arm64_apple_darwin20_0_0",
-      "echo arm64-apple-darwin20.0.0",
-      "echo aarch64",
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libcxx >=17"
-      ]
-     }
-    },
-    "name": "clangxx_osx-arm64",
-    "requirements": {
-     "run": [
-      "clangxx_impl_osx-arm64",
-      "clang_osx-arm64"
-     ]
-    },
-    "script": "install-clangxx-scripts.sh",
-    "test": {
-     "commands": [
-      "arm64-apple-darwin20.0.0-clang++ --version"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://llvm.org",
-     "license": "Apache-2.0",
-     "license_family": "Apache",
-     "license_file": "LLVM_LICENSE.txt",
-     "summary": "clang compiler components in one package for bootstrapping clang"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "include/",
-      "lib/",
-      "libexec/",
-      "share/"
-     ],
-     "ignore_run_exports_from": [
-      "libllvm18",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64"
-     ]
-    },
-    "name": "clang_bootstrap_osx-arm64",
-    "requirements": {
-     "build": [
-      "cctools_osx-arm64"
-     ],
-     "host": [
-      "clangxx 18.1.6",
-      "libcxx 17",
-      "cctools_osx-arm64",
-      "ld64_osx-arm64",
-      "clang_osx-arm64",
-      "clangxx_osx-arm64",
-      "libllvm18 18.1.6"
+      "libllvm17 17.0.6"
      ]
     },
     "script": "install-clang-bootstrap.sh",
@@ -4975,7 +4987,10 @@
   "requirements": {
    "build": [
     "cctools_osx-arm64",
+    "libcxx 16",
+    "clang 16.0.6",
     "libcxx 17",
+    "clang 17.0.6",
     "clang 18.1.6"
    ]
   }
@@ -4992,26 +5007,38 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cctools_osx-64",
     "cctools_osx-arm64",
+    "clang_impl_osx-64",
     "clang_impl_osx-arm64",
+    "clang_osx-64",
     "clang_osx-arm64",
     "clangxx",
+    "clangxx_osx-64",
     "clangxx_osx-arm64",
+    "ld64_osx-64",
     "ld64_osx-arm64",
     "libcxx",
+    "libllvm16",
+    "libllvm17",
     "libllvm18"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "cctools_osx-64",
     "cctools_osx-arm64",
     "clang",
+    "clang_impl_osx-64",
     "clang_impl_osx-arm64",
+    "clang_osx-64",
     "clang_osx-arm64",
     "clangxx",
+    "clangxx_impl_osx-64",
     "clangxx_impl_osx-arm64",
     "compiler-rt",
+    "ld64_osx-64",
     "ld64_osx-arm64",
     "libcxx",
     "llvm-tools"
@@ -5025,10 +5052,15 @@
  "outputs_names": {
   "__set__": true,
   "elements": [
+   "clang_bootstrap_osx-64",
    "clang_bootstrap_osx-arm64",
+   "clang_impl_osx-64",
    "clang_impl_osx-arm64",
+   "clang_osx-64",
    "clang_osx-arm64",
+   "clangxx_impl_osx-64",
    "clangxx_impl_osx-arm64",
+   "clangxx_osx-64",
    "clangxx_osx-arm64"
   ]
  },
@@ -5048,12 +5080,17 @@
    "cctools_osx-64",
    "cctools_osx-arm64",
    "clang",
+   "clang_impl_osx-64",
    "clang_impl_osx-arm64",
+   "clang_osx-64",
    "clang_osx-arm64",
    "clangxx",
+   "clangxx_impl_osx-64",
    "clangxx_impl_osx-arm64",
+   "clangxx_osx-64",
    "clangxx_osx-arm64",
    "compiler-rt",
+   "compiler-rt_osx-64",
    "compiler-rt_osx-arm64",
    "gcc_impl_linux-64",
    "gcc_linux-64",
@@ -5061,6 +5098,8 @@
    "ld64_osx-64",
    "ld64_osx-arm64",
    "libcxx",
+   "libllvm16",
+   "libllvm17",
    "libllvm18",
    "llvm-tools"
   ]
@@ -5079,15 +5118,22 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cctools_osx-64",
     "cctools_osx-arm64",
     "clang-compiler-activation",
+    "clang_impl_osx-64",
     "clang_impl_osx-arm64",
+    "clang_osx-64",
     "clang_osx-arm64",
     "clangxx",
+    "clangxx_osx-64",
     "clangxx_osx-arm64",
     "gxx_impl_linux-64",
+    "ld64_osx-64",
     "ld64_osx-arm64",
     "libcxx",
+    "libllvm16",
+    "libllvm17",
     "libllvm18"
    ]
   },
@@ -5098,11 +5144,15 @@
     "cctools_osx-arm64",
     "clang",
     "clang-compiler-activation",
+    "clang_impl_osx-64",
     "clang_impl_osx-arm64",
+    "clang_osx-64",
     "clang_osx-arm64",
     "clangxx",
+    "clangxx_impl_osx-64",
     "clangxx_impl_osx-arm64",
     "compiler-rt",
+    "compiler-rt_osx-64",
     "compiler-rt_osx-arm64",
     "gcc_impl_linux-64",
     "gxx_impl_linux-64",
@@ -5125,22 +5175,35 @@
    "elements": [
     "cctools_osx-64",
     "cctools_osx-arm64",
+    "clang 16.0.6",
+    "clang 17.0.6",
     "clang 18.1.6",
     "gcc_linux-64",
+    "libcxx 16",
     "libcxx 17"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "cctools_osx-64",
     "cctools_osx-arm64",
+    "clang_impl_osx-64",
     "clang_impl_osx-arm64",
+    "clang_osx-64",
     "clang_osx-arm64",
+    "clangxx 16.0.6",
+    "clangxx 17.0.6",
     "clangxx 18.1.6",
+    "clangxx_osx-64",
     "clangxx_osx-arm64",
     "gxx_impl_linux-64",
+    "ld64_osx-64",
     "ld64_osx-arm64",
+    "libcxx 16",
     "libcxx 17",
+    "libllvm16 16.0.6",
+    "libllvm17 17.0.6",
     "libllvm18 18.1.6"
    ]
   },
@@ -5149,18 +5212,35 @@
    "elements": [
     "cctools_osx-64",
     "cctools_osx-arm64",
+    "clang 16.0.6",
+    "clang 17.0.6",
     "clang 18.1.6",
+    "clang_impl_osx-64",
     "clang_impl_osx-arm64",
+    "clang_osx-64",
     "clang_osx-arm64",
+    "clangxx 16.0.6",
+    "clangxx 17.0.6",
     "clangxx 18.1.6",
+    "clangxx_impl_osx-64",
     "clangxx_impl_osx-arm64",
+    "compiler-rt 16.0.6",
+    "compiler-rt 17.0.6",
     "compiler-rt 18.1.6",
+    "compiler-rt_osx-64 16.0.6",
+    "compiler-rt_osx-64 17.0.6",
+    "compiler-rt_osx-64 18.1.6",
+    "compiler-rt_osx-arm64 16.0.6",
+    "compiler-rt_osx-arm64 17.0.6",
     "compiler-rt_osx-arm64 18.1.6",
     "gcc_impl_linux-64",
     "gxx_impl_linux-64",
     "ld64_osx-64",
     "ld64_osx-arm64",
+    "libcxx >=16",
     "libcxx >=17",
+    "llvm-tools 16.0.6",
+    "llvm-tools 17.0.6",
     "llvm-tools 18.1.6"
    ]
   },

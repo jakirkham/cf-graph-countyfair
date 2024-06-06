@@ -25,17 +25,19 @@
   "build": {
    "number": "0",
    "run_exports": [
+    "eigenexa * mpi_mpich_*",
     "eigenexa * mpi_openmpi_*"
    ],
    "script": [
     "set -ex",
-    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes",
     "export CC=\"$PREFIX/bin/mpicc\" FC=\"$PREFIX/bin/mpifort\" F77=\"$PREFIX/bin/mpifort\"",
     "./bootstrap",
-    "./configure --prefix=$PREFIX --enable-mpi=openmpi",
+    "./configure --prefix=$PREFIX --enable-mpi=mpich",
     "make",
     "make check",
-    "make install"
+    "make install",
+    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes",
+    "./configure --prefix=$PREFIX --enable-mpi=openmpi"
    ],
    "string": "mpi_openmpi_h1234567_0"
   },
@@ -59,14 +61,16 @@
     "libgomp"
    ],
    "host": [
-    "openmpi",
+    "mpich",
     "scalapack",
     "libblas",
-    "liblapack"
+    "liblapack",
+    "openmpi"
    ],
    "run": [
-    "openmpi",
-    "scalapack"
+    "mpich",
+    "scalapack",
+    "openmpi"
    ]
   },
   "source": {
@@ -100,6 +104,7 @@
    "elements": [
     "libblas",
     "liblapack",
+    "mpich",
     "openmpi",
     "scalapack"
    ]
@@ -107,6 +112,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "mpich",
     "openmpi",
     "scalapack"
    ]
@@ -128,17 +134,19 @@
   "build": {
    "number": "0",
    "run_exports": [
+    "eigenexa * mpi_mpich_*",
     "eigenexa * mpi_openmpi_*"
    ],
    "script": [
     "set -ex",
-    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes",
     "export CC=\"$PREFIX/bin/mpicc\" FC=\"$PREFIX/bin/mpifort\" F77=\"$PREFIX/bin/mpifort\"",
     "./bootstrap",
-    "./configure --prefix=$PREFIX --enable-mpi=openmpi",
+    "./configure --prefix=$PREFIX --enable-mpi=mpich",
     "make",
     "make check",
-    "make install"
+    "make install",
+    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes",
+    "./configure --prefix=$PREFIX --enable-mpi=openmpi"
    ],
    "string": "mpi_openmpi_h1234567_0"
   },
@@ -162,14 +170,16 @@
     "libgomp"
    ],
    "host": [
-    "openmpi",
+    "mpich",
     "scalapack",
     "libblas",
-    "liblapack"
+    "liblapack",
+    "openmpi"
    ],
    "run": [
-    "openmpi",
-    "scalapack"
+    "mpich",
+    "scalapack",
+    "openmpi"
    ]
   },
   "source": {
@@ -211,6 +221,7 @@
    "libgomp",
    "liblapack",
    "make",
+   "mpich",
    "openmpi",
    "perl",
    "scalapack"
@@ -237,6 +248,7 @@
     "fortran_compiler_stub",
     "libblas",
     "liblapack",
+    "mpich",
     "openmpi",
     "scalapack"
    ]
@@ -247,6 +259,7 @@
     "c_compiler_stub",
     "ctng-compilers",
     "fortran_compiler_stub",
+    "mpich",
     "openmpi",
     "scalapack"
    ]
@@ -275,6 +288,7 @@
    "elements": [
     "libblas",
     "liblapack",
+    "mpich",
     "openmpi",
     "scalapack"
    ]
@@ -282,6 +296,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "mpich",
     "openmpi",
     "scalapack"
    ]
