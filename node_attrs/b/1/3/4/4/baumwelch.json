@@ -32,7 +32,7 @@
    "summary": "Baum-Welch/expectation-maximization training and decoding"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -47,6 +47,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "gnuconfig"
    ],
@@ -74,6 +75,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "make"
@@ -106,7 +108,7 @@
    "summary": "Baum-Welch/expectation-maximization training and decoding"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -121,6 +123,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "gnuconfig",
     "cmake",
@@ -167,7 +170,7 @@
    "summary": "Baum-Welch/expectation-maximization training and decoding"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -182,6 +185,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "gnuconfig"
    ],
@@ -209,6 +213,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "make"
@@ -241,7 +246,7 @@
    "summary": "Baum-Welch/expectation-maximization training and decoding"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -256,6 +261,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "gnuconfig"
    ],
@@ -283,6 +289,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "make"
@@ -321,10 +328,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/baumwelch.json"
  },
- "raw_meta_yaml": "{% set name = \"baumwelch\" %}\n{% set version = \"0.3.9\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: http://www.opengrm.org/twiki/pub/GRM/BaumWelchDownload/{{ name }}-{{ version }}.tar.gz\n  sha256: 51102f6424ab71695d16b1ebf0183eec83de20d093c0571ab9755d1b7d11c991\n  patches:\n    - patches/0001-Add-CMake-files.patch  # [win]\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler(\"cxx\") }}\n    - make                    # [unix]\n    - gnuconfig               # [unix]\n    - cmake                   # [win]\n    - ninja                   # [win]\n    - m2-patch                # [win]\n  host:\n    - openfst ==1.8.3\n    - dlfcn-win32             # [win]\n    - icu                     # [win]\n    - zlib                    # [win]\n  run:\n    - openfst ==1.8.3\n    - ucrt                    # [win]\n\n{% set baumwelch_binaries = [\n    \"baumwelchdecode\", \"baumwelchrandomize\", \"baumwelchtrain\"\n] %}\n\ntest:\n  commands:\n    # binaries:\n    {% for each_bin in baumwelch_binaries %}\n      # If behaving properly these will have return code 1.\n    - {{ each_bin }} --helpshort >/dev/null || [[ $? == 1 ]]       # [unix]\n    - {{ each_bin }} --helpshort & if errorlevel 1 ( exit /b 0)    # [win]\n    {% endfor %}\n\nabout:\n  home: http://baumwelch.opengrm.org\n  license: Apache-2.0\n  license_file: LICENSE\n  summary: Baum-Welch/expectation-maximization training and decoding\n  description: |\n    A library for estimating the parameters of a discrete HMM\n  doc_url: http://www.opengrm.org/twiki/bin/view/GRM/BaumWelchDocs\n\nextra:\n  recipe-maintainers:\n    - kylebgorman\n    - mmcauliffe\n",
+ "raw_meta_yaml": "{% set name = \"baumwelch\" %}\n{% set version = \"0.3.9\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: http://www.opengrm.org/twiki/pub/GRM/BaumWelchDownload/{{ name }}-{{ version }}.tar.gz\n  sha256: 51102f6424ab71695d16b1ebf0183eec83de20d093c0571ab9755d1b7d11c991\n  patches:\n    - patches/0001-Add-CMake-files.patch  # [win]\n\nbuild:\n  number: 2\n\nrequirements:\n  build:\n    - {{ compiler(\"cxx\") }}\n    - {{ stdlib(\"c\") }}\n    - make                    # [unix]\n    - gnuconfig               # [unix]\n    - cmake                   # [win]\n    - ninja                   # [win]\n    - m2-patch                # [win]\n  host:\n    - openfst ==1.8.3\n    - dlfcn-win32             # [win]\n    - icu                     # [win]\n    - zlib                    # [win]\n  run:\n    - openfst ==1.8.3\n    - ucrt                    # [win]\n\n{% set baumwelch_binaries = [\n    \"baumwelchdecode\", \"baumwelchrandomize\", \"baumwelchtrain\"\n] %}\n\ntest:\n  commands:\n    # binaries:\n    {% for each_bin in baumwelch_binaries %}\n      # If behaving properly these will have return code 1.\n    - {{ each_bin }} --helpshort >/dev/null || [[ $? == 1 ]]       # [unix]\n    - {{ each_bin }} --helpshort & if errorlevel 1 ( exit /b 0)    # [win]\n    {% endfor %}\n\nabout:\n  home: http://baumwelch.opengrm.org\n  license: Apache-2.0\n  license_file: LICENSE\n  summary: Baum-Welch/expectation-maximization training and decoding\n  description: |\n    A library for estimating the parameters of a discrete HMM\n  doc_url: http://www.opengrm.org/twiki/bin/view/GRM/BaumWelchDocs\n\nextra:\n  recipe-maintainers:\n    - kylebgorman\n    - mmcauliffe\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "dlfcn-win32",
@@ -342,6 +350,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "gnuconfig",
@@ -353,6 +362,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "dlfcn-win32",
     "icu",
@@ -363,6 +373,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "openfst",
     "ucrt"
@@ -378,6 +389,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "gnuconfig",
@@ -422,7 +434,7 @@
    "summary": "Baum-Welch/expectation-maximization training and decoding"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -437,6 +449,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "ninja",
     "m2-patch"
@@ -471,6 +484,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "m2-patch",
