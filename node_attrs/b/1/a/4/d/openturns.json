@@ -29,7 +29,7 @@
    "summary": "Uncertainty treatment library"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "openturns"
    ]
@@ -164,7 +164,7 @@
    "summary": "Uncertainty treatment library"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "openturns"
    ]
@@ -210,7 +210,8 @@
     "pagmo-devel",
     "primesieve",
     "libcuba",
-    "nanoflann"
+    "nanoflann",
+    "libcblas"
    ],
    "run": [
     "python",
@@ -246,7 +247,7 @@
    "summary": "Uncertainty treatment library"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "openturns"
    ]
@@ -381,7 +382,7 @@
    "summary": "Uncertainty treatment library"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "openturns"
    ]
@@ -523,7 +524,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/openturns.json"
  },
- "raw_meta_yaml": "{% set version = \"1.23\" %}\n\npackage:\n  name: openturns\n  version: {{ version }}\n\nsource:\n  fn: openturns-{{ version }}.tar.gz\n  url: https://github.com/openturns/openturns/archive/v{{ version }}.tar.gz\n  sha256: 4c7cfe5d2310933e3a2e91f7db9531d80e32157143157df80f6e93267c29f414\n\nbuild:\n  number: 1\n  run_exports:\n    - {{ pin_subpackage('openturns', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - swig\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - curl  # [win]\n    - bison  # [not win]\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n  host:\n    - python\n    - libboost-headers  # [not win]\n    - matplotlib-base  # [python_impl == 'cpython']\n    - mpc  # [not win]\n    - libblas\n    - liblapack\n    - libxml2  # [not win]\n    - tbb-devel  # [not win]\n    - cminpack  # [not win]\n    - ceres-solver  # [not win]\n    - glog  # [not win]\n    - nlopt  # [not win]\n    - dlib-cpp  # [not win]\n    - ipopt  # [not win]\n    - coin-or-bonmin  # [not win]\n    - spectralib  # [not win]\n    - hdf5  # [not win]\n    - pagmo-devel  # [not win]\n    - primesieve  # [not win]\n    - libcuba  # [not win]\n    - nanoflann  # [not win]\n  run:\n    - python\n    - dill\n    - psutil\n    - tbb-devel  # [not win]\n\ntest:\n  requires:\n    - numpy\n  imports:\n    - openturns\n  commands:\n    # check the lapack libs conflict is solved\n    - python -c \"import numpy; import openturns; print(openturns.__version__)\"\n\nabout:\n  home: http://openturns.org/\n  license: LGPL-3.0-or-later\n  license_family: LGPL\n  license_file: COPYING.LESSER\n  summary: Uncertainty treatment library\n\nextra:\n  recipe-maintainers:\n    - jschueller\n",
+ "raw_meta_yaml": "{% set version = \"1.23\" %}\n\npackage:\n  name: openturns\n  version: {{ version }}\n\nsource:\n  fn: openturns-{{ version }}.tar.gz\n  url: https://github.com/openturns/openturns/archive/v{{ version }}.tar.gz\n  sha256: 4c7cfe5d2310933e3a2e91f7db9531d80e32157143157df80f6e93267c29f414\n\nbuild:\n  number: 2\n  run_exports:\n    - {{ pin_subpackage('openturns', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - swig\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - curl  # [win]\n    - bison  # [not win]\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n  host:\n    - python\n    - libboost-headers  # [not win]\n    - matplotlib-base  # [python_impl == 'cpython']\n    - mpc  # [not win]\n    - libblas\n    - libcblas  # [win]\n    - liblapack\n    - libxml2  # [not win]\n    - tbb-devel  # [not win]\n    - cminpack  # [not win]\n    - ceres-solver  # [not win]\n    - glog  # [not win]\n    - nlopt  # [not win]\n    - dlib-cpp  # [not win]\n    - ipopt  # [not win]\n    - coin-or-bonmin  # [not win]\n    - spectralib  # [not win]\n    - hdf5  # [not win]\n    - pagmo-devel  # [not win]\n    - primesieve  # [not win]\n    - libcuba  # [not win]\n    - nanoflann  # [not win]\n  run:\n    - python\n    - dill\n    - psutil\n    - tbb-devel  # [not win]\n\ntest:\n  requires:\n    - numpy\n  imports:\n    - openturns\n  commands:\n    # check the lapack libs conflict is solved\n    - python -c \"import numpy; import openturns; print(openturns.__version__)\"\n\nabout:\n  home: http://openturns.org/\n  license: LGPL-3.0-or-later\n  license_family: LGPL\n  license_file: COPYING.LESSER\n  summary: Uncertainty treatment library\n\nextra:\n  recipe-maintainers:\n    - jschueller\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -543,6 +544,7 @@
    "ipopt",
    "libblas",
    "libboost-headers",
+   "libcblas",
    "libcuba",
    "liblapack",
    "libxml2",
@@ -589,6 +591,7 @@
     "ipopt",
     "libblas",
     "libboost-headers",
+    "libcblas",
     "libcuba",
     "liblapack",
     "libxml2",
@@ -649,6 +652,7 @@
     "ipopt",
     "libblas",
     "libboost-headers",
+    "libcblas",
     "libcuba",
     "liblapack",
     "libxml2",
@@ -693,7 +697,7 @@
    "summary": "Uncertainty treatment library"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "openturns"
    ]
@@ -721,6 +725,7 @@
     "python",
     "matplotlib-base",
     "libblas",
+    "libcblas",
     "liblapack"
    ],
    "run": [
@@ -763,6 +768,7 @@
    "__set__": true,
    "elements": [
     "libblas",
+    "libcblas",
     "liblapack",
     "matplotlib-base",
     "python"
