@@ -77,7 +77,7 @@
       "dagster_pipes"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.10,<3.11.0a0",
       "pip"
      ]
     }
@@ -98,7 +98,7 @@
       "dagster-daemon = dagster.daemon.cli:main"
      ],
      "noarch": "python",
-     "number": "12",
+     "number": "10",
      "script": "cd dagster && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
      "version": "1.7.8"
     },
@@ -109,9 +109,9 @@
       "pip"
      ],
      "run": [
-      "pendulum >=3,<4",
-      "protobuf >=4,<5",
-      "universal_pathlib>=0.2.0",
+      "pendulum >=0.7.0,<4",
+      "protobuf >=3.20.0,<5",
+      "universal_pathlib",
       "python >=3.8",
       "dagster-pipes",
       "alembic >=1.2.1,!=1.6.3,!=1.7.0,!=1.11.0",
@@ -144,7 +144,7 @@
       "watchdog >=0.8.3"
      ],
      "run_constrained": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.10,<3.11.0a0",
       "pywin32 !=226"
      ]
     },
@@ -181,7 +181,7 @@
       "dagster.utils"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.10,<3.11.0a0",
       "pip"
      ]
     }
@@ -228,7 +228,7 @@
       "dagster_webserver"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.10,<3.11.0a0",
       "pip"
      ]
     }
@@ -277,7 +277,7 @@
       "dagster_graphql.schema"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.10,<3.11.0a0",
       "pip"
      ]
     }
@@ -319,7 +319,330 @@
       "dagit"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.10,<3.11.0a0",
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-airflow",
+     "license": "Apache-2.0",
+     "license_family": "APACHE",
+     "license_file": "dagster-airflow/LICENSE",
+     "summary": "Airflow plugin for Dagster"
+    },
+    "build": {
+     "noarch": "python",
+     "script": [
+      "cd dagster-airflow && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+     ],
+     "version": "1.7.8"
+    },
+    "name": "dagster-airflow",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip"
+     ],
+     "run": [
+      "python >=3.8",
+      "dagster",
+      "docker-py >=5.0.3,<6",
+      "lazy-object-proxy",
+      "urllib3 <2"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "dagster_airflow"
+     ],
+     "requires": [
+      "python >=3.10,<3.11.0a0",
+      "pip",
+      "apache-airflow-providers-docker",
+      "jinja2 <3",
+      "pathspec >=0.9.0,<0.10.0"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-pipes",
+     "license": "Apache-2.0",
+     "license_family": "APACHE",
+     "license_file": "dagster-pipes/LICENSE",
+     "summary": "Toolkit for Dagster integrations with transform logic outside of Dagster"
+    },
+    "build": {
+     "noarch": "python",
+     "script": "cd dagster-pipes && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+     "version": "1.7.8"
+    },
+    "name": "dagster-pipes",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip"
+     ],
+     "run": [
+      "python >=3.8"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "dagster_pipes"
+     ],
+     "requires": [
+      "python >=3.11,<3.12.0a0",
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "Dagster lets you define pipelines in terms of the data flow between reusable, logical components,\nthen test locally and run anywhere. With a unified view of pipelines and the assets they produce,\nDagster can schedule and orchestrate Pandas, Spark, SQL, or anything else that Python can invoke.\n\nDagster is designed for data platform engineers, data engineers, and full-stack data scientists.\nBuilding a data platform with Dagster makes your stakeholders more independent and your systems\nmore robust. Developing data pipelines with Dagster makes testing easier and deploying faster.\n",
+     "doc_url": "https://dagster.readthedocs.io",
+     "home": "https://github.com/dagster-io/dagster",
+     "license": "Apache-2.0",
+     "license_family": "APACHE",
+     "license_file": "dagster/LICENSE",
+     "summary": "The data orchestration platform built for productivity."
+    },
+    "build": {
+     "entry_points": [
+      "dagster = dagster.cli:main",
+      "dagster-daemon = dagster.daemon.cli:main"
+     ],
+     "noarch": "python",
+     "number": "11",
+     "script": "cd dagster && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+     "version": "1.7.8"
+    },
+    "name": "dagster",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip"
+     ],
+     "run": [
+      "pendulum >=0.7.0,<4",
+      "protobuf >=4,<5",
+      "universal_pathlib",
+      "python >=3.8",
+      "dagster-pipes",
+      "alembic >=1.2.1,!=1.6.3,!=1.7.0,!=1.11.0",
+      "click >=5.0",
+      "coloredlogs >=6.1,<=14.0",
+      "croniter >=0.3.34",
+      "docstring_parser",
+      "filelock",
+      "grpcio >=1.44.0",
+      "grpcio-health-checking >=1.44.0",
+      "jinja2",
+      "packaging >=20.9",
+      "psutil >=1.0",
+      "pydantic >1.10.0,!=1.10.7,<3",
+      "python-dateutil",
+      "python-dotenv",
+      "pytz",
+      "pywin32-on-windows",
+      "pyyaml >=5.1",
+      "requests",
+      "rich",
+      "setuptools",
+      "sqlalchemy >=1.0,<3",
+      "structlog",
+      "tabulate",
+      "tomli <3",
+      "toposort >=1.0",
+      "tqdm <5",
+      "typing_extensions >=4.4.0,<5",
+      "watchdog >=0.8.3"
+     ],
+     "run_constrained": [
+      "python >=3.11,<3.12.0a0",
+      "pywin32 !=226"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dagster --help",
+      "dagster-daemon --help"
+     ],
+     "imports": [
+      "dagster",
+      "dagster.api",
+      "dagster.check",
+      "dagster.cli",
+      "dagster.config",
+      "dagster.core.definitions",
+      "dagster.core.events",
+      "dagster.core.execution",
+      "dagster.core.executor",
+      "dagster.core.instance",
+      "dagster.core.launcher",
+      "dagster.core.run_coordinator",
+      "dagster.core.scheduler",
+      "dagster.core.selector",
+      "dagster.core.snap",
+      "dagster.core.storage",
+      "dagster.core.system_config",
+      "dagster.core.types",
+      "dagster.core.workspace",
+      "dagster.daemon",
+      "dagster.grpc",
+      "dagster.loggers",
+      "dagster.seven",
+      "dagster.utils"
+     ],
+     "requires": [
+      "python >=3.11,<3.12.0a0",
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-webserver",
+     "license": "Apache-2.0",
+     "license_family": "APACHE",
+     "license_file": "dagster-webserver/LICENSE",
+     "summary": "Web UI for dagster."
+    },
+    "build": {
+     "entry_points": [
+      "dagster-webserver = dagster_webserver.cli:main",
+      "dagster-webserver-debug = dagster_webserver.debug:main"
+     ],
+     "noarch": "python",
+     "script": "cd dagster-webserver && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+     "version": "1.7.8"
+    },
+    "name": "dagster-webserver",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip"
+     ],
+     "run": [
+      "python >=3.8",
+      "dagster-graphql",
+      "dagster",
+      "click >=7.0,<9.0",
+      "starlette !=0.36.0",
+      "uvicorn-standard"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dagster-webserver --help",
+      "dagster-webserver-debug --help"
+     ],
+     "imports": [
+      "dagster_webserver"
+     ],
+     "requires": [
+      "python >=3.11,<3.12.0a0",
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-graphql",
+     "license": "Apache-2.0",
+     "license_family": "APACHE",
+     "license_file": "dagster-graphql/LICENSE",
+     "summary": "The GraphQL frontend to python dagster."
+    },
+    "build": {
+     "entry_points": [
+      "dagster-graphql = dagster_graphql.cli:main"
+     ],
+     "noarch": "python",
+     "script": [
+      "cd dagster-graphql && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+     ],
+     "version": "1.7.8"
+    },
+    "name": "dagster-graphql",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip"
+     ],
+     "run": [
+      "python >=3.8",
+      "dagster",
+      "gql-with-requests >=3.0.0,<4.0.0",
+      "graphene >=3,<4",
+      "requests",
+      "starlette"
+     ]
+    },
+    "test": {
+     "commands": [
+      "dagster-graphql --help",
+      "pip check"
+     ],
+     "imports": [
+      "dagster_graphql",
+      "dagster_graphql.client",
+      "dagster_graphql.schema"
+     ],
+     "requires": [
+      "python >=3.11,<3.12.0a0",
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagit",
+     "license": "Apache-2.0",
+     "license_family": "APACHE",
+     "license_file": "dagit/LICENSE",
+     "summary": "Dagster UI"
+    },
+    "build": {
+     "entry_points": [
+      "dagit = dagster_webserver.cli:main",
+      "dagit-debug = dagster_webserver.debug:main"
+     ],
+     "noarch": "python",
+     "script": "cd dagit && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+     "version": "1.7.8"
+    },
+    "name": "dagit",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip"
+     ],
+     "run": [
+      "python >=3.8",
+      "dagster-webserver"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dagit --help"
+     ],
+     "imports": [
+      "dagit"
+     ],
+     "requires": [
+      "python >=3.11,<3.12.0a0",
       "pip"
      ]
     }
@@ -633,7 +956,7 @@
       "dagster_pipes"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.8,<3.9.0a0",
       "pip"
      ]
     }
@@ -654,7 +977,7 @@
       "dagster-daemon = dagster.daemon.cli:main"
      ],
      "noarch": "python",
-     "number": "12",
+     "number": "8",
      "script": "cd dagster && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
      "version": "1.7.8"
     },
@@ -665,9 +988,9 @@
       "pip"
      ],
      "run": [
-      "pendulum >=3,<4",
-      "protobuf >=4,<5",
-      "universal_pathlib>=0.2.0",
+      "pendulum >=0.7.0,<3",
+      "protobuf >=3.20.0,<5",
+      "universal_pathlib",
       "python >=3.8",
       "dagster-pipes",
       "alembic >=1.2.1,!=1.6.3,!=1.7.0,!=1.11.0",
@@ -700,7 +1023,7 @@
       "watchdog >=0.8.3"
      ],
      "run_constrained": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.8,<3.9.0a0",
       "pywin32 !=226"
      ]
     },
@@ -737,7 +1060,7 @@
       "dagster.utils"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.8,<3.9.0a0",
       "pip"
      ]
     }
@@ -784,7 +1107,7 @@
       "dagster_webserver"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.8,<3.9.0a0",
       "pip"
      ]
     }
@@ -833,7 +1156,7 @@
       "dagster_graphql.schema"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.8,<3.9.0a0",
       "pip"
      ]
     }
@@ -875,7 +1198,7 @@
       "dagit"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.8,<3.9.0a0",
       "pip"
      ]
     }
@@ -911,7 +1234,7 @@
       "dagster_pipes"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.9,<3.10.0a0",
       "pip"
      ]
     }
@@ -932,7 +1255,7 @@
       "dagster-daemon = dagster.daemon.cli:main"
      ],
      "noarch": "python",
-     "number": "12",
+     "number": "9",
      "script": "cd dagster && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
      "version": "1.7.8"
     },
@@ -943,9 +1266,9 @@
       "pip"
      ],
      "run": [
-      "pendulum >=3,<4",
-      "protobuf >=4,<5",
-      "universal_pathlib>=0.2.0",
+      "pendulum >=0.7.0,<4",
+      "protobuf >=3.20.0,<5",
+      "universal_pathlib",
       "python >=3.8",
       "dagster-pipes",
       "alembic >=1.2.1,!=1.6.3,!=1.7.0,!=1.11.0",
@@ -978,7 +1301,7 @@
       "watchdog >=0.8.3"
      ],
      "run_constrained": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.9,<3.10.0a0",
       "pywin32 !=226"
      ]
     },
@@ -1015,7 +1338,7 @@
       "dagster.utils"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.9,<3.10.0a0",
       "pip"
      ]
     }
@@ -1062,7 +1385,7 @@
       "dagster_webserver"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.9,<3.10.0a0",
       "pip"
      ]
     }
@@ -1111,7 +1434,7 @@
       "dagster_graphql.schema"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.9,<3.10.0a0",
       "pip"
      ]
     }
@@ -1153,285 +1476,7 @@
       "dagit"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-pipes",
-     "license": "Apache-2.0",
-     "license_family": "APACHE",
-     "license_file": "dagster-pipes/LICENSE",
-     "summary": "Toolkit for Dagster integrations with transform logic outside of Dagster"
-    },
-    "build": {
-     "noarch": "python",
-     "script": "cd dagster-pipes && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
-     "version": "1.7.8"
-    },
-    "name": "dagster-pipes",
-    "requirements": {
-     "host": [
-      "python >=3.8",
-      "pip"
-     ],
-     "run": [
-      "python >=3.8"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check"
-     ],
-     "imports": [
-      "dagster_pipes"
-     ],
-     "requires": [
-      "python >=3.12,<3.13.0a0",
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "Dagster lets you define pipelines in terms of the data flow between reusable, logical components,\nthen test locally and run anywhere. With a unified view of pipelines and the assets they produce,\nDagster can schedule and orchestrate Pandas, Spark, SQL, or anything else that Python can invoke.\n\nDagster is designed for data platform engineers, data engineers, and full-stack data scientists.\nBuilding a data platform with Dagster makes your stakeholders more independent and your systems\nmore robust. Developing data pipelines with Dagster makes testing easier and deploying faster.\n",
-     "doc_url": "https://dagster.readthedocs.io",
-     "home": "https://github.com/dagster-io/dagster",
-     "license": "Apache-2.0",
-     "license_family": "APACHE",
-     "license_file": "dagster/LICENSE",
-     "summary": "The data orchestration platform built for productivity."
-    },
-    "build": {
-     "entry_points": [
-      "dagster = dagster.cli:main",
-      "dagster-daemon = dagster.daemon.cli:main"
-     ],
-     "noarch": "python",
-     "number": "12",
-     "script": "cd dagster && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
-     "version": "1.7.8"
-    },
-    "name": "dagster",
-    "requirements": {
-     "host": [
-      "python >=3.8",
-      "pip"
-     ],
-     "run": [
-      "pendulum >=3,<4",
-      "protobuf >=4,<5",
-      "universal_pathlib>=0.2.0",
-      "python >=3.8",
-      "dagster-pipes",
-      "alembic >=1.2.1,!=1.6.3,!=1.7.0,!=1.11.0",
-      "click >=5.0",
-      "coloredlogs >=6.1,<=14.0",
-      "croniter >=0.3.34",
-      "docstring_parser",
-      "filelock",
-      "grpcio >=1.44.0",
-      "grpcio-health-checking >=1.44.0",
-      "jinja2",
-      "packaging >=20.9",
-      "psutil >=1.0",
-      "pydantic >1.10.0,!=1.10.7,<3",
-      "python-dateutil",
-      "python-dotenv",
-      "pytz",
-      "pywin32-on-windows",
-      "pyyaml >=5.1",
-      "requests",
-      "rich",
-      "setuptools",
-      "sqlalchemy >=1.0,<3",
-      "structlog",
-      "tabulate",
-      "tomli <3",
-      "toposort >=1.0",
-      "tqdm <5",
-      "typing_extensions >=4.4.0,<5",
-      "watchdog >=0.8.3"
-     ],
-     "run_constrained": [
-      "python >=3.12,<3.13.0a0",
-      "pywin32 !=226"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dagster --help",
-      "dagster-daemon --help"
-     ],
-     "imports": [
-      "dagster",
-      "dagster.api",
-      "dagster.check",
-      "dagster.cli",
-      "dagster.config",
-      "dagster.core.definitions",
-      "dagster.core.events",
-      "dagster.core.execution",
-      "dagster.core.executor",
-      "dagster.core.instance",
-      "dagster.core.launcher",
-      "dagster.core.run_coordinator",
-      "dagster.core.scheduler",
-      "dagster.core.selector",
-      "dagster.core.snap",
-      "dagster.core.storage",
-      "dagster.core.system_config",
-      "dagster.core.types",
-      "dagster.core.workspace",
-      "dagster.daemon",
-      "dagster.grpc",
-      "dagster.loggers",
-      "dagster.seven",
-      "dagster.utils"
-     ],
-     "requires": [
-      "python >=3.12,<3.13.0a0",
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-webserver",
-     "license": "Apache-2.0",
-     "license_family": "APACHE",
-     "license_file": "dagster-webserver/LICENSE",
-     "summary": "Web UI for dagster."
-    },
-    "build": {
-     "entry_points": [
-      "dagster-webserver = dagster_webserver.cli:main",
-      "dagster-webserver-debug = dagster_webserver.debug:main"
-     ],
-     "noarch": "python",
-     "script": "cd dagster-webserver && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
-     "version": "1.7.8"
-    },
-    "name": "dagster-webserver",
-    "requirements": {
-     "host": [
-      "python >=3.8",
-      "pip"
-     ],
-     "run": [
-      "python >=3.8",
-      "dagster-graphql",
-      "dagster",
-      "click >=7.0,<9.0",
-      "starlette !=0.36.0",
-      "uvicorn-standard"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dagster-webserver --help",
-      "dagster-webserver-debug --help"
-     ],
-     "imports": [
-      "dagster_webserver"
-     ],
-     "requires": [
-      "python >=3.12,<3.13.0a0",
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-graphql",
-     "license": "Apache-2.0",
-     "license_family": "APACHE",
-     "license_file": "dagster-graphql/LICENSE",
-     "summary": "The GraphQL frontend to python dagster."
-    },
-    "build": {
-     "entry_points": [
-      "dagster-graphql = dagster_graphql.cli:main"
-     ],
-     "noarch": "python",
-     "script": [
-      "cd dagster-graphql && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
-     ],
-     "version": "1.7.8"
-    },
-    "name": "dagster-graphql",
-    "requirements": {
-     "host": [
-      "python >=3.8",
-      "pip"
-     ],
-     "run": [
-      "python >=3.8",
-      "dagster",
-      "gql-with-requests >=3.0.0,<4.0.0",
-      "graphene >=3,<4",
-      "requests",
-      "starlette"
-     ]
-    },
-    "test": {
-     "commands": [
-      "dagster-graphql --help",
-      "pip check"
-     ],
-     "imports": [
-      "dagster_graphql",
-      "dagster_graphql.client",
-      "dagster_graphql.schema"
-     ],
-     "requires": [
-      "python >=3.12,<3.13.0a0",
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagit",
-     "license": "Apache-2.0",
-     "license_family": "APACHE",
-     "license_file": "dagit/LICENSE",
-     "summary": "Dagster UI"
-    },
-    "build": {
-     "entry_points": [
-      "dagit = dagster_webserver.cli:main",
-      "dagit-debug = dagster_webserver.debug:main"
-     ],
-     "noarch": "python",
-     "script": "cd dagit && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
-     "version": "1.7.8"
-    },
-    "name": "dagit",
-    "requirements": {
-     "host": [
-      "python >=3.8",
-      "pip"
-     ],
-     "run": [
-      "python >=3.8",
-      "dagster-webserver"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dagit --help"
-     ],
-     "imports": [
-      "dagit"
-     ],
-     "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.9,<3.10.0a0",
       "pip"
      ]
     }
@@ -1631,6 +1676,7 @@
     "dagster-graphql",
     "dagster-pipes",
     "dagster-webserver",
+    "docker-py",
     "docstring_parser",
     "filelock",
     "gql-with-requests",
@@ -1638,6 +1684,7 @@
     "grpcio",
     "grpcio-health-checking",
     "jinja2",
+    "lazy-object-proxy",
     "packaging",
     "pendulum",
     "protobuf",
@@ -1661,6 +1708,7 @@
     "tqdm",
     "typing_extensions",
     "universal_pathlib",
+    "urllib3",
     "uvicorn-standard",
     "watchdog"
    ]
@@ -1668,6 +1716,9 @@
   "test": {
    "__set__": true,
    "elements": [
+    "apache-airflow-providers-docker",
+    "jinja2",
+    "pathspec",
     "pip",
     "python"
    ]
@@ -1727,7 +1778,7 @@
       "dagster_pipes"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.10,<3.11.0a0",
       "pip"
      ]
     }
@@ -1748,7 +1799,7 @@
       "dagster-daemon = dagster.daemon.cli:main"
      ],
      "noarch": "python",
-     "number": "12",
+     "number": "10",
      "script": "cd dagster && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
      "version": "1.7.8"
     },
@@ -1759,9 +1810,9 @@
       "pip"
      ],
      "run": [
-      "pendulum >=3,<4",
-      "protobuf >=4,<5",
-      "universal_pathlib>=0.2.0",
+      "pendulum >=0.7.0,<4",
+      "protobuf >=3.20.0,<5",
+      "universal_pathlib",
       "python >=3.8",
       "dagster-pipes",
       "alembic >=1.2.1,!=1.6.3,!=1.7.0,!=1.11.0",
@@ -1794,7 +1845,7 @@
       "watchdog >=0.8.3"
      ],
      "run_constrained": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.10,<3.11.0a0",
       "pywin32 !=226"
      ]
     },
@@ -1831,7 +1882,7 @@
       "dagster.utils"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.10,<3.11.0a0",
       "pip"
      ]
     }
@@ -1878,7 +1929,7 @@
       "dagster_webserver"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.10,<3.11.0a0",
       "pip"
      ]
     }
@@ -1927,7 +1978,7 @@
       "dagster_graphql.schema"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.10,<3.11.0a0",
       "pip"
      ]
     }
@@ -1969,7 +2020,330 @@
       "dagit"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.10,<3.11.0a0",
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-airflow",
+     "license": "Apache-2.0",
+     "license_family": "APACHE",
+     "license_file": "dagster-airflow/LICENSE",
+     "summary": "Airflow plugin for Dagster"
+    },
+    "build": {
+     "noarch": "python",
+     "script": [
+      "cd dagster-airflow && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+     ],
+     "version": "1.7.8"
+    },
+    "name": "dagster-airflow",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip"
+     ],
+     "run": [
+      "python >=3.8",
+      "dagster",
+      "docker-py >=5.0.3,<6",
+      "lazy-object-proxy",
+      "urllib3 <2"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "dagster_airflow"
+     ],
+     "requires": [
+      "python >=3.10,<3.11.0a0",
+      "pip",
+      "apache-airflow-providers-docker",
+      "jinja2 <3",
+      "pathspec >=0.9.0,<0.10.0"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-pipes",
+     "license": "Apache-2.0",
+     "license_family": "APACHE",
+     "license_file": "dagster-pipes/LICENSE",
+     "summary": "Toolkit for Dagster integrations with transform logic outside of Dagster"
+    },
+    "build": {
+     "noarch": "python",
+     "script": "cd dagster-pipes && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+     "version": "1.7.8"
+    },
+    "name": "dagster-pipes",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip"
+     ],
+     "run": [
+      "python >=3.8"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "dagster_pipes"
+     ],
+     "requires": [
+      "python >=3.11,<3.12.0a0",
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "description": "Dagster lets you define pipelines in terms of the data flow between reusable, logical components,\nthen test locally and run anywhere. With a unified view of pipelines and the assets they produce,\nDagster can schedule and orchestrate Pandas, Spark, SQL, or anything else that Python can invoke.\n\nDagster is designed for data platform engineers, data engineers, and full-stack data scientists.\nBuilding a data platform with Dagster makes your stakeholders more independent and your systems\nmore robust. Developing data pipelines with Dagster makes testing easier and deploying faster.\n",
+     "doc_url": "https://dagster.readthedocs.io",
+     "home": "https://github.com/dagster-io/dagster",
+     "license": "Apache-2.0",
+     "license_family": "APACHE",
+     "license_file": "dagster/LICENSE",
+     "summary": "The data orchestration platform built for productivity."
+    },
+    "build": {
+     "entry_points": [
+      "dagster = dagster.cli:main",
+      "dagster-daemon = dagster.daemon.cli:main"
+     ],
+     "noarch": "python",
+     "number": "11",
+     "script": "cd dagster && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+     "version": "1.7.8"
+    },
+    "name": "dagster",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip"
+     ],
+     "run": [
+      "pendulum >=0.7.0,<4",
+      "protobuf >=4,<5",
+      "universal_pathlib",
+      "python >=3.8",
+      "dagster-pipes",
+      "alembic >=1.2.1,!=1.6.3,!=1.7.0,!=1.11.0",
+      "click >=5.0",
+      "coloredlogs >=6.1,<=14.0",
+      "croniter >=0.3.34",
+      "docstring_parser",
+      "filelock",
+      "grpcio >=1.44.0",
+      "grpcio-health-checking >=1.44.0",
+      "jinja2",
+      "packaging >=20.9",
+      "psutil >=1.0",
+      "pydantic >1.10.0,!=1.10.7,<3",
+      "python-dateutil",
+      "python-dotenv",
+      "pytz",
+      "pywin32-on-windows",
+      "pyyaml >=5.1",
+      "requests",
+      "rich",
+      "setuptools",
+      "sqlalchemy >=1.0,<3",
+      "structlog",
+      "tabulate",
+      "tomli <3",
+      "toposort >=1.0",
+      "tqdm <5",
+      "typing_extensions >=4.4.0,<5",
+      "watchdog >=0.8.3"
+     ],
+     "run_constrained": [
+      "python >=3.11,<3.12.0a0",
+      "pywin32 !=226"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dagster --help",
+      "dagster-daemon --help"
+     ],
+     "imports": [
+      "dagster",
+      "dagster.api",
+      "dagster.check",
+      "dagster.cli",
+      "dagster.config",
+      "dagster.core.definitions",
+      "dagster.core.events",
+      "dagster.core.execution",
+      "dagster.core.executor",
+      "dagster.core.instance",
+      "dagster.core.launcher",
+      "dagster.core.run_coordinator",
+      "dagster.core.scheduler",
+      "dagster.core.selector",
+      "dagster.core.snap",
+      "dagster.core.storage",
+      "dagster.core.system_config",
+      "dagster.core.types",
+      "dagster.core.workspace",
+      "dagster.daemon",
+      "dagster.grpc",
+      "dagster.loggers",
+      "dagster.seven",
+      "dagster.utils"
+     ],
+     "requires": [
+      "python >=3.11,<3.12.0a0",
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-webserver",
+     "license": "Apache-2.0",
+     "license_family": "APACHE",
+     "license_file": "dagster-webserver/LICENSE",
+     "summary": "Web UI for dagster."
+    },
+    "build": {
+     "entry_points": [
+      "dagster-webserver = dagster_webserver.cli:main",
+      "dagster-webserver-debug = dagster_webserver.debug:main"
+     ],
+     "noarch": "python",
+     "script": "cd dagster-webserver && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+     "version": "1.7.8"
+    },
+    "name": "dagster-webserver",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip"
+     ],
+     "run": [
+      "python >=3.8",
+      "dagster-graphql",
+      "dagster",
+      "click >=7.0,<9.0",
+      "starlette !=0.36.0",
+      "uvicorn-standard"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dagster-webserver --help",
+      "dagster-webserver-debug --help"
+     ],
+     "imports": [
+      "dagster_webserver"
+     ],
+     "requires": [
+      "python >=3.11,<3.12.0a0",
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-graphql",
+     "license": "Apache-2.0",
+     "license_family": "APACHE",
+     "license_file": "dagster-graphql/LICENSE",
+     "summary": "The GraphQL frontend to python dagster."
+    },
+    "build": {
+     "entry_points": [
+      "dagster-graphql = dagster_graphql.cli:main"
+     ],
+     "noarch": "python",
+     "script": [
+      "cd dagster-graphql && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+     ],
+     "version": "1.7.8"
+    },
+    "name": "dagster-graphql",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip"
+     ],
+     "run": [
+      "python >=3.8",
+      "dagster",
+      "gql-with-requests >=3.0.0,<4.0.0",
+      "graphene >=3,<4",
+      "requests",
+      "starlette"
+     ]
+    },
+    "test": {
+     "commands": [
+      "dagster-graphql --help",
+      "pip check"
+     ],
+     "imports": [
+      "dagster_graphql",
+      "dagster_graphql.client",
+      "dagster_graphql.schema"
+     ],
+     "requires": [
+      "python >=3.11,<3.12.0a0",
+      "pip"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagit",
+     "license": "Apache-2.0",
+     "license_family": "APACHE",
+     "license_file": "dagit/LICENSE",
+     "summary": "Dagster UI"
+    },
+    "build": {
+     "entry_points": [
+      "dagit = dagster_webserver.cli:main",
+      "dagit-debug = dagster_webserver.debug:main"
+     ],
+     "noarch": "python",
+     "script": "cd dagit && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+     "version": "1.7.8"
+    },
+    "name": "dagit",
+    "requirements": {
+     "host": [
+      "python >=3.8",
+      "pip"
+     ],
+     "run": [
+      "python >=3.8",
+      "dagster-webserver"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "dagit --help"
+     ],
+     "imports": [
+      "dagit"
+     ],
+     "requires": [
+      "python >=3.11,<3.12.0a0",
       "pip"
      ]
     }
@@ -2283,7 +2657,7 @@
       "dagster_pipes"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.8,<3.9.0a0",
       "pip"
      ]
     }
@@ -2304,7 +2678,7 @@
       "dagster-daemon = dagster.daemon.cli:main"
      ],
      "noarch": "python",
-     "number": "12",
+     "number": "8",
      "script": "cd dagster && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
      "version": "1.7.8"
     },
@@ -2315,9 +2689,9 @@
       "pip"
      ],
      "run": [
-      "pendulum >=3,<4",
-      "protobuf >=4,<5",
-      "universal_pathlib>=0.2.0",
+      "pendulum >=0.7.0,<3",
+      "protobuf >=3.20.0,<5",
+      "universal_pathlib",
       "python >=3.8",
       "dagster-pipes",
       "alembic >=1.2.1,!=1.6.3,!=1.7.0,!=1.11.0",
@@ -2350,7 +2724,7 @@
       "watchdog >=0.8.3"
      ],
      "run_constrained": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.8,<3.9.0a0",
       "pywin32 !=226"
      ]
     },
@@ -2387,7 +2761,7 @@
       "dagster.utils"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.8,<3.9.0a0",
       "pip"
      ]
     }
@@ -2434,7 +2808,7 @@
       "dagster_webserver"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.8,<3.9.0a0",
       "pip"
      ]
     }
@@ -2483,7 +2857,7 @@
       "dagster_graphql.schema"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.8,<3.9.0a0",
       "pip"
      ]
     }
@@ -2525,7 +2899,7 @@
       "dagit"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.8,<3.9.0a0",
       "pip"
      ]
     }
@@ -2561,7 +2935,7 @@
       "dagster_pipes"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.9,<3.10.0a0",
       "pip"
      ]
     }
@@ -2582,7 +2956,7 @@
       "dagster-daemon = dagster.daemon.cli:main"
      ],
      "noarch": "python",
-     "number": "12",
+     "number": "9",
      "script": "cd dagster && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
      "version": "1.7.8"
     },
@@ -2593,9 +2967,9 @@
       "pip"
      ],
      "run": [
-      "pendulum >=3,<4",
-      "protobuf >=4,<5",
-      "universal_pathlib>=0.2.0",
+      "pendulum >=0.7.0,<4",
+      "protobuf >=3.20.0,<5",
+      "universal_pathlib",
       "python >=3.8",
       "dagster-pipes",
       "alembic >=1.2.1,!=1.6.3,!=1.7.0,!=1.11.0",
@@ -2628,7 +3002,7 @@
       "watchdog >=0.8.3"
      ],
      "run_constrained": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.9,<3.10.0a0",
       "pywin32 !=226"
      ]
     },
@@ -2665,7 +3039,7 @@
       "dagster.utils"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.9,<3.10.0a0",
       "pip"
      ]
     }
@@ -2712,7 +3086,7 @@
       "dagster_webserver"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.9,<3.10.0a0",
       "pip"
      ]
     }
@@ -2761,7 +3135,7 @@
       "dagster_graphql.schema"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.9,<3.10.0a0",
       "pip"
      ]
     }
@@ -2803,285 +3177,7 @@
       "dagit"
      ],
      "requires": [
-      "python >=3.12,<3.13.0a0",
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-pipes",
-     "license": "Apache-2.0",
-     "license_family": "APACHE",
-     "license_file": "dagster-pipes/LICENSE",
-     "summary": "Toolkit for Dagster integrations with transform logic outside of Dagster"
-    },
-    "build": {
-     "noarch": "python",
-     "script": "cd dagster-pipes && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
-     "version": "1.7.8"
-    },
-    "name": "dagster-pipes",
-    "requirements": {
-     "host": [
-      "python >=3.8",
-      "pip"
-     ],
-     "run": [
-      "python >=3.8"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check"
-     ],
-     "imports": [
-      "dagster_pipes"
-     ],
-     "requires": [
-      "python >=3.12,<3.13.0a0",
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "description": "Dagster lets you define pipelines in terms of the data flow between reusable, logical components,\nthen test locally and run anywhere. With a unified view of pipelines and the assets they produce,\nDagster can schedule and orchestrate Pandas, Spark, SQL, or anything else that Python can invoke.\n\nDagster is designed for data platform engineers, data engineers, and full-stack data scientists.\nBuilding a data platform with Dagster makes your stakeholders more independent and your systems\nmore robust. Developing data pipelines with Dagster makes testing easier and deploying faster.\n",
-     "doc_url": "https://dagster.readthedocs.io",
-     "home": "https://github.com/dagster-io/dagster",
-     "license": "Apache-2.0",
-     "license_family": "APACHE",
-     "license_file": "dagster/LICENSE",
-     "summary": "The data orchestration platform built for productivity."
-    },
-    "build": {
-     "entry_points": [
-      "dagster = dagster.cli:main",
-      "dagster-daemon = dagster.daemon.cli:main"
-     ],
-     "noarch": "python",
-     "number": "12",
-     "script": "cd dagster && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
-     "version": "1.7.8"
-    },
-    "name": "dagster",
-    "requirements": {
-     "host": [
-      "python >=3.8",
-      "pip"
-     ],
-     "run": [
-      "pendulum >=3,<4",
-      "protobuf >=4,<5",
-      "universal_pathlib>=0.2.0",
-      "python >=3.8",
-      "dagster-pipes",
-      "alembic >=1.2.1,!=1.6.3,!=1.7.0,!=1.11.0",
-      "click >=5.0",
-      "coloredlogs >=6.1,<=14.0",
-      "croniter >=0.3.34",
-      "docstring_parser",
-      "filelock",
-      "grpcio >=1.44.0",
-      "grpcio-health-checking >=1.44.0",
-      "jinja2",
-      "packaging >=20.9",
-      "psutil >=1.0",
-      "pydantic >1.10.0,!=1.10.7,<3",
-      "python-dateutil",
-      "python-dotenv",
-      "pytz",
-      "pywin32-on-windows",
-      "pyyaml >=5.1",
-      "requests",
-      "rich",
-      "setuptools",
-      "sqlalchemy >=1.0,<3",
-      "structlog",
-      "tabulate",
-      "tomli <3",
-      "toposort >=1.0",
-      "tqdm <5",
-      "typing_extensions >=4.4.0,<5",
-      "watchdog >=0.8.3"
-     ],
-     "run_constrained": [
-      "python >=3.12,<3.13.0a0",
-      "pywin32 !=226"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dagster --help",
-      "dagster-daemon --help"
-     ],
-     "imports": [
-      "dagster",
-      "dagster.api",
-      "dagster.check",
-      "dagster.cli",
-      "dagster.config",
-      "dagster.core.definitions",
-      "dagster.core.events",
-      "dagster.core.execution",
-      "dagster.core.executor",
-      "dagster.core.instance",
-      "dagster.core.launcher",
-      "dagster.core.run_coordinator",
-      "dagster.core.scheduler",
-      "dagster.core.selector",
-      "dagster.core.snap",
-      "dagster.core.storage",
-      "dagster.core.system_config",
-      "dagster.core.types",
-      "dagster.core.workspace",
-      "dagster.daemon",
-      "dagster.grpc",
-      "dagster.loggers",
-      "dagster.seven",
-      "dagster.utils"
-     ],
-     "requires": [
-      "python >=3.12,<3.13.0a0",
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-webserver",
-     "license": "Apache-2.0",
-     "license_family": "APACHE",
-     "license_file": "dagster-webserver/LICENSE",
-     "summary": "Web UI for dagster."
-    },
-    "build": {
-     "entry_points": [
-      "dagster-webserver = dagster_webserver.cli:main",
-      "dagster-webserver-debug = dagster_webserver.debug:main"
-     ],
-     "noarch": "python",
-     "script": "cd dagster-webserver && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
-     "version": "1.7.8"
-    },
-    "name": "dagster-webserver",
-    "requirements": {
-     "host": [
-      "python >=3.8",
-      "pip"
-     ],
-     "run": [
-      "python >=3.8",
-      "dagster-graphql",
-      "dagster",
-      "click >=7.0,<9.0",
-      "starlette !=0.36.0",
-      "uvicorn-standard"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dagster-webserver --help",
-      "dagster-webserver-debug --help"
-     ],
-     "imports": [
-      "dagster_webserver"
-     ],
-     "requires": [
-      "python >=3.12,<3.13.0a0",
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagster-graphql",
-     "license": "Apache-2.0",
-     "license_family": "APACHE",
-     "license_file": "dagster-graphql/LICENSE",
-     "summary": "The GraphQL frontend to python dagster."
-    },
-    "build": {
-     "entry_points": [
-      "dagster-graphql = dagster_graphql.cli:main"
-     ],
-     "noarch": "python",
-     "script": [
-      "cd dagster-graphql && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
-     ],
-     "version": "1.7.8"
-    },
-    "name": "dagster-graphql",
-    "requirements": {
-     "host": [
-      "python >=3.8",
-      "pip"
-     ],
-     "run": [
-      "python >=3.8",
-      "dagster",
-      "gql-with-requests >=3.0.0,<4.0.0",
-      "graphene >=3,<4",
-      "requests",
-      "starlette"
-     ]
-    },
-    "test": {
-     "commands": [
-      "dagster-graphql --help",
-      "pip check"
-     ],
-     "imports": [
-      "dagster_graphql",
-      "dagster_graphql.client",
-      "dagster_graphql.schema"
-     ],
-     "requires": [
-      "python >=3.12,<3.13.0a0",
-      "pip"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/dagster-io/dagster/tree/master/python_modules/dagit",
-     "license": "Apache-2.0",
-     "license_family": "APACHE",
-     "license_file": "dagit/LICENSE",
-     "summary": "Dagster UI"
-    },
-    "build": {
-     "entry_points": [
-      "dagit = dagster_webserver.cli:main",
-      "dagit-debug = dagster_webserver.debug:main"
-     ],
-     "noarch": "python",
-     "script": "cd dagit && PYTHON -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
-     "version": "1.7.8"
-    },
-    "name": "dagit",
-    "requirements": {
-     "host": [
-      "python >=3.8",
-      "pip"
-     ],
-     "run": [
-      "python >=3.8",
-      "dagster-webserver"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check",
-      "dagit --help"
-     ],
-     "imports": [
-      "dagit"
-     ],
-     "requires": [
-      "python >=3.12,<3.13.0a0",
+      "python >=3.9,<3.10.0a0",
       "pip"
      ]
     }
@@ -3264,6 +3360,7 @@
   "elements": [
    "dagit",
    "dagster",
+   "dagster-airflow",
    "dagster-graphql",
    "dagster-meta",
    "dagster-pipes",
@@ -3289,6 +3386,7 @@
    "dagster-graphql",
    "dagster-pipes",
    "dagster-webserver",
+   "docker-py",
    "docstring_parser",
    "filelock",
    "gql-with-requests",
@@ -3296,6 +3394,7 @@
    "grpcio",
    "grpcio-health-checking",
    "jinja2",
+   "lazy-object-proxy",
    "packaging",
    "pendulum",
    "pip",
@@ -3320,6 +3419,7 @@
    "tqdm",
    "typing_extensions",
    "universal_pathlib",
+   "urllib3",
    "uvicorn-standard",
    "watchdog"
   ]
@@ -3347,6 +3447,7 @@
     "dagster-graphql",
     "dagster-pipes",
     "dagster-webserver",
+    "docker-py",
     "docstring_parser",
     "filelock",
     "gql-with-requests",
@@ -3354,6 +3455,7 @@
     "grpcio",
     "grpcio-health-checking",
     "jinja2",
+    "lazy-object-proxy",
     "packaging",
     "pendulum",
     "protobuf",
@@ -3377,6 +3479,7 @@
     "tqdm",
     "typing_extensions",
     "universal_pathlib",
+    "urllib3",
     "uvicorn-standard",
     "watchdog"
    ]
@@ -3384,6 +3487,9 @@
   "test": {
    "__set__": true,
    "elements": [
+    "apache-airflow-providers-docker",
+    "jinja2",
+    "pathspec",
     "pip",
     "python"
    ]
@@ -3414,6 +3520,7 @@
     "dagster-graphql",
     "dagster-pipes",
     "dagster-webserver",
+    "docker-py >=5.0.3,<6",
     "docstring_parser",
     "filelock",
     "gql-with-requests >=3.0.0,<4.0.0",
@@ -3421,8 +3528,12 @@
     "grpcio >=1.44.0",
     "grpcio-health-checking >=1.44.0",
     "jinja2",
+    "lazy-object-proxy",
     "packaging >=20.9",
+    "pendulum >=0.7.0,<3",
+    "pendulum >=0.7.0,<4",
     "pendulum >=3,<4",
+    "protobuf >=3.20.0,<5",
     "protobuf >=4,<5",
     "psutil >=1.0",
     "pydantic >1.10.0,!=1.10.7,<3",
@@ -3444,7 +3555,9 @@
     "toposort >=1.0",
     "tqdm <5",
     "typing_extensions >=4.4.0,<5",
+    "universal_pathlib",
     "universal_pathlib>=0.2.0",
+    "urllib3 <2",
     "uvicorn-standard",
     "watchdog >=0.8.3"
    ]
@@ -3452,8 +3565,15 @@
   "test": {
    "__set__": true,
    "elements": [
+    "apache-airflow-providers-docker",
+    "jinja2 <3",
+    "pathspec >=0.9.0,<0.10.0",
     "pip",
-    "python >=3.12,<3.13.0a0"
+    "python >=3.10,<3.11.0a0",
+    "python >=3.11,<3.12.0a0",
+    "python >=3.12,<3.13.0a0",
+    "python >=3.8,<3.9.0a0",
+    "python >=3.9,<3.10.0a0"
    ]
   }
  },

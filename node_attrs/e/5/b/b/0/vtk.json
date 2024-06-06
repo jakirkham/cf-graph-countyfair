@@ -30,7 +30,7 @@
   },
   "build": {
    "number": "320",
-   "string": "egl_py39h1234567_320"
+   "string": "qt_py39h1234567_320"
   },
   "extra": {
    "recipe-maintainers": [
@@ -1067,7 +1067,9 @@
    },
    {
     "build": {
-     "features": null,
+     "features": [
+      "mesalib"
+     ],
      "ignore_run_exports_from": [
       "ffmpeg"
      ],
@@ -1075,9 +1077,9 @@
       "vtk-base"
      ],
      "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py310h1234567_320",
+     "string": "osmesa_py310h1234567_320",
      "track_features": [
-      "vtk-egl"
+      "vtk-osmesa"
      ]
     },
     "name": "vtk-base",
@@ -1085,9 +1087,9 @@
      "build": [
       "cxx_compiler_stub",
       "fortran_compiler_stub",
+      "sysroot_linux-64 2.17",
       "cmake",
-      "ninja",
-      "cdt_stub"
+      "ninja"
      ],
      "host": [
       "python",
@@ -1103,21 +1105,11 @@
       "expat",
       "tbb",
       "tbb-devel",
+      "mesalib >=21.0",
       "libnetcdf",
       "libnetcdf * nompi_*",
       "lz4-c",
       "xorg-libxt",
-      "libxcb",
-      "xorg-libxau",
-      "libuuid",
-      "xorg-libxext",
-      "xorg-libxfixes",
-      "xorg-libxxf86vm",
-      "xorg-libxdamage",
-      "xorg-libsm",
-      "xorg-libice",
-      "xorg-libx11",
-      "xorg-xf86vidmodeproto",
       "libboost-headers",
       "ffmpeg",
       "utfcpp",
@@ -1144,6 +1136,7 @@
       "jsoncpp",
       "expat",
       "tbb",
+      "mesalib >=21.0",
       "libnetcdf",
       "lz4-c",
       "xorg-libxt",
@@ -1216,7 +1209,7 @@
       "vtk-io-ffmpeg"
      ],
      "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py310h1234567_320"
+     "string": "osmesa_py310h1234567_320"
     },
     "name": "vtk-io-ffmpeg",
     "requirements": {
@@ -1244,7 +1237,791 @@
      "run_exports": [
       "vtk-base"
      ],
-     "string": "egl_py310h1234567_320"
+     "string": "osmesa_py310h1234567_320"
+    },
+    "name": "vtk",
+    "requirements": {
+     "build": [],
+     "run": [
+      "vtk-base",
+      "vtk-io-ffmpeg"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python test_vtk.py"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "features": [
+      "mesalib"
+     ],
+     "ignore_run_exports_from": [
+      "ffmpeg"
+     ],
+     "run_exports": [
+      "vtk-base"
+     ],
+     "script": "${RECIPE_DIR}/build-base.sh",
+     "string": "osmesa_py311h1234567_320",
+     "track_features": [
+      "vtk-osmesa"
+     ]
+    },
+    "name": "vtk-base",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "fortran_compiler_stub",
+      "sysroot_linux-64 2.17",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "hdf5 * nompi_*",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "tbb-devel",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "libnetcdf * nompi_*",
+      "lz4-c",
+      "xorg-libxt",
+      "libboost-headers",
+      "ffmpeg",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps"
+     ],
+     "run": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "lz4-c",
+      "xorg-libxt",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps",
+      "tbb-devel",
+      "numpy",
+      "wslink"
+     ],
+     "run_constrained": [
+      "paraview ==9999999999"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkChartsCore",
+      "vtk.vtkCommonCore",
+      "vtk.vtkFiltersCore",
+      "vtk.vtkFiltersGeneric",
+      "vtk.vtkGeovisCore",
+      "vtk.vtkFiltersHybrid",
+      "vtk.vtkIOCore",
+      "vtk.vtkImagingCore",
+      "vtk.vtkInfovisCore",
+      "vtk.vtkRenderingCore",
+      "vtk.vtkViewsCore",
+      "vtk.vtkRenderingVolume",
+      "vtk.vtkInteractionWidgets",
+      "vtk.vtkWebGLExporter",
+      "vtkmodules",
+      "vtkmodules.vtkChartsCore",
+      "vtkmodules.vtkCommonCore",
+      "vtkmodules.vtkFiltersCore",
+      "vtkmodules.vtkFiltersGeneric",
+      "vtkmodules.vtkGeovisCore",
+      "vtkmodules.vtkFiltersHybrid",
+      "vtkmodules.vtkIOCore",
+      "vtkmodules.vtkImagingCore",
+      "vtkmodules.vtkInfovisCore",
+      "vtkmodules.vtkRenderingCore",
+      "vtkmodules.vtkViewsCore",
+      "vtkmodules.vtkRenderingVolume",
+      "vtkmodules.vtkInteractionWidgets",
+      "vtkmodules.vtkWebCore",
+      "vtkmodules.web",
+      "vtkmodules.web.utils"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-io-ffmpeg"
+     ],
+     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
+     "string": "osmesa_py311h1234567_320"
+    },
+    "name": "vtk-io-ffmpeg",
+    "requirements": {
+     "build": [],
+     "host": [
+      "ffmpeg"
+     ],
+     "run": [
+      "vtk-base",
+      "ffmpeg"
+     ]
+    },
+    "test": {
+     "imports": [
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-base"
+     ],
+     "string": "osmesa_py311h1234567_320"
+    },
+    "name": "vtk",
+    "requirements": {
+     "build": [],
+     "run": [
+      "vtk-base",
+      "vtk-io-ffmpeg"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python test_vtk.py"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "features": [
+      "mesalib"
+     ],
+     "ignore_run_exports_from": [
+      "ffmpeg"
+     ],
+     "run_exports": [
+      "vtk-base"
+     ],
+     "script": "${RECIPE_DIR}/build-base.sh",
+     "string": "osmesa_py312h1234567_320",
+     "track_features": [
+      "vtk-osmesa"
+     ]
+    },
+    "name": "vtk-base",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "fortran_compiler_stub",
+      "sysroot_linux-64 2.17",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "hdf5 * nompi_*",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "tbb-devel",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "libnetcdf * nompi_*",
+      "lz4-c",
+      "xorg-libxt",
+      "libboost-headers",
+      "ffmpeg",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps"
+     ],
+     "run": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "lz4-c",
+      "xorg-libxt",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps",
+      "tbb-devel",
+      "numpy",
+      "wslink"
+     ],
+     "run_constrained": [
+      "paraview ==9999999999"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkChartsCore",
+      "vtk.vtkCommonCore",
+      "vtk.vtkFiltersCore",
+      "vtk.vtkFiltersGeneric",
+      "vtk.vtkGeovisCore",
+      "vtk.vtkFiltersHybrid",
+      "vtk.vtkIOCore",
+      "vtk.vtkImagingCore",
+      "vtk.vtkInfovisCore",
+      "vtk.vtkRenderingCore",
+      "vtk.vtkViewsCore",
+      "vtk.vtkRenderingVolume",
+      "vtk.vtkInteractionWidgets",
+      "vtk.vtkWebGLExporter",
+      "vtkmodules",
+      "vtkmodules.vtkChartsCore",
+      "vtkmodules.vtkCommonCore",
+      "vtkmodules.vtkFiltersCore",
+      "vtkmodules.vtkFiltersGeneric",
+      "vtkmodules.vtkGeovisCore",
+      "vtkmodules.vtkFiltersHybrid",
+      "vtkmodules.vtkIOCore",
+      "vtkmodules.vtkImagingCore",
+      "vtkmodules.vtkInfovisCore",
+      "vtkmodules.vtkRenderingCore",
+      "vtkmodules.vtkViewsCore",
+      "vtkmodules.vtkRenderingVolume",
+      "vtkmodules.vtkInteractionWidgets",
+      "vtkmodules.vtkWebCore",
+      "vtkmodules.web",
+      "vtkmodules.web.utils"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-io-ffmpeg"
+     ],
+     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
+     "string": "osmesa_py312h1234567_320"
+    },
+    "name": "vtk-io-ffmpeg",
+    "requirements": {
+     "build": [],
+     "host": [
+      "ffmpeg"
+     ],
+     "run": [
+      "vtk-base",
+      "ffmpeg"
+     ]
+    },
+    "test": {
+     "imports": [
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-base"
+     ],
+     "string": "osmesa_py312h1234567_320"
+    },
+    "name": "vtk",
+    "requirements": {
+     "build": [],
+     "run": [
+      "vtk-base",
+      "vtk-io-ffmpeg"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python test_vtk.py"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "features": [
+      "mesalib"
+     ],
+     "ignore_run_exports_from": [
+      "ffmpeg"
+     ],
+     "run_exports": [
+      "vtk-base"
+     ],
+     "script": "${RECIPE_DIR}/build-base.sh",
+     "string": "osmesa_py38h1234567_320",
+     "track_features": [
+      "vtk-osmesa"
+     ]
+    },
+    "name": "vtk-base",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "fortran_compiler_stub",
+      "sysroot_linux-64 2.17",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "hdf5 * nompi_*",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "tbb-devel",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "libnetcdf * nompi_*",
+      "lz4-c",
+      "xorg-libxt",
+      "libboost-headers",
+      "ffmpeg",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps"
+     ],
+     "run": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "lz4-c",
+      "xorg-libxt",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps",
+      "tbb-devel",
+      "numpy",
+      "wslink"
+     ],
+     "run_constrained": [
+      "paraview ==9999999999"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkChartsCore",
+      "vtk.vtkCommonCore",
+      "vtk.vtkFiltersCore",
+      "vtk.vtkFiltersGeneric",
+      "vtk.vtkGeovisCore",
+      "vtk.vtkFiltersHybrid",
+      "vtk.vtkIOCore",
+      "vtk.vtkImagingCore",
+      "vtk.vtkInfovisCore",
+      "vtk.vtkRenderingCore",
+      "vtk.vtkViewsCore",
+      "vtk.vtkRenderingVolume",
+      "vtk.vtkInteractionWidgets",
+      "vtk.vtkWebGLExporter",
+      "vtkmodules",
+      "vtkmodules.vtkChartsCore",
+      "vtkmodules.vtkCommonCore",
+      "vtkmodules.vtkFiltersCore",
+      "vtkmodules.vtkFiltersGeneric",
+      "vtkmodules.vtkGeovisCore",
+      "vtkmodules.vtkFiltersHybrid",
+      "vtkmodules.vtkIOCore",
+      "vtkmodules.vtkImagingCore",
+      "vtkmodules.vtkInfovisCore",
+      "vtkmodules.vtkRenderingCore",
+      "vtkmodules.vtkViewsCore",
+      "vtkmodules.vtkRenderingVolume",
+      "vtkmodules.vtkInteractionWidgets",
+      "vtkmodules.vtkWebCore",
+      "vtkmodules.web",
+      "vtkmodules.web.utils"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-io-ffmpeg"
+     ],
+     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
+     "string": "osmesa_py38h1234567_320"
+    },
+    "name": "vtk-io-ffmpeg",
+    "requirements": {
+     "build": [],
+     "host": [
+      "ffmpeg"
+     ],
+     "run": [
+      "vtk-base",
+      "ffmpeg"
+     ]
+    },
+    "test": {
+     "imports": [
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-base"
+     ],
+     "string": "osmesa_py38h1234567_320"
+    },
+    "name": "vtk",
+    "requirements": {
+     "build": [],
+     "run": [
+      "vtk-base",
+      "vtk-io-ffmpeg"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python test_vtk.py"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "features": [
+      "mesalib"
+     ],
+     "ignore_run_exports_from": [
+      "ffmpeg"
+     ],
+     "run_exports": [
+      "vtk-base"
+     ],
+     "script": "${RECIPE_DIR}/build-base.sh",
+     "string": "osmesa_py39h1234567_320",
+     "track_features": [
+      "vtk-osmesa"
+     ]
+    },
+    "name": "vtk-base",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "fortran_compiler_stub",
+      "sysroot_linux-64 2.17",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "hdf5 * nompi_*",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "tbb-devel",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "libnetcdf * nompi_*",
+      "lz4-c",
+      "xorg-libxt",
+      "libboost-headers",
+      "ffmpeg",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps"
+     ],
+     "run": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "lz4-c",
+      "xorg-libxt",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps",
+      "tbb-devel",
+      "numpy",
+      "wslink"
+     ],
+     "run_constrained": [
+      "paraview ==9999999999"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkChartsCore",
+      "vtk.vtkCommonCore",
+      "vtk.vtkFiltersCore",
+      "vtk.vtkFiltersGeneric",
+      "vtk.vtkGeovisCore",
+      "vtk.vtkFiltersHybrid",
+      "vtk.vtkIOCore",
+      "vtk.vtkImagingCore",
+      "vtk.vtkInfovisCore",
+      "vtk.vtkRenderingCore",
+      "vtk.vtkViewsCore",
+      "vtk.vtkRenderingVolume",
+      "vtk.vtkInteractionWidgets",
+      "vtk.vtkWebGLExporter",
+      "vtkmodules",
+      "vtkmodules.vtkChartsCore",
+      "vtkmodules.vtkCommonCore",
+      "vtkmodules.vtkFiltersCore",
+      "vtkmodules.vtkFiltersGeneric",
+      "vtkmodules.vtkGeovisCore",
+      "vtkmodules.vtkFiltersHybrid",
+      "vtkmodules.vtkIOCore",
+      "vtkmodules.vtkImagingCore",
+      "vtkmodules.vtkInfovisCore",
+      "vtkmodules.vtkRenderingCore",
+      "vtkmodules.vtkViewsCore",
+      "vtkmodules.vtkRenderingVolume",
+      "vtkmodules.vtkInteractionWidgets",
+      "vtkmodules.vtkWebCore",
+      "vtkmodules.web",
+      "vtkmodules.web.utils"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-io-ffmpeg"
+     ],
+     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
+     "string": "osmesa_py39h1234567_320"
+    },
+    "name": "vtk-io-ffmpeg",
+    "requirements": {
+     "build": [],
+     "host": [
+      "ffmpeg"
+     ],
+     "run": [
+      "vtk-base",
+      "ffmpeg"
+     ]
+    },
+    "test": {
+     "imports": [
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-base"
+     ],
+     "string": "osmesa_py39h1234567_320"
     },
     "name": "vtk",
     "requirements": {
@@ -1278,16 +2055,13 @@
       "vtk-base"
      ],
      "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py311h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
+     "string": "qt_py310h1234567_320",
+     "track_features": null
     },
     "name": "vtk-base",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "fortran_compiler_stub",
       "cmake",
       "ninja",
       "cdt_stub"
@@ -1322,18 +2096,21 @@
       "xorg-libx11",
       "xorg-xf86vidmodeproto",
       "libboost-headers",
+      "tk",
       "ffmpeg",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
       "proj",
       "loguru",
       "sqlite",
-      "gl2ps"
+      "gl2ps",
+      "qt-main"
      ],
      "run": [
       "python",
@@ -1350,10 +2127,12 @@
       "libnetcdf",
       "lz4-c",
       "xorg-libxt",
+      "tk",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
@@ -1389,6 +2168,7 @@
       "vtk.vtkRenderingVolume",
       "vtk.vtkInteractionWidgets",
       "vtk.vtkWebGLExporter",
+      "vtk.tk.vtkTkRenderWidget",
       "vtkmodules",
       "vtkmodules.vtkChartsCore",
       "vtkmodules.vtkCommonCore",
@@ -1419,7 +2199,7 @@
       "vtk-io-ffmpeg"
      ],
      "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py311h1234567_320"
+     "string": "qt_py310h1234567_320"
     },
     "name": "vtk-io-ffmpeg",
     "requirements": {
@@ -1447,7 +2227,7 @@
      "run_exports": [
       "vtk-base"
      ],
-     "string": "egl_py311h1234567_320"
+     "string": "qt_py310h1234567_320"
     },
     "name": "vtk",
     "requirements": {
@@ -1481,16 +2261,13 @@
       "vtk-base"
      ],
      "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py312h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
+     "string": "qt_py311h1234567_320",
+     "track_features": null
     },
     "name": "vtk-base",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "fortran_compiler_stub",
       "cmake",
       "ninja",
       "cdt_stub"
@@ -1525,18 +2302,21 @@
       "xorg-libx11",
       "xorg-xf86vidmodeproto",
       "libboost-headers",
+      "tk",
       "ffmpeg",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
       "proj",
       "loguru",
       "sqlite",
-      "gl2ps"
+      "gl2ps",
+      "qt-main"
      ],
      "run": [
       "python",
@@ -1553,10 +2333,12 @@
       "libnetcdf",
       "lz4-c",
       "xorg-libxt",
+      "tk",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
@@ -1592,6 +2374,7 @@
       "vtk.vtkRenderingVolume",
       "vtk.vtkInteractionWidgets",
       "vtk.vtkWebGLExporter",
+      "vtk.tk.vtkTkRenderWidget",
       "vtkmodules",
       "vtkmodules.vtkChartsCore",
       "vtkmodules.vtkCommonCore",
@@ -1622,7 +2405,7 @@
       "vtk-io-ffmpeg"
      ],
      "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py312h1234567_320"
+     "string": "qt_py311h1234567_320"
     },
     "name": "vtk-io-ffmpeg",
     "requirements": {
@@ -1650,7 +2433,7 @@
      "run_exports": [
       "vtk-base"
      ],
-     "string": "egl_py312h1234567_320"
+     "string": "qt_py311h1234567_320"
     },
     "name": "vtk",
     "requirements": {
@@ -1684,16 +2467,13 @@
       "vtk-base"
      ],
      "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py38h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
+     "string": "qt_py312h1234567_320",
+     "track_features": null
     },
     "name": "vtk-base",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "fortran_compiler_stub",
       "cmake",
       "ninja",
       "cdt_stub"
@@ -1728,18 +2508,21 @@
       "xorg-libx11",
       "xorg-xf86vidmodeproto",
       "libboost-headers",
+      "tk",
       "ffmpeg",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
       "proj",
       "loguru",
       "sqlite",
-      "gl2ps"
+      "gl2ps",
+      "qt-main"
      ],
      "run": [
       "python",
@@ -1756,10 +2539,12 @@
       "libnetcdf",
       "lz4-c",
       "xorg-libxt",
+      "tk",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
@@ -1795,6 +2580,7 @@
       "vtk.vtkRenderingVolume",
       "vtk.vtkInteractionWidgets",
       "vtk.vtkWebGLExporter",
+      "vtk.tk.vtkTkRenderWidget",
       "vtkmodules",
       "vtkmodules.vtkChartsCore",
       "vtkmodules.vtkCommonCore",
@@ -1825,7 +2611,7 @@
       "vtk-io-ffmpeg"
      ],
      "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py38h1234567_320"
+     "string": "qt_py312h1234567_320"
     },
     "name": "vtk-io-ffmpeg",
     "requirements": {
@@ -1853,7 +2639,7 @@
      "run_exports": [
       "vtk-base"
      ],
-     "string": "egl_py38h1234567_320"
+     "string": "qt_py312h1234567_320"
     },
     "name": "vtk",
     "requirements": {
@@ -1887,16 +2673,13 @@
       "vtk-base"
      ],
      "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py39h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
+     "string": "qt_py38h1234567_320",
+     "track_features": null
     },
     "name": "vtk-base",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "fortran_compiler_stub",
       "cmake",
       "ninja",
       "cdt_stub"
@@ -1931,18 +2714,21 @@
       "xorg-libx11",
       "xorg-xf86vidmodeproto",
       "libboost-headers",
+      "tk",
       "ffmpeg",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
       "proj",
       "loguru",
       "sqlite",
-      "gl2ps"
+      "gl2ps",
+      "qt-main"
      ],
      "run": [
       "python",
@@ -1959,10 +2745,12 @@
       "libnetcdf",
       "lz4-c",
       "xorg-libxt",
+      "tk",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
@@ -1998,6 +2786,7 @@
       "vtk.vtkRenderingVolume",
       "vtk.vtkInteractionWidgets",
       "vtk.vtkWebGLExporter",
+      "vtk.tk.vtkTkRenderWidget",
       "vtkmodules",
       "vtkmodules.vtkChartsCore",
       "vtkmodules.vtkCommonCore",
@@ -2028,7 +2817,7 @@
       "vtk-io-ffmpeg"
      ],
      "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py39h1234567_320"
+     "string": "qt_py38h1234567_320"
     },
     "name": "vtk-io-ffmpeg",
     "requirements": {
@@ -2056,7 +2845,7 @@
      "run_exports": [
       "vtk-base"
      ],
-     "string": "egl_py39h1234567_320"
+     "string": "qt_py38h1234567_320"
     },
     "name": "vtk",
     "requirements": {
@@ -2090,16 +2879,13 @@
       "vtk-base"
      ],
      "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py310h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
+     "string": "qt_py39h1234567_320",
+     "track_features": null
     },
     "name": "vtk-base",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "fortran_compiler_stub",
       "cmake",
       "ninja",
       "cdt_stub"
@@ -2134,18 +2920,21 @@
       "xorg-libx11",
       "xorg-xf86vidmodeproto",
       "libboost-headers",
+      "tk",
       "ffmpeg",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
       "proj",
       "loguru",
       "sqlite",
-      "gl2ps"
+      "gl2ps",
+      "qt-main"
      ],
      "run": [
       "python",
@@ -2162,10 +2951,12 @@
       "libnetcdf",
       "lz4-c",
       "xorg-libxt",
+      "tk",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
@@ -2201,6 +2992,7 @@
       "vtk.vtkRenderingVolume",
       "vtk.vtkInteractionWidgets",
       "vtk.vtkWebGLExporter",
+      "vtk.tk.vtkTkRenderWidget",
       "vtkmodules",
       "vtkmodules.vtkChartsCore",
       "vtkmodules.vtkCommonCore",
@@ -2231,7 +3023,7 @@
       "vtk-io-ffmpeg"
      ],
      "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py310h1234567_320"
+     "string": "qt_py39h1234567_320"
     },
     "name": "vtk-io-ffmpeg",
     "requirements": {
@@ -2259,819 +3051,7 @@
      "run_exports": [
       "vtk-base"
      ],
-     "string": "egl_py310h1234567_320"
-    },
-    "name": "vtk",
-    "requirements": {
-     "build": [],
-     "run": [
-      "vtk-base",
-      "vtk-io-ffmpeg"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python test_vtk.py"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "features": null,
-     "ignore_run_exports_from": [
-      "ffmpeg"
-     ],
-     "run_exports": [
-      "vtk-base"
-     ],
-     "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py311h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
-    },
-    "name": "vtk-base",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "fortran_compiler_stub",
-      "cmake",
-      "ninja",
-      "cdt_stub"
-     ],
-     "host": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "hdf5 * nompi_*",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "tbb-devel",
-      "libnetcdf",
-      "libnetcdf * nompi_*",
-      "lz4-c",
-      "xorg-libxt",
-      "libxcb",
-      "xorg-libxau",
-      "libuuid",
-      "xorg-libxext",
-      "xorg-libxfixes",
-      "xorg-libxxf86vm",
-      "xorg-libxdamage",
-      "xorg-libsm",
-      "xorg-libice",
-      "xorg-libx11",
-      "xorg-xf86vidmodeproto",
-      "libboost-headers",
-      "ffmpeg",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps"
-     ],
-     "run": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "libnetcdf",
-      "lz4-c",
-      "xorg-libxt",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps",
-      "tbb-devel",
-      "numpy",
-      "wslink"
-     ],
-     "run_constrained": [
-      "paraview ==9999999999"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkChartsCore",
-      "vtk.vtkCommonCore",
-      "vtk.vtkFiltersCore",
-      "vtk.vtkFiltersGeneric",
-      "vtk.vtkGeovisCore",
-      "vtk.vtkFiltersHybrid",
-      "vtk.vtkIOCore",
-      "vtk.vtkImagingCore",
-      "vtk.vtkInfovisCore",
-      "vtk.vtkRenderingCore",
-      "vtk.vtkViewsCore",
-      "vtk.vtkRenderingVolume",
-      "vtk.vtkInteractionWidgets",
-      "vtk.vtkWebGLExporter",
-      "vtkmodules",
-      "vtkmodules.vtkChartsCore",
-      "vtkmodules.vtkCommonCore",
-      "vtkmodules.vtkFiltersCore",
-      "vtkmodules.vtkFiltersGeneric",
-      "vtkmodules.vtkGeovisCore",
-      "vtkmodules.vtkFiltersHybrid",
-      "vtkmodules.vtkIOCore",
-      "vtkmodules.vtkImagingCore",
-      "vtkmodules.vtkInfovisCore",
-      "vtkmodules.vtkRenderingCore",
-      "vtkmodules.vtkViewsCore",
-      "vtkmodules.vtkRenderingVolume",
-      "vtkmodules.vtkInteractionWidgets",
-      "vtkmodules.vtkWebCore",
-      "vtkmodules.web",
-      "vtkmodules.web.utils"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-io-ffmpeg"
-     ],
-     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py311h1234567_320"
-    },
-    "name": "vtk-io-ffmpeg",
-    "requirements": {
-     "build": [],
-     "host": [
-      "ffmpeg"
-     ],
-     "run": [
-      "vtk-base",
-      "ffmpeg"
-     ]
-    },
-    "test": {
-     "imports": [
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-base"
-     ],
-     "string": "egl_py311h1234567_320"
-    },
-    "name": "vtk",
-    "requirements": {
-     "build": [],
-     "run": [
-      "vtk-base",
-      "vtk-io-ffmpeg"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python test_vtk.py"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "features": null,
-     "ignore_run_exports_from": [
-      "ffmpeg"
-     ],
-     "run_exports": [
-      "vtk-base"
-     ],
-     "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py312h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
-    },
-    "name": "vtk-base",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "fortran_compiler_stub",
-      "cmake",
-      "ninja",
-      "cdt_stub"
-     ],
-     "host": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "hdf5 * nompi_*",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "tbb-devel",
-      "libnetcdf",
-      "libnetcdf * nompi_*",
-      "lz4-c",
-      "xorg-libxt",
-      "libxcb",
-      "xorg-libxau",
-      "libuuid",
-      "xorg-libxext",
-      "xorg-libxfixes",
-      "xorg-libxxf86vm",
-      "xorg-libxdamage",
-      "xorg-libsm",
-      "xorg-libice",
-      "xorg-libx11",
-      "xorg-xf86vidmodeproto",
-      "libboost-headers",
-      "ffmpeg",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps"
-     ],
-     "run": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "libnetcdf",
-      "lz4-c",
-      "xorg-libxt",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps",
-      "tbb-devel",
-      "numpy",
-      "wslink"
-     ],
-     "run_constrained": [
-      "paraview ==9999999999"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkChartsCore",
-      "vtk.vtkCommonCore",
-      "vtk.vtkFiltersCore",
-      "vtk.vtkFiltersGeneric",
-      "vtk.vtkGeovisCore",
-      "vtk.vtkFiltersHybrid",
-      "vtk.vtkIOCore",
-      "vtk.vtkImagingCore",
-      "vtk.vtkInfovisCore",
-      "vtk.vtkRenderingCore",
-      "vtk.vtkViewsCore",
-      "vtk.vtkRenderingVolume",
-      "vtk.vtkInteractionWidgets",
-      "vtk.vtkWebGLExporter",
-      "vtkmodules",
-      "vtkmodules.vtkChartsCore",
-      "vtkmodules.vtkCommonCore",
-      "vtkmodules.vtkFiltersCore",
-      "vtkmodules.vtkFiltersGeneric",
-      "vtkmodules.vtkGeovisCore",
-      "vtkmodules.vtkFiltersHybrid",
-      "vtkmodules.vtkIOCore",
-      "vtkmodules.vtkImagingCore",
-      "vtkmodules.vtkInfovisCore",
-      "vtkmodules.vtkRenderingCore",
-      "vtkmodules.vtkViewsCore",
-      "vtkmodules.vtkRenderingVolume",
-      "vtkmodules.vtkInteractionWidgets",
-      "vtkmodules.vtkWebCore",
-      "vtkmodules.web",
-      "vtkmodules.web.utils"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-io-ffmpeg"
-     ],
-     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py312h1234567_320"
-    },
-    "name": "vtk-io-ffmpeg",
-    "requirements": {
-     "build": [],
-     "host": [
-      "ffmpeg"
-     ],
-     "run": [
-      "vtk-base",
-      "ffmpeg"
-     ]
-    },
-    "test": {
-     "imports": [
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-base"
-     ],
-     "string": "egl_py312h1234567_320"
-    },
-    "name": "vtk",
-    "requirements": {
-     "build": [],
-     "run": [
-      "vtk-base",
-      "vtk-io-ffmpeg"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python test_vtk.py"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "features": null,
-     "ignore_run_exports_from": [
-      "ffmpeg"
-     ],
-     "run_exports": [
-      "vtk-base"
-     ],
-     "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py38h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
-    },
-    "name": "vtk-base",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "fortran_compiler_stub",
-      "cmake",
-      "ninja",
-      "cdt_stub"
-     ],
-     "host": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "hdf5 * nompi_*",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "tbb-devel",
-      "libnetcdf",
-      "libnetcdf * nompi_*",
-      "lz4-c",
-      "xorg-libxt",
-      "libxcb",
-      "xorg-libxau",
-      "libuuid",
-      "xorg-libxext",
-      "xorg-libxfixes",
-      "xorg-libxxf86vm",
-      "xorg-libxdamage",
-      "xorg-libsm",
-      "xorg-libice",
-      "xorg-libx11",
-      "xorg-xf86vidmodeproto",
-      "libboost-headers",
-      "ffmpeg",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps"
-     ],
-     "run": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "libnetcdf",
-      "lz4-c",
-      "xorg-libxt",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps",
-      "tbb-devel",
-      "numpy",
-      "wslink"
-     ],
-     "run_constrained": [
-      "paraview ==9999999999"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkChartsCore",
-      "vtk.vtkCommonCore",
-      "vtk.vtkFiltersCore",
-      "vtk.vtkFiltersGeneric",
-      "vtk.vtkGeovisCore",
-      "vtk.vtkFiltersHybrid",
-      "vtk.vtkIOCore",
-      "vtk.vtkImagingCore",
-      "vtk.vtkInfovisCore",
-      "vtk.vtkRenderingCore",
-      "vtk.vtkViewsCore",
-      "vtk.vtkRenderingVolume",
-      "vtk.vtkInteractionWidgets",
-      "vtk.vtkWebGLExporter",
-      "vtkmodules",
-      "vtkmodules.vtkChartsCore",
-      "vtkmodules.vtkCommonCore",
-      "vtkmodules.vtkFiltersCore",
-      "vtkmodules.vtkFiltersGeneric",
-      "vtkmodules.vtkGeovisCore",
-      "vtkmodules.vtkFiltersHybrid",
-      "vtkmodules.vtkIOCore",
-      "vtkmodules.vtkImagingCore",
-      "vtkmodules.vtkInfovisCore",
-      "vtkmodules.vtkRenderingCore",
-      "vtkmodules.vtkViewsCore",
-      "vtkmodules.vtkRenderingVolume",
-      "vtkmodules.vtkInteractionWidgets",
-      "vtkmodules.vtkWebCore",
-      "vtkmodules.web",
-      "vtkmodules.web.utils"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-io-ffmpeg"
-     ],
-     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py38h1234567_320"
-    },
-    "name": "vtk-io-ffmpeg",
-    "requirements": {
-     "build": [],
-     "host": [
-      "ffmpeg"
-     ],
-     "run": [
-      "vtk-base",
-      "ffmpeg"
-     ]
-    },
-    "test": {
-     "imports": [
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-base"
-     ],
-     "string": "egl_py38h1234567_320"
-    },
-    "name": "vtk",
-    "requirements": {
-     "build": [],
-     "run": [
-      "vtk-base",
-      "vtk-io-ffmpeg"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python test_vtk.py"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "features": null,
-     "ignore_run_exports_from": [
-      "ffmpeg"
-     ],
-     "run_exports": [
-      "vtk-base"
-     ],
-     "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py39h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
-    },
-    "name": "vtk-base",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "fortran_compiler_stub",
-      "cmake",
-      "ninja",
-      "cdt_stub"
-     ],
-     "host": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "hdf5 * nompi_*",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "tbb-devel",
-      "libnetcdf",
-      "libnetcdf * nompi_*",
-      "lz4-c",
-      "xorg-libxt",
-      "libxcb",
-      "xorg-libxau",
-      "libuuid",
-      "xorg-libxext",
-      "xorg-libxfixes",
-      "xorg-libxxf86vm",
-      "xorg-libxdamage",
-      "xorg-libsm",
-      "xorg-libice",
-      "xorg-libx11",
-      "xorg-xf86vidmodeproto",
-      "libboost-headers",
-      "ffmpeg",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps"
-     ],
-     "run": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "libnetcdf",
-      "lz4-c",
-      "xorg-libxt",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps",
-      "tbb-devel",
-      "numpy",
-      "wslink"
-     ],
-     "run_constrained": [
-      "paraview ==9999999999"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkChartsCore",
-      "vtk.vtkCommonCore",
-      "vtk.vtkFiltersCore",
-      "vtk.vtkFiltersGeneric",
-      "vtk.vtkGeovisCore",
-      "vtk.vtkFiltersHybrid",
-      "vtk.vtkIOCore",
-      "vtk.vtkImagingCore",
-      "vtk.vtkInfovisCore",
-      "vtk.vtkRenderingCore",
-      "vtk.vtkViewsCore",
-      "vtk.vtkRenderingVolume",
-      "vtk.vtkInteractionWidgets",
-      "vtk.vtkWebGLExporter",
-      "vtkmodules",
-      "vtkmodules.vtkChartsCore",
-      "vtkmodules.vtkCommonCore",
-      "vtkmodules.vtkFiltersCore",
-      "vtkmodules.vtkFiltersGeneric",
-      "vtkmodules.vtkGeovisCore",
-      "vtkmodules.vtkFiltersHybrid",
-      "vtkmodules.vtkIOCore",
-      "vtkmodules.vtkImagingCore",
-      "vtkmodules.vtkInfovisCore",
-      "vtkmodules.vtkRenderingCore",
-      "vtkmodules.vtkViewsCore",
-      "vtkmodules.vtkRenderingVolume",
-      "vtkmodules.vtkInteractionWidgets",
-      "vtkmodules.vtkWebCore",
-      "vtkmodules.web",
-      "vtkmodules.web.utils"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-io-ffmpeg"
-     ],
-     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py39h1234567_320"
-    },
-    "name": "vtk-io-ffmpeg",
-    "requirements": {
-     "build": [],
-     "host": [
-      "ffmpeg"
-     ],
-     "run": [
-      "vtk-base",
-      "ffmpeg"
-     ]
-    },
-    "test": {
-     "imports": [
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-base"
-     ],
-     "string": "egl_py39h1234567_320"
+     "string": "qt_py39h1234567_320"
     },
     "name": "vtk",
     "requirements": {
@@ -3116,7 +3096,8 @@
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
-    "ninja"
+    "ninja",
+    "sysroot_linux-64"
    ]
   },
   "host": {
@@ -3128,6 +3109,7 @@
     "ffmpeg",
     "freetype",
     "gl2ps",
+    "glew",
     "hdf5",
     "jsoncpp",
     "libboost-headers",
@@ -3142,13 +3124,16 @@
     "libxml2",
     "loguru",
     "lz4-c",
+    "mesalib",
     "nlohmann_json",
     "proj",
     "pugixml",
     "python",
+    "qt-main",
     "sqlite",
     "tbb",
     "tbb-devel",
+    "tk",
     "utfcpp",
     "xorg-libice",
     "xorg-libsm",
@@ -3172,6 +3157,7 @@
     "ffmpeg",
     "freetype",
     "gl2ps",
+    "glew",
     "hdf5",
     "jsoncpp",
     "libjpeg-turbo",
@@ -3183,6 +3169,7 @@
     "libxml2",
     "loguru",
     "lz4-c",
+    "mesalib",
     "nlohmann_json",
     "numpy",
     "proj",
@@ -3191,6 +3178,7 @@
     "sqlite",
     "tbb",
     "tbb-devel",
+    "tk",
     "utfcpp",
     "vtk-base",
     "vtk-io-ffmpeg",
@@ -6603,7 +6591,9 @@
    },
    {
     "build": {
-     "features": null,
+     "features": [
+      "mesalib"
+     ],
      "ignore_run_exports_from": [
       "ffmpeg"
      ],
@@ -6611,9 +6601,9 @@
       "vtk-base"
      ],
      "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py310h1234567_320",
+     "string": "osmesa_py310h1234567_320",
      "track_features": [
-      "vtk-egl"
+      "vtk-osmesa"
      ]
     },
     "name": "vtk-base",
@@ -6621,9 +6611,9 @@
      "build": [
       "cxx_compiler_stub",
       "fortran_compiler_stub",
+      "sysroot_linux-64 2.17",
       "cmake",
-      "ninja",
-      "cdt_stub"
+      "ninja"
      ],
      "host": [
       "python",
@@ -6639,21 +6629,11 @@
       "expat",
       "tbb",
       "tbb-devel",
+      "mesalib >=21.0",
       "libnetcdf",
       "libnetcdf * nompi_*",
       "lz4-c",
       "xorg-libxt",
-      "libxcb",
-      "xorg-libxau",
-      "libuuid",
-      "xorg-libxext",
-      "xorg-libxfixes",
-      "xorg-libxxf86vm",
-      "xorg-libxdamage",
-      "xorg-libsm",
-      "xorg-libice",
-      "xorg-libx11",
-      "xorg-xf86vidmodeproto",
       "libboost-headers",
       "ffmpeg",
       "utfcpp",
@@ -6680,6 +6660,7 @@
       "jsoncpp",
       "expat",
       "tbb",
+      "mesalib >=21.0",
       "libnetcdf",
       "lz4-c",
       "xorg-libxt",
@@ -6752,7 +6733,7 @@
       "vtk-io-ffmpeg"
      ],
      "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py310h1234567_320"
+     "string": "osmesa_py310h1234567_320"
     },
     "name": "vtk-io-ffmpeg",
     "requirements": {
@@ -6780,7 +6761,791 @@
      "run_exports": [
       "vtk-base"
      ],
-     "string": "egl_py310h1234567_320"
+     "string": "osmesa_py310h1234567_320"
+    },
+    "name": "vtk",
+    "requirements": {
+     "build": [],
+     "run": [
+      "vtk-base",
+      "vtk-io-ffmpeg"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python test_vtk.py"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "features": [
+      "mesalib"
+     ],
+     "ignore_run_exports_from": [
+      "ffmpeg"
+     ],
+     "run_exports": [
+      "vtk-base"
+     ],
+     "script": "${RECIPE_DIR}/build-base.sh",
+     "string": "osmesa_py311h1234567_320",
+     "track_features": [
+      "vtk-osmesa"
+     ]
+    },
+    "name": "vtk-base",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "fortran_compiler_stub",
+      "sysroot_linux-64 2.17",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "hdf5 * nompi_*",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "tbb-devel",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "libnetcdf * nompi_*",
+      "lz4-c",
+      "xorg-libxt",
+      "libboost-headers",
+      "ffmpeg",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps"
+     ],
+     "run": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "lz4-c",
+      "xorg-libxt",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps",
+      "tbb-devel",
+      "numpy",
+      "wslink"
+     ],
+     "run_constrained": [
+      "paraview ==9999999999"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkChartsCore",
+      "vtk.vtkCommonCore",
+      "vtk.vtkFiltersCore",
+      "vtk.vtkFiltersGeneric",
+      "vtk.vtkGeovisCore",
+      "vtk.vtkFiltersHybrid",
+      "vtk.vtkIOCore",
+      "vtk.vtkImagingCore",
+      "vtk.vtkInfovisCore",
+      "vtk.vtkRenderingCore",
+      "vtk.vtkViewsCore",
+      "vtk.vtkRenderingVolume",
+      "vtk.vtkInteractionWidgets",
+      "vtk.vtkWebGLExporter",
+      "vtkmodules",
+      "vtkmodules.vtkChartsCore",
+      "vtkmodules.vtkCommonCore",
+      "vtkmodules.vtkFiltersCore",
+      "vtkmodules.vtkFiltersGeneric",
+      "vtkmodules.vtkGeovisCore",
+      "vtkmodules.vtkFiltersHybrid",
+      "vtkmodules.vtkIOCore",
+      "vtkmodules.vtkImagingCore",
+      "vtkmodules.vtkInfovisCore",
+      "vtkmodules.vtkRenderingCore",
+      "vtkmodules.vtkViewsCore",
+      "vtkmodules.vtkRenderingVolume",
+      "vtkmodules.vtkInteractionWidgets",
+      "vtkmodules.vtkWebCore",
+      "vtkmodules.web",
+      "vtkmodules.web.utils"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-io-ffmpeg"
+     ],
+     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
+     "string": "osmesa_py311h1234567_320"
+    },
+    "name": "vtk-io-ffmpeg",
+    "requirements": {
+     "build": [],
+     "host": [
+      "ffmpeg"
+     ],
+     "run": [
+      "vtk-base",
+      "ffmpeg"
+     ]
+    },
+    "test": {
+     "imports": [
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-base"
+     ],
+     "string": "osmesa_py311h1234567_320"
+    },
+    "name": "vtk",
+    "requirements": {
+     "build": [],
+     "run": [
+      "vtk-base",
+      "vtk-io-ffmpeg"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python test_vtk.py"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "features": [
+      "mesalib"
+     ],
+     "ignore_run_exports_from": [
+      "ffmpeg"
+     ],
+     "run_exports": [
+      "vtk-base"
+     ],
+     "script": "${RECIPE_DIR}/build-base.sh",
+     "string": "osmesa_py312h1234567_320",
+     "track_features": [
+      "vtk-osmesa"
+     ]
+    },
+    "name": "vtk-base",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "fortran_compiler_stub",
+      "sysroot_linux-64 2.17",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "hdf5 * nompi_*",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "tbb-devel",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "libnetcdf * nompi_*",
+      "lz4-c",
+      "xorg-libxt",
+      "libboost-headers",
+      "ffmpeg",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps"
+     ],
+     "run": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "lz4-c",
+      "xorg-libxt",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps",
+      "tbb-devel",
+      "numpy",
+      "wslink"
+     ],
+     "run_constrained": [
+      "paraview ==9999999999"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkChartsCore",
+      "vtk.vtkCommonCore",
+      "vtk.vtkFiltersCore",
+      "vtk.vtkFiltersGeneric",
+      "vtk.vtkGeovisCore",
+      "vtk.vtkFiltersHybrid",
+      "vtk.vtkIOCore",
+      "vtk.vtkImagingCore",
+      "vtk.vtkInfovisCore",
+      "vtk.vtkRenderingCore",
+      "vtk.vtkViewsCore",
+      "vtk.vtkRenderingVolume",
+      "vtk.vtkInteractionWidgets",
+      "vtk.vtkWebGLExporter",
+      "vtkmodules",
+      "vtkmodules.vtkChartsCore",
+      "vtkmodules.vtkCommonCore",
+      "vtkmodules.vtkFiltersCore",
+      "vtkmodules.vtkFiltersGeneric",
+      "vtkmodules.vtkGeovisCore",
+      "vtkmodules.vtkFiltersHybrid",
+      "vtkmodules.vtkIOCore",
+      "vtkmodules.vtkImagingCore",
+      "vtkmodules.vtkInfovisCore",
+      "vtkmodules.vtkRenderingCore",
+      "vtkmodules.vtkViewsCore",
+      "vtkmodules.vtkRenderingVolume",
+      "vtkmodules.vtkInteractionWidgets",
+      "vtkmodules.vtkWebCore",
+      "vtkmodules.web",
+      "vtkmodules.web.utils"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-io-ffmpeg"
+     ],
+     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
+     "string": "osmesa_py312h1234567_320"
+    },
+    "name": "vtk-io-ffmpeg",
+    "requirements": {
+     "build": [],
+     "host": [
+      "ffmpeg"
+     ],
+     "run": [
+      "vtk-base",
+      "ffmpeg"
+     ]
+    },
+    "test": {
+     "imports": [
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-base"
+     ],
+     "string": "osmesa_py312h1234567_320"
+    },
+    "name": "vtk",
+    "requirements": {
+     "build": [],
+     "run": [
+      "vtk-base",
+      "vtk-io-ffmpeg"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python test_vtk.py"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "features": [
+      "mesalib"
+     ],
+     "ignore_run_exports_from": [
+      "ffmpeg"
+     ],
+     "run_exports": [
+      "vtk-base"
+     ],
+     "script": "${RECIPE_DIR}/build-base.sh",
+     "string": "osmesa_py38h1234567_320",
+     "track_features": [
+      "vtk-osmesa"
+     ]
+    },
+    "name": "vtk-base",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "fortran_compiler_stub",
+      "sysroot_linux-64 2.17",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "hdf5 * nompi_*",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "tbb-devel",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "libnetcdf * nompi_*",
+      "lz4-c",
+      "xorg-libxt",
+      "libboost-headers",
+      "ffmpeg",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps"
+     ],
+     "run": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "lz4-c",
+      "xorg-libxt",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps",
+      "tbb-devel",
+      "numpy",
+      "wslink"
+     ],
+     "run_constrained": [
+      "paraview ==9999999999"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkChartsCore",
+      "vtk.vtkCommonCore",
+      "vtk.vtkFiltersCore",
+      "vtk.vtkFiltersGeneric",
+      "vtk.vtkGeovisCore",
+      "vtk.vtkFiltersHybrid",
+      "vtk.vtkIOCore",
+      "vtk.vtkImagingCore",
+      "vtk.vtkInfovisCore",
+      "vtk.vtkRenderingCore",
+      "vtk.vtkViewsCore",
+      "vtk.vtkRenderingVolume",
+      "vtk.vtkInteractionWidgets",
+      "vtk.vtkWebGLExporter",
+      "vtkmodules",
+      "vtkmodules.vtkChartsCore",
+      "vtkmodules.vtkCommonCore",
+      "vtkmodules.vtkFiltersCore",
+      "vtkmodules.vtkFiltersGeneric",
+      "vtkmodules.vtkGeovisCore",
+      "vtkmodules.vtkFiltersHybrid",
+      "vtkmodules.vtkIOCore",
+      "vtkmodules.vtkImagingCore",
+      "vtkmodules.vtkInfovisCore",
+      "vtkmodules.vtkRenderingCore",
+      "vtkmodules.vtkViewsCore",
+      "vtkmodules.vtkRenderingVolume",
+      "vtkmodules.vtkInteractionWidgets",
+      "vtkmodules.vtkWebCore",
+      "vtkmodules.web",
+      "vtkmodules.web.utils"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-io-ffmpeg"
+     ],
+     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
+     "string": "osmesa_py38h1234567_320"
+    },
+    "name": "vtk-io-ffmpeg",
+    "requirements": {
+     "build": [],
+     "host": [
+      "ffmpeg"
+     ],
+     "run": [
+      "vtk-base",
+      "ffmpeg"
+     ]
+    },
+    "test": {
+     "imports": [
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-base"
+     ],
+     "string": "osmesa_py38h1234567_320"
+    },
+    "name": "vtk",
+    "requirements": {
+     "build": [],
+     "run": [
+      "vtk-base",
+      "vtk-io-ffmpeg"
+     ]
+    },
+    "test": {
+     "commands": [
+      "python test_vtk.py"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "features": [
+      "mesalib"
+     ],
+     "ignore_run_exports_from": [
+      "ffmpeg"
+     ],
+     "run_exports": [
+      "vtk-base"
+     ],
+     "script": "${RECIPE_DIR}/build-base.sh",
+     "string": "osmesa_py39h1234567_320",
+     "track_features": [
+      "vtk-osmesa"
+     ]
+    },
+    "name": "vtk-base",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "fortran_compiler_stub",
+      "sysroot_linux-64 2.17",
+      "cmake",
+      "ninja"
+     ],
+     "host": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "hdf5 * nompi_*",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "tbb-devel",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "libnetcdf * nompi_*",
+      "lz4-c",
+      "xorg-libxt",
+      "libboost-headers",
+      "ffmpeg",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps"
+     ],
+     "run": [
+      "python",
+      "zlib",
+      "freetype",
+      "hdf5",
+      "libxml2",
+      "libpng",
+      "libjpeg-turbo",
+      "libtiff",
+      "jsoncpp",
+      "expat",
+      "tbb",
+      "mesalib >=21.0",
+      "libnetcdf",
+      "lz4-c",
+      "xorg-libxt",
+      "utfcpp",
+      "eigen",
+      "double-conversion",
+      "pugixml",
+      "libogg",
+      "libtheora",
+      "nlohmann_json",
+      "proj",
+      "loguru",
+      "sqlite",
+      "gl2ps",
+      "tbb-devel",
+      "numpy",
+      "wslink"
+     ],
+     "run_constrained": [
+      "paraview ==9999999999"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check"
+     ],
+     "imports": [
+      "vtk",
+      "vtk.vtkChartsCore",
+      "vtk.vtkCommonCore",
+      "vtk.vtkFiltersCore",
+      "vtk.vtkFiltersGeneric",
+      "vtk.vtkGeovisCore",
+      "vtk.vtkFiltersHybrid",
+      "vtk.vtkIOCore",
+      "vtk.vtkImagingCore",
+      "vtk.vtkInfovisCore",
+      "vtk.vtkRenderingCore",
+      "vtk.vtkViewsCore",
+      "vtk.vtkRenderingVolume",
+      "vtk.vtkInteractionWidgets",
+      "vtk.vtkWebGLExporter",
+      "vtkmodules",
+      "vtkmodules.vtkChartsCore",
+      "vtkmodules.vtkCommonCore",
+      "vtkmodules.vtkFiltersCore",
+      "vtkmodules.vtkFiltersGeneric",
+      "vtkmodules.vtkGeovisCore",
+      "vtkmodules.vtkFiltersHybrid",
+      "vtkmodules.vtkIOCore",
+      "vtkmodules.vtkImagingCore",
+      "vtkmodules.vtkInfovisCore",
+      "vtkmodules.vtkRenderingCore",
+      "vtkmodules.vtkViewsCore",
+      "vtkmodules.vtkRenderingVolume",
+      "vtkmodules.vtkInteractionWidgets",
+      "vtkmodules.vtkWebCore",
+      "vtkmodules.web",
+      "vtkmodules.web.utils"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-io-ffmpeg"
+     ],
+     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
+     "string": "osmesa_py39h1234567_320"
+    },
+    "name": "vtk-io-ffmpeg",
+    "requirements": {
+     "build": [],
+     "host": [
+      "ffmpeg"
+     ],
+     "run": [
+      "vtk-base",
+      "ffmpeg"
+     ]
+    },
+    "test": {
+     "imports": [
+      "vtk.vtkIOFFMPEG"
+     ],
+     "requires": [
+      "pip",
+      "setuptools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": [
+      "vtk-base"
+     ],
+     "string": "osmesa_py39h1234567_320"
     },
     "name": "vtk",
     "requirements": {
@@ -6814,16 +7579,13 @@
       "vtk-base"
      ],
      "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py311h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
+     "string": "qt_py310h1234567_320",
+     "track_features": null
     },
     "name": "vtk-base",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "fortran_compiler_stub",
       "cmake",
       "ninja",
       "cdt_stub"
@@ -6858,18 +7620,21 @@
       "xorg-libx11",
       "xorg-xf86vidmodeproto",
       "libboost-headers",
+      "tk",
       "ffmpeg",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
       "proj",
       "loguru",
       "sqlite",
-      "gl2ps"
+      "gl2ps",
+      "qt-main"
      ],
      "run": [
       "python",
@@ -6886,10 +7651,12 @@
       "libnetcdf",
       "lz4-c",
       "xorg-libxt",
+      "tk",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
@@ -6925,6 +7692,7 @@
       "vtk.vtkRenderingVolume",
       "vtk.vtkInteractionWidgets",
       "vtk.vtkWebGLExporter",
+      "vtk.tk.vtkTkRenderWidget",
       "vtkmodules",
       "vtkmodules.vtkChartsCore",
       "vtkmodules.vtkCommonCore",
@@ -6955,7 +7723,7 @@
       "vtk-io-ffmpeg"
      ],
      "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py311h1234567_320"
+     "string": "qt_py310h1234567_320"
     },
     "name": "vtk-io-ffmpeg",
     "requirements": {
@@ -6983,7 +7751,7 @@
      "run_exports": [
       "vtk-base"
      ],
-     "string": "egl_py311h1234567_320"
+     "string": "qt_py310h1234567_320"
     },
     "name": "vtk",
     "requirements": {
@@ -7017,16 +7785,13 @@
       "vtk-base"
      ],
      "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py312h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
+     "string": "qt_py311h1234567_320",
+     "track_features": null
     },
     "name": "vtk-base",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "fortran_compiler_stub",
       "cmake",
       "ninja",
       "cdt_stub"
@@ -7061,18 +7826,21 @@
       "xorg-libx11",
       "xorg-xf86vidmodeproto",
       "libboost-headers",
+      "tk",
       "ffmpeg",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
       "proj",
       "loguru",
       "sqlite",
-      "gl2ps"
+      "gl2ps",
+      "qt-main"
      ],
      "run": [
       "python",
@@ -7089,10 +7857,12 @@
       "libnetcdf",
       "lz4-c",
       "xorg-libxt",
+      "tk",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
@@ -7128,6 +7898,7 @@
       "vtk.vtkRenderingVolume",
       "vtk.vtkInteractionWidgets",
       "vtk.vtkWebGLExporter",
+      "vtk.tk.vtkTkRenderWidget",
       "vtkmodules",
       "vtkmodules.vtkChartsCore",
       "vtkmodules.vtkCommonCore",
@@ -7158,7 +7929,7 @@
       "vtk-io-ffmpeg"
      ],
      "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py312h1234567_320"
+     "string": "qt_py311h1234567_320"
     },
     "name": "vtk-io-ffmpeg",
     "requirements": {
@@ -7186,7 +7957,7 @@
      "run_exports": [
       "vtk-base"
      ],
-     "string": "egl_py312h1234567_320"
+     "string": "qt_py311h1234567_320"
     },
     "name": "vtk",
     "requirements": {
@@ -7220,16 +7991,13 @@
       "vtk-base"
      ],
      "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py38h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
+     "string": "qt_py312h1234567_320",
+     "track_features": null
     },
     "name": "vtk-base",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "fortran_compiler_stub",
       "cmake",
       "ninja",
       "cdt_stub"
@@ -7264,18 +8032,21 @@
       "xorg-libx11",
       "xorg-xf86vidmodeproto",
       "libboost-headers",
+      "tk",
       "ffmpeg",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
       "proj",
       "loguru",
       "sqlite",
-      "gl2ps"
+      "gl2ps",
+      "qt-main"
      ],
      "run": [
       "python",
@@ -7292,10 +8063,12 @@
       "libnetcdf",
       "lz4-c",
       "xorg-libxt",
+      "tk",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
@@ -7331,6 +8104,7 @@
       "vtk.vtkRenderingVolume",
       "vtk.vtkInteractionWidgets",
       "vtk.vtkWebGLExporter",
+      "vtk.tk.vtkTkRenderWidget",
       "vtkmodules",
       "vtkmodules.vtkChartsCore",
       "vtkmodules.vtkCommonCore",
@@ -7361,7 +8135,7 @@
       "vtk-io-ffmpeg"
      ],
      "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py38h1234567_320"
+     "string": "qt_py312h1234567_320"
     },
     "name": "vtk-io-ffmpeg",
     "requirements": {
@@ -7389,7 +8163,7 @@
      "run_exports": [
       "vtk-base"
      ],
-     "string": "egl_py38h1234567_320"
+     "string": "qt_py312h1234567_320"
     },
     "name": "vtk",
     "requirements": {
@@ -7423,16 +8197,13 @@
       "vtk-base"
      ],
      "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py39h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
+     "string": "qt_py38h1234567_320",
+     "track_features": null
     },
     "name": "vtk-base",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "fortran_compiler_stub",
       "cmake",
       "ninja",
       "cdt_stub"
@@ -7467,18 +8238,21 @@
       "xorg-libx11",
       "xorg-xf86vidmodeproto",
       "libboost-headers",
+      "tk",
       "ffmpeg",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
       "proj",
       "loguru",
       "sqlite",
-      "gl2ps"
+      "gl2ps",
+      "qt-main"
      ],
      "run": [
       "python",
@@ -7495,10 +8269,12 @@
       "libnetcdf",
       "lz4-c",
       "xorg-libxt",
+      "tk",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
@@ -7534,6 +8310,7 @@
       "vtk.vtkRenderingVolume",
       "vtk.vtkInteractionWidgets",
       "vtk.vtkWebGLExporter",
+      "vtk.tk.vtkTkRenderWidget",
       "vtkmodules",
       "vtkmodules.vtkChartsCore",
       "vtkmodules.vtkCommonCore",
@@ -7564,7 +8341,7 @@
       "vtk-io-ffmpeg"
      ],
      "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py39h1234567_320"
+     "string": "qt_py38h1234567_320"
     },
     "name": "vtk-io-ffmpeg",
     "requirements": {
@@ -7592,7 +8369,7 @@
      "run_exports": [
       "vtk-base"
      ],
-     "string": "egl_py39h1234567_320"
+     "string": "qt_py38h1234567_320"
     },
     "name": "vtk",
     "requirements": {
@@ -7626,16 +8403,13 @@
       "vtk-base"
      ],
      "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py310h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
+     "string": "qt_py39h1234567_320",
+     "track_features": null
     },
     "name": "vtk-base",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "fortran_compiler_stub",
       "cmake",
       "ninja",
       "cdt_stub"
@@ -7670,18 +8444,21 @@
       "xorg-libx11",
       "xorg-xf86vidmodeproto",
       "libboost-headers",
+      "tk",
       "ffmpeg",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
       "proj",
       "loguru",
       "sqlite",
-      "gl2ps"
+      "gl2ps",
+      "qt-main"
      ],
      "run": [
       "python",
@@ -7698,10 +8475,12 @@
       "libnetcdf",
       "lz4-c",
       "xorg-libxt",
+      "tk",
       "utfcpp",
       "eigen",
       "double-conversion",
       "pugixml",
+      "glew",
       "libogg",
       "libtheora",
       "nlohmann_json",
@@ -7737,6 +8516,7 @@
       "vtk.vtkRenderingVolume",
       "vtk.vtkInteractionWidgets",
       "vtk.vtkWebGLExporter",
+      "vtk.tk.vtkTkRenderWidget",
       "vtkmodules",
       "vtkmodules.vtkChartsCore",
       "vtkmodules.vtkCommonCore",
@@ -7767,7 +8547,7 @@
       "vtk-io-ffmpeg"
      ],
      "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py310h1234567_320"
+     "string": "qt_py39h1234567_320"
     },
     "name": "vtk-io-ffmpeg",
     "requirements": {
@@ -7795,819 +8575,7 @@
      "run_exports": [
       "vtk-base"
      ],
-     "string": "egl_py310h1234567_320"
-    },
-    "name": "vtk",
-    "requirements": {
-     "build": [],
-     "run": [
-      "vtk-base",
-      "vtk-io-ffmpeg"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python test_vtk.py"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "features": null,
-     "ignore_run_exports_from": [
-      "ffmpeg"
-     ],
-     "run_exports": [
-      "vtk-base"
-     ],
-     "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py311h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
-    },
-    "name": "vtk-base",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "fortran_compiler_stub",
-      "cmake",
-      "ninja",
-      "cdt_stub"
-     ],
-     "host": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "hdf5 * nompi_*",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "tbb-devel",
-      "libnetcdf",
-      "libnetcdf * nompi_*",
-      "lz4-c",
-      "xorg-libxt",
-      "libxcb",
-      "xorg-libxau",
-      "libuuid",
-      "xorg-libxext",
-      "xorg-libxfixes",
-      "xorg-libxxf86vm",
-      "xorg-libxdamage",
-      "xorg-libsm",
-      "xorg-libice",
-      "xorg-libx11",
-      "xorg-xf86vidmodeproto",
-      "libboost-headers",
-      "ffmpeg",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps"
-     ],
-     "run": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "libnetcdf",
-      "lz4-c",
-      "xorg-libxt",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps",
-      "tbb-devel",
-      "numpy",
-      "wslink"
-     ],
-     "run_constrained": [
-      "paraview ==9999999999"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkChartsCore",
-      "vtk.vtkCommonCore",
-      "vtk.vtkFiltersCore",
-      "vtk.vtkFiltersGeneric",
-      "vtk.vtkGeovisCore",
-      "vtk.vtkFiltersHybrid",
-      "vtk.vtkIOCore",
-      "vtk.vtkImagingCore",
-      "vtk.vtkInfovisCore",
-      "vtk.vtkRenderingCore",
-      "vtk.vtkViewsCore",
-      "vtk.vtkRenderingVolume",
-      "vtk.vtkInteractionWidgets",
-      "vtk.vtkWebGLExporter",
-      "vtkmodules",
-      "vtkmodules.vtkChartsCore",
-      "vtkmodules.vtkCommonCore",
-      "vtkmodules.vtkFiltersCore",
-      "vtkmodules.vtkFiltersGeneric",
-      "vtkmodules.vtkGeovisCore",
-      "vtkmodules.vtkFiltersHybrid",
-      "vtkmodules.vtkIOCore",
-      "vtkmodules.vtkImagingCore",
-      "vtkmodules.vtkInfovisCore",
-      "vtkmodules.vtkRenderingCore",
-      "vtkmodules.vtkViewsCore",
-      "vtkmodules.vtkRenderingVolume",
-      "vtkmodules.vtkInteractionWidgets",
-      "vtkmodules.vtkWebCore",
-      "vtkmodules.web",
-      "vtkmodules.web.utils"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-io-ffmpeg"
-     ],
-     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py311h1234567_320"
-    },
-    "name": "vtk-io-ffmpeg",
-    "requirements": {
-     "build": [],
-     "host": [
-      "ffmpeg"
-     ],
-     "run": [
-      "vtk-base",
-      "ffmpeg"
-     ]
-    },
-    "test": {
-     "imports": [
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-base"
-     ],
-     "string": "egl_py311h1234567_320"
-    },
-    "name": "vtk",
-    "requirements": {
-     "build": [],
-     "run": [
-      "vtk-base",
-      "vtk-io-ffmpeg"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python test_vtk.py"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "features": null,
-     "ignore_run_exports_from": [
-      "ffmpeg"
-     ],
-     "run_exports": [
-      "vtk-base"
-     ],
-     "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py312h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
-    },
-    "name": "vtk-base",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "fortran_compiler_stub",
-      "cmake",
-      "ninja",
-      "cdt_stub"
-     ],
-     "host": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "hdf5 * nompi_*",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "tbb-devel",
-      "libnetcdf",
-      "libnetcdf * nompi_*",
-      "lz4-c",
-      "xorg-libxt",
-      "libxcb",
-      "xorg-libxau",
-      "libuuid",
-      "xorg-libxext",
-      "xorg-libxfixes",
-      "xorg-libxxf86vm",
-      "xorg-libxdamage",
-      "xorg-libsm",
-      "xorg-libice",
-      "xorg-libx11",
-      "xorg-xf86vidmodeproto",
-      "libboost-headers",
-      "ffmpeg",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps"
-     ],
-     "run": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "libnetcdf",
-      "lz4-c",
-      "xorg-libxt",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps",
-      "tbb-devel",
-      "numpy",
-      "wslink"
-     ],
-     "run_constrained": [
-      "paraview ==9999999999"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkChartsCore",
-      "vtk.vtkCommonCore",
-      "vtk.vtkFiltersCore",
-      "vtk.vtkFiltersGeneric",
-      "vtk.vtkGeovisCore",
-      "vtk.vtkFiltersHybrid",
-      "vtk.vtkIOCore",
-      "vtk.vtkImagingCore",
-      "vtk.vtkInfovisCore",
-      "vtk.vtkRenderingCore",
-      "vtk.vtkViewsCore",
-      "vtk.vtkRenderingVolume",
-      "vtk.vtkInteractionWidgets",
-      "vtk.vtkWebGLExporter",
-      "vtkmodules",
-      "vtkmodules.vtkChartsCore",
-      "vtkmodules.vtkCommonCore",
-      "vtkmodules.vtkFiltersCore",
-      "vtkmodules.vtkFiltersGeneric",
-      "vtkmodules.vtkGeovisCore",
-      "vtkmodules.vtkFiltersHybrid",
-      "vtkmodules.vtkIOCore",
-      "vtkmodules.vtkImagingCore",
-      "vtkmodules.vtkInfovisCore",
-      "vtkmodules.vtkRenderingCore",
-      "vtkmodules.vtkViewsCore",
-      "vtkmodules.vtkRenderingVolume",
-      "vtkmodules.vtkInteractionWidgets",
-      "vtkmodules.vtkWebCore",
-      "vtkmodules.web",
-      "vtkmodules.web.utils"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-io-ffmpeg"
-     ],
-     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py312h1234567_320"
-    },
-    "name": "vtk-io-ffmpeg",
-    "requirements": {
-     "build": [],
-     "host": [
-      "ffmpeg"
-     ],
-     "run": [
-      "vtk-base",
-      "ffmpeg"
-     ]
-    },
-    "test": {
-     "imports": [
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-base"
-     ],
-     "string": "egl_py312h1234567_320"
-    },
-    "name": "vtk",
-    "requirements": {
-     "build": [],
-     "run": [
-      "vtk-base",
-      "vtk-io-ffmpeg"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python test_vtk.py"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "features": null,
-     "ignore_run_exports_from": [
-      "ffmpeg"
-     ],
-     "run_exports": [
-      "vtk-base"
-     ],
-     "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py38h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
-    },
-    "name": "vtk-base",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "fortran_compiler_stub",
-      "cmake",
-      "ninja",
-      "cdt_stub"
-     ],
-     "host": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "hdf5 * nompi_*",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "tbb-devel",
-      "libnetcdf",
-      "libnetcdf * nompi_*",
-      "lz4-c",
-      "xorg-libxt",
-      "libxcb",
-      "xorg-libxau",
-      "libuuid",
-      "xorg-libxext",
-      "xorg-libxfixes",
-      "xorg-libxxf86vm",
-      "xorg-libxdamage",
-      "xorg-libsm",
-      "xorg-libice",
-      "xorg-libx11",
-      "xorg-xf86vidmodeproto",
-      "libboost-headers",
-      "ffmpeg",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps"
-     ],
-     "run": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "libnetcdf",
-      "lz4-c",
-      "xorg-libxt",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps",
-      "tbb-devel",
-      "numpy",
-      "wslink"
-     ],
-     "run_constrained": [
-      "paraview ==9999999999"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkChartsCore",
-      "vtk.vtkCommonCore",
-      "vtk.vtkFiltersCore",
-      "vtk.vtkFiltersGeneric",
-      "vtk.vtkGeovisCore",
-      "vtk.vtkFiltersHybrid",
-      "vtk.vtkIOCore",
-      "vtk.vtkImagingCore",
-      "vtk.vtkInfovisCore",
-      "vtk.vtkRenderingCore",
-      "vtk.vtkViewsCore",
-      "vtk.vtkRenderingVolume",
-      "vtk.vtkInteractionWidgets",
-      "vtk.vtkWebGLExporter",
-      "vtkmodules",
-      "vtkmodules.vtkChartsCore",
-      "vtkmodules.vtkCommonCore",
-      "vtkmodules.vtkFiltersCore",
-      "vtkmodules.vtkFiltersGeneric",
-      "vtkmodules.vtkGeovisCore",
-      "vtkmodules.vtkFiltersHybrid",
-      "vtkmodules.vtkIOCore",
-      "vtkmodules.vtkImagingCore",
-      "vtkmodules.vtkInfovisCore",
-      "vtkmodules.vtkRenderingCore",
-      "vtkmodules.vtkViewsCore",
-      "vtkmodules.vtkRenderingVolume",
-      "vtkmodules.vtkInteractionWidgets",
-      "vtkmodules.vtkWebCore",
-      "vtkmodules.web",
-      "vtkmodules.web.utils"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-io-ffmpeg"
-     ],
-     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py38h1234567_320"
-    },
-    "name": "vtk-io-ffmpeg",
-    "requirements": {
-     "build": [],
-     "host": [
-      "ffmpeg"
-     ],
-     "run": [
-      "vtk-base",
-      "ffmpeg"
-     ]
-    },
-    "test": {
-     "imports": [
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-base"
-     ],
-     "string": "egl_py38h1234567_320"
-    },
-    "name": "vtk",
-    "requirements": {
-     "build": [],
-     "run": [
-      "vtk-base",
-      "vtk-io-ffmpeg"
-     ]
-    },
-    "test": {
-     "commands": [
-      "python test_vtk.py"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "features": null,
-     "ignore_run_exports_from": [
-      "ffmpeg"
-     ],
-     "run_exports": [
-      "vtk-base"
-     ],
-     "script": "${RECIPE_DIR}/build-base.sh",
-     "string": "egl_py39h1234567_320",
-     "track_features": [
-      "vtk-egl"
-     ]
-    },
-    "name": "vtk-base",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "fortran_compiler_stub",
-      "cmake",
-      "ninja",
-      "cdt_stub"
-     ],
-     "host": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "hdf5 * nompi_*",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "tbb-devel",
-      "libnetcdf",
-      "libnetcdf * nompi_*",
-      "lz4-c",
-      "xorg-libxt",
-      "libxcb",
-      "xorg-libxau",
-      "libuuid",
-      "xorg-libxext",
-      "xorg-libxfixes",
-      "xorg-libxxf86vm",
-      "xorg-libxdamage",
-      "xorg-libsm",
-      "xorg-libice",
-      "xorg-libx11",
-      "xorg-xf86vidmodeproto",
-      "libboost-headers",
-      "ffmpeg",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps"
-     ],
-     "run": [
-      "python",
-      "zlib",
-      "freetype",
-      "hdf5",
-      "libxml2",
-      "libpng",
-      "libjpeg-turbo",
-      "libtiff",
-      "jsoncpp",
-      "expat",
-      "tbb",
-      "libnetcdf",
-      "lz4-c",
-      "xorg-libxt",
-      "utfcpp",
-      "eigen",
-      "double-conversion",
-      "pugixml",
-      "libogg",
-      "libtheora",
-      "nlohmann_json",
-      "proj",
-      "loguru",
-      "sqlite",
-      "gl2ps",
-      "tbb-devel",
-      "numpy",
-      "wslink"
-     ],
-     "run_constrained": [
-      "paraview ==9999999999"
-     ]
-    },
-    "test": {
-     "commands": [
-      "pip check"
-     ],
-     "imports": [
-      "vtk",
-      "vtk.vtkChartsCore",
-      "vtk.vtkCommonCore",
-      "vtk.vtkFiltersCore",
-      "vtk.vtkFiltersGeneric",
-      "vtk.vtkGeovisCore",
-      "vtk.vtkFiltersHybrid",
-      "vtk.vtkIOCore",
-      "vtk.vtkImagingCore",
-      "vtk.vtkInfovisCore",
-      "vtk.vtkRenderingCore",
-      "vtk.vtkViewsCore",
-      "vtk.vtkRenderingVolume",
-      "vtk.vtkInteractionWidgets",
-      "vtk.vtkWebGLExporter",
-      "vtkmodules",
-      "vtkmodules.vtkChartsCore",
-      "vtkmodules.vtkCommonCore",
-      "vtkmodules.vtkFiltersCore",
-      "vtkmodules.vtkFiltersGeneric",
-      "vtkmodules.vtkGeovisCore",
-      "vtkmodules.vtkFiltersHybrid",
-      "vtkmodules.vtkIOCore",
-      "vtkmodules.vtkImagingCore",
-      "vtkmodules.vtkInfovisCore",
-      "vtkmodules.vtkRenderingCore",
-      "vtkmodules.vtkViewsCore",
-      "vtkmodules.vtkRenderingVolume",
-      "vtkmodules.vtkInteractionWidgets",
-      "vtkmodules.vtkWebCore",
-      "vtkmodules.web",
-      "vtkmodules.web.utils"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-io-ffmpeg"
-     ],
-     "script": "${RECIPE_DIR}/build-io-ffmpeg.sh",
-     "string": "egl_py39h1234567_320"
-    },
-    "name": "vtk-io-ffmpeg",
-    "requirements": {
-     "build": [],
-     "host": [
-      "ffmpeg"
-     ],
-     "run": [
-      "vtk-base",
-      "ffmpeg"
-     ]
-    },
-    "test": {
-     "imports": [
-      "vtk.vtkIOFFMPEG"
-     ],
-     "requires": [
-      "pip",
-      "setuptools"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "vtk-base"
-     ],
-     "string": "egl_py39h1234567_320"
+     "string": "qt_py39h1234567_320"
     },
     "name": "vtk",
     "requirements": {
@@ -15781,6 +15749,7 @@
    "libxml2",
    "loguru",
    "lz4-c",
+   "mesalib",
    "ninja",
    "nlohmann_json",
    "numpy",
@@ -15789,6 +15758,7 @@
    "python",
    "qt-main",
    "sqlite",
+   "sysroot_linux-64",
    "tbb",
    "tbb-devel",
    "tk",
@@ -15817,7 +15787,8 @@
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
-    "ninja"
+    "ninja",
+    "sysroot_linux-64"
    ]
   },
   "host": {
@@ -15846,6 +15817,7 @@
     "libxml2",
     "loguru",
     "lz4-c",
+    "mesalib",
     "nlohmann_json",
     "proj",
     "pugixml",
@@ -15892,6 +15864,7 @@
     "libxml2",
     "loguru",
     "lz4-c",
+    "mesalib",
     "nlohmann_json",
     "numpy",
     "proj",
@@ -15926,7 +15899,8 @@
     "cmake",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
-    "ninja"
+    "ninja",
+    "sysroot_linux-64 2.17"
    ]
   },
   "host": {
@@ -15955,6 +15929,7 @@
     "libxml2",
     "loguru",
     "lz4-c",
+    "mesalib >=21.0",
     "nlohmann_json",
     "proj",
     "pugixml",
@@ -15999,6 +15974,7 @@
     "libxml2",
     "loguru",
     "lz4-c",
+    "mesalib >=21.0",
     "nlohmann_json",
     "numpy",
     "proj",
