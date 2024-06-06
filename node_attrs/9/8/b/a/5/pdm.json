@@ -31,7 +31,11 @@
    "summary": "Python Development Master"
   },
   "build": {
-   "number": "0",
+   "entry_points": [
+    "pdm = pdm.core:main"
+   ],
+   "noarch": "python",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -46,16 +50,15 @@
    "version": "2.15.4"
   },
   "requirements": {
-   "build": [],
    "host": [
     "pip",
-    "python",
+    "python >=3.8,<3.13",
     "pdm-backend"
    ],
    "run": [
     "chardet",
     "idna",
-    "python",
+    "python >=3.8,<3.13",
     "blinker",
     "packaging >=20.9,!=22.0",
     "platformdirs",
@@ -70,7 +73,9 @@
     "python-dotenv >=0.15",
     "resolvelib >=1.0.1",
     "python-installer <0.8,>=0.7",
-    "truststore",
+    "tomli >=1.1.0",
+    "importlib-resources >=5",
+    "importlib-metadata >=3.6",
     "hishel >=0.0.24,<0.1.0",
     "msgpack-python >=1.0",
     "pbs-installer",
@@ -81,6 +86,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "00-revert-truststore.patch"
+   ],
    "sha256": "58e225850567dcadce42418db4638996df2b1378cd0830cd48afda1b455d9c72",
    "url": "https://pypi.io/packages/source/p/pdm/pdm-2.15.4.tar.gz"
   },
@@ -120,6 +128,8 @@
     "hishel",
     "httpx",
     "idna",
+    "importlib-metadata",
+    "importlib-resources",
     "msgpack-python",
     "packaging",
     "pbs-installer",
@@ -132,254 +142,8 @@
     "rich",
     "shellingham",
     "socksio",
+    "tomli",
     "tomlkit",
-    "truststore",
-    "unearth",
-    "virtualenv",
-    "zstandard"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": [
-    "pip"
-   ]
-  }
- },
- "linux_aarch64_meta_yaml": {
-  "about": {
-   "home": "https://pypi.org/project/pdm/",
-   "license": "MIT",
-   "license_file": "LICENSE",
-   "summary": "Python Development Master"
-  },
-  "build": {
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "xhochy",
-    "theAeon",
-    "daylinmorgan"
-   ]
-  },
-  "package": {
-   "name": "pdm",
-   "version": "2.15.4"
-  },
-  "requirements": {
-   "build": [],
-   "host": [
-    "pip",
-    "python",
-    "pdm-backend"
-   ],
-   "run": [
-    "chardet",
-    "idna",
-    "python",
-    "blinker",
-    "packaging >=20.9,!=22.0",
-    "platformdirs",
-    "rich >=12.3.0",
-    "virtualenv >=20",
-    "pyproject_hooks",
-    "unearth >=0.15.0",
-    "dep-logic >=0.2.0,<1.0",
-    "findpython >=0.6.0,<1.0.0a0",
-    "tomlkit >=0.11.1,<1",
-    "shellingham >=1.3.2",
-    "python-dotenv >=0.15",
-    "resolvelib >=1.0.1",
-    "python-installer <0.8,>=0.7",
-    "truststore",
-    "hishel >=0.0.24,<0.1.0",
-    "msgpack-python >=1.0",
-    "pbs-installer",
-    "zstandard >=0.21.0",
-    "httpx <1,>0.20",
-    "socksio >=1,<2",
-    "filelock >=3.13"
-   ]
-  },
-  "source": {
-   "sha256": "58e225850567dcadce42418db4638996df2b1378cd0830cd48afda1b455d9c72",
-   "url": "https://pypi.io/packages/source/p/pdm/pdm-2.15.4.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "pip check"
-   ],
-   "imports": [
-    "pdm"
-   ],
-   "requires": [
-    "pip"
-   ]
-  }
- },
- "linux_aarch64_requirements": {
-  "build": {
-   "__set__": true,
-   "elements": []
-  },
-  "host": {
-   "__set__": true,
-   "elements": [
-    "pdm-backend",
-    "pip",
-    "python"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "blinker",
-    "chardet",
-    "dep-logic",
-    "filelock",
-    "findpython",
-    "hishel",
-    "httpx",
-    "idna",
-    "msgpack-python",
-    "packaging",
-    "pbs-installer",
-    "platformdirs",
-    "pyproject_hooks",
-    "python",
-    "python-dotenv",
-    "python-installer",
-    "resolvelib",
-    "rich",
-    "shellingham",
-    "socksio",
-    "tomlkit",
-    "truststore",
-    "unearth",
-    "virtualenv",
-    "zstandard"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": [
-    "pip"
-   ]
-  }
- },
- "linux_ppc64le_meta_yaml": {
-  "about": {
-   "home": "https://pypi.org/project/pdm/",
-   "license": "MIT",
-   "license_file": "LICENSE",
-   "summary": "Python Development Master"
-  },
-  "build": {
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "xhochy",
-    "theAeon",
-    "daylinmorgan"
-   ]
-  },
-  "package": {
-   "name": "pdm",
-   "version": "2.15.4"
-  },
-  "requirements": {
-   "build": [],
-   "host": [
-    "pip",
-    "python",
-    "pdm-backend"
-   ],
-   "run": [
-    "chardet",
-    "idna",
-    "python",
-    "blinker",
-    "packaging >=20.9,!=22.0",
-    "platformdirs",
-    "rich >=12.3.0",
-    "virtualenv >=20",
-    "pyproject_hooks",
-    "unearth >=0.15.0",
-    "dep-logic >=0.2.0,<1.0",
-    "findpython >=0.6.0,<1.0.0a0",
-    "tomlkit >=0.11.1,<1",
-    "shellingham >=1.3.2",
-    "python-dotenv >=0.15",
-    "resolvelib >=1.0.1",
-    "python-installer <0.8,>=0.7",
-    "truststore",
-    "hishel >=0.0.24,<0.1.0",
-    "msgpack-python >=1.0",
-    "pbs-installer",
-    "zstandard >=0.21.0",
-    "httpx <1,>0.20",
-    "socksio >=1,<2",
-    "filelock >=3.13"
-   ]
-  },
-  "source": {
-   "sha256": "58e225850567dcadce42418db4638996df2b1378cd0830cd48afda1b455d9c72",
-   "url": "https://pypi.io/packages/source/p/pdm/pdm-2.15.4.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "pip check"
-   ],
-   "imports": [
-    "pdm"
-   ],
-   "requires": [
-    "pip"
-   ]
-  }
- },
- "linux_ppc64le_requirements": {
-  "build": {
-   "__set__": true,
-   "elements": []
-  },
-  "host": {
-   "__set__": true,
-   "elements": [
-    "pdm-backend",
-    "pip",
-    "python"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "blinker",
-    "chardet",
-    "dep-logic",
-    "filelock",
-    "findpython",
-    "hishel",
-    "httpx",
-    "idna",
-    "msgpack-python",
-    "packaging",
-    "pbs-installer",
-    "platformdirs",
-    "pyproject_hooks",
-    "python",
-    "python-dotenv",
-    "python-installer",
-    "resolvelib",
-    "rich",
-    "shellingham",
-    "socksio",
-    "tomlkit",
-    "truststore",
     "unearth",
     "virtualenv",
     "zstandard"
@@ -400,7 +164,11 @@
    "summary": "Python Development Master"
   },
   "build": {
-   "number": "0",
+   "entry_points": [
+    "pdm = pdm.core:main"
+   ],
+   "noarch": "python",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -415,16 +183,15 @@
    "version": "2.15.4"
   },
   "requirements": {
-   "build": [],
    "host": [
     "pip",
-    "python",
+    "python >=3.8,<3.13",
     "pdm-backend"
    ],
    "run": [
     "chardet",
     "idna",
-    "python",
+    "python >=3.8,<3.13",
     "blinker",
     "packaging >=20.9,!=22.0",
     "platformdirs",
@@ -439,7 +206,9 @@
     "python-dotenv >=0.15",
     "resolvelib >=1.0.1",
     "python-installer <0.8,>=0.7",
-    "truststore",
+    "tomli >=1.1.0",
+    "importlib-resources >=5",
+    "importlib-metadata >=3.6",
     "hishel >=0.0.24,<0.1.0",
     "msgpack-python >=1.0",
     "pbs-installer",
@@ -450,6 +219,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "00-revert-truststore.patch"
+   ],
    "sha256": "58e225850567dcadce42418db4638996df2b1378cd0830cd48afda1b455d9c72",
    "url": "https://pypi.io/packages/source/p/pdm/pdm-2.15.4.tar.gz"
   },
@@ -466,252 +238,6 @@
   }
  },
  "name": "pdm",
- "osx_64_meta_yaml": {
-  "about": {
-   "home": "https://pypi.org/project/pdm/",
-   "license": "MIT",
-   "license_file": "LICENSE",
-   "summary": "Python Development Master"
-  },
-  "build": {
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "xhochy",
-    "theAeon",
-    "daylinmorgan"
-   ]
-  },
-  "package": {
-   "name": "pdm",
-   "version": "2.15.4"
-  },
-  "requirements": {
-   "build": [],
-   "host": [
-    "pip",
-    "python",
-    "pdm-backend"
-   ],
-   "run": [
-    "chardet",
-    "idna",
-    "python",
-    "blinker",
-    "packaging >=20.9,!=22.0",
-    "platformdirs",
-    "rich >=12.3.0",
-    "virtualenv >=20",
-    "pyproject_hooks",
-    "unearth >=0.15.0",
-    "dep-logic >=0.2.0,<1.0",
-    "findpython >=0.6.0,<1.0.0a0",
-    "tomlkit >=0.11.1,<1",
-    "shellingham >=1.3.2",
-    "python-dotenv >=0.15",
-    "resolvelib >=1.0.1",
-    "python-installer <0.8,>=0.7",
-    "truststore",
-    "hishel >=0.0.24,<0.1.0",
-    "msgpack-python >=1.0",
-    "pbs-installer",
-    "zstandard >=0.21.0",
-    "httpx <1,>0.20",
-    "socksio >=1,<2",
-    "filelock >=3.13"
-   ]
-  },
-  "source": {
-   "sha256": "58e225850567dcadce42418db4638996df2b1378cd0830cd48afda1b455d9c72",
-   "url": "https://pypi.io/packages/source/p/pdm/pdm-2.15.4.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "pip check"
-   ],
-   "imports": [
-    "pdm"
-   ],
-   "requires": [
-    "pip"
-   ]
-  }
- },
- "osx_64_requirements": {
-  "build": {
-   "__set__": true,
-   "elements": []
-  },
-  "host": {
-   "__set__": true,
-   "elements": [
-    "pdm-backend",
-    "pip",
-    "python"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "blinker",
-    "chardet",
-    "dep-logic",
-    "filelock",
-    "findpython",
-    "hishel",
-    "httpx",
-    "idna",
-    "msgpack-python",
-    "packaging",
-    "pbs-installer",
-    "platformdirs",
-    "pyproject_hooks",
-    "python",
-    "python-dotenv",
-    "python-installer",
-    "resolvelib",
-    "rich",
-    "shellingham",
-    "socksio",
-    "tomlkit",
-    "truststore",
-    "unearth",
-    "virtualenv",
-    "zstandard"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": [
-    "pip"
-   ]
-  }
- },
- "osx_arm64_meta_yaml": {
-  "about": {
-   "home": "https://pypi.org/project/pdm/",
-   "license": "MIT",
-   "license_file": "LICENSE",
-   "summary": "Python Development Master"
-  },
-  "build": {
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "xhochy",
-    "theAeon",
-    "daylinmorgan"
-   ]
-  },
-  "package": {
-   "name": "pdm",
-   "version": "2.15.4"
-  },
-  "requirements": {
-   "build": [],
-   "host": [
-    "pip",
-    "python",
-    "pdm-backend"
-   ],
-   "run": [
-    "chardet",
-    "idna",
-    "python",
-    "blinker",
-    "packaging >=20.9,!=22.0",
-    "platformdirs",
-    "rich >=12.3.0",
-    "virtualenv >=20",
-    "pyproject_hooks",
-    "unearth >=0.15.0",
-    "dep-logic >=0.2.0,<1.0",
-    "findpython >=0.6.0,<1.0.0a0",
-    "tomlkit >=0.11.1,<1",
-    "shellingham >=1.3.2",
-    "python-dotenv >=0.15",
-    "resolvelib >=1.0.1",
-    "python-installer <0.8,>=0.7",
-    "truststore",
-    "hishel >=0.0.24,<0.1.0",
-    "msgpack-python >=1.0",
-    "pbs-installer",
-    "zstandard >=0.21.0",
-    "httpx <1,>0.20",
-    "socksio >=1,<2",
-    "filelock >=3.13"
-   ]
-  },
-  "source": {
-   "sha256": "58e225850567dcadce42418db4638996df2b1378cd0830cd48afda1b455d9c72",
-   "url": "https://pypi.io/packages/source/p/pdm/pdm-2.15.4.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "pip check"
-   ],
-   "imports": [
-    "pdm"
-   ],
-   "requires": [
-    "pip"
-   ]
-  }
- },
- "osx_arm64_requirements": {
-  "build": {
-   "__set__": true,
-   "elements": []
-  },
-  "host": {
-   "__set__": true,
-   "elements": [
-    "pdm-backend",
-    "pip",
-    "python"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "blinker",
-    "chardet",
-    "dep-logic",
-    "filelock",
-    "findpython",
-    "hishel",
-    "httpx",
-    "idna",
-    "msgpack-python",
-    "packaging",
-    "pbs-installer",
-    "platformdirs",
-    "pyproject_hooks",
-    "python",
-    "python-dotenv",
-    "python-installer",
-    "resolvelib",
-    "rich",
-    "shellingham",
-    "socksio",
-    "tomlkit",
-    "truststore",
-    "unearth",
-    "virtualenv",
-    "zstandard"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": [
-    "pip"
-   ]
-  }
- },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -720,17 +246,12 @@
  },
  "parsing_error": false,
  "platforms": [
-  "linux_64",
-  "linux_aarch64",
-  "linux_ppc64le",
-  "osx_64",
-  "osx_arm64",
-  "win_64"
+  "linux_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/pdm.json"
  },
- "raw_meta_yaml": "{% set name = \"pdm\" %}\n{% set version = \"2.15.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pdm-{{ version }}.tar.gz\n  sha256: 58e225850567dcadce42418db4638996df2b1378cd0830cd48afda1b455d9c72\n\nbuild:\n  number: 0\n  skip: true  # [py<38]\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n  host:\n    - pip\n    - python\n    - pdm-backend\n  run:\n    - chardet\n    - idna\n    - python\n\n    - blinker\n    - packaging >=20.9,!=22.0\n    - platformdirs\n    - rich >=12.3.0\n    - virtualenv >=20\n    - pyproject_hooks\n    - unearth >=0.15.0\n    - dep-logic >=0.2.0,<1.0\n    - findpython >=0.6.0,<1.0.0a0\n    - tomlkit >=0.11.1,<1\n    - shellingham >=1.3.2\n    - python-dotenv >=0.15\n    - resolvelib >=1.0.1\n    - python-installer <0.8,>=0.7\n    - truststore  # [py>39]\n    - tomli >=1.1.0  # [py<311]\n    - importlib-resources >=5  # [py<39]\n    - importlib-metadata >=3.6  # [py<310]\n    - hishel >=0.0.24,<0.1.0\n    - msgpack-python >=1.0\n    - pbs-installer\n    # pbs-installer[installer] extras\n    - zstandard >=0.21.0\n    - httpx <1,>0.20\n    # httpx[socks] extras\n    - socksio >=1,<2\n    - filelock >=3.13\n\ntest:\n  imports:\n    - pdm\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://pypi.org/project/pdm/\n  summary: Python Development Master\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - xhochy\n    - theAeon\n    - daylinmorgan\n",
+ "raw_meta_yaml": "{% set name = \"pdm\" %}\n{% set version = \"2.15.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pdm-{{ version }}.tar.gz\n  sha256: 58e225850567dcadce42418db4638996df2b1378cd0830cd48afda1b455d9c72\n  patches:\n     - 00-revert-truststore.patch\n\nbuild:\n  number: 1\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  entry_points:\n    - pdm = pdm.core:main\n\nrequirements:\n  host:\n    - pip\n    - python >=3.8,<3.13\n    - pdm-backend\n  run:\n    - chardet\n    - idna\n    - python >=3.8,<3.13\n    - blinker\n    - packaging >=20.9,!=22.0\n    - platformdirs\n    - rich >=12.3.0\n    - virtualenv >=20\n    - pyproject_hooks\n    - unearth >=0.15.0\n    - dep-logic >=0.2.0,<1.0\n    - findpython >=0.6.0,<1.0.0a0\n    - tomlkit >=0.11.1,<1\n    - shellingham >=1.3.2\n    - python-dotenv >=0.15\n    - resolvelib >=1.0.1\n    - python-installer <0.8,>=0.7\n    # truststore\n    - tomli >=1.1.0\n    - importlib-resources >=5\n    - importlib-metadata >=3.6\n    - hishel >=0.0.24,<0.1.0\n    - msgpack-python >=1.0\n    - pbs-installer\n    # pbs-installer[installer] extras\n    - zstandard >=0.21.0\n    - httpx <1,>0.20\n    # httpx[socks] extras\n    - socksio >=1,<2\n    - filelock >=3.13\n\ntest:\n  imports:\n    - pdm\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://pypi.org/project/pdm/\n  summary: Python Development Master\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - xhochy\n    - theAeon\n    - daylinmorgan\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -742,6 +263,8 @@
    "hishel",
    "httpx",
    "idna",
+   "importlib-metadata",
+   "importlib-resources",
    "msgpack-python",
    "packaging",
    "pbs-installer",
@@ -756,8 +279,8 @@
    "rich",
    "shellingham",
    "socksio",
+   "tomli",
    "tomlkit",
-   "truststore",
    "unearth",
    "virtualenv",
    "zstandard"
@@ -787,6 +310,8 @@
     "hishel",
     "httpx",
     "idna",
+    "importlib-metadata",
+    "importlib-resources",
     "msgpack-python",
     "packaging",
     "pbs-installer",
@@ -799,8 +324,8 @@
     "rich",
     "shellingham",
     "socksio",
+    "tomli",
     "tomlkit",
-    "truststore",
     "unearth",
     "virtualenv",
     "zstandard"
@@ -824,7 +349,7 @@
    "elements": [
     "pdm-backend",
     "pip",
-    "python"
+    "python >=3.8,<3.13"
    ]
   },
   "run": {
@@ -838,20 +363,22 @@
     "hishel >=0.0.24,<0.1.0",
     "httpx <1,>0.20",
     "idna",
+    "importlib-metadata >=3.6",
+    "importlib-resources >=5",
     "msgpack-python >=1.0",
     "packaging >=20.9,!=22.0",
     "pbs-installer",
     "platformdirs",
     "pyproject_hooks",
-    "python",
+    "python >=3.8,<3.13",
     "python-dotenv >=0.15",
     "python-installer <0.8,>=0.7",
     "resolvelib >=1.0.1",
     "rich >=12.3.0",
     "shellingham >=1.3.2",
     "socksio >=1,<2",
+    "tomli >=1.1.0",
     "tomlkit >=0.11.1,<1",
-    "truststore",
     "unearth >=0.15.0",
     "virtualenv >=20",
     "zstandard >=0.21.0"
@@ -868,128 +395,5 @@
  "version": "2.15.4",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pdm.json"
- },
- "win_64_meta_yaml": {
-  "about": {
-   "home": "https://pypi.org/project/pdm/",
-   "license": "MIT",
-   "license_file": "LICENSE",
-   "summary": "Python Development Master"
-  },
-  "build": {
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "xhochy",
-    "theAeon",
-    "daylinmorgan"
-   ]
-  },
-  "package": {
-   "name": "pdm",
-   "version": "2.15.4"
-  },
-  "requirements": {
-   "build": [],
-   "host": [
-    "pip",
-    "python",
-    "pdm-backend"
-   ],
-   "run": [
-    "chardet",
-    "idna",
-    "python",
-    "blinker",
-    "packaging >=20.9,!=22.0",
-    "platformdirs",
-    "rich >=12.3.0",
-    "virtualenv >=20",
-    "pyproject_hooks",
-    "unearth >=0.15.0",
-    "dep-logic >=0.2.0,<1.0",
-    "findpython >=0.6.0,<1.0.0a0",
-    "tomlkit >=0.11.1,<1",
-    "shellingham >=1.3.2",
-    "python-dotenv >=0.15",
-    "resolvelib >=1.0.1",
-    "python-installer <0.8,>=0.7",
-    "truststore",
-    "hishel >=0.0.24,<0.1.0",
-    "msgpack-python >=1.0",
-    "pbs-installer",
-    "zstandard >=0.21.0",
-    "httpx <1,>0.20",
-    "socksio >=1,<2",
-    "filelock >=3.13"
-   ]
-  },
-  "source": {
-   "sha256": "58e225850567dcadce42418db4638996df2b1378cd0830cd48afda1b455d9c72",
-   "url": "https://pypi.io/packages/source/p/pdm/pdm-2.15.4.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "pip check"
-   ],
-   "imports": [
-    "pdm"
-   ],
-   "requires": [
-    "pip"
-   ]
-  }
- },
- "win_64_requirements": {
-  "build": {
-   "__set__": true,
-   "elements": []
-  },
-  "host": {
-   "__set__": true,
-   "elements": [
-    "pdm-backend",
-    "pip",
-    "python"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "blinker",
-    "chardet",
-    "dep-logic",
-    "filelock",
-    "findpython",
-    "hishel",
-    "httpx",
-    "idna",
-    "msgpack-python",
-    "packaging",
-    "pbs-installer",
-    "platformdirs",
-    "pyproject_hooks",
-    "python",
-    "python-dotenv",
-    "python-installer",
-    "resolvelib",
-    "rich",
-    "shellingham",
-    "socksio",
-    "tomlkit",
-    "truststore",
-    "unearth",
-    "virtualenv",
-    "zstandard"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": [
-    "pip"
-   ]
-  }
  }
 }
