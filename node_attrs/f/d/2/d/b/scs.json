@@ -36,6 +36,7 @@
   "build": {
    "number": "0",
    "script": [
+    "MESON_ARGS=\"-Dlink_mkl=true ${MESON_ARGS}\"",
     "MESON_ARGS_REDUCED=\"$(echo $MESON_ARGS | sed 's/--buildtype release //g')\"",
     "PYTHON -m pip install . -vv -Csetup-args=${MESON_ARGS_REDUCED// / -Csetup-args=}"
    ],
@@ -59,16 +60,21 @@
     "c_stdlib_stub"
    ],
    "host": [
-    "libblas 3.9.* *netlib",
-    "liblapack 3.9.* *netlib",
+    "libblas 3.9.* *mkl",
+    "liblapack 3.9.* *mkl",
+    "mkl-devel",
     "python",
     "meson-python",
     "pip",
-    "numpy"
+    "numpy",
+    "libblas 3.9.* *netlib",
+    "liblapack 3.9.* *netlib"
    ],
    "run": [
     "python",
-    "scipy >=0.13.2"
+    "scipy >=0.13.2",
+    "libblas * *mkl",
+    "liblapack * *mkl"
    ],
    "run_constrained": [
     "cvxpy >1.1.15"
@@ -191,7 +197,8 @@
    "imports": [
     "scs",
     "_scs_direct",
-    "_scs_indirect"
+    "_scs_indirect",
+    "_scs_mkl"
    ],
    "requires": [
     "pytest"
@@ -216,6 +223,7 @@
     "libblas",
     "liblapack",
     "meson-python",
+    "mkl-devel",
     "numpy",
     "pip",
     "python"
@@ -224,6 +232,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "libblas",
+    "liblapack",
     "python",
     "scipy"
    ]
@@ -562,8 +572,10 @@
   "build": {
    "number": "0",
    "script": [
+    "MESON_ARGS=\"-Dlink_mkl=true ${MESON_ARGS}\"",
     "MESON_ARGS_REDUCED=\"$(echo $MESON_ARGS | sed 's/--buildtype release //g')\"",
     "PYTHON -m pip install . -vv -Csetup-args=${MESON_ARGS_REDUCED// / -Csetup-args=}",
+    "PYTHON -m pip install . -vv -Csetup-args=-Dlink_mkl=true",
     "PYTHON -m pip install . -vv"
    ],
    "string": "default_py39h1234567_0"
@@ -586,16 +598,21 @@
     "c_stdlib_stub"
    ],
    "host": [
-    "libblas 3.9.* *netlib",
-    "liblapack 3.9.* *netlib",
+    "libblas 3.9.* *mkl",
+    "liblapack 3.9.* *mkl",
+    "mkl-devel",
     "python",
     "meson-python",
     "pip",
-    "numpy"
+    "numpy",
+    "libblas 3.9.* *netlib",
+    "liblapack 3.9.* *netlib"
    ],
    "run": [
     "python",
-    "scipy >=0.13.2"
+    "scipy >=0.13.2",
+    "libblas * *mkl",
+    "liblapack * *mkl"
    ],
    "run_constrained": [
     "cvxpy >1.1.15"
@@ -1087,7 +1104,8 @@
    "imports": [
     "scs",
     "_scs_direct",
-    "_scs_indirect"
+    "_scs_indirect",
+    "_scs_mkl"
    ],
    "requires": [
     "pytest"
@@ -1111,6 +1129,7 @@
   "build": {
    "number": "0",
    "script": [
+    "MESON_ARGS=\"-Dlink_mkl=true ${MESON_ARGS}\"",
     "MESON_ARGS_REDUCED=\"$(echo $MESON_ARGS | sed 's/--buildtype release //g')\"",
     "PYTHON -m pip install . -vv -Csetup-args=${MESON_ARGS_REDUCED// / -Csetup-args=}"
    ],
@@ -1134,16 +1153,21 @@
     "c_stdlib_stub"
    ],
    "host": [
-    "libblas 3.9.* *netlib",
-    "liblapack 3.9.* *netlib",
+    "libblas 3.9.* *mkl",
+    "liblapack 3.9.* *mkl",
+    "mkl-devel",
     "python",
     "meson-python",
     "pip",
-    "numpy"
+    "numpy",
+    "libblas 3.9.* *netlib",
+    "liblapack 3.9.* *netlib"
    ],
    "run": [
     "python",
-    "scipy >=0.13.2"
+    "scipy >=0.13.2",
+    "libblas * *mkl",
+    "liblapack * *mkl"
    ],
    "run_constrained": [
     "cvxpy >1.1.15"
@@ -1266,7 +1290,8 @@
    "imports": [
     "scs",
     "_scs_direct",
-    "_scs_indirect"
+    "_scs_indirect",
+    "_scs_mkl"
    ],
    "requires": [
     "pytest"
@@ -1291,6 +1316,7 @@
     "libblas",
     "liblapack",
     "meson-python",
+    "mkl-devel",
     "numpy",
     "pip",
     "python"
@@ -1299,6 +1325,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "libblas",
+    "liblapack",
     "python",
     "scipy"
    ]
@@ -1486,6 +1514,7 @@
    "libblas",
    "liblapack",
    "meson-python",
+   "mkl-devel",
    "numpy",
    "pip",
    "pkg-config",
@@ -1510,6 +1539,7 @@
     "libblas",
     "liblapack",
     "meson-python",
+    "mkl-devel",
     "numpy",
     "pip",
     "python"
@@ -1520,6 +1550,8 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "libblas",
+    "liblapack",
     "python",
     "scipy"
    ]
@@ -1544,9 +1576,12 @@
   "host": {
    "__set__": true,
    "elements": [
+    "libblas 3.9.* *mkl",
     "libblas 3.9.* *netlib",
+    "liblapack 3.9.* *mkl",
     "liblapack 3.9.* *netlib",
     "meson-python",
+    "mkl-devel",
     "numpy",
     "pip",
     "python"
@@ -1555,6 +1590,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "libblas * *mkl",
+    "liblapack * *mkl",
     "python",
     "scipy >=0.13.2"
    ]
@@ -1584,6 +1621,7 @@
   "build": {
    "number": "0",
    "script": [
+    "PYTHON -m pip install . -vv -Csetup-args=-Dlink_mkl=true",
     "PYTHON -m pip install . -vv"
    ],
    "string": "default_py39h1234567_0"
@@ -1606,16 +1644,21 @@
     "c_stdlib_stub"
    ],
    "host": [
-    "libblas 3.9.* *netlib",
-    "liblapack 3.9.* *netlib",
+    "libblas 3.9.* *mkl",
+    "liblapack 3.9.* *mkl",
+    "mkl-devel",
     "python",
     "meson-python",
     "pip",
-    "numpy"
+    "numpy",
+    "libblas 3.9.* *netlib",
+    "liblapack 3.9.* *netlib"
    ],
    "run": [
     "python",
-    "scipy >=0.13.2"
+    "scipy >=0.13.2",
+    "libblas * *mkl",
+    "liblapack * *mkl"
    ],
    "run_constrained": [
     "cvxpy >1.1.15"
@@ -1738,7 +1781,8 @@
    "imports": [
     "scs",
     "_scs_direct",
-    "_scs_indirect"
+    "_scs_indirect",
+    "_scs_mkl"
    ],
    "requires": [
     "pytest"
@@ -1763,6 +1807,7 @@
     "libblas",
     "liblapack",
     "meson-python",
+    "mkl-devel",
     "numpy",
     "pip",
     "python"
@@ -1771,6 +1816,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "libblas",
+    "liblapack",
     "python",
     "scipy"
    ]

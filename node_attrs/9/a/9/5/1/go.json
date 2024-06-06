@@ -40,14 +40,12 @@
    "license": "BSD-3-Clause",
    "license_family": "BSD",
    "license_file": "go/LICENSE",
-   "summary": "The Go Programming Language (nocgo)"
+   "summary": "The Go Programming Language (cgo)"
   },
   "build": {
    "binary_relocation": false,
    "detect_binary_files_with_prefix": false,
-   "missing_dso_whitelist": [
-    "$RPATH/libc.so.6"
-   ],
+   "missing_dso_whitelist": null,
    "number": "0"
   },
   "extra": {
@@ -101,24 +99,43 @@
      "license_file": "go/LICENSE",
      "summary": "The Go Programming Language"
     },
+    "build": {
+     "binary_relocation": false,
+     "detect_binary_files_with_prefix": false,
+     "run_exports": {
+      "strong": [
+       "__glibc >=2.17"
+      ]
+     }
+    },
     "name": "go",
     "requirements": {
-     "build": [],
-     "run": [
-      "_go_select ==2.2.0=nocgo"
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
      ],
-     "run_constrained": null
+     "run": [
+      "_go_select ==2.3.0=cgo"
+     ],
+     "run_constrained": [
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ]
     },
-    "script": "nocgo/build.sh",
+    "script": "cgo/build.sh",
     "test": {
      "commands": [
-      "chmod +x nocgo/test.sh",
-      "./nocgo/test.sh"
+      "chmod +x cgo/test.sh",
+      "./cgo/test.sh"
      ],
      "files": [
-      "nocgo"
+      "cgo"
      ],
      "requires": [
+      "c_compiler_stub",
       "git",
       "perl"
      ]
@@ -126,12 +143,13 @@
    }
   ],
   "package": {
-   "name": "go-nocgo",
+   "name": "go-cgo",
    "version": "1.22.3"
   },
   "requirements": {
    "run": [
-    "go"
+    "go",
+    "c_compiler_stub"
    ]
   },
   "source": [
@@ -183,7 +201,12 @@
  "linux_64_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "fortran_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
@@ -193,12 +216,14 @@
    "__set__": true,
    "elements": [
     "_go_select",
+    "c_compiler_stub",
     "go"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "c_compiler_stub",
     "git",
     "perl"
    ]
@@ -213,14 +238,12 @@
    "license": "BSD-3-Clause",
    "license_family": "BSD",
    "license_file": "go/LICENSE",
-   "summary": "The Go Programming Language (nocgo)"
+   "summary": "The Go Programming Language (cgo)"
   },
   "build": {
    "binary_relocation": false,
    "detect_binary_files_with_prefix": false,
-   "missing_dso_whitelist": [
-    "$RPATH/libc.so.6"
-   ],
+   "missing_dso_whitelist": null,
    "number": "0"
   },
   "extra": {
@@ -276,22 +299,32 @@
     },
     "name": "go",
     "requirements": {
-     "build": [],
-     "run": [
-      "_go_select ==2.2.0=nocgo"
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
      ],
-     "run_constrained": null
+     "run": [
+      "_go_select ==2.3.0=cgo"
+     ],
+     "run_constrained": [
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ]
     },
-    "script": "nocgo/build.sh",
+    "script": "cgo/build.sh",
     "test": {
      "commands": [
-      "chmod +x nocgo/test.sh",
-      "./nocgo/test.sh"
+      "chmod +x cgo/test.sh",
+      "./cgo/test.sh"
      ],
      "files": [
-      "nocgo"
+      "cgo"
      ],
      "requires": [
+      "c_compiler_stub",
       "git",
       "perl"
      ]
@@ -299,12 +332,13 @@
    }
   ],
   "package": {
-   "name": "go-nocgo",
+   "name": "go-cgo",
    "version": "1.22.3"
   },
   "requirements": {
    "run": [
-    "go"
+    "go",
+    "c_compiler_stub"
    ]
   },
   "source": [
@@ -356,7 +390,12 @@
  "linux_aarch64_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "fortran_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
@@ -366,12 +405,14 @@
    "__set__": true,
    "elements": [
     "_go_select",
+    "c_compiler_stub",
     "go"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "c_compiler_stub",
     "git",
     "perl"
    ]
@@ -386,14 +427,12 @@
    "license": "BSD-3-Clause",
    "license_family": "BSD",
    "license_file": "go/LICENSE",
-   "summary": "The Go Programming Language (nocgo)"
+   "summary": "The Go Programming Language (cgo)"
   },
   "build": {
    "binary_relocation": false,
    "detect_binary_files_with_prefix": false,
-   "missing_dso_whitelist": [
-    "$RPATH/libc.so.6"
-   ],
+   "missing_dso_whitelist": null,
    "number": "0"
   },
   "extra": {
@@ -449,22 +488,32 @@
     },
     "name": "go",
     "requirements": {
-     "build": [],
-     "run": [
-      "_go_select ==2.2.0=nocgo"
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
      ],
-     "run_constrained": null
+     "run": [
+      "_go_select ==2.3.0=cgo"
+     ],
+     "run_constrained": [
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ]
     },
-    "script": "nocgo/build.sh",
+    "script": "cgo/build.sh",
     "test": {
      "commands": [
-      "chmod +x nocgo/test.sh",
-      "./nocgo/test.sh"
+      "chmod +x cgo/test.sh",
+      "./cgo/test.sh"
      ],
      "files": [
-      "nocgo"
+      "cgo"
      ],
      "requires": [
+      "c_compiler_stub",
       "git",
       "perl"
      ]
@@ -472,12 +521,13 @@
    }
   ],
   "package": {
-   "name": "go-nocgo",
+   "name": "go-cgo",
    "version": "1.22.3"
   },
   "requirements": {
    "run": [
-    "go"
+    "go",
+    "c_compiler_stub"
    ]
   },
   "source": [
@@ -529,7 +579,12 @@
  "linux_ppc64le_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "fortran_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
@@ -539,12 +594,14 @@
    "__set__": true,
    "elements": [
     "_go_select",
+    "c_compiler_stub",
     "go"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "c_compiler_stub",
     "git",
     "perl"
    ]
@@ -559,7 +616,7 @@
    "license": "BSD-3-Clause",
    "license_family": "BSD",
    "license_file": "go/LICENSE",
-   "summary": "The Go Programming Language (nocgo)"
+   "summary": "The Go Programming Language (cgo)"
   },
   "build": {
    "binary_relocation": false,
@@ -570,8 +627,6 @@
     "fortran_compiler"
    ],
    "missing_dso_whitelist": [
-    "$RPATH/libc.so.6",
-    "/usr/lib/libSystem.B.dylib",
     "$SYSROOT\\System32\\winmm.dll"
    ],
    "number": "0"
@@ -627,24 +682,43 @@
      "license_file": "go/LICENSE",
      "summary": "The Go Programming Language"
     },
+    "build": {
+     "binary_relocation": false,
+     "detect_binary_files_with_prefix": false,
+     "run_exports": {
+      "strong": [
+       "__glibc >=2.17"
+      ]
+     }
+    },
     "name": "go",
     "requirements": {
-     "build": [],
-     "run": [
-      "_go_select ==2.2.0=nocgo"
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
      ],
-     "run_constrained": null
+     "run": [
+      "_go_select ==2.3.0=cgo"
+     ],
+     "run_constrained": [
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ]
     },
-    "script": "nocgo/build.sh",
+    "script": "cgo/build.sh",
     "test": {
      "commands": [
-      "chmod +x nocgo/test.sh",
-      "./nocgo/test.sh"
+      "chmod +x cgo/test.sh",
+      "./cgo/test.sh"
      ],
      "files": [
-      "nocgo"
+      "cgo"
      ],
      "requires": [
+      "c_compiler_stub",
       "git",
       "perl"
      ]
@@ -691,22 +765,32 @@
     },
     "name": "go",
     "requirements": {
-     "build": [],
-     "run": [
-      "_go_select ==2.2.0=nocgo"
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
      ],
-     "run_constrained": null
+     "run": [
+      "_go_select ==2.3.0=cgo"
+     ],
+     "run_constrained": [
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ]
     },
-    "script": "nocgo/build.sh",
+    "script": "cgo/build.sh",
     "test": {
      "commands": [
-      "chmod +x nocgo/test.sh",
-      "./nocgo/test.sh"
+      "chmod +x cgo/test.sh",
+      "./cgo/test.sh"
      ],
      "files": [
-      "nocgo"
+      "cgo"
      ],
      "requires": [
+      "c_compiler_stub",
       "git",
       "perl"
      ]
@@ -753,22 +837,32 @@
     },
     "name": "go",
     "requirements": {
-     "build": [],
-     "run": [
-      "_go_select ==2.2.0=nocgo"
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
      ],
-     "run_constrained": null
+     "run": [
+      "_go_select ==2.3.0=cgo"
+     ],
+     "run_constrained": [
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ]
     },
-    "script": "nocgo/build.sh",
+    "script": "cgo/build.sh",
     "test": {
      "commands": [
-      "chmod +x nocgo/test.sh",
-      "./nocgo/test.sh"
+      "chmod +x cgo/test.sh",
+      "./cgo/test.sh"
      ],
      "files": [
-      "nocgo"
+      "cgo"
      ],
      "requires": [
+      "c_compiler_stub",
       "git",
       "perl"
      ]
@@ -814,22 +908,32 @@
     },
     "name": "go",
     "requirements": {
-     "build": [],
-     "run": [
-      "_go_select ==2.2.0=nocgo"
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
      ],
-     "run_constrained": null
+     "run": [
+      "_go_select ==2.3.0=cgo"
+     ],
+     "run_constrained": [
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ]
     },
-    "script": "nocgo/build.sh",
+    "script": "cgo/build.sh",
     "test": {
      "commands": [
-      "chmod +x nocgo/test.sh",
-      "./nocgo/test.sh"
+      "chmod +x cgo/test.sh",
+      "./cgo/test.sh"
      ],
      "files": [
-      "nocgo"
+      "cgo"
      ],
      "requires": [
+      "c_compiler_stub",
       "perl"
      ]
     }
@@ -874,22 +978,32 @@
     },
     "name": "go",
     "requirements": {
-     "build": [],
-     "run": [
-      "_go_select ==2.2.0=nocgo"
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
      ],
-     "run_constrained": null
+     "run": [
+      "_go_select ==2.3.0=cgo"
+     ],
+     "run_constrained": [
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ]
     },
-    "script": "nocgo/build.sh",
+    "script": "cgo/build.sh",
     "test": {
      "commands": [
-      "chmod +x nocgo/test.sh",
-      "./nocgo/test.sh"
+      "chmod +x cgo/test.sh",
+      "./cgo/test.sh"
      ],
      "files": [
-      "nocgo"
+      "cgo"
      ],
      "requires": [
+      "c_compiler_stub",
       "perl"
      ]
     }
@@ -933,33 +1047,45 @@
     },
     "name": "go",
     "requirements": {
-     "build": [],
-     "run": [
-      "_go_select ==2.2.0=nocgo"
+     "build": [
+      "m2w64_c_compiler_stub",
+      "m2w64_c_stdlib_stub",
+      "m2w64_cxx_compiler_stub",
+      "m2w64_fortran_compiler_stub"
      ],
-     "run_constrained": null
+     "run": [
+      "_go_select ==2.3.0=cgo"
+     ],
+     "run_constrained": [
+      "m2w64_c_compiler_stub",
+      "m2w64_cxx_compiler_stub",
+      "m2w64_fortran_compiler_stub"
+     ]
     },
-    "script": "nocgo/build.bat",
+    "script": "cgo/build.bat",
     "test": {
      "commands": [
-      "nocgo/test.bat"
+      "cgo/test.bat"
      ],
      "files": [
-      "nocgo"
+      "cgo"
      ],
      "requires": [
+      "m2w64_c_compiler_stub",
       "perl"
      ]
     }
    }
   ],
   "package": {
-   "name": "go-nocgo",
+   "name": "go-cgo",
    "version": "1.22.3"
   },
   "requirements": {
    "run": [
-    "go"
+    "go",
+    "c_compiler_stub",
+    "m2w64_c_compiler_stub"
    ]
   },
   "source": [
@@ -1198,7 +1324,7 @@
    ]
   }
  },
- "name": "go-nocgo",
+ "name": "go-cgo",
  "osx_64_meta_yaml": {
   "about": {
    "description": "Go is expressive, concise, clean, and efficient. Its concurrency mechanisms\nmake it easy to write programs that get the most out of multicore and\nnetworked machines, while its novel type system enables flexible and\nmodular program construction. Go compiles quickly to machine code yet has\nthe convenience of garbage collection and the power of run-time reflection.\nIt's a fast, statically typed, compiled language that feels like a\ndynamically typed, interpreted language.\n",
@@ -1208,7 +1334,7 @@
    "license": "BSD-3-Clause",
    "license_family": "BSD",
    "license_file": "go/LICENSE",
-   "summary": "The Go Programming Language (nocgo)"
+   "summary": "The Go Programming Language (cgo)"
   },
   "build": {
    "binary_relocation": false,
@@ -1270,34 +1396,45 @@
     },
     "name": "go",
     "requirements": {
-     "build": [],
-     "run": [
-      "_go_select ==2.2.0=nocgo"
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
      ],
-     "run_constrained": null
+     "run": [
+      "_go_select ==2.3.0=cgo"
+     ],
+     "run_constrained": [
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ]
     },
-    "script": "nocgo/build.sh",
+    "script": "cgo/build.sh",
     "test": {
      "commands": [
-      "chmod +x nocgo/test.sh",
-      "./nocgo/test.sh"
+      "chmod +x cgo/test.sh",
+      "./cgo/test.sh"
      ],
      "files": [
-      "nocgo"
+      "cgo"
      ],
      "requires": [
+      "c_compiler_stub",
       "perl"
      ]
     }
    }
   ],
   "package": {
-   "name": "go-nocgo",
+   "name": "go-cgo",
    "version": "1.22.3"
   },
   "requirements": {
    "run": [
-    "go"
+    "go",
+    "c_compiler_stub"
    ]
   },
   "source": [
@@ -1349,7 +1486,12 @@
  "osx_64_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "fortran_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
@@ -1359,12 +1501,14 @@
    "__set__": true,
    "elements": [
     "_go_select",
+    "c_compiler_stub",
     "go"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "c_compiler_stub",
     "perl"
    ]
   }
@@ -1378,7 +1522,7 @@
    "license": "BSD-3-Clause",
    "license_family": "BSD",
    "license_file": "go/LICENSE",
-   "summary": "The Go Programming Language (nocgo)"
+   "summary": "The Go Programming Language (cgo)"
   },
   "build": {
    "binary_relocation": false,
@@ -1440,34 +1584,45 @@
     },
     "name": "go",
     "requirements": {
-     "build": [],
-     "run": [
-      "_go_select ==2.2.0=nocgo"
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
      ],
-     "run_constrained": null
+     "run": [
+      "_go_select ==2.3.0=cgo"
+     ],
+     "run_constrained": [
+      "c_compiler_stub",
+      "cxx_compiler_stub",
+      "fortran_compiler_stub"
+     ]
     },
-    "script": "nocgo/build.sh",
+    "script": "cgo/build.sh",
     "test": {
      "commands": [
-      "chmod +x nocgo/test.sh",
-      "./nocgo/test.sh"
+      "chmod +x cgo/test.sh",
+      "./cgo/test.sh"
      ],
      "files": [
-      "nocgo"
+      "cgo"
      ],
      "requires": [
+      "c_compiler_stub",
       "perl"
      ]
     }
    }
   ],
   "package": {
-   "name": "go-nocgo",
+   "name": "go-cgo",
    "version": "1.22.3"
   },
   "requirements": {
    "run": [
-    "go"
+    "go",
+    "c_compiler_stub"
    ]
   },
   "source": [
@@ -1519,7 +1674,12 @@
  "osx_arm64_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "fortran_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
@@ -1529,12 +1689,14 @@
    "__set__": true,
    "elements": [
     "_go_select",
+    "c_compiler_stub",
     "go"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "c_compiler_stub",
     "perl"
    ]
   }
@@ -1543,7 +1705,7 @@
   "__set__": true,
   "elements": [
    "go",
-   "go-nocgo"
+   "go-cgo"
   ]
  },
  "parsing_error": false,
@@ -1563,39 +1725,78 @@
   "__set__": true,
   "elements": [
    "_go_select",
-   "go"
+   "c_compiler_stub",
+   "c_stdlib_stub",
+   "cxx_compiler_stub",
+   "fortran_compiler_stub",
+   "go",
+   "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
+   "m2w64_cxx_compiler_stub",
+   "m2w64_fortran_compiler_stub"
   ]
  },
  "requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "fortran_compiler_stub",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "m2w64_fortran_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "fortran_compiler_stub",
+    "go"
+   ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "_go_select",
-    "go"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "fortran_compiler_stub",
+    "go",
+    "m2w64_c_compiler_stub"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "c_compiler_stub",
     "git",
+    "m2w64_c_compiler_stub",
     "perl"
    ]
   }
  },
- "strong_exports": false,
+ "strong_exports": true,
  "time": 1568135288.123768,
  "total_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "fortran_compiler_stub",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "m2w64_fortran_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
@@ -1605,13 +1806,18 @@
    "__set__": true,
    "elements": [
     "_go_select ==2.2.0=nocgo",
-    "go"
+    "_go_select ==2.3.0=cgo",
+    "c_compiler_stub",
+    "go",
+    "m2w64_c_compiler_stub"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "c_compiler_stub",
     "git",
+    "m2w64_c_compiler_stub",
     "perl"
    ]
   }
@@ -1630,7 +1836,7 @@
    "license": "BSD-3-Clause",
    "license_family": "BSD",
    "license_file": "go/LICENSE",
-   "summary": "The Go Programming Language (nocgo)"
+   "summary": "The Go Programming Language (cgo)"
   },
   "build": {
    "binary_relocation": false,
@@ -1696,33 +1902,44 @@
     },
     "name": "go",
     "requirements": {
-     "build": [],
-     "run": [
-      "_go_select ==2.2.0=nocgo"
+     "build": [
+      "m2w64_c_compiler_stub",
+      "m2w64_c_stdlib_stub",
+      "m2w64_cxx_compiler_stub",
+      "m2w64_fortran_compiler_stub"
      ],
-     "run_constrained": null
+     "run": [
+      "_go_select ==2.3.0=cgo"
+     ],
+     "run_constrained": [
+      "m2w64_c_compiler_stub",
+      "m2w64_cxx_compiler_stub",
+      "m2w64_fortran_compiler_stub"
+     ]
     },
-    "script": "nocgo/build.bat",
+    "script": "cgo/build.bat",
     "test": {
      "commands": [
-      "nocgo/test.bat"
+      "cgo/test.bat"
      ],
      "files": [
-      "nocgo"
+      "cgo"
      ],
      "requires": [
+      "m2w64_c_compiler_stub",
       "perl"
      ]
     }
    }
   ],
   "package": {
-   "name": "go-nocgo",
+   "name": "go-cgo",
    "version": "1.22.3"
   },
   "requirements": {
    "run": [
-    "go"
+    "go",
+    "m2w64_c_compiler_stub"
    ]
   },
   "source": [
@@ -1774,7 +1991,12 @@
  "win_64_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "m2w64_fortran_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
@@ -1784,12 +2006,14 @@
    "__set__": true,
    "elements": [
     "_go_select",
-    "go"
+    "go",
+    "m2w64_c_compiler_stub"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "m2w64_c_compiler_stub",
     "perl"
    ]
   }

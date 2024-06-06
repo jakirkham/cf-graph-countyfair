@@ -107,17 +107,17 @@
       "sed"
      ],
      "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
      ],
      "run": [
       "msvc-headers-libs",
       "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6",
       "gcc_impl_linux-64"
      ]
     },
@@ -148,12 +148,408 @@
       "sed"
      ],
      "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
      ],
      "run": [
       "clang_win-64",
-      "clangxx     18.1.5",
+      "clangxx     16.0.6",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6",
+      "gcc_impl_linux-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     16.0.6",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.29.30133"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6",
+      "gcc_impl_linux-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6",
+      "gcc_impl_linux-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6",
       "gxx_impl_linux-64"
      ]
     },
@@ -353,14 +749,14 @@
      ]
     },
     "script": "install-pkg.sh",
-    "version": "14.29.30133"
+    "version": "14.38.33130"
    },
    {
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -400,404 +796,8 @@
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "gxx_impl_linux-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "gcc_impl_linux-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "gxx_impl_linux-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "gcc_impl_linux-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "gxx_impl_linux-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "gcc_impl_linux-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -1012,17 +1012,17 @@
       "sed"
      ],
      "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
      ],
      "run": [
       "msvc-headers-libs",
       "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6",
       "gcc_impl_linux-64"
      ]
     },
@@ -1053,12 +1053,408 @@
       "sed"
      ],
      "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
      ],
      "run": [
       "clang_win-64",
-      "clangxx     18.1.5",
+      "clangxx     16.0.6",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6",
+      "gcc_impl_linux-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     16.0.6",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.29.30133"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6",
+      "gcc_impl_linux-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6",
+      "gxx_impl_linux-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6",
+      "gcc_impl_linux-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6",
       "gxx_impl_linux-64"
      ]
     },
@@ -1258,14 +1654,14 @@
      ]
     },
     "script": "install-pkg.sh",
-    "version": "14.29.30133"
+    "version": "14.38.33130"
    },
    {
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -1305,8 +1701,8 @@
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -1408,413 +1804,17 @@
       "sed"
      ],
      "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
      ],
      "run": [
       "msvc-headers-libs",
       "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "gcc_impl_linux-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "gxx_impl_linux-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "gcc_impl_linux-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "gxx_impl_linux-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "gcc_impl_linux-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "gxx_impl_linux-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6",
       "clang_impl_osx-64"
      ]
     },
@@ -1845,12 +1845,408 @@
       "sed"
      ],
      "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
      ],
      "run": [
       "clang_win-64",
-      "clangxx     18.1.5",
+      "clangxx     16.0.6",
+      "clangxx_impl_osx-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6",
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     16.0.6",
+      "clangxx_impl_osx-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.29.30133"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6",
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6",
+      "clangxx_impl_osx-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6",
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6",
       "clangxx_impl_osx-64"
      ]
     },
@@ -2050,14 +2446,14 @@
      ]
     },
     "script": "install-pkg.sh",
-    "version": "14.29.30133"
+    "version": "14.38.33130"
    },
    {
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -2097,8 +2493,8 @@
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -2200,413 +2596,17 @@
       "sed"
      ],
      "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
      ],
      "run": [
       "msvc-headers-libs",
       "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "clang_impl_osx-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "clangxx_impl_osx-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "clang_impl_osx-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "clangxx_impl_osx-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "clang_impl_osx-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "clangxx_impl_osx-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6",
       "clang_impl_osx-arm64"
      ]
     },
@@ -2637,12 +2637,408 @@
       "sed"
      ],
      "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
      ],
      "run": [
       "clang_win-64",
-      "clangxx     18.1.5",
+      "clangxx     16.0.6",
+      "clangxx_impl_osx-arm64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6",
+      "clang_impl_osx-arm64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     16.0.6",
+      "clangxx_impl_osx-arm64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.29.30133"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6",
+      "clang_impl_osx-arm64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6",
+      "clangxx_impl_osx-arm64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6",
+      "clang_impl_osx-arm64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6",
       "clangxx_impl_osx-arm64"
      ]
     },
@@ -2842,14 +3238,14 @@
      ]
     },
     "script": "install-pkg.sh",
-    "version": "14.29.30133"
+    "version": "14.38.33130"
    },
    {
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -2889,404 +3285,8 @@
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "clangxx_impl_osx-arm64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "clangxx_impl_osx-arm64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "clangxx_impl_osx-arm64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -3373,7 +3373,539 @@
      ]
     },
     "script": "install-pkg.sh",
-    "version": "14.29.30133"
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "vs2019_win-64 ==19.29.30139",
+      "vswhere",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clang.bat"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.bat"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     16.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clangxx.bat"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.bat"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ],
+     "skip": true
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "vs2022_win-64 ==19.38.33130",
+      "vswhere",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clang.bat"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.bat"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     16.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clangxx.bat"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.bat"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ],
+     "skip": true
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "vs2019_win-64 ==19.29.30139",
+      "vswhere",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clang.bat"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.bat"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clangxx.bat"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.bat"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ],
+     "skip": true
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "vs2022_win-64 ==19.38.33130",
+      "vswhere",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clang.bat"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.bat"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clangxx.bat"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.bat"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ],
+     "skip": true
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
    },
    {
     "build": {
@@ -3506,14 +4038,14 @@
      ]
     },
     "script": "install-pkg.sh",
-    "version": "14.29.30133"
+    "version": "14.38.33130"
    },
    {
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -3528,7 +4060,7 @@
       "llvm-tools  18.1.5"
      ],
      "run": [
-      "vs2019_win-64 ==19.29.30139",
+      "vs2022_win-64 ==19.38.33130",
       "vswhere",
       "clang               18.1.5",
       "llvm-tools          18.1.5",
@@ -3552,540 +4084,8 @@
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clangxx.bat"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.bat"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": {
-     "skip": true
-    },
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ],
-     "skip": true
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "vs2019_win-64 ==19.29.30139",
-      "vswhere",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clang.bat"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.bat"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clangxx.bat"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.bat"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": {
-     "skip": true
-    },
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ],
-     "skip": true
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "vs2019_win-64 ==19.29.30139",
-      "vswhere",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clang.bat"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.bat"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clangxx.bat"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.bat"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": {
-     "skip": true
-    },
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ],
-     "skip": true
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "vs2019_win-64 ==19.29.30139",
-      "vswhere",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clang.bat"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.bat"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clangxx.bat"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.bat"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": {
-     "skip": true
-    },
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ],
-     "skip": true
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "vs2019_win-64 ==19.29.30139",
-      "vswhere",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clang.bat"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.bat"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -4382,17 +4382,17 @@
       "sed"
      ],
      "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
      ],
      "run": [
       "msvc-headers-libs",
       "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6",
       "clang_impl_osx-64"
      ]
     },
@@ -4423,12 +4423,408 @@
       "sed"
      ],
      "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
      ],
      "run": [
       "clang_win-64",
-      "clangxx     18.1.5",
+      "clangxx     16.0.6",
+      "clangxx_impl_osx-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6",
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     16.0.6",
+      "clangxx_impl_osx-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.29.30133"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6",
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6",
+      "clangxx_impl_osx-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6",
+      "clang_impl_osx-64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6",
       "clangxx_impl_osx-64"
      ]
     },
@@ -4628,14 +5024,14 @@
      ]
     },
     "script": "install-pkg.sh",
-    "version": "14.29.30133"
+    "version": "14.38.33130"
    },
    {
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -4675,404 +5071,8 @@
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "clangxx_impl_osx-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "clang_impl_osx-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "clangxx_impl_osx-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "clang_impl_osx-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "clangxx_impl_osx-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "clang_impl_osx-64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -5287,17 +5287,17 @@
       "sed"
      ],
      "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
      ],
      "run": [
       "msvc-headers-libs",
       "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6",
       "clang_impl_osx-arm64"
      ]
     },
@@ -5328,12 +5328,408 @@
       "sed"
      ],
      "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
      ],
      "run": [
       "clang_win-64",
-      "clangxx     18.1.5",
+      "clangxx     16.0.6",
+      "clangxx_impl_osx-arm64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6",
+      "clang_impl_osx-arm64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     16.0.6",
+      "clangxx_impl_osx-arm64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.29.30133"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6",
+      "clang_impl_osx-arm64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6",
+      "clangxx_impl_osx-arm64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clangxx.sh"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.sh"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": null,
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ]
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "msvc-headers-libs",
+      "winsdk",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6",
+      "clang_impl_osx-arm64"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "test": {
+     "commands": [
+      "bash run_test_clang.sh"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.sh"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6",
       "clangxx_impl_osx-arm64"
      ]
     },
@@ -5533,14 +5929,14 @@
      ]
     },
     "script": "install-pkg.sh",
-    "version": "14.29.30133"
+    "version": "14.38.33130"
    },
    {
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -5580,404 +5976,8 @@
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "clangxx_impl_osx-arm64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "clangxx_impl_osx-arm64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5",
-      "clangxx_impl_osx-arm64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clangxx.sh"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.sh"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": null,
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ]
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "msvc-headers-libs",
-      "winsdk",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5",
-      "clang_impl_osx-arm64"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "test": {
-     "commands": [
-      "bash run_test_clang.sh"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.sh"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -6150,6 +6150,7 @@
    "six",
    "unzip",
    "vs2019_win-64",
+   "vs2022_win-64",
    "vswhere",
    "winsdk"
   ]
@@ -6173,7 +6174,8 @@
     "clang-compiler-activation",
     "clang-win-activation",
     "clangxx",
-    "llvm-tools"
+    "llvm-tools",
+    "vc"
    ]
   },
   "run": {
@@ -6199,7 +6201,9 @@
     "msvc-headers-libs",
     "p7zip",
     "unzip",
+    "vc",
     "vs2019_win-64",
+    "vs2022_win-64",
     "vswhere",
     "winsdk"
    ]
@@ -6225,33 +6229,52 @@
   "host": {
    "__set__": true,
    "elements": [
+    "clang       16.0.6",
+    "clang       17.0.6",
     "clang       18.1.5",
+    "clangxx     16.0.6",
+    "clangxx     17.0.6",
     "clangxx     18.1.5",
+    "llvm-tools  16.0.6",
+    "llvm-tools  17.0.6",
     "llvm-tools  18.1.5"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "clang               16.0.6",
+    "clang               17.0.6",
     "clang               18.1.5",
     "clang_impl_osx-64",
     "clang_impl_osx-arm64",
     "clang_win-64",
+    "clangxx     16.0.6",
+    "clangxx     17.0.6",
     "clangxx     18.1.5",
     "clangxx_impl_osx-64",
     "clangxx_impl_osx-arm64",
+    "compiler-rt         16.0.6",
+    "compiler-rt         17.0.6",
     "compiler-rt         18.1.5",
+    "compiler-rt_win-64  16.0.6",
+    "compiler-rt_win-64  17.0.6",
     "compiler-rt_win-64  18.1.5",
     "curl *",
     "gcc_impl_linux-64",
     "gxx_impl_linux-64",
+    "lld                 16.0.6",
+    "lld                 17.0.6",
     "lld                 18.1.5",
+    "llvm-tools          16.0.6",
+    "llvm-tools          17.0.6",
     "llvm-tools          18.1.5",
     "msitools",
     "msvc-headers-libs",
     "p7zip",
     "unzip",
     "vs2019_win-64 ==19.29.30139",
+    "vs2022_win-64 ==19.38.33130",
     "vswhere",
     "winsdk"
    ]
@@ -6341,7 +6364,539 @@
      ]
     },
     "script": "install-pkg.sh",
-    "version": "14.29.30133"
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "vs2019_win-64 ==19.29.30139",
+      "vswhere",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clang.bat"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.bat"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     16.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clangxx.bat"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.bat"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ],
+     "skip": true
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clang       16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "vs2022_win-64 ==19.38.33130",
+      "vswhere",
+      "clang               16.0.6",
+      "llvm-tools          16.0.6",
+      "lld                 16.0.6",
+      "compiler-rt         16.0.6",
+      "compiler-rt_win-64  16.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clang.bat"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.bat"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clangxx     16.0.6",
+      "llvm-tools  16.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     16.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clangxx.bat"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.bat"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ],
+     "skip": true
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "vs2019_win-64 ==19.29.30139",
+      "vswhere",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clang.bat"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.bat"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.2",
+       "vc14_runtime >=14.29.30139",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clangxx.bat"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.bat"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ],
+     "skip": true
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clang       17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "vs2022_win-64 ==19.38.33130",
+      "vswhere",
+      "clang               17.0.6",
+      "llvm-tools          17.0.6",
+      "lld                 17.0.6",
+      "compiler-rt         17.0.6",
+      "compiler-rt_win-64  17.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clang.bat"
+     ],
+     "files": [
+      "test.c",
+      "run_test_clang.bat"
+     ]
+    }
+   },
+   {
+    "build": {
+     "run_exports": {
+      "strong": [
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
+       "ucrt >=10.0.20348.0"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "build": [
+      "m2-sed"
+     ],
+     "host": [
+      "clangxx     17.0.6",
+      "llvm-tools  17.0.6"
+     ],
+     "run": [
+      "clang_win-64",
+      "clangxx     17.0.6"
+     ]
+    },
+    "script": "install-pkg.bat",
+    "test": {
+     "commands": [
+      "run_test_clangxx.bat"
+     ],
+     "files": [
+      "test.cpp",
+      "run_test_clangxx.bat"
+     ]
+    }
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MICROSOFT_SDK",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_SDK.txt",
+     "summary": "Scripts to download Windows SDK headers"
+    },
+    "build": {
+     "skip": true
+    },
+    "name": "winsdk",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "curl *",
+      "msitools",
+      "p7zip"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "10.0.22621.0"
+   },
+   {
+    "about": {
+     "license": "LicenseRef-MSVC_HEADERS",
+     "license_family": "Proprietary",
+     "license_file": "LICENSE_MSVC_HEADERS.txt",
+     "summary": "Scripts to download MSVC headers and libraries"
+    },
+    "build": {
+     "ignore_run_exports": [
+      "python_abi"
+     ],
+     "skip": true
+    },
+    "name": "msvc-headers-libs",
+    "number": "4",
+    "requirements": {
+     "build": [
+      "python *",
+      "six",
+      "grep",
+      "ripgrep",
+      "sed"
+     ],
+     "host": [],
+     "run": [
+      "unzip",
+      "curl *"
+     ]
+    },
+    "script": "install-pkg.sh",
+    "version": "14.38.33130"
    },
    {
     "build": {
@@ -6474,14 +7029,14 @@
      ]
     },
     "script": "install-pkg.sh",
-    "version": "14.29.30133"
+    "version": "14.38.33130"
    },
    {
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -6496,7 +7051,7 @@
       "llvm-tools  18.1.5"
      ],
      "run": [
-      "vs2019_win-64 ==19.29.30139",
+      "vs2022_win-64 ==19.38.33130",
       "vswhere",
       "clang               18.1.5",
       "llvm-tools          18.1.5",
@@ -6520,540 +7075,8 @@
     "build": {
      "run_exports": {
       "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clangxx.bat"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.bat"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": {
-     "skip": true
-    },
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ],
-     "skip": true
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "vs2019_win-64 ==19.29.30139",
-      "vswhere",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clang.bat"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.bat"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clangxx.bat"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.bat"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": {
-     "skip": true
-    },
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ],
-     "skip": true
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "vs2019_win-64 ==19.29.30139",
-      "vswhere",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clang.bat"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.bat"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clangxx.bat"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.bat"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": {
-     "skip": true
-    },
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ],
-     "skip": true
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "vs2019_win-64 ==19.29.30139",
-      "vswhere",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clang.bat"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.bat"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clangxx_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clangxx     18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "clang_win-64",
-      "clangxx     18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clangxx.bat"
-     ],
-     "files": [
-      "test.cpp",
-      "run_test_clangxx.bat"
-     ]
-    }
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MICROSOFT_SDK",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_SDK.txt",
-     "summary": "Scripts to download Windows SDK headers"
-    },
-    "build": {
-     "skip": true
-    },
-    "name": "winsdk",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "curl *",
-      "msitools",
-      "p7zip"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "10.0.22621.0"
-   },
-   {
-    "about": {
-     "license": "LicenseRef-MSVC_HEADERS",
-     "license_family": "Proprietary",
-     "license_file": "LICENSE_MSVC_HEADERS.txt",
-     "summary": "Scripts to download MSVC headers and libraries"
-    },
-    "build": {
-     "ignore_run_exports": [
-      "python_abi"
-     ],
-     "skip": true
-    },
-    "name": "msvc-headers-libs",
-    "number": "4",
-    "requirements": {
-     "build": [
-      "python *",
-      "six",
-      "grep",
-      "ripgrep",
-      "sed"
-     ],
-     "host": [],
-     "run": [
-      "unzip",
-      "curl *"
-     ]
-    },
-    "script": "install-pkg.sh",
-    "version": "14.29.30133"
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
-       "ucrt >=10.0.20348.0"
-      ]
-     }
-    },
-    "name": "clang_win-64",
-    "requirements": {
-     "build": [
-      "m2-sed"
-     ],
-     "host": [
-      "clang       18.1.5",
-      "llvm-tools  18.1.5"
-     ],
-     "run": [
-      "vs2019_win-64 ==19.29.30139",
-      "vswhere",
-      "clang               18.1.5",
-      "llvm-tools          18.1.5",
-      "lld                 18.1.5",
-      "compiler-rt         18.1.5",
-      "compiler-rt_win-64  18.1.5"
-     ]
-    },
-    "script": "install-pkg.bat",
-    "test": {
-     "commands": [
-      "run_test_clang.bat"
-     ],
-     "files": [
-      "test.c",
-      "run_test_clang.bat"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": {
-      "strong": [
-       "vc >=14.2",
-       "vc14_runtime >=14.29.30139",
+       "vc >=14.3",
+       "vc14_runtime >=14.38.33130",
        "ucrt >=10.0.20348.0"
       ]
      }
@@ -7168,6 +7191,7 @@
     "p7zip",
     "unzip",
     "vs2019_win-64",
+    "vs2022_win-64",
     "vswhere"
    ]
   },
