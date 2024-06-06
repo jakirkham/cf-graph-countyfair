@@ -43,6 +43,7 @@
   "build": {
    "number": "0",
    "run_exports": [
+    "dftbplus * mpi_mpich_*",
     "dftbplus * mpi_openmpi_*"
    ],
    "string": "mpi_openmpi_h1234567_0"
@@ -71,34 +72,56 @@
     "wget"
    ],
    "host": [
+    "mpich",
+    "mpifx * mpi_mpich_*",
+    "scalapack",
+    "scalapackfx * mpi_mpich_*",
+    "elsi * mpi_mpich_*",
+    "libnegf * mpi_mpich_*",
+    "mctc-lib",
+    "simple-dftd3",
+    "tblite",
+    "libmbd * mpi_mpich_*",
+    "plumed * mpi_mpich_*",
+    "chimes-calculator",
+    "libblas",
+    "liblapack",
+    "libnegf * nompi_*",
+    "arpack",
+    "libmbd * nompi_*",
+    "plumed * nompi_*",
     "openmpi",
     "mpifx * mpi_openmpi_*",
-    "scalapack",
     "scalapackfx * mpi_openmpi_*",
     "elsi * mpi_openmpi_*",
     "libnegf * mpi_openmpi_*",
+    "libmbd * mpi_openmpi_*",
+    "plumed * mpi_openmpi_*"
+   ],
+   "run": [
+    "mpich",
+    "mpifx mpi_mpich_*",
+    "scalapack",
+    "scalapackfx mpi_mpich_*",
+    "elsi mpi_mpich_*",
+    "libnegf mpi_mpich_*",
     "mctc-lib",
     "simple-dftd3",
     "tblite",
-    "libmbd * mpi_openmpi_*",
-    "plumed * mpi_openmpi_*",
+    "libmbd mpi_mpich_*",
+    "plumed mpi_mpich_*",
     "chimes-calculator",
-    "libblas",
-    "liblapack"
-   ],
-   "run": [
+    "libnegf nompi_*",
+    "arpack",
+    "libmbd nompi_*",
+    "plumed nompi_*",
     "openmpi",
     "mpifx mpi_openmpi_*",
-    "scalapack",
     "scalapackfx mpi_openmpi_*",
     "elsi mpi_openmpi_*",
     "libnegf mpi_openmpi_*",
-    "mctc-lib",
-    "simple-dftd3",
-    "tblite",
     "libmbd mpi_openmpi_*",
-    "plumed mpi_openmpi_*",
-    "chimes-calculator"
+    "plumed mpi_openmpi_*"
    ]
   },
   "source": {
@@ -107,11 +130,12 @@
   },
   "test": {
    "commands": [
-    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes",
     "pkg-config dftbplus --exact-version 24.1",
     "test -f $PREFIX/bin/dftb+",
     "mpiexec $PREFIX/bin/dftb+ | grep -q \"No input file\"",
-    "test -f $PREFIX/lib/libdftbplus${SHLIB_EXT}"
+    "test -f $PREFIX/lib/libdftbplus${SHLIB_EXT}",
+    "$PREFIX/bin/dftb+ | grep -q \"No input file\"",
+    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes"
    ],
    "requires": [
     "pkg-config"
@@ -136,6 +160,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "arpack",
     "chimes-calculator",
     "elsi",
     "libblas",
@@ -143,6 +168,7 @@
     "libmbd",
     "libnegf",
     "mctc-lib",
+    "mpich",
     "mpifx",
     "openmpi",
     "plumed",
@@ -155,11 +181,13 @@
   "run": {
    "__set__": true,
    "elements": [
+    "arpack",
     "chimes-calculator",
     "elsi",
     "libmbd",
     "libnegf",
     "mctc-lib",
+    "mpich",
     "mpifx",
     "openmpi",
     "plumed",
@@ -196,6 +224,7 @@
   "build": {
    "number": "0",
    "run_exports": [
+    "dftbplus * mpi_mpich_*",
     "dftbplus * mpi_openmpi_*"
    ],
    "string": "mpi_openmpi_h1234567_0"
@@ -224,34 +253,56 @@
     "wget"
    ],
    "host": [
+    "mpich",
+    "mpifx * mpi_mpich_*",
+    "scalapack",
+    "scalapackfx * mpi_mpich_*",
+    "elsi * mpi_mpich_*",
+    "libnegf * mpi_mpich_*",
+    "mctc-lib",
+    "simple-dftd3",
+    "tblite",
+    "libmbd * mpi_mpich_*",
+    "plumed * mpi_mpich_*",
+    "chimes-calculator",
+    "libblas",
+    "liblapack",
+    "libnegf * nompi_*",
+    "arpack",
+    "libmbd * nompi_*",
+    "plumed * nompi_*",
     "openmpi",
     "mpifx * mpi_openmpi_*",
-    "scalapack",
     "scalapackfx * mpi_openmpi_*",
     "elsi * mpi_openmpi_*",
     "libnegf * mpi_openmpi_*",
+    "libmbd * mpi_openmpi_*",
+    "plumed * mpi_openmpi_*"
+   ],
+   "run": [
+    "mpich",
+    "mpifx mpi_mpich_*",
+    "scalapack",
+    "scalapackfx mpi_mpich_*",
+    "elsi mpi_mpich_*",
+    "libnegf mpi_mpich_*",
     "mctc-lib",
     "simple-dftd3",
     "tblite",
-    "libmbd * mpi_openmpi_*",
-    "plumed * mpi_openmpi_*",
+    "libmbd mpi_mpich_*",
+    "plumed mpi_mpich_*",
     "chimes-calculator",
-    "libblas",
-    "liblapack"
-   ],
-   "run": [
+    "libnegf nompi_*",
+    "arpack",
+    "libmbd nompi_*",
+    "plumed nompi_*",
     "openmpi",
     "mpifx mpi_openmpi_*",
-    "scalapack",
     "scalapackfx mpi_openmpi_*",
     "elsi mpi_openmpi_*",
     "libnegf mpi_openmpi_*",
-    "mctc-lib",
-    "simple-dftd3",
-    "tblite",
     "libmbd mpi_openmpi_*",
-    "plumed mpi_openmpi_*",
-    "chimes-calculator"
+    "plumed mpi_openmpi_*"
    ]
   },
   "source": {
@@ -260,11 +311,12 @@
   },
   "test": {
    "commands": [
-    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes",
     "pkg-config dftbplus --exact-version 24.1",
     "test -f $PREFIX/bin/dftb+",
     "mpiexec $PREFIX/bin/dftb+ | grep -q \"No input file\"",
-    "test -f $PREFIX/lib/libdftbplus${SHLIB_EXT}"
+    "test -f $PREFIX/lib/libdftbplus${SHLIB_EXT}",
+    "$PREFIX/bin/dftb+ | grep -q \"No input file\"",
+    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes"
    ],
    "requires": [
     "pkg-config"
@@ -289,6 +341,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "arpack",
     "chimes-calculator",
     "elsi",
     "libblas",
@@ -296,6 +349,7 @@
     "libmbd",
     "libnegf",
     "mctc-lib",
+    "mpich",
     "mpifx",
     "openmpi",
     "plumed",
@@ -308,11 +362,13 @@
   "run": {
    "__set__": true,
    "elements": [
+    "arpack",
     "chimes-calculator",
     "elsi",
     "libmbd",
     "libnegf",
     "mctc-lib",
+    "mpich",
     "mpifx",
     "openmpi",
     "plumed",
@@ -349,6 +405,7 @@
   "build": {
    "number": "0",
    "run_exports": [
+    "dftbplus * mpi_mpich_*",
     "dftbplus * mpi_openmpi_*"
    ],
    "string": "mpi_openmpi_h1234567_0"
@@ -377,34 +434,56 @@
     "wget"
    ],
    "host": [
+    "mpich",
+    "mpifx * mpi_mpich_*",
+    "scalapack",
+    "scalapackfx * mpi_mpich_*",
+    "elsi * mpi_mpich_*",
+    "libnegf * mpi_mpich_*",
+    "mctc-lib",
+    "simple-dftd3",
+    "tblite",
+    "libmbd * mpi_mpich_*",
+    "plumed * mpi_mpich_*",
+    "chimes-calculator",
+    "libblas",
+    "liblapack",
+    "libnegf * nompi_*",
+    "arpack",
+    "libmbd * nompi_*",
+    "plumed * nompi_*",
     "openmpi",
     "mpifx * mpi_openmpi_*",
-    "scalapack",
     "scalapackfx * mpi_openmpi_*",
     "elsi * mpi_openmpi_*",
     "libnegf * mpi_openmpi_*",
+    "libmbd * mpi_openmpi_*",
+    "plumed * mpi_openmpi_*"
+   ],
+   "run": [
+    "mpich",
+    "mpifx mpi_mpich_*",
+    "scalapack",
+    "scalapackfx mpi_mpich_*",
+    "elsi mpi_mpich_*",
+    "libnegf mpi_mpich_*",
     "mctc-lib",
     "simple-dftd3",
     "tblite",
-    "libmbd * mpi_openmpi_*",
-    "plumed * mpi_openmpi_*",
+    "libmbd mpi_mpich_*",
+    "plumed mpi_mpich_*",
     "chimes-calculator",
-    "libblas",
-    "liblapack"
-   ],
-   "run": [
+    "libnegf nompi_*",
+    "arpack",
+    "libmbd nompi_*",
+    "plumed nompi_*",
     "openmpi",
     "mpifx mpi_openmpi_*",
-    "scalapack",
     "scalapackfx mpi_openmpi_*",
     "elsi mpi_openmpi_*",
     "libnegf mpi_openmpi_*",
-    "mctc-lib",
-    "simple-dftd3",
-    "tblite",
     "libmbd mpi_openmpi_*",
-    "plumed mpi_openmpi_*",
-    "chimes-calculator"
+    "plumed mpi_openmpi_*"
    ]
   },
   "source": {
@@ -413,11 +492,12 @@
   },
   "test": {
    "commands": [
-    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes",
     "pkg-config dftbplus --exact-version 24.1",
     "test -f $PREFIX/bin/dftb+",
     "mpiexec $PREFIX/bin/dftb+ | grep -q \"No input file\"",
-    "test -f $PREFIX/lib/libdftbplus${SHLIB_EXT}"
+    "test -f $PREFIX/lib/libdftbplus${SHLIB_EXT}",
+    "$PREFIX/bin/dftb+ | grep -q \"No input file\"",
+    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes"
    ],
    "requires": [
     "pkg-config"
@@ -442,6 +522,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "arpack",
     "chimes-calculator",
     "elsi",
     "libblas",
@@ -449,6 +530,7 @@
     "libmbd",
     "libnegf",
     "mctc-lib",
+    "mpich",
     "mpifx",
     "openmpi",
     "plumed",
@@ -461,11 +543,13 @@
   "run": {
    "__set__": true,
    "elements": [
+    "arpack",
     "chimes-calculator",
     "elsi",
     "libmbd",
     "libnegf",
     "mctc-lib",
+    "mpich",
     "mpifx",
     "openmpi",
     "plumed",
@@ -502,6 +586,7 @@
   "build": {
    "number": "0",
    "run_exports": [
+    "dftbplus * mpi_mpich_*",
     "dftbplus * mpi_openmpi_*"
    ],
    "string": "mpi_openmpi_h1234567_0"
@@ -532,34 +617,56 @@
     "openmpi"
    ],
    "host": [
+    "mpich",
+    "mpifx * mpi_mpich_*",
+    "scalapack",
+    "scalapackfx * mpi_mpich_*",
+    "elsi * mpi_mpich_*",
+    "libnegf * mpi_mpich_*",
+    "mctc-lib",
+    "simple-dftd3",
+    "tblite",
+    "libmbd * mpi_mpich_*",
+    "plumed * mpi_mpich_*",
+    "chimes-calculator",
+    "libblas",
+    "liblapack",
+    "libnegf * nompi_*",
+    "arpack",
+    "libmbd * nompi_*",
+    "plumed * nompi_*",
     "openmpi",
     "mpifx * mpi_openmpi_*",
-    "scalapack",
     "scalapackfx * mpi_openmpi_*",
     "elsi * mpi_openmpi_*",
     "libnegf * mpi_openmpi_*",
+    "libmbd * mpi_openmpi_*",
+    "plumed * mpi_openmpi_*"
+   ],
+   "run": [
+    "mpich",
+    "mpifx mpi_mpich_*",
+    "scalapack",
+    "scalapackfx mpi_mpich_*",
+    "elsi mpi_mpich_*",
+    "libnegf mpi_mpich_*",
     "mctc-lib",
     "simple-dftd3",
     "tblite",
-    "libmbd * mpi_openmpi_*",
-    "plumed * mpi_openmpi_*",
+    "libmbd mpi_mpich_*",
+    "plumed mpi_mpich_*",
     "chimes-calculator",
-    "libblas",
-    "liblapack"
-   ],
-   "run": [
+    "libnegf nompi_*",
+    "arpack",
+    "libmbd nompi_*",
+    "plumed nompi_*",
     "openmpi",
     "mpifx mpi_openmpi_*",
-    "scalapack",
     "scalapackfx mpi_openmpi_*",
     "elsi mpi_openmpi_*",
     "libnegf mpi_openmpi_*",
-    "mctc-lib",
-    "simple-dftd3",
-    "tblite",
     "libmbd mpi_openmpi_*",
-    "plumed mpi_openmpi_*",
-    "chimes-calculator"
+    "plumed mpi_openmpi_*"
    ]
   },
   "source": {
@@ -568,11 +675,12 @@
   },
   "test": {
    "commands": [
-    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes",
     "pkg-config dftbplus --exact-version 24.1",
     "test -f $PREFIX/bin/dftb+",
     "mpiexec $PREFIX/bin/dftb+ | grep -q \"No input file\"",
-    "test -f $PREFIX/lib/libdftbplus${SHLIB_EXT}"
+    "test -f $PREFIX/lib/libdftbplus${SHLIB_EXT}",
+    "$PREFIX/bin/dftb+ | grep -q \"No input file\"",
+    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes"
    ],
    "requires": [
     "pkg-config"
@@ -600,6 +708,7 @@
   "build": {
    "number": "0",
    "run_exports": [
+    "dftbplus * mpi_mpich_*",
     "dftbplus * mpi_openmpi_*"
    ],
    "string": "mpi_openmpi_h1234567_0"
@@ -628,34 +737,56 @@
     "wget"
    ],
    "host": [
+    "mpich",
+    "mpifx * mpi_mpich_*",
+    "scalapack",
+    "scalapackfx * mpi_mpich_*",
+    "elsi * mpi_mpich_*",
+    "libnegf * mpi_mpich_*",
+    "mctc-lib",
+    "simple-dftd3",
+    "tblite",
+    "libmbd * mpi_mpich_*",
+    "plumed * mpi_mpich_*",
+    "chimes-calculator",
+    "libblas",
+    "liblapack",
+    "libnegf * nompi_*",
+    "arpack",
+    "libmbd * nompi_*",
+    "plumed * nompi_*",
     "openmpi",
     "mpifx * mpi_openmpi_*",
-    "scalapack",
     "scalapackfx * mpi_openmpi_*",
     "elsi * mpi_openmpi_*",
     "libnegf * mpi_openmpi_*",
+    "libmbd * mpi_openmpi_*",
+    "plumed * mpi_openmpi_*"
+   ],
+   "run": [
+    "mpich",
+    "mpifx mpi_mpich_*",
+    "scalapack",
+    "scalapackfx mpi_mpich_*",
+    "elsi mpi_mpich_*",
+    "libnegf mpi_mpich_*",
     "mctc-lib",
     "simple-dftd3",
     "tblite",
-    "libmbd * mpi_openmpi_*",
-    "plumed * mpi_openmpi_*",
+    "libmbd mpi_mpich_*",
+    "plumed mpi_mpich_*",
     "chimes-calculator",
-    "libblas",
-    "liblapack"
-   ],
-   "run": [
+    "libnegf nompi_*",
+    "arpack",
+    "libmbd nompi_*",
+    "plumed nompi_*",
     "openmpi",
     "mpifx mpi_openmpi_*",
-    "scalapack",
     "scalapackfx mpi_openmpi_*",
     "elsi mpi_openmpi_*",
     "libnegf mpi_openmpi_*",
-    "mctc-lib",
-    "simple-dftd3",
-    "tblite",
     "libmbd mpi_openmpi_*",
-    "plumed mpi_openmpi_*",
-    "chimes-calculator"
+    "plumed mpi_openmpi_*"
    ]
   },
   "source": {
@@ -664,11 +795,12 @@
   },
   "test": {
    "commands": [
-    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes",
     "pkg-config dftbplus --exact-version 24.1",
     "test -f $PREFIX/bin/dftb+",
     "mpiexec $PREFIX/bin/dftb+ | grep -q \"No input file\"",
-    "test -f $PREFIX/lib/libdftbplus${SHLIB_EXT}"
+    "test -f $PREFIX/lib/libdftbplus${SHLIB_EXT}",
+    "$PREFIX/bin/dftb+ | grep -q \"No input file\"",
+    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes"
    ],
    "requires": [
     "pkg-config"
@@ -693,6 +825,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "arpack",
     "chimes-calculator",
     "elsi",
     "libblas",
@@ -700,6 +833,7 @@
     "libmbd",
     "libnegf",
     "mctc-lib",
+    "mpich",
     "mpifx",
     "openmpi",
     "plumed",
@@ -712,11 +846,13 @@
   "run": {
    "__set__": true,
    "elements": [
+    "arpack",
     "chimes-calculator",
     "elsi",
     "libmbd",
     "libnegf",
     "mctc-lib",
+    "mpich",
     "mpifx",
     "openmpi",
     "plumed",
@@ -753,6 +889,7 @@
   "build": {
    "number": "0",
    "run_exports": [
+    "dftbplus * mpi_mpich_*",
     "dftbplus * mpi_openmpi_*"
    ],
    "string": "mpi_openmpi_h1234567_0"
@@ -778,34 +915,52 @@
     "fypp",
     "pkg-config",
     "llvm-openmp",
-    "openmpi",
-    "wget"
+    "wget",
+    "openmpi"
    ],
    "host": [
-    "openmpi",
-    "mpifx * mpi_openmpi_*",
+    "mpich",
+    "mpifx * mpi_mpich_*",
     "scalapack",
-    "scalapackfx * mpi_openmpi_*",
-    "libnegf * mpi_openmpi_*",
+    "scalapackfx * mpi_mpich_*",
+    "libnegf * mpi_mpich_*",
     "mctc-lib",
     "simple-dftd3",
     "tblite",
-    "libmbd * mpi_openmpi_*",
+    "libmbd * mpi_mpich_*",
     "chimes-calculator",
     "libblas",
-    "liblapack"
+    "liblapack",
+    "libnegf * nompi_*",
+    "arpack",
+    "libmbd * nompi_*",
+    "plumed * nompi_*",
+    "openmpi",
+    "mpifx * mpi_openmpi_*",
+    "scalapackfx * mpi_openmpi_*",
+    "libnegf * mpi_openmpi_*",
+    "libmbd * mpi_openmpi_*"
    ],
    "run": [
-    "openmpi",
-    "mpifx mpi_openmpi_*",
+    "mpich",
+    "mpifx mpi_mpich_*",
     "scalapack",
-    "scalapackfx mpi_openmpi_*",
-    "libnegf mpi_openmpi_*",
+    "scalapackfx mpi_mpich_*",
+    "libnegf mpi_mpich_*",
     "mctc-lib",
     "simple-dftd3",
     "tblite",
-    "libmbd mpi_openmpi_*",
-    "chimes-calculator"
+    "libmbd mpi_mpich_*",
+    "chimes-calculator",
+    "libnegf nompi_*",
+    "arpack",
+    "libmbd nompi_*",
+    "plumed nompi_*",
+    "openmpi",
+    "mpifx mpi_openmpi_*",
+    "scalapackfx mpi_openmpi_*",
+    "libnegf mpi_openmpi_*",
+    "libmbd mpi_openmpi_*"
    ]
   },
   "source": {
@@ -814,11 +969,12 @@
   },
   "test": {
    "commands": [
-    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes",
     "pkg-config dftbplus --exact-version 24.1",
     "test -f $PREFIX/bin/dftb+",
     "mpiexec $PREFIX/bin/dftb+ | grep -q \"No input file\"",
-    "test -f $PREFIX/lib/libdftbplus${SHLIB_EXT}"
+    "test -f $PREFIX/lib/libdftbplus${SHLIB_EXT}",
+    "$PREFIX/bin/dftb+ | grep -q \"No input file\"",
+    "export OMPI_MCA_plm=isolated OMPI_MCA_btl_vader_single_copy_mechanism=none OMPI_MCA_rmaps_base_oversubscribe=yes"
    ],
    "requires": [
     "pkg-config"
@@ -844,14 +1000,17 @@
   "host": {
    "__set__": true,
    "elements": [
+    "arpack",
     "chimes-calculator",
     "libblas",
     "liblapack",
     "libmbd",
     "libnegf",
     "mctc-lib",
+    "mpich",
     "mpifx",
     "openmpi",
+    "plumed",
     "scalapack",
     "scalapackfx",
     "simple-dftd3",
@@ -861,12 +1020,15 @@
   "run": {
    "__set__": true,
    "elements": [
+    "arpack",
     "chimes-calculator",
     "libmbd",
     "libnegf",
     "mctc-lib",
+    "mpich",
     "mpifx",
     "openmpi",
+    "plumed",
     "scalapack",
     "scalapackfx",
     "simple-dftd3",
@@ -901,6 +1063,7 @@
  "req": {
   "__set__": true,
   "elements": [
+   "arpack",
    "c_compiler_stub",
    "chimes-calculator",
    "cmake",
@@ -915,6 +1078,7 @@
    "libnegf",
    "llvm-openmp",
    "mctc-lib",
+   "mpich",
    "mpifx",
    "ninja",
    "openmpi",
@@ -947,6 +1111,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "arpack",
     "c_compiler_stub",
     "chimes-calculator",
     "ctng-compilers",
@@ -958,6 +1123,7 @@
     "libmbd",
     "libnegf",
     "mctc-lib",
+    "mpich",
     "mpifx",
     "openmp",
     "openmpi",
@@ -971,6 +1137,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "arpack",
     "c_compiler_stub",
     "chimes-calculator",
     "ctng-compilers",
@@ -980,6 +1147,7 @@
     "libmbd",
     "libnegf",
     "mctc-lib",
+    "mpich",
     "mpifx",
     "openmp",
     "openmpi",
@@ -1018,17 +1186,28 @@
   "host": {
    "__set__": true,
    "elements": [
+    "arpack",
     "chimes-calculator",
+    "elsi * mpi_mpich_*",
     "elsi * mpi_openmpi_*",
     "libblas",
     "liblapack",
+    "libmbd * mpi_mpich_*",
     "libmbd * mpi_openmpi_*",
+    "libmbd * nompi_*",
+    "libnegf * mpi_mpich_*",
     "libnegf * mpi_openmpi_*",
+    "libnegf * nompi_*",
     "mctc-lib",
+    "mpich",
+    "mpifx * mpi_mpich_*",
     "mpifx * mpi_openmpi_*",
     "openmpi",
+    "plumed * mpi_mpich_*",
     "plumed * mpi_openmpi_*",
+    "plumed * nompi_*",
     "scalapack",
+    "scalapackfx * mpi_mpich_*",
     "scalapackfx * mpi_openmpi_*",
     "simple-dftd3",
     "tblite"
@@ -1037,15 +1216,26 @@
   "run": {
    "__set__": true,
    "elements": [
+    "arpack",
     "chimes-calculator",
+    "elsi mpi_mpich_*",
     "elsi mpi_openmpi_*",
+    "libmbd mpi_mpich_*",
     "libmbd mpi_openmpi_*",
+    "libmbd nompi_*",
+    "libnegf mpi_mpich_*",
     "libnegf mpi_openmpi_*",
+    "libnegf nompi_*",
     "mctc-lib",
+    "mpich",
+    "mpifx mpi_mpich_*",
     "mpifx mpi_openmpi_*",
     "openmpi",
+    "plumed mpi_mpich_*",
     "plumed mpi_openmpi_*",
+    "plumed nompi_*",
     "scalapack",
+    "scalapackfx mpi_mpich_*",
     "scalapackfx mpi_openmpi_*",
     "simple-dftd3",
     "tblite"

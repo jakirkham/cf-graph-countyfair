@@ -25,8 +25,9 @@
    "summary": "Quantum chemistry and solid state physics software package"
   },
   "build": {
-   "number": "1002",
-   "string": "mkl_nompi_h1234567_1002"
+   "number": "2",
+   "skip": true,
+   "string": "openblas_openmpi_h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -57,12 +58,21 @@
     "spglib",
     "libxc >=5.1",
     "libint >=2.9.0",
-    "libxsmm"
+    "libxsmm",
+    "openmpi",
+    "scalapack",
+    "sirius",
+    "openblas"
    ],
    "run": [
     "libblas * *mkl",
     "libcblas * *mkl",
-    "liblapack * *mkl"
+    "liblapack * *mkl",
+    "openmpi",
+    "libblas * *openblas",
+    "libcblas * *openblas",
+    "liblapack * *openblas",
+    "scalapack"
    ]
   },
   "source": [
@@ -109,7 +119,8 @@
   ],
   "test": {
    "commands": [
-    "cp2k.ssmp --help"
+    "cp2k.ssmp --help",
+    "mpiexec --bind-to none -mca plm isolated cp2k.psmp --help"
    ]
   }
  },
@@ -136,6 +147,10 @@
     "libxc",
     "libxsmm",
     "mkl-devel",
+    "openblas",
+    "openmpi",
+    "scalapack",
+    "sirius",
     "spglib"
    ]
   },
@@ -144,7 +159,9 @@
    "elements": [
     "libblas",
     "libcblas",
-    "liblapack"
+    "liblapack",
+    "openmpi",
+    "scalapack"
    ]
   },
   "test": {
@@ -164,8 +181,9 @@
    "summary": "Quantum chemistry and solid state physics software package"
   },
   "build": {
-   "number": "1002",
-   "string": "mkl_nompi_h1234567_1002"
+   "number": "2",
+   "skip": true,
+   "string": "openblas_openmpi_h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -196,12 +214,21 @@
     "spglib",
     "libxc >=5.1",
     "libint >=2.9.0",
-    "libxsmm"
+    "libxsmm",
+    "openmpi",
+    "scalapack",
+    "sirius",
+    "openblas"
    ],
    "run": [
     "libblas * *mkl",
     "libcblas * *mkl",
-    "liblapack * *mkl"
+    "liblapack * *mkl",
+    "openmpi",
+    "libblas * *openblas",
+    "libcblas * *openblas",
+    "liblapack * *openblas",
+    "scalapack"
    ]
   },
   "source": [
@@ -248,7 +275,8 @@
   ],
   "test": {
    "commands": [
-    "cp2k.ssmp --help"
+    "cp2k.ssmp --help",
+    "mpiexec --bind-to none -mca plm isolated cp2k.psmp --help"
    ]
   }
  },
@@ -286,7 +314,11 @@
    "libxsmm",
    "make",
    "mkl-devel",
+   "openblas",
+   "openmpi",
    "python",
+   "scalapack",
+   "sirius",
    "spglib"
   ]
  },
@@ -317,6 +349,10 @@
     "libxc",
     "libxsmm",
     "mkl-devel",
+    "openblas",
+    "openmpi",
+    "scalapack",
+    "sirius",
     "spglib"
    ]
   },
@@ -329,7 +365,9 @@
     "fortran_compiler_stub",
     "libblas",
     "libcblas",
-    "liblapack"
+    "liblapack",
+    "openmpi",
+    "scalapack"
    ]
   },
   "test": {
@@ -361,6 +399,10 @@
     "libxc >=5.1",
     "libxsmm",
     "mkl-devel",
+    "openblas",
+    "openmpi",
+    "scalapack",
+    "sirius",
     "spglib"
    ]
   },
@@ -368,8 +410,13 @@
    "__set__": true,
    "elements": [
     "libblas * *mkl",
+    "libblas * *openblas",
     "libcblas * *mkl",
-    "liblapack * *mkl"
+    "libcblas * *openblas",
+    "liblapack * *mkl",
+    "liblapack * *openblas",
+    "openmpi",
+    "scalapack"
    ]
   },
   "test": {
