@@ -33,11 +33,11 @@
    "summary": "Modern Fortran wrappers around ScaLAPACK routines"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "scalapackfx mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_0"
+   "string": "mpi_openmpi_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -127,11 +127,11 @@
    "summary": "Modern Fortran wrappers around ScaLAPACK routines"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "scalapackfx mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_0"
+   "string": "mpi_openmpi_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -221,11 +221,11 @@
    "summary": "Modern Fortran wrappers around ScaLAPACK routines"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "scalapackfx mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_0"
+   "string": "mpi_openmpi_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -315,11 +315,11 @@
    "summary": "Modern Fortran wrappers around ScaLAPACK routines"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "scalapackfx mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_0"
+   "string": "mpi_openmpi_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -340,6 +340,7 @@
     "fypp",
     "libgomp",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "llvm-openmp"
    ],
    "host": [
@@ -378,11 +379,11 @@
    "summary": "Modern Fortran wrappers around ScaLAPACK routines"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "scalapackfx mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_0"
+   "string": "mpi_openmpi_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -398,6 +399,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "cmake",
     "ninja",
@@ -434,6 +436,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "fypp",
@@ -474,11 +477,11 @@
    "summary": "Modern Fortran wrappers around ScaLAPACK routines"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "scalapackfx mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_0"
+   "string": "mpi_openmpi_h1234567_1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -494,6 +497,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "cmake",
     "ninja",
@@ -530,6 +534,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "fypp",
@@ -577,11 +582,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/scalapackfx.json"
  },
- "raw_meta_yaml": "{% set name = \"scalapackfx\" %}\n{% set version = \"1.2\" %}\n{% set build = 0 %}\n{% set mpi = mpi or \"nompi\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/dftbplus/{{ name }}/archive/{{ version }}.tar.gz\n  sha256: 277fd170cfe6b6c67242a2c179494ec48d0daae94eac26f8361ca30aafe71b98\n\nbuild:\n  number: {{ build }}\n  skip: true  # [win]\n\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  string: {{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build }}\n\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }} {{ mpi_prefix }}_*\n\nrequirements:\n  build:\n    - {{ compiler('c') }}  # [osx]\n    - {{ compiler('fortran') }}\n    - cmake\n    - ninja\n    - fypp\n    - llvm-openmp  # [osx]\n    - libgomp  # [linux]\n    - {{ mpi }}  # [mpi == \"openmpi\" and build_platform != target_platform]\n  host:\n    - {{ mpi }}\n    - scalapack\n    - libblas\n    - liblapack\n  run:\n    - {{ mpi }}\n    - scalapack\n\n\ntest:\n  requires:\n    - pkg-config\n  commands:\n    - pkg-config {{ name }} --modversion\n    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}\n\nabout:\n  home: https://github.com/dftbplus/{{ name }}\n  license: BSD-2-Clause\n  license_file:\n    - LICENSE\n  summary: Modern Fortran wrappers around ScaLAPACK routines\n\nextra:\n  recipe-maintainers:\n    - aradi\n    - awvwgk\n    - bhourahine\n",
+ "raw_meta_yaml": "{% set name = \"scalapackfx\" %}\n{% set version = \"1.2\" %}\n{% set build = 1 %}\n{% set mpi = mpi or \"nompi\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/dftbplus/{{ name }}/archive/{{ version }}.tar.gz\n  sha256: 277fd170cfe6b6c67242a2c179494ec48d0daae94eac26f8361ca30aafe71b98\n\nbuild:\n  number: {{ build }}\n  skip: true  # [win]\n\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n  string: {{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build }}\n\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }} {{ mpi_prefix }}_*\n\nrequirements:\n  build:\n    - {{ compiler('c') }}  # [osx]\n    - {{ stdlib(\"c\") }}    # [osx]\n    - {{ compiler('fortran') }}\n    - cmake\n    - ninja\n    - fypp\n    - llvm-openmp  # [osx]\n    - libgomp  # [linux]\n    - {{ mpi }}  # [mpi == \"openmpi\" and build_platform != target_platform]\n  host:\n    - {{ mpi }}\n    - scalapack\n    - libblas\n    - liblapack\n  run:\n    - {{ mpi }}\n    - scalapack\n\n\ntest:\n  requires:\n    - pkg-config\n  commands:\n    - pkg-config {{ name }} --modversion\n    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}\n\nabout:\n  home: https://github.com/dftbplus/{{ name }}\n  license: BSD-2-Clause\n  license_file:\n    - LICENSE\n  summary: Modern Fortran wrappers around ScaLAPACK routines\n\nextra:\n  recipe-maintainers:\n    - aradi\n    - awvwgk\n    - bhourahine\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "fortran_compiler_stub",
    "fypp",
@@ -599,6 +605,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "fypp",
@@ -611,6 +618,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "fortran_compiler_stub",
     "libblas",
@@ -624,6 +632,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "fortran_compiler_stub",
     "openmp",
@@ -644,6 +653,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "fypp",
