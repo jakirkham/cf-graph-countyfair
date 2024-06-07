@@ -2,15 +2,15 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
-  "azure": {
-   "settings_win": {
-    "pool": {
-     "vmImage": "windows-2022"
-    }
-   }
-  },
   "channel_priority": "strict",
-  "conda_forge_output_validation": true
+  "conda_build": {
+   "error_overlinking": true
+  },
+  "conda_forge_output_validation": true,
+  "github": {
+   "branch_name": "main",
+   "tooling_branch_name": "main"
+  }
  },
  "feedstock_name": "segalign",
  "hash_type": "sha256",
@@ -187,7 +187,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/segalign.json"
  },
- "raw_meta_yaml": "{% set name = \"SegAlign\" %}\n{% set version = \"0.1.2.6\" %}\n{% set segalign_tbb_version = \"2020.2.*\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/richard-burhans/SegAlign/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: cb80ce5bfa1e7b3d909364d384a60343d901984201016e666102615c67093c2e\n\nbuild:\n  number: 0\n  skip: true  # [win or cuda_compiler_version is undefined or cuda_compiler_version == \"None\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - cmake\n    - make\n  host:\n    - cuda-version {{ cuda_compiler_version }}\n    - libboost-devel\n    - tbb-devel {{ segalign_tbb_version }}\n    - zlib\n  run:\n    - bash\n    - coreutils\n    - cuda-version {{ cuda_compiler_version }}\n    - gawk\n    - grep\n    - sed\n    - tbb-devel {{ segalign_tbb_version }}\n    - time\n\ntest:\n  commands:\n    - segalign --help\n    - segalign_repeat_masker --help\n\nabout:\n  home: https://github.com/gsneha26/SegAlign\n  summary: 'SegAlign: A Scalable GPU-Based Whole Genome Aligner'\n  description: |\n    SegAlign is a Scalable GPU System for Pairwise Whole Genome\n    Alignments based on LASTZ's seed-filter-extend paradigm.\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  doc_url: https://github.com/gsneha26/SegAlign/blob/main/README.md\n  dev_url: https://github.com/gsneha26/SegAlign\n\nextra:\n  recipe-maintainers:\n    - richard-burhans\n",
+ "raw_meta_yaml": "{% set name = \"SegAlign\" %}\n{% set version = \"0.1.2.6\" %}\n{% set segalign_tbb_version = \"2020.2.*\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/richard-burhans/SegAlign/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: cb80ce5bfa1e7b3d909364d384a60343d901984201016e666102615c67093c2e\n\nbuild:\n  number: 0\n  skip: true  # [win or osx or cuda_compiler_version is undefined or cuda_compiler_version == \"None\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - cmake\n    - make\n  host:\n    - cuda-version {{ cuda_compiler_version }}\n    - libboost-devel\n    - tbb-devel {{ segalign_tbb_version }}\n    - zlib\n  run:\n    - bash\n    - coreutils\n    - cuda-version {{ cuda_compiler_version }}\n    - gawk\n    - grep\n    - sed\n    - tbb-devel {{ segalign_tbb_version }}\n    - time\n\ntest:\n  commands:\n    - segalign --help\n    - segalign_repeat_masker --help\n\nabout:\n  home: https://github.com/gsneha26/SegAlign\n  summary: 'SegAlign: A Scalable GPU-Based Whole Genome Aligner'\n  description: |\n    SegAlign is a Scalable GPU System for Pairwise Whole Genome\n    Alignments based on LASTZ's seed-filter-extend paradigm.\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  doc_url: https://github.com/gsneha26/SegAlign/blob/main/README.md\n  dev_url: https://github.com/gsneha26/SegAlign\n\nextra:\n  recipe-maintainers:\n    - richard-burhans\n",
  "req": {
   "__set__": true,
   "elements": [
