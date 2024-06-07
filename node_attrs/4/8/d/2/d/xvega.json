@@ -34,7 +34,7 @@
    "summary": "A C++ backend for vega"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -58,7 +58,7 @@
     "nlohmann_json",
     "xproperty >=0.12.0,<0.13.0"
    ],
-   "run_constrained": [
+   "run": [
     "xproperty",
     "nlohmann_json"
    ]
@@ -98,7 +98,10 @@
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "nlohmann_json",
+    "xproperty"
+   ]
   },
   "test": {
    "__set__": true,
@@ -116,7 +119,7 @@
    "summary": "A C++ backend for vega"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -140,7 +143,7 @@
     "nlohmann_json",
     "xproperty >=0.12.0,<0.13.0"
    ],
-   "run_constrained": [
+   "run": [
     "xproperty",
     "nlohmann_json"
    ]
@@ -180,7 +183,10 @@
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "nlohmann_json",
+    "xproperty"
+   ]
   },
   "test": {
    "__set__": true,
@@ -198,7 +204,7 @@
    "summary": "A C++ backend for vega"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -222,7 +228,7 @@
     "nlohmann_json",
     "xproperty >=0.12.0,<0.13.0"
    ],
-   "run_constrained": [
+   "run": [
     "xproperty",
     "nlohmann_json"
    ]
@@ -262,7 +268,10 @@
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "nlohmann_json",
+    "xproperty"
+   ]
   },
   "test": {
    "__set__": true,
@@ -280,7 +289,7 @@
    "summary": "A C++ backend for vega"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -304,7 +313,7 @@
     "nlohmann_json",
     "xproperty >=0.12.0,<0.13.0"
    ],
-   "run_constrained": [
+   "run": [
     "xproperty",
     "nlohmann_json"
    ]
@@ -342,7 +351,7 @@
    "summary": "A C++ backend for vega"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -366,7 +375,7 @@
     "nlohmann_json",
     "xproperty >=0.12.0,<0.13.0"
    ],
-   "run_constrained": [
+   "run": [
     "xproperty",
     "nlohmann_json"
    ]
@@ -406,7 +415,10 @@
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "nlohmann_json",
+    "xproperty"
+   ]
   },
   "test": {
    "__set__": true,
@@ -424,7 +436,7 @@
    "summary": "A C++ backend for vega"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -448,7 +460,7 @@
     "nlohmann_json",
     "xproperty >=0.12.0,<0.13.0"
    ],
-   "run_constrained": [
+   "run": [
     "xproperty",
     "nlohmann_json"
    ]
@@ -488,7 +500,10 @@
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "nlohmann_json",
+    "xproperty"
+   ]
   },
   "test": {
    "__set__": true,
@@ -513,7 +528,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/xvega.json"
  },
- "raw_meta_yaml": "{% set name = \"xvega\" %}\n{% set version = \"0.1.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/jupyter-xeus/xvega/archive/{{ version }}.tar.gz\n  sha256: 750a19078693b7fcf34360745390e2df6158647b317152f2be9dd766936df74b\n\nbuild:\n  number: 0\n  skip: true  # [win and vc<14]\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - cmake\n    - make  # [unix]\n  host:\n    - nlohmann_json\n    - xproperty >=0.12.0,<0.13.0\n  run_constrained:\n    - {{ pin_compatible('xproperty', max_pin='x.x') }}\n    - {{ pin_compatible('nlohmann_json', max_pin='x.x') }}\n\ntest:\n  commands:\n    - test -d ${PREFIX}/include/xvega  # [unix]\n    - test -f ${PREFIX}/include/xvega/xvega.hpp  # [unix]\n    - test -f ${PREFIX}/include/xvega/grammar/marks.hpp  # [unix]\n    - test -f ${PREFIX}/include/xvega/utils/random_string.hpp  # [unix]\n    - test -f ${PREFIX}/lib/cmake/xvega/xvegaConfig.cmake  # [unix]\n    - test -f ${PREFIX}/lib/cmake/xvega/xvegaConfigVersion.cmake  # [unix]\n    - if exist %LIBRARY_PREFIX%\\include\\xvega\\xvega.hpp (exit 0) else (exit 1)  # [win]\n    - if exist %LIBRARY_PREFIX%\\include\\xvega\\grammar\\marks.hpp (exit 0) else (exit 1)  # [win]\n    - if exist %LIBRARY_PREFIX%\\include\\xvega\\utils\\random_string.hpp (exit 0) else (exit 1)  # [win]\n    - if exist %LIBRARY_PREFIX%\\lib\\cmake\\xvegaConfig.cmake (exit 0) else (exit 1)  # [win]\n    - if exist %LIBRARY_PREFIX%\\lib\\cmake\\xvegaConfigVersion.cmake (exit 0) else (exit 1)  # [win]\n\nabout:\n  home: https://github.com/QuantStack/xvega\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: A C++ backend for vega\n  description: vega-lite visualization system for the xeus-cling kernel\n  dev_url: https://github.com/QuantStack/xvega\n\nextra:\n  recipe-maintainers:\n    - SylvainCorlay\n    - madhur-tandon\n    - JohanMabille\n",
+ "raw_meta_yaml": "{% set name = \"xvega\" %}\n{% set version = \"0.1.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/jupyter-xeus/xvega/archive/{{ version }}.tar.gz\n  sha256: 750a19078693b7fcf34360745390e2df6158647b317152f2be9dd766936df74b\n\nbuild:\n  number: 1\n  skip: true  # [win and vc<14]\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - cmake\n    - make  # [unix]\n  host:\n    - nlohmann_json\n    - xproperty >=0.12.0,<0.13.0\n  run:\n    - {{ pin_compatible('xproperty', max_pin='x.x') }}\n    - {{ pin_compatible('nlohmann_json', max_pin='x.x.x') }}\n\ntest:\n  commands:\n    - test -d ${PREFIX}/include/xvega  # [unix]\n    - test -f ${PREFIX}/include/xvega/xvega.hpp  # [unix]\n    - test -f ${PREFIX}/include/xvega/grammar/marks.hpp  # [unix]\n    - test -f ${PREFIX}/include/xvega/utils/random_string.hpp  # [unix]\n    - test -f ${PREFIX}/lib/cmake/xvega/xvegaConfig.cmake  # [unix]\n    - test -f ${PREFIX}/lib/cmake/xvega/xvegaConfigVersion.cmake  # [unix]\n    - if exist %LIBRARY_PREFIX%\\include\\xvega\\xvega.hpp (exit 0) else (exit 1)  # [win]\n    - if exist %LIBRARY_PREFIX%\\include\\xvega\\grammar\\marks.hpp (exit 0) else (exit 1)  # [win]\n    - if exist %LIBRARY_PREFIX%\\include\\xvega\\utils\\random_string.hpp (exit 0) else (exit 1)  # [win]\n    - if exist %LIBRARY_PREFIX%\\lib\\cmake\\xvegaConfig.cmake (exit 0) else (exit 1)  # [win]\n    - if exist %LIBRARY_PREFIX%\\lib\\cmake\\xvegaConfigVersion.cmake (exit 0) else (exit 1)  # [win]\n\nabout:\n  home: https://github.com/QuantStack/xvega\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: A C++ backend for vega\n  description: vega-lite visualization system for the xeus-cling kernel\n  dev_url: https://github.com/QuantStack/xvega\n\nextra:\n  recipe-maintainers:\n    - SylvainCorlay\n    - madhur-tandon\n    - JohanMabille\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -548,7 +563,9 @@
    "__set__": true,
    "elements": [
     "c_stdlib_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "nlohmann_json",
+    "xproperty"
    ]
   },
   "test": {
@@ -576,7 +593,10 @@
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "nlohmann_json",
+    "xproperty"
+   ]
   },
   "test": {
    "__set__": true,
@@ -599,7 +619,7 @@
    "summary": "A C++ backend for vega"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -622,7 +642,7 @@
     "nlohmann_json",
     "xproperty >=0.12.0,<0.13.0"
    ],
-   "run_constrained": [
+   "run": [
     "xproperty",
     "nlohmann_json"
    ]
@@ -660,7 +680,10 @@
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "nlohmann_json",
+    "xproperty"
+   ]
   },
   "test": {
    "__set__": true,
