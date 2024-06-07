@@ -28,7 +28,9 @@
     "cp conda_build_config.yaml $PREFIX",
     "mkdir -p $PREFIX/share/conda-forge/migrations",
     "cp migrations/*.yaml $PREFIX/share/conda-forge/migrations/",
-    "cp migrations/*.exyaml $PREFIX/share/conda-forge/migrations/"
+    "cp migrations/*.exyaml $PREFIX/share/conda-forge/migrations/",
+    "mkdir -p $PREFIX/share/conda-forge/migration_support",
+    "cp migration_support/* $PREFIX/share/conda-forge/migration_support/"
    ]
   },
   "extra": {
@@ -38,7 +40,7 @@
   },
   "package": {
    "name": "conda-forge-pinning",
-   "version": "2024.06.07.18.39.11"
+   "version": "2024.06.07.19.48.34"
   },
   "source": {
    "path": "."
@@ -46,7 +48,8 @@
   "test": {
    "commands": [
     "test -f $PREFIX/conda_build_config.yaml",
-    "test -f $PREFIX/share/conda-forge/migrations/example.exyaml"
+    "test -f $PREFIX/share/conda-forge/migrations/example.exyaml",
+    "test -d $PREFIX/share/conda-forge/migration_support"
    ],
    "requires": [
     "python >= 3.8",
@@ -90,7 +93,9 @@
     "cp conda_build_config.yaml $PREFIX",
     "mkdir -p $PREFIX/share/conda-forge/migrations",
     "cp migrations/*.yaml $PREFIX/share/conda-forge/migrations/",
-    "cp migrations/*.exyaml $PREFIX/share/conda-forge/migrations/"
+    "cp migrations/*.exyaml $PREFIX/share/conda-forge/migrations/",
+    "mkdir -p $PREFIX/share/conda-forge/migration_support",
+    "cp migration_support/* $PREFIX/share/conda-forge/migration_support/"
    ]
   },
   "extra": {
@@ -100,7 +105,7 @@
   },
   "package": {
    "name": "conda-forge-pinning",
-   "version": "2024.06.07.18.39.11"
+   "version": "2024.06.07.19.48.34"
   },
   "source": {
    "path": "."
@@ -108,7 +113,8 @@
   "test": {
    "commands": [
     "test -f $PREFIX/conda_build_config.yaml",
-    "test -f $PREFIX/share/conda-forge/migrations/example.exyaml"
+    "test -f $PREFIX/share/conda-forge/migrations/example.exyaml",
+    "test -d $PREFIX/share/conda-forge/migration_support"
    ],
    "requires": [
     "python >= 3.8",
@@ -130,7 +136,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/conda-forge-pinning.json"
  },
- "raw_meta_yaml": "{% set version = datetime.datetime.utcnow().strftime('%Y.%m.%d.%H.%M.%S') %}\n\npackage:\n  name: conda-forge-pinning\n  version: {{ version }}\n\nsource:\n  path: .\n\nbuild:\n  number: 0\n  noarch: generic\n  script:\n    - cp conda_build_config.yaml $PREFIX                              # [unix]\n    - mkdir -p $PREFIX/share/conda-forge/migrations                   # [unix]\n    - cp migrations/*.yaml $PREFIX/share/conda-forge/migrations/      # [unix]\n    - cp migrations/*.exyaml $PREFIX/share/conda-forge/migrations/    # [unix]\n    - echo \"This package can't be built on windows\"                   # [win]\n    - exit 1                                                          # [win]\n\ntest:\n  requires:\n    - python >= 3.8\n    - pyyaml\n  commands:\n    - test -f $PREFIX/conda_build_config.yaml                       # [unix]\n    - test -f $PREFIX/share/conda-forge/migrations/example.exyaml   # [unix]\n\nabout:\n  summary: The baseline versions of software for the conda-forge ecosystem\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE.txt\n  home: https://conda-forge.org/docs/maintainer/infrastructure.html#conda-forge-pinning\n\nextra:\n  recipe-maintainers:\n    - conda-forge/Core\n",
+ "raw_meta_yaml": "{% set version = datetime.datetime.utcnow().strftime('%Y.%m.%d.%H.%M.%S') %}\n\npackage:\n  name: conda-forge-pinning\n  version: {{ version }}\n\nsource:\n  path: .\n\nbuild:\n  number: 0\n  noarch: generic\n  script:\n    - cp conda_build_config.yaml $PREFIX                              # [unix]\n    - mkdir -p $PREFIX/share/conda-forge/migrations                   # [unix]\n    - cp migrations/*.yaml $PREFIX/share/conda-forge/migrations/      # [unix]\n    - cp migrations/*.exyaml $PREFIX/share/conda-forge/migrations/    # [unix]\n    - mkdir -p $PREFIX/share/conda-forge/migration_support            # [unix]\n    - cp migration_support/* $PREFIX/share/conda-forge/migration_support/   # [unix]\n    - echo \"This package can't be built on windows\"                   # [win]\n    - exit 1                                                          # [win]\n\ntest:\n  requires:\n    - python >= 3.8\n    - pyyaml\n  commands:\n    - test -f $PREFIX/conda_build_config.yaml                       # [unix]\n    - test -f $PREFIX/share/conda-forge/migrations/example.exyaml   # [unix]\n    - test -d $PREFIX/share/conda-forge/migration_support           # [unix]\n\nabout:\n  summary: The baseline versions of software for the conda-forge ecosystem\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE.txt\n  home: https://conda-forge.org/docs/maintainer/infrastructure.html#conda-forge-pinning\n\nextra:\n  recipe-maintainers:\n    - conda-forge/Core\n",
  "req": {
   "__set__": true,
   "elements": []
@@ -180,7 +186,7 @@
   }
  },
  "url": null,
- "version": "2024.06.07.18.39.11",
+ "version": "2024.06.07.19.48.34",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/conda-forge-pinning.json"
  }
