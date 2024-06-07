@@ -28,7 +28,7 @@
    "summary": "An open platform for integrated process modelling and simulation"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -44,9 +44,9 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "git",
-    "sysroot_linux-64 2.17",
     "cmake",
     "make"
    ],
@@ -76,11 +76,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "git",
-    "make",
-    "sysroot_linux-64"
+    "make"
    ]
   },
   "host": {
@@ -121,7 +121,7 @@
    "summary": "An open platform for integrated process modelling and simulation"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -137,9 +137,9 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "git",
-    "sysroot_linux-64 2.17",
     "cmake",
     "make"
    ],
@@ -156,8 +156,7 @@
     "superlu",
     "suitesparse",
     "tbb-devel",
-    "hdf5",
-    "__osx >=10.14"
+    "hdf5"
    ]
   },
   "source": {
@@ -178,7 +177,7 @@
    "summary": "An open platform for integrated process modelling and simulation"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -194,6 +193,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "git",
     "cmake",
@@ -212,8 +212,7 @@
     "superlu",
     "suitesparse",
     "tbb-devel",
-    "hdf5",
-    "__osx >=10.14"
+    "hdf5"
    ]
   },
   "source": {
@@ -226,6 +225,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "git",
@@ -247,7 +247,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "hdf5",
     "suitesparse",
     "superlu",
@@ -274,12 +273,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cadet.json"
  },
- "raw_meta_yaml": "{% set name = \"CADET\" %}\n{% set version = \"4.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/modsim/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 838ce6c3176038aa7776fcf1fd7427795870833613b6a0a9203dd5a0296299ee\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - git\n    - sysroot_linux-64 2.17  # [linux64]\n    - cmake\n    - make  # [unix]\n  host:\n    - superlu  # [not win]\n    - suitesparse\n    - tbb-devel\n    - hdf5\n    - libblas\n    - libcblas\n    - liblapack\n  run:\n    - superlu  # [not win]\n    - suitesparse\n    - tbb-devel\n    - hdf5\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n\nabout:\n  home: https://github.com/modsim/cadet\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: LICENSE.txt\n  summary: 'An open platform for integrated process modelling and simulation'\n  description: The CADET software is a fast and accurate solver for a comprehensive model family. Typical applications include (but are not limited to) chromatography, filtration, crystallization, and fermentation. CADET can handle arbitrary sequences and networks of unit operations, including reactors, tanks, tubes, pumps, valves, detectors, etc. The resulting models are solved with state-of-the-art mathematical algorithms and scientific computing techniques.\n  doc_url: https://cadet.github.io/\n  dev_url: https://github.com/modsim/cadet\n\nextra:\n  recipe-maintainers:\n    - jayghoshter\n    - jazib-hassan-juelich\n    - schmoelder\n",
+ "raw_meta_yaml": "{% set name = \"CADET\" %}\n{% set version = \"4.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/modsim/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 838ce6c3176038aa7776fcf1fd7427795870833613b6a0a9203dd5a0296299ee\n\nbuild:\n  number: 2\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - git\n    - cmake\n    - make  # [unix]\n  host:\n    - superlu  # [not win]\n    - suitesparse\n    - tbb-devel\n    - hdf5\n    - libblas\n    - libcblas\n    - liblapack\n  run:\n    - superlu  # [not win]\n    - suitesparse\n    - tbb-devel\n    - hdf5\n\nabout:\n  home: https://github.com/modsim/cadet\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: LICENSE.txt\n  summary: 'An open platform for integrated process modelling and simulation'\n  description: The CADET software is a fast and accurate solver for a comprehensive model family. Typical applications include (but are not limited to) chromatography, filtration, crystallization, and fermentation. CADET can handle arbitrary sequences and networks of unit operations, including reactors, tanks, tubes, pumps, valves, detectors, etc. The resulting models are solved with state-of-the-art mathematical algorithms and scientific computing techniques.\n  doc_url: https://cadet.github.io/\n  dev_url: https://github.com/modsim/cadet\n\nextra:\n  recipe-maintainers:\n    - jayghoshter\n    - jazib-hassan-juelich\n    - schmoelder\n",
  "req": {
   "__set__": true,
   "elements": [
-   "__osx",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "git",
@@ -290,7 +289,6 @@
    "make",
    "suitesparse",
    "superlu",
-   "sysroot_linux-64",
    "tbb-devel"
   ]
  },
@@ -299,23 +297,23 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "git",
-    "make",
-    "sysroot_linux-64"
+    "make"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "hdf5",
     "libblas",
     "libcblas",
     "liblapack",
-    "linux-sysroot",
     "suitesparse",
     "superlu",
     "tbb-devel"
@@ -324,11 +322,10 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "hdf5",
-    "linux-sysroot",
     "suitesparse",
     "superlu",
     "tbb-devel"
@@ -345,11 +342,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "git",
-    "make",
-    "sysroot_linux-64 2.17"
+    "make"
    ]
   },
   "host": {
@@ -367,7 +364,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx >=10.14",
     "hdf5",
     "suitesparse",
     "superlu",
@@ -396,7 +392,7 @@
    "summary": "An open platform for integrated process modelling and simulation"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -412,6 +408,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "git",
     "cmake"
@@ -440,6 +437,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "git"

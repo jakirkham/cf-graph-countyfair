@@ -34,7 +34,7 @@
    "summary": "Convex optimization package"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -48,7 +48,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -121,7 +122,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -166,7 +168,7 @@
    "summary": "Convex optimization package"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -180,7 +182,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -253,7 +256,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -298,7 +302,7 @@
    "summary": "Convex optimization package"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -312,7 +316,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -385,7 +390,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -430,7 +436,7 @@
    "summary": "Convex optimization package"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -444,7 +450,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -688,7 +695,7 @@
    "summary": "Convex optimization package"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -702,7 +709,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -775,7 +783,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -820,7 +829,7 @@
    "summary": "Convex optimization package"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -834,7 +843,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -903,7 +913,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -956,11 +967,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cvxopt.json"
  },
- "raw_meta_yaml": "{% set version = \"1.3.2\" %}\n{% set suitesparse_for_win_version = \"5.7.2\" %}\n\npackage:\n  name: cvxopt\n  version: {{ version }}\n\nsource:\n  - url: https://pypi.io/packages/source/c/cvxopt/cvxopt-{{ version }}.tar.gz\n    sha256: 3461fa42c1b2240ba4da1d985ca73503914157fc4c77417327ed6d7d85acdbe6\n\n  # on windows, building suitesparse in directly works much better than trying to build it separately and link it in\n  - url: https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/v{{ suitesparse_for_win_version }}.tar.gz  # [win]\n    sha256: fe3bc7c3bd1efdfa5cffffb5cebf021ff024c83b5daf0ab445429d3d741bd3ad  # [win]\n    folder: suitesparse  # [win]\n    patches:   # [win]\n      - 0001-remove-BLAS_NO_UNDERSCORE-on-windows.patch                                                        # [win]\n\nbuild:\n  skip: true  # [py<35]\n  number: 1\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n  host:\n    - libblas\n    - liblapack\n    - python\n    - setuptools\n    - gsl\n    - fftw\n    - dsdp\n    - glpk\n    # suitesparse is linked against on windows, and compiled-in on windows, because yeah, windows.\n    - suitesparse          # [not win]\n  run:\n    - python\n    - gsl\n    - fftw\n    - dsdp\n    - glpk\n    - suitesparse          # [not win]\n\ntest:\n  imports:\n    - cvxopt\n    - cvxopt.base\n    - cvxopt.blas\n    - cvxopt.cholmod\n    - cvxopt.lapack\n    - cvxopt.misc_solvers\n    - cvxopt.umfpack\n    - cvxopt.glpk\n    - cvxopt.fftw\n  source_files:\n    - tests/*\n    - examples/*\n  requires:\n    - pytest\n\nabout:\n  home: https://cvxopt.org\n  license: GPL-3.0-or-later\n  license_file: LICENSE\n  summary: Convex optimization package\n  doc_url: https://cvxopt.org/userguide\n  dev_url: https://github.com/cvxopt/cvxopt\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - martinandersen\n",
+ "raw_meta_yaml": "{% set version = \"1.3.2\" %}\n{% set suitesparse_for_win_version = \"5.7.2\" %}\n\npackage:\n  name: cvxopt\n  version: {{ version }}\n\nsource:\n  - url: https://pypi.io/packages/source/c/cvxopt/cvxopt-{{ version }}.tar.gz\n    sha256: 3461fa42c1b2240ba4da1d985ca73503914157fc4c77417327ed6d7d85acdbe6\n\n  # on windows, building suitesparse in directly works much better than trying to build it separately and link it in\n  - url: https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/v{{ suitesparse_for_win_version }}.tar.gz  # [win]\n    sha256: fe3bc7c3bd1efdfa5cffffb5cebf021ff024c83b5daf0ab445429d3d741bd3ad  # [win]\n    folder: suitesparse  # [win]\n    patches:   # [win]\n      - 0001-remove-BLAS_NO_UNDERSCORE-on-windows.patch                                                        # [win]\n\nbuild:\n  skip: true  # [py<35]\n  number: 2\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - libblas\n    - liblapack\n    - python\n    - setuptools\n    - gsl\n    - fftw\n    - dsdp\n    - glpk\n    # suitesparse is linked against on windows, and compiled-in on windows, because yeah, windows.\n    - suitesparse          # [not win]\n  run:\n    - python\n    - gsl\n    - fftw\n    - dsdp\n    - glpk\n    - suitesparse          # [not win]\n\ntest:\n  imports:\n    - cvxopt\n    - cvxopt.base\n    - cvxopt.blas\n    - cvxopt.cholmod\n    - cvxopt.lapack\n    - cvxopt.misc_solvers\n    - cvxopt.umfpack\n    - cvxopt.glpk\n    - cvxopt.fftw\n  source_files:\n    - tests/*\n    - examples/*\n  requires:\n    - pytest\n\nabout:\n  home: https://cvxopt.org\n  license: GPL-3.0-or-later\n  license_file: LICENSE\n  summary: Convex optimization package\n  doc_url: https://cvxopt.org/userguide\n  dev_url: https://github.com/cvxopt/cvxopt\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - martinandersen\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "dsdp",
    "fftw",
    "glpk",
@@ -976,13 +988,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "dsdp",
     "fftw",
     "glpk",
@@ -998,6 +1012,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "dsdp",
     "fftw",
     "glpk",
@@ -1018,7 +1033,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -1068,7 +1084,7 @@
    "summary": "Convex optimization package"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -1082,7 +1098,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "libblas",
@@ -1201,7 +1218,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
