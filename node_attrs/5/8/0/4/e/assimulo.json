@@ -29,7 +29,7 @@
    "summary": "A package for solving ordinary differential equations and differential algebraic equations."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -85,9 +85,6 @@
     "assimulo.solvers",
     "assimulo.solvers.euler",
     "assimulo.solvers.odepack"
-   ],
-   "requires": [
-    "nose"
    ]
   }
  },
@@ -124,9 +121,7 @@
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "nose"
-   ]
+   "elements": []
   }
  },
  "meta_yaml": {
@@ -138,7 +133,7 @@
    "summary": "A package for solving ordinary differential equations and differential algebraic equations."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -195,9 +190,6 @@
     "assimulo.solvers",
     "assimulo.solvers.euler",
     "assimulo.solvers.odepack"
-   ],
-   "requires": [
-    "nose"
    ]
   }
  },
@@ -211,7 +203,7 @@
    "summary": "A package for solving ordinary differential equations and differential algebraic equations."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -267,9 +259,6 @@
     "assimulo.solvers",
     "assimulo.solvers.euler",
     "assimulo.solvers.odepack"
-   ],
-   "requires": [
-    "nose"
    ]
   }
  },
@@ -306,9 +295,7 @@
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "nose"
-   ]
+   "elements": []
   }
  },
  "osx_arm64_meta_yaml": {
@@ -320,7 +307,7 @@
    "summary": "A package for solving ordinary differential equations and differential algebraic equations."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -376,9 +363,6 @@
     "assimulo.solvers",
     "assimulo.solvers.euler",
     "assimulo.solvers.odepack"
-   ],
-   "requires": [
-    "nose"
    ]
   }
  },
@@ -415,9 +399,7 @@
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "nose"
-   ]
+   "elements": []
   }
  },
  "outputs_names": {
@@ -436,7 +418,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/assimulo.json"
  },
- "raw_meta_yaml": "{% set version = \"3.5.1\" %}\n\n\npackage:\n  name: assimulo\n  version: {{ version }}\n\nsource:\n  url: https://github.com/modelon-community/Assimulo/archive/refs/tags/Assimulo-{{ version }}.tar.gz\n  sha256: 356a78953f13172f64fd040aceda7c00216e99766ac0758eaaec07d5fdf394f7\n  patches:\n    # ld: cannot find -lblas_OPENMP\n    - link.patch\n\nbuild:\n  number: 1\n  skip: true  # [py>=312]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - cmake\n    - ninja\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('fortran') }}  # [unix]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n  host:\n    - libblas\n    - liblapack\n    - python\n    - pip\n    - numpy\n    - cython\n    - sundials\n  run:\n    - python\n    - scipy\n    - sundials\n\ntest:\n  imports:\n    - assimulo\n    - assimulo.solvers\n    - assimulo.solvers.euler\n    - assimulo.solvers.odepack\n  requires:\n    - nose\n  files:\n    - cvode_basic.py\n    - cvode_with_jac_sparse.py\n  commands:\n    - python cvode_basic.py\n    - python cvode_with_jac_sparse.py\n\nabout:\n  home: https://github.com/modelon-community/Assimulo\n  license: LGPL-3.0-only\n  license_family: LGPL\n  license_file: LICENSE\n  summary: A package for solving ordinary differential equations and differential algebraic equations.\n\nextra:\n  recipe-maintainers:\n    - chria\n    - jschueller\n",
+ "raw_meta_yaml": "{% set version = \"3.5.1\" %}\n\n\npackage:\n  name: assimulo\n  version: {{ version }}\n\nsource:\n  url: https://github.com/modelon-community/Assimulo/archive/refs/tags/Assimulo-{{ version }}.tar.gz\n  sha256: 356a78953f13172f64fd040aceda7c00216e99766ac0758eaaec07d5fdf394f7\n  patches:\n    # ld: cannot find -lblas_OPENMP\n    - link.patch\n    # https://github.com/modelon-community/Assimulo/pull/98\n    - distutils.patch  # [py>=312]\n\nbuild:\n  number: 2\n  skip: True  # [python_impl == 'pypy']\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - cmake\n    - ninja\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('fortran') }}  # [unix]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n  host:\n    - libblas\n    - liblapack\n    - python\n    - pip\n    - numpy\n    - cython\n    - sundials\n  run:\n    - python\n    - scipy\n    - sundials\n\ntest:\n  imports:\n    - assimulo\n    - assimulo.solvers\n    - assimulo.solvers.euler\n    - assimulo.solvers.odepack  # [py<312]\n  files:\n    - cvode_basic.py\n    - cvode_with_jac_sparse.py\n  commands:\n    - python cvode_basic.py\n    - python cvode_with_jac_sparse.py\n\nabout:\n  home: https://github.com/modelon-community/Assimulo\n  license: LGPL-3.0-only\n  license_family: LGPL\n  license_file: LICENSE\n  summary: A package for solving ordinary differential equations and differential algebraic equations.\n\nextra:\n  recipe-maintainers:\n    - chria\n    - jschueller\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -496,9 +478,7 @@
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "nose"
-   ]
+   "elements": []
   }
  },
  "strong_exports": false,
@@ -536,9 +516,7 @@
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "nose"
-   ]
+   "elements": []
   }
  },
  "url": "https://github.com/modelon-community/Assimulo/archive/refs/tags/Assimulo-3.5.1.tar.gz",
@@ -555,7 +533,7 @@
    "summary": "A package for solving ordinary differential equations and differential algebraic equations."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -611,9 +589,6 @@
     "assimulo.solvers",
     "assimulo.solvers.euler",
     "assimulo.solvers.odepack"
-   ],
-   "requires": [
-    "nose"
    ]
   }
  },
@@ -650,9 +625,7 @@
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "nose"
-   ]
+   "elements": []
   }
  }
 }
