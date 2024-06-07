@@ -2,14 +2,15 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
-  "conda_build": {
-   "error_overlinking": true
+  "azure": {
+   "settings_win": {
+    "pool": {
+     "vmImage": "windows-2022"
+    }
+   }
   },
-  "conda_forge_output_validation": true,
-  "github": {
-   "branch_name": "main",
-   "tooling_branch_name": "main"
-  }
+  "channel_priority": "strict",
+  "conda_forge_output_validation": true
  },
  "feedstock_name": "segalign",
  "hash_type": "sha256",
@@ -34,7 +35,7 @@
   },
   "package": {
    "name": "segalign",
-   "version": "0.1.2.4"
+   "version": "0.1.2.6"
   },
   "requirements": {
    "build": [
@@ -49,8 +50,7 @@
     "cuda-version 11.8",
     "libboost-devel",
     "tbb-devel 2020.2.*",
-    "zlib",
-    "cuda-version 12.0"
+    "zlib"
    ],
    "run": [
     "bash",
@@ -60,13 +60,12 @@
     "grep",
     "sed",
     "tbb-devel 2020.2.*",
-    "time",
-    "cuda-version 12.0"
+    "time"
    ]
   },
   "source": {
-   "sha256": "ebe39b1e2e2e47edac128003439d7459979a601f1f7a5078326f6db3a443186c",
-   "url": "https://github.com/richard-burhans/SegAlign/archive/refs/tags/v0.1.2.4.tar.gz"
+   "sha256": "cb80ce5bfa1e7b3d909364d384a60343d901984201016e666102615c67093c2e",
+   "url": "https://github.com/richard-burhans/SegAlign/archive/refs/tags/v0.1.2.6.tar.gz"
   },
   "test": {
    "commands": [
@@ -135,7 +134,7 @@
   },
   "package": {
    "name": "segalign",
-   "version": "0.1.2.4"
+   "version": "0.1.2.6"
   },
   "requirements": {
    "build": [
@@ -150,8 +149,7 @@
     "cuda-version 11.8",
     "libboost-devel",
     "tbb-devel 2020.2.*",
-    "zlib",
-    "cuda-version 12.0"
+    "zlib"
    ],
    "run": [
     "bash",
@@ -161,13 +159,12 @@
     "grep",
     "sed",
     "tbb-devel 2020.2.*",
-    "time",
-    "cuda-version 12.0"
+    "time"
    ]
   },
   "source": {
-   "sha256": "ebe39b1e2e2e47edac128003439d7459979a601f1f7a5078326f6db3a443186c",
-   "url": "https://github.com/richard-burhans/SegAlign/archive/refs/tags/v0.1.2.4.tar.gz"
+   "sha256": "cb80ce5bfa1e7b3d909364d384a60343d901984201016e666102615c67093c2e",
+   "url": "https://github.com/richard-burhans/SegAlign/archive/refs/tags/v0.1.2.6.tar.gz"
   },
   "test": {
    "commands": [
@@ -190,7 +187,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/segalign.json"
  },
- "raw_meta_yaml": "{% set name = \"SegAlign\" %}\n{% set version = \"0.1.2.4\" %}\n{% set tbb_version = \"2020.2.*\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/richard-burhans/SegAlign/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: ebe39b1e2e2e47edac128003439d7459979a601f1f7a5078326f6db3a443186c\n\n\nbuild:\n  number: 0\n  skip: true  # [win or cuda_compiler_version is undefined or cuda_compiler_version == \"None\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}  # [cuda_compiler_version != \"None\"]\n    - cmake\n    - make\n  host:\n    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != \"None\"]\n    - libboost-devel\n    - tbb-devel {{ tbb_version }}\n    - zlib\n  run:\n    - bash\n    - coreutils\n    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != \"None\"]\n    - gawk\n    - grep\n    - sed\n    - tbb-devel {{ tbb_version }}\n    - time\n\ntest:\n  commands:\n    - segalign --help\n    - segalign_repeat_masker --help\n\nabout:\n  home: https://github.com/gsneha26/SegAlign\n  summary: 'SegAlign: A Scalable GPU-Based Whole Genome Aligner'\n  description: |\n    SegAlign is a Scalable GPU System for Pairwise Whole Genome\n    Alignments based on LASTZ's seed-filter-extend paradigm.\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  doc_url: https://github.com/gsneha26/SegAlign/blob/main/README.md\n  dev_url: https://github.com/gsneha26/SegAlign\n\nextra:\n  recipe-maintainers:\n    - richard-burhans\n    # need to ask first\n    #- gsneha26     Sneha D. Goenka\n    #- yatisht      Yatish Turakhia\n    #- glennhickey  Glenn Hickey\n",
+ "raw_meta_yaml": "{% set name = \"SegAlign\" %}\n{% set version = \"0.1.2.6\" %}\n{% set segalign_tbb_version = \"2020.2.*\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/richard-burhans/SegAlign/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: cb80ce5bfa1e7b3d909364d384a60343d901984201016e666102615c67093c2e\n\nbuild:\n  number: 0\n  skip: true  # [win or cuda_compiler_version is undefined or cuda_compiler_version == \"None\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - cmake\n    - make\n  host:\n    - cuda-version {{ cuda_compiler_version }}\n    - libboost-devel\n    - tbb-devel {{ segalign_tbb_version }}\n    - zlib\n  run:\n    - bash\n    - coreutils\n    - cuda-version {{ cuda_compiler_version }}\n    - gawk\n    - grep\n    - sed\n    - tbb-devel {{ segalign_tbb_version }}\n    - time\n\ntest:\n  commands:\n    - segalign --help\n    - segalign_repeat_masker --help\n\nabout:\n  home: https://github.com/gsneha26/SegAlign\n  summary: 'SegAlign: A Scalable GPU-Based Whole Genome Aligner'\n  description: |\n    SegAlign is a Scalable GPU System for Pairwise Whole Genome\n    Alignments based on LASTZ's seed-filter-extend paradigm.\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  doc_url: https://github.com/gsneha26/SegAlign/blob/main/README.md\n  dev_url: https://github.com/gsneha26/SegAlign\n\nextra:\n  recipe-maintainers:\n    - richard-burhans\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -276,7 +273,6 @@
    "__set__": true,
    "elements": [
     "cuda-version 11.8",
-    "cuda-version 12.0",
     "libboost-devel",
     "tbb-devel 2020.2.*",
     "zlib"
@@ -288,7 +284,6 @@
     "bash",
     "coreutils",
     "cuda-version 11.8",
-    "cuda-version 12.0",
     "gawk",
     "grep",
     "sed",
@@ -301,8 +296,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/richard-burhans/SegAlign/archive/refs/tags/v0.1.2.4.tar.gz",
- "version": "0.1.2.4",
+ "url": "https://github.com/richard-burhans/SegAlign/archive/refs/tags/v0.1.2.6.tar.gz",
+ "version": "0.1.2.6",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/segalign.json"
  }
