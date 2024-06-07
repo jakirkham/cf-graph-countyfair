@@ -3,7 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
-   "linux_aarch64": "linux_64"
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64"
   },
   "conda_build": {
    "pkg_format": "2"
@@ -33,14 +34,14 @@
    "ignore_run_exports": [
     "libgfortran5"
    ],
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "libvdwxc * mpi_mpich_*",
     "libvdwxc",
     "libvdwxc * nompi_*",
     "libvdwxc * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_1"
+   "string": "mpi_openmpi_h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -54,6 +55,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -87,6 +89,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -123,14 +126,14 @@
    "ignore_run_exports": [
     "libgfortran5"
    ],
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "libvdwxc * mpi_mpich_*",
     "libvdwxc",
     "libvdwxc * nompi_*",
     "libvdwxc * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_1"
+   "string": "mpi_openmpi_h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -144,6 +147,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -177,6 +181,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -213,14 +218,14 @@
    "ignore_run_exports": [
     "libgfortran5"
    ],
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "libvdwxc * mpi_mpich_*",
     "libvdwxc",
     "libvdwxc * nompi_*",
     "libvdwxc * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_1"
+   "string": "mpi_openmpi_h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -234,6 +239,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -267,6 +273,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -303,14 +310,14 @@
    "ignore_run_exports": [
     "libgfortran5"
    ],
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "libvdwxc * mpi_mpich_*",
     "libvdwxc",
     "libvdwxc * nompi_*",
     "libvdwxc * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_1"
+   "string": "mpi_openmpi_h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -324,6 +331,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -366,13 +374,13 @@
    "ignore_run_exports": [
     "libgfortran5"
    ],
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "libvdwxc * nompi_*",
     "libvdwxc",
     "libvdwxc * mpi_openmpi_*"
    ],
-   "string": "mpi_openmpi_h1234567_1"
+   "string": "mpi_openmpi_h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -386,6 +394,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -417,6 +426,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -455,11 +465,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libvdwxc.json"
  },
- "raw_meta_yaml": "{% set name = \"libvdwxc\" %}\n{% set version = '0.4.0' %}\n{% set build_number = 1 %}\n\n{% if mpi != 'nompi' %}\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n{% else %}\n  {% set mpi_prefix = \"nompi\" %}\n{% endif %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://launchpad.net/{{ name }}/stable/{{ version }}/+download/{{ name }}-{{ version }}.tar.gz\n  sha256: 3524feb5bb2be86b4688f71653502146b181e66f3f75b8bdaf23dd1ae4a56b33\n\nbuild:\n  skip: True  # [not unix]\n  number: {{ build_number }}\n  string: \"{{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build_number }}\"\n  run_exports:\n    - {{ name }} * {{ mpi_prefix }}_*\n    - {{ pin_subpackage('libvdwxc', max_pin='x.x') }}\n  ignore_run_exports:\n    - libgfortran5\n \nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('fortran') }}\n    - {{ mpi }}        # [mpi == 'openmpi' and build_platform != target_platform]\n    - make  # [unix]\n  host:\n    - {{ mpi }}  # [mpi != 'nompi']\n    - fftw * {{ mpi_prefix }}_*\n\n\ntest:\n  requires:\n    - python >= 3\n  commands:\n    - test -f ${PREFIX}/include/vdwxc.h || exit 1   # [unix]\n    - test -f ${PREFIX}/include/vdwxcfort.f90 || exit 1  # [unix]\n    - test -f ${PREFIX}/include/vdwxc_mpi.h || exit 1  # [unix and (mpi != 'nompi')]\n    - python -c \"import ctypes; ctypes.cdll[r'${PREFIX}/lib/libvdwxc${SHLIB_EXT}']\"  # [unix]\n    - python -c \"import ctypes; ctypes.cdll[r'${PREFIX}/lib/libvdwxcfort${SHLIB_EXT}']\"  # [unix]\n\n    \nabout:\n  home: https://libvdwxc.org\n  dev_url: https://gitlab.com/libvdwxc/libvdwxc\n  doc_url: https://libvdwxc.org/index.html\n  license: GPL-3.0-or-later\n  license_family: Other\n  summary: Portable C library of density functionals with van der Waals interactions for density functional theory\n\n\nextra:\n  recipe-maintainers:\n    - gdonval\n",
+ "raw_meta_yaml": "{% set name = \"libvdwxc\" %}\n{% set version = '0.4.0' %}\n{% set build_number = 2 %}\n\n{% if mpi != 'nompi' %}\n  {% set mpi_prefix = \"mpi_\" + mpi %}\n{% else %}\n  {% set mpi_prefix = \"nompi\" %}\n{% endif %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://launchpad.net/{{ name }}/stable/{{ version }}/+download/{{ name }}-{{ version }}.tar.gz\n  sha256: 3524feb5bb2be86b4688f71653502146b181e66f3f75b8bdaf23dd1ae4a56b33\n\nbuild:\n  skip: True  # [not unix]\n  number: {{ build_number }}\n  string: \"{{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build_number }}\"\n  run_exports:\n    - {{ name }} * {{ mpi_prefix }}_*\n    - {{ pin_subpackage('libvdwxc', max_pin='x.x') }}\n  ignore_run_exports:\n    - libgfortran5\n \nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('fortran') }}\n    - {{ mpi }}        # [mpi == 'openmpi' and build_platform != target_platform]\n    - make  # [unix]\n  host:\n    - {{ mpi }}  # [mpi != 'nompi']\n    - fftw * {{ mpi_prefix }}_*\n\n\ntest:\n  requires:\n    - python >= 3\n  commands:\n    - test -f ${PREFIX}/include/vdwxc.h || exit 1   # [unix]\n    - test -f ${PREFIX}/include/vdwxcfort.f90 || exit 1  # [unix]\n    - test -f ${PREFIX}/include/vdwxc_mpi.h || exit 1  # [unix and (mpi != 'nompi')]\n    - python -c \"import ctypes; ctypes.cdll[r'${PREFIX}/lib/libvdwxc${SHLIB_EXT}']\"  # [unix]\n    - python -c \"import ctypes; ctypes.cdll[r'${PREFIX}/lib/libvdwxcfort${SHLIB_EXT}']\"  # [unix]\n\n    \nabout:\n  home: https://libvdwxc.org\n  dev_url: https://gitlab.com/libvdwxc/libvdwxc\n  doc_url: https://libvdwxc.org/index.html\n  license: GPL-3.0-or-later\n  license_family: Other\n  summary: Portable C library of density functionals with van der Waals interactions for density functional theory\n\n\nextra:\n  recipe-maintainers:\n    - gdonval\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "fftw",
    "fortran_compiler_stub",
    "make",
@@ -472,6 +483,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -480,6 +492,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fftw",
     "fortran_compiler_stub",
     "mpich",
@@ -490,6 +503,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -506,6 +520,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
