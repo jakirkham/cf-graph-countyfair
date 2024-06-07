@@ -24,9 +24,6 @@
    "summary": "Tools for building Pyodide"
   },
   "build": {
-   "entry_points": [
-    "pyodide-build = pyodide_build.__main__:main"
-   ],
    "noarch": "python",
    "number": "0",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
@@ -38,30 +35,29 @@
   },
   "package": {
    "name": "pyodide-build",
-   "version": "0.25.1"
+   "version": "0.26.0"
   },
   "requirements": {
    "host": [
+    "hatchling",
     "pip",
-    "python >=3.10"
+    "python >=3.12"
    ],
    "run": [
     "auditwheel-emscripten >=0.0.9,<0.1.0",
     "cmake >=3.24",
-    "cython <3.0",
     "loky",
     "packaging",
-    "pydantic >=1.10.2,<2",
+    "pydantic >=2,<3",
     "pyodide-cli >=0.2.1,<0.3.dev0",
     "python >=3.10",
     "python-build >=1.2.0,<1.3.dev0",
-    "pyodide-lock ==0.1.0a4",
+    "pyodide-lock ==0.1.0a6",
     "pyyaml",
     "requests",
     "resolvelib",
     "rich",
     "ruamel.yaml",
-    "tomli",
     "typer",
     "types-requests",
     "unearth >=0.6,<1.dev0",
@@ -73,19 +69,15 @@
    "patches": [
     "0000-no-cmake-from-pip.patch"
    ],
-   "sha256": "c24001b6fe074b44de0ff07bfa6073a37a4daad8106bc57ba28c7a930f6313ad",
-   "url": "https://pypi.io/packages/source/p/pyodide-build/pyodide-build-0.25.1.tar.gz"
+   "sha256": "d52805cbde5428bdd56c891d67cf4d097a8a4637859b95e0c6d0ba94b2c6476a",
+   "url": "https://pypi.io/packages/source/p/pyodide-build/pyodide_build-0.26.0.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
-    "which pyodide-build || where pyodide-build",
     "pyodide build-recipes --help",
     "pyodide skeleton --help",
     "pyodide config --help"
-   ],
-   "files": [
-    "test_pyodide_cli.py"
    ],
    "imports": [
     "pyodide_build"
@@ -103,6 +95,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatchling",
     "pip",
     "python"
    ]
@@ -112,7 +105,6 @@
    "elements": [
     "auditwheel-emscripten",
     "cmake",
-    "cython",
     "loky",
     "packaging",
     "pydantic",
@@ -125,7 +117,6 @@
     "resolvelib",
     "rich",
     "ruamel.yaml",
-    "tomli",
     "typer",
     "types-requests",
     "unearth",
@@ -148,9 +139,6 @@
    "summary": "Tools for building Pyodide"
   },
   "build": {
-   "entry_points": [
-    "pyodide-build = pyodide_build.__main__:main"
-   ],
    "noarch": "python",
    "number": "0",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
@@ -162,30 +150,29 @@
   },
   "package": {
    "name": "pyodide-build",
-   "version": "0.25.1"
+   "version": "0.26.0"
   },
   "requirements": {
    "host": [
+    "hatchling",
     "pip",
-    "python >=3.10"
+    "python >=3.12"
    ],
    "run": [
     "auditwheel-emscripten >=0.0.9,<0.1.0",
     "cmake >=3.24",
-    "cython <3.0",
     "loky",
     "packaging",
-    "pydantic >=1.10.2,<2",
+    "pydantic >=2,<3",
     "pyodide-cli >=0.2.1,<0.3.dev0",
     "python >=3.10",
     "python-build >=1.2.0,<1.3.dev0",
-    "pyodide-lock ==0.1.0a4",
+    "pyodide-lock ==0.1.0a6",
     "pyyaml",
     "requests",
     "resolvelib",
     "rich",
     "ruamel.yaml",
-    "tomli",
     "typer",
     "types-requests",
     "unearth >=0.6,<1.dev0",
@@ -197,19 +184,15 @@
    "patches": [
     "0000-no-cmake-from-pip.patch"
    ],
-   "sha256": "c24001b6fe074b44de0ff07bfa6073a37a4daad8106bc57ba28c7a930f6313ad",
-   "url": "https://pypi.io/packages/source/p/pyodide-build/pyodide-build-0.25.1.tar.gz"
+   "sha256": "d52805cbde5428bdd56c891d67cf4d097a8a4637859b95e0c6d0ba94b2c6476a",
+   "url": "https://pypi.io/packages/source/p/pyodide-build/pyodide_build-0.26.0.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
-    "which pyodide-build || where pyodide-build",
     "pyodide build-recipes --help",
     "pyodide skeleton --help",
     "pyodide config --help"
-   ],
-   "files": [
-    "test_pyodide_cli.py"
    ],
    "imports": [
     "pyodide_build"
@@ -233,13 +216,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyodide-build.json"
  },
- "raw_meta_yaml": "{% set version = \"0.25.1\" %}\n\npackage:\n  name: pyodide-build\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/p/pyodide-build/pyodide-build-{{ version }}.tar.gz\n  sha256: c24001b6fe074b44de0ff07bfa6073a37a4daad8106bc57ba28c7a930f6313ad\n  patches:\n    # this _should_ fail if the version of cmake changes below\n    - 0000-no-cmake-from-pip.patch\n\nbuild:\n  noarch: python\n  entry_points:\n    - pyodide-build = pyodide_build.__main__:main\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - pip\n    - python >=3.10\n  run:\n    - auditwheel-emscripten >=0.0.9,<0.1.0\n    - cmake >=3.24\n    - cython <3.0\n    - loky\n    - packaging\n    - pydantic >=1.10.2,<2\n    - pyodide-cli >=0.2.1,<0.3.dev0\n    - python >=3.10\n    - python-build >=1.2.0,<1.3.dev0\n    - pyodide-lock ==0.1.0a4\n    - pyyaml\n    - requests\n    - resolvelib\n    - rich\n    - ruamel.yaml\n    - tomli\n    - typer\n    - types-requests\n    - unearth >=0.6,<1.dev0\n    - virtualenv\n    - wheel\n\ntest:\n  files:\n    - test_pyodide_cli.py\n  imports:\n    - pyodide_build\n  requires:\n    - pip\n  commands:\n    - pip check\n    # TODO: deprecated, but maybe figure out all the env vars needed for this to actually run\n    # - pyodide-build --help\n    - which pyodide-build || where pyodide-build\n    - pyodide build-recipes --help\n    - pyodide skeleton --help\n    - pyodide config --help\n\nabout:\n  home: https://github.com/pyodide/pyodide\n  summary: Tools for building Pyodide\n  license: MPL-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - bollwyvl\n",
+ "raw_meta_yaml": "{% set version = \"0.26.0\" %}\n\npackage:\n  name: pyodide-build\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/p/pyodide-build/pyodide_build-{{ version }}.tar.gz\n  sha256: d52805cbde5428bdd56c891d67cf4d097a8a4637859b95e0c6d0ba94b2c6476a\n  patches:\n    # this _should_ fail if the version of cmake changes below\n    - 0000-no-cmake-from-pip.patch\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n\nrequirements:\n  host:\n    - hatchling\n    - pip\n    - python >=3.12\n  run:\n    - auditwheel-emscripten >=0.0.9,<0.1.0\n    - cmake >=3.24\n    - loky\n    - packaging\n    - pydantic >=2,<3\n    - pyodide-cli >=0.2.1,<0.3.dev0\n    - python >=3.10\n    - python-build >=1.2.0,<1.3.dev0\n    - pyodide-lock ==0.1.0a6\n    - pyyaml\n    - requests\n    - resolvelib\n    - rich\n    - ruamel.yaml\n    - typer\n    - types-requests\n    - unearth >=0.6,<1.dev0\n    - virtualenv\n    - wheel\n\ntest:\n  imports:\n    - pyodide_build\n  requires:\n    - pip\n  commands:\n    - pip check\n    - pyodide build-recipes --help\n    - pyodide skeleton --help\n    - pyodide config --help\n\nabout:\n  home: https://github.com/pyodide/pyodide\n  summary: Tools for building Pyodide\n  license: MPL-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
    "auditwheel-emscripten",
    "cmake",
-   "cython",
+   "hatchling",
    "loky",
    "packaging",
    "pip",
@@ -253,7 +236,6 @@
    "resolvelib",
    "rich",
    "ruamel.yaml",
-   "tomli",
    "typer",
    "types-requests",
    "unearth",
@@ -269,6 +251,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatchling",
     "pip",
     "python"
    ]
@@ -278,7 +261,6 @@
    "elements": [
     "auditwheel-emscripten",
     "cmake",
-    "cython",
     "loky",
     "packaging",
     "pydantic",
@@ -291,7 +273,6 @@
     "resolvelib",
     "rich",
     "ruamel.yaml",
-    "tomli",
     "typer",
     "types-requests",
     "unearth",
@@ -315,8 +296,9 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatchling",
     "pip",
-    "python >=3.10"
+    "python >=3.12"
    ]
   },
   "run": {
@@ -324,12 +306,11 @@
    "elements": [
     "auditwheel-emscripten >=0.0.9,<0.1.0",
     "cmake >=3.24",
-    "cython <3.0",
     "loky",
     "packaging",
-    "pydantic >=1.10.2,<2",
+    "pydantic >=2,<3",
     "pyodide-cli >=0.2.1,<0.3.dev0",
-    "pyodide-lock ==0.1.0a4",
+    "pyodide-lock ==0.1.0a6",
     "python >=3.10",
     "python-build >=1.2.0,<1.3.dev0",
     "pyyaml",
@@ -337,7 +318,6 @@
     "resolvelib",
     "rich",
     "ruamel.yaml",
-    "tomli",
     "typer",
     "types-requests",
     "unearth >=0.6,<1.dev0",
@@ -352,8 +332,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/p/pyodide-build/pyodide-build-0.25.1.tar.gz",
- "version": "0.25.1",
+ "url": "https://pypi.io/packages/source/p/pyodide-build/pyodide_build-0.26.0.tar.gz",
+ "version": "0.26.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pyodide-build.json"
  }
