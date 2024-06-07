@@ -36,13 +36,7 @@
    "entry_points": [
     "pyproj=pyproj.__main__:main"
    ],
-   "number": "6",
-   "script": [
-    "PYTHON -m pip install . --no-deps -vv"
-   ],
-   "script_env": [
-    "PROJ_VERSION=9.4.0"
-   ]
+   "number": "7"
   },
   "extra": {
    "recipe-maintainers": [
@@ -60,7 +54,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -105,7 +100,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -148,13 +144,7 @@
    "entry_points": [
     "pyproj=pyproj.__main__:main"
    ],
-   "number": "6",
-   "script": [
-    "PYTHON -m pip install . --no-deps -vv"
-   ],
-   "script_env": [
-    "PROJ_VERSION=9.4.0"
-   ]
+   "number": "7"
   },
   "extra": {
    "recipe-maintainers": [
@@ -172,7 +162,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -217,7 +208,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -260,13 +252,7 @@
    "entry_points": [
     "pyproj=pyproj.__main__:main"
    ],
-   "number": "6",
-   "script": [
-    "PYTHON -m pip install . --no-deps -vv"
-   ],
-   "script_env": [
-    "PROJ_VERSION=9.4.0"
-   ]
+   "number": "7"
   },
   "extra": {
    "recipe-maintainers": [
@@ -284,7 +270,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -342,13 +329,7 @@
    "entry_points": [
     "pyproj=pyproj.__main__:main"
    ],
-   "number": "6",
-   "script": [
-    "PYTHON -m pip install . --no-deps -vv"
-   ],
-   "script_env": [
-    "PROJ_VERSION=9.4.0"
-   ]
+   "number": "7"
   },
   "extra": {
    "recipe-maintainers": [
@@ -366,7 +347,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -411,7 +393,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -454,13 +437,7 @@
    "entry_points": [
     "pyproj=pyproj.__main__:main"
    ],
-   "number": "6",
-   "script": [
-    "PYTHON -m pip install . --no-deps -vv"
-   ],
-   "script_env": [
-    "PROJ_VERSION=9.4.0"
-   ]
+   "number": "7"
   },
   "extra": {
    "recipe-maintainers": [
@@ -478,7 +455,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -523,7 +501,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -569,11 +548,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyproj.json"
  },
- "raw_meta_yaml": "{% set version = \"3.6.1\" %}\n\npackage:\n  name: pyproj\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/p/pyproj/pyproj-{{ version }}.tar.gz\n  sha256: 44aa7c704c2b7d8fb3d483bbf75af6cb2350d30a63b144279a09b75fead501bf\n  patches:\n    - 0001-azimuthal-equidistant.patch\n\nbuild:\n  number: 6\n  skip: true  # [py<39 or ppc64le]\n  entry_points:\n    - pyproj=pyproj.__main__:main\n  script_env:\n    - PROJ_VERSION={{ proj }}\n  script:\n    - {{ PYTHON }} -m pip install . --no-deps -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - {{ compiler('c') }}\n  host:\n    - python\n    - pip\n    - cython\n    - proj\n  run:\n    - python\n    - proj\n    - certifi\n\ntest:\n  source_files:\n    - test\n  requires:\n    - pytest\n    - shapely\n    - numpy\n  imports:\n    - pyproj\n  commands:\n    - pyproj --verbose\n    - export \"PROJ_NETWORK=ON\"           # [unix]\n    - export \"PYPROJ_GLOBAL_CONTEXT=ON\"  # [unix]\n    - set \"PROJ_NETWORK=ON\"              # [win]\n    - set \"PYPROJ_GLOBAL_CONTEXT=ON\"     # [win]\n    - python -m pytest -v -s\nabout:\n  home: https://github.com/pyproj4/pyproj\n  license: MIT\n  license_file:\n    - LICENSE\n    - LICENSE_proj\n  summary: Python interface to PROJ library\n\nextra:\n  recipe-maintainers:\n    - mingwandroid\n    - ocefpaf\n    - snowman2\n    - jorisvandenbossche\n    - xylar\n    - zklaus\n",
+ "raw_meta_yaml": "{% set version = \"3.6.1\" %}\n\npackage:\n  name: pyproj\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/p/pyproj/pyproj-{{ version }}.tar.gz\n  sha256: 44aa7c704c2b7d8fb3d483bbf75af6cb2350d30a63b144279a09b75fead501bf\n  patches:\n    - 0001-azimuthal-equidistant.patch\n\nbuild:\n  number: 7\n  skip: true  # [py<39 or ppc64le]\n  entry_points:\n    - pyproj=pyproj.__main__:main\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip\n    - cython\n    - proj\n  run:\n    - python\n    - proj\n    - certifi\n\ntest:\n  source_files:\n    - test\n  requires:\n    - pytest\n    - shapely\n    - numpy\n  imports:\n    - pyproj\n  commands:\n    - pyproj --verbose\n    - export \"PROJ_NETWORK=ON\"           # [unix]\n    - export \"PYPROJ_GLOBAL_CONTEXT=ON\"  # [unix]\n    - set \"PROJ_NETWORK=ON\"              # [win]\n    - set \"PYPROJ_GLOBAL_CONTEXT=ON\"     # [win]\n    - python -m pytest -v -s\nabout:\n  home: https://github.com/pyproj4/pyproj\n  license: MIT\n  license_file:\n    - LICENSE\n    - LICENSE_proj\n  summary: Python interface to PROJ library\n\nextra:\n  recipe-maintainers:\n    - mingwandroid\n    - ocefpaf\n    - snowman2\n    - jorisvandenbossche\n    - xylar\n    - zklaus\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "certifi",
    "cython",
    "pip",
@@ -585,13 +565,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "pip",
     "proj",
@@ -602,6 +584,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "certifi",
     "proj",
     "python"
@@ -621,7 +604,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -669,13 +653,7 @@
    "entry_points": [
     "pyproj=pyproj.__main__:main"
    ],
-   "number": "6",
-   "script": [
-    "PYTHON -m pip install . --no-deps -vv"
-   ],
-   "script_env": [
-    "PROJ_VERSION=9.4.0"
-   ]
+   "number": "7"
   },
   "extra": {
    "recipe-maintainers": [
@@ -693,7 +671,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -738,7 +717,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
