@@ -6,7 +6,8 @@
    "automerge": true
   },
   "build_platform": {
-   "linux_aarch64": "linux_64"
+   "linux_aarch64": "linux_64",
+   "osx_arm64": "osx_64"
   },
   "conda_build": {
    "pkg_format": "2"
@@ -323,6 +324,71 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "HashiCorp Packer is easy to use and automates the creation of any type\nof machine image. It embraces modern configuration management by\nencouraging you to use automated scripts to install and configure the\nsoftware within your Packer-made images\n",
+   "dev_url": "https://github.com/hashicorp/packer",
+   "doc_url": "https://www.packer.io/docs",
+   "home": "https://www.packer.io",
+   "license": "MPL-2.0",
+   "summary": "Build Automated Machine Images."
+  },
+  "build": {
+   "number": "0",
+   "script": [
+    "go install -v -ldflags \"-w -s -X 'github.com/hashicorp/packer/version.VersionPrerelease='\" ."
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "sodre",
+    "mariusvniekerk",
+    "dhirschfeld"
+   ]
+  },
+  "package": {
+   "name": "packer",
+   "version": "1.11.0"
+  },
+  "requirements": {
+   "build": [
+    "go_compiler_stub"
+   ],
+   "run_constrained": [
+    "__osx >=11.0"
+   ]
+  },
+  "source": {
+   "sha256": "51ce907a2dc3772e43aacf0297136fbaa10a4ad49db02670c0becc68e165e6e2",
+   "url": "https://github.com/hashicorp/packer/archive/v1.11.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "bash -c \"packer -v\""
+   ],
+   "requires": null
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "go_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -335,6 +401,7 @@
   "linux_aarch64",
   "linux_ppc64le",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
