@@ -27,8 +27,8 @@
     "bump-my-version = bumpversion.cli:cli"
    ],
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -43,20 +43,19 @@
   "requirements": {
    "host": [
     "python >=3.8",
-    "setuptools >=40.9.0",
-    "wheel",
+    "setuptools",
     "pip"
    ],
    "run": [
     "python >=3.8",
     "click",
-    "pydantic",
+    "pydantic >=2.0.0",
     "pydantic-settings",
     "questionary",
     "rich-click",
     "rich",
     "tomlkit",
-    "wcmatch"
+    "wcmatch >=8.5.1"
    ]
   },
   "source": {
@@ -65,6 +64,7 @@
   },
   "test": {
    "commands": [
+    "pip check",
     "bump-my-version --help"
    ],
    "imports": [
@@ -85,8 +85,7 @@
    "elements": [
     "pip",
     "python",
-    "setuptools",
-    "wheel"
+    "setuptools"
    ]
   },
   "run": {
@@ -124,8 +123,8 @@
     "bump-my-version = bumpversion.cli:cli"
    ],
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -140,20 +139,19 @@
   "requirements": {
    "host": [
     "python >=3.8",
-    "setuptools >=40.9.0",
-    "wheel",
+    "setuptools",
     "pip"
    ],
    "run": [
     "python >=3.8",
     "click",
-    "pydantic",
+    "pydantic >=2.0.0",
     "pydantic-settings",
     "questionary",
     "rich-click",
     "rich",
     "tomlkit",
-    "wcmatch"
+    "wcmatch >=8.5.1"
    ]
   },
   "source": {
@@ -162,6 +160,7 @@
   },
   "test": {
    "commands": [
+    "pip check",
     "bump-my-version --help"
    ],
    "imports": [
@@ -186,7 +185,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/bump-my-version.json"
  },
- "raw_meta_yaml": "{% set name = \"bump-my-version\" %}\n{% set version = \"0.21.1\" %}\n{% set build_number = 0 %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz\n  sha256: ec612474e9e790c3fbbfed153a10b356f84fc15096ceff181b399d5e985bfacc\n\nbuild:\n  number: {{ build_number }}\n  entry_points:\n    - bump-my-version = bumpversion.cli:cli\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools >=40.9.0\n    - wheel\n    - pip\n  run:\n    - python >=3.8\n    - click\n    - pydantic\n    - pydantic-settings\n    - questionary\n    - rich-click\n    - rich\n    - tomlkit\n    - wcmatch\n\ntest:\n  imports:\n    - bumpversion\n  commands:\n#    - pip check\n    - bump-my-version --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/callowayproject/bump-my-version\n  summary: Version bump your Python project\n  description: >-\n    A small command line tool to simplify releasing software by updating all version strings in your source code by the correct increment and optionally commit and tag the changes.\n\n    * version formats are highly configurable * works without any source code manager, but happily reads tag information from and writes commits and tags to Git and Mercurial if available * just handles text files, so it's not specific to any programming language * supports Python 3.8+ and PyPy3. Python 3.7 should work but\n    isn't actively tested.\n  license: MIT\n  license_file: LICENSE\n  doc_url: https://callowayproject.github.io/bump-my-version/\n\nextra:\n  recipe-maintainers:\n    - coordt\n    - mfisher87\n",
+ "raw_meta_yaml": "{% set name = \"bump-my-version\" %}\n{% set version = \"0.21.1\" %}\n{% set build_number = 1 %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz\n  sha256: ec612474e9e790c3fbbfed153a10b356f84fc15096ceff181b399d5e985bfacc\n\nbuild:\n  number: {{ build_number }}\n  entry_points:\n    - bump-my-version = bumpversion.cli:cli\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools\n    - pip\n  run:\n    - python >=3.8\n    - click\n    - pydantic >=2.0.0\n    - pydantic-settings\n    - questionary\n    - rich-click\n    - rich\n    - tomlkit\n    - wcmatch >=8.5.1\n\ntest:\n  imports:\n    - bumpversion\n  commands:\n    - pip check\n    - bump-my-version --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/callowayproject/bump-my-version\n  summary: Version bump your Python project\n  description: >-\n    A small command line tool to simplify releasing software by updating all version strings in your source code by the correct increment and optionally commit and tag the changes.\n\n    * version formats are highly configurable * works without any source code manager, but happily reads tag information from and writes commits and tags to Git and Mercurial if available * just handles text files, so it's not specific to any programming language * supports Python 3.8+ and PyPy3. Python 3.7 should work but\n    isn't actively tested.\n  license: MIT\n  license_file: LICENSE\n  doc_url: https://callowayproject.github.io/bump-my-version/\n\nextra:\n  recipe-maintainers:\n    - coordt\n    - mfisher87\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -200,8 +199,7 @@
    "rich-click",
    "setuptools",
    "tomlkit",
-   "wcmatch",
-   "wheel"
+   "wcmatch"
   ]
  },
  "requirements": {
@@ -214,8 +212,7 @@
    "elements": [
     "pip",
     "python",
-    "setuptools",
-    "wheel"
+    "setuptools"
    ]
   },
   "run": {
@@ -250,22 +247,21 @@
    "elements": [
     "pip",
     "python >=3.8",
-    "setuptools >=40.9.0",
-    "wheel"
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "click",
-    "pydantic",
+    "pydantic >=2.0.0",
     "pydantic-settings",
     "python >=3.8",
     "questionary",
     "rich",
     "rich-click",
     "tomlkit",
-    "wcmatch"
+    "wcmatch >=8.5.1"
    ]
   },
   "test": {
