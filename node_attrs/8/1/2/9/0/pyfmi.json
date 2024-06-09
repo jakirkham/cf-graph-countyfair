@@ -6,6 +6,7 @@
    "automerge": true
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -17,7 +18,7 @@
    "tooling_branch_name": "main"
   },
   "provider": {
-   "win": "azure"
+   "linux_aarch64": "default"
   },
   "test": "native_and_emulated"
  },
@@ -84,6 +85,100 @@
   }
  },
  "linux_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "assimulo",
+    "cython",
+    "fmilib",
+    "numpy",
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "assimulo",
+    "fmilib",
+    "lxml",
+    "python",
+    "scipy"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "home": "https://github.com/modelon-community/PyFMI",
+   "license": "LGPL-3.0-only",
+   "license_family": "LGPL",
+   "license_file": "LICENSE",
+   "summary": "PyFMI is a package for loading and interacting with Functional Mock-Up Units"
+  },
+  "build": {
+   "number": "3"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jschueller",
+    "chria"
+   ]
+  },
+  "package": {
+   "name": "pyfmi",
+   "version": "2.13.0"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "fmilib",
+    "numpy",
+    "cython",
+    "assimulo >=3.0"
+   ],
+   "run": [
+    "python",
+    "fmilib",
+    "scipy",
+    "lxml",
+    "assimulo >=3.0"
+   ]
+  },
+  "source": {
+   "fn": "PyFMI-2.13.0.tar.gz",
+   "patches": [
+    "distutils.patch"
+   ],
+   "sha256": "846f8bd80988a891be2c7fecb2d6faf2b459f61788164b628a7a69a1461ec811",
+   "url": "https://github.com/modelon-community/PyFMI/archive/PyFMI-2.13.0.tar.gz"
+  },
+  "test": {
+   "imports": [
+    "pyfmi",
+    "pyfmi.common",
+    "pyfmi.common.plotting",
+    "pyfmi.examples",
+    "pyfmi.simulation"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
   "build": {
    "__set__": true,
    "elements": [
@@ -375,6 +470,7 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
   "osx_64",
   "osx_arm64",
   "win_64"
