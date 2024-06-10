@@ -13505,7 +13505,8 @@
    "summary": "Activation scripts for gcc, g++, gfortran and binutils"
   },
   "build": {
-   "number": "4"
+   "number": "4",
+   "skip": true
   },
   "extra": {
    "recipe-maintainers": [
@@ -26648,13 +26649,13 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-64",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-64 13.2.0.*",
-      "binutils_linux-64",
-      "sysroot_linux-64"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
@@ -26669,7 +26670,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -26687,289 +26688,13 @@
       ]
      }
     },
-    "name": "clang_linux-64",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-64 13.2.0.*",
-      "binutils_linux-64",
-      "sysroot_linux-64",
-      "compiler-rt_linux-64",
-      "compiler-rt ==18.*",
-      "clang_impl_osx-64  18"
-     ]
-    },
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "echo x86_64",
-      "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
-      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
-      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
-     ],
-     "files": [
-      "tests"
-     ],
-     "requires": [
-      "sysroot_linux-64 2.12"
-     ]
-    },
-    "version": "18"
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "BSD-3-Clause",
-     "license_file": "LICENSE",
-     "summary": "GNU C++ Compiler (activation scripts)"
-    },
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libstdcxx-ng >=13",
-       "libgcc-ng >=13"
-      ]
-     },
-     "skip": true
-    },
-    "name": "gxx_linux-64",
-    "requirements": {
-     "run": [
-      "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-64 13.2.0.*",
-      "gcc_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64"
-     ]
-    },
-    "script": "install-g++.sh",
-    "test": {
-     "commands": [
-      "${CXX} ${CXXFLAGS} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o",
-      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
-      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
-     ],
-     "files": [
-      "tests"
-     ],
-     "requires": [
-      "sysroot_linux-64 2.12"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "BSD-3-Clause",
-     "license_file": "LICENSE",
-     "summary": "Clang C++ Compiler (activation scripts)"
-    },
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libstdcxx-ng >=13",
-       "libgcc-ng >=13"
-      ]
-     }
-    },
-    "name": "clangxx_linux-64",
-    "requirements": {
-     "run": [
-      "libgcc-devel_linux-64 13.2.0.*",
-      "libstdcxx-devel_linux-64  13.2.0.*",
-      "clang_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64",
-      "compiler-rt_linux-64",
-      "compiler-rt ==18.*",
-      "clangxx_impl_osx-64  18"
-     ]
-    },
-    "script": "install-clang++.sh",
-    "test": {
-     "commands": [
-      "${CXX} ${CXXFLAGS} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o",
-      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
-      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
-     ],
-     "files": [
-      "tests"
-     ],
-     "requires": [
-      "sysroot_linux-64 2.12"
-     ]
-    },
-    "version": "18"
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "BSD-3-Clause",
-     "license_file": "LICENSE",
-     "summary": "GNU Fortran Compiler (activation scripts)"
-    },
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libgfortran5 >=13.2.0",
-       "libgfortran-ng",
-       "libgcc-ng >=13"
-      ]
-     },
-     "skip": true
-    },
-    "name": "gfortran_linux-64",
-    "requirements": {
-     "host": [
-      "libgfortran5 13.2.0.*",
-      "libgfortran-ng  13.2.0.*"
-     ],
-     "run": [
-      "gfortran_impl_linux-64 13.2.0.*",
-      "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64"
-     ]
-    },
-    "script": "install-gfortran.sh",
-    "test": {
-     "commands": [
-      "${FC} --version",
-      "pushd tests/fortomp"
-     ],
-     "files": [
-      "tests/fortomp/*"
-     ],
-     "requires": [
-      "cmake >=3.11",
-      "make",
-      "sysroot_linux-64 2.12"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "BSD-3-Clause",
-     "license_file": "LICENSE",
-     "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
-    },
-    "name": "binutils_linux-64",
-    "requirements": {
-     "run": [
-      "binutils_impl_linux-64 2.40.*",
-      "sysroot_linux-64"
-     ]
-    },
-    "script": "install-binutils.sh",
-    "test": {
-     "commands": [
-      "test -f $LD"
-     ],
-     "requires": [
-      "sysroot_linux-64 2.12"
-     ]
-    },
-    "version": "2.40"
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "GPL",
-     "license_file": "GPL_LICENSE",
-     "summary": "GCC bootstrap compilers for building deps"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "lib64/",
-      "lib/",
-      "libexec/",
-      "share/",
-      "x86_64-conda-linux-gnu/"
-     ],
-     "binary_relocation": false,
-     "detect_binary_files_with_prefix": false,
-     "skip": true
-    },
-    "name": "gcc_bootstrap_linux-64",
-    "requirements": {
-     "host": [
-      "binutils_impl_linux-64 2.40.*",
-      "gfortran_impl_linux-64 13.2.0.*",
-      "gxx_impl_linux-64 13.2.0.*",
-      "gcc_impl_linux-64 13.2.0.*"
-     ]
-    },
-    "test": {
-     "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
-     ]
-    },
-    "version": "13.2.0"
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "BSD-3-Clause",
-     "license_file": "LICENSE",
-     "summary": "GNU C Compiler (activation scripts)"
-    },
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libgcc-ng >=13"
-      ]
-     },
-     "skip": true
-    },
-    "name": "gcc_linux-64",
-    "requirements": {
-     "run": [
-      "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-64 13.2.0.*",
-      "binutils_linux-64",
-      "sysroot_linux-64"
-     ]
-    },
-    "script": "install-gcc.sh",
-    "test": {
-     "commands": [
-      "echo x86_64",
-      "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
-      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
-      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
-     ],
-     "files": [
-      "tests"
-     ],
-     "requires": [
-      "sysroot_linux-64 2.12"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "BSD-3-Clause",
-     "license_file": "LICENSE",
-     "summary": "Clang Compiler (activation scripts)"
-    },
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libgcc-ng >=13"
-      ]
-     }
-    },
-    "name": "clang_linux-64",
-    "requirements": {
-     "run": [
-      "libgcc-devel_linux-64 13.2.0.*",
-      "binutils_linux-64",
-      "sysroot_linux-64",
-      "compiler-rt_linux-64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -26986,7 +26711,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -27007,14 +26732,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-64",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-64 13.2.0.*",
-      "gcc_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -27028,7 +26753,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -27047,15 +26772,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-64",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-64 13.2.0.*",
-      "libstdcxx-devel_linux-64  13.2.0.*",
-      "clang_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64",
-      "compiler-rt_linux-64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -27071,7 +26796,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -27093,18 +26818,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-64",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-64 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -27119,7 +26844,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -27130,11 +26855,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-64",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-64 2.40.*",
-      "sysroot_linux-64"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -27143,7 +26868,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -27163,24 +26888,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-64",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-64 2.40.*",
-      "gfortran_impl_linux-64 13.2.0.*",
-      "gxx_impl_linux-64 13.2.0.*",
-      "gcc_impl_linux-64 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -27200,13 +26925,13 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-64",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-64 13.2.0.*",
-      "binutils_linux-64",
-      "sysroot_linux-64"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
@@ -27221,7 +26946,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -27239,13 +26964,13 @@
       ]
      }
     },
-    "name": "clang_linux-64",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-64 13.2.0.*",
-      "binutils_linux-64",
-      "sysroot_linux-64",
-      "compiler-rt_linux-64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -27262,7 +26987,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -27283,14 +27008,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-64",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-64 13.2.0.*",
-      "gcc_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -27304,7 +27029,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -27323,15 +27048,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-64",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-64 13.2.0.*",
-      "libstdcxx-devel_linux-64  13.2.0.*",
-      "clang_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64",
-      "compiler-rt_linux-64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -27347,7 +27072,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -27369,18 +27094,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-64",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-64 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -27395,7 +27120,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -27406,11 +27131,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-64",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-64 2.40.*",
-      "sysroot_linux-64"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -27419,7 +27144,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -27439,24 +27164,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-64",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-64 2.40.*",
-      "gfortran_impl_linux-64 13.2.0.*",
-      "gxx_impl_linux-64 13.2.0.*",
-      "gcc_impl_linux-64 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -27476,19 +27201,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-aarch64",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-aarch64 13.2.0.*",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo aarch64",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -27497,7 +27222,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -27515,13 +27240,13 @@
       ]
      }
     },
-    "name": "clang_linux-aarch64",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-aarch64 13.2.0.*",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64",
-      "compiler-rt_linux-aarch64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -27529,7 +27254,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo aarch64",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -27538,7 +27263,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -27559,14 +27284,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-aarch64",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-aarch64 13.2.0.*",
-      "gcc_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -27580,7 +27305,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -27599,15 +27324,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-aarch64",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-aarch64 13.2.0.*",
-      "libstdcxx-devel_linux-aarch64  13.2.0.*",
-      "clang_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64",
-      "compiler-rt_linux-aarch64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -27623,7 +27348,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -27645,18 +27370,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-aarch64",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-aarch64 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -27671,7 +27396,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -27682,11 +27407,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-aarch64",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-aarch64 2.40.*",
-      "sysroot_linux-aarch64"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -27695,7 +27420,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -27715,24 +27440,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-aarch64",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-aarch64 2.40.*",
-      "gfortran_impl_linux-aarch64 13.2.0.*",
-      "gxx_impl_linux-aarch64 13.2.0.*",
-      "gcc_impl_linux-aarch64 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -27752,19 +27477,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-aarch64",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-aarch64 13.2.0.*",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo aarch64",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -27773,7 +27498,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -27791,13 +27516,13 @@
       ]
      }
     },
-    "name": "clang_linux-aarch64",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-aarch64 13.2.0.*",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64",
-      "compiler-rt_linux-aarch64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -27805,7 +27530,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo aarch64",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -27814,7 +27539,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -27835,14 +27560,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-aarch64",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-aarch64 13.2.0.*",
-      "gcc_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -27856,7 +27581,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -27875,15 +27600,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-aarch64",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-aarch64 13.2.0.*",
-      "libstdcxx-devel_linux-aarch64  13.2.0.*",
-      "clang_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64",
-      "compiler-rt_linux-aarch64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -27899,7 +27624,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -27921,18 +27646,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-aarch64",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-aarch64 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -27947,7 +27672,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -27958,11 +27683,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-aarch64",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-aarch64 2.40.*",
-      "sysroot_linux-aarch64"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -27971,7 +27696,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -27991,24 +27716,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-aarch64",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-aarch64 2.40.*",
-      "gfortran_impl_linux-aarch64 13.2.0.*",
-      "gxx_impl_linux-aarch64 13.2.0.*",
-      "gcc_impl_linux-aarch64 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -28028,19 +27753,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-aarch64",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-aarch64 13.2.0.*",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo aarch64",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -28049,7 +27774,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -28067,13 +27792,13 @@
       ]
      }
     },
-    "name": "clang_linux-aarch64",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-aarch64 13.2.0.*",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64",
-      "compiler-rt_linux-aarch64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -28081,7 +27806,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo aarch64",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -28090,7 +27815,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -28111,14 +27836,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-aarch64",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-aarch64 13.2.0.*",
-      "gcc_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -28132,7 +27857,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -28151,15 +27876,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-aarch64",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-aarch64 13.2.0.*",
-      "libstdcxx-devel_linux-aarch64  13.2.0.*",
-      "clang_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64",
-      "compiler-rt_linux-aarch64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -28175,7 +27900,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -28197,18 +27922,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-aarch64",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-aarch64 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -28223,7 +27948,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -28234,11 +27959,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-aarch64",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-aarch64 2.40.*",
-      "sysroot_linux-aarch64"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -28247,7 +27972,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -28267,24 +27992,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-aarch64",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-aarch64 2.40.*",
-      "gfortran_impl_linux-aarch64 13.2.0.*",
-      "gxx_impl_linux-aarch64 13.2.0.*",
-      "gcc_impl_linux-aarch64 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -28304,19 +28029,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-ppc64le",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-ppc64le 13.2.0.*",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo ppc64le",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -28325,7 +28050,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -28343,13 +28068,13 @@
       ]
      }
     },
-    "name": "clang_linux-ppc64le",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-ppc64le 13.2.0.*",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le",
-      "compiler-rt_linux-ppc64le",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -28357,7 +28082,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo ppc64le",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -28366,7 +28091,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -28387,14 +28112,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-ppc64le",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-ppc64le 13.2.0.*",
-      "gcc_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -28408,7 +28133,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -28427,15 +28152,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-ppc64le",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-ppc64le 13.2.0.*",
-      "libstdcxx-devel_linux-ppc64le  13.2.0.*",
-      "clang_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le",
-      "compiler-rt_linux-ppc64le",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -28451,7 +28176,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -28473,18 +28198,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-ppc64le",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-ppc64le 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -28499,7 +28224,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -28510,11 +28235,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-ppc64le",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-ppc64le 2.40.*",
-      "sysroot_linux-ppc64le"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -28523,7 +28248,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -28543,24 +28268,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-ppc64le",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-ppc64le 2.40.*",
-      "gfortran_impl_linux-ppc64le 13.2.0.*",
-      "gxx_impl_linux-ppc64le 13.2.0.*",
-      "gcc_impl_linux-ppc64le 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -28580,19 +28305,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-ppc64le",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-ppc64le 13.2.0.*",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo ppc64le",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -28601,7 +28326,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -28619,13 +28344,13 @@
       ]
      }
     },
-    "name": "clang_linux-ppc64le",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-ppc64le 13.2.0.*",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le",
-      "compiler-rt_linux-ppc64le",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -28633,7 +28358,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo ppc64le",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -28642,7 +28367,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -28663,14 +28388,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-ppc64le",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-ppc64le 13.2.0.*",
-      "gcc_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -28684,7 +28409,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -28703,15 +28428,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-ppc64le",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-ppc64le 13.2.0.*",
-      "libstdcxx-devel_linux-ppc64le  13.2.0.*",
-      "clang_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le",
-      "compiler-rt_linux-ppc64le",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -28727,7 +28452,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -28749,18 +28474,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-ppc64le",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-ppc64le 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -28775,7 +28500,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -28786,11 +28511,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-ppc64le",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-ppc64le 2.40.*",
-      "sysroot_linux-ppc64le"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -28799,7 +28524,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -28819,24 +28544,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-ppc64le",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-ppc64le 2.40.*",
-      "gfortran_impl_linux-ppc64le 13.2.0.*",
-      "gxx_impl_linux-ppc64le 13.2.0.*",
-      "gcc_impl_linux-ppc64le 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -28856,19 +28581,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-ppc64le",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-ppc64le 13.2.0.*",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo ppc64le",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -28877,7 +28602,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -28895,13 +28620,13 @@
       ]
      }
     },
-    "name": "clang_linux-ppc64le",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-ppc64le 13.2.0.*",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le",
-      "compiler-rt_linux-ppc64le",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -28909,7 +28634,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo ppc64le",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -28918,7 +28643,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -28939,14 +28664,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-ppc64le",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-ppc64le 13.2.0.*",
-      "gcc_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -28960,7 +28685,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -28979,15 +28704,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-ppc64le",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-ppc64le 13.2.0.*",
-      "libstdcxx-devel_linux-ppc64le  13.2.0.*",
-      "clang_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le",
-      "compiler-rt_linux-ppc64le",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -29003,7 +28728,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -29025,18 +28750,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-ppc64le",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-ppc64le 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -29051,7 +28776,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -29062,11 +28787,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-ppc64le",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-ppc64le 2.40.*",
-      "sysroot_linux-ppc64le"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -29075,7 +28800,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -29095,24 +28820,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-ppc64le",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-ppc64le 2.40.*",
-      "gfortran_impl_linux-ppc64le 13.2.0.*",
-      "gxx_impl_linux-ppc64le 13.2.0.*",
-      "gcc_impl_linux-ppc64le 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -29132,19 +28857,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-s390x",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-s390x 13.2.0.*",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo s390x",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -29153,7 +28878,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -29169,16 +28894,15 @@
       "strong": [
        "libgcc-ng >=13"
       ]
-     },
-     "skip": true
+     }
     },
-    "name": "clang_linux-s390x",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-s390x 13.2.0.*",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x",
-      "compiler-rt_linux-s390x",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -29186,7 +28910,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo s390x",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -29195,7 +28919,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -29216,14 +28940,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-s390x",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-s390x 13.2.0.*",
-      "gcc_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -29237,7 +28961,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -29254,18 +28978,17 @@
        "libstdcxx-ng >=13",
        "libgcc-ng >=13"
       ]
-     },
-     "skip": true
+     }
     },
-    "name": "clangxx_linux-s390x",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-s390x 13.2.0.*",
-      "libstdcxx-devel_linux-s390x  13.2.0.*",
-      "clang_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x",
-      "compiler-rt_linux-s390x",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -29281,7 +29004,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -29303,18 +29026,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-s390x",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-s390x 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -29329,7 +29052,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -29340,11 +29063,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-s390x",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-s390x 2.40.*",
-      "sysroot_linux-s390x"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -29353,7 +29076,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -29373,24 +29096,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-s390x",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-s390x 2.40.*",
-      "gfortran_impl_linux-s390x 13.2.0.*",
-      "gxx_impl_linux-s390x 13.2.0.*",
-      "gcc_impl_linux-s390x 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -29410,19 +29133,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-s390x",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-s390x 13.2.0.*",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo s390x",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -29431,7 +29154,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -29447,16 +29170,15 @@
       "strong": [
        "libgcc-ng >=13"
       ]
-     },
-     "skip": true
+     }
     },
-    "name": "clang_linux-s390x",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-s390x 13.2.0.*",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x",
-      "compiler-rt_linux-s390x",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -29464,7 +29186,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo s390x",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -29473,7 +29195,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -29494,14 +29216,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-s390x",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-s390x 13.2.0.*",
-      "gcc_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -29515,7 +29237,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -29532,18 +29254,17 @@
        "libstdcxx-ng >=13",
        "libgcc-ng >=13"
       ]
-     },
-     "skip": true
+     }
     },
-    "name": "clangxx_linux-s390x",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-s390x 13.2.0.*",
-      "libstdcxx-devel_linux-s390x  13.2.0.*",
-      "clang_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x",
-      "compiler-rt_linux-s390x",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -29559,7 +29280,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -29581,18 +29302,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-s390x",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-s390x 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -29607,7 +29328,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -29618,11 +29339,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-s390x",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-s390x 2.40.*",
-      "sysroot_linux-s390x"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -29631,7 +29352,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -29651,24 +29372,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-s390x",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-s390x 2.40.*",
-      "gfortran_impl_linux-s390x 13.2.0.*",
-      "gxx_impl_linux-s390x 13.2.0.*",
-      "gcc_impl_linux-s390x 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -29688,19 +29409,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-s390x",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-s390x 13.2.0.*",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo s390x",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -29709,7 +29430,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -29725,16 +29446,15 @@
       "strong": [
        "libgcc-ng >=13"
       ]
-     },
-     "skip": true
+     }
     },
-    "name": "clang_linux-s390x",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-s390x 13.2.0.*",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x",
-      "compiler-rt_linux-s390x",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -29742,7 +29462,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo s390x",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -29751,7 +29471,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -29772,14 +29492,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-s390x",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-s390x 13.2.0.*",
-      "gcc_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -29793,7 +29513,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -29810,18 +29530,17 @@
        "libstdcxx-ng >=13",
        "libgcc-ng >=13"
       ]
-     },
-     "skip": true
+     }
     },
-    "name": "clangxx_linux-s390x",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-s390x 13.2.0.*",
-      "libstdcxx-devel_linux-s390x  13.2.0.*",
-      "clang_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x",
-      "compiler-rt_linux-s390x",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -29837,7 +29556,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -29859,18 +29578,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-s390x",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-s390x 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -29885,7 +29604,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -29896,11 +29615,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-s390x",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-s390x 2.40.*",
-      "sysroot_linux-s390x"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -29909,7 +29628,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -29929,24 +29648,300 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-s390x",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-s390x 2.40.*",
-      "gfortran_impl_linux-s390x 13.2.0.*",
-      "gxx_impl_linux-s390x 13.2.0.*",
-      "gcc_impl_linux-s390x 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
+     ]
+    },
+    "version": "13.2.0"
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "BSD-3-Clause",
+     "license_file": "LICENSE",
+     "summary": "GNU C Compiler (activation scripts)"
+    },
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libgcc-ng >=13"
+      ]
+     },
+     "skip": true
+    },
+    "name": "gcc_win-64",
+    "requirements": {
+     "run": [
+      "gcc_impl_osx-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
+     ]
+    },
+    "script": "install-gcc.sh",
+    "test": {
+     "commands": [
+      "echo x86_64",
+      "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
+      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
+      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
+     ],
+     "files": [
+      "tests"
+     ],
+     "requires": [
+      "m2w64-sysroot_win-64 12"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "BSD-3-Clause",
+     "license_file": "LICENSE",
+     "summary": "Clang Compiler (activation scripts)"
+    },
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libgcc-ng >=13"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "run": [
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
+      "compiler-rt ==18.*",
+      "clang_impl_osx-64  18"
+     ]
+    },
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "echo x86_64",
+      "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
+      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
+      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
+     ],
+     "files": [
+      "tests"
+     ],
+     "requires": [
+      "m2w64-sysroot_win-64 12"
+     ]
+    },
+    "version": "18"
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "BSD-3-Clause",
+     "license_file": "LICENSE",
+     "summary": "GNU C++ Compiler (activation scripts)"
+    },
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libstdcxx-ng >=13",
+       "libgcc-ng >=13"
+      ]
+     },
+     "skip": true
+    },
+    "name": "gxx_win-64",
+    "requirements": {
+     "run": [
+      "gxx_impl_osx-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
+     ]
+    },
+    "script": "install-g++.sh",
+    "test": {
+     "commands": [
+      "${CXX} ${CXXFLAGS} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o",
+      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
+      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
+     ],
+     "files": [
+      "tests"
+     ],
+     "requires": [
+      "m2w64-sysroot_win-64 12"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "BSD-3-Clause",
+     "license_file": "LICENSE",
+     "summary": "Clang C++ Compiler (activation scripts)"
+    },
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libstdcxx-ng >=13",
+       "libgcc-ng >=13"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "run": [
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
+      "compiler-rt ==18.*",
+      "clangxx_impl_osx-64  18"
+     ]
+    },
+    "script": "install-clang++.sh",
+    "test": {
+     "commands": [
+      "${CXX} ${CXXFLAGS} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o",
+      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
+      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
+     ],
+     "files": [
+      "tests"
+     ],
+     "requires": [
+      "m2w64-sysroot_win-64 12"
+     ]
+    },
+    "version": "18"
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "BSD-3-Clause",
+     "license_file": "LICENSE",
+     "summary": "GNU Fortran Compiler (activation scripts)"
+    },
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libgfortran5 >=13.2.0",
+       "libgfortran-ng",
+       "libgcc-ng >=13"
+      ]
+     },
+     "skip": true
+    },
+    "name": "gfortran_win-64",
+    "requirements": {
+     "host": [
+      "libgfortran5 13.2.0.*",
+      "libgfortran-ng  13.2.0.*"
+     ],
+     "run": [
+      "gfortran_impl_win-64 13.2.0.*",
+      "gfortran_impl_osx-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
+     ]
+    },
+    "script": "install-gfortran.sh",
+    "test": {
+     "commands": [
+      "${FC} --version",
+      "pushd tests/fortomp"
+     ],
+     "files": [
+      "tests/fortomp/*"
+     ],
+     "requires": [
+      "cmake >=3.11",
+      "make",
+      "m2w64-sysroot_win-64 12"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "BSD-3-Clause",
+     "license_file": "LICENSE",
+     "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
+    },
+    "name": "binutils_win-64",
+    "requirements": {
+     "run": [
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
+     ]
+    },
+    "script": "install-binutils.sh",
+    "test": {
+     "commands": [
+      "test -f $LD"
+     ],
+     "requires": [
+      "m2w64-sysroot_win-64 12"
+     ]
+    },
+    "version": "2.40"
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "GPL",
+     "license_file": "GPL_LICENSE",
+     "summary": "GCC bootstrap compilers for building deps"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "lib64/",
+      "lib/",
+      "libexec/",
+      "share/",
+      "x86_64-w64-mingw32/"
+     ],
+     "binary_relocation": false,
+     "detect_binary_files_with_prefix": false,
+     "skip": true
+    },
+    "name": "gcc_bootstrap_win-64",
+    "requirements": {
+     "host": [
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -29974,7 +29969,8 @@
    "summary": "Activation scripts for gcc, g++, gfortran and binutils"
   },
   "build": {
-   "number": "4"
+   "number": "4",
+   "skip": true
   },
   "extra": {
    "recipe-maintainers": [
@@ -29998,13 +29994,13 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-64",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-64 13.2.0.*",
-      "binutils_linux-64",
-      "sysroot_linux-64"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
@@ -30019,7 +30015,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -30037,289 +30033,13 @@
       ]
      }
     },
-    "name": "clang_linux-64",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-64 13.2.0.*",
-      "binutils_linux-64",
-      "sysroot_linux-64",
-      "compiler-rt_linux-64",
-      "compiler-rt ==18.*",
-      "clang_impl_osx-64  18"
-     ]
-    },
-    "script": "install-clang.sh",
-    "test": {
-     "commands": [
-      "echo x86_64",
-      "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
-      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
-      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
-     ],
-     "files": [
-      "tests"
-     ],
-     "requires": [
-      "sysroot_linux-64 2.12"
-     ]
-    },
-    "version": "18"
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "BSD-3-Clause",
-     "license_file": "LICENSE",
-     "summary": "GNU C++ Compiler (activation scripts)"
-    },
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libstdcxx-ng >=13",
-       "libgcc-ng >=13"
-      ]
-     },
-     "skip": true
-    },
-    "name": "gxx_linux-64",
-    "requirements": {
-     "run": [
-      "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-64 13.2.0.*",
-      "gcc_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64"
-     ]
-    },
-    "script": "install-g++.sh",
-    "test": {
-     "commands": [
-      "${CXX} ${CXXFLAGS} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o",
-      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
-      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
-     ],
-     "files": [
-      "tests"
-     ],
-     "requires": [
-      "sysroot_linux-64 2.12"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "BSD-3-Clause",
-     "license_file": "LICENSE",
-     "summary": "Clang C++ Compiler (activation scripts)"
-    },
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libstdcxx-ng >=13",
-       "libgcc-ng >=13"
-      ]
-     }
-    },
-    "name": "clangxx_linux-64",
-    "requirements": {
-     "run": [
-      "libgcc-devel_linux-64 13.2.0.*",
-      "libstdcxx-devel_linux-64  13.2.0.*",
-      "clang_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64",
-      "compiler-rt_linux-64",
-      "compiler-rt ==18.*",
-      "clangxx_impl_osx-64  18"
-     ]
-    },
-    "script": "install-clang++.sh",
-    "test": {
-     "commands": [
-      "${CXX} ${CXXFLAGS} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o",
-      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
-      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
-     ],
-     "files": [
-      "tests"
-     ],
-     "requires": [
-      "sysroot_linux-64 2.12"
-     ]
-    },
-    "version": "18"
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "BSD-3-Clause",
-     "license_file": "LICENSE",
-     "summary": "GNU Fortran Compiler (activation scripts)"
-    },
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libgfortran5 >=13.2.0",
-       "libgfortran-ng",
-       "libgcc-ng >=13"
-      ]
-     },
-     "skip": true
-    },
-    "name": "gfortran_linux-64",
-    "requirements": {
-     "host": [
-      "libgfortran5 13.2.0.*",
-      "libgfortran-ng  13.2.0.*"
-     ],
-     "run": [
-      "gfortran_impl_linux-64 13.2.0.*",
-      "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64"
-     ]
-    },
-    "script": "install-gfortran.sh",
-    "test": {
-     "commands": [
-      "${FC} --version",
-      "pushd tests/fortomp"
-     ],
-     "files": [
-      "tests/fortomp/*"
-     ],
-     "requires": [
-      "cmake >=3.11",
-      "make",
-      "sysroot_linux-64 2.12"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "BSD-3-Clause",
-     "license_file": "LICENSE",
-     "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
-    },
-    "name": "binutils_linux-64",
-    "requirements": {
-     "run": [
-      "binutils_impl_linux-64 2.40.*",
-      "sysroot_linux-64"
-     ]
-    },
-    "script": "install-binutils.sh",
-    "test": {
-     "commands": [
-      "test -f $LD"
-     ],
-     "requires": [
-      "sysroot_linux-64 2.12"
-     ]
-    },
-    "version": "2.40"
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "GPL",
-     "license_file": "GPL_LICENSE",
-     "summary": "GCC bootstrap compilers for building deps"
-    },
-    "build": {
-     "always_include_files": [
-      "bin/",
-      "etc/",
-      "lib64/",
-      "lib/",
-      "libexec/",
-      "share/",
-      "x86_64-conda-linux-gnu/"
-     ],
-     "binary_relocation": false,
-     "detect_binary_files_with_prefix": false,
-     "skip": true
-    },
-    "name": "gcc_bootstrap_linux-64",
-    "requirements": {
-     "host": [
-      "binutils_impl_linux-64 2.40.*",
-      "gfortran_impl_linux-64 13.2.0.*",
-      "gxx_impl_linux-64 13.2.0.*",
-      "gcc_impl_linux-64 13.2.0.*"
-     ]
-    },
-    "test": {
-     "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
-     ]
-    },
-    "version": "13.2.0"
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "BSD-3-Clause",
-     "license_file": "LICENSE",
-     "summary": "GNU C Compiler (activation scripts)"
-    },
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libgcc-ng >=13"
-      ]
-     },
-     "skip": true
-    },
-    "name": "gcc_linux-64",
-    "requirements": {
-     "run": [
-      "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-64 13.2.0.*",
-      "binutils_linux-64",
-      "sysroot_linux-64"
-     ]
-    },
-    "script": "install-gcc.sh",
-    "test": {
-     "commands": [
-      "echo x86_64",
-      "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
-      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
-      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
-     ],
-     "files": [
-      "tests"
-     ],
-     "requires": [
-      "sysroot_linux-64 2.12"
-     ]
-    }
-   },
-   {
-    "about": {
-     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
-     "license": "BSD-3-Clause",
-     "license_file": "LICENSE",
-     "summary": "Clang Compiler (activation scripts)"
-    },
-    "build": {
-     "run_exports": {
-      "strong": [
-       "libgcc-ng >=13"
-      ]
-     }
-    },
-    "name": "clang_linux-64",
-    "requirements": {
-     "run": [
-      "libgcc-devel_linux-64 13.2.0.*",
-      "binutils_linux-64",
-      "sysroot_linux-64",
-      "compiler-rt_linux-64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -30336,7 +30056,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -30357,14 +30077,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-64",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-64 13.2.0.*",
-      "gcc_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -30378,7 +30098,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -30397,15 +30117,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-64",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-64 13.2.0.*",
-      "libstdcxx-devel_linux-64  13.2.0.*",
-      "clang_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64",
-      "compiler-rt_linux-64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -30421,7 +30141,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -30443,18 +30163,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-64",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-64 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -30469,7 +30189,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -30480,11 +30200,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-64",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-64 2.40.*",
-      "sysroot_linux-64"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -30493,7 +30213,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -30513,24 +30233,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-64",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-64 2.40.*",
-      "gfortran_impl_linux-64 13.2.0.*",
-      "gxx_impl_linux-64 13.2.0.*",
-      "gcc_impl_linux-64 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -30550,13 +30270,13 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-64",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-64 13.2.0.*",
-      "binutils_linux-64",
-      "sysroot_linux-64"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
@@ -30571,7 +30291,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -30589,13 +30309,13 @@
       ]
      }
     },
-    "name": "clang_linux-64",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-64 13.2.0.*",
-      "binutils_linux-64",
-      "sysroot_linux-64",
-      "compiler-rt_linux-64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -30612,7 +30332,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -30633,14 +30353,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-64",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-64 13.2.0.*",
-      "gcc_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -30654,7 +30374,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -30673,15 +30393,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-64",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-64 13.2.0.*",
-      "libstdcxx-devel_linux-64  13.2.0.*",
-      "clang_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64",
-      "compiler-rt_linux-64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -30697,7 +30417,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -30719,18 +30439,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-64",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-64 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-64",
-      "binutils_linux-64",
-      "sysroot_linux-64"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -30745,7 +30465,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -30756,11 +30476,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-64",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-64 2.40.*",
-      "sysroot_linux-64"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -30769,7 +30489,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-64 2.12"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -30789,24 +30509,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-64",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-64 2.40.*",
-      "gfortran_impl_linux-64 13.2.0.*",
-      "gxx_impl_linux-64 13.2.0.*",
-      "gcc_impl_linux-64 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -30826,19 +30546,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-aarch64",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-aarch64 13.2.0.*",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo aarch64",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -30847,7 +30567,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -30865,13 +30585,13 @@
       ]
      }
     },
-    "name": "clang_linux-aarch64",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-aarch64 13.2.0.*",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64",
-      "compiler-rt_linux-aarch64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -30879,7 +30599,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo aarch64",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -30888,7 +30608,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -30909,14 +30629,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-aarch64",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-aarch64 13.2.0.*",
-      "gcc_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -30930,7 +30650,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -30949,15 +30669,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-aarch64",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-aarch64 13.2.0.*",
-      "libstdcxx-devel_linux-aarch64  13.2.0.*",
-      "clang_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64",
-      "compiler-rt_linux-aarch64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -30973,7 +30693,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -30995,18 +30715,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-aarch64",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-aarch64 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -31021,7 +30741,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -31032,11 +30752,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-aarch64",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-aarch64 2.40.*",
-      "sysroot_linux-aarch64"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -31045,7 +30765,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -31065,24 +30785,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-aarch64",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-aarch64 2.40.*",
-      "gfortran_impl_linux-aarch64 13.2.0.*",
-      "gxx_impl_linux-aarch64 13.2.0.*",
-      "gcc_impl_linux-aarch64 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -31102,19 +30822,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-aarch64",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-aarch64 13.2.0.*",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo aarch64",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -31123,7 +30843,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -31141,13 +30861,13 @@
       ]
      }
     },
-    "name": "clang_linux-aarch64",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-aarch64 13.2.0.*",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64",
-      "compiler-rt_linux-aarch64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -31155,7 +30875,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo aarch64",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -31164,7 +30884,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -31185,14 +30905,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-aarch64",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-aarch64 13.2.0.*",
-      "gcc_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -31206,7 +30926,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -31225,15 +30945,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-aarch64",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-aarch64 13.2.0.*",
-      "libstdcxx-devel_linux-aarch64  13.2.0.*",
-      "clang_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64",
-      "compiler-rt_linux-aarch64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -31249,7 +30969,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -31271,18 +30991,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-aarch64",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-aarch64 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -31297,7 +31017,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -31308,11 +31028,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-aarch64",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-aarch64 2.40.*",
-      "sysroot_linux-aarch64"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -31321,7 +31041,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -31341,24 +31061,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-aarch64",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-aarch64 2.40.*",
-      "gfortran_impl_linux-aarch64 13.2.0.*",
-      "gxx_impl_linux-aarch64 13.2.0.*",
-      "gcc_impl_linux-aarch64 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -31378,19 +31098,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-aarch64",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-aarch64 13.2.0.*",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo aarch64",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -31399,7 +31119,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -31417,13 +31137,13 @@
       ]
      }
     },
-    "name": "clang_linux-aarch64",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-aarch64 13.2.0.*",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64",
-      "compiler-rt_linux-aarch64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -31431,7 +31151,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo aarch64",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -31440,7 +31160,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -31461,14 +31181,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-aarch64",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-aarch64 13.2.0.*",
-      "gcc_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -31482,7 +31202,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -31501,15 +31221,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-aarch64",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-aarch64 13.2.0.*",
-      "libstdcxx-devel_linux-aarch64  13.2.0.*",
-      "clang_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64",
-      "compiler-rt_linux-aarch64",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -31525,7 +31245,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -31547,18 +31267,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-aarch64",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-aarch64 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-aarch64",
-      "binutils_linux-aarch64",
-      "sysroot_linux-aarch64"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -31573,7 +31293,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -31584,11 +31304,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-aarch64",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-aarch64 2.40.*",
-      "sysroot_linux-aarch64"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -31597,7 +31317,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-aarch64 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -31617,24 +31337,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-aarch64",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-aarch64 2.40.*",
-      "gfortran_impl_linux-aarch64 13.2.0.*",
-      "gxx_impl_linux-aarch64 13.2.0.*",
-      "gcc_impl_linux-aarch64 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -31654,19 +31374,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-ppc64le",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-ppc64le 13.2.0.*",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo ppc64le",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -31675,7 +31395,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -31693,13 +31413,13 @@
       ]
      }
     },
-    "name": "clang_linux-ppc64le",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-ppc64le 13.2.0.*",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le",
-      "compiler-rt_linux-ppc64le",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -31707,7 +31427,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo ppc64le",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -31716,7 +31436,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -31737,14 +31457,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-ppc64le",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-ppc64le 13.2.0.*",
-      "gcc_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -31758,7 +31478,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -31777,15 +31497,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-ppc64le",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-ppc64le 13.2.0.*",
-      "libstdcxx-devel_linux-ppc64le  13.2.0.*",
-      "clang_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le",
-      "compiler-rt_linux-ppc64le",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -31801,7 +31521,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -31823,18 +31543,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-ppc64le",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-ppc64le 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -31849,7 +31569,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -31860,11 +31580,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-ppc64le",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-ppc64le 2.40.*",
-      "sysroot_linux-ppc64le"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -31873,7 +31593,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -31893,24 +31613,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-ppc64le",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-ppc64le 2.40.*",
-      "gfortran_impl_linux-ppc64le 13.2.0.*",
-      "gxx_impl_linux-ppc64le 13.2.0.*",
-      "gcc_impl_linux-ppc64le 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -31930,19 +31650,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-ppc64le",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-ppc64le 13.2.0.*",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo ppc64le",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -31951,7 +31671,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -31969,13 +31689,13 @@
       ]
      }
     },
-    "name": "clang_linux-ppc64le",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-ppc64le 13.2.0.*",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le",
-      "compiler-rt_linux-ppc64le",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -31983,7 +31703,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo ppc64le",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -31992,7 +31712,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -32013,14 +31733,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-ppc64le",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-ppc64le 13.2.0.*",
-      "gcc_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -32034,7 +31754,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -32053,15 +31773,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-ppc64le",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-ppc64le 13.2.0.*",
-      "libstdcxx-devel_linux-ppc64le  13.2.0.*",
-      "clang_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le",
-      "compiler-rt_linux-ppc64le",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -32077,7 +31797,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -32099,18 +31819,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-ppc64le",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-ppc64le 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -32125,7 +31845,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -32136,11 +31856,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-ppc64le",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-ppc64le 2.40.*",
-      "sysroot_linux-ppc64le"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -32149,7 +31869,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -32169,24 +31889,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-ppc64le",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-ppc64le 2.40.*",
-      "gfortran_impl_linux-ppc64le 13.2.0.*",
-      "gxx_impl_linux-ppc64le 13.2.0.*",
-      "gcc_impl_linux-ppc64le 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -32206,19 +31926,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-ppc64le",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-ppc64le 13.2.0.*",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo ppc64le",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -32227,7 +31947,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -32245,13 +31965,13 @@
       ]
      }
     },
-    "name": "clang_linux-ppc64le",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-ppc64le 13.2.0.*",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le",
-      "compiler-rt_linux-ppc64le",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -32259,7 +31979,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo ppc64le",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -32268,7 +31988,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -32289,14 +32009,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-ppc64le",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-ppc64le 13.2.0.*",
-      "gcc_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -32310,7 +32030,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -32329,15 +32049,15 @@
       ]
      }
     },
-    "name": "clangxx_linux-ppc64le",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-ppc64le 13.2.0.*",
-      "libstdcxx-devel_linux-ppc64le  13.2.0.*",
-      "clang_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le",
-      "compiler-rt_linux-ppc64le",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -32353,7 +32073,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -32375,18 +32095,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-ppc64le",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-ppc64le 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-ppc64le",
-      "binutils_linux-ppc64le",
-      "sysroot_linux-ppc64le"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -32401,7 +32121,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -32412,11 +32132,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-ppc64le",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-ppc64le 2.40.*",
-      "sysroot_linux-ppc64le"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -32425,7 +32145,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-ppc64le 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -32445,24 +32165,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-ppc64le",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-ppc64le 2.40.*",
-      "gfortran_impl_linux-ppc64le 13.2.0.*",
-      "gxx_impl_linux-ppc64le 13.2.0.*",
-      "gcc_impl_linux-ppc64le 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -32482,19 +32202,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-s390x",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-s390x 13.2.0.*",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo s390x",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -32503,7 +32223,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -32519,16 +32239,15 @@
       "strong": [
        "libgcc-ng >=13"
       ]
-     },
-     "skip": true
+     }
     },
-    "name": "clang_linux-s390x",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-s390x 13.2.0.*",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x",
-      "compiler-rt_linux-s390x",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -32536,7 +32255,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo s390x",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -32545,7 +32264,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -32566,14 +32285,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-s390x",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-s390x 13.2.0.*",
-      "gcc_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -32587,7 +32306,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -32604,18 +32323,17 @@
        "libstdcxx-ng >=13",
        "libgcc-ng >=13"
       ]
-     },
-     "skip": true
+     }
     },
-    "name": "clangxx_linux-s390x",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-s390x 13.2.0.*",
-      "libstdcxx-devel_linux-s390x  13.2.0.*",
-      "clang_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x",
-      "compiler-rt_linux-s390x",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -32631,7 +32349,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -32653,18 +32371,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-s390x",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-s390x 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -32679,7 +32397,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -32690,11 +32408,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-s390x",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-s390x 2.40.*",
-      "sysroot_linux-s390x"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -32703,7 +32421,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -32723,24 +32441,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-s390x",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-s390x 2.40.*",
-      "gfortran_impl_linux-s390x 13.2.0.*",
-      "gxx_impl_linux-s390x 13.2.0.*",
-      "gcc_impl_linux-s390x 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -32760,19 +32478,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-s390x",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-s390x 13.2.0.*",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo s390x",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -32781,7 +32499,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -32797,16 +32515,15 @@
       "strong": [
        "libgcc-ng >=13"
       ]
-     },
-     "skip": true
+     }
     },
-    "name": "clang_linux-s390x",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-s390x 13.2.0.*",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x",
-      "compiler-rt_linux-s390x",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -32814,7 +32531,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo s390x",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -32823,7 +32540,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -32844,14 +32561,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-s390x",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-s390x 13.2.0.*",
-      "gcc_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -32865,7 +32582,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -32882,18 +32599,17 @@
        "libstdcxx-ng >=13",
        "libgcc-ng >=13"
       ]
-     },
-     "skip": true
+     }
     },
-    "name": "clangxx_linux-s390x",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-s390x 13.2.0.*",
-      "libstdcxx-devel_linux-s390x  13.2.0.*",
-      "clang_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x",
-      "compiler-rt_linux-s390x",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -32909,7 +32625,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -32931,18 +32647,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-s390x",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-s390x 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -32957,7 +32673,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -32968,11 +32684,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-s390x",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-s390x 2.40.*",
-      "sysroot_linux-s390x"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -32981,7 +32697,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -33001,24 +32717,24 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-s390x",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-s390x 2.40.*",
-      "gfortran_impl_linux-s390x 13.2.0.*",
-      "gxx_impl_linux-s390x 13.2.0.*",
-      "gcc_impl_linux-s390x 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -33038,19 +32754,19 @@
      },
      "skip": true
     },
-    "name": "gcc_linux-s390x",
+    "name": "gcc_win-64",
     "requirements": {
      "run": [
       "gcc_impl_osx-64 13.2.0.*",
-      "gcc_impl_linux-s390x 13.2.0.*",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gcc.sh",
     "test": {
      "commands": [
-      "echo s390x",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -33059,7 +32775,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -33075,16 +32791,15 @@
       "strong": [
        "libgcc-ng >=13"
       ]
-     },
-     "skip": true
+     }
     },
-    "name": "clang_linux-s390x",
+    "name": "clang_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-s390x 13.2.0.*",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x",
-      "compiler-rt_linux-s390x",
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clang_impl_osx-64  18"
      ]
@@ -33092,7 +32807,7 @@
     "script": "install-clang.sh",
     "test": {
      "commands": [
-      "echo s390x",
+      "echo x86_64",
       "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
       "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
       "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
@@ -33101,7 +32816,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -33122,14 +32837,14 @@
      },
      "skip": true
     },
-    "name": "gxx_linux-s390x",
+    "name": "gxx_win-64",
     "requirements": {
      "run": [
       "gxx_impl_osx-64 13.2.0.*",
-      "gxx_impl_linux-s390x 13.2.0.*",
-      "gcc_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-g++.sh",
@@ -33143,7 +32858,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -33160,18 +32875,17 @@
        "libstdcxx-ng >=13",
        "libgcc-ng >=13"
       ]
-     },
-     "skip": true
+     }
     },
-    "name": "clangxx_linux-s390x",
+    "name": "clangxx_win-64",
     "requirements": {
      "run": [
-      "libgcc-devel_linux-s390x 13.2.0.*",
-      "libstdcxx-devel_linux-s390x  13.2.0.*",
-      "clang_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x",
-      "compiler-rt_linux-s390x",
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
       "compiler-rt ==18.*",
       "clangxx_impl_osx-64  18"
      ]
@@ -33187,7 +32901,7 @@
       "tests"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "18"
@@ -33209,18 +32923,18 @@
      },
      "skip": true
     },
-    "name": "gfortran_linux-s390x",
+    "name": "gfortran_win-64",
     "requirements": {
      "host": [
       "libgfortran5 13.2.0.*",
       "libgfortran-ng  13.2.0.*"
      ],
      "run": [
-      "gfortran_impl_linux-s390x 13.2.0.*",
+      "gfortran_impl_win-64 13.2.0.*",
       "gfortran_impl_osx-64 13.2.0.*",
-      "gcc_linux-s390x",
-      "binutils_linux-s390x",
-      "sysroot_linux-s390x"
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-gfortran.sh",
@@ -33235,7 +32949,7 @@
      "requires": [
       "cmake >=3.11",
       "make",
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     }
    },
@@ -33246,11 +32960,11 @@
      "license_file": "LICENSE",
      "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
     },
-    "name": "binutils_linux-s390x",
+    "name": "binutils_win-64",
     "requirements": {
      "run": [
-      "binutils_impl_linux-s390x 2.40.*",
-      "sysroot_linux-s390x"
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
      ]
     },
     "script": "install-binutils.sh",
@@ -33259,7 +32973,7 @@
       "test -f $LD"
      ],
      "requires": [
-      "sysroot_linux-s390x 2.17"
+      "m2w64-sysroot_win-64 12"
      ]
     },
     "version": "2.40"
@@ -33279,24 +32993,300 @@
       "lib/",
       "libexec/",
       "share/",
-      "x86_64-conda-linux-gnu/"
+      "x86_64-w64-mingw32/"
      ],
      "binary_relocation": false,
      "detect_binary_files_with_prefix": false,
      "skip": true
     },
-    "name": "gcc_bootstrap_linux-s390x",
+    "name": "gcc_bootstrap_win-64",
     "requirements": {
      "host": [
-      "binutils_impl_linux-s390x 2.40.*",
-      "gfortran_impl_linux-s390x 13.2.0.*",
-      "gxx_impl_linux-s390x 13.2.0.*",
-      "gcc_impl_linux-s390x 13.2.0.*"
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
      ]
     },
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-conda-linux-gnu-cc"
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
+     ]
+    },
+    "version": "13.2.0"
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "BSD-3-Clause",
+     "license_file": "LICENSE",
+     "summary": "GNU C Compiler (activation scripts)"
+    },
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libgcc-ng >=13"
+      ]
+     },
+     "skip": true
+    },
+    "name": "gcc_win-64",
+    "requirements": {
+     "run": [
+      "gcc_impl_osx-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
+     ]
+    },
+    "script": "install-gcc.sh",
+    "test": {
+     "commands": [
+      "echo x86_64",
+      "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
+      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
+      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
+     ],
+     "files": [
+      "tests"
+     ],
+     "requires": [
+      "m2w64-sysroot_win-64 12"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "BSD-3-Clause",
+     "license_file": "LICENSE",
+     "summary": "Clang Compiler (activation scripts)"
+    },
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libgcc-ng >=13"
+      ]
+     }
+    },
+    "name": "clang_win-64",
+    "requirements": {
+     "run": [
+      "libgcc-devel_win-64 13.2.0.*",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
+      "compiler-rt ==18.*",
+      "clang_impl_osx-64  18"
+     ]
+    },
+    "script": "install-clang.sh",
+    "test": {
+     "commands": [
+      "echo x86_64",
+      "${CC} ${CFLAGS} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v",
+      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
+      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
+     ],
+     "files": [
+      "tests"
+     ],
+     "requires": [
+      "m2w64-sysroot_win-64 12"
+     ]
+    },
+    "version": "18"
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "BSD-3-Clause",
+     "license_file": "LICENSE",
+     "summary": "GNU C++ Compiler (activation scripts)"
+    },
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libstdcxx-ng >=13",
+       "libgcc-ng >=13"
+      ]
+     },
+     "skip": true
+    },
+    "name": "gxx_win-64",
+    "requirements": {
+     "run": [
+      "gxx_impl_osx-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
+     ]
+    },
+    "script": "install-g++.sh",
+    "test": {
+     "commands": [
+      "${CXX} ${CXXFLAGS} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o",
+      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
+      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
+     ],
+     "files": [
+      "tests"
+     ],
+     "requires": [
+      "m2w64-sysroot_win-64 12"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "BSD-3-Clause",
+     "license_file": "LICENSE",
+     "summary": "Clang C++ Compiler (activation scripts)"
+    },
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libstdcxx-ng >=13",
+       "libgcc-ng >=13"
+      ]
+     }
+    },
+    "name": "clangxx_win-64",
+    "requirements": {
+     "run": [
+      "libgcc-devel_win-64 13.2.0.*",
+      "libstdcxx-devel_win-64  13.2.0.*",
+      "clang_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64",
+      "compiler-rt_win-64",
+      "compiler-rt ==18.*",
+      "clangxx_impl_osx-64  18"
+     ]
+    },
+    "script": "install-clang++.sh",
+    "test": {
+     "commands": [
+      "${CXX} ${CXXFLAGS} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o",
+      "test -z \"${CONDA_BUILD_SYSROOT+x}\" && echo \"CONDA_BUILD_SYSROOT is not set\" && exit 1",
+      "test -d ${CONDA_BUILD_SYSROOT} || exit 1"
+     ],
+     "files": [
+      "tests"
+     ],
+     "requires": [
+      "m2w64-sysroot_win-64 12"
+     ]
+    },
+    "version": "18"
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "BSD-3-Clause",
+     "license_file": "LICENSE",
+     "summary": "GNU Fortran Compiler (activation scripts)"
+    },
+    "build": {
+     "run_exports": {
+      "strong": [
+       "libgfortran5 >=13.2.0",
+       "libgfortran-ng",
+       "libgcc-ng >=13"
+      ]
+     },
+     "skip": true
+    },
+    "name": "gfortran_win-64",
+    "requirements": {
+     "host": [
+      "libgfortran5 13.2.0.*",
+      "libgfortran-ng  13.2.0.*"
+     ],
+     "run": [
+      "gfortran_impl_win-64 13.2.0.*",
+      "gfortran_impl_osx-64 13.2.0.*",
+      "gcc_win-64",
+      "binutils_win-64",
+      "m2w64-sysroot_win-64"
+     ]
+    },
+    "script": "install-gfortran.sh",
+    "test": {
+     "commands": [
+      "${FC} --version",
+      "pushd tests/fortomp"
+     ],
+     "files": [
+      "tests/fortomp/*"
+     ],
+     "requires": [
+      "cmake >=3.11",
+      "make",
+      "m2w64-sysroot_win-64 12"
+     ]
+    }
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "BSD-3-Clause",
+     "license_file": "LICENSE",
+     "summary": "The GNU Binutils are a collection of binary tools (activation scripts)"
+    },
+    "name": "binutils_win-64",
+    "requirements": {
+     "run": [
+      "binutils_impl_win-64 2.40.*",
+      "m2w64-sysroot_win-64"
+     ]
+    },
+    "script": "install-binutils.sh",
+    "test": {
+     "commands": [
+      "test -f $LD"
+     ],
+     "requires": [
+      "m2w64-sysroot_win-64 12"
+     ]
+    },
+    "version": "2.40"
+   },
+   {
+    "about": {
+     "home": "https://github.com/conda-forge/ctng-compiler-activation-feedstock",
+     "license": "GPL",
+     "license_file": "GPL_LICENSE",
+     "summary": "GCC bootstrap compilers for building deps"
+    },
+    "build": {
+     "always_include_files": [
+      "bin/",
+      "etc/",
+      "lib64/",
+      "lib/",
+      "libexec/",
+      "share/",
+      "x86_64-w64-mingw32/"
+     ],
+     "binary_relocation": false,
+     "detect_binary_files_with_prefix": false,
+     "skip": true
+    },
+    "name": "gcc_bootstrap_win-64",
+    "requirements": {
+     "host": [
+      "binutils_impl_win-64 2.40.*",
+      "gfortran_impl_win-64 13.2.0.*",
+      "gxx_impl_win-64 13.2.0.*",
+      "gcc_impl_win-64 13.2.0.*"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/bin/x86_64-w64-mingw32-gcc.exe"
      ]
     },
     "version": "13.2.0"
@@ -33325,22 +33315,10 @@
   "host": {
    "__set__": true,
    "elements": [
-    "binutils_impl_linux-64",
-    "binutils_impl_linux-aarch64",
-    "binutils_impl_linux-ppc64le",
-    "binutils_impl_linux-s390x",
-    "gcc_impl_linux-64",
-    "gcc_impl_linux-aarch64",
-    "gcc_impl_linux-ppc64le",
-    "gcc_impl_linux-s390x",
-    "gfortran_impl_linux-64",
-    "gfortran_impl_linux-aarch64",
-    "gfortran_impl_linux-ppc64le",
-    "gfortran_impl_linux-s390x",
-    "gxx_impl_linux-64",
-    "gxx_impl_linux-aarch64",
-    "gxx_impl_linux-ppc64le",
-    "gxx_impl_linux-s390x",
+    "binutils_impl_win-64",
+    "gcc_impl_win-64",
+    "gfortran_impl_win-64",
+    "gxx_impl_win-64",
     "libgfortran-ng",
     "libgfortran5"
    ]
@@ -33348,67 +33326,31 @@
   "run": {
    "__set__": true,
    "elements": [
-    "binutils_impl_linux-64",
-    "binutils_impl_linux-aarch64",
-    "binutils_impl_linux-ppc64le",
-    "binutils_impl_linux-s390x",
-    "binutils_linux-64",
-    "binutils_linux-aarch64",
-    "binutils_linux-ppc64le",
-    "binutils_linux-s390x",
+    "binutils_impl_win-64",
+    "binutils_win-64",
     "clang_impl_osx-64",
-    "clang_linux-64",
-    "clang_linux-aarch64",
-    "clang_linux-ppc64le",
-    "clang_linux-s390x",
+    "clang_win-64",
     "clangxx_impl_osx-64",
     "compiler-rt",
-    "compiler-rt_linux-64",
-    "compiler-rt_linux-aarch64",
-    "compiler-rt_linux-ppc64le",
-    "compiler-rt_linux-s390x",
-    "gcc_impl_linux-64",
-    "gcc_impl_linux-aarch64",
-    "gcc_impl_linux-ppc64le",
-    "gcc_impl_linux-s390x",
+    "compiler-rt_win-64",
     "gcc_impl_osx-64",
-    "gcc_linux-64",
-    "gcc_linux-aarch64",
-    "gcc_linux-ppc64le",
-    "gcc_linux-s390x",
-    "gfortran_impl_linux-64",
-    "gfortran_impl_linux-aarch64",
-    "gfortran_impl_linux-ppc64le",
-    "gfortran_impl_linux-s390x",
+    "gcc_impl_win-64",
+    "gcc_win-64",
     "gfortran_impl_osx-64",
-    "gxx_impl_linux-64",
-    "gxx_impl_linux-aarch64",
-    "gxx_impl_linux-ppc64le",
-    "gxx_impl_linux-s390x",
+    "gfortran_impl_win-64",
     "gxx_impl_osx-64",
-    "libgcc-devel_linux-64",
-    "libgcc-devel_linux-aarch64",
-    "libgcc-devel_linux-ppc64le",
-    "libgcc-devel_linux-s390x",
-    "libstdcxx-devel_linux-64",
-    "libstdcxx-devel_linux-aarch64",
-    "libstdcxx-devel_linux-ppc64le",
-    "libstdcxx-devel_linux-s390x",
-    "sysroot_linux-64",
-    "sysroot_linux-aarch64",
-    "sysroot_linux-ppc64le",
-    "sysroot_linux-s390x"
+    "gxx_impl_win-64",
+    "libgcc-devel_win-64",
+    "libstdcxx-devel_win-64",
+    "m2w64-sysroot_win-64"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
     "cmake",
-    "make",
-    "sysroot_linux-64",
-    "sysroot_linux-aarch64",
-    "sysroot_linux-ppc64le",
-    "sysroot_linux-s390x"
+    "m2w64-sysroot_win-64",
+    "make"
    ]
   }
  },
@@ -33419,30 +33361,37 @@
    "binutils_linux-aarch64",
    "binutils_linux-ppc64le",
    "binutils_linux-s390x",
+   "binutils_win-64",
    "clang_linux-64",
    "clang_linux-aarch64",
    "clang_linux-ppc64le",
    "clang_linux-s390x",
+   "clang_win-64",
    "clangxx_linux-64",
    "clangxx_linux-aarch64",
    "clangxx_linux-ppc64le",
    "clangxx_linux-s390x",
+   "clangxx_win-64",
    "gcc_bootstrap_linux-64",
    "gcc_bootstrap_linux-aarch64",
    "gcc_bootstrap_linux-ppc64le",
    "gcc_bootstrap_linux-s390x",
+   "gcc_bootstrap_win-64",
    "gcc_linux-64",
    "gcc_linux-aarch64",
    "gcc_linux-ppc64le",
    "gcc_linux-s390x",
+   "gcc_win-64",
    "gfortran_linux-64",
    "gfortran_linux-aarch64",
    "gfortran_linux-ppc64le",
    "gfortran_linux-s390x",
+   "gfortran_win-64",
    "gxx_linux-64",
    "gxx_linux-aarch64",
    "gxx_linux-ppc64le",
-   "gxx_linux-s390x"
+   "gxx_linux-s390x",
+   "gxx_win-64"
   ]
  },
  "parsing_error": false,
@@ -33463,50 +33412,61 @@
    "binutils_impl_linux-aarch64",
    "binutils_impl_linux-ppc64le",
    "binutils_impl_linux-s390x",
+   "binutils_impl_win-64",
    "binutils_linux-64",
    "binutils_linux-aarch64",
    "binutils_linux-ppc64le",
    "binutils_linux-s390x",
+   "binutils_win-64",
    "clang_impl_osx-64",
    "clang_linux-64",
    "clang_linux-aarch64",
    "clang_linux-ppc64le",
    "clang_linux-s390x",
+   "clang_win-64",
    "clangxx_impl_osx-64",
    "compiler-rt",
    "compiler-rt_linux-64",
    "compiler-rt_linux-aarch64",
    "compiler-rt_linux-ppc64le",
    "compiler-rt_linux-s390x",
+   "compiler-rt_win-64",
    "gcc_impl_linux-64",
    "gcc_impl_linux-aarch64",
    "gcc_impl_linux-ppc64le",
    "gcc_impl_linux-s390x",
    "gcc_impl_osx-64",
+   "gcc_impl_win-64",
    "gcc_linux-64",
    "gcc_linux-aarch64",
    "gcc_linux-ppc64le",
    "gcc_linux-s390x",
+   "gcc_win-64",
    "gfortran_impl_linux-64",
    "gfortran_impl_linux-aarch64",
    "gfortran_impl_linux-ppc64le",
    "gfortran_impl_linux-s390x",
    "gfortran_impl_osx-64",
+   "gfortran_impl_win-64",
    "gxx_impl_linux-64",
    "gxx_impl_linux-aarch64",
    "gxx_impl_linux-ppc64le",
    "gxx_impl_linux-s390x",
    "gxx_impl_osx-64",
+   "gxx_impl_win-64",
    "libgcc-devel_linux-64",
    "libgcc-devel_linux-aarch64",
    "libgcc-devel_linux-ppc64le",
    "libgcc-devel_linux-s390x",
+   "libgcc-devel_win-64",
    "libgfortran-ng",
    "libgfortran5",
    "libstdcxx-devel_linux-64",
    "libstdcxx-devel_linux-aarch64",
    "libstdcxx-devel_linux-ppc64le",
    "libstdcxx-devel_linux-s390x",
+   "libstdcxx-devel_win-64",
+   "m2w64-sysroot_win-64",
    "shellcheck",
    "sysroot_linux-64",
    "sysroot_linux-aarch64",
@@ -33528,21 +33488,26 @@
     "binutils_impl_linux-aarch64",
     "binutils_impl_linux-ppc64le",
     "binutils_impl_linux-s390x",
+    "binutils_impl_win-64",
     "clang-compiler-activation",
+    "clang-win-activation",
     "ctng-compiler-activation",
     "ctng-compilers",
     "gcc_impl_linux-64",
     "gcc_impl_linux-aarch64",
     "gcc_impl_linux-ppc64le",
     "gcc_impl_linux-s390x",
+    "gcc_impl_win-64",
     "gfortran_impl_linux-64",
     "gfortran_impl_linux-aarch64",
     "gfortran_impl_linux-ppc64le",
     "gfortran_impl_linux-s390x",
+    "gfortran_impl_win-64",
     "gxx_impl_linux-64",
     "gxx_impl_linux-aarch64",
     "gxx_impl_linux-ppc64le",
     "gxx_impl_linux-s390x",
+    "gxx_impl_win-64",
     "libgfortran-ng",
     "libgfortran5",
     "linux-sysroot"
@@ -33555,22 +33520,27 @@
     "binutils_impl_linux-aarch64",
     "binutils_impl_linux-ppc64le",
     "binutils_impl_linux-s390x",
+    "binutils_impl_win-64",
     "binutils_linux-64",
     "binutils_linux-aarch64",
     "binutils_linux-ppc64le",
     "binutils_linux-s390x",
+    "binutils_win-64",
     "clang-compiler-activation",
+    "clang-win-activation",
     "clang_impl_osx-64",
     "clang_linux-64",
     "clang_linux-aarch64",
     "clang_linux-ppc64le",
     "clang_linux-s390x",
+    "clang_win-64",
     "clangxx_impl_osx-64",
     "compiler-rt",
     "compiler-rt_linux-64",
     "compiler-rt_linux-aarch64",
     "compiler-rt_linux-ppc64le",
     "compiler-rt_linux-s390x",
+    "compiler-rt_win-64",
     "ctng-compiler-activation",
     "ctng-compilers",
     "gcc_impl_linux-64",
@@ -33578,29 +33548,36 @@
     "gcc_impl_linux-ppc64le",
     "gcc_impl_linux-s390x",
     "gcc_impl_osx-64",
+    "gcc_impl_win-64",
     "gcc_linux-64",
     "gcc_linux-aarch64",
     "gcc_linux-ppc64le",
     "gcc_linux-s390x",
+    "gcc_win-64",
     "gfortran_impl_linux-64",
     "gfortran_impl_linux-aarch64",
     "gfortran_impl_linux-ppc64le",
     "gfortran_impl_linux-s390x",
     "gfortran_impl_osx-64",
+    "gfortran_impl_win-64",
     "gxx_impl_linux-64",
     "gxx_impl_linux-aarch64",
     "gxx_impl_linux-ppc64le",
     "gxx_impl_linux-s390x",
     "gxx_impl_osx-64",
+    "gxx_impl_win-64",
     "libgcc-devel_linux-64",
     "libgcc-devel_linux-aarch64",
     "libgcc-devel_linux-ppc64le",
     "libgcc-devel_linux-s390x",
+    "libgcc-devel_win-64",
     "libstdcxx-devel_linux-64",
     "libstdcxx-devel_linux-aarch64",
     "libstdcxx-devel_linux-ppc64le",
     "libstdcxx-devel_linux-s390x",
+    "libstdcxx-devel_win-64",
     "linux-sysroot",
+    "m2w64-sysroot_win-64",
     "sysroot_linux-64",
     "sysroot_linux-aarch64",
     "sysroot_linux-ppc64le",
@@ -33611,6 +33588,7 @@
    "__set__": true,
    "elements": [
     "cmake",
+    "m2w64-sysroot_win-64",
     "make",
     "sysroot_linux-64",
     "sysroot_linux-aarch64",
@@ -33634,6 +33612,7 @@
     "binutils_impl_linux-aarch64 2.40.*",
     "binutils_impl_linux-ppc64le 2.40.*",
     "binutils_impl_linux-s390x 2.40.*",
+    "binutils_impl_win-64 2.40.*",
     "gcc_impl_linux-64 11.4.0.*",
     "gcc_impl_linux-64 12.3.0.*",
     "gcc_impl_linux-64 13.2.0.*",
@@ -33646,6 +33625,7 @@
     "gcc_impl_linux-s390x 11.4.0.*",
     "gcc_impl_linux-s390x 12.3.0.*",
     "gcc_impl_linux-s390x 13.2.0.*",
+    "gcc_impl_win-64 13.2.0.*",
     "gfortran_impl_linux-64 11.4.0.*",
     "gfortran_impl_linux-64 12.3.0.*",
     "gfortran_impl_linux-64 13.2.0.*",
@@ -33658,6 +33638,7 @@
     "gfortran_impl_linux-s390x 11.4.0.*",
     "gfortran_impl_linux-s390x 12.3.0.*",
     "gfortran_impl_linux-s390x 13.2.0.*",
+    "gfortran_impl_win-64 13.2.0.*",
     "gxx_impl_linux-64 11.4.0.*",
     "gxx_impl_linux-64 12.3.0.*",
     "gxx_impl_linux-64 13.2.0.*",
@@ -33670,6 +33651,7 @@
     "gxx_impl_linux-s390x 11.4.0.*",
     "gxx_impl_linux-s390x 12.3.0.*",
     "gxx_impl_linux-s390x 13.2.0.*",
+    "gxx_impl_win-64 13.2.0.*",
     "libgfortran-ng  11.4.0.*",
     "libgfortran-ng  12.3.0.*",
     "libgfortran-ng  13.2.0.*",
@@ -33685,21 +33667,25 @@
     "binutils_impl_linux-aarch64 2.40.*",
     "binutils_impl_linux-ppc64le 2.40.*",
     "binutils_impl_linux-s390x 2.40.*",
+    "binutils_impl_win-64 2.40.*",
     "binutils_linux-64",
     "binutils_linux-aarch64",
     "binutils_linux-ppc64le",
     "binutils_linux-s390x",
+    "binutils_win-64",
     "clang_impl_osx-64  18",
     "clang_linux-64",
     "clang_linux-aarch64",
     "clang_linux-ppc64le",
     "clang_linux-s390x",
+    "clang_win-64",
     "clangxx_impl_osx-64  18",
     "compiler-rt ==18.*",
     "compiler-rt_linux-64",
     "compiler-rt_linux-aarch64",
     "compiler-rt_linux-ppc64le",
     "compiler-rt_linux-s390x",
+    "compiler-rt_win-64",
     "gcc_impl_linux-64 11.4.0.*",
     "gcc_impl_linux-64 12.3.0.*",
     "gcc_impl_linux-64 13.2.0.*",
@@ -33713,10 +33699,12 @@
     "gcc_impl_linux-s390x 12.3.0.*",
     "gcc_impl_linux-s390x 13.2.0.*",
     "gcc_impl_osx-64 13.2.0.*",
+    "gcc_impl_win-64 13.2.0.*",
     "gcc_linux-64",
     "gcc_linux-aarch64",
     "gcc_linux-ppc64le",
     "gcc_linux-s390x",
+    "gcc_win-64",
     "gfortran_impl_linux-64 11.4.0.*",
     "gfortran_impl_linux-64 12.3.0.*",
     "gfortran_impl_linux-64 13.2.0.*",
@@ -33730,6 +33718,7 @@
     "gfortran_impl_linux-s390x 12.3.0.*",
     "gfortran_impl_linux-s390x 13.2.0.*",
     "gfortran_impl_osx-64 13.2.0.*",
+    "gfortran_impl_win-64 13.2.0.*",
     "gxx_impl_linux-64 11.4.0.*",
     "gxx_impl_linux-64 12.3.0.*",
     "gxx_impl_linux-64 13.2.0.*",
@@ -33743,6 +33732,7 @@
     "gxx_impl_linux-s390x 12.3.0.*",
     "gxx_impl_linux-s390x 13.2.0.*",
     "gxx_impl_osx-64 13.2.0.*",
+    "gxx_impl_win-64 13.2.0.*",
     "libgcc-devel_linux-64 11.4.0.*",
     "libgcc-devel_linux-64 12.3.0.*",
     "libgcc-devel_linux-64 13.2.0.*",
@@ -33755,6 +33745,7 @@
     "libgcc-devel_linux-s390x 11.4.0.*",
     "libgcc-devel_linux-s390x 12.3.0.*",
     "libgcc-devel_linux-s390x 13.2.0.*",
+    "libgcc-devel_win-64 13.2.0.*",
     "libstdcxx-devel_linux-64  11.4.0.*",
     "libstdcxx-devel_linux-64  12.3.0.*",
     "libstdcxx-devel_linux-64  13.2.0.*",
@@ -33767,6 +33758,8 @@
     "libstdcxx-devel_linux-s390x  11.4.0.*",
     "libstdcxx-devel_linux-s390x  12.3.0.*",
     "libstdcxx-devel_linux-s390x  13.2.0.*",
+    "libstdcxx-devel_win-64  13.2.0.*",
+    "m2w64-sysroot_win-64",
     "sysroot_linux-64",
     "sysroot_linux-aarch64",
     "sysroot_linux-ppc64le",
@@ -33777,6 +33770,7 @@
    "__set__": true,
    "elements": [
     "cmake >=3.11",
+    "m2w64-sysroot_win-64 12",
     "make",
     "sysroot_linux-64 2.12",
     "sysroot_linux-aarch64 2.17",
