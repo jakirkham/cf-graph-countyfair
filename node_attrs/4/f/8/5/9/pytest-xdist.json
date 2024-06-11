@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "hint-all"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -24,7 +27,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "script": "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -34,29 +37,31 @@
   },
   "package": {
    "name": "pytest-xdist",
-   "version": "3.5.0"
+   "version": "3.6.1"
   },
   "requirements": {
    "host": [
-    "python >=3.7",
     "pip",
-    "setuptools_scm"
+    "python >=3.8",
+    "setuptools >=61.2",
+    "setuptools-scm >=6.2.3"
    ],
    "run": [
-    "python >=3.7",
-    "execnet >=1.1",
-    "pytest >=6.2.0"
+    "execnet >=2.1",
+    "pytest >=7.0.0",
+    "python >=3.8"
    ],
    "run_constrained": [
     "psutil >=3.0"
    ]
   },
   "source": {
-   "sha256": "cbb36f3d67e0c478baa57fa4edc8843887e0f6cfc42d677530a36d7472b32d8a",
-   "url": "https://pypi.io/packages/source/p/pytest-xdist/pytest-xdist-3.5.0.tar.gz"
+   "sha256": "ead156a4db231eec769737f57668ef58a2084a34b2e55c4a8fa20d861107300d",
+   "url": "https://pypi.io/packages/source/p/pytest-xdist/pytest_xdist-3.6.1.tar.gz"
   },
   "test": {
    "commands": [
+    "pip check",
     "pytest -n2 dummy_test.py"
    ],
    "files": [
@@ -64,6 +69,9 @@
    ],
    "imports": [
     "xdist"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -77,7 +85,8 @@
    "elements": [
     "pip",
     "python",
-    "setuptools_scm"
+    "setuptools",
+    "setuptools-scm"
    ]
   },
   "run": {
@@ -90,7 +99,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
@@ -104,7 +115,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "script": "PYTHON -m pip install . --no-deps -vv --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -114,29 +125,31 @@
   },
   "package": {
    "name": "pytest-xdist",
-   "version": "3.5.0"
+   "version": "3.6.1"
   },
   "requirements": {
    "host": [
-    "python >=3.7",
     "pip",
-    "setuptools_scm"
+    "python >=3.8",
+    "setuptools >=61.2",
+    "setuptools-scm >=6.2.3"
    ],
    "run": [
-    "python >=3.7",
-    "execnet >=1.1",
-    "pytest >=6.2.0"
+    "execnet >=2.1",
+    "pytest >=7.0.0",
+    "python >=3.8"
    ],
    "run_constrained": [
     "psutil >=3.0"
    ]
   },
   "source": {
-   "sha256": "cbb36f3d67e0c478baa57fa4edc8843887e0f6cfc42d677530a36d7472b32d8a",
-   "url": "https://pypi.io/packages/source/p/pytest-xdist/pytest-xdist-3.5.0.tar.gz"
+   "sha256": "ead156a4db231eec769737f57668ef58a2084a34b2e55c4a8fa20d861107300d",
+   "url": "https://pypi.io/packages/source/p/pytest-xdist/pytest_xdist-3.6.1.tar.gz"
   },
   "test": {
    "commands": [
+    "pip check",
     "pytest -n2 dummy_test.py"
    ],
    "files": [
@@ -144,6 +157,9 @@
    ],
    "imports": [
     "xdist"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -161,7 +177,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pytest-xdist.json"
  },
- "raw_meta_yaml": "{% set version = \"3.5.0\" %}\n\npackage:\n  name: pytest-xdist\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/p/pytest-xdist/pytest-xdist-{{ version }}.tar.gz\n  sha256: cbb36f3d67e0c478baa57fa4edc8843887e0f6cfc42d677530a36d7472b32d8a\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n    - setuptools_scm\n  run:\n    - python >=3.7\n    - execnet >=1.1\n    - pytest >=6.2.0\n  run_constrained:\n    - psutil >=3.0\n\ntest:\n  imports:\n    - xdist\n  files:\n    - dummy_test.py\n  commands:\n    - pytest -n2 dummy_test.py\n\nabout:\n  home: https://github.com/pytest-dev/pytest-xdist\n  license: MIT\n  license_file: LICENSE\n  summary: py.test xdist plugin for distributed testing and loop-on-failing modes\n  dev_url: https://github.com/pytest-dev/pytest-xdist\n\nextra:\n  recipe-maintainers:\n    - goanpeca\n    - nicoddemus\n",
+ "raw_meta_yaml": "{% set version = \"3.6.1\" %}\n\npackage:\n  name: pytest-xdist\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/p/pytest-xdist/pytest_xdist-{{ version }}.tar.gz\n  sha256: ead156a4db231eec769737f57668ef58a2084a34b2e55c4a8fa20d861107300d\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation\n\nrequirements:\n  host:\n    - pip\n    - python >=3.8\n    - setuptools >=61.2\n    - setuptools-scm >=6.2.3\n  run:\n    - execnet >=2.1\n    - pytest >=7.0.0\n    - python >=3.8\n  run_constrained:\n    - psutil >=3.0\n\ntest:\n  imports:\n    - xdist\n  files:\n    - dummy_test.py\n  requires:\n    - pip\n  commands:\n    - pip check\n    - pytest -n2 dummy_test.py\n\nabout:\n  home: https://github.com/pytest-dev/pytest-xdist\n  license: MIT\n  license_file: LICENSE\n  summary: py.test xdist plugin for distributed testing and loop-on-failing modes\n  dev_url: https://github.com/pytest-dev/pytest-xdist\n\nextra:\n  recipe-maintainers:\n    - goanpeca\n    - nicoddemus\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -169,7 +185,8 @@
    "pip",
    "pytest",
    "python",
-   "setuptools_scm"
+   "setuptools",
+   "setuptools-scm"
   ]
  },
  "requirements": {
@@ -182,7 +199,8 @@
    "elements": [
     "pip",
     "python",
-    "setuptools_scm"
+    "setuptools",
+    "setuptools-scm"
    ]
   },
   "run": {
@@ -195,7 +213,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
@@ -208,25 +228,28 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.7",
-    "setuptools_scm"
+    "python >=3.8",
+    "setuptools >=61.2",
+    "setuptools-scm >=6.2.3"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "execnet >=1.1",
-    "pytest >=6.2.0",
-    "python >=3.7"
+    "execnet >=2.1",
+    "pytest >=7.0.0",
+    "python >=3.8"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
- "url": "https://pypi.io/packages/source/p/pytest-xdist/pytest-xdist-3.5.0.tar.gz",
- "version": "3.5.0",
+ "url": "https://pypi.io/packages/source/p/pytest-xdist/pytest_xdist-3.6.1.tar.gz",
+ "version": "3.6.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pytest-xdist.json"
  }
