@@ -2,30 +2,40 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
+   "error_overlinking": true,
    "pkg_format": "2"
   },
   "conda_forge_output_validation": true,
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
+  },
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "default"
   }
  },
  "feedstock_name": "qpdf",
  "hash_type": "sha256",
  "linux_64_meta_yaml": {
   "about": {
-   "description": "With QPDF, it is possible to copy objects from one PDF file into another and to manipulate the list of pages in a PDF file.\nThis makes it possible to merge and split PDF files. The QPDF library also makes it possible for you to create PDF files from scratch.\nIn this mode, you are responsible for supplying all the contents of the file, while the QPDF library takes care off all the syntactical representation of the objects, creation of cross references tables and, if you use them, object streams, encryption, linearization, and other syntactic details.\n",
+   "description": "With QPDF, it is possible to copy objects from one PDF file into another\nand to manipulate the list of pages in a PDF file.  This makes it possible\nto merge and split PDF files. The QPDF library also makes it possible for\nyou to create PDF files from scratch.  In this mode, you are responsible\nfor supplying all the contents of the file, while the QPDF library takes\ncare off all the syntactical representation of the objects, creation of\ncross references tables and, if you use them, object streams, encryption,\nlinearization, and other syntactic details.\n",
    "dev_url": "https://github.com/qpdf/qpdf",
-   "doc_url": "http://qpdf.sourceforge.net/files/qpdf-manual.html",
-   "home": "https://sourceforge.net/projects/qpdf/",
+   "doc_url": "https://qpdf.readthedocs.io/",
+   "home": "https://qpdf.sourceforge.io/",
    "license": "Apache-2.0",
    "license_family": "Apache",
    "license_file": "LICENSE.txt",
    "summary": "Command-line program that does structural, content-preserving transformations on PDF files"
   },
   "build": {
-   "number": "2"
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -35,31 +45,29 @@
   },
   "package": {
    "name": "qpdf",
-   "version": "10.6.3"
+   "version": "11.9.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "make",
-    "automake",
-    "autoconf"
+    "cmake",
+    "ninja"
    ],
    "host": [
-    "zlib",
-    "libjpeg-turbo"
-   ],
-   "run": [
-    "zlib",
-    "libjpeg-turbo"
+    "libjpeg-turbo",
+    "openssl",
+    "zlib"
    ]
   },
   "source": {
-   "sha256": "64bbb654ec19b6812284ef1bc40c57b091de5281f265f1c3c83dd8ccf6bedcf5",
-   "url": "https://github.com/qpdf/qpdf/archive/release-qpdf-10.6.3.tar.gz"
+   "sha256": "9f5d6335bb7292cc24a7194d281fc77be2bbf86873e8807b85aeccfbff66082f",
+   "url": "https://github.com/qpdf/qpdf/releases/download/v11.9.0/qpdf-11.9.0.tar.gz"
   },
   "test": {
    "commands": [
+    "which qpdf",
     "qpdf --help"
    ]
   }
@@ -68,26 +76,178 @@
   "build": {
    "__set__": true,
    "elements": [
-    "autoconf",
-    "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
     "cxx_compiler_stub",
-    "make"
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "libjpeg-turbo",
+    "openssl",
     "zlib"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": [
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "description": "With QPDF, it is possible to copy objects from one PDF file into another\nand to manipulate the list of pages in a PDF file.  This makes it possible\nto merge and split PDF files. The QPDF library also makes it possible for\nyou to create PDF files from scratch.  In this mode, you are responsible\nfor supplying all the contents of the file, while the QPDF library takes\ncare off all the syntactical representation of the objects, creation of\ncross references tables and, if you use them, object streams, encryption,\nlinearization, and other syntactic details.\n",
+   "dev_url": "https://github.com/qpdf/qpdf",
+   "doc_url": "https://qpdf.readthedocs.io/",
+   "home": "https://qpdf.sourceforge.io/",
+   "license": "Apache-2.0",
+   "license_family": "Apache",
+   "license_file": "LICENSE.txt",
+   "summary": "Command-line program that does structural, content-preserving transformations on PDF files"
+  },
+  "build": {
+   "number": "0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jenzopr",
+    "carlodri"
+   ]
+  },
+  "package": {
+   "name": "qpdf",
+   "version": "11.9.0"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cmake",
+    "ninja"
+   ],
+   "host": [
     "libjpeg-turbo",
+    "openssl",
     "zlib"
    ]
+  },
+  "source": {
+   "sha256": "9f5d6335bb7292cc24a7194d281fc77be2bbf86873e8807b85aeccfbff66082f",
+   "url": "https://github.com/qpdf/qpdf/releases/download/v11.9.0/qpdf-11.9.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "which qpdf",
+    "qpdf --help"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "libjpeg-turbo",
+    "openssl",
+    "zlib"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "description": "With QPDF, it is possible to copy objects from one PDF file into another\nand to manipulate the list of pages in a PDF file.  This makes it possible\nto merge and split PDF files. The QPDF library also makes it possible for\nyou to create PDF files from scratch.  In this mode, you are responsible\nfor supplying all the contents of the file, while the QPDF library takes\ncare off all the syntactical representation of the objects, creation of\ncross references tables and, if you use them, object streams, encryption,\nlinearization, and other syntactic details.\n",
+   "dev_url": "https://github.com/qpdf/qpdf",
+   "doc_url": "https://qpdf.readthedocs.io/",
+   "home": "https://qpdf.sourceforge.io/",
+   "license": "Apache-2.0",
+   "license_family": "Apache",
+   "license_file": "LICENSE.txt",
+   "summary": "Command-line program that does structural, content-preserving transformations on PDF files"
+  },
+  "build": {
+   "number": "0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jenzopr",
+    "carlodri"
+   ]
+  },
+  "package": {
+   "name": "qpdf",
+   "version": "11.9.0"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cmake",
+    "ninja"
+   ],
+   "host": [
+    "libjpeg-turbo",
+    "openssl",
+    "zlib"
+   ]
+  },
+  "source": {
+   "sha256": "9f5d6335bb7292cc24a7194d281fc77be2bbf86873e8807b85aeccfbff66082f",
+   "url": "https://github.com/qpdf/qpdf/releases/download/v11.9.0/qpdf-11.9.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "which qpdf",
+    "qpdf --help"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "libjpeg-turbo",
+    "openssl",
+    "zlib"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -96,17 +256,17 @@
  },
  "meta_yaml": {
   "about": {
-   "description": "With QPDF, it is possible to copy objects from one PDF file into another and to manipulate the list of pages in a PDF file.\nThis makes it possible to merge and split PDF files. The QPDF library also makes it possible for you to create PDF files from scratch.\nIn this mode, you are responsible for supplying all the contents of the file, while the QPDF library takes care off all the syntactical representation of the objects, creation of cross references tables and, if you use them, object streams, encryption, linearization, and other syntactic details.\n",
+   "description": "With QPDF, it is possible to copy objects from one PDF file into another\nand to manipulate the list of pages in a PDF file.  This makes it possible\nto merge and split PDF files. The QPDF library also makes it possible for\nyou to create PDF files from scratch.  In this mode, you are responsible\nfor supplying all the contents of the file, while the QPDF library takes\ncare off all the syntactical representation of the objects, creation of\ncross references tables and, if you use them, object streams, encryption,\nlinearization, and other syntactic details.\n",
    "dev_url": "https://github.com/qpdf/qpdf",
-   "doc_url": "http://qpdf.sourceforge.net/files/qpdf-manual.html",
-   "home": "https://sourceforge.net/projects/qpdf/",
+   "doc_url": "https://qpdf.readthedocs.io/",
+   "home": "https://qpdf.sourceforge.io/",
    "license": "Apache-2.0",
    "license_family": "Apache",
    "license_file": "LICENSE.txt",
    "summary": "Command-line program that does structural, content-preserving transformations on PDF files"
   },
   "build": {
-   "number": "2"
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -116,50 +276,48 @@
   },
   "package": {
    "name": "qpdf",
-   "version": "10.6.3"
+   "version": "11.9.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "make",
-    "automake",
-    "autoconf",
-    "coreutils"
+    "cmake",
+    "ninja"
    ],
    "host": [
-    "zlib",
-    "libjpeg-turbo"
-   ],
-   "run": [
-    "zlib",
-    "libjpeg-turbo"
+    "libjpeg-turbo",
+    "openssl",
+    "zlib"
    ]
   },
   "source": {
-   "sha256": "64bbb654ec19b6812284ef1bc40c57b091de5281f265f1c3c83dd8ccf6bedcf5",
-   "url": "https://github.com/qpdf/qpdf/archive/release-qpdf-10.6.3.tar.gz"
+   "sha256": "9f5d6335bb7292cc24a7194d281fc77be2bbf86873e8807b85aeccfbff66082f",
+   "url": "https://github.com/qpdf/qpdf/releases/download/v11.9.0/qpdf-11.9.0.tar.gz"
   },
   "test": {
    "commands": [
-    "qpdf --help"
+    "which qpdf",
+    "qpdf --help",
+    "where qpdf"
    ]
   }
  },
  "name": "qpdf",
  "osx_64_meta_yaml": {
   "about": {
-   "description": "With QPDF, it is possible to copy objects from one PDF file into another and to manipulate the list of pages in a PDF file.\nThis makes it possible to merge and split PDF files. The QPDF library also makes it possible for you to create PDF files from scratch.\nIn this mode, you are responsible for supplying all the contents of the file, while the QPDF library takes care off all the syntactical representation of the objects, creation of cross references tables and, if you use them, object streams, encryption, linearization, and other syntactic details.\n",
+   "description": "With QPDF, it is possible to copy objects from one PDF file into another\nand to manipulate the list of pages in a PDF file.  This makes it possible\nto merge and split PDF files. The QPDF library also makes it possible for\nyou to create PDF files from scratch.  In this mode, you are responsible\nfor supplying all the contents of the file, while the QPDF library takes\ncare off all the syntactical representation of the objects, creation of\ncross references tables and, if you use them, object streams, encryption,\nlinearization, and other syntactic details.\n",
    "dev_url": "https://github.com/qpdf/qpdf",
-   "doc_url": "http://qpdf.sourceforge.net/files/qpdf-manual.html",
-   "home": "https://sourceforge.net/projects/qpdf/",
+   "doc_url": "https://qpdf.readthedocs.io/",
+   "home": "https://qpdf.sourceforge.io/",
    "license": "Apache-2.0",
    "license_family": "Apache",
    "license_file": "LICENSE.txt",
    "summary": "Command-line program that does structural, content-preserving transformations on PDF files"
   },
   "build": {
-   "number": "2"
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -169,32 +327,29 @@
   },
   "package": {
    "name": "qpdf",
-   "version": "10.6.3"
+   "version": "11.9.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "make",
-    "automake",
-    "autoconf",
-    "coreutils"
+    "cmake",
+    "ninja"
    ],
    "host": [
-    "zlib",
-    "libjpeg-turbo"
-   ],
-   "run": [
-    "zlib",
-    "libjpeg-turbo"
+    "libjpeg-turbo",
+    "openssl",
+    "zlib"
    ]
   },
   "source": {
-   "sha256": "64bbb654ec19b6812284ef1bc40c57b091de5281f265f1c3c83dd8ccf6bedcf5",
-   "url": "https://github.com/qpdf/qpdf/archive/release-qpdf-10.6.3.tar.gz"
+   "sha256": "9f5d6335bb7292cc24a7194d281fc77be2bbf86873e8807b85aeccfbff66082f",
+   "url": "https://github.com/qpdf/qpdf/releases/download/v11.9.0/qpdf-11.9.0.tar.gz"
   },
   "test": {
    "commands": [
+    "which qpdf",
     "qpdf --help"
    ]
   }
@@ -203,27 +358,101 @@
   "build": {
    "__set__": true,
    "elements": [
-    "autoconf",
-    "automake",
     "c_compiler_stub",
-    "coreutils",
+    "c_stdlib_stub",
+    "cmake",
     "cxx_compiler_stub",
-    "make"
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "libjpeg-turbo",
+    "openssl",
     "zlib"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": [
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "With QPDF, it is possible to copy objects from one PDF file into another\nand to manipulate the list of pages in a PDF file.  This makes it possible\nto merge and split PDF files. The QPDF library also makes it possible for\nyou to create PDF files from scratch.  In this mode, you are responsible\nfor supplying all the contents of the file, while the QPDF library takes\ncare off all the syntactical representation of the objects, creation of\ncross references tables and, if you use them, object streams, encryption,\nlinearization, and other syntactic details.\n",
+   "dev_url": "https://github.com/qpdf/qpdf",
+   "doc_url": "https://qpdf.readthedocs.io/",
+   "home": "https://qpdf.sourceforge.io/",
+   "license": "Apache-2.0",
+   "license_family": "Apache",
+   "license_file": "LICENSE.txt",
+   "summary": "Command-line program that does structural, content-preserving transformations on PDF files"
+  },
+  "build": {
+   "number": "0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jenzopr",
+    "carlodri"
+   ]
+  },
+  "package": {
+   "name": "qpdf",
+   "version": "11.9.0"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cmake",
+    "ninja"
+   ],
+   "host": [
     "libjpeg-turbo",
+    "openssl",
     "zlib"
    ]
+  },
+  "source": {
+   "sha256": "9f5d6335bb7292cc24a7194d281fc77be2bbf86873e8807b85aeccfbff66082f",
+   "url": "https://github.com/qpdf/qpdf/releases/download/v11.9.0/qpdf-11.9.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "which qpdf",
+    "qpdf --help"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "libjpeg-turbo",
+    "openssl",
+    "zlib"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -239,22 +468,26 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
-  "osx_64"
+  "linux_aarch64",
+  "linux_ppc64le",
+  "osx_64",
+  "osx_arm64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/qpdf.json"
  },
- "raw_meta_yaml": "{% set name = \"qpdf\" %}\n{% set version = \"10.6.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/qpdf/qpdf/archive/release-qpdf-{{ version }}.tar.gz\n  sha256: 64bbb654ec19b6812284ef1bc40c57b091de5281f265f1c3c83dd8ccf6bedcf5\n\nbuild:\n  number: 2\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - make\n    - automake\n    - autoconf\n    - coreutils  # [osx]\n  host:\n    - zlib\n    - libjpeg-turbo\n  run:\n    - zlib\n    - libjpeg-turbo\n\ntest:\n  commands:\n    - qpdf --help\n\nabout:\n  home: https://sourceforge.net/projects/qpdf/\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE.txt\n  summary: Command-line program that does structural, content-preserving transformations on PDF files\n  description: |\n    With QPDF, it is possible to copy objects from one PDF file into another and to manipulate the list of pages in a PDF file.\n    This makes it possible to merge and split PDF files. The QPDF library also makes it possible for you to create PDF files from scratch.\n    In this mode, you are responsible for supplying all the contents of the file, while the QPDF library takes care off all the syntactical representation of the objects, creation of cross references tables and, if you use them, object streams, encryption, linearization, and other syntactic details.\n  doc_url: http://qpdf.sourceforge.net/files/qpdf-manual.html\n  dev_url: https://github.com/qpdf/qpdf\n\nextra:\n  recipe-maintainers:\n    - jenzopr\n    - carlodri\n",
+ "raw_meta_yaml": "{% set name = \"qpdf\" %}\n{% set version = \"11.9.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/qpdf/qpdf/releases/download/v{{ version }}/qpdf-{{ version }}.tar.gz\n  sha256: 9f5d6335bb7292cc24a7194d281fc77be2bbf86873e8807b85aeccfbff66082f\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - {{ stdlib(\"c\") }}\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - cmake\n    - ninja\n  host:\n    - libjpeg-turbo\n    - openssl\n    - zlib\n\ntest:\n  commands:\n    - which qpdf     # [unix]\n    - where qpdf     # [win]\n    - qpdf --help    # [build_platform == target_platform]\n\nabout:\n  home: https://qpdf.sourceforge.io/\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE.txt\n  summary: >-\n    Command-line program that does structural, content-preserving\n    transformations on PDF files\n  description: |\n    With QPDF, it is possible to copy objects from one PDF file into another\n    and to manipulate the list of pages in a PDF file.  This makes it possible\n    to merge and split PDF files. The QPDF library also makes it possible for\n    you to create PDF files from scratch.  In this mode, you are responsible\n    for supplying all the contents of the file, while the QPDF library takes\n    care off all the syntactical representation of the objects, creation of\n    cross references tables and, if you use them, object streams, encryption,\n    linearization, and other syntactic details.\n  doc_url: https://qpdf.readthedocs.io/\n  dev_url: https://github.com/qpdf/qpdf\n\nextra:\n  recipe-maintainers:\n    - jenzopr\n    - carlodri\n",
  "req": {
   "__set__": true,
   "elements": [
-   "autoconf",
-   "automake",
    "c_compiler_stub",
-   "coreutils",
+   "c_stdlib_stub",
+   "cmake",
    "cxx_compiler_stub",
    "libjpeg-turbo",
-   "make",
+   "ninja",
+   "openssl",
    "zlib"
   ]
  },
@@ -262,20 +495,21 @@
   "build": {
    "__set__": true,
    "elements": [
-    "autoconf",
-    "automake",
     "c_compiler_stub",
-    "coreutils",
+    "c_stdlib_stub",
+    "cmake",
     "cxx_compiler_stub",
-    "make"
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libjpeg-turbo",
+    "openssl",
     "zlib"
    ]
   },
@@ -283,9 +517,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cxx_compiler_stub",
-    "libjpeg-turbo",
-    "zlib"
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
    ]
   },
   "test": {
@@ -298,36 +531,110 @@
   "build": {
    "__set__": true,
    "elements": [
-    "autoconf",
-    "automake",
     "c_compiler_stub",
-    "coreutils",
+    "c_stdlib_stub",
+    "cmake",
     "cxx_compiler_stub",
-    "make"
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "libjpeg-turbo",
+    "openssl",
     "zlib"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "libjpeg-turbo",
-    "zlib"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
    "elements": []
   }
  },
- "url": "https://github.com/qpdf/qpdf/archive/release-qpdf-10.6.3.tar.gz",
- "version": "10.6.3",
+ "url": "https://github.com/qpdf/qpdf/releases/download/v11.9.0/qpdf-11.9.0.tar.gz",
+ "version": "11.9.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/qpdf.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "description": "With QPDF, it is possible to copy objects from one PDF file into another\nand to manipulate the list of pages in a PDF file.  This makes it possible\nto merge and split PDF files. The QPDF library also makes it possible for\nyou to create PDF files from scratch.  In this mode, you are responsible\nfor supplying all the contents of the file, while the QPDF library takes\ncare off all the syntactical representation of the objects, creation of\ncross references tables and, if you use them, object streams, encryption,\nlinearization, and other syntactic details.\n",
+   "dev_url": "https://github.com/qpdf/qpdf",
+   "doc_url": "https://qpdf.readthedocs.io/",
+   "home": "https://qpdf.sourceforge.io/",
+   "license": "Apache-2.0",
+   "license_family": "Apache",
+   "license_file": "LICENSE.txt",
+   "summary": "Command-line program that does structural, content-preserving transformations on PDF files"
+  },
+  "build": {
+   "number": "0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jenzopr",
+    "carlodri"
+   ]
+  },
+  "package": {
+   "name": "qpdf",
+   "version": "11.9.0"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cmake",
+    "ninja"
+   ],
+   "host": [
+    "libjpeg-turbo",
+    "openssl",
+    "zlib"
+   ]
+  },
+  "source": {
+   "sha256": "9f5d6335bb7292cc24a7194d281fc77be2bbf86873e8807b85aeccfbff66082f",
+   "url": "https://github.com/qpdf/qpdf/releases/download/v11.9.0/qpdf-11.9.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "where qpdf",
+    "qpdf --help"
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "libjpeg-turbo",
+    "openssl",
+    "zlib"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
  }
 }
