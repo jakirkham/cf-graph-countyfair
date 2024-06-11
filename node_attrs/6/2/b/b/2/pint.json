@@ -3,7 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "bot": {
-   "automerge": true
+   "automerge": true,
+   "inspection": "update-grayskull"
   },
   "conda_build": {
    "pkg_format": "2"
@@ -32,8 +33,8 @@
   },
   "build": {
    "noarch": "python",
-   "number": "1",
-   "script": "SETUPTOOLS_SCM_PRETEND_VERSION=0.23 PYTHON -m pip install . -v"
+   "number": "0",
+   "script": "SETUPTOOLS_SCM_PRETEND_VERSION=0.24 PYTHON -m pip install . -v"
   },
   "extra": {
    "recipe-maintainers": [
@@ -43,7 +44,7 @@
   },
   "package": {
    "name": "pint",
-   "version": "0.23"
+   "version": "0.24"
   },
   "requirements": {
    "host": [
@@ -55,6 +56,9 @@
    ],
    "run": [
     "python >=3.9",
+    "appdirs",
+    "flexcache",
+    "flexparser",
     "typing_extensions"
    ],
    "run_constrained": [
@@ -62,8 +66,8 @@
    ]
   },
   "source": {
-   "sha256": "e1509b91606dbc52527c600a4ef74ffac12fff70688aff20e9072409346ec9b4",
-   "url": "https://pypi.io/packages/source/P/Pint/Pint-0.23.tar.gz"
+   "sha256": "c6c7c027b821413db1ac46b3b7bd296592848b5aec29a88cfc6e378fd1371903",
+   "url": "https://pypi.io/packages/source/P/Pint/pint-0.24.tar.gz"
   },
   "test": {
    "commands": [
@@ -97,6 +101,9 @@
   "run": {
    "__set__": true,
    "elements": [
+    "appdirs",
+    "flexcache",
+    "flexparser",
     "python",
     "typing_extensions"
    ]
@@ -121,8 +128,8 @@
   },
   "build": {
    "noarch": "python",
-   "number": "1",
-   "script": "SETUPTOOLS_SCM_PRETEND_VERSION=0.23 PYTHON -m pip install . -v"
+   "number": "0",
+   "script": "SETUPTOOLS_SCM_PRETEND_VERSION=0.24 PYTHON -m pip install . -v"
   },
   "extra": {
    "recipe-maintainers": [
@@ -132,7 +139,7 @@
   },
   "package": {
    "name": "pint",
-   "version": "0.23"
+   "version": "0.24"
   },
   "requirements": {
    "host": [
@@ -144,6 +151,9 @@
    ],
    "run": [
     "python >=3.9",
+    "appdirs",
+    "flexcache",
+    "flexparser",
     "typing_extensions"
    ],
    "run_constrained": [
@@ -151,8 +161,8 @@
    ]
   },
   "source": {
-   "sha256": "e1509b91606dbc52527c600a4ef74ffac12fff70688aff20e9072409346ec9b4",
-   "url": "https://pypi.io/packages/source/P/Pint/Pint-0.23.tar.gz"
+   "sha256": "c6c7c027b821413db1ac46b3b7bd296592848b5aec29a88cfc6e378fd1371903",
+   "url": "https://pypi.io/packages/source/P/Pint/pint-0.24.tar.gz"
   },
   "test": {
    "commands": [
@@ -182,10 +192,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pint.json"
  },
- "raw_meta_yaml": "{% set name = \"Pint\" %}\n{% set version = \"0.23\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: e1509b91606dbc52527c600a4ef74ffac12fff70688aff20e9072409346ec9b4\n\nbuild:\n  noarch: python\n  script: SETUPTOOLS_SCM_PRETEND_VERSION={{ version }} {{ PYTHON }} -m pip install . -v\n  number: 1\n\nrequirements:\n  host:\n    - pip\n    - python >=3.9\n    - setuptools >=45\n    - setuptools_scm >=3.4\n    - toml\n  run:\n    - python >=3.9\n    - typing_extensions\n  run_constrained:\n    - numpy <2.0.0a0\n\ntest:\n  imports:\n    - pint\n  commands:\n    - pip check\n    - python -c \"import pint; ver = pint.__version__; assert ver != '0.0.0'\"\n    - pint-convert --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/hgrecco/pint\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Operate and manipulate physical quantities in Python\n  description: |\n    Pint is a Python package to define, operate and manipulate physical\n    quantities: the product of a numerical value and a unit of measurement.\n    It allows arithmetic operations between them and conversions from and to\n    different units. It is distributed with a comprehensive list of physical\n    units, prefixes and constants. Due to its modular design, you can extend\n    (or even rewrite!) the complete list without changing the source code.\n    It supports a lot of numpy mathematical operations without monkey\n    patching or wrapping numpy.\n  doc_url: https://pint.readthedocs.org/\n  dev_url: https://github.com/hgrecco/pint\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n    - dopplershift\n",
+ "raw_meta_yaml": "{% set name = \"Pint\" %}\n{% set version = \"0.24\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pint-{{ version }}.tar.gz\n  sha256: c6c7c027b821413db1ac46b3b7bd296592848b5aec29a88cfc6e378fd1371903\n\nbuild:\n  noarch: python\n  script: SETUPTOOLS_SCM_PRETEND_VERSION={{ version }} {{ PYTHON }} -m pip install . -v\n  number: 0\n\nrequirements:\n  host:\n    - pip\n    - python >=3.9\n    - setuptools >=45\n    - setuptools_scm >=3.4\n    - toml\n  run:\n    - python >=3.9\n    - appdirs\n    - flexcache\n    - flexparser\n    - typing_extensions\n  run_constrained:\n    - numpy <2.0.0a0\n\ntest:\n  imports:\n    - pint\n  commands:\n    - pip check\n    - python -c \"import pint; ver = pint.__version__; assert ver != '0.0.0'\"\n    - pint-convert --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/hgrecco/pint\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Operate and manipulate physical quantities in Python\n  description: |\n    Pint is a Python package to define, operate and manipulate physical\n    quantities: the product of a numerical value and a unit of measurement.\n    It allows arithmetic operations between them and conversions from and to\n    different units. It is distributed with a comprehensive list of physical\n    units, prefixes and constants. Due to its modular design, you can extend\n    (or even rewrite!) the complete list without changing the source code.\n    It supports a lot of numpy mathematical operations without monkey\n    patching or wrapping numpy.\n  doc_url: https://pint.readthedocs.org/\n  dev_url: https://github.com/hgrecco/pint\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n    - dopplershift\n",
  "req": {
   "__set__": true,
   "elements": [
+   "appdirs",
+   "flexcache",
+   "flexparser",
    "pip",
    "python",
    "setuptools",
@@ -212,6 +225,9 @@
   "run": {
    "__set__": true,
    "elements": [
+    "appdirs",
+    "flexcache",
+    "flexparser",
     "python",
     "typing_extensions"
    ]
@@ -242,6 +258,9 @@
   "run": {
    "__set__": true,
    "elements": [
+    "appdirs",
+    "flexcache",
+    "flexparser",
     "python >=3.9",
     "typing_extensions"
    ]
@@ -253,8 +272,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/P/Pint/Pint-0.23.tar.gz",
- "version": "0.23",
+ "url": "https://pypi.io/packages/source/P/Pint/pint-0.24.tar.gz",
+ "version": "0.24",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pint.json"
  }
