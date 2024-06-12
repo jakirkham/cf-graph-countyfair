@@ -2,6 +2,14 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "update-grayskull"
+  },
+  "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,7 +17,12 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "default"
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "pikepdf",
  "hash_type": "sha256",
@@ -24,7 +37,7 @@
    "summary": "A Python library for reading and writing PDF, powered by qpdf"
   },
   "build": {
-   "number": "2",
+   "number": "0",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -34,39 +47,44 @@
   },
   "package": {
    "name": "pikepdf",
-   "version": "5.6.1"
+   "version": "9.0.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ],
    "host": [
     "python",
     "pip",
-    "setuptools_scm >=4.1",
-    "wheel >=0.35",
-    "setuptools_scm_git_archive",
-    "pybind11 >=2.6.0,< 3",
-    "qpdf >=10.6.2"
+    "setuptools >=61",
+    "wheel >=0.37",
+    "pybind11 >=2.10.1,<3",
+    "qpdf 11"
    ],
    "run": [
     "python",
-    "setuptools",
-    "deprecation",
-    "lxml >=4",
-    "qpdf >=10.6.2",
-    "pillow >=6",
+    "pillow >=10.0.1",
+    "deprecated",
+    "qpdf",
+    "lxml >=4.8",
     "packaging"
    ]
   },
   "source": {
-   "sha256": "03fb70ff4fada9cba864d04033f4166b5bf7fa85c90cdc05afd0ab87c9ccaa1a",
-   "url": "https://pypi.io/packages/source/p/pikepdf/pikepdf-5.6.1.tar.gz"
+   "sha256": "40f37da54bc02f3714c17454e1aee28d02fdc28ea0b7903240eae9d53c360b2b",
+   "url": "https://pypi.io/packages/source/p/pikepdf/pikepdf-9.0.0.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "pikepdf"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -75,6 +93,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -85,26 +104,226 @@
     "pybind11",
     "python",
     "qpdf",
-    "setuptools_scm",
-    "setuptools_scm_git_archive",
+    "setuptools",
     "wheel"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "deprecation",
+    "deprecated",
     "lxml",
     "packaging",
     "pillow",
     "python",
-    "qpdf",
-    "setuptools"
+    "qpdf"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/pikepdf/pikepdf",
+   "doc_url": "https://pikepdf.readthedocs.io/",
+   "home": "https://github.com/pikepdf/pikepdf",
+   "license": "MPL-2.0",
+   "license_family": "OTHER",
+   "license_file": "LICENSE.txt",
+   "summary": "A Python library for reading and writing PDF, powered by qpdf"
+  },
+  "build": {
+   "number": "0",
+   "script": "PYTHON -m pip install . -vv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "carlodri"
+   ]
+  },
+  "package": {
+   "name": "pikepdf",
+   "version": "9.0.0"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "setuptools >=61",
+    "wheel >=0.37",
+    "pybind11 >=2.10.1,<3",
+    "qpdf 11"
+   ],
+   "run": [
+    "python",
+    "pillow >=10.0.1",
+    "deprecated",
+    "qpdf",
+    "lxml >=4.8",
+    "packaging"
+   ]
+  },
+  "source": {
+   "sha256": "40f37da54bc02f3714c17454e1aee28d02fdc28ea0b7903240eae9d53c360b2b",
+   "url": "https://pypi.io/packages/source/p/pikepdf/pikepdf-9.0.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "pikepdf"
+   ],
+   "requires": [
+    "pip"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "pip",
+    "pybind11",
+    "python",
+    "qpdf",
+    "setuptools",
+    "wheel"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "deprecated",
+    "lxml",
+    "packaging",
+    "pillow",
+    "python",
+    "qpdf"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "pip"
+   ]
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/pikepdf/pikepdf",
+   "doc_url": "https://pikepdf.readthedocs.io/",
+   "home": "https://github.com/pikepdf/pikepdf",
+   "license": "MPL-2.0",
+   "license_family": "OTHER",
+   "license_file": "LICENSE.txt",
+   "summary": "A Python library for reading and writing PDF, powered by qpdf"
+  },
+  "build": {
+   "number": "0",
+   "script": "PYTHON -m pip install . -vv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "carlodri"
+   ]
+  },
+  "package": {
+   "name": "pikepdf",
+   "version": "9.0.0"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "setuptools >=61",
+    "wheel >=0.37",
+    "pybind11 >=2.10.1,<3",
+    "qpdf 11"
+   ],
+   "run": [
+    "python",
+    "pillow >=10.0.1",
+    "deprecated",
+    "qpdf",
+    "lxml >=4.8",
+    "packaging"
+   ]
+  },
+  "source": {
+   "sha256": "40f37da54bc02f3714c17454e1aee28d02fdc28ea0b7903240eae9d53c360b2b",
+   "url": "https://pypi.io/packages/source/p/pikepdf/pikepdf-9.0.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "pikepdf"
+   ],
+   "requires": [
+    "pip"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "pip",
+    "pybind11",
+    "python",
+    "qpdf",
+    "setuptools",
+    "wheel"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "deprecated",
+    "lxml",
+    "packaging",
+    "pillow",
+    "python",
+    "qpdf"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
@@ -118,7 +337,7 @@
    "summary": "A Python library for reading and writing PDF, powered by qpdf"
   },
   "build": {
-   "number": "2",
+   "number": "0",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -128,39 +347,44 @@
   },
   "package": {
    "name": "pikepdf",
-   "version": "5.6.1"
+   "version": "9.0.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ],
    "host": [
     "python",
     "pip",
-    "setuptools_scm >=4.1",
-    "wheel >=0.35",
-    "setuptools_scm_git_archive",
-    "pybind11 >=2.6.0,< 3",
-    "qpdf >=10.6.2"
+    "setuptools >=61",
+    "wheel >=0.37",
+    "pybind11 >=2.10.1,<3",
+    "qpdf 11"
    ],
    "run": [
     "python",
-    "setuptools",
-    "deprecation",
-    "lxml >=4",
-    "qpdf >=10.6.2",
-    "pillow >=6",
+    "pillow >=10.0.1",
+    "deprecated",
+    "qpdf",
+    "lxml >=4.8",
     "packaging"
    ]
   },
   "source": {
-   "sha256": "03fb70ff4fada9cba864d04033f4166b5bf7fa85c90cdc05afd0ab87c9ccaa1a",
-   "url": "https://pypi.io/packages/source/p/pikepdf/pikepdf-5.6.1.tar.gz"
+   "sha256": "40f37da54bc02f3714c17454e1aee28d02fdc28ea0b7903240eae9d53c360b2b",
+   "url": "https://pypi.io/packages/source/p/pikepdf/pikepdf-9.0.0.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "pikepdf"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -176,7 +400,7 @@
    "summary": "A Python library for reading and writing PDF, powered by qpdf"
   },
   "build": {
-   "number": "2",
+   "number": "0",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -186,39 +410,44 @@
   },
   "package": {
    "name": "pikepdf",
-   "version": "5.6.1"
+   "version": "9.0.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ],
    "host": [
     "python",
     "pip",
-    "setuptools_scm >=4.1",
-    "wheel >=0.35",
-    "setuptools_scm_git_archive",
-    "pybind11 >=2.6.0,< 3",
-    "qpdf >=10.6.2"
+    "setuptools >=61",
+    "wheel >=0.37",
+    "pybind11 >=2.10.1,<3",
+    "qpdf 11"
    ],
    "run": [
     "python",
-    "setuptools",
-    "deprecation",
-    "lxml >=4",
-    "qpdf >=10.6.2",
-    "pillow >=6",
+    "pillow >=10.0.1",
+    "deprecated",
+    "qpdf",
+    "lxml >=4.8",
     "packaging"
    ]
   },
   "source": {
-   "sha256": "03fb70ff4fada9cba864d04033f4166b5bf7fa85c90cdc05afd0ab87c9ccaa1a",
-   "url": "https://pypi.io/packages/source/p/pikepdf/pikepdf-5.6.1.tar.gz"
+   "sha256": "40f37da54bc02f3714c17454e1aee28d02fdc28ea0b7903240eae9d53c360b2b",
+   "url": "https://pypi.io/packages/source/p/pikepdf/pikepdf-9.0.0.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "pikepdf"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -227,6 +456,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -237,26 +467,126 @@
     "pybind11",
     "python",
     "qpdf",
-    "setuptools_scm",
-    "setuptools_scm_git_archive",
+    "setuptools",
     "wheel"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "deprecation",
+    "deprecated",
     "lxml",
     "packaging",
     "pillow",
     "python",
-    "qpdf",
-    "setuptools"
+    "qpdf"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/pikepdf/pikepdf",
+   "doc_url": "https://pikepdf.readthedocs.io/",
+   "home": "https://github.com/pikepdf/pikepdf",
+   "license": "MPL-2.0",
+   "license_family": "OTHER",
+   "license_file": "LICENSE.txt",
+   "summary": "A Python library for reading and writing PDF, powered by qpdf"
+  },
+  "build": {
+   "number": "0",
+   "script": "PYTHON -m pip install . -vv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "carlodri"
+   ]
+  },
+  "package": {
+   "name": "pikepdf",
+   "version": "9.0.0"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "setuptools >=61",
+    "wheel >=0.37",
+    "pybind11 >=2.10.1,<3",
+    "qpdf 11"
+   ],
+   "run": [
+    "python",
+    "pillow >=10.0.1",
+    "deprecated",
+    "qpdf",
+    "lxml >=4.8",
+    "packaging"
+   ]
+  },
+  "source": {
+   "sha256": "40f37da54bc02f3714c17454e1aee28d02fdc28ea0b7903240eae9d53c360b2b",
+   "url": "https://pypi.io/packages/source/p/pikepdf/pikepdf-9.0.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "pikepdf"
+   ],
+   "requires": [
+    "pip"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "pip",
+    "pybind11",
+    "python",
+    "qpdf",
+    "setuptools",
+    "wheel"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "deprecated",
+    "lxml",
+    "packaging",
+    "pillow",
+    "python",
+    "qpdf"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "pip"
+   ]
   }
  },
  "outputs_names": {
@@ -268,18 +598,23 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
-  "osx_64"
+  "linux_aarch64",
+  "linux_ppc64le",
+  "osx_64",
+  "osx_arm64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/pikepdf.json"
  },
- "raw_meta_yaml": "{% set name = \"pikepdf\" %}\n{% set version = \"5.6.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 03fb70ff4fada9cba864d04033f4166b5bf7fa85c90cdc05afd0ab87c9ccaa1a\n\nbuild:\n  number: 2\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [win or py<37]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip\n    - setuptools_scm >=4.1\n    - wheel >=0.35\n    - setuptools_scm_git_archive\n    - pybind11 >=2.6.0,< 3\n    - qpdf >=10.6.2\n  run:\n    - python\n    - setuptools\n    - deprecation\n    - lxml >=4\n    - qpdf >=10.6.2\n    - pillow >=6\n    - packaging\n    - importlib-metadata >=4  # [py<38]\n    - typing-extensions >=4  # [py<38]\n\ntest:\n  imports:\n    - pikepdf\n\nabout:\n  home: https://github.com/pikepdf/pikepdf\n  license: MPL-2.0\n  license_family: OTHER\n  license_file: LICENSE.txt\n  summary: A Python library for reading and writing PDF, powered by qpdf\n  doc_url: https://pikepdf.readthedocs.io/\n  dev_url: https://github.com/pikepdf/pikepdf\n\nextra:\n  recipe-maintainers:\n    - carlodri\n",
+ "raw_meta_yaml": "{% set name = \"pikepdf\" %}\n{% set version = \"9.0.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 40f37da54bc02f3714c17454e1aee28d02fdc28ea0b7903240eae9d53c360b2b\n\nbuild:\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - {{ stdlib(\"c\") }}\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - setuptools >=61\n    - wheel >=0.37\n    - pybind11 >=2.10.1,<3\n    - qpdf 11\n  run:\n    - python\n    - pillow >=10.0.1\n    - deprecated\n    - {{ pin_compatible(\"qpdf\") }}\n    - lxml >=4.8\n    - packaging\n\ntest:\n  requires:\n    - pip\n  commands:\n    - pip check\n  imports:\n    - pikepdf\n\nabout:\n  home: https://github.com/pikepdf/pikepdf\n  license: MPL-2.0\n  license_family: OTHER\n  license_file: LICENSE.txt\n  summary: A Python library for reading and writing PDF, powered by qpdf\n  doc_url: https://pikepdf.readthedocs.io/\n  dev_url: https://github.com/pikepdf/pikepdf\n\nextra:\n  recipe-maintainers:\n    - carlodri\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
-   "deprecation",
+   "deprecated",
    "lxml",
    "packaging",
    "pillow",
@@ -288,8 +623,6 @@
    "python",
    "qpdf",
    "setuptools",
-   "setuptools_scm",
-   "setuptools_scm_git_archive",
    "wheel"
   ]
  },
@@ -298,6 +631,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -305,13 +639,13 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pip",
     "pybind11",
     "python",
     "qpdf",
-    "setuptools_scm",
-    "setuptools_scm_git_archive",
+    "setuptools",
     "wheel"
    ]
   },
@@ -319,19 +653,21 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "deprecation",
+    "deprecated",
     "lxml",
     "packaging",
     "pillow",
     "python",
-    "qpdf",
-    "setuptools"
+    "qpdf"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
@@ -340,6 +676,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -347,34 +684,134 @@
    "__set__": true,
    "elements": [
     "pip",
-    "pybind11 >=2.6.0,< 3",
+    "pybind11 >=2.10.1,<3",
     "python",
-    "qpdf >=10.6.2",
-    "setuptools_scm >=4.1",
-    "setuptools_scm_git_archive",
-    "wheel >=0.35"
+    "qpdf 11",
+    "setuptools >=61",
+    "wheel >=0.37"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "deprecation",
-    "lxml >=4",
+    "deprecated",
+    "lxml >=4.8",
     "packaging",
-    "pillow >=6",
+    "pillow >=10.0.1",
     "python",
-    "qpdf >=10.6.2",
-    "setuptools"
+    "qpdf"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
- "url": "https://pypi.io/packages/source/p/pikepdf/pikepdf-5.6.1.tar.gz",
- "version": "5.6.1",
+ "url": "https://pypi.io/packages/source/p/pikepdf/pikepdf-9.0.0.tar.gz",
+ "version": "9.0.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pikepdf.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/pikepdf/pikepdf",
+   "doc_url": "https://pikepdf.readthedocs.io/",
+   "home": "https://github.com/pikepdf/pikepdf",
+   "license": "MPL-2.0",
+   "license_family": "OTHER",
+   "license_file": "LICENSE.txt",
+   "summary": "A Python library for reading and writing PDF, powered by qpdf"
+  },
+  "build": {
+   "number": "0",
+   "script": "PYTHON -m pip install . -vv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "carlodri"
+   ]
+  },
+  "package": {
+   "name": "pikepdf",
+   "version": "9.0.0"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "setuptools >=61",
+    "wheel >=0.37",
+    "pybind11 >=2.10.1,<3",
+    "qpdf 11"
+   ],
+   "run": [
+    "python",
+    "pillow >=10.0.1",
+    "deprecated",
+    "qpdf",
+    "lxml >=4.8",
+    "packaging"
+   ]
+  },
+  "source": {
+   "sha256": "40f37da54bc02f3714c17454e1aee28d02fdc28ea0b7903240eae9d53c360b2b",
+   "url": "https://pypi.io/packages/source/p/pikepdf/pikepdf-9.0.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "pikepdf"
+   ],
+   "requires": [
+    "pip"
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "pip",
+    "pybind11",
+    "python",
+    "qpdf",
+    "setuptools",
+    "wheel"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "deprecated",
+    "lxml",
+    "packaging",
+    "pillow",
+    "python",
+    "qpdf"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "pip"
+   ]
+  }
  }
 }
