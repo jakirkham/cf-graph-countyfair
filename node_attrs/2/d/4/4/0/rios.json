@@ -23,10 +23,9 @@
   "build": {
    "entry_points": [
     "testrios = rios.riostests.riostestutils:testAll",
-    "riosprintstats.py = rios.cmdline.riosprintstats:main",
     "riosprintstats = rios.cmdline.riosprintstats:main",
-    "rioscalcstats.py = rios.cmdline.rioscalcstats:main",
-    "rioscalcstats = rios.cmdline.rioscalcstats:main"
+    "rioscalcstats = rios.cmdline.rioscalcstats:main",
+    "rios_computeworker = rios.cmdline.rios_computeworker:mainCmd"
    ],
    "noarch": "python",
    "number": "0",
@@ -41,7 +40,7 @@
   },
   "package": {
    "name": "rios",
-   "version": "2.0.0"
+   "version": "2.0.1"
   },
   "requirements": {
    "host": [
@@ -57,21 +56,16 @@
    ]
   },
   "source": {
-   "fn": "rios-2.0.0.tar.gz",
-   "patches": [
-    "nocmdline.patch",
-    "rios_cpu_count.patch"
-   ],
-   "sha256": "21ce20c12a96ed69f90166434e64fb01624209a680cd12165bf14da51daed83a",
-   "url": "https://github.com/ubarsc/rios/releases/download/rios-2.0.0/rios-2.0.0.tar.gz"
+   "fn": "rios-2.0.1.tar.gz",
+   "sha256": "8b8bcbf11a45af46d25b95d9d4a402ec0466ed117b3464f4226a6a466d9687b5",
+   "url": "https://github.com/ubarsc/rios/releases/download/rios-2.0.1/rios-2.0.1.tar.gz"
   },
   "test": {
    "commands": [
     "testrios",
-    "rioscalcstats.py -h",
     "rioscalcstats -h",
-    "riosprintstats.py -h",
-    "riosprintstats -h"
+    "riosprintstats -h",
+    "rios_computeworker -h"
    ],
    "imports": [
     "rios"
@@ -115,10 +109,9 @@
   "build": {
    "entry_points": [
     "testrios = rios.riostests.riostestutils:testAll",
-    "riosprintstats.py = rios.cmdline.riosprintstats:main",
     "riosprintstats = rios.cmdline.riosprintstats:main",
-    "rioscalcstats.py = rios.cmdline.rioscalcstats:main",
-    "rioscalcstats = rios.cmdline.rioscalcstats:main"
+    "rioscalcstats = rios.cmdline.rioscalcstats:main",
+    "rios_computeworker = rios.cmdline.rios_computeworker:mainCmd"
    ],
    "noarch": "python",
    "number": "0",
@@ -133,7 +126,7 @@
   },
   "package": {
    "name": "rios",
-   "version": "2.0.0"
+   "version": "2.0.1"
   },
   "requirements": {
    "host": [
@@ -149,21 +142,16 @@
    ]
   },
   "source": {
-   "fn": "rios-2.0.0.tar.gz",
-   "patches": [
-    "nocmdline.patch",
-    "rios_cpu_count.patch"
-   ],
-   "sha256": "21ce20c12a96ed69f90166434e64fb01624209a680cd12165bf14da51daed83a",
-   "url": "https://github.com/ubarsc/rios/releases/download/rios-2.0.0/rios-2.0.0.tar.gz"
+   "fn": "rios-2.0.1.tar.gz",
+   "sha256": "8b8bcbf11a45af46d25b95d9d4a402ec0466ed117b3464f4226a6a466d9687b5",
+   "url": "https://github.com/ubarsc/rios/releases/download/rios-2.0.1/rios-2.0.1.tar.gz"
   },
   "test": {
    "commands": [
     "testrios",
-    "rioscalcstats.py -h",
     "rioscalcstats -h",
-    "riosprintstats.py -h",
-    "riosprintstats -h"
+    "riosprintstats -h",
+    "rios_computeworker -h"
    ],
    "imports": [
     "rios"
@@ -184,7 +172,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/rios.json"
  },
- "raw_meta_yaml": "{% set version = \"2.0.0\" %}\n\npackage:\n  name: rios\n  version: {{ version }}\n\nsource:\n  fn: rios-{{ version }}.tar.gz\n  url: https://github.com/ubarsc/rios/releases/download/rios-{{ version }}/rios-{{ version }}.tar.gz\n  sha256: 21ce20c12a96ed69f90166434e64fb01624209a680cd12165bf14da51daed83a\n  patches:\n    # Don't install the command line progs, use entry point instead\n    # Setting the env vars doesn't work for noarch packages.\n    - nocmdline.patch\n    # See https://github.com/ubarsc/rios/pull/79\n    - rios_cpu_count.patch\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n  entry_points:\n    - testrios = rios.riostests.riostestutils:testAll\n    - riosprintstats.py = rios.cmdline.riosprintstats:main\n    - riosprintstats = rios.cmdline.riosprintstats:main\n    - rioscalcstats.py = rios.cmdline.rioscalcstats:main\n    - rioscalcstats = rios.cmdline.rioscalcstats:main\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n    - numpy\n  run:\n    - python >=3.6\n    - numpy\n    - gdal\n    - cloudpickle\n\ntest:\n  imports:\n    - rios\n  commands:\n    - testrios\n    - rioscalcstats.py -h\n    - rioscalcstats -h\n    - riosprintstats.py -h\n    - riosprintstats -h\n\nabout:\n  home: http://www.rioshome.org\n  license: GPL-3.0-or-later\n  license_file: LICENSE.txt\n  summary: Raster I/O simplification, a set of Python modules built on top of GDAL to simplify processing raster data, including data with Raster Attribute Tables.\n\nextra:\n  recipe-maintainers:\n    - gillins\n    - danclewley\n    - neilflood\n",
+ "raw_meta_yaml": "{% set version = \"2.0.1\" %}\n\npackage:\n  name: rios\n  version: {{ version }}\n\nsource:\n  fn: rios-{{ version }}.tar.gz\n  url: https://github.com/ubarsc/rios/releases/download/rios-{{ version }}/rios-{{ version }}.tar.gz\n  sha256: 8b8bcbf11a45af46d25b95d9d4a402ec0466ed117b3464f4226a6a466d9687b5\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n  entry_points:\n    - testrios = rios.riostests.riostestutils:testAll\n    - riosprintstats = rios.cmdline.riosprintstats:main\n    - rioscalcstats = rios.cmdline.rioscalcstats:main\n    - rios_computeworker = rios.cmdline.rios_computeworker:mainCmd\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n    - numpy\n  run:\n    - python >=3.6\n    - numpy\n    - gdal\n    - cloudpickle\n\ntest:\n  imports:\n    - rios\n  commands:\n    - testrios\n    - rioscalcstats -h\n    - riosprintstats -h\n    - rios_computeworker -h\n\nabout:\n  home: http://www.rioshome.org\n  license: GPL-3.0-or-later\n  license_file: LICENSE.txt\n  summary: Raster I/O simplification, a set of Python modules built on top of GDAL to simplify processing raster data, including data with Raster Attribute Tables.\n\nextra:\n  recipe-maintainers:\n    - gillins\n    - danclewley\n    - neilflood\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -250,8 +238,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/ubarsc/rios/releases/download/rios-2.0.0/rios-2.0.0.tar.gz",
- "version": "2.0.0",
+ "url": "https://github.com/ubarsc/rios/releases/download/rios-2.0.1/rios-2.0.1.tar.gz",
+ "version": "2.0.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/rios.json"
  }
