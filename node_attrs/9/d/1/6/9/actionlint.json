@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "actionlint",
  "hash_type": "sha256",
@@ -179,6 +183,70 @@
    ]
   },
   "outputs": [
+   {
+    "name": "actionlint"
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "actionlint-with-shellcheck",
+    "requirements": {
+     "run": [
+      "actionlint",
+      "shellcheck"
+     ]
+    },
+    "test": {
+     "commands": [
+      "actionlint --version",
+      "actionlint --help",
+      "actionlint --version | grep -iE \"1\\.7\\.1\""
+     ],
+     "requires": null
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "actionlint-with-pyflakes",
+    "requirements": {
+     "run": [
+      "actionlint",
+      "pyflakes"
+     ]
+    },
+    "test": {
+     "commands": [
+      "actionlint --version",
+      "actionlint --help",
+      "actionlint --version | grep -iE \"1\\.7\\.1\""
+     ],
+     "requires": null
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "actionlint-with-all",
+    "requirements": {
+     "run": [
+      "actionlint",
+      "actionlint-with-pyflakes",
+      "actionlint-with-shellcheck"
+     ]
+    },
+    "test": {
+     "commands": [
+      "actionlint --version",
+      "actionlint --help",
+      "actionlint --version | grep -iE \"1\\.7\\.1\""
+     ],
+     "requires": null
+    }
+   },
    {
     "name": "actionlint"
    },
@@ -556,6 +624,151 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "doc_url": "https://rhysd.github.io/actionlint",
+   "home": "https://github.com/rhysd/actionlint",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": [
+    "src/github.com/rhysd/actionlint/LICENSE.txt",
+    "license-files/"
+   ],
+   "summary": "Static checker for GitHub Actions workflow files"
+  },
+  "build": {
+   "number": "0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "bollwyvl"
+   ]
+  },
+  "outputs": [
+   {
+    "name": "actionlint"
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "actionlint-with-shellcheck",
+    "requirements": {
+     "run": [
+      "actionlint",
+      "shellcheck"
+     ]
+    },
+    "test": {
+     "commands": [
+      "actionlint --version",
+      "actionlint --help",
+      "actionlint --version | grep -iE \"1\\.7\\.1\""
+     ],
+     "requires": null
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "actionlint-with-pyflakes",
+    "requirements": {
+     "run": [
+      "actionlint",
+      "pyflakes"
+     ]
+    },
+    "test": {
+     "commands": [
+      "actionlint --version",
+      "actionlint --help",
+      "actionlint --version | grep -iE \"1\\.7\\.1\""
+     ],
+     "requires": null
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "actionlint-with-all",
+    "requirements": {
+     "run": [
+      "actionlint",
+      "actionlint-with-pyflakes",
+      "actionlint-with-shellcheck"
+     ]
+    },
+    "test": {
+     "commands": [
+      "actionlint --version",
+      "actionlint --help",
+      "actionlint --version | grep -iE \"1\\.7\\.1\""
+     ],
+     "requires": null
+    }
+   }
+  ],
+  "package": {
+   "name": "actionlint",
+   "version": "1.7.1"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "go-cgo_compiler_stub",
+    "c_stdlib_stub",
+    "go-cgo >=1.21",
+    "go-licenses"
+   ],
+   "host": [],
+   "run": []
+  },
+  "source": {
+   "folder": "src/github.com/rhysd/actionlint",
+   "sha256": "f53808c46db1ac2aa579b00f4a12a8acdf6eaf85a382091ce051dea33b18d7b4",
+   "url": "https://github.com/rhysd/actionlint/archive/refs/tags/v1.7.1.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "actionlint --version",
+    "actionlint --help",
+    "actionlint --version | grep -iE \"1\\.7\\.1\""
+   ],
+   "requires": null
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "go-cgo",
+    "go-cgo_compiler_stub",
+    "go-licenses"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "actionlint",
+    "actionlint-with-pyflakes",
+    "actionlint-with-shellcheck",
+    "pyflakes",
+    "shellcheck"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -569,6 +782,7 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
