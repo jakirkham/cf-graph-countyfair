@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "azure": {
+   "free_disk_space": true
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -35,20 +38,24 @@
   },
   "package": {
    "name": "kaolin",
-   "version": "0.13.0"
+   "version": "0.15.0"
   },
   "requirements": {
    "build": [
     "cuda_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
-    "pip",
     "python",
+    "pip",
+    "setuptools <70",
     "cython",
     "numpy",
+    "pytorch",
     "pytorch =*=cuda*",
-    "pytorch <2"
+    "cuda-version 12.0",
+    "cuda-version 11.8"
    ],
    "run": [
     "python",
@@ -57,15 +64,15 @@
     "pillow",
     "tqdm",
     "pytorch =*=cuda*",
-    "pytorch <2"
+    "pygltflib"
    ]
   },
   "source": {
    "patches": [
     "0001-loosen-version-pins.patch"
    ],
-   "sha256": "f0d20de5cedae1ad9c0b16771487617476cfbd0bd66aea17e8857b0b7fa14ce4",
-   "url": "https://github.com/NVIDIAGameWorks/kaolin/archive/refs/tags/v0.13.0.tar.gz"
+   "sha256": "be1c02da148a79a5c02631d7eb30c080c079c7ea925fa89f7c4d2f24dbdfc03d",
+   "url": "https://github.com/NVIDIAGameWorks/kaolin/archive/refs/tags/v0.15.0.tar.gz"
   },
   "test": {
    "imports": [
@@ -77,6 +84,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub"
    ]
@@ -84,11 +92,13 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cuda-version",
     "cython",
     "numpy",
     "pip",
     "python",
-    "pytorch"
+    "pytorch",
+    "setuptools"
    ]
   },
   "run": {
@@ -96,6 +106,7 @@
    "elements": [
     "numpy",
     "pillow",
+    "pygltflib",
     "python",
     "pytorch",
     "scipy",
@@ -129,20 +140,24 @@
   },
   "package": {
    "name": "kaolin",
-   "version": "0.13.0"
+   "version": "0.15.0"
   },
   "requirements": {
    "build": [
     "cuda_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
-    "pip",
     "python",
+    "pip",
+    "setuptools <70",
     "cython",
     "numpy",
+    "pytorch",
     "pytorch =*=cuda*",
-    "pytorch <2"
+    "cuda-version 12.0",
+    "cuda-version 11.8"
    ],
    "run": [
     "python",
@@ -151,15 +166,15 @@
     "pillow",
     "tqdm",
     "pytorch =*=cuda*",
-    "pytorch <2"
+    "pygltflib"
    ]
   },
   "source": {
    "patches": [
     "0001-loosen-version-pins.patch"
    ],
-   "sha256": "f0d20de5cedae1ad9c0b16771487617476cfbd0bd66aea17e8857b0b7fa14ce4",
-   "url": "https://github.com/NVIDIAGameWorks/kaolin/archive/refs/tags/v0.13.0.tar.gz"
+   "sha256": "be1c02da148a79a5c02631d7eb30c080c079c7ea925fa89f7c4d2f24dbdfc03d",
+   "url": "https://github.com/NVIDIAGameWorks/kaolin/archive/refs/tags/v0.15.0.tar.gz"
   },
   "test": {
    "imports": [
@@ -181,19 +196,23 @@
  "pr_info": {
   "__lazy_json__": "pr_info/kaolin.json"
  },
- "raw_meta_yaml": "{% set name = \"kaolin\" %}\n{% set version = \"0.13.0\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/NVIDIAGameWorks/kaolin/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: f0d20de5cedae1ad9c0b16771487617476cfbd0bd66aea17e8857b0b7fa14ce4\n  patches:\n    - 0001-loosen-version-pins.patch\n\nbuild:\n  number: 0\n  skip: true  # [cuda_compiler_version == \"None\" or cuda_compiler_version == \"10.2\"]\n  skip: true  # [win]\nrequirements:\n  build:\n    - {{ compiler('cuda') }}\n    - {{ compiler('cxx') }}\n  host:\n    - pip\n    - python\n    - cython\n    - numpy\n    - pytorch =*=cuda*\n    - pytorch <2\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - scipy\n    - pillow\n    - tqdm\n    - pytorch =*=cuda*\n    - pytorch <2\n\ntest:\n  imports:\n    - kaolin\n\nabout:\n  home: https://developer.nvidia.com/nvidia-kaolin\n  license: Apache-2.0\n  license_family: APACHE\n  license_file: LICENSE\n  summary: 'A Pytorch Library for Accelerating 3D Deep Learning Research '\n  description: |\n    NVIDIA Kaolin library provides a PyTorch API for working with a variety\n    of 3D representations and includes a growing collection of\n    GPU-optimized operations such as modular differentiable rendering,\n    fast conversions between representations, data loading,\n    3D checkpoints and more.\n  dev_url: https://github.com/NVIDIAGameWorks/kaolin\n  doc_url: https://kaolin.readthedocs.io/en/latest/\n\nextra:\n  recipe-maintainers:\n    - JennaLipscomb\n    - mxr-conda\n",
+ "raw_meta_yaml": "{% set version = \"0.15.0\" %}\n\n{% if cuda_compiler_version in (None, \"None\", True, False) %}\n{% set cuda_major = 0 %}\n{% else %}\n{% set cuda_major = environ.get(\"cuda_compiler_version\", \"11.8\").split(\".\")[0] | int %}\n{% endif %}\n\npackage:\n  name: kaolin\n  version: {{ version }}\n\nsource:\n  url: https://github.com/NVIDIAGameWorks/kaolin/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: be1c02da148a79a5c02631d7eb30c080c079c7ea925fa89f7c4d2f24dbdfc03d\n  patches:\n    - 0001-loosen-version-pins.patch\n\nbuild:\n  number: 0\n  skip: true  # [cuda_compiler_version == \"None\"]\n  skip: true  # [win]\nrequirements:\n  build:\n    - {{ compiler('cuda') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n  host:\n    - python\n    - pip\n    # still using removed `from pkg_resources import packaging`\n    - setuptools <70\n    - cython\n    - numpy\n    - pytorch\n    - pytorch =*=cuda*\n    - cuda-version {{ cuda_compiler_version }}\n    {% if cuda_major >= 12 %}\n    - libcublas-dev\n    - libcusolver-dev\n    - libcusparse-dev\n    {% endif %}\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - scipy\n    - pillow\n    - tqdm\n    - pytorch =*=cuda*\n    - pygltflib\n\ntest:\n  imports:\n    - kaolin\n\nabout:\n  home: https://developer.nvidia.com/nvidia-kaolin\n  license: Apache-2.0\n  license_family: APACHE\n  license_file: LICENSE\n  summary: 'A Pytorch Library for Accelerating 3D Deep Learning Research '\n  description: |\n    NVIDIA Kaolin library provides a PyTorch API for working with a variety\n    of 3D representations and includes a growing collection of\n    GPU-optimized operations such as modular differentiable rendering,\n    fast conversions between representations, data loading,\n    3D checkpoints and more.\n  dev_url: https://github.com/NVIDIAGameWorks/kaolin\n  doc_url: https://kaolin.readthedocs.io/en/latest/\n\nextra:\n  recipe-maintainers:\n    - JennaLipscomb\n    - mxr-conda\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
+   "cuda-version",
    "cuda_compiler_stub",
    "cxx_compiler_stub",
    "cython",
    "numpy",
    "pillow",
    "pip",
+   "pygltflib",
    "python",
    "pytorch",
    "scipy",
+   "setuptools",
    "tqdm"
   ]
  },
@@ -201,6 +220,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub"
    ]
@@ -208,22 +228,27 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
+    "cuda-version",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "cython",
     "numpy",
     "pip",
     "python",
-    "pytorch"
+    "pytorch",
+    "setuptools"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
     "numpy",
     "pillow",
+    "pygltflib",
     "python",
     "pytorch",
     "scipy",
@@ -240,6 +265,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cuda_compiler_stub",
     "cxx_compiler_stub"
    ]
@@ -247,12 +273,15 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cuda-version 11.8",
+    "cuda-version 12.0",
     "cython",
     "numpy",
     "pip",
     "python",
-    "pytorch <2",
-    "pytorch =*=cuda*"
+    "pytorch",
+    "pytorch =*=cuda*",
+    "setuptools <70"
    ]
   },
   "run": {
@@ -260,8 +289,8 @@
    "elements": [
     "numpy",
     "pillow",
+    "pygltflib",
     "python",
-    "pytorch <2",
     "pytorch =*=cuda*",
     "scipy",
     "tqdm"
@@ -272,8 +301,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/NVIDIAGameWorks/kaolin/archive/refs/tags/v0.13.0.tar.gz",
- "version": "0.13.0",
+ "url": "https://github.com/NVIDIAGameWorks/kaolin/archive/refs/tags/v0.15.0.tar.gz",
+ "version": "0.15.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/kaolin.json"
  }
