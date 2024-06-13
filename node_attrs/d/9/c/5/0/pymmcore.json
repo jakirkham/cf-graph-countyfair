@@ -37,11 +37,12 @@
   },
   "package": {
    "name": "pymmcore",
-   "version": "11.1.1.71.0"
+   "version": "11.1.1.71.1"
   },
   "requirements": {
    "build": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "numpy",
@@ -55,8 +56,8 @@
    ]
   },
   "source": {
-   "sha256": "2ffffb515ae760488cf728f88a8a339e6cf84fe5636cbc25fb117d436d6a0c73",
-   "url": "https://pypi.io/packages/source/p/pymmcore/pymmcore-11.1.1.71.0.tar.gz"
+   "sha256": "bf59a99ff909cad9192ba5bd4b281deaaf6ef38dc5071a88f41386434beda501",
+   "url": "https://pypi.io/packages/source/p/pymmcore/pymmcore-11.1.1.71.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -76,6 +77,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -126,11 +128,12 @@
   },
   "package": {
    "name": "pymmcore",
-   "version": "11.1.1.71.0"
+   "version": "11.1.1.71.1"
   },
   "requirements": {
    "build": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "numpy",
@@ -144,8 +147,8 @@
    ]
   },
   "source": {
-   "sha256": "2ffffb515ae760488cf728f88a8a339e6cf84fe5636cbc25fb117d436d6a0c73",
-   "url": "https://pypi.io/packages/source/p/pymmcore/pymmcore-11.1.1.71.0.tar.gz"
+   "sha256": "bf59a99ff909cad9192ba5bd4b281deaaf6ef38dc5071a88f41386434beda501",
+   "url": "https://pypi.io/packages/source/p/pymmcore/pymmcore-11.1.1.71.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -186,11 +189,12 @@
   },
   "package": {
    "name": "pymmcore",
-   "version": "11.1.1.71.0"
+   "version": "11.1.1.71.1"
   },
   "requirements": {
    "build": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "numpy",
@@ -204,8 +208,8 @@
    ]
   },
   "source": {
-   "sha256": "2ffffb515ae760488cf728f88a8a339e6cf84fe5636cbc25fb117d436d6a0c73",
-   "url": "https://pypi.io/packages/source/p/pymmcore/pymmcore-11.1.1.71.0.tar.gz"
+   "sha256": "bf59a99ff909cad9192ba5bd4b281deaaf6ef38dc5071a88f41386434beda501",
+   "url": "https://pypi.io/packages/source/p/pymmcore/pymmcore-11.1.1.71.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -225,6 +229,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -266,10 +271,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pymmcore.json"
  },
- "raw_meta_yaml": "{% set name = \"pymmcore\" %}\n{% set version = \"11.1.1.71.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pymmcore-{{ version }}.tar.gz\n  sha256: 2ffffb515ae760488cf728f88a8a339e6cf84fe5636cbc25fb117d436d6a0c73\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n  host:\n    - numpy\n    - pip\n    - python\n    - swig\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - pymmcore\n  commands:\n    - pip list\n    - pip check\n    - python -c \"import pymmcore;mmc = pymmcore.CMMCore();print(mmc)\"\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/micro-manager/pymmcore\n  summary: Python bindings for MMCore, Micro-Manager's device control layer\n  license: LGPL-2.1-only AND BSD-3-Clause\n  license_file:\n    - LICENSE.txt\n    - MMDevice_license.txt\n    - MMCore_license.txt\n\nextra:\n  recipe-maintainers:\n    - goanpeca\n    - marktsuchida\n    - tlambert03\n",
+ "raw_meta_yaml": "{% set name = \"pymmcore\" %}\n{% set version = \"11.1.1.71.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pymmcore-{{ version }}.tar.gz\n  sha256: bf59a99ff909cad9192ba5bd4b281deaaf6ef38dc5071a88f41386434beda501\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - numpy\n    - pip\n    - python\n    - swig\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - pymmcore\n  commands:\n    - pip list\n    - pip check\n    - python -c \"import pymmcore;mmc = pymmcore.CMMCore();print(mmc)\"\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/micro-manager/pymmcore\n  summary: Python bindings for MMCore, Micro-Manager's device control layer\n  license: LGPL-2.1-only AND BSD-3-Clause\n  license_file:\n    - LICENSE.txt\n    - MMDevice_license.txt\n    - MMCore_license.txt\n\nextra:\n  recipe-maintainers:\n    - goanpeca\n    - marktsuchida\n    - tlambert03\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "numpy",
    "pip",
@@ -281,12 +287,14 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numpy",
     "pip",
@@ -297,6 +305,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numpy",
     "python"
@@ -314,6 +323,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -340,8 +350,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/p/pymmcore/pymmcore-11.1.1.71.0.tar.gz",
- "version": "11.1.1.71.0",
+ "url": "https://pypi.io/packages/source/p/pymmcore/pymmcore-11.1.1.71.1.tar.gz",
+ "version": "11.1.1.71.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pymmcore.json"
  },
@@ -369,11 +379,12 @@
   },
   "package": {
    "name": "pymmcore",
-   "version": "11.1.1.71.0"
+   "version": "11.1.1.71.1"
   },
   "requirements": {
    "build": [
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "numpy",
@@ -387,8 +398,8 @@
    ]
   },
   "source": {
-   "sha256": "2ffffb515ae760488cf728f88a8a339e6cf84fe5636cbc25fb117d436d6a0c73",
-   "url": "https://pypi.io/packages/source/p/pymmcore/pymmcore-11.1.1.71.0.tar.gz"
+   "sha256": "bf59a99ff909cad9192ba5bd4b281deaaf6ef38dc5071a88f41386434beda501",
+   "url": "https://pypi.io/packages/source/p/pymmcore/pymmcore-11.1.1.71.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -408,6 +419,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
