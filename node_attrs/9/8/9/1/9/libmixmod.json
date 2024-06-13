@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "libmixmod",
  "hash_type": "sha256",
@@ -41,6 +45,7 @@
     "cmake",
     "ninja",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libgomp"
    ],
@@ -67,6 +72,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libgomp",
@@ -116,6 +122,7 @@
     "cmake",
     "ninja",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libgomp",
     "llvm-openmp"
@@ -169,6 +176,7 @@
     "cmake",
     "ninja",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "llvm-openmp"
    ],
@@ -195,6 +203,84 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "llvm-openmp",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "eigen"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "home": "https://github.com/mixmod/mixmod",
+   "license": "GPL-3.0-or-later",
+   "license_family": "GPL",
+   "license_file": "UTIL/gpl.txt",
+   "summary": "Supervised, Unsupervised, Semi-Supervised Classification with MIXture MODelling"
+  },
+  "build": {
+   "number": "0",
+   "run_exports": [
+    "libmixmod"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jschueller"
+   ]
+  },
+  "package": {
+   "name": "libmixmod",
+   "version": "2.1.10"
+  },
+  "requirements": {
+   "build": [
+    "cmake",
+    "ninja",
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "llvm-openmp"
+   ],
+   "host": [
+    "eigen"
+   ]
+  },
+  "source": {
+   "patches": [
+    "0001-Random-Use-c-11-apis-instead-of-clock_gettime.patch"
+   ],
+   "sha256": "e0bc339f36ec22080a8a270ea87976f7b277ce4e3e9e383fba51548f83aa4d0b",
+   "url": "https://github.com/mixmod/mixmod/archive/refs/tags/v2.1.10.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "test -f ${PREFIX}/include/mixmod.h",
+    "test -f ${PREFIX}/lib/libmixmod${SHLIB_EXT}"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "llvm-openmp",
@@ -226,16 +312,18 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/libmixmod.json"
  },
- "raw_meta_yaml": "{% set version = \"2.1.10\" %}\n\npackage:\n  name: libmixmod\n  version: {{ version }}\n\nsource:\n  url: https://github.com/mixmod/mixmod/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: e0bc339f36ec22080a8a270ea87976f7b277ce4e3e9e383fba51548f83aa4d0b\n  patches:\n    # https://github.com/mixmod/mixmod/pull/31\n    - 0001-Random-Use-c-11-apis-instead-of-clock_gettime.patch\n\nbuild:\n  number: 0\n  run_exports:\n    - {{ pin_subpackage('libmixmod', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux]\n  host:\n    - eigen\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/mixmod.h  # [unix]\n    - test -f ${PREFIX}/lib/libmixmod${SHLIB_EXT}  # [unix]\n    - if not exist %PREFIX%\\\\Library\\\\include\\\\mixmod.h exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\lib\\\\mixmod.lib exit 1  # [win]\n\nabout:\n  home: https://github.com/mixmod/mixmod\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: UTIL/gpl.txt\n  summary: Supervised, Unsupervised, Semi-Supervised Classification with MIXture MODelling\n\nextra:\n  recipe-maintainers:\n    - jschueller\n",
+ "raw_meta_yaml": "{% set version = \"2.1.10\" %}\n\npackage:\n  name: libmixmod\n  version: {{ version }}\n\nsource:\n  url: https://github.com/mixmod/mixmod/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: e0bc339f36ec22080a8a270ea87976f7b277ce4e3e9e383fba51548f83aa4d0b\n  patches:\n    # https://github.com/mixmod/mixmod/pull/31\n    - 0001-Random-Use-c-11-apis-instead-of-clock_gettime.patch\n\nbuild:\n  number: 0\n  run_exports:\n    - {{ pin_subpackage('libmixmod', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - {{ compiler(\"c\") }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux]\n  host:\n    - eigen\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/mixmod.h  # [unix]\n    - test -f ${PREFIX}/lib/libmixmod${SHLIB_EXT}  # [unix]\n    - if not exist %PREFIX%\\\\Library\\\\include\\\\mixmod.h exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\lib\\\\mixmod.lib exit 1  # [win]\n\nabout:\n  home: https://github.com/mixmod/mixmod\n  license: GPL-3.0-or-later\n  license_family: GPL\n  license_file: UTIL/gpl.txt\n  summary: Supervised, Unsupervised, Semi-Supervised Classification with MIXture MODelling\n\nextra:\n  recipe-maintainers:\n    - jschueller\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "eigen",
@@ -249,6 +337,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libgomp",
@@ -260,6 +349,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "eigen",
@@ -270,6 +360,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "openmp"
@@ -286,6 +377,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libgomp",
@@ -341,6 +433,7 @@
     "cmake",
     "ninja",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -366,6 +459,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
