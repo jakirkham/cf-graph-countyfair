@@ -2306,7 +2306,7 @@
       "zlib"
      ]
     },
-    "name": "cctools_osx-64",
+    "name": "cctools_osx-arm64",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
@@ -2320,11 +2320,11 @@
       "llvm 17.0.*",
       "tapi",
       "libcxx",
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run": [
       "libcxx",
-      "ld64_osx-64",
+      "ld64_osx-arm64",
       "sigtool"
      ],
      "run_constrained": [
@@ -2337,14 +2337,13 @@
     "test": {
      "commands": [
       "test -f $PREFIX/libexec/as/x86_64/as",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-as",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ranlib",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ld",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ar",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-otool",
-      "$PREFIX/bin/x86_64-apple-darwin13.4.0-otool -l $PREFIX/bin/x86_64-apple-darwin13.4.0-otool",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-install_name_tool",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-strip"
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-as",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ranlib",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ld",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ar",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-otool",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-install_name_tool",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-strip"
      ]
     },
     "version": "986"
@@ -2363,7 +2362,7 @@
       "/usr/lib/libxar.1.dylib"
      ]
     },
-    "name": "ld64_osx-64",
+    "name": "ld64_osx-arm64",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
@@ -2386,20 +2385,18 @@
       "clang",
       "ld 711.*",
       "cctools 986.*",
-      "cctools_osx-64 986.*"
+      "cctools_osx-arm64 986.*"
      ]
     },
     "script": "install-ld64.sh",
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ld",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ld",
       "echo \"int main() {}\" > lto.c",
       "clang -c lto.c -o lto.o -flto",
-      "$PREFIX/bin/x86_64-apple-darwin13.4.0-ld lto.o -o lto -lSystem -arch x86_64"
+      "$PREFIX/bin/arm64-apple-darwin20.0.0-ld lto.o -o lto -lSystem -arch x86_64"
      ],
-     "downstreams": [
-      "gfortran_osx-64"
-     ],
+     "downstreams": null,
      "requires": [
       "clang 17.0.*"
      ]
@@ -2414,20 +2411,22 @@
      "license_file": "cctools/ld64/APPLE_LICENSE",
      "summary": "Darwin Mach-O native linker"
     },
-    "build": null,
+    "build": {
+     "skip": true
+    },
     "name": "ld64",
     "requirements": {
      "host": [
       "llvm  17.0.*",
       "clang 17.0.*",
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run": [
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run_constrained": [
       "cctools 986.*",
-      "cctools_osx-64 986.*"
+      "cctools_osx-arm64 986.*"
      ]
     },
     "script": "install-ld64-symlinks.sh",
@@ -2446,18 +2445,20 @@
      "license_file": "cctools/APPLE_LICENSE",
      "summary": "Native assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files"
     },
-    "build": null,
+    "build": {
+     "skip": true
+    },
     "name": "cctools",
     "requirements": {
      "host": [
       "llvm  17.0.*",
       "clang 17.0.*",
       "ld64",
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ],
      "run": [
       "ld64",
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ]
     },
     "script": "install-cctools-symlinks.sh",
@@ -2487,7 +2488,7 @@
       "zlib"
      ]
     },
-    "name": "cctools_osx-64",
+    "name": "cctools_osx-arm64",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
@@ -2501,11 +2502,11 @@
       "llvm 18.1.*",
       "tapi",
       "libcxx",
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run": [
       "libcxx",
-      "ld64_osx-64",
+      "ld64_osx-arm64",
       "sigtool"
      ],
      "run_constrained": [
@@ -2518,14 +2519,13 @@
     "test": {
      "commands": [
       "test -f $PREFIX/libexec/as/x86_64/as",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-as",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ranlib",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ld",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ar",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-otool",
-      "$PREFIX/bin/x86_64-apple-darwin13.4.0-otool -l $PREFIX/bin/x86_64-apple-darwin13.4.0-otool",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-install_name_tool",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-strip"
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-as",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ranlib",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ld",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ar",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-otool",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-install_name_tool",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-strip"
      ]
     },
     "version": "986"
@@ -2544,7 +2544,7 @@
       "/usr/lib/libxar.1.dylib"
      ]
     },
-    "name": "ld64_osx-64",
+    "name": "ld64_osx-arm64",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
@@ -2567,20 +2567,18 @@
       "clang",
       "ld 711.*",
       "cctools 986.*",
-      "cctools_osx-64 986.*"
+      "cctools_osx-arm64 986.*"
      ]
     },
     "script": "install-ld64.sh",
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ld",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ld",
       "echo \"int main() {}\" > lto.c",
       "clang -c lto.c -o lto.o -flto",
-      "$PREFIX/bin/x86_64-apple-darwin13.4.0-ld lto.o -o lto -lSystem -arch x86_64"
+      "$PREFIX/bin/arm64-apple-darwin20.0.0-ld lto.o -o lto -lSystem -arch x86_64"
      ],
-     "downstreams": [
-      "gfortran_osx-64"
-     ],
+     "downstreams": null,
      "requires": [
       "clang 18.1.*"
      ]
@@ -2595,20 +2593,22 @@
      "license_file": "cctools/ld64/APPLE_LICENSE",
      "summary": "Darwin Mach-O native linker"
     },
-    "build": null,
+    "build": {
+     "skip": true
+    },
     "name": "ld64",
     "requirements": {
      "host": [
       "llvm  18.1.*",
       "clang 18.1.*",
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run": [
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run_constrained": [
       "cctools 986.*",
-      "cctools_osx-64 986.*"
+      "cctools_osx-arm64 986.*"
      ]
     },
     "script": "install-ld64-symlinks.sh",
@@ -2627,18 +2627,20 @@
      "license_file": "cctools/APPLE_LICENSE",
      "summary": "Native assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files"
     },
-    "build": null,
+    "build": {
+     "skip": true
+    },
     "name": "cctools",
     "requirements": {
      "host": [
       "llvm  18.1.*",
       "clang 18.1.*",
       "ld64",
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ],
      "run": [
       "ld64",
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ]
     },
     "script": "install-cctools-symlinks.sh",
@@ -3032,7 +3034,7 @@
       "zlib"
      ]
     },
-    "name": "cctools_osx-64",
+    "name": "cctools_osx-arm64",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
@@ -3046,11 +3048,11 @@
       "llvm 16.0.*",
       "tapi",
       "libcxx",
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run": [
       "libcxx",
-      "ld64_osx-64",
+      "ld64_osx-arm64",
       "sigtool"
      ],
      "run_constrained": [
@@ -3063,14 +3065,13 @@
     "test": {
      "commands": [
       "test -f $PREFIX/libexec/as/x86_64/as",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-as",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ranlib",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ld",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ar",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-otool",
-      "$PREFIX/bin/x86_64-apple-darwin13.4.0-otool -l $PREFIX/bin/x86_64-apple-darwin13.4.0-otool",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-install_name_tool",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-strip"
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-as",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ranlib",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ld",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ar",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-otool",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-install_name_tool",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-strip"
      ]
     },
     "version": "986"
@@ -3089,7 +3090,7 @@
       "/usr/lib/libxar.1.dylib"
      ]
     },
-    "name": "ld64_osx-64",
+    "name": "ld64_osx-arm64",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
@@ -3112,20 +3113,18 @@
       "clang",
       "ld 711.*",
       "cctools 986.*",
-      "cctools_osx-64 986.*"
+      "cctools_osx-arm64 986.*"
      ]
     },
     "script": "install-ld64.sh",
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ld",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ld",
       "echo \"int main() {}\" > lto.c",
       "clang -c lto.c -o lto.o -flto",
-      "$PREFIX/bin/x86_64-apple-darwin13.4.0-ld lto.o -o lto -lSystem -arch x86_64"
+      "$PREFIX/bin/arm64-apple-darwin20.0.0-ld lto.o -o lto -lSystem -arch x86_64"
      ],
-     "downstreams": [
-      "gfortran_osx-64"
-     ],
+     "downstreams": null,
      "requires": [
       "clang 16.0.*"
      ]
@@ -3140,20 +3139,22 @@
      "license_file": "cctools/ld64/APPLE_LICENSE",
      "summary": "Darwin Mach-O native linker"
     },
-    "build": null,
+    "build": {
+     "skip": true
+    },
     "name": "ld64",
     "requirements": {
      "host": [
       "llvm  16.0.*",
       "clang 16.0.*",
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run": [
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run_constrained": [
       "cctools 986.*",
-      "cctools_osx-64 986.*"
+      "cctools_osx-arm64 986.*"
      ]
     },
     "script": "install-ld64-symlinks.sh",
@@ -3172,18 +3173,20 @@
      "license_file": "cctools/APPLE_LICENSE",
      "summary": "Native assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files"
     },
-    "build": null,
+    "build": {
+     "skip": true
+    },
     "name": "cctools",
     "requirements": {
      "host": [
       "llvm  16.0.*",
       "clang 16.0.*",
       "ld64",
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ],
      "run": [
       "ld64",
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ]
     },
     "script": "install-cctools-symlinks.sh",
@@ -4722,7 +4725,7 @@
       "zlib"
      ]
     },
-    "name": "cctools_osx-64",
+    "name": "cctools_osx-arm64",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
@@ -4736,11 +4739,11 @@
       "llvm 17.0.*",
       "tapi",
       "libcxx",
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run": [
       "libcxx",
-      "ld64_osx-64",
+      "ld64_osx-arm64",
       "sigtool"
      ],
      "run_constrained": [
@@ -4753,14 +4756,13 @@
     "test": {
      "commands": [
       "test -f $PREFIX/libexec/as/x86_64/as",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-as",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ranlib",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ld",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ar",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-otool",
-      "$PREFIX/bin/x86_64-apple-darwin13.4.0-otool -l $PREFIX/bin/x86_64-apple-darwin13.4.0-otool",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-install_name_tool",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-strip"
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-as",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ranlib",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ld",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ar",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-otool",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-install_name_tool",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-strip"
      ]
     },
     "version": "986"
@@ -4779,7 +4781,7 @@
       "/usr/lib/libxar.1.dylib"
      ]
     },
-    "name": "ld64_osx-64",
+    "name": "ld64_osx-arm64",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
@@ -4802,20 +4804,18 @@
       "clang",
       "ld 711.*",
       "cctools 986.*",
-      "cctools_osx-64 986.*"
+      "cctools_osx-arm64 986.*"
      ]
     },
     "script": "install-ld64.sh",
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ld",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ld",
       "echo \"int main() {}\" > lto.c",
       "clang -c lto.c -o lto.o -flto",
-      "$PREFIX/bin/x86_64-apple-darwin13.4.0-ld lto.o -o lto -lSystem -arch x86_64"
+      "$PREFIX/bin/arm64-apple-darwin20.0.0-ld lto.o -o lto -lSystem -arch x86_64"
      ],
-     "downstreams": [
-      "gfortran_osx-64"
-     ],
+     "downstreams": null,
      "requires": [
       "clang 17.0.*"
      ]
@@ -4830,20 +4830,22 @@
      "license_file": "cctools/ld64/APPLE_LICENSE",
      "summary": "Darwin Mach-O native linker"
     },
-    "build": null,
+    "build": {
+     "skip": true
+    },
     "name": "ld64",
     "requirements": {
      "host": [
       "llvm  17.0.*",
       "clang 17.0.*",
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run": [
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run_constrained": [
       "cctools 986.*",
-      "cctools_osx-64 986.*"
+      "cctools_osx-arm64 986.*"
      ]
     },
     "script": "install-ld64-symlinks.sh",
@@ -4862,18 +4864,20 @@
      "license_file": "cctools/APPLE_LICENSE",
      "summary": "Native assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files"
     },
-    "build": null,
+    "build": {
+     "skip": true
+    },
     "name": "cctools",
     "requirements": {
      "host": [
       "llvm  17.0.*",
       "clang 17.0.*",
       "ld64",
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ],
      "run": [
       "ld64",
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ]
     },
     "script": "install-cctools-symlinks.sh",
@@ -4903,7 +4907,7 @@
       "zlib"
      ]
     },
-    "name": "cctools_osx-64",
+    "name": "cctools_osx-arm64",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
@@ -4917,11 +4921,11 @@
       "llvm 18.1.*",
       "tapi",
       "libcxx",
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run": [
       "libcxx",
-      "ld64_osx-64",
+      "ld64_osx-arm64",
       "sigtool"
      ],
      "run_constrained": [
@@ -4934,14 +4938,13 @@
     "test": {
      "commands": [
       "test -f $PREFIX/libexec/as/x86_64/as",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-as",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ranlib",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ld",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ar",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-otool",
-      "$PREFIX/bin/x86_64-apple-darwin13.4.0-otool -l $PREFIX/bin/x86_64-apple-darwin13.4.0-otool",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-install_name_tool",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-strip"
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-as",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ranlib",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ld",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ar",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-otool",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-install_name_tool",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-strip"
      ]
     },
     "version": "986"
@@ -4960,7 +4963,7 @@
       "/usr/lib/libxar.1.dylib"
      ]
     },
-    "name": "ld64_osx-64",
+    "name": "ld64_osx-arm64",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
@@ -4983,20 +4986,18 @@
       "clang",
       "ld 711.*",
       "cctools 986.*",
-      "cctools_osx-64 986.*"
+      "cctools_osx-arm64 986.*"
      ]
     },
     "script": "install-ld64.sh",
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ld",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ld",
       "echo \"int main() {}\" > lto.c",
       "clang -c lto.c -o lto.o -flto",
-      "$PREFIX/bin/x86_64-apple-darwin13.4.0-ld lto.o -o lto -lSystem -arch x86_64"
+      "$PREFIX/bin/arm64-apple-darwin20.0.0-ld lto.o -o lto -lSystem -arch x86_64"
      ],
-     "downstreams": [
-      "gfortran_osx-64"
-     ],
+     "downstreams": null,
      "requires": [
       "clang 18.1.*"
      ]
@@ -5011,20 +5012,22 @@
      "license_file": "cctools/ld64/APPLE_LICENSE",
      "summary": "Darwin Mach-O native linker"
     },
-    "build": null,
+    "build": {
+     "skip": true
+    },
     "name": "ld64",
     "requirements": {
      "host": [
       "llvm  18.1.*",
       "clang 18.1.*",
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run": [
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run_constrained": [
       "cctools 986.*",
-      "cctools_osx-64 986.*"
+      "cctools_osx-arm64 986.*"
      ]
     },
     "script": "install-ld64-symlinks.sh",
@@ -5043,18 +5046,20 @@
      "license_file": "cctools/APPLE_LICENSE",
      "summary": "Native assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files"
     },
-    "build": null,
+    "build": {
+     "skip": true
+    },
     "name": "cctools",
     "requirements": {
      "host": [
       "llvm  18.1.*",
       "clang 18.1.*",
       "ld64",
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ],
      "run": [
       "ld64",
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ]
     },
     "script": "install-cctools-symlinks.sh",
@@ -5448,7 +5453,7 @@
       "zlib"
      ]
     },
-    "name": "cctools_osx-64",
+    "name": "cctools_osx-arm64",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
@@ -5462,11 +5467,11 @@
       "llvm 16.0.*",
       "tapi",
       "libcxx",
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run": [
       "libcxx",
-      "ld64_osx-64",
+      "ld64_osx-arm64",
       "sigtool"
      ],
      "run_constrained": [
@@ -5479,14 +5484,13 @@
     "test": {
      "commands": [
       "test -f $PREFIX/libexec/as/x86_64/as",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-as",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ranlib",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ld",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ar",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-otool",
-      "$PREFIX/bin/x86_64-apple-darwin13.4.0-otool -l $PREFIX/bin/x86_64-apple-darwin13.4.0-otool",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-install_name_tool",
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-strip"
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-as",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ranlib",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ld",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ar",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-otool",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-install_name_tool",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-strip"
      ]
     },
     "version": "986"
@@ -5505,7 +5509,7 @@
       "/usr/lib/libxar.1.dylib"
      ]
     },
-    "name": "ld64_osx-64",
+    "name": "ld64_osx-arm64",
     "requirements": {
      "build": [
       "cxx_compiler_stub",
@@ -5528,20 +5532,18 @@
       "clang",
       "ld 711.*",
       "cctools 986.*",
-      "cctools_osx-64 986.*"
+      "cctools_osx-arm64 986.*"
      ]
     },
     "script": "install-ld64.sh",
     "test": {
      "commands": [
-      "test -f $PREFIX/bin/x86_64-apple-darwin13.4.0-ld",
+      "test -f $PREFIX/bin/arm64-apple-darwin20.0.0-ld",
       "echo \"int main() {}\" > lto.c",
       "clang -c lto.c -o lto.o -flto",
-      "$PREFIX/bin/x86_64-apple-darwin13.4.0-ld lto.o -o lto -lSystem -arch x86_64"
+      "$PREFIX/bin/arm64-apple-darwin20.0.0-ld lto.o -o lto -lSystem -arch x86_64"
      ],
-     "downstreams": [
-      "gfortran_osx-64"
-     ],
+     "downstreams": null,
      "requires": [
       "clang 16.0.*"
      ]
@@ -5556,20 +5558,22 @@
      "license_file": "cctools/ld64/APPLE_LICENSE",
      "summary": "Darwin Mach-O native linker"
     },
-    "build": null,
+    "build": {
+     "skip": true
+    },
     "name": "ld64",
     "requirements": {
      "host": [
       "llvm  16.0.*",
       "clang 16.0.*",
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run": [
-      "ld64_osx-64"
+      "ld64_osx-arm64"
      ],
      "run_constrained": [
       "cctools 986.*",
-      "cctools_osx-64 986.*"
+      "cctools_osx-arm64 986.*"
      ]
     },
     "script": "install-ld64-symlinks.sh",
@@ -5588,18 +5592,20 @@
      "license_file": "cctools/APPLE_LICENSE",
      "summary": "Native assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files"
     },
-    "build": null,
+    "build": {
+     "skip": true
+    },
     "name": "cctools",
     "requirements": {
      "host": [
       "llvm  16.0.*",
       "clang 16.0.*",
       "ld64",
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ],
      "run": [
       "ld64",
-      "cctools_osx-64"
+      "cctools_osx-arm64"
      ]
     },
     "script": "install-cctools-symlinks.sh",
@@ -5901,11 +5907,9 @@
   "host": {
    "__set__": true,
    "elements": [
-    "cctools_osx-64",
     "cctools_osx-arm64",
     "clang",
     "ld64",
-    "ld64_osx-64",
     "ld64_osx-arm64",
     "libcxx",
     "llvm",
@@ -5918,10 +5922,8 @@
    "__set__": true,
    "elements": [
     "__osx",
-    "cctools_osx-64",
     "cctools_osx-arm64",
     "ld64",
-    "ld64_osx-64",
     "ld64_osx-arm64",
     "libcxx",
     "sigtool",
