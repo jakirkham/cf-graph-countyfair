@@ -31,7 +31,7 @@
   },
   "build": {
    "detect_binary_files_with_prefix": true,
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "magics-metview"
    ]
@@ -54,6 +54,7 @@
     "make",
     "pkg-config",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cdt_stub"
    ],
@@ -104,6 +105,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
@@ -160,7 +162,7 @@
   },
   "build": {
    "detect_binary_files_with_prefix": true,
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "magics-metview"
    ]
@@ -183,6 +185,7 @@
     "make",
     "pkg-config",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cdt_stub"
    ],
@@ -208,8 +211,7 @@
     "simplejson",
     "libnetcdf",
     "qt-main",
-    "zlib",
-    "__osx >=10.15"
+    "zlib"
    ],
    "run_constrained": [
     "magics ==9999999999"
@@ -244,7 +246,7 @@
   },
   "build": {
    "detect_binary_files_with_prefix": true,
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "magics-metview"
    ]
@@ -267,6 +269,7 @@
     "make",
     "pkg-config",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -290,8 +293,7 @@
     "simplejson",
     "libnetcdf",
     "qt-main",
-    "zlib",
-    "__osx >=10.15"
+    "zlib"
    ],
    "run_constrained": [
     "magics ==9999999999"
@@ -316,6 +318,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -340,7 +343,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "cairo",
     "eccodes",
     "expat",
@@ -371,7 +373,7 @@
   },
   "build": {
    "detect_binary_files_with_prefix": true,
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "magics-metview"
    ]
@@ -394,6 +396,7 @@
     "make",
     "pkg-config",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -442,6 +445,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -497,12 +501,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/magics-metview.json"
  },
- "raw_meta_yaml": "{% set name = \"Magics\" %}\n{% set version = \"4.15.4\" %}\n\npackage:\n  name: magics-metview\n  version: {{ version }}\n\nsource:\n  url: https://confluence.ecmwf.int/download/attachments/3473464/{{ name }}-{{ version }}-Source.tar.gz\n  sha256: a38033aa8bd5845c55ad10f9bf5aaee932177e3aa88cf8f174814d825d354285\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  detect_binary_files_with_prefix: true\n  run_exports:\n    # See https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#export-runtime-requirements\n    - {{ pin_subpackage('magics-metview', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - cmake\n    - make\n    - pkg-config\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    # the CDTs below are needed when building with Metview enabled\n    - {{ cdt('mesa-libgl-devel') }}  # [linux]\n    - {{ cdt('mesa-dri-drivers') }}  # [linux]\n    - {{ cdt('libselinux') }}  # [linux]\n    - {{ cdt('libxdamage') }}  # [linux]\n    - {{ cdt('libxfixes') }}  # [linux]\n    - {{ cdt('libxxf86vm') }}  # [linux]\n    - {{ cdt('libxcb') }}  # [linux]\n  host:\n    - pkg-config\n    - expat\n    - glib\n    - pango\n    - cairo\n    - proj\n    - eccodes >=2.21.0\n    - libnetcdf\n    - qt-main\n    - zlib\n    # See https://conda-forge.org/docs/maintainer/knowledge_base.html#libgl\n    - xorg-libxfixes  # [linux]\n  run:\n    - expat\n    - pango\n    - cairo\n    - proj\n    - eccodes >=2.21.0\n    - simplejson\n    - libnetcdf\n    - qt-main\n    - zlib\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n  run_constrained:\n    # magics-metview is incompatible with magics\n    - magics ==9999999999\n\ntest:\n  commands:\n    - printf \"%s\\n\" \"${MAGPLUS_HOME:?MAGPLUS_HOME is not set}\"\n    - which magjsonx\n    - test -f $PREFIX/lib/libMagPlus${SHLIB_EXT}  # [linux]\n    - test -f $PREFIX/lib/libMagPlusSingle${SHLIB_EXT}  # [linux]\n    - test -f $PREFIX/lib/libMagPlusDouble${SHLIB_EXT}  # [linux]\n    - test -f $PREFIX/lib/libMagPlus${SHLIB_EXT}  # [osx]\n    - test -f $PREFIX/lib/libMagPlusSingle${SHLIB_EXT}  # [osx]\n    - test -f $PREFIX/lib/libMagPlusDouble${SHLIB_EXT}  # [osx]\nabout:\n  home: https://confluence.ecmwf.int/display/MAGP/\n  license: Apache-2.0\n  license_file:\n    - LICENSE_for_source_files\n    - COPYING\n    - LICENSE\n\n  license_family: Apache\n  summary: ECMWF's Meteorological plotting software Magics built with Metview enabled\n\nextra:\n  recipe-maintainers:\n    - dtip\n    - StephanSiemen\n    - sylvielamythepaut\n    - iainrussell\n",
+ "raw_meta_yaml": "{% set name = \"Magics\" %}\n{% set version = \"4.15.4\" %}\n\npackage:\n  name: magics-metview\n  version: {{ version }}\n\nsource:\n  url: https://confluence.ecmwf.int/download/attachments/3473464/{{ name }}-{{ version }}-Source.tar.gz\n  sha256: a38033aa8bd5845c55ad10f9bf5aaee932177e3aa88cf8f174814d825d354285\n\nbuild:\n  number: 1\n  skip: true  # [win]\n  detect_binary_files_with_prefix: true\n  run_exports:\n    # See https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#export-runtime-requirements\n    - {{ pin_subpackage('magics-metview', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - cmake\n    - make\n    - pkg-config\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    # the CDTs below are needed when building with Metview enabled\n    - {{ cdt('mesa-libgl-devel') }}  # [linux]\n    - {{ cdt('mesa-dri-drivers') }}  # [linux]\n    - {{ cdt('libselinux') }}  # [linux]\n    - {{ cdt('libxdamage') }}  # [linux]\n    - {{ cdt('libxfixes') }}  # [linux]\n    - {{ cdt('libxxf86vm') }}  # [linux]\n    - {{ cdt('libxcb') }}  # [linux]\n  host:\n    - pkg-config\n    - expat\n    - glib\n    - pango\n    - cairo\n    - proj\n    - eccodes >=2.21.0\n    - libnetcdf\n    - qt-main\n    - zlib\n    # See https://conda-forge.org/docs/maintainer/knowledge_base.html#libgl\n    - xorg-libxfixes  # [linux]\n  run:\n    - expat\n    - pango\n    - cairo\n    - proj\n    - eccodes >=2.21.0\n    - simplejson\n    - libnetcdf\n    - qt-main\n    - zlib\n  run_constrained:\n    # magics-metview is incompatible with magics\n    - magics ==9999999999\n\ntest:\n  commands:\n    - printf \"%s\\n\" \"${MAGPLUS_HOME:?MAGPLUS_HOME is not set}\"\n    - which magjsonx\n    - test -f $PREFIX/lib/libMagPlus${SHLIB_EXT}  # [linux]\n    - test -f $PREFIX/lib/libMagPlusSingle${SHLIB_EXT}  # [linux]\n    - test -f $PREFIX/lib/libMagPlusDouble${SHLIB_EXT}  # [linux]\n    - test -f $PREFIX/lib/libMagPlus${SHLIB_EXT}  # [osx]\n    - test -f $PREFIX/lib/libMagPlusSingle${SHLIB_EXT}  # [osx]\n    - test -f $PREFIX/lib/libMagPlusDouble${SHLIB_EXT}  # [osx]\nabout:\n  home: https://confluence.ecmwf.int/display/MAGP/\n  license: Apache-2.0\n  license_file:\n    - LICENSE_for_source_files\n    - COPYING\n    - LICENSE\n\n  license_family: Apache\n  summary: ECMWF's Meteorological plotting software Magics built with Metview enabled\n\nextra:\n  recipe-maintainers:\n    - dtip\n    - StephanSiemen\n    - sylvielamythepaut\n    - iainrussell\n",
  "req": {
   "__set__": true,
   "elements": [
-   "__osx",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cairo",
    "cdt_stub",
    "cmake",
@@ -526,6 +530,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
@@ -537,6 +542,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cairo",
     "cxx_compiler_stub",
     "eccodes",
@@ -554,8 +560,8 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cairo",
     "cxx_compiler_stub",
     "eccodes",
@@ -579,6 +585,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
@@ -605,7 +612,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx >=10.15",
     "cairo",
     "eccodes >=2.21.0",
     "expat",
