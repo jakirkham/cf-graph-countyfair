@@ -25,7 +25,7 @@
    "summary": "Communication-Optimal Shuffle & Transpose Algorithm"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -42,7 +42,10 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "cmake"
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
      ],
      "host": [
       "mpich",
@@ -55,7 +58,7 @@
     "script": "build-costa.sh",
     "test": {
      "commands": [
-      "test -f \"${PREFIX}/lib64/libcosta.a\""
+      "test -f \"${PREFIX}/lib/libcosta.a\""
      ]
     }
    },
@@ -67,7 +70,10 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "cmake"
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
      ],
      "host": [
       "mpich",
@@ -82,9 +88,9 @@
     "script": "build-costa.sh",
     "test": {
      "commands": [
-      "test -f \"${PREFIX}/lib64/libcosta.a\"",
-      "test -f \"${PREFIX}/lib64/libcosta_scalapack.a\"",
-      "test -f \"${PREFIX}/lib64/libcosta_prefixed_scalapack.a\""
+      "test -f \"${PREFIX}/lib/libcosta.a\"",
+      "test -f \"${PREFIX}/lib/libcosta_scalapack.a\"",
+      "test -f \"${PREFIX}/lib/libcosta_prefixed_scalapack.a\""
      ]
     }
    },
@@ -96,7 +102,10 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "cmake"
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
      ],
      "host": [
       "openmpi",
@@ -109,7 +118,7 @@
     "script": "build-costa.sh",
     "test": {
      "commands": [
-      "test -f \"${PREFIX}/lib64/libcosta.a\""
+      "test -f \"${PREFIX}/lib/libcosta.a\""
      ]
     }
    },
@@ -121,7 +130,10 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "cmake"
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
      ],
      "host": [
       "openmpi",
@@ -136,9 +148,9 @@
     "script": "build-costa.sh",
     "test": {
      "commands": [
-      "test -f \"${PREFIX}/lib64/libcosta.a\"",
-      "test -f \"${PREFIX}/lib64/libcosta_scalapack.a\"",
-      "test -f \"${PREFIX}/lib64/libcosta_prefixed_scalapack.a\""
+      "test -f \"${PREFIX}/lib/libcosta.a\"",
+      "test -f \"${PREFIX}/lib/libcosta_scalapack.a\"",
+      "test -f \"${PREFIX}/lib/libcosta_prefixed_scalapack.a\""
      ]
     }
    }
@@ -156,8 +168,11 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "make",
+    "pkg-config"
    ]
   },
   "host": {
@@ -194,7 +209,7 @@
    "summary": "Communication-Optimal Shuffle & Transpose Algorithm"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -211,120 +226,14 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "cmake"
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
      ],
      "host": [
       "mpich",
       "libgomp"
-     ],
-     "run": [
-      "mpich"
-     ]
-    },
-    "script": "build-costa.sh",
-    "test": {
-     "commands": [
-      "test -f \"${PREFIX}/lib64/libcosta.a\""
-     ]
-    }
-   },
-   {
-    "about": {
-     "summary": "COSTA with scalapack wrappers for drop-in replacement"
-    },
-    "name": "costa-scalapack",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "cmake"
-     ],
-     "host": [
-      "mpich",
-      "scalapack",
-      "libgomp"
-     ],
-     "run": [
-      "mpich",
-      "scalapack"
-     ]
-    },
-    "script": "build-costa.sh",
-    "test": {
-     "commands": [
-      "test -f \"${PREFIX}/lib64/libcosta.a\"",
-      "test -f \"${PREFIX}/lib64/libcosta_scalapack.a\"",
-      "test -f \"${PREFIX}/lib64/libcosta_prefixed_scalapack.a\""
-     ]
-    }
-   },
-   {
-    "about": {
-     "summary": "Communication-Optimal Shuffle & Transpose Algorithm (COSTA)"
-    },
-    "name": "costa",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "cmake"
-     ],
-     "host": [
-      "openmpi",
-      "libgomp"
-     ],
-     "run": [
-      "openmpi"
-     ]
-    },
-    "script": "build-costa.sh",
-    "test": {
-     "commands": [
-      "test -f \"${PREFIX}/lib64/libcosta.a\""
-     ]
-    }
-   },
-   {
-    "about": {
-     "summary": "COSTA with scalapack wrappers for drop-in replacement"
-    },
-    "name": "costa-scalapack",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "cmake"
-     ],
-     "host": [
-      "openmpi",
-      "scalapack",
-      "libgomp"
-     ],
-     "run": [
-      "openmpi",
-      "scalapack"
-     ]
-    },
-    "script": "build-costa.sh",
-    "test": {
-     "commands": [
-      "test -f \"${PREFIX}/lib64/libcosta.a\"",
-      "test -f \"${PREFIX}/lib64/libcosta_scalapack.a\"",
-      "test -f \"${PREFIX}/lib64/libcosta_prefixed_scalapack.a\""
-     ]
-    }
-   },
-   {
-    "about": {
-     "summary": "Communication-Optimal Shuffle & Transpose Algorithm (COSTA)"
-    },
-    "name": "costa",
-    "requirements": {
-     "build": [
-      "cxx_compiler_stub",
-      "cmake"
-     ],
-     "host": [
-      "mpich",
-      "llvm-openmp",
-      "pkgconfig"
      ],
      "run": [
       "mpich"
@@ -345,13 +254,15 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "cmake"
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
      ],
      "host": [
       "mpich",
       "scalapack",
-      "llvm-openmp",
-      "pkgconfig"
+      "libgomp"
      ],
      "run": [
       "mpich",
@@ -375,12 +286,14 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "cmake"
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
      ],
      "host": [
       "openmpi",
-      "llvm-openmp",
-      "pkgconfig"
+      "libgomp"
      ],
      "run": [
       "openmpi"
@@ -401,13 +314,135 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "cmake"
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
      ],
      "host": [
       "openmpi",
       "scalapack",
-      "llvm-openmp",
-      "pkgconfig"
+      "libgomp"
+     ],
+     "run": [
+      "openmpi",
+      "scalapack"
+     ]
+    },
+    "script": "build-costa.sh",
+    "test": {
+     "commands": [
+      "test -f \"${PREFIX}/lib/libcosta.a\"",
+      "test -f \"${PREFIX}/lib/libcosta_scalapack.a\"",
+      "test -f \"${PREFIX}/lib/libcosta_prefixed_scalapack.a\""
+     ]
+    }
+   },
+   {
+    "about": {
+     "summary": "Communication-Optimal Shuffle & Transpose Algorithm (COSTA)"
+    },
+    "name": "costa",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
+     ],
+     "host": [
+      "mpich",
+      "llvm-openmp"
+     ],
+     "run": [
+      "mpich"
+     ]
+    },
+    "script": "build-costa.sh",
+    "test": {
+     "commands": [
+      "test -f \"${PREFIX}/lib/libcosta.a\""
+     ]
+    }
+   },
+   {
+    "about": {
+     "summary": "COSTA with scalapack wrappers for drop-in replacement"
+    },
+    "name": "costa-scalapack",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
+     ],
+     "host": [
+      "mpich",
+      "scalapack",
+      "llvm-openmp"
+     ],
+     "run": [
+      "mpich",
+      "scalapack"
+     ]
+    },
+    "script": "build-costa.sh",
+    "test": {
+     "commands": [
+      "test -f \"${PREFIX}/lib/libcosta.a\"",
+      "test -f \"${PREFIX}/lib/libcosta_scalapack.a\"",
+      "test -f \"${PREFIX}/lib/libcosta_prefixed_scalapack.a\""
+     ]
+    }
+   },
+   {
+    "about": {
+     "summary": "Communication-Optimal Shuffle & Transpose Algorithm (COSTA)"
+    },
+    "name": "costa",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
+     ],
+     "host": [
+      "openmpi",
+      "llvm-openmp"
+     ],
+     "run": [
+      "openmpi"
+     ]
+    },
+    "script": "build-costa.sh",
+    "test": {
+     "commands": [
+      "test -f \"${PREFIX}/lib/libcosta.a\""
+     ]
+    }
+   },
+   {
+    "about": {
+     "summary": "COSTA with scalapack wrappers for drop-in replacement"
+    },
+    "name": "costa-scalapack",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
+     ],
+     "host": [
+      "openmpi",
+      "scalapack",
+      "llvm-openmp"
      ],
      "run": [
       "openmpi",
@@ -446,7 +481,7 @@
    "summary": "Communication-Optimal Shuffle & Transpose Algorithm"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -463,12 +498,14 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "cmake"
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
      ],
      "host": [
       "mpich",
-      "llvm-openmp",
-      "pkgconfig"
+      "llvm-openmp"
      ],
      "run": [
       "mpich"
@@ -489,13 +526,15 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "cmake"
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
      ],
      "host": [
       "mpich",
       "scalapack",
-      "llvm-openmp",
-      "pkgconfig"
+      "llvm-openmp"
      ],
      "run": [
       "mpich",
@@ -519,12 +558,14 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "cmake"
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
      ],
      "host": [
       "openmpi",
-      "llvm-openmp",
-      "pkgconfig"
+      "llvm-openmp"
      ],
      "run": [
       "openmpi"
@@ -545,13 +586,15 @@
     "requirements": {
      "build": [
       "cxx_compiler_stub",
-      "cmake"
+      "c_stdlib_stub",
+      "cmake",
+      "make",
+      "pkg-config"
      ],
      "host": [
       "openmpi",
       "scalapack",
-      "llvm-openmp",
-      "pkgconfig"
+      "llvm-openmp"
      ],
      "run": [
       "openmpi",
@@ -581,8 +624,11 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "make",
+    "pkg-config"
    ]
   },
   "host": {
@@ -591,7 +637,6 @@
     "llvm-openmp",
     "mpich",
     "openmpi",
-    "pkgconfig",
     "scalapack"
    ]
   },
@@ -623,17 +668,19 @@
  "pr_info": {
   "__lazy_json__": "pr_info/costa_variants.json"
  },
- "raw_meta_yaml": "{% set name = \"costa\" %}\n{% set version = \"2.0\" %}\n\npackage:\n  name: {{ name }}_variants\n  version: {{ version }}\n\nsource:\n  url: https://github.com/eth-cscs/COSTA/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 0692a9c962282899894ccdbc7006216c835473a6999f1080c10bf94f23094521\n\nbuild:\n  number: 0\n  skip: True  # [win]\n\noutputs:\n  - name: costa\n    script: build-costa.sh\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - cmake\n      host:\n        - {{ mpi }}\n        - libgomp      # [linux]\n        - llvm-openmp  # [osx]\n        - pkgconfig    # [osx]\n      run:\n        - {{ mpi }}\n    \n    test:\n      commands:\n        - test -f \"${PREFIX}/lib64/libcosta.a\"  # [linux]\n        - test -f \"${PREFIX}/lib/libcosta.a\"  # [osx]\n\n    about:\n      summary: Communication-Optimal Shuffle & Transpose Algorithm (COSTA)\n\n  - name: costa-scalapack\n    script: build-costa.sh\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - cmake\n      host:\n        - {{ mpi }}\n        - scalapack\n        - libgomp      # [linux]\n        - llvm-openmp  # [osx]\n        - pkgconfig    # [osx]\n      run:\n        - {{ mpi }}\n        - scalapack\n    \n    test:\n      commands:\n        - test -f \"${PREFIX}/lib64/libcosta.a\"  # [linux]\n\n        - test -f \"${PREFIX}/lib64/libcosta_scalapack.a\"  # [linux]\n\n        - test -f \"${PREFIX}/lib64/libcosta_prefixed_scalapack.a\"  # [linux]\n\n        - test -f \"${PREFIX}/lib/libcosta.a\"  # [osx]\n        - test -f \"${PREFIX}/lib/libcosta_scalapack.a\"  # [osx]\n        - test -f \"${PREFIX}/lib/libcosta_prefixed_scalapack.a\"  # [osx]\n\n    about:\n      summary: COSTA with scalapack wrappers for drop-in replacement\n\n\nabout:\n  home: https://github.com/eth-cscs/COSTA\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Communication-Optimal Shuffle & Transpose Algorithm\n  description: |\n    COSTA is a communication-optimal, highly-optimised algorithm for data redistribution accross multiple processors, using MPI and OpenMP and offering the possibility to transpose and scale some or all data. It implements scalapack routines for matrix scale & transpose operations (sub(C) = alpha * sub(A)^T + beta * C, provided by pxtran(u)) and data redistribution (sub(C) = sub(A), provided by pxgemr2d) and outperforms other scalapack implementations by orders of magnitude in some cases. Unlike previous redistribution algorithms, COSTA will also propose the relabelling of MPI ranks that minimizes the data reshuffling cost, leaving to users to decide if they want to use it. This way, if the initial and the target data distributions differ up to a rank permutation, COSTA will perform no communication, whereas other algorithms will reshuffle all the data. Thanks to its optimizations, significant speedups will be achieved even if the proposed rank relabelling is not used.\n  doc_url: https://github.com/eth-cscs/COSTA\n  dev_url: https://github.com/eth-cscs/COSTA\n\nextra:\n  recipe-maintainers:\n    - kabicm\n    - ltalirz\n",
+ "raw_meta_yaml": "{% set name = \"costa\" %}\n{% set version = \"2.0\" %}\n\npackage:\n  name: {{ name }}_variants\n  version: {{ version }}\n\nsource:\n  url: https://github.com/eth-cscs/COSTA/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 0692a9c962282899894ccdbc7006216c835473a6999f1080c10bf94f23094521\n\nbuild:\n  number: 1\n  skip: True  # [win]\n\noutputs:\n  - name: costa\n    script: build-costa.sh\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ stdlib(\"c\") }}\n        - cmake\n        - make\n        - pkg-config\n      host:\n        - {{ mpi }}\n        - libgomp      # [linux]\n        - llvm-openmp  # [osx]\n      run:\n        - {{ mpi }}\n    \n    test:\n      commands:\n        - test -f \"${PREFIX}/lib/libcosta.a\"\n\n    about:\n      summary: Communication-Optimal Shuffle & Transpose Algorithm (COSTA)\n\n  - name: costa-scalapack\n    script: build-costa.sh\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ stdlib(\"c\") }}\n        - cmake\n        - make\n        - pkg-config\n      host:\n        - {{ mpi }}\n        - scalapack\n        - libgomp      # [linux]\n        - llvm-openmp  # [osx]\n      run:\n        - {{ mpi }}\n        - scalapack\n    \n    test:\n      commands:\n        - test -f \"${PREFIX}/lib/libcosta.a\"\n        - test -f \"${PREFIX}/lib/libcosta_scalapack.a\"\n        - test -f \"${PREFIX}/lib/libcosta_prefixed_scalapack.a\"\n\n    about:\n      summary: COSTA with scalapack wrappers for drop-in replacement\n\n\nabout:\n  home: https://github.com/eth-cscs/COSTA\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Communication-Optimal Shuffle & Transpose Algorithm\n  description: |\n    COSTA is a communication-optimal, highly-optimised algorithm for data redistribution accross multiple processors, using MPI and OpenMP and offering the possibility to transpose and scale some or all data. It implements scalapack routines for matrix scale & transpose operations (sub(C) = alpha * sub(A)^T + beta * C, provided by pxtran(u)) and data redistribution (sub(C) = sub(A), provided by pxgemr2d) and outperforms other scalapack implementations by orders of magnitude in some cases. Unlike previous redistribution algorithms, COSTA will also propose the relabelling of MPI ranks that minimizes the data reshuffling cost, leaving to users to decide if they want to use it. This way, if the initial and the target data distributions differ up to a rank permutation, COSTA will perform no communication, whereas other algorithms will reshuffle all the data. Thanks to its optimizations, significant speedups will be achieved even if the proposed rank relabelling is not used.\n  doc_url: https://github.com/eth-cscs/COSTA\n  dev_url: https://github.com/eth-cscs/COSTA\n\nextra:\n  recipe-maintainers:\n    - kabicm\n    - ltalirz\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "libgomp",
    "llvm-openmp",
+   "make",
    "mpich",
    "openmpi",
-   "pkgconfig",
+   "pkg-config",
    "scalapack"
   ]
  },
@@ -641,13 +688,17 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "make",
+    "pkg-config"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "libgomp",
@@ -655,13 +706,13 @@
     "mpich",
     "openmp",
     "openmpi",
-    "pkgconfig",
     "scalapack"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "mpich",
@@ -680,8 +731,11 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "make",
+    "pkg-config"
    ]
   },
   "host": {
@@ -691,7 +745,6 @@
     "llvm-openmp",
     "mpich",
     "openmpi",
-    "pkgconfig",
     "scalapack"
    ]
   },
