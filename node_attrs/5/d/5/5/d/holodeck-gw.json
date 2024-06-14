@@ -21,7 +21,7 @@
    "summary": "holodeck: Massive black hole (MBH) binary simulator for pulsar timing array signals."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -35,7 +35,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -67,8 +68,7 @@
     "mpi4py",
     "sympy",
     "healpy",
-    "hasasia",
-    "numpy"
+    "hasasia"
    ]
   },
   "source": {
@@ -88,7 +88,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -120,7 +121,6 @@
     "matplotlib-base",
     "mpi4py",
     "numba",
-    "numpy",
     "psutil",
     "pydoe",
     "python",
@@ -145,7 +145,7 @@
    "summary": "holodeck: Massive black hole (MBH) binary simulator for pulsar timing array signals."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -159,7 +159,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -191,8 +192,7 @@
     "mpi4py",
     "sympy",
     "healpy",
-    "hasasia",
-    "numpy"
+    "hasasia"
    ]
   },
   "source": {
@@ -217,7 +217,7 @@
    "summary": "holodeck: Massive black hole (MBH) binary simulator for pulsar timing array signals."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -231,7 +231,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -263,8 +264,7 @@
     "mpi4py",
     "sympy",
     "healpy",
-    "hasasia",
-    "numpy"
+    "hasasia"
    ]
   },
   "source": {
@@ -284,7 +284,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -316,7 +317,6 @@
     "matplotlib-base",
     "mpi4py",
     "numba",
-    "numpy",
     "psutil",
     "pydoe",
     "python",
@@ -347,12 +347,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/holodeck-gw.json"
  },
- "raw_meta_yaml": "{% set name = \"holodeck-gw\" %}\n{% set version = \"1.5.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/holodeck-gw-{{ version }}.tar.gz\n  sha256: bdffc3772361d6e7930b9de75e9b7233c83f309a6a2fc4cbd7770f9b08b08c62\n\nbuild:\n  skip: true  # [py<39 or win]\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n  host:\n    - python\n    - setuptools >=40.6.0\n    - wheel\n    - cython <3.0.0\n    - numpy <2.0.0\n    - scipy\n    - numba\n    - pip\n    - mpi4py\n  run:\n    - python\n    - kalepy\n    - astropy\n    - cosmopy\n    - h5py\n    - matplotlib-base\n    - scipy\n    - pydoe\n    - psutil\n    - ipywidgets\n    - tqdm\n    - schwimmbad\n    - emcee\n    - george\n    - numba\n    - mpi4py\n    - sympy\n    - healpy\n    - hasasia\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - holodeck\n  requires:\n    - openssh  # [unix]\n\nabout:\n  home: https://github.com/NANOGrav/holodeck/\n  summary: 'holodeck: Massive black hole (MBH) binary simulator for pulsar timing array signals.'\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - davecwright3\n",
+ "raw_meta_yaml": "{% set name = \"holodeck-gw\" %}\n{% set version = \"1.5.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/holodeck-gw-{{ version }}.tar.gz\n  sha256: bdffc3772361d6e7930b9de75e9b7233c83f309a6a2fc4cbd7770f9b08b08c62\n\nbuild:\n  skip: true  # [py<39 or win]\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - setuptools >=40.6.0\n    - wheel\n    - cython <3.0.0\n    - numpy <2.0.0\n    - scipy\n    - numba\n    - pip\n    - mpi4py\n  run:\n    - python\n    - kalepy\n    - astropy\n    - cosmopy\n    - h5py\n    - matplotlib-base\n    - scipy\n    - pydoe\n    - psutil\n    - ipywidgets\n    - tqdm\n    - schwimmbad\n    - emcee\n    - george\n    - numba\n    - mpi4py\n    - sympy\n    - healpy\n    - hasasia\n\ntest:\n  imports:\n    - holodeck\n  requires:\n    - openssh  # [unix]\n\nabout:\n  home: https://github.com/NANOGrav/holodeck/\n  summary: 'holodeck: Massive black hole (MBH) binary simulator for pulsar timing array signals.'\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - davecwright3\n",
  "req": {
   "__set__": true,
   "elements": [
    "astropy",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cosmopy",
    "cython",
    "emcee",
@@ -382,13 +383,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "mpi4py",
     "numba",
@@ -405,6 +408,7 @@
    "elements": [
     "astropy",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cosmopy",
     "emcee",
     "george",
@@ -416,7 +420,6 @@
     "matplotlib-base",
     "mpi4py",
     "numba",
-    "numpy",
     "psutil",
     "pydoe",
     "python",
@@ -438,7 +441,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -470,7 +474,6 @@
     "matplotlib-base",
     "mpi4py",
     "numba",
-    "numpy",
     "psutil",
     "pydoe",
     "python",
