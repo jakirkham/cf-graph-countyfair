@@ -23,7 +23,7 @@
    "summary": "Better PyPI interoperability for the conda ecosystem"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "set -x",
     "PYTHON -m pip install . --no-deps --no-build-isolation -vv",
@@ -110,7 +110,7 @@
    "summary": "Better PyPI interoperability for the conda ecosystem"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "set -x",
     "PYTHON -m pip install . --no-deps --no-build-isolation -vv",
@@ -170,7 +170,7 @@
    "summary": "Better PyPI interoperability for the conda ecosystem"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "set -x",
     "PYTHON -m pip install . --no-deps --no-build-isolation -vv",
@@ -262,7 +262,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/conda-pypi.json"
  },
- "raw_meta_yaml": "{% set name = \"conda-pypi\" %}\n{% set version = \"0.1.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/conda_pypi-{{ version }}.tar.gz\n  sha256: e8b923e3cbb7f2df83b73a65d272e268a72dea92381236092fa9c776f616715c\n\nbuild:\n  skip: true  # [py<38]\n  # can't be noarch because we can't place EXTERNALLY-MANAGED in stdlib (first level is site-packages)\n  number: 0\n  script:\n    - set -x  # [unix]\n    - \"@ECHO ON\"  # [win]\n    - {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv\n    - {{ PYTHON }} -c \"from conda_pypi.python_paths import ensure_externally_managed; ensure_externally_managed()\"\n\nrequirements:\n  host:\n    - python\n    - pip\n    - hatchling >=1.12.2\n    - hatch-vcs >=0.2.0\n    - importlib_resources  # [py<39]\n  run:\n    - python\n    - conda >=23.9.0\n    - pip >=23.0.1\n    - grayskull\n    - importlib_resources  # [py<39]\n    - packaging\n\ntest:\n  imports:\n    - conda_pypi\n    - conda_pypi.main\n  commands:\n    - conda pip --help\n    - python -c \"from conda_pypi.python_paths import get_env_stdlib; assert (get_env_stdlib() / 'EXTERNALLY-MANAGED').exists()\"\n    - pip install requests && exit 1 || exit 0\n\nabout:\n  home: https://github.com/conda-incubator/conda-pypi\n  license: MIT\n  license_file: LICENSE\n  summary: Better PyPI interoperability for the conda ecosystem\n  dev_url: https://github.com/conda-incubator/conda-pypi\n  doc_url: https://conda-incubator.github.io/conda-pypi\n\nextra:\n  recipe-maintainers:\n    - jaimergp\n    - jezdez\n",
+ "raw_meta_yaml": "{% set name = \"conda-pypi\" %}\n{% set version = \"0.1.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/conda_pypi-{{ version }}.tar.gz\n  sha256: e8b923e3cbb7f2df83b73a65d272e268a72dea92381236092fa9c776f616715c\n\nbuild:\n  skip: true  # [py<38]\n  # can't be noarch because we can't place EXTERNALLY-MANAGED in stdlib (first level is site-packages)\n  number: 1\n  script:\n    - set -x  # [unix]\n    - \"@ECHO ON\"  # [win]\n    - {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv\n    - {{ PYTHON }} -c \"from conda_pypi.python_paths import ensure_externally_managed; ensure_externally_managed()\"\n\nrequirements:\n  host:\n    - python\n    - pip\n    - hatchling >=1.12.2\n    - hatch-vcs >=0.2.0\n    - importlib_resources  # [py<39]\n  run:\n    - python\n    - conda >=23.9.0\n    - pip >=23.0.1\n    - grayskull\n    - importlib_resources  # [py<39]\n    - packaging\n\ntest:\n  imports:\n    - conda_pypi\n    - conda_pypi.main\n  commands:\n    - conda pip --help\n    - python -c \"from conda_pypi.python_paths import get_env_stdlib; assert (get_env_stdlib() / 'EXTERNALLY-MANAGED').exists()\"\n    - pip install requests && exit 1 || exit 0\n\nabout:\n  home: https://github.com/conda-incubator/conda-pypi\n  license: MIT\n  license_file: LICENSE\n  summary: Better PyPI interoperability for the conda ecosystem\n  dev_url: https://github.com/conda-incubator/conda-pypi\n  doc_url: https://conda-incubator.github.io/conda-pypi\n\nextra:\n  recipe-maintainers:\n    - jaimergp\n    - jezdez\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -349,7 +349,7 @@
    "summary": "Better PyPI interoperability for the conda ecosystem"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "@ECHO ON",
     "PYTHON -m pip install . --no-deps --no-build-isolation -vv",
