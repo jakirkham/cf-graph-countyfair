@@ -34,7 +34,7 @@
    "summary": "3D Structural Finite Element Program"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -48,6 +48,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "perl"
@@ -79,6 +80,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "perl"
@@ -116,7 +118,7 @@
    "summary": "3D Structural Finite Element Program"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -130,6 +132,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "perl"
@@ -161,6 +164,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "perl"
@@ -198,7 +202,7 @@
    "summary": "3D Structural Finite Element Program"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -212,11 +216,13 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "perl",
     "llvm-openmp",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "m2-make"
    ],
@@ -260,7 +266,7 @@
    "summary": "3D Structural Finite Element Program"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -274,6 +280,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "perl",
@@ -310,6 +317,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "llvm-openmp",
     "make",
@@ -350,7 +358,7 @@
    "summary": "3D Structural Finite Element Program"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -364,6 +372,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "perl",
@@ -400,6 +409,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "llvm-openmp",
     "make",
@@ -445,18 +455,20 @@
  "pr_info": {
   "__lazy_json__": "pr_info/calculix.json"
  },
- "raw_meta_yaml": "{% set name = \"calculix\" %}\n{% set version = \"2.21\" %}\n{% set sha256 = \"52a20ef7216c6e2de75eae460539915640e3140ec4a2f631a9301e01eda605ad\" %}\n\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}_{{ version }}.tar.bz2\n  url: http://www.dhondt.de/ccx_{{ version }}.src.tar.bz2\n  sha256: {{ sha256 }}\n  patches:\n    # - patches/mingw.patch  # [win or osx]\n    # - patches/time.patch  # [win or osx]\n    - patches/mingw_time.patch  # [win or osx]\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}  # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ compiler(\"fortran\") }}  # [unix]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - m2-make   # [win]\n    - make      # [not win]\n    - perl\n    - llvm-openmp  # [osx]\n  host:\n    - libblas\n    - liblapack\n    - arpack\n    - spooles\n    - llvm-openmp  # [osx]\n  run:\n    - arpack\n    - llvm-openmp  # [osx]\n\ntest:\n  commands:\n    - test -f ${PREFIX}/bin/ccx  # [unix]\n    - test -f %LIBRARY_PREFIX%\\bin\\ccx.exe  # [win]\n\nabout:\n  home: http://www.dhondt.de/\n  license: GPL-2.0-or-later\n  license_family: GPL\n  license_file: {{ environ[\"RECIPE_DIR\"] }}/LICENSE\n  summary: 3D Structural Finite Element Program\n  description: A Free Software Three-Dimensional Structural Finite Element Program\n  doc_url: http://www.dhondt.de/ccx_{{ version }}.pdf\n  dev_url: http://www.dhondt.de/\n\nextra:\n  recipe-maintainers:\n    - looooo\n",
+ "raw_meta_yaml": "{% set name = \"calculix\" %}\n{% set version = \"2.21\" %}\n{% set sha256 = \"52a20ef7216c6e2de75eae460539915640e3140ec4a2f631a9301e01eda605ad\" %}\n\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}_{{ version }}.tar.bz2\n  url: http://www.dhondt.de/ccx_{{ version }}.src.tar.bz2\n  sha256: {{ sha256 }}\n  patches:\n    # - patches/mingw.patch  # [win or osx]\n    # - patches/time.patch  # [win or osx]\n    - patches/mingw_time.patch  # [win or osx]\n\nbuild:\n  number: 2\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}  # [unix]\n    - {{ stdlib(\"c\") }}    # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ stdlib(\"m2w64_c\") }}    # [win]\n    - {{ compiler(\"fortran\") }}  # [unix]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - m2-make   # [win]\n    - make      # [not win]\n    - perl\n    - llvm-openmp  # [osx]\n  host:\n    - libblas\n    - liblapack\n    - arpack\n    - spooles\n    - llvm-openmp  # [osx]\n  run:\n    - arpack\n    - llvm-openmp  # [osx]\n\ntest:\n  commands:\n    - test -f ${PREFIX}/bin/ccx  # [unix]\n    - test -f %LIBRARY_PREFIX%\\bin\\ccx.exe  # [win]\n\nabout:\n  home: http://www.dhondt.de/\n  license: GPL-2.0-or-later\n  license_family: GPL\n  license_file: {{ environ[\"RECIPE_DIR\"] }}/LICENSE\n  summary: 3D Structural Finite Element Program\n  description: A Free Software Three-Dimensional Structural Finite Element Program\n  doc_url: http://www.dhondt.de/ccx_{{ version }}.pdf\n  dev_url: http://www.dhondt.de/\n\nextra:\n  recipe-maintainers:\n    - looooo\n",
  "req": {
   "__set__": true,
   "elements": [
    "arpack",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "fortran_compiler_stub",
    "libblas",
    "liblapack",
    "llvm-openmp",
    "m2-make",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "perl",
@@ -468,10 +480,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "llvm-openmp",
     "m2-make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "perl"
@@ -482,6 +496,7 @@
    "elements": [
     "arpack",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "libblas",
     "liblapack",
@@ -495,6 +510,7 @@
    "elements": [
     "arpack",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "llvm-openmp",
     "openmp"
@@ -511,10 +527,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "llvm-openmp",
     "m2-make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "perl"
@@ -559,7 +577,7 @@
    "summary": "3D Structural Finite Element Program"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -573,6 +591,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "m2-make",
     "perl"
@@ -607,6 +626,7 @@
    "elements": [
     "m2-make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "perl"
    ]
