@@ -9,7 +9,12 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "default"
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "leiningen",
  "hash_type": "sha256",
@@ -26,7 +31,7 @@
   },
   "build": {
    "noarch": "generic",
-   "number": "0"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -107,7 +112,7 @@
   },
   "build": {
    "noarch": "generic",
-   "number": "0"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -165,7 +170,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/leiningen.json"
  },
- "raw_meta_yaml": "{% set name = \"leiningen\" %}\n{% set version = \"2.11.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/technomancy/leiningen/archive/refs/tags/{{ version }}.tar.gz\n    sha256: fe9ee17786be6c3cf4615688a2a82c173369657d84c1b2ffc00b7cd5fd7df1bc\n    folder: leiningen-src\n  - url: https://github.com/technomancy/leiningen/releases/download/{{ version }}/leiningen-{{ version }}-standalone.jar\n    sha256: 7d31ae23ae769e927438b0cd55d15a93e7dabab09fd4fc15877979161e108774\n    folder: leiningen-jar\n\nbuild:\n  noarch: generic\n  number: 0\n\nrequirements:\n  build:\n    - openjdk\n    - openssh  # [not win]\n    - maven\n  run:\n    - openjdk\n\ntest:\n  source_files:\n    - leiningen-src\n  commands:\n    - test -f ${PREFIX}/bin/lein  # [unix]\n    - test -f ${PREFIX}/lib/leiningen/libexec/leiningen-${PKG_VERSION}-standalone.jar  # [unix]\n\n    - if not exist %PREFIX%\\Scripts\\lein.bat exit /b 1  # [win]\n    - if not exist %PREFIX%\\etc\\conda\\activate.d\\lein-activate.bat exit /b 1  # [win]\n    - if not exist %PREFIX%\\lib\\leiningen\\libexec\\leiningen-%PKG_VERSION%-standalone.jar exit /b 1  # [win]\n\n    - cd leiningen-src && lein test leiningen.test.test\n\nabout:\n  home: https://codeberg.org/leiningen/leiningen\n  summary: 'Leiningen is for automating Clojure projects without setting your hair on fire.'\n  description: |\n    \"Leiningen!\" he shouted. \"You're insane! They're not creatures you can\n    fight\u2014they're an elemental\u2014an 'act of God!' Ten miles long, two miles\n    wide\u2014ants, nothing but ants! And every single one of them a fiend from hell...\"\n      from Leiningen Versus the Ants by Carl Stephenson\n  license: EPL-1.0\n  license_file:\n    - COPYING\n    - THIRD-PARTY.txt\n\nextra:\n  recipe-maintainers:\n    - MementoRC\n",
+ "raw_meta_yaml": "{% set name = \"leiningen\" %}\n{% set version = \"2.11.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/technomancy/leiningen/archive/refs/tags/{{ version }}.tar.gz\n    sha256: fe9ee17786be6c3cf4615688a2a82c173369657d84c1b2ffc00b7cd5fd7df1bc\n    folder: leiningen-src\n  - url: https://github.com/technomancy/leiningen/releases/download/{{ version }}/leiningen-{{ version }}-standalone.jar\n    sha256: 7d31ae23ae769e927438b0cd55d15a93e7dabab09fd4fc15877979161e108774\n    folder: leiningen-jar\n\nbuild:\n  noarch: generic\n  number: 2\n\nrequirements:\n  build:\n    - openjdk\n    - openssh  # [not win]\n    - maven\n  run:\n    - openjdk\n\ntest:\n  source_files:\n    - leiningen-src\n  commands:\n    - test -f ${PREFIX}/bin/lein  # [unix]\n    - test -f ${PREFIX}/lib/leiningen/libexec/leiningen-${PKG_VERSION}-standalone.jar  # [unix]\n\n    - if not exist %PREFIX%\\Scripts\\lein.bat exit /b 1  # [win]\n    - if not exist %PREFIX%\\etc\\conda\\activate.d\\lein-activate.bat exit /b 1  # [win]\n    - if not exist %PREFIX%\\lib\\leiningen\\libexec\\leiningen-%PKG_VERSION%-standalone.jar exit /b 1  # [win]\n\n    - cd leiningen-src && lein test leiningen.test.test\n\nabout:\n  home: https://codeberg.org/leiningen/leiningen\n  summary: 'Leiningen is for automating Clojure projects without setting your hair on fire.'\n  description: |\n    \"Leiningen!\" he shouted. \"You're insane! They're not creatures you can\n    fight\u2014they're an elemental\u2014an 'act of God!' Ten miles long, two miles\n    wide\u2014ants, nothing but ants! And every single one of them a fiend from hell...\"\n      from Leiningen Versus the Ants by Carl Stephenson\n  license: EPL-1.0\n  license_file:\n    - COPYING\n    - THIRD-PARTY.txt\n\nextra:\n  recipe-maintainers:\n    - MementoRC\n",
  "req": {
   "__set__": true,
   "elements": [
