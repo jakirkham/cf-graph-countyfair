@@ -60,15 +60,11 @@
     "name": "libzaber-motion",
     "requirements": {
      "build": [
-      "protoc-gen-go",
       "cgo_compiler_stub",
       "c_compiler_stub",
-      "cxx_compiler_stub",
-      "sysroot_linux-64 2.17"
+      "c_stdlib_stub"
      ],
-     "host": [
-      "libprotobuf"
-     ],
+     "host": [],
      "run": []
     },
     "script": "build_lib.sh",
@@ -88,75 +84,11 @@
      "host": [
       "python >=3.8",
       "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
+      "pdm-backend"
      ],
      "run": [
       "python >=3.8",
-      "protobuf",
-      "rx",
-      "libzaber-motion"
-     ]
-    },
-    "script": "build_python.sh",
-    "test": {
-     "commands": [
-      "pip check"
-     ],
-     "imports": [
-      "zaber_motion"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "libzaber-motion"
-     ]
-    },
-    "name": "libzaber-motion",
-    "requirements": {
-     "build": [
-      "protoc-gen-go",
-      "cgo_compiler_stub",
-      "c_compiler_stub",
-      "cxx_compiler_stub",
-      "sysroot_linux-64 2.17"
-     ],
-     "host": [
-      "libprotobuf"
-     ],
-     "run": []
-    },
-    "script": "build_lib.sh",
-    "test": {
-     "commands": [
-      "test -f ${PREFIX}/lib/zaber-motion-lib${SHLIB_EXT}"
-     ]
-    }
-   },
-   {
-    "build": {
-     "noarch": "python"
-    },
-    "name": "zaber-motion",
-    "requirements": {
-     "build": [],
-     "host": [
-      "python >=3.8",
-      "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
-     ],
-     "run": [
-      "python >=3.8",
-      "protobuf",
-      "rx",
+      "reactivex 4.0.*",
       "libzaber-motion"
      ]
     },
@@ -176,35 +108,39 @@
   ],
   "package": {
    "name": "zaber-motion-split",
-   "version": "5.2.0"
+   "version": "6.1.0"
   },
-  "source": {
-   "folder": "src/zaber-motion",
-   "patches": [
-    "no_bindings_install.patch"
-   ],
-   "sha256": "2e16b1356813ed724d208202a2175171ac60b044662e43099ea9e5997d8e646e",
-   "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v5.2.0/zaber-motion-lib-v5.2.0.tar.gz"
-  }
+  "source": [
+   {
+    "folder": "src/zaber-motion",
+    "patches": [
+     "no_bindings_install.patch",
+     "no_download_bindings.patch"
+    ],
+    "sha256": "30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb",
+    "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz"
+   },
+   {
+    "folder": "bson",
+    "sha256": "e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf",
+    "url": "https://github.com/zabertech/bson/archive/db11c31b2c1b69151648bb82150144f0b2003f29.tar.gz"
+   }
+  ]
  },
  "linux_64_requirements": {
   "build": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cgo_compiler_stub",
-    "cxx_compiler_stub",
-    "protoc-gen-go",
-    "sysroot_linux-64"
+    "c_stdlib_stub",
+    "cgo_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "libprotobuf",
-    "mypy-protobuf",
+    "pdm-backend",
     "pip",
-    "protobuf",
     "python"
    ]
   },
@@ -212,9 +148,8 @@
    "__set__": true,
    "elements": [
     "libzaber-motion",
-    "protobuf",
     "python",
-    "rx"
+    "reactivex"
    ]
   },
   "test": {
@@ -255,14 +190,11 @@
     "name": "libzaber-motion",
     "requirements": {
      "build": [
-      "protoc-gen-go",
       "cgo_compiler_stub",
       "c_compiler_stub",
-      "cxx_compiler_stub"
+      "c_stdlib_stub"
      ],
-     "host": [
-      "libprotobuf"
-     ],
+     "host": [],
      "run": []
     },
     "script": "build_lib.sh",
@@ -282,14 +214,11 @@
      "host": [
       "python >=3.8",
       "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
+      "pdm-backend"
      ],
      "run": [
       "python >=3.8",
-      "protobuf",
-      "rx",
+      "reactivex 4.0.*",
       "libzaber-motion"
      ]
     },
@@ -309,34 +238,39 @@
   ],
   "package": {
    "name": "zaber-motion-split",
-   "version": "5.2.0"
+   "version": "6.1.0"
   },
-  "source": {
-   "folder": "src/zaber-motion",
-   "patches": [
-    "no_bindings_install.patch"
-   ],
-   "sha256": "2e16b1356813ed724d208202a2175171ac60b044662e43099ea9e5997d8e646e",
-   "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v5.2.0/zaber-motion-lib-v5.2.0.tar.gz"
-  }
+  "source": [
+   {
+    "folder": "src/zaber-motion",
+    "patches": [
+     "no_bindings_install.patch",
+     "no_download_bindings.patch"
+    ],
+    "sha256": "30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb",
+    "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz"
+   },
+   {
+    "folder": "bson",
+    "sha256": "e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf",
+    "url": "https://github.com/zabertech/bson/archive/db11c31b2c1b69151648bb82150144f0b2003f29.tar.gz"
+   }
+  ]
  },
  "linux_aarch64_requirements": {
   "build": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cgo_compiler_stub",
-    "cxx_compiler_stub",
-    "protoc-gen-go"
+    "c_stdlib_stub",
+    "cgo_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "libprotobuf",
-    "mypy-protobuf",
+    "pdm-backend",
     "pip",
-    "protobuf",
     "python"
    ]
   },
@@ -344,9 +278,8 @@
    "__set__": true,
    "elements": [
     "libzaber-motion",
-    "protobuf",
     "python",
-    "rx"
+    "reactivex"
    ]
   },
   "test": {
@@ -387,14 +320,11 @@
     "name": "libzaber-motion",
     "requirements": {
      "build": [
-      "protoc-gen-go",
       "cgo_compiler_stub",
       "c_compiler_stub",
-      "cxx_compiler_stub"
+      "c_stdlib_stub"
      ],
-     "host": [
-      "libprotobuf"
-     ],
+     "host": [],
      "run": []
     },
     "script": "build_lib.sh",
@@ -414,14 +344,11 @@
      "host": [
       "python >=3.8",
       "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
+      "pdm-backend"
      ],
      "run": [
       "python >=3.8",
-      "protobuf",
-      "rx",
+      "reactivex 4.0.*",
       "libzaber-motion"
      ]
     },
@@ -441,34 +368,39 @@
   ],
   "package": {
    "name": "zaber-motion-split",
-   "version": "5.2.0"
+   "version": "6.1.0"
   },
-  "source": {
-   "folder": "src/zaber-motion",
-   "patches": [
-    "no_bindings_install.patch"
-   ],
-   "sha256": "2e16b1356813ed724d208202a2175171ac60b044662e43099ea9e5997d8e646e",
-   "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v5.2.0/zaber-motion-lib-v5.2.0.tar.gz"
-  }
+  "source": [
+   {
+    "folder": "src/zaber-motion",
+    "patches": [
+     "no_bindings_install.patch",
+     "no_download_bindings.patch"
+    ],
+    "sha256": "30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb",
+    "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz"
+   },
+   {
+    "folder": "bson",
+    "sha256": "e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf",
+    "url": "https://github.com/zabertech/bson/archive/db11c31b2c1b69151648bb82150144f0b2003f29.tar.gz"
+   }
+  ]
  },
  "linux_ppc64le_requirements": {
   "build": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cgo_compiler_stub",
-    "cxx_compiler_stub",
-    "protoc-gen-go"
+    "c_stdlib_stub",
+    "cgo_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "libprotobuf",
-    "mypy-protobuf",
+    "pdm-backend",
     "pip",
-    "protobuf",
     "python"
    ]
   },
@@ -476,9 +408,8 @@
    "__set__": true,
    "elements": [
     "libzaber-motion",
-    "protobuf",
     "python",
-    "rx"
+    "reactivex"
    ]
   },
   "test": {
@@ -519,15 +450,11 @@
     "name": "libzaber-motion",
     "requirements": {
      "build": [
-      "protoc-gen-go",
       "cgo_compiler_stub",
       "c_compiler_stub",
-      "cxx_compiler_stub",
-      "sysroot_linux-64 2.17"
+      "c_stdlib_stub"
      ],
-     "host": [
-      "libprotobuf"
-     ],
+     "host": [],
      "run": []
     },
     "script": "build_lib.sh",
@@ -547,14 +474,11 @@
      "host": [
       "python >=3.8",
       "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
+      "pdm-backend"
      ],
      "run": [
       "python >=3.8",
-      "protobuf",
-      "rx",
+      "reactivex 4.0.*",
       "libzaber-motion"
      ]
     },
@@ -580,15 +504,11 @@
     "name": "libzaber-motion",
     "requirements": {
      "build": [
-      "protoc-gen-go",
       "cgo_compiler_stub",
       "c_compiler_stub",
-      "cxx_compiler_stub",
-      "sysroot_linux-64 2.17"
+      "c_stdlib_stub"
      ],
-     "host": [
-      "libprotobuf"
-     ],
+     "host": [],
      "run": []
     },
     "script": "build_lib.sh",
@@ -608,14 +528,11 @@
      "host": [
       "python >=3.8",
       "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
+      "pdm-backend"
      ],
      "run": [
       "python >=3.8",
-      "protobuf",
-      "rx",
+      "reactivex 4.0.*",
       "libzaber-motion"
      ]
     },
@@ -641,14 +558,11 @@
     "name": "libzaber-motion",
     "requirements": {
      "build": [
-      "protoc-gen-go",
       "cgo_compiler_stub",
       "c_compiler_stub",
-      "cxx_compiler_stub"
+      "c_stdlib_stub"
      ],
-     "host": [
-      "libprotobuf"
-     ],
+     "host": [],
      "run": []
     },
     "script": "build_lib.sh",
@@ -668,14 +582,11 @@
      "host": [
       "python >=3.8",
       "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
+      "pdm-backend"
      ],
      "run": [
       "python >=3.8",
-      "protobuf",
-      "rx",
+      "reactivex 4.0.*",
       "libzaber-motion"
      ]
     },
@@ -701,14 +612,11 @@
     "name": "libzaber-motion",
     "requirements": {
      "build": [
-      "protoc-gen-go",
       "cgo_compiler_stub",
       "c_compiler_stub",
-      "cxx_compiler_stub"
+      "c_stdlib_stub"
      ],
-     "host": [
-      "libprotobuf"
-     ],
+     "host": [],
      "run": []
     },
     "script": "build_lib.sh",
@@ -728,14 +636,11 @@
      "host": [
       "python >=3.8",
       "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
+      "pdm-backend"
      ],
      "run": [
       "python >=3.8",
-      "protobuf",
-      "rx",
+      "reactivex 4.0.*",
       "libzaber-motion"
      ]
     },
@@ -761,76 +666,11 @@
     "name": "libzaber-motion",
     "requirements": {
      "build": [
-      "protoc-gen-go",
       "cgo_compiler_stub",
       "c_compiler_stub",
-      "cxx_compiler_stub"
+      "c_stdlib_stub"
      ],
-     "host": [
-      "libprotobuf"
-     ],
-     "run": [
-      "__osx >=10.14"
-     ]
-    },
-    "script": "build_lib.sh",
-    "test": {
-     "commands": [
-      "test -f ${PREFIX}/lib/zaber-motion-lib${SHLIB_EXT}"
-     ]
-    }
-   },
-   {
-    "build": {
-     "noarch": "python"
-    },
-    "name": "zaber-motion",
-    "requirements": {
-     "build": [],
-     "host": [
-      "python >=3.8",
-      "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
-     ],
-     "run": [
-      "python >=3.8",
-      "protobuf",
-      "rx",
-      "libzaber-motion"
-     ]
-    },
-    "script": "build_python.sh",
-    "test": {
-     "commands": [
-      "pip check"
-     ],
-     "imports": [
-      "zaber_motion"
-     ],
-     "requires": [
-      "pip"
-     ]
-    }
-   },
-   {
-    "build": {
-     "run_exports": [
-      "libzaber-motion"
-     ]
-    },
-    "name": "libzaber-motion",
-    "requirements": {
-     "build": [
-      "protoc-gen-go",
-      "cgo_compiler_stub",
-      "c_compiler_stub",
-      "cxx_compiler_stub"
-     ],
-     "host": [
-      "libprotobuf"
-     ],
+     "host": [],
      "run": []
     },
     "script": "build_lib.sh",
@@ -850,14 +690,11 @@
      "host": [
       "python >=3.8",
       "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
+      "pdm-backend"
      ],
      "run": [
       "python >=3.8",
-      "protobuf",
-      "rx",
+      "reactivex 4.0.*",
       "libzaber-motion"
      ]
     },
@@ -883,14 +720,11 @@
     "name": "libzaber-motion",
     "requirements": {
      "build": [
-      "protoc-gen-go",
       "cgo_compiler_stub",
       "m2w64_c_compiler_stub",
-      "m2w64_cxx_compiler_stub"
+      "m2w64_c_stdlib_stub"
      ],
-     "host": [
-      "libprotobuf"
-     ],
+     "host": [],
      "run": []
     },
     "script": "bld_lib.bat",
@@ -908,14 +742,11 @@
      "host": [
       "python >=3.8",
       "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
+      "pdm-backend"
      ],
      "run": [
       "python >=3.8",
-      "protobuf",
-      "rx",
+      "reactivex 4.0.*",
       "libzaber-motion"
      ]
     },
@@ -935,16 +766,94 @@
   ],
   "package": {
    "name": "zaber-motion-split",
-   "version": "5.2.0"
+   "version": "6.1.0"
   },
-  "source": {
-   "folder": "src/zaber-motion",
-   "patches": [
-    "no_bindings_install.patch"
-   ],
-   "sha256": "2e16b1356813ed724d208202a2175171ac60b044662e43099ea9e5997d8e646e",
-   "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v5.2.0/zaber-motion-lib-v5.2.0.tar.gz"
-  }
+  "source": [
+   {
+    "folder": "src/zaber-motion",
+    "patches": [
+     "no_bindings_install.patch",
+     "no_download_bindings.patch"
+    ],
+    "sha256": "30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb",
+    "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz"
+   },
+   {
+    "folder": "bson",
+    "sha256": "e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf",
+    "url": "https://github.com/zabertech/bson/archive/db11c31b2c1b69151648bb82150144f0b2003f29.tar.gz"
+   },
+   {
+    "folder": "src/zaber-motion",
+    "patches": [
+     "no_bindings_install.patch",
+     "no_download_bindings.patch"
+    ],
+    "sha256": "30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb",
+    "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz"
+   },
+   {
+    "folder": "bson",
+    "sha256": "e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf",
+    "url": "https://github.com/zabertech/bson/archive/db11c31b2c1b69151648bb82150144f0b2003f29.tar.gz"
+   },
+   {
+    "folder": "src/zaber-motion",
+    "patches": [
+     "no_bindings_install.patch",
+     "no_download_bindings.patch"
+    ],
+    "sha256": "30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb",
+    "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz"
+   },
+   {
+    "folder": "bson",
+    "sha256": "e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf",
+    "url": "https://github.com/zabertech/bson/archive/db11c31b2c1b69151648bb82150144f0b2003f29.tar.gz"
+   },
+   {
+    "folder": "src/zaber-motion",
+    "patches": [
+     "no_bindings_install.patch",
+     "no_download_bindings.patch"
+    ],
+    "sha256": "30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb",
+    "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz"
+   },
+   {
+    "folder": "bson",
+    "sha256": "e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf",
+    "url": "https://github.com/zabertech/bson/archive/db11c31b2c1b69151648bb82150144f0b2003f29.tar.gz"
+   },
+   {
+    "folder": "src/zaber-motion",
+    "patches": [
+     "no_bindings_install.patch",
+     "no_download_bindings.patch"
+    ],
+    "sha256": "30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb",
+    "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz"
+   },
+   {
+    "folder": "bson",
+    "sha256": "e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf",
+    "url": "https://github.com/zabertech/bson/archive/db11c31b2c1b69151648bb82150144f0b2003f29.tar.gz"
+   },
+   {
+    "folder": "src/zaber-motion",
+    "patches": [
+     "no_bindings_install.patch",
+     "no_download_bindings.patch"
+    ],
+    "sha256": "30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb",
+    "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz"
+   },
+   {
+    "folder": "bson",
+    "sha256": "e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf",
+    "url": "https://github.com/zabertech/bson/archive/db11c31b2c1b69151648bb82150144f0b2003f29.tar.gz"
+   }
+  ]
  },
  "name": "zaber-motion-split",
  "osx_64_meta_yaml": {
@@ -978,17 +887,12 @@
     "name": "libzaber-motion",
     "requirements": {
      "build": [
-      "protoc-gen-go",
       "cgo_compiler_stub",
       "c_compiler_stub",
-      "cxx_compiler_stub"
+      "c_stdlib_stub"
      ],
-     "host": [
-      "libprotobuf"
-     ],
-     "run": [
-      "__osx >=10.14"
-     ]
+     "host": [],
+     "run": []
     },
     "script": "build_lib.sh",
     "test": {
@@ -1007,14 +911,11 @@
      "host": [
       "python >=3.8",
       "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
+      "pdm-backend"
      ],
      "run": [
       "python >=3.8",
-      "protobuf",
-      "rx",
+      "reactivex 4.0.*",
       "libzaber-motion"
      ]
     },
@@ -1034,45 +935,48 @@
   ],
   "package": {
    "name": "zaber-motion-split",
-   "version": "5.2.0"
+   "version": "6.1.0"
   },
-  "source": {
-   "folder": "src/zaber-motion",
-   "patches": [
-    "no_bindings_install.patch"
-   ],
-   "sha256": "2e16b1356813ed724d208202a2175171ac60b044662e43099ea9e5997d8e646e",
-   "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v5.2.0/zaber-motion-lib-v5.2.0.tar.gz"
-  }
+  "source": [
+   {
+    "folder": "src/zaber-motion",
+    "patches": [
+     "no_bindings_install.patch",
+     "no_download_bindings.patch"
+    ],
+    "sha256": "30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb",
+    "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz"
+   },
+   {
+    "folder": "bson",
+    "sha256": "e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf",
+    "url": "https://github.com/zabertech/bson/archive/db11c31b2c1b69151648bb82150144f0b2003f29.tar.gz"
+   }
+  ]
  },
  "osx_64_requirements": {
   "build": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cgo_compiler_stub",
-    "cxx_compiler_stub",
-    "protoc-gen-go"
+    "c_stdlib_stub",
+    "cgo_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "libprotobuf",
-    "mypy-protobuf",
+    "pdm-backend",
     "pip",
-    "protobuf",
     "python"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "libzaber-motion",
-    "protobuf",
     "python",
-    "rx"
+    "reactivex"
    ]
   },
   "test": {
@@ -1113,14 +1017,11 @@
     "name": "libzaber-motion",
     "requirements": {
      "build": [
-      "protoc-gen-go",
       "cgo_compiler_stub",
       "c_compiler_stub",
-      "cxx_compiler_stub"
+      "c_stdlib_stub"
      ],
-     "host": [
-      "libprotobuf"
-     ],
+     "host": [],
      "run": []
     },
     "script": "build_lib.sh",
@@ -1140,14 +1041,11 @@
      "host": [
       "python >=3.8",
       "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
+      "pdm-backend"
      ],
      "run": [
       "python >=3.8",
-      "protobuf",
-      "rx",
+      "reactivex 4.0.*",
       "libzaber-motion"
      ]
     },
@@ -1167,34 +1065,39 @@
   ],
   "package": {
    "name": "zaber-motion-split",
-   "version": "5.2.0"
+   "version": "6.1.0"
   },
-  "source": {
-   "folder": "src/zaber-motion",
-   "patches": [
-    "no_bindings_install.patch"
-   ],
-   "sha256": "2e16b1356813ed724d208202a2175171ac60b044662e43099ea9e5997d8e646e",
-   "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v5.2.0/zaber-motion-lib-v5.2.0.tar.gz"
-  }
+  "source": [
+   {
+    "folder": "src/zaber-motion",
+    "patches": [
+     "no_bindings_install.patch",
+     "no_download_bindings.patch"
+    ],
+    "sha256": "30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb",
+    "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz"
+   },
+   {
+    "folder": "bson",
+    "sha256": "e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf",
+    "url": "https://github.com/zabertech/bson/archive/db11c31b2c1b69151648bb82150144f0b2003f29.tar.gz"
+   }
+  ]
  },
  "osx_arm64_requirements": {
   "build": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cgo_compiler_stub",
-    "cxx_compiler_stub",
-    "protoc-gen-go"
+    "c_stdlib_stub",
+    "cgo_compiler_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "libprotobuf",
-    "mypy-protobuf",
+    "pdm-backend",
     "pip",
-    "protobuf",
     "python"
    ]
   },
@@ -1202,9 +1105,8 @@
    "__set__": true,
    "elements": [
     "libzaber-motion",
-    "protobuf",
     "python",
-    "rx"
+    "reactivex"
    ]
   },
   "test": {
@@ -1233,25 +1135,20 @@
  "pr_info": {
   "__lazy_json__": "pr_info/zaber-motion.json"
  },
- "raw_meta_yaml": "{% set version = \"5.2.0\" %}\n\npackage:\n  name: zaber-motion-split\n  version: {{ version }}\n\nsource:\n  url: https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v{{ version }}/zaber-motion-lib-v{{ version }}.tar.gz\n  sha256: 2e16b1356813ed724d208202a2175171ac60b044662e43099ea9e5997d8e646e\n  folder: src/zaber-motion\n  patches:\n    - no_bindings_install.patch\n\nbuild:\n  number: 0\n\noutputs:\n  - name: libzaber-motion\n    script: build_lib.sh  # [unix]\n    script: bld_lib.bat  # [win]\n    build:\n      run_exports:\n        - {{ pin_subpackage('libzaber-motion', 'x.x') }}\n\n    requirements:\n      build:\n        - protoc-gen-go\n        - {{ compiler('cgo') }}\n        - {{ compiler('m2w64_c') }}    # [win]\n        - {{ compiler('m2w64_cxx') }}  # [win]\n        - {{ compiler('c') }}          # [not win]\n        - {{ compiler('cxx') }}        # [not win]\n        - sysroot_linux-64 2.17        # [linux64]\n        - libprotobuf                  # [build_platform != target_platform]\n      host:\n        - libprotobuf\n      run:\n        - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/zaber-motion-lib${SHLIB_EXT}  # [unix]\n\n  - name: zaber-motion\n    script: build_python.sh  # [unix]\n    script: bld_python.bat  # [win]\n    build:\n      noarch: python\n\n    requirements:\n      build:\n        - python                                 # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n        - libprotobuf                            # [build_platform != target_platform]\n      host:\n        - python >=3.8\n        - pip\n        - libprotobuf\n        - protobuf\n        - mypy-protobuf\n      run:\n        - python >=3.8\n        - protobuf\n        - rx\n        - {{ pin_subpackage('libzaber-motion', exact=True) }}\n\n    test:\n      requires:\n        - pip\n      commands:\n        - pip check\n      imports:\n        - zaber_motion\n\nabout:\n  home: https://gitlab.com/zaber-core-libs/zaber-motion-lib\n  license: MIT\n  license_family: MIT\n  license_file:\n    - src/zaber-motion/LICENSE\n    - LICENSE_GO_MODULES\n  summary: A Python library used to operate Zaber devices.\n  doc_url: https://www.zaber.com/software/docs/motion-library/\n  dev_url: https://gitlab.com/zaber-core-libs/zaber-motion-lib\n\nextra:\n  recipe-maintainers:\n    - hmaarrfk\n",
+ "raw_meta_yaml": "{% set version = \"6.1.0\" %}\n{% set zaber_bson_commit = \"db11c31b2c1b69151648bb82150144f0b2003f29\" %}\n\npackage:\n  name: zaber-motion-split\n  version: {{ version }}\n\nsource:\n  - url: https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v{{ version }}/zaber-motion-lib-v{{ version }}.tar.gz\n    sha256: 30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb\n    folder: src/zaber-motion\n    patches:\n      - no_bindings_install.patch\n      - no_download_bindings.patch\n  # url to the github archive at a particular commit\n  - url: https://github.com/zabertech/bson/archive/{{ zaber_bson_commit }}.tar.gz\n    sha256: e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf\n    folder: bson\n\nbuild:\n  number: 0\n\noutputs:\n  - name: libzaber-motion\n    script: build_lib.sh  # [unix]\n    script: bld_lib.bat  # [win]\n    build:\n      run_exports:\n        - {{ pin_subpackage('libzaber-motion', 'x.x') }}\n\n    requirements:\n      build:\n        - {{ compiler('cgo') }}\n        - {{ compiler('m2w64_c') }}    # [win]\n        - {{ stdlib('m2w64_c') }}      # [win]\n        - {{ compiler('c') }}          # [not win]\n        - {{ stdlib('c') }}            # [not win]\n      host:\n      run:\n\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/zaber-motion-lib${SHLIB_EXT}  # [unix]\n\n  - name: zaber-motion\n    script: build_python.sh  # [unix]\n    script: bld_python.bat  # [win]\n    build:\n      noarch: python\n\n    requirements:\n      build:\n        - python                                 # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n      host:\n        - python >=3.8\n        - pip\n        # For bson installation\n        - pdm-backend\n      run:\n        - python >=3.8\n        # https://gitlab.com/ZaberTech/zaber-motion-lib/-/blob/master/py/pyproject.toml?ref_type=heads#L13\n        # But lets loosen thing just a tiny bit\n        - reactivex 4.0.*\n        - {{ pin_subpackage('libzaber-motion', exact=True) }}\n\n    test:\n      requires:\n        - pip\n      commands:\n        - pip check\n      imports:\n        - zaber_motion\n\nabout:\n  home: https://gitlab.com/zaber-core-libs/zaber-motion-lib\n  license: MIT\n  license_family: MIT\n  license_file:\n    - src/zaber-motion/LICENSE\n    - LICENSE_GO_MODULES\n  summary: A Python library used to operate Zaber devices.\n  doc_url: https://www.zaber.com/software/docs/motion-library/\n  dev_url: https://gitlab.com/zaber-core-libs/zaber-motion-lib\n\nextra:\n  recipe-maintainers:\n    - hmaarrfk\n",
  "req": {
   "__set__": true,
   "elements": [
-   "__osx",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cgo_compiler_stub",
-   "cxx_compiler_stub",
-   "libprotobuf",
    "libzaber-motion",
    "m2w64_c_compiler_stub",
-   "m2w64_cxx_compiler_stub",
-   "mypy-protobuf",
+   "m2w64_c_stdlib_stub",
+   "pdm-backend",
    "pip",
-   "protobuf",
-   "protoc-gen-go",
    "python",
-   "rx",
-   "sysroot_linux-64"
+   "reactivex"
   ]
  },
  "requirements": {
@@ -1259,38 +1156,30 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cgo_compiler_stub",
-    "cxx_compiler_stub",
     "m2w64_c_compiler_stub",
-    "m2w64_cxx_compiler_stub",
-    "protoc-gen-go",
-    "sysroot_linux-64"
+    "m2w64_c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cxx_compiler_stub",
-    "libprotobuf",
-    "linux-sysroot",
-    "mypy-protobuf",
+    "c_stdlib_stub",
+    "pdm-backend",
     "pip",
-    "protobuf",
     "python"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "c_compiler_stub",
-    "cxx_compiler_stub",
+    "c_stdlib_stub",
     "libzaber-motion",
-    "linux-sysroot",
-    "protobuf",
     "python",
-    "rx"
+    "reactivex"
    ]
   },
   "test": {
@@ -1306,32 +1195,26 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cgo_compiler_stub",
-    "cxx_compiler_stub",
     "m2w64_c_compiler_stub",
-    "m2w64_cxx_compiler_stub",
-    "protoc-gen-go",
-    "sysroot_linux-64 2.17"
+    "m2w64_c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "libprotobuf",
-    "mypy-protobuf",
+    "pdm-backend",
     "pip",
-    "protobuf",
     "python >=3.8"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "__osx >=10.14",
     "libzaber-motion",
-    "protobuf",
     "python >=3.8",
-    "rx"
+    "reactivex 4.0.*"
    ]
   },
   "test": {
@@ -1341,8 +1224,8 @@
    ]
   }
  },
- "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v5.2.0/zaber-motion-lib-v5.2.0.tar.gz",
- "version": "5.2.0",
+ "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz",
+ "version": "6.1.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/zaber-motion.json"
  },
@@ -1377,14 +1260,11 @@
     "name": "libzaber-motion",
     "requirements": {
      "build": [
-      "protoc-gen-go",
       "cgo_compiler_stub",
       "m2w64_c_compiler_stub",
-      "m2w64_cxx_compiler_stub"
+      "m2w64_c_stdlib_stub"
      ],
-     "host": [
-      "libprotobuf"
-     ],
+     "host": [],
      "run": []
     },
     "script": "bld_lib.bat",
@@ -1402,14 +1282,11 @@
      "host": [
       "python >=3.8",
       "pip",
-      "libprotobuf",
-      "protobuf",
-      "mypy-protobuf"
+      "pdm-backend"
      ],
      "run": [
       "python >=3.8",
-      "protobuf",
-      "rx",
+      "reactivex 4.0.*",
       "libzaber-motion"
      ]
     },
@@ -1429,16 +1306,24 @@
   ],
   "package": {
    "name": "zaber-motion-split",
-   "version": "5.2.0"
+   "version": "6.1.0"
   },
-  "source": {
-   "folder": "src/zaber-motion",
-   "patches": [
-    "no_bindings_install.patch"
-   ],
-   "sha256": "2e16b1356813ed724d208202a2175171ac60b044662e43099ea9e5997d8e646e",
-   "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v5.2.0/zaber-motion-lib-v5.2.0.tar.gz"
-  }
+  "source": [
+   {
+    "folder": "src/zaber-motion",
+    "patches": [
+     "no_bindings_install.patch",
+     "no_download_bindings.patch"
+    ],
+    "sha256": "30ef7c055b2eb48c7208e37964b60d4b2fa2c8e468cb379f982e3870f7e9b1bb",
+    "url": "https://gitlab.com/zaber-core-libs/zaber-motion-lib/-/archive/v6.1.0/zaber-motion-lib-v6.1.0.tar.gz"
+   },
+   {
+    "folder": "bson",
+    "sha256": "e97301964ea85bb1dfed6872287e83c8de58730bd2c1393105f73a3875c960bf",
+    "url": "https://github.com/zabertech/bson/archive/db11c31b2c1b69151648bb82150144f0b2003f29.tar.gz"
+   }
+  ]
  },
  "win_64_requirements": {
   "build": {
@@ -1446,17 +1331,14 @@
    "elements": [
     "cgo_compiler_stub",
     "m2w64_c_compiler_stub",
-    "m2w64_cxx_compiler_stub",
-    "protoc-gen-go"
+    "m2w64_c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "libprotobuf",
-    "mypy-protobuf",
+    "pdm-backend",
     "pip",
-    "protobuf",
     "python"
    ]
   },
@@ -1464,9 +1346,8 @@
    "__set__": true,
    "elements": [
     "libzaber-motion",
-    "protobuf",
     "python",
-    "rx"
+    "reactivex"
    ]
   },
   "test": {
