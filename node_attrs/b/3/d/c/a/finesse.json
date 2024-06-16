@@ -43,7 +43,7 @@
   },
   "package": {
    "name": "finesse",
-   "version": "3.0a23"
+   "version": "3.0a24"
   },
   "requirements": {
    "build": [
@@ -86,10 +86,11 @@
   },
   "source": {
    "patches": [
-    "ignore-scipy-checks.patch"
+    "ignore-scipy-checks.patch",
+    "test_setup_off.patch"
    ],
-   "sha256": "fb579986265005f61e0eb32f9d1aa02d18a237e6e1dec4114516e4d89819ea9c",
-   "url": "https://pypi.io/packages/source/f/finesse/finesse-3.0a23.tar.gz"
+   "sha256": "df0e5e9e09eb90b594645e01f0e0df2195d5229be87eb8df2fa1fb03b2ec70a7",
+   "url": "https://pypi.io/packages/source/f/finesse/finesse-3.0a24.tar.gz"
   },
   "test": {
    "commands": [
@@ -216,7 +217,7 @@
   },
   "package": {
    "name": "finesse",
-   "version": "3.0a23"
+   "version": "3.0a24"
   },
   "requirements": {
    "build": [
@@ -262,10 +263,11 @@
   },
   "source": {
    "patches": [
-    "ignore-scipy-checks.patch"
+    "ignore-scipy-checks.patch",
+    "test_setup_off.patch"
    ],
-   "sha256": "fb579986265005f61e0eb32f9d1aa02d18a237e6e1dec4114516e4d89819ea9c",
-   "url": "https://pypi.io/packages/source/f/finesse/finesse-3.0a23.tar.gz"
+   "sha256": "df0e5e9e09eb90b594645e01f0e0df2195d5229be87eb8df2fa1fb03b2ec70a7",
+   "url": "https://pypi.io/packages/source/f/finesse/finesse-3.0a24.tar.gz"
   },
   "test": {
    "commands": [
@@ -328,7 +330,7 @@
   },
   "package": {
    "name": "finesse",
-   "version": "3.0a23"
+   "version": "3.0a24"
   },
   "requirements": {
    "build": [
@@ -371,10 +373,11 @@
   },
   "source": {
    "patches": [
-    "ignore-scipy-checks.patch"
+    "ignore-scipy-checks.patch",
+    "test_setup_off.patch"
    ],
-   "sha256": "fb579986265005f61e0eb32f9d1aa02d18a237e6e1dec4114516e4d89819ea9c",
-   "url": "https://pypi.io/packages/source/f/finesse/finesse-3.0a23.tar.gz"
+   "sha256": "df0e5e9e09eb90b594645e01f0e0df2195d5229be87eb8df2fa1fb03b2ec70a7",
+   "url": "https://pypi.io/packages/source/f/finesse/finesse-3.0a24.tar.gz"
   },
   "test": {
    "commands": [
@@ -501,7 +504,7 @@
   },
   "package": {
    "name": "finesse",
-   "version": "3.0a23"
+   "version": "3.0a24"
   },
   "requirements": {
    "build": [
@@ -544,10 +547,11 @@
   },
   "source": {
    "patches": [
-    "ignore-scipy-checks.patch"
+    "ignore-scipy-checks.patch",
+    "test_setup_off.patch"
    ],
-   "sha256": "fb579986265005f61e0eb32f9d1aa02d18a237e6e1dec4114516e4d89819ea9c",
-   "url": "https://pypi.io/packages/source/f/finesse/finesse-3.0a23.tar.gz"
+   "sha256": "df0e5e9e09eb90b594645e01f0e0df2195d5229be87eb8df2fa1fb03b2ec70a7",
+   "url": "https://pypi.io/packages/source/f/finesse/finesse-3.0a24.tar.gz"
   },
   "test": {
    "commands": [
@@ -664,7 +668,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/finesse.json"
  },
- "raw_meta_yaml": "{% set name = \"finesse\" %}\n{% set version = \"3.0a23\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/finesse-{{ version }}.tar.gz\n  sha256: fb579986265005f61e0eb32f9d1aa02d18a237e6e1dec4114516e4d89819ea9c\n  patches:\n    # The scipy checks are causing issues when importing scipy during the installation\n    # procedure\n    - ignore-scipy-checks.patch\n    # need to stop more recent control packages being installed\n    # this will stop being an issue once the pinned numpy gets\n    # higher than 1.22 for control, why it's not a problem on\n    # unix/mac I don't know\n    - limit-control.patch  # [win and py<=310]\n    # Networkx 3.3 dropped support for python 3.9, removing this makes the windows build fail\n    - limit-networkx.patch  # [py<=39]\n    - limit-matplotlib310.patch  # [win and py==310]\n    - limit-matplotlib39.patch  # [win and py==39]\n\nbuild:\n  number: 0\n  skip: true  # [py<39]\n  entry_points:\n    - kat3 = finesse.__main__:cli\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - libgomp  # [linux]\n    - llvm-openmp  # [osx]\n    - cython >=0.29.36\n    # extras for cross-compiling\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - cython >=0.29.36                    # [build_platform != target_platform]\n    - numpy                               # [build_platform != target_platform]\n    - python                              # [build_platform != target_platform]\n  host:\n    - cython >=0.29.36\n    - libpython  # [win]\n    - numpy\n    - pip\n    - python\n    - scipy >=1.4\n    - setuptools\n    - setuptools-scm\n    - tqdm\n    - wheel\n    - suitesparse\n    - quantiphy\n  run:\n    - cython >=0.29.36\n    - click >=7.1\n    - click-default-group >=1.2.2\n    - control >0.9  # [not win]\n    - control >0.9  # [win and py>310]\n    - control <0.10.0  # [win and py<=310]\n    - deprecated >=1.2\n    - h5py >=3.0\n    - matplotlib-base >=3.5  # [not win]\n    # numpy version issues\n    - matplotlib-base >=3.5,<3.9  # [win]\n    - more-itertools >=8.7\n    - networkx >=2.4  # [py>39]\n    - networkx >=2.4,<3.3  # [py<=39] networkx 3.3 doesn't support 3.9 anymore\n    - {{ pin_compatible('numpy') }}\n    - pyspellchecker >=0.6\n    - python\n    - scipy >=1.4\n    - sly >=0.4\n    - sympy >=1.6\n    - tqdm\n    - quantiphy\n#    - blockdiag >=3.0  # [py<311] this filter should be removed when https://github.com/conda-forge/funcparserlib-feedstock/pull/13 has been resolved\n#    - pillow <10.0 # blockdiag issues: site-packages/blockdiag/imagedraw/png.py:282: DeprecationWarning: getsize is deprecated and will be removed in Pillow 10 (2023-07-01). Use getbbox or getlength instead.\n\ntest:\n  requires:\n    - pytest\n    - pytest-benchmark\n    - faker\n    - hypothesis\n    - docutils\n    - black\n    - autoflake\n    - isort\n    - jupyter-sphinx >= 0.4\n    - pyyaml\n    - pip\n    - psutil\n  source_files:\n    - tests/\n    - scripts/\n    - environment.yml\n    - environment-win.yml\n    - pyproject.toml\n  imports:\n    - finesse\n    - finesse.analysis\n  commands:\n    # check requirements\n    - python -m pip check\n    # check entry points\n    - kat3 --help\n    # Skipping still runs test_benchmark_creation which fails on linux \n    - rm -rf tests/benchmarks \n    # run unit tests\n    - python -m pytest tests --import-mode=importlib --benchmark-skip\n\nabout:\n  home: https://www.gwoptics.org/finesse\n  dev_url: https://git.ligo.org/finesse/finesse3.git\n  doc_url: https://finesse.docs.ligo.org/finesse3/\n  license: GPL-3.0-or-later\n  license_file: LICENSE.md\n  summary: A simulation tool for modelling laser interferometers\n  description: |\n    Finesse 3 is a Python based interferometer simulation software.\n\nextra:\n  recipe-maintainers:\n    - danielbrown2\n    - duncanmmacleod\n    - freise\n    - mironleon\n",
+ "raw_meta_yaml": "{% set name = \"finesse\" %}\n{% set version = \"3.0a24\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/finesse-{{ version }}.tar.gz\n  sha256: df0e5e9e09eb90b594645e01f0e0df2195d5229be87eb8df2fa1fb03b2ec70a7\n  patches:\n    # The scipy checks are causing issues when importing scipy during the installation\n    # procedure\n    - ignore-scipy-checks.patch\n    # need to stop more recent control packages being installed\n    # this will stop being an issue once the pinned numpy gets\n    # higher than 1.22 for control, why it's not a problem on\n    # unix/mac I don't know\n    - limit-control.patch  # [win and py<=310]\n    # Networkx 3.3 dropped support for python 3.9, removing this makes the windows build fail\n    - limit-networkx.patch  # [py<=39]\n    - limit-matplotlib310.patch  # [win and py==310]\n    - limit-matplotlib39.patch  # [win and py==39]\n    - test_setup_off.patch\n\nbuild:\n  number: 0\n  skip: true  # [py<39]\n  entry_points:\n    - kat3 = finesse.__main__:cli\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - libgomp  # [linux]\n    - llvm-openmp  # [osx]\n    - cython >=0.29.36\n    # extras for cross-compiling\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - cython >=0.29.36                    # [build_platform != target_platform]\n    - numpy                               # [build_platform != target_platform]\n    - python                              # [build_platform != target_platform]\n  host:\n    - cython >=0.29.36\n    - libpython  # [win]\n    - numpy\n    - pip\n    - python\n    - scipy >=1.4\n    - setuptools\n    - setuptools-scm\n    - tqdm\n    - wheel\n    - suitesparse\n    - quantiphy\n  run:\n    - cython >=0.29.36\n    - click >=7.1\n    - click-default-group >=1.2.2\n    - control >0.9  # [not win]\n    - control >0.9  # [win and py>310]\n    - control <0.10.0  # [win and py<=310]\n    - deprecated >=1.2\n    - h5py >=3.0\n    - matplotlib-base >=3.5  # [not win]\n    # numpy version issues\n    - matplotlib-base >=3.5,<3.9  # [win]\n    - more-itertools >=8.7\n    - networkx >=2.4  # [py>39]\n    - networkx >=2.4,<3.3  # [py<=39] networkx 3.3 doesn't support 3.9 anymore\n    - {{ pin_compatible('numpy') }}\n    - pyspellchecker >=0.6\n    - python\n    - scipy >=1.4\n    - sly >=0.4\n    - sympy >=1.6\n    - tqdm\n    - quantiphy\n#    - blockdiag >=3.0  # [py<311] this filter should be removed when https://github.com/conda-forge/funcparserlib-feedstock/pull/13 has been resolved\n#    - pillow <10.0 # blockdiag issues: site-packages/blockdiag/imagedraw/png.py:282: DeprecationWarning: getsize is deprecated and will be removed in Pillow 10 (2023-07-01). Use getbbox or getlength instead.\n\ntest:\n  requires:\n    - pytest\n    - pytest-benchmark\n    - faker\n    - hypothesis\n    - docutils\n    - black\n    - autoflake\n    - isort\n    - jupyter-sphinx >= 0.4\n    - pyyaml\n    - pip\n    - psutil\n  source_files:\n    - tests/\n    - scripts/\n    - environment.yml\n    - environment-win.yml\n    - pyproject.toml\n  imports:\n    - finesse\n    - finesse.analysis\n  commands:\n    # check requirements\n    - python -m pip check\n    # check entry points\n    - kat3 --help\n    # Skipping still runs test_benchmark_creation which fails on linux \n    - rm -rf tests/benchmarks \n    # run unit tests\n    - python -m pytest tests --import-mode=importlib --benchmark-skip\n\nabout:\n  home: https://www.gwoptics.org/finesse\n  dev_url: https://git.ligo.org/finesse/finesse3.git\n  doc_url: https://finesse.docs.ligo.org/finesse3/\n  license: GPL-3.0-or-later\n  license_file: LICENSE.md\n  summary: A simulation tool for modelling laser interferometers\n  description: |\n    Finesse 3 is a Python based interferometer simulation software.\n\nextra:\n  recipe-maintainers:\n    - danielbrown2\n    - duncanmmacleod\n    - freise\n    - mironleon\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -838,8 +842,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/f/finesse/finesse-3.0a23.tar.gz",
- "version": "3.0a23",
+ "url": "https://pypi.io/packages/source/f/finesse/finesse-3.0a24.tar.gz",
+ "version": "3.0a24",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/finesse.json"
  },
@@ -869,7 +873,7 @@
   },
   "package": {
    "name": "finesse",
-   "version": "3.0a23"
+   "version": "3.0a24"
   },
   "requirements": {
    "build": [
@@ -912,10 +916,11 @@
   },
   "source": {
    "patches": [
-    "ignore-scipy-checks.patch"
+    "ignore-scipy-checks.patch",
+    "test_setup_off.patch"
    ],
-   "sha256": "fb579986265005f61e0eb32f9d1aa02d18a237e6e1dec4114516e4d89819ea9c",
-   "url": "https://pypi.io/packages/source/f/finesse/finesse-3.0a23.tar.gz"
+   "sha256": "df0e5e9e09eb90b594645e01f0e0df2195d5229be87eb8df2fa1fb03b2ec70a7",
+   "url": "https://pypi.io/packages/source/f/finesse/finesse-3.0a24.tar.gz"
   },
   "test": {
    "commands": [
