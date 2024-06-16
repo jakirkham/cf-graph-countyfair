@@ -6,21 +6,28 @@ on:
       - not-a-branch
   pull_request: null
 
+env:
+  PY_COLORS: "1"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  bot:
-    name: check graph loads
+  tests-load-graph:
+    name: tests-load-graph
     runs-on: "ubuntu-latest"
     defaults:
       run:
         shell: bash -l {0}
-    steps:    
-      - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v4
         with:
           path: cf-graph
 
       - uses: conda-incubator/setup-miniconda@v2
         with:
-          python-version: 3.9
+          python-version: 3.11
           channels: conda-forge,defaults
           channel-priority: strict
           show-channel-urls: true
@@ -30,7 +37,7 @@ jobs:
 
       - name: install bot code
         run: |
-          mamba install -y -q pygithub requests git pytest
+          conda install -y -q pygithub requests git pytest
 
           git config --global user.name regro-cf-autotick-bot
           git config --global user.email 36490558+regro-cf-autotick-bot@users.noreply.github.com
@@ -44,7 +51,7 @@ jobs:
           git clone --depth=1 https://github.com/regro/cf-scripts.git
           pushd cf-scripts
           conda env update --file environment.yml
-          python -m pip install -e .
+          python -m pip install --no-deps --no-build-isolation -e .
           popd
 
           git clone --depth=1 https://github.com/conda-forge/conda-forge-pinning-feedstock.git
@@ -53,4 +60,55 @@ jobs:
         run: |
           pushd cf-graph
           pytest -vv test_load_graph.py
+          popd
+
+  tests-model:
+    name: tests-model
+    runs-on: "ubuntu-latest"
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: cf-graph
+
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: 3.11
+          channels: conda-forge,defaults
+          channel-priority: strict
+          show-channel-urls: true
+          miniforge-version: latest
+          miniforge-variant: Mambaforge
+          activate-environment: cf-scripts
+
+      - name: install bot code
+        run: |
+          conda install -y -q pygithub requests git pytest
+
+          git config --global user.name regro-cf-autotick-bot
+          git config --global user.email 36490558+regro-cf-autotick-bot@users.noreply.github.com
+          git config --global pull.rebase false
+
+          conda config --env --set add_pip_as_python_dependency False
+          conda info
+          conda config --show-sources
+          conda list --show-channel-urls
+
+          git clone --depth=1 https://github.com/regro/cf-scripts.git
+          pushd cf-scripts
+          conda env update --file environment.yml
+          python -m pip install --no-deps --no-build-isolation -e .
+          popd
+
+          git clone --depth=1 https://github.com/conda-forge/conda-forge-pinning-feedstock.git
+
+      - name: check graph model
+        continue-on-error: true
+        run: |
+          pushd cf-graph
+          pytest \
+            --durations 10 \
+            ../tests/model
           popd
