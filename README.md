@@ -10,16 +10,4 @@ Please open issues in [cf-scripts](https://github.com/regro/cf-scripts/issues).
 
 ## code snippets to test building the graph
 
-```python
-import logging
-
-from conda_forge_tick.make_graph import make_graph
-from conda_forge_tick.all_feedstocks import get_all_feedstocks
-from conda_forge_tick.utils import load_graph, setup_logger
-
-names = get_all_feedstocks(cached=True)[0:10]
-gx = load_graph()
-
-setup_logger(logging.getLogger("conda_forge_tick.make_graph"))
-make_graph(names, gx)
-```
+See the [notebook](https://github.com/regro/cf-graph-countyfair/blob/master/example.ipynb) for example code on how to load and interact with the graph.
