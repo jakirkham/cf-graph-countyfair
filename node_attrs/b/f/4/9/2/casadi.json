@@ -34,7 +34,7 @@
    "summary": "CasADi is a symbolic framework for numeric optimization"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/",
     "lib/casadi/"
@@ -76,8 +76,7 @@
     "ipopt"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -139,7 +138,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -158,7 +156,7 @@
    "summary": "CasADi is a symbolic framework for numeric optimization"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/",
     "lib/casadi/"
@@ -200,8 +198,7 @@
     "ipopt"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -263,7 +260,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -282,7 +278,7 @@
    "summary": "CasADi is a symbolic framework for numeric optimization"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/",
     "lib/casadi/"
@@ -324,8 +320,7 @@
     "ipopt"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -387,7 +382,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -406,7 +400,7 @@
    "summary": "CasADi is a symbolic framework for numeric optimization"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/",
     "lib/casadi/"
@@ -449,8 +443,7 @@
     "ipopt"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -491,7 +484,7 @@
    "summary": "CasADi is a symbolic framework for numeric optimization"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/",
     "lib/casadi/"
@@ -533,8 +526,7 @@
     "ipopt"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -595,7 +587,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -614,7 +605,7 @@
    "summary": "CasADi is a symbolic framework for numeric optimization"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/",
     "lib/casadi/"
@@ -656,8 +647,7 @@
     "ipopt"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -718,7 +708,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -747,7 +736,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/casadi.json"
  },
- "raw_meta_yaml": "{% set name = \"casadi\" %}\n{% set version = \"3.6.5\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ version }}.zip\n  url: https://github.com/casadi/casadi/releases/download/{{ version }}/casadi-source-v{{ version }}.zip\n  sha256: 358457f533de4be29da52817ac46392ca101d1dac0c587e40f893e46dc5c2b12\n  patches:\n    - patches/2965.patch\n    - patches/rtld_deepbind_null_environ_workaround.patch\n    - patches/0001-Modernize-Python-find_package.patch\n    - patches/0002-Export-difference-function.patch\n    - patches/0003-Bypass-CMake-crosscompiling-conda-forge-CI-issue.patch\n\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/\n    - lib/{{ name }}/\n  run_exports:\n    - {{ pin_subpackage('casadi', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - pkg-config\n    - cmake\n    - ninja\n    - swig\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}  # [not win]\n    - clang  # [win]\n  host:\n    - libblas\n    - libcblas\n    - python\n    - numpy\n    - libosqp\n    - proxsuite\n    - tinyxml2\n    - ipopt\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\n\ntest:\n  imports:\n    - casadi\n  files:\n    - ipopt_nl.py\n  commands: \n    - python ipopt_nl.py\n    # Regression test for https://github.com/conda-forge/casadi-feedstock/issues/93\n    - OMP_CANCELLATION=true OMP_PROC_BIND=true python ipopt_nl.py spral  # [linux]\n    - test $(pip list | grep casadi | tr -s \" \" | grep $PKG_VERSION | wc -l) -eq 1  # [unix]\n  requires:\n    - pip\n\nabout:\n  home: http://casadi.org\n  license: LGPL-3.0-or-later\n  license_file: LICENSE.txt\n  summary: CasADi is a symbolic framework for numeric optimization\n\nextra:\n  recipe-maintainers:\n    - traversaro\n    - pstjohn\n    - pariterre\n",
+ "raw_meta_yaml": "{% set name = \"casadi\" %}\n{% set version = \"3.6.5\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ version }}.zip\n  url: https://github.com/casadi/casadi/releases/download/{{ version }}/casadi-source-v{{ version }}.zip\n  sha256: 358457f533de4be29da52817ac46392ca101d1dac0c587e40f893e46dc5c2b12\n  patches:\n    - patches/2965.patch\n    - patches/rtld_deepbind_null_environ_workaround.patch\n    - patches/0001-Modernize-Python-find_package.patch\n    - patches/0002-Export-difference-function.patch\n    - patches/0003-Bypass-CMake-crosscompiling-conda-forge-CI-issue.patch\n\n\nbuild:\n  number: 4\n  rpaths:\n    - lib/\n    - lib/{{ name }}/\n  run_exports:\n    - {{ pin_subpackage('casadi', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - pkg-config\n    - cmake\n    - ninja\n    - swig\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}  # [not win]\n    - clang  # [win]\n  host:\n    - libblas\n    - libcblas\n    - python\n    - numpy\n    - libosqp\n    - proxsuite\n    - tinyxml2\n    - ipopt\n  run:\n    - python\n\n\ntest:\n  imports:\n    - casadi\n  files:\n    - ipopt_nl.py\n  commands: \n    - python ipopt_nl.py\n    # Regression test for https://github.com/conda-forge/casadi-feedstock/issues/93\n    - OMP_CANCELLATION=true OMP_PROC_BIND=true python ipopt_nl.py spral  # [linux]\n    - test $(pip list | grep casadi | tr -s \" \" | grep $PKG_VERSION | wc -l) -eq 1  # [unix]\n  requires:\n    - pip\n\nabout:\n  home: http://casadi.org\n  license: LGPL-3.0-or-later\n  license_file: LICENSE.txt\n  summary: CasADi is a symbolic framework for numeric optimization\n\nextra:\n  recipe-maintainers:\n    - traversaro\n    - pstjohn\n    - pariterre\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -809,7 +798,6 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
-    "numpy",
     "python"
    ]
   },
@@ -852,7 +840,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -876,7 +863,7 @@
    "summary": "CasADi is a symbolic framework for numeric optimization"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/",
     "lib/casadi/"
@@ -918,8 +905,7 @@
     "ipopt"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -979,7 +965,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
