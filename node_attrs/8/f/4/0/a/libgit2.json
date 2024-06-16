@@ -34,7 +34,7 @@
    "summary": "libgit2 is a portable, pure C implementation of the Git core methods provided as a re-entrant linkable library with a solid API, allowing you to write native speed custom Git applications in any language which supports C bindings."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "libgit2"
    ]
@@ -126,7 +126,7 @@
    "summary": "libgit2 is a portable, pure C implementation of the Git core methods provided as a re-entrant linkable library with a solid API, allowing you to write native speed custom Git applications in any language which supports C bindings."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "libgit2"
    ]
@@ -218,7 +218,7 @@
    "summary": "libgit2 is a portable, pure C implementation of the Git core methods provided as a re-entrant linkable library with a solid API, allowing you to write native speed custom Git applications in any language which supports C bindings."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "libgit2"
    ]
@@ -310,7 +310,7 @@
    "summary": "libgit2 is a portable, pure C implementation of the Git core methods provided as a re-entrant linkable library with a solid API, allowing you to write native speed custom Git applications in any language which supports C bindings."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "libgit2"
    ]
@@ -375,7 +375,7 @@
    "summary": "libgit2 is a portable, pure C implementation of the Git core methods provided as a re-entrant linkable library with a solid API, allowing you to write native speed custom Git applications in any language which supports C bindings."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "libgit2"
    ]
@@ -469,7 +469,7 @@
    "summary": "libgit2 is a portable, pure C implementation of the Git core methods provided as a re-entrant linkable library with a solid API, allowing you to write native speed custom Git applications in any language which supports C bindings."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "libgit2"
    ]
@@ -572,7 +572,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libgit2.json"
  },
- "raw_meta_yaml": "{% set name = \"libgit2\" %}\n{% set version = \"1.8.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/{{ name }}/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 8c1eaf0cf07cba0e9021920bfba9502140220786ed5d8a8ec6c7ad9174522f8e\n  patches:\n    # TODO: Propose this patch to upstream.\n    # Downside: This breaks pkg-config for static builds (not relevant for conda-forge).\n    - 0001-Use-Requires.internal-instead-of-Requires.private.patch\n\nbuild:\n  number: 0\n  run_exports:\n    # SONAME is based on minor version\n    - {{ pin_subpackage(\"libgit2\", max_pin=\"x.x\") }}\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - pkg-config      # [not win]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n  host:\n    - msinttypes      # [win]\n    - openssl         # [not win]\n    - libiconv        # [osx]\n    - pcre2  # [unix]\n    - curl\n    - libssh2\n    - zlib\n\ntest:\n  requires:\n    - pkg-config\n  commands:\n    - test -f $PREFIX/include/git2.h                 # [not win]\n    - if not exist %LIBRARY_INC%\\\\git2.h exit 1      # [win]\n    - test -f $PREFIX/lib/libgit2${SHLIB_EXT}        # [unix]\n    - if not exist %LIBRARY_LIB%\\\\git2.lib exit 1    # [win]\n    - if not exist %LIBRARY_BIN%\\\\git2.dll exit 1    # [win]\n    - pkg-config --cflags --libs libgit2\n\nabout:\n  home: https://libgit2.github.com\n  license: GPL-2.0-only WITH GCC-exception-2.0\n  license_file: COPYING\n  summary: libgit2 is a portable, pure C implementation of the Git core methods provided as a re-entrant linkable library with a solid API, allowing you to write native speed custom Git applications in any language which supports C bindings.\n\n  # The remaining entries in this section are optional, but recommended\n  description: |\n    libgit2 is a portable, pure C implementation of the Git core methods\n    provided as a re-entrant linkable library with a solid API, allowing\n    you to write native speed custom Git applications in any language\n    which supports C bindings.\n\nextra:\n  recipe-maintainers:\n    - shadowwalkersb\n    - xhochy\n",
+ "raw_meta_yaml": "{% set name = \"libgit2\" %}\n{% set version = \"1.8.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/{{ name }}/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 8c1eaf0cf07cba0e9021920bfba9502140220786ed5d8a8ec6c7ad9174522f8e\n  patches:\n    # TODO: Propose this patch to upstream.\n    # Downside: This breaks pkg-config for static builds (not relevant for conda-forge).\n    - 0001-Use-Requires.internal-instead-of-Requires.private.patch\n\nbuild:\n  number: 1\n  run_exports:\n    # SONAME is based on minor version\n    - {{ pin_subpackage(\"libgit2\", max_pin=\"x.x\") }}\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - pkg-config      # [not win]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n  host:\n    - msinttypes      # [win]\n    - openssl         # [not win]\n    - libiconv        # [osx]\n    - pcre2  # [unix]\n    - curl\n    - libssh2\n    - zlib\n\ntest:\n  requires:\n    - pkg-config\n  commands:\n    - test -f $PREFIX/include/git2.h                 # [not win]\n    - if not exist %LIBRARY_INC%\\\\git2.h exit 1      # [win]\n    - test -f $PREFIX/lib/libgit2${SHLIB_EXT}        # [unix]\n    - if not exist %LIBRARY_LIB%\\\\git2.lib exit 1    # [win]\n    - if not exist %LIBRARY_BIN%\\\\git2.dll exit 1    # [win]\n    - pkg-config --cflags --libs libgit2\n\nabout:\n  home: https://libgit2.github.com\n  license: GPL-2.0-only WITH GCC-exception-2.0\n  license_file: COPYING\n  summary: libgit2 is a portable, pure C implementation of the Git core methods provided as a re-entrant linkable library with a solid API, allowing you to write native speed custom Git applications in any language which supports C bindings.\n\n  # The remaining entries in this section are optional, but recommended\n  description: |\n    libgit2 is a portable, pure C implementation of the Git core methods\n    provided as a re-entrant linkable library with a solid API, allowing\n    you to write native speed custom Git applications in any language\n    which supports C bindings.\n\nextra:\n  recipe-maintainers:\n    - shadowwalkersb\n    - xhochy\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -683,7 +683,7 @@
    "summary": "libgit2 is a portable, pure C implementation of the Git core methods provided as a re-entrant linkable library with a solid API, allowing you to write native speed custom Git applications in any language which supports C bindings."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "libgit2"
    ]

@@ -50,19 +50,20 @@
   },
   "package": {
    "name": "go-yq",
-   "version": "4.43.1"
+   "version": "4.44.2"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "go-cgo_compiler_stub",
     "make",
     "pandoc"
    ]
   },
   "source": {
-   "sha256": "e5581d28bae2bcdf70501dfd251233c592eb3e39a210956ee74965b784435d63",
-   "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.43.1.tar.gz"
+   "sha256": "eb741c2d41351537aa42d563d0fccf16b3195c352b33e0ef111fd448232da911",
+   "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.44.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -76,6 +77,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "go-cgo_compiler_stub",
     "make",
     "pandoc"
@@ -125,19 +127,20 @@
   },
   "package": {
    "name": "go-yq",
-   "version": "4.43.1"
+   "version": "4.44.2"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "go-cgo_compiler_stub",
     "make",
     "pandoc"
    ]
   },
   "source": {
-   "sha256": "e5581d28bae2bcdf70501dfd251233c592eb3e39a210956ee74965b784435d63",
-   "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.43.1.tar.gz"
+   "sha256": "eb741c2d41351537aa42d563d0fccf16b3195c352b33e0ef111fd448232da911",
+   "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.44.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -177,19 +180,20 @@
   },
   "package": {
    "name": "go-yq",
-   "version": "4.43.1"
+   "version": "4.44.2"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "go-cgo_compiler_stub",
     "make",
     "pandoc"
    ]
   },
   "source": {
-   "sha256": "e5581d28bae2bcdf70501dfd251233c592eb3e39a210956ee74965b784435d63",
-   "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.43.1.tar.gz"
+   "sha256": "eb741c2d41351537aa42d563d0fccf16b3195c352b33e0ef111fd448232da911",
+   "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.44.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -203,6 +207,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "go-cgo_compiler_stub",
     "make",
     "pandoc"
@@ -251,19 +256,20 @@
   },
   "package": {
    "name": "go-yq",
-   "version": "4.43.1"
+   "version": "4.44.2"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "go-cgo_compiler_stub",
     "make",
     "pandoc"
    ]
   },
   "source": {
-   "sha256": "e5581d28bae2bcdf70501dfd251233c592eb3e39a210956ee74965b784435d63",
-   "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.43.1.tar.gz"
+   "sha256": "eb741c2d41351537aa42d563d0fccf16b3195c352b33e0ef111fd448232da911",
+   "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.44.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -277,6 +283,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "go-cgo_compiler_stub",
     "make",
     "pandoc"
@@ -311,11 +318,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/go-yq.json"
  },
- "raw_meta_yaml": "{% set name = \"go-yq\" %}\n{% set version = \"4.43.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/mikefarah/yq/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: e5581d28bae2bcdf70501dfd251233c592eb3e39a210956ee74965b784435d63\n\nbuild:\n  number: 0\n  binary_relocation: false\n  script:\n    - go install -v .                               # [win]\n    - go build --ldflags '-s -w'                    # [unix]\n    - mkdir -p \"$PREFIX/bin/\"                       # [unix]\n    - install ./yq \"$PREFIX/bin/yq\"                 # [unix]\n    # Build the documentation\n    - ./scripts/generate-man-page-md.sh             # [unix]\n    - ./scripts/generate-man-page.sh                # [unix]\n    - mkdir -p \"$PREFIX/share/man/man1/\"            # [unix]\n    - install ./yq.1 \"$PREFIX/share/man/man1/yq.1\"  # [unix]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('go-cgo') }}\n    - make\n    - pandoc  # [unix]\n\ntest:\n  commands:\n    - yq --help\n    - \"yq eval --null-input --no-colors '.key = \\\"cat\\\"' | grep -E '^key: cat$'\"  # [unix]\n\nabout:\n  home: https://github.com/mikefarah/yq\n  summary: Process YAML documents from the CLI\n  description: |\n    A lightweight and portable command-line YAML, JSON and XML processor.\n    yq uses jq like syntax but works with yaml files as well as json, xml,\n    properties, csv and tsv. It doesn't yet support everything jq does - but it\n    does support the most common operations and functions, and more is being\n    added continuously.\n  license: MIT\n  license_file: LICENSE\n  dev_url: https://github.com/mikefarah/yq\n  doc_url: https://mikefarah.gitbook.io/yq/\n\nextra:\n  recipe-maintainers:\n    - chrisburr\n",
+ "raw_meta_yaml": "{% set name = \"go-yq\" %}\n{% set version = \"4.44.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/mikefarah/yq/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: eb741c2d41351537aa42d563d0fccf16b3195c352b33e0ef111fd448232da911\n\nbuild:\n  number: 0\n  binary_relocation: false\n  script:\n    - go install -v .                               # [win]\n    - go build --ldflags '-s -w'                    # [unix]\n    - mkdir -p \"$PREFIX/bin/\"                       # [unix]\n    - install ./yq \"$PREFIX/bin/yq\"                 # [unix]\n    # Build the documentation\n    - ./scripts/generate-man-page-md.sh             # [unix]\n    - ./scripts/generate-man-page.sh                # [unix]\n    - mkdir -p \"$PREFIX/share/man/man1/\"            # [unix]\n    - install ./yq.1 \"$PREFIX/share/man/man1/yq.1\"  # [unix]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('go-cgo') }}\n    - make\n    - pandoc  # [unix]\n\ntest:\n  commands:\n    - yq --help\n    - \"yq eval --null-input --no-colors '.key = \\\"cat\\\"' | grep -E '^key: cat$'\"  # [unix]\n\nabout:\n  home: https://github.com/mikefarah/yq\n  summary: Process YAML documents from the CLI\n  description: |\n    A lightweight and portable command-line YAML, JSON and XML processor.\n    yq uses jq like syntax but works with yaml files as well as json, xml,\n    properties, csv and tsv. It doesn't yet support everything jq does - but it\n    does support the most common operations and functions, and more is being\n    added continuously.\n  license: MIT\n  license_file: LICENSE\n  dev_url: https://github.com/mikefarah/yq\n  doc_url: https://mikefarah.gitbook.io/yq/\n\nextra:\n  recipe-maintainers:\n    - chrisburr\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "go-cgo_compiler_stub",
    "make",
    "pandoc"
@@ -326,6 +334,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "go-cgo_compiler_stub",
     "make",
     "pandoc"
@@ -334,13 +343,15 @@
   "host": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "test": {
@@ -354,6 +365,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "go-cgo_compiler_stub",
     "make",
     "pandoc"
@@ -372,8 +384,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.43.1.tar.gz",
- "version": "4.43.1",
+ "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.44.2.tar.gz",
+ "version": "4.44.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/go-yq.json"
  },
@@ -401,18 +413,19 @@
   },
   "package": {
    "name": "go-yq",
-   "version": "4.43.1"
+   "version": "4.44.2"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "go-cgo_compiler_stub",
     "make"
    ]
   },
   "source": {
-   "sha256": "e5581d28bae2bcdf70501dfd251233c592eb3e39a210956ee74965b784435d63",
-   "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.43.1.tar.gz"
+   "sha256": "eb741c2d41351537aa42d563d0fccf16b3195c352b33e0ef111fd448232da911",
+   "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.44.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -425,6 +438,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "go-cgo_compiler_stub",
     "make"
    ]
