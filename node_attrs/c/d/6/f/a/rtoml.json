@@ -5,6 +5,9 @@
   "bot": {
    "inspection": "hint-all"
   },
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -12,7 +15,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "rtoml",
  "hash_type": "sha256",
@@ -24,7 +28,7 @@
    "summary": "A fast TOML library for python implemented in rust."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -39,12 +43,13 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "rust_compiler_stub"
+    "rust_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
-    "python",
     "maturin >=1,<2",
-    "pip"
+    "pip",
+    "python"
    ],
    "run": [
     "python"
@@ -56,13 +61,23 @@
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "coverage run --source rtoml --branch -m pytest -vv --tb=long -k \"not datetime_invalid\"",
+    "coverage report --show-missing --skip-covered --fail-under=100"
    ],
    "imports": [
     "rtoml"
    ],
    "requires": [
-    "pip"
+    "coverage",
+    "dirty-equals",
+    "pip",
+    "pytest",
+    "pytest-speed"
+   ],
+   "source_files": [
+    "example.py",
+    "tests"
    ]
   }
  },
@@ -71,6 +86,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub"
    ]
   },
@@ -91,7 +107,11 @@
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "coverage",
+    "dirty-equals",
+    "pip",
+    "pytest",
+    "pytest-speed"
    ]
   }
  },
@@ -103,7 +123,7 @@
    "summary": "A fast TOML library for python implemented in rust."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -118,12 +138,13 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "rust_compiler_stub"
+    "rust_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
-    "python",
     "maturin >=1,<2",
-    "pip"
+    "pip",
+    "python"
    ],
    "run": [
     "python"
@@ -135,13 +156,23 @@
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "coverage run --source rtoml --branch -m pytest -vv --tb=long -k \"not datetime_invalid\"",
+    "coverage report --show-missing --skip-covered --fail-under=100"
    ],
    "imports": [
     "rtoml"
    ],
    "requires": [
-    "pip"
+    "coverage",
+    "dirty-equals",
+    "pip",
+    "pytest",
+    "pytest-speed"
+   ],
+   "source_files": [
+    "example.py",
+    "tests"
    ]
   }
  },
@@ -154,7 +185,7 @@
    "summary": "A fast TOML library for python implemented in rust."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -169,12 +200,13 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "rust_compiler_stub"
+    "rust_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
-    "python",
     "maturin >=1,<2",
-    "pip"
+    "pip",
+    "python"
    ],
    "run": [
     "python"
@@ -186,13 +218,23 @@
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "coverage run --source rtoml --branch -m pytest -vv --tb=long -k \"not datetime_invalid\"",
+    "coverage report --show-missing --skip-covered --fail-under=100"
    ],
    "imports": [
     "rtoml"
    ],
    "requires": [
-    "pip"
+    "coverage",
+    "dirty-equals",
+    "pip",
+    "pytest",
+    "pytest-speed"
+   ],
+   "source_files": [
+    "example.py",
+    "tests"
    ]
   }
  },
@@ -201,6 +243,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub"
    ]
   },
@@ -221,7 +264,106 @@
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "coverage",
+    "dirty-equals",
+    "pip",
+    "pytest",
+    "pytest-speed"
+   ]
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "home": "https://github.com/samuelcolvin/rtoml",
+   "license": "MIT",
+   "license_file": "LICENSE",
+   "summary": "A fast TOML library for python implemented in rust."
+  },
+  "build": {
+   "number": "2",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "thewchan"
+   ]
+  },
+  "package": {
+   "name": "rtoml",
+   "version": "0.10.0"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "rust_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "maturin >=1,<2",
+    "pip",
+    "python"
+   ],
+   "run": [
+    "python"
+   ]
+  },
+  "source": {
+   "sha256": "e1c9af50c6e8c53bc07fdf3277ab1b90e83648c689ea73dadae7d78d1e18d752",
+   "url": "https://pypi.io/packages/source/r/rtoml/rtoml-0.10.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check",
+    "coverage run --source rtoml --branch -m pytest -vv --tb=long -k \"not datetime_invalid\"",
+    "coverage report --show-missing --skip-covered --fail-under=100"
+   ],
+   "imports": [
+    "rtoml"
+   ],
+   "requires": [
+    "coverage",
+    "dirty-equals",
+    "pip",
+    "pytest",
+    "pytest-speed"
+   ],
+   "source_files": [
+    "example.py",
+    "tests"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "rust_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "maturin",
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "coverage",
+    "dirty-equals",
+    "pip",
+    "pytest",
+    "pytest-speed"
    ]
   }
  },
@@ -235,16 +377,18 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/rtoml.json"
  },
- "raw_meta_yaml": "{% set name = \"rtoml\" %}\n{% set version = \"0.10.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/rtoml-{{ version }}.tar.gz\n  sha256: e1c9af50c6e8c53bc07fdf3277ab1b90e83648c689ea73dadae7d78d1e18d752\n\nbuild:\n  skip: true  # [py<38]\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('rust') }}\n  host:\n    - python\n    - maturin >=1,<2\n    - pip\n  run:\n    - python\n\ntest:\n  imports:\n    - rtoml\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/samuelcolvin/rtoml\n  license: MIT\n  license_file: LICENSE\n  summary: A fast TOML library for python implemented in rust.\n\nextra:\n  recipe-maintainers:\n    - thewchan\n",
+ "raw_meta_yaml": "{% set version = \"0.10.0\" %}\n\npackage:\n  name: rtoml\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/r/rtoml/rtoml-{{ version }}.tar.gz\n  sha256: e1c9af50c6e8c53bc07fdf3277ab1b90e83648c689ea73dadae7d78d1e18d752\n\nbuild:\n  skip: true  # [py<38]\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 2\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('rust') }}\n    - {{ stdlib('c') }}\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - maturin >=1,<2                         # [build_platform != target_platform]\n  host:\n    - maturin >=1,<2\n    - pip\n    - python\n  run:\n    - python\n\ntest:\n  requires:\n    - coverage\n    - dirty-equals\n    - pip\n    - pytest\n    - pytest-speed\n  source_files:\n    - example.py\n    - tests\n  imports:\n    - rtoml\n  commands:\n    - pip check\n    - coverage run --source rtoml --branch -m pytest -vv --tb=long -k \"not datetime_invalid\"\n    - coverage report --show-missing --skip-covered --fail-under=100\n\nabout:\n  home: https://github.com/samuelcolvin/rtoml\n  license: MIT\n  license_file: LICENSE\n  summary: A fast TOML library for python implemented in rust.\n\nextra:\n  recipe-maintainers:\n    - thewchan\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "maturin",
    "pip",
    "python",
@@ -256,6 +400,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub"
    ]
   },
@@ -263,6 +408,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "maturin",
     "pip",
     "python"
@@ -272,13 +418,18 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "python"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "coverage",
+    "dirty-equals",
+    "pip",
+    "pytest",
+    "pytest-speed"
    ]
   }
  },
@@ -288,6 +439,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub"
    ]
   },
@@ -308,7 +460,11 @@
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "coverage",
+    "dirty-equals",
+    "pip",
+    "pytest",
+    "pytest-speed"
    ]
   }
  },
@@ -325,7 +481,7 @@
    "summary": "A fast TOML library for python implemented in rust."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -340,12 +496,13 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "rust_compiler_stub"
+    "rust_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
-    "python",
     "maturin >=1,<2",
-    "pip"
+    "pip",
+    "python"
    ],
    "run": [
     "python"
@@ -357,13 +514,23 @@
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "coverage run --source rtoml --branch -m pytest -vv --tb=long -k \"not datetime_invalid\"",
+    "coverage report --show-missing --skip-covered --fail-under=100"
    ],
    "imports": [
     "rtoml"
    ],
    "requires": [
-    "pip"
+    "coverage",
+    "dirty-equals",
+    "pip",
+    "pytest",
+    "pytest-speed"
+   ],
+   "source_files": [
+    "example.py",
+    "tests"
    ]
   }
  },
@@ -372,6 +539,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub"
    ]
   },
@@ -392,7 +560,11 @@
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "coverage",
+    "dirty-equals",
+    "pip",
+    "pytest",
+    "pytest-speed"
    ]
   }
  }
