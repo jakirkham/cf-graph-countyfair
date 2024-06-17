@@ -28,7 +28,7 @@
    "summary": "Merge paired sequencing reads into single longer sequences"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -42,7 +42,8 @@
   "requirements": {
    "build": [
     "make",
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "zlib"
@@ -66,6 +67,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -97,7 +99,7 @@
    "summary": "Merge paired sequencing reads into single longer sequences"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -112,7 +114,9 @@
    "build": [
     "make",
     "c_compiler_stub",
-    "m2w64_c_compiler_stub"
+    "c_stdlib_stub",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub"
    ],
    "host": [
     "zlib"
@@ -143,7 +147,7 @@
    "summary": "Merge paired sequencing reads into single longer sequences"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -157,7 +161,8 @@
   "requirements": {
    "build": [
     "make",
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "zlib"
@@ -181,6 +186,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -212,7 +218,7 @@
    "summary": "Merge paired sequencing reads into single longer sequences"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -226,7 +232,8 @@
   "requirements": {
    "build": [
     "make",
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "zlib"
@@ -250,6 +257,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -286,12 +294,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/flash.json"
  },
- "raw_meta_yaml": "{% set name = \"flash\" %}\n{% set version = \"1.2.11\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://sourceforge.net/projects/flashpage/files/FLASH-{{ version }}.tar.gz\n  sha256: 685ca6f7fedda07434d8ee03c536f4763385671c4509c5bb48beb3055fd236ac\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - make\n    - {{ compiler('c') }}  # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n  host:\n    - zlib\n  run:\n    - zlib\n\ntest:\n  commands:\n    - flash -v\n\nabout:\n  home: https://ccb.jhu.edu/software/FLASH/\n  license: GPL-3.0-or-later\n  license_file: COPYING\n  summary: 'Merge paired sequencing reads into single longer sequences'\n  description: |\n    FLASH (Fast Length Adjustment of SHort reads) is a very fast\n    and accurate software tool to merge paired-end reads from\n    next-generation sequencing experiments. FLASH is designed to\n    merge pairs of reads when the original DNA fragments are\n    shorter than twice the length of reads. The resulting longer\n    reads can significantly improve genome assemblies. They can\n    also improve transcriptome assembly when FLASH is used to\n    merge RNA-seq data.\n  doc_url: https://ccb.jhu.edu/software/FLASH/FLASH-reprint.pdf\n  dev_url: http://sourceforge.net/projects/flashpage/files\n\nextra:\n  recipe-maintainers:\n    # GitHub IDs for maintainers of the recipe.\n    - peterjc\n",
+ "raw_meta_yaml": "{% set name = \"flash\" %}\n{% set version = \"1.2.11\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://sourceforge.net/projects/flashpage/files/FLASH-{{ version }}.tar.gz\n  sha256: 685ca6f7fedda07434d8ee03c536f4763385671c4509c5bb48beb3055fd236ac\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - make\n    - {{ compiler('c') }}        # [unix]\n    - {{ stdlib('c') }}          # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ stdlib('m2w64_c') }}    # [win]\n  host:\n    - zlib\n  run:\n    - zlib\n\ntest:\n  commands:\n    - flash -v\n\nabout:\n  home: https://ccb.jhu.edu/software/FLASH/\n  license: GPL-3.0-or-later\n  license_file: COPYING\n  summary: 'Merge paired sequencing reads into single longer sequences'\n  description: |\n    FLASH (Fast Length Adjustment of SHort reads) is a very fast\n    and accurate software tool to merge paired-end reads from\n    next-generation sequencing experiments. FLASH is designed to\n    merge pairs of reads when the original DNA fragments are\n    shorter than twice the length of reads. The resulting longer\n    reads can significantly improve genome assemblies. They can\n    also improve transcriptome assembly when FLASH is used to\n    merge RNA-seq data.\n  doc_url: https://ccb.jhu.edu/software/FLASH/FLASH-reprint.pdf\n  dev_url: http://sourceforge.net/projects/flashpage/files\n\nextra:\n  recipe-maintainers:\n    # GitHub IDs for maintainers of the recipe.\n    - peterjc\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "zlib"
   ]
@@ -301,7 +311,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make"
    ]
   },
@@ -309,6 +321,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "zlib"
    ]
   },
@@ -316,6 +329,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "zlib"
    ]
   },
@@ -330,7 +344,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make"
    ]
   },
@@ -367,7 +383,7 @@
    "summary": "Merge paired sequencing reads into single longer sequences"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -381,7 +397,8 @@
   "requirements": {
    "build": [
     "make",
-    "m2w64_c_compiler_stub"
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub"
    ],
    "host": [
     "zlib"
@@ -405,6 +422,7 @@
    "__set__": true,
    "elements": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make"
    ]
   },
