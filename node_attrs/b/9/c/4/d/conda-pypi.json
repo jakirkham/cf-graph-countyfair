@@ -9,6 +9,10 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
+  },
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "default"
   }
  },
  "feedstock_name": "conda-pypi",
@@ -72,6 +76,180 @@
   }
  },
  "linux_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": []
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "hatch-vcs",
+    "hatchling",
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "conda",
+    "grayskull",
+    "packaging",
+    "pip",
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/conda-incubator/conda-pypi",
+   "doc_url": "https://conda-incubator.github.io/conda-pypi",
+   "home": "https://github.com/conda-incubator/conda-pypi",
+   "license": "MIT",
+   "license_file": "LICENSE",
+   "summary": "Better PyPI interoperability for the conda ecosystem"
+  },
+  "build": {
+   "number": "1",
+   "script": [
+    "set -x",
+    "PYTHON -m pip install . --no-deps --no-build-isolation -vv",
+    "PYTHON -c \"from conda_pypi.python_paths import ensure_externally_managed; ensure_externally_managed()\""
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jaimergp",
+    "jezdez"
+   ]
+  },
+  "package": {
+   "name": "conda-pypi",
+   "version": "0.1.1"
+  },
+  "requirements": {
+   "host": [
+    "python",
+    "pip",
+    "hatchling >=1.12.2",
+    "hatch-vcs >=0.2.0"
+   ],
+   "run": [
+    "python",
+    "conda >=23.9.0",
+    "pip >=23.0.1",
+    "grayskull",
+    "packaging"
+   ]
+  },
+  "source": {
+   "sha256": "e8b923e3cbb7f2df83b73a65d272e268a72dea92381236092fa9c776f616715c",
+   "url": "https://pypi.io/packages/source/c/conda-pypi/conda_pypi-0.1.1.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "conda pip --help",
+    "python -c \"from conda_pypi.python_paths import get_env_stdlib; assert (get_env_stdlib() / 'EXTERNALLY-MANAGED').exists()\"",
+    "pip install requests && exit 1 || exit 0"
+   ],
+   "imports": [
+    "conda_pypi",
+    "conda_pypi.main"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": []
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "hatch-vcs",
+    "hatchling",
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "conda",
+    "grayskull",
+    "packaging",
+    "pip",
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/conda-incubator/conda-pypi",
+   "doc_url": "https://conda-incubator.github.io/conda-pypi",
+   "home": "https://github.com/conda-incubator/conda-pypi",
+   "license": "MIT",
+   "license_file": "LICENSE",
+   "summary": "Better PyPI interoperability for the conda ecosystem"
+  },
+  "build": {
+   "number": "1",
+   "script": [
+    "set -x",
+    "PYTHON -m pip install . --no-deps --no-build-isolation -vv",
+    "PYTHON -c \"from conda_pypi.python_paths import ensure_externally_managed; ensure_externally_managed()\""
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jaimergp",
+    "jezdez"
+   ]
+  },
+  "package": {
+   "name": "conda-pypi",
+   "version": "0.1.1"
+  },
+  "requirements": {
+   "host": [
+    "python",
+    "pip",
+    "hatchling >=1.12.2",
+    "hatch-vcs >=0.2.0"
+   ],
+   "run": [
+    "python",
+    "conda >=23.9.0",
+    "pip >=23.0.1",
+    "grayskull",
+    "packaging"
+   ]
+  },
+  "source": {
+   "sha256": "e8b923e3cbb7f2df83b73a65d272e268a72dea92381236092fa9c776f616715c",
+   "url": "https://pypi.io/packages/source/c/conda-pypi/conda_pypi-0.1.1.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "conda pip --help",
+    "python -c \"from conda_pypi.python_paths import get_env_stdlib; assert (get_env_stdlib() / 'EXTERNALLY-MANAGED').exists()\"",
+    "pip install requests && exit 1 || exit 0"
+   ],
+   "imports": [
+    "conda_pypi",
+    "conda_pypi.main"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
   "build": {
    "__set__": true,
    "elements": []
@@ -256,6 +434,8 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
+  "linux_ppc64le",
   "osx_64",
   "win_64"
  ],
