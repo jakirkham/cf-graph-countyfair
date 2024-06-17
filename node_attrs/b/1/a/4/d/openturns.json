@@ -29,7 +29,7 @@
    "summary": "Uncertainty treatment library"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "openturns"
    ]
@@ -74,19 +74,20 @@
     "pagmo-devel",
     "primesieve",
     "libcuba",
-    "nanoflann",
-    "numpy <2"
+    "nanoflann"
    ],
    "run": [
     "python",
     "dill",
     "psutil",
-    "tbb-devel",
-    "numpy <2"
+    "tbb-devel"
    ]
   },
   "source": {
    "fn": "openturns-1.23.tar.gz",
+   "patches": [
+    "numpy2.patch"
+   ],
    "sha256": "4c7cfe5d2310933e3a2e91f7db9531d80e32157143157df80f6e93267c29f414",
    "url": "https://github.com/openturns/openturns/archive/v1.23.tar.gz"
   },
@@ -134,7 +135,6 @@
     "mpc",
     "nanoflann",
     "nlopt",
-    "numpy",
     "pagmo-devel",
     "primesieve",
     "python",
@@ -146,7 +146,6 @@
    "__set__": true,
    "elements": [
     "dill",
-    "numpy",
     "psutil",
     "python",
     "tbb-devel"
@@ -168,7 +167,7 @@
    "summary": "Uncertainty treatment library"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "openturns"
    ]
@@ -191,7 +190,9 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "bison",
-    "curl"
+    "curl",
+    "m2-sed",
+    "m2-diffutils"
    ],
    "host": [
     "python",
@@ -215,19 +216,20 @@
     "primesieve",
     "libcuba",
     "nanoflann",
-    "numpy <2",
     "libcblas"
    ],
    "run": [
     "python",
     "dill",
     "psutil",
-    "tbb-devel",
-    "numpy <2"
+    "tbb-devel"
    ]
   },
   "source": {
    "fn": "openturns-1.23.tar.gz",
+   "patches": [
+    "numpy2.patch"
+   ],
    "sha256": "4c7cfe5d2310933e3a2e91f7db9531d80e32157143157df80f6e93267c29f414",
    "url": "https://github.com/openturns/openturns/archive/v1.23.tar.gz"
   },
@@ -253,7 +255,7 @@
    "summary": "Uncertainty treatment library"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "openturns"
    ]
@@ -298,19 +300,20 @@
     "pagmo-devel",
     "primesieve",
     "libcuba",
-    "nanoflann",
-    "numpy <2"
+    "nanoflann"
    ],
    "run": [
     "python",
     "dill",
     "psutil",
-    "tbb-devel",
-    "numpy <2"
+    "tbb-devel"
    ]
   },
   "source": {
    "fn": "openturns-1.23.tar.gz",
+   "patches": [
+    "numpy2.patch"
+   ],
    "sha256": "4c7cfe5d2310933e3a2e91f7db9531d80e32157143157df80f6e93267c29f414",
    "url": "https://github.com/openturns/openturns/archive/v1.23.tar.gz"
   },
@@ -358,7 +361,6 @@
     "mpc",
     "nanoflann",
     "nlopt",
-    "numpy",
     "pagmo-devel",
     "primesieve",
     "python",
@@ -370,7 +372,6 @@
    "__set__": true,
    "elements": [
     "dill",
-    "numpy",
     "psutil",
     "python",
     "tbb-devel"
@@ -392,7 +393,7 @@
    "summary": "Uncertainty treatment library"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "openturns"
    ]
@@ -437,19 +438,20 @@
     "pagmo-devel",
     "primesieve",
     "libcuba",
-    "nanoflann",
-    "numpy <2"
+    "nanoflann"
    ],
    "run": [
     "python",
     "dill",
     "psutil",
-    "tbb-devel",
-    "numpy <2"
+    "tbb-devel"
    ]
   },
   "source": {
    "fn": "openturns-1.23.tar.gz",
+   "patches": [
+    "numpy2.patch"
+   ],
    "sha256": "4c7cfe5d2310933e3a2e91f7db9531d80e32157143157df80f6e93267c29f414",
    "url": "https://github.com/openturns/openturns/archive/v1.23.tar.gz"
   },
@@ -497,7 +499,6 @@
     "mpc",
     "nanoflann",
     "nlopt",
-    "numpy",
     "pagmo-devel",
     "primesieve",
     "python",
@@ -509,7 +510,6 @@
    "__set__": true,
    "elements": [
     "dill",
-    "numpy",
     "psutil",
     "python",
     "tbb-devel"
@@ -538,7 +538,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/openturns.json"
  },
- "raw_meta_yaml": "{% set version = \"1.23\" %}\n\npackage:\n  name: openturns\n  version: {{ version }}\n\nsource:\n  fn: openturns-{{ version }}.tar.gz\n  url: https://github.com/openturns/openturns/archive/v{{ version }}.tar.gz\n  sha256: 4c7cfe5d2310933e3a2e91f7db9531d80e32157143157df80f6e93267c29f414\n\nbuild:\n  number: 3\n  run_exports:\n    - {{ pin_subpackage('openturns', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - swig\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - curl  # [win]\n    - bison  # [not win]\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n  host:\n    - python\n    - libboost-headers  # [not win]\n    - matplotlib-base  # [python_impl == 'cpython']\n    - mpc  # [not win]\n    - libblas\n    - libcblas  # [win]\n    - liblapack\n    - libxml2  # [not win]\n    - tbb-devel  # [not win]\n    - cminpack  # [not win]\n    - ceres-solver  # [not win]\n    - glog  # [not win]\n    - nlopt  # [not win]\n    - dlib-cpp  # [not win]\n    - ipopt  # [not win]\n    - coin-or-bonmin  # [not win]\n    - spectralib  # [not win]\n    - hdf5  # [not win]\n    - pagmo-devel  # [not win]\n    - primesieve  # [not win]\n    - libcuba  # [not win]\n    - nanoflann  # [not win]\n    - numpy <2\n  run:\n    - python\n    - dill\n    - psutil\n    - tbb-devel  # [not win]\n    - numpy <2\n\ntest:\n  requires:\n    - numpy\n  imports:\n    - openturns\n  commands:\n    # check the lapack libs conflict is solved\n    - python -c \"import numpy; import openturns; print(openturns.__version__)\"\n\nabout:\n  home: http://openturns.org/\n  license: LGPL-3.0-or-later\n  license_family: LGPL\n  license_file: COPYING.LESSER\n  summary: Uncertainty treatment library\n\nextra:\n  recipe-maintainers:\n    - jschueller\n",
+ "raw_meta_yaml": "{% set version = \"1.23\" %}\n\npackage:\n  name: openturns\n  version: {{ version }}\n\nsource:\n  fn: openturns-{{ version }}.tar.gz\n  url: https://github.com/openturns/openturns/archive/v{{ version }}.tar.gz\n  sha256: 4c7cfe5d2310933e3a2e91f7db9531d80e32157143157df80f6e93267c29f414\n  patches:\n    - numpy2.patch\n\nbuild:\n  number: 4\n  run_exports:\n    - {{ pin_subpackage('openturns', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - swig\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - curl  # [win]\n    - bison  # [not win]\n    - m2-sed  # [win]\n    - m2-diffutils  # [win]\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n  host:\n    - python\n    - libboost-headers  # [not win]\n    - matplotlib-base  # [python_impl == 'cpython']\n    - mpc  # [not win]\n    - libblas\n    - libcblas  # [win]\n    - liblapack\n    - libxml2  # [not win]\n    - tbb-devel  # [not win]\n    - cminpack  # [not win]\n    - ceres-solver  # [not win]\n    - glog  # [not win]\n    - nlopt  # [not win]\n    - dlib-cpp  # [not win]\n    - ipopt  # [not win]\n    - coin-or-bonmin  # [not win]\n    - spectralib  # [not win]\n    - hdf5  # [not win]\n    - pagmo-devel  # [not win]\n    - primesieve  # [not win]\n    - libcuba  # [not win]\n    - nanoflann  # [not win]\n  run:\n    - python\n    - dill\n    - psutil\n    - tbb-devel  # [not win]\n\ntest:\n  requires:\n    - numpy\n  imports:\n    - openturns\n  commands:\n    # check the lapack libs conflict is solved\n    - python -c \"import numpy; import openturns; print(openturns.__version__)\"\n\nabout:\n  home: http://openturns.org/\n  license: LGPL-3.0-or-later\n  license_family: LGPL\n  license_file: COPYING.LESSER\n  summary: Uncertainty treatment library\n\nextra:\n  recipe-maintainers:\n    - jschueller\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -562,12 +562,13 @@
    "libcuba",
    "liblapack",
    "libxml2",
+   "m2-diffutils",
+   "m2-sed",
    "matplotlib-base",
    "mpc",
    "nanoflann",
    "ninja",
    "nlopt",
-   "numpy",
    "pagmo-devel",
    "primesieve",
    "psutil",
@@ -587,6 +588,8 @@
     "cmake",
     "curl",
     "cxx_compiler_stub",
+    "m2-diffutils",
+    "m2-sed",
     "ninja",
     "swig"
    ]
@@ -614,7 +617,6 @@
     "mpc",
     "nanoflann",
     "nlopt",
-    "numpy",
     "pagmo-devel",
     "primesieve",
     "python",
@@ -629,7 +631,6 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "dill",
-    "numpy",
     "psutil",
     "python",
     "tbb-devel"
@@ -653,6 +654,8 @@
     "cmake",
     "curl",
     "cxx_compiler_stub",
+    "m2-diffutils",
+    "m2-sed",
     "ninja",
     "swig"
    ]
@@ -677,7 +680,6 @@
     "mpc",
     "nanoflann",
     "nlopt",
-    "numpy <2",
     "pagmo-devel",
     "primesieve",
     "python",
@@ -689,7 +691,6 @@
    "__set__": true,
    "elements": [
     "dill",
-    "numpy <2",
     "psutil",
     "python",
     "tbb-devel"
@@ -716,7 +717,7 @@
    "summary": "Uncertainty treatment library"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "openturns"
    ]
@@ -738,25 +739,28 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
-    "curl"
+    "curl",
+    "m2-sed",
+    "m2-diffutils"
    ],
    "host": [
     "python",
     "matplotlib-base",
     "libblas",
     "libcblas",
-    "liblapack",
-    "numpy <2"
+    "liblapack"
    ],
    "run": [
     "python",
     "dill",
-    "psutil",
-    "numpy <2"
+    "psutil"
    ]
   },
   "source": {
    "fn": "openturns-1.23.tar.gz",
+   "patches": [
+    "numpy2.patch"
+   ],
    "sha256": "4c7cfe5d2310933e3a2e91f7db9531d80e32157143157df80f6e93267c29f414",
    "url": "https://github.com/openturns/openturns/archive/v1.23.tar.gz"
   },
@@ -781,6 +785,8 @@
     "cmake",
     "curl",
     "cxx_compiler_stub",
+    "m2-diffutils",
+    "m2-sed",
     "ninja",
     "swig"
    ]
@@ -792,7 +798,6 @@
     "libcblas",
     "liblapack",
     "matplotlib-base",
-    "numpy",
     "python"
    ]
   },
@@ -800,7 +805,6 @@
    "__set__": true,
    "elements": [
     "dill",
-    "numpy",
     "psutil",
     "python"
    ]
