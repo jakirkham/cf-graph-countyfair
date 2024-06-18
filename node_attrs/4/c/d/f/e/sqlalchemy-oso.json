@@ -27,8 +27,10 @@
   },
   "build": {
    "noarch": "python",
-   "number": "1",
-   "script": "PYTHON -m pip install languages/python/sqlalchemy-oso -vv --no-deps"
+   "number": "0",
+   "script": [
+    "cd languages/python/sqlalchemy-oso && PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -38,7 +40,7 @@
   },
   "package": {
    "name": "sqlalchemy-oso",
-   "version": "0.27.0"
+   "version": "0.27.2"
   },
   "requirements": {
    "host": [
@@ -47,32 +49,31 @@
    ],
    "run": [
     "oso >=0.27.0,<0.28.0",
-    "python >=3.7",
     "packaging >=21.3,<24.0",
-    "sqlalchemy >=1.3.17,<1.5"
+    "python >=3.7",
+    "sqlalchemy >=1.3.17,<3.0"
    ]
   },
   "source": {
-   "sha256": "f97cbdf78323d6f97103e563cacc2131e77862dd250f97389f9c19acf3672eed",
-   "url": "https://github.com/osohq/oso/archive/refs/tags/sqlalchemy-v0.27.0.tar.gz"
+   "sha256": "18708bfd5cb74efc04d7191ea4247cec0182a52169da511f8059861c58116f20",
+   "url": "https://github.com/osohq/oso/archive/refs/tags/sqlalchemy-v0.27.2.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
-    "mypy -p sqlalchemy_oso --ignore-missing-imports",
     "cd languages/python/sqlalchemy-oso",
-    "pytest -vv tests --cov=sqlalchemy_oso --no-cov-on-fail --cov-report=term-missing:skip-covered --cov-fail-under=81"
+    "coverage run --source sqlalchemy_oso --branch -m pytest -vv --tb=long --color=yes",
+    "coverage report --show-missing --skip-covered --fail-under=75"
    ],
    "imports": [
     "sqlalchemy_oso"
    ],
    "requires": [
-    "mypy",
+    "flask <2.2",
+    "flask-sqlalchemy <3.0",
     "pip",
     "pytest-cov",
-    "flask <3",
-    "flask-sqlalchemy <3",
-    "importlib-metadata !=4.7.1"
+    "werkzeug ==2.2.2"
    ],
    "source_files": [
     "languages/python/sqlalchemy-oso/tests"
@@ -105,10 +106,9 @@
    "elements": [
     "flask",
     "flask-sqlalchemy",
-    "importlib-metadata",
-    "mypy",
     "pip",
-    "pytest-cov"
+    "pytest-cov",
+    "werkzeug"
    ]
   }
  },
@@ -123,8 +123,10 @@
   },
   "build": {
    "noarch": "python",
-   "number": "1",
-   "script": "PYTHON -m pip install languages/python/sqlalchemy-oso -vv --no-deps"
+   "number": "0",
+   "script": [
+    "cd languages/python/sqlalchemy-oso && PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -134,7 +136,7 @@
   },
   "package": {
    "name": "sqlalchemy-oso",
-   "version": "0.27.0"
+   "version": "0.27.2"
   },
   "requirements": {
    "host": [
@@ -143,32 +145,31 @@
    ],
    "run": [
     "oso >=0.27.0,<0.28.0",
-    "python >=3.7",
     "packaging >=21.3,<24.0",
-    "sqlalchemy >=1.3.17,<1.5"
+    "python >=3.7",
+    "sqlalchemy >=1.3.17,<3.0"
    ]
   },
   "source": {
-   "sha256": "f97cbdf78323d6f97103e563cacc2131e77862dd250f97389f9c19acf3672eed",
-   "url": "https://github.com/osohq/oso/archive/refs/tags/sqlalchemy-v0.27.0.tar.gz"
+   "sha256": "18708bfd5cb74efc04d7191ea4247cec0182a52169da511f8059861c58116f20",
+   "url": "https://github.com/osohq/oso/archive/refs/tags/sqlalchemy-v0.27.2.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
-    "mypy -p sqlalchemy_oso --ignore-missing-imports",
     "cd languages/python/sqlalchemy-oso",
-    "pytest -vv tests --cov=sqlalchemy_oso --no-cov-on-fail --cov-report=term-missing:skip-covered --cov-fail-under=81"
+    "coverage run --source sqlalchemy_oso --branch -m pytest -vv --tb=long --color=yes",
+    "coverage report --show-missing --skip-covered --fail-under=75"
    ],
    "imports": [
     "sqlalchemy_oso"
    ],
    "requires": [
-    "mypy",
+    "flask <2.2",
+    "flask-sqlalchemy <3.0",
     "pip",
     "pytest-cov",
-    "flask <3",
-    "flask-sqlalchemy <3",
-    "importlib-metadata !=4.7.1"
+    "werkzeug ==2.2.2"
    ],
    "source_files": [
     "languages/python/sqlalchemy-oso/tests"
@@ -189,7 +190,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/sqlalchemy-oso.json"
  },
- "raw_meta_yaml": "{% set version = \"0.27.0\" %}\n\npackage:\n  name: sqlalchemy-oso\n  version: {{ version }}\n\nsource:\n  url: https://github.com/osohq/oso/archive/refs/tags/sqlalchemy-v{{ version }}.tar.gz\n  sha256: f97cbdf78323d6f97103e563cacc2131e77862dd250f97389f9c19acf3672eed\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install languages/python/sqlalchemy-oso -vv --no-deps\n  number: 1\n\nrequirements:\n  host:\n    - pip\n    - python >=3.7\n  run:\n    - oso >=0.27.0,<0.28.0\n    - python >=3.7\n    - packaging >=21.3,<24.0\n    - sqlalchemy >=1.3.17,<1.5\n\ntest:\n  source_files:\n    - languages/python/sqlalchemy-oso/tests\n  imports:\n    - sqlalchemy_oso\n  commands:\n    - pip check\n    - mypy -p sqlalchemy_oso --ignore-missing-imports\n    - cd languages/python/sqlalchemy-oso\n    - pytest -vv tests --cov=sqlalchemy_oso --no-cov-on-fail --cov-report=term-missing:skip-covered --cov-fail-under=81\n  requires:\n    - mypy\n    - pip\n    - pytest-cov\n    - flask <3\n    - flask-sqlalchemy <3\n    # fails pip check: https://github.com/conda-forge/importlib_metadata-feedstock/issues/88\n    - importlib-metadata !=4.7.1\n\nabout:\n  home: https://github.com/osohq/oso/tree/main/languages/python/sqlalchemy-oso\n  summary: sqlalchemy-oso the SqlAlchemy integration for oso, the batteries-included framework for building authorization in your application.\n  license: Apache-2.0\n  license_file: LICENSE\n  doc_url: https://docs.osohq.com/python/reference/api/sqlalchemy.html\n  dev_url: https://github.com/osohq/oso\n\nextra:\n  recipe-maintainers:\n    - alexpilot11\n    - bollwyvl\n",
+ "raw_meta_yaml": "{% set version = \"0.27.2\" %}\n\npackage:\n  name: sqlalchemy-oso\n  version: {{ version }}\n\nsource:\n  url: https://github.com/osohq/oso/archive/refs/tags/sqlalchemy-v{{ version }}.tar.gz\n  sha256: 18708bfd5cb74efc04d7191ea4247cec0182a52169da511f8059861c58116f20\n\nbuild:\n  noarch: python\n  script:\n    - cd languages/python/sqlalchemy-oso && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - pip\n    - python >=3.7\n  run:\n    - oso >=0.27.0,<0.28.0\n    - packaging >=21.3,<24.0\n    - python >=3.7\n    - sqlalchemy >=1.3.17,<3.0\n\ntest:\n  source_files:\n    - languages/python/sqlalchemy-oso/tests\n  imports:\n    - sqlalchemy_oso\n  commands:\n    - pip check\n    - cd languages/python/sqlalchemy-oso\n    - coverage run --source sqlalchemy_oso --branch -m pytest -vv --tb=long --color=yes\n    - coverage report --show-missing --skip-covered --fail-under=75\n  requires:\n    - flask <2.2\n    - flask-sqlalchemy <3.0\n    - pip\n    - pytest-cov\n    - werkzeug ==2.2.2\n\nabout:\n  home: https://github.com/osohq/oso/tree/main/languages/python/sqlalchemy-oso\n  summary: sqlalchemy-oso the SqlAlchemy integration for oso, the batteries-included framework for building authorization in your application.\n  license: Apache-2.0\n  license_file: LICENSE\n  doc_url: https://docs.osohq.com/python/reference/api/sqlalchemy.html\n  dev_url: https://github.com/osohq/oso\n\nextra:\n  recipe-maintainers:\n    - alexpilot11\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -226,10 +227,9 @@
    "elements": [
     "flask",
     "flask-sqlalchemy",
-    "importlib-metadata",
-    "mypy",
     "pip",
-    "pytest-cov"
+    "pytest-cov",
+    "werkzeug"
    ]
   }
  },
@@ -252,23 +252,22 @@
     "oso >=0.27.0,<0.28.0",
     "packaging >=21.3,<24.0",
     "python >=3.7",
-    "sqlalchemy >=1.3.17,<1.5"
+    "sqlalchemy >=1.3.17,<3.0"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "flask <3",
-    "flask-sqlalchemy <3",
-    "importlib-metadata !=4.7.1",
-    "mypy",
+    "flask <2.2",
+    "flask-sqlalchemy <3.0",
     "pip",
-    "pytest-cov"
+    "pytest-cov",
+    "werkzeug ==2.2.2"
    ]
   }
  },
- "url": "https://github.com/osohq/oso/archive/refs/tags/sqlalchemy-v0.27.0.tar.gz",
- "version": "0.27.0",
+ "url": "https://github.com/osohq/oso/archive/refs/tags/sqlalchemy-v0.27.2.tar.gz",
+ "version": "0.27.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/sqlalchemy-oso.json"
  }
