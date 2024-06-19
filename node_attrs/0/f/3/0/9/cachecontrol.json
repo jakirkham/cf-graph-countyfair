@@ -26,7 +26,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "cachecontrol",
@@ -42,18 +42,19 @@
       "doesitcache = cachecontrol._cmd:main"
      ],
      "noarch": "python",
-     "script": "PYTHON -m pip install . -vv --no-deps"
+     "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
     },
     "name": "cachecontrol",
     "requirements": {
      "host": [
       "python >=3.7",
+      "flit-core >=3.2,<4",
       "pip"
      ],
      "run": [
       "python >=3.7",
       "requests >=2.16.0",
-      "msgpack-python >=0.5.2"
+      "msgpack-python >=0.5.2,<2.0.0"
      ]
     },
     "test": {
@@ -151,6 +152,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "flit-core",
     "pip",
     "python"
    ]
@@ -186,7 +188,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "cachecontrol",
@@ -202,18 +204,19 @@
       "doesitcache = cachecontrol._cmd:main"
      ],
      "noarch": "python",
-     "script": "PYTHON -m pip install . -vv --no-deps"
+     "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
     },
     "name": "cachecontrol",
     "requirements": {
      "host": [
       "python >=3.7",
+      "flit-core >=3.2,<4",
       "pip"
      ],
      "run": [
       "python >=3.7",
       "requests >=2.16.0",
-      "msgpack-python >=0.5.2"
+      "msgpack-python >=0.5.2,<2.0.0"
      ]
     },
     "test": {
@@ -320,12 +323,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cachecontrol.json"
  },
- "raw_meta_yaml": "{% set version = \"0.14.0\" %}\n\npackage:\n  name: cachecontrol-split\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/C/CacheControl/cachecontrol-{{ version }}.tar.gz\n  sha256: 7db1195b41c81f8274a7bbd97c956f44e8348265a1bc7641c37dfebc39f0c938\n\nbuild:\n  number: 0\n  noarch: python\n\nrequirements:\n  host:\n    - python >=3.7\n  run:\n    - python >=3.7\n\noutputs:\n  - name: cachecontrol\n    build:\n      noarch: python\n      script: {{ PYTHON }} -m pip install . -vv --no-deps\n      entry_points:\n        - doesitcache = cachecontrol._cmd:main\n    requirements:\n      host:\n        - python >=3.7\n        - pip\n      run:\n        - python >=3.7\n        - requests >=2.16.0\n        - msgpack-python >=0.5.2\n    test: &test\n      requires:\n        - pip\n      imports:\n        - cachecontrol\n      commands:\n        - pip check\n        - doesitcache --help\n\n  - name: cachecontrol-with-redis\n    build:\n      noarch: python\n    requirements:\n      host:\n        - python >=3.7\n      run:\n        - {{ pin_subpackage(\"cachecontrol\", exact=True) }}\n        - python >=3.7\n        - redis-py >=2.10.5\n    test: *test\n\n  - name: cachecontrol-with-filecache\n    build:\n      noarch: python\n    requirements:\n      host:\n        - python >=3.7\n      run:\n        - {{ pin_subpackage(\"cachecontrol\", exact=True) }}\n        - filelock >=3.8.0\n        - python >=3.7\n    test: *test\n\nabout:\n  home: https://github.com/ionrock/cachecontrol\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE.txt\n  summary: The httplib2 caching algorithms packaged up for use with requests\n  description: |\n    CacheControl is a port of the caching algorithms in httplib2 for use with\n    requests session object.\n    It was written because httplib2's better support for caching is often\n    mitigated by its lack of threadsafety. The same is true of requests\n    in terms of caching.\n  doc_url: http://cachecontrol.readthedocs.io/\n  dev_url: https://github.com/ionrock/cachecontrol\n\nextra:\n  feedstock-name: cachecontrol\n  recipe-maintainers:\n    - djsutherland\n    - ocefpaf\n",
+ "raw_meta_yaml": "{% set version = \"0.14.0\" %}\n\npackage:\n  name: cachecontrol-split\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/C/CacheControl/cachecontrol-{{ version }}.tar.gz\n  sha256: 7db1195b41c81f8274a7bbd97c956f44e8348265a1bc7641c37dfebc39f0c938\n\nbuild:\n  number: 1\n  noarch: python\n\nrequirements:\n  host:\n    - python >=3.7\n  run:\n    - python >=3.7\n\noutputs:\n  - name: cachecontrol\n    build:\n      noarch: python\n      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n      entry_points:\n        - doesitcache = cachecontrol._cmd:main\n    requirements:\n      host:\n        - python >=3.7\n        - flit-core >=3.2,<4\n        - pip\n      run:\n        - python >=3.7\n        - requests >=2.16.0\n        - msgpack-python >=0.5.2,<2.0.0\n    test: &test\n      requires:\n        - pip\n      imports:\n        - cachecontrol\n      commands:\n        - pip check\n        - doesitcache --help\n\n  - name: cachecontrol-with-redis\n    build:\n      noarch: python\n    requirements:\n      host:\n        - python >=3.7\n      run:\n        - {{ pin_subpackage(\"cachecontrol\", exact=True) }}\n        - python >=3.7\n        - redis-py >=2.10.5\n    test: *test\n\n  - name: cachecontrol-with-filecache\n    build:\n      noarch: python\n    requirements:\n      host:\n        - python >=3.7\n      run:\n        - {{ pin_subpackage(\"cachecontrol\", exact=True) }}\n        - filelock >=3.8.0\n        - python >=3.7\n    test: *test\n\nabout:\n  home: https://github.com/ionrock/cachecontrol\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE.txt\n  summary: The httplib2 caching algorithms packaged up for use with requests\n  description: |\n    CacheControl is a port of the caching algorithms in httplib2 for use with\n    requests session object.\n    It was written because httplib2's better support for caching is often\n    mitigated by its lack of threadsafety. The same is true of requests\n    in terms of caching.\n  doc_url: http://cachecontrol.readthedocs.io/\n  dev_url: https://github.com/ionrock/cachecontrol\n\nextra:\n  feedstock-name: cachecontrol\n  recipe-maintainers:\n    - djsutherland\n    - ocefpaf\n",
  "req": {
   "__set__": true,
   "elements": [
    "cachecontrol",
    "filelock",
+   "flit-core",
    "msgpack-python",
    "pip",
    "python",
@@ -341,6 +345,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "flit-core",
     "pip",
     "python"
    ]
@@ -372,6 +377,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "flit-core >=3.2,<4",
     "pip",
     "python >=3.7"
    ]
@@ -381,7 +387,7 @@
    "elements": [
     "cachecontrol",
     "filelock >=3.8.0",
-    "msgpack-python >=0.5.2",
+    "msgpack-python >=0.5.2,<2.0.0",
     "python >=3.7",
     "redis-py >=2.10.5",
     "requests >=2.16.0"
