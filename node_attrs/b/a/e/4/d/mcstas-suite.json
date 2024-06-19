@@ -32,7 +32,7 @@
    "summary": "McStas is a general tool for simulating neutron scattering instruments and experiments."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -238,7 +238,7 @@
    "summary": "McStas is a general tool for simulating neutron scattering instruments and experiments."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -378,7 +378,7 @@
       "c_stdlib_stub",
       "flex",
       "bison",
-      "openmpi"
+      "openmpi=4"
      ],
      "host": [],
      "run": [
@@ -389,7 +389,7 @@
       "bash",
       "pyaml",
       "ply",
-      "openmpi",
+      "openmpi=4",
       "nexus",
       "nexpy"
      ]
@@ -499,7 +499,7 @@
       "c_stdlib_stub",
       "flex",
       "bison",
-      "openmpi"
+      "openmpi=4"
      ],
      "host": [],
      "run": [
@@ -510,7 +510,7 @@
       "bash",
       "pyaml",
       "ply",
-      "openmpi",
+      "openmpi=4",
       "nexus",
       "nexpy"
      ]
@@ -754,7 +754,7 @@
    "summary": "McStas is a general tool for simulating neutron scattering instruments and experiments."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -773,7 +773,7 @@
       "c_stdlib_stub",
       "flex",
       "bison",
-      "openmpi"
+      "openmpi=4"
      ],
      "host": [],
      "run": [
@@ -784,7 +784,7 @@
       "bash",
       "pyaml",
       "ply",
-      "openmpi",
+      "openmpi=4",
       "nexus",
       "nexpy"
      ]
@@ -960,7 +960,7 @@
    "summary": "McStas is a general tool for simulating neutron scattering instruments and experiments."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -979,7 +979,7 @@
       "c_stdlib_stub",
       "flex",
       "bison",
-      "openmpi"
+      "openmpi=4"
      ],
      "host": [],
      "run": [
@@ -990,7 +990,7 @@
       "bash",
       "pyaml",
       "ply",
-      "openmpi",
+      "openmpi=4",
       "nexus",
       "nexpy"
      ]
@@ -1174,7 +1174,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/mcstas-suite.json"
  },
- "raw_meta_yaml": "{% set version = \"3.4.49\" %}\n\npackage:\n  name: mcstas-suite\n  version: {{ version }}\n\n# sha256 value manually found by\n# curl -sL url | openssl sha256\nsource:\n  url: https://github.com/McStasMcXtrace/McCode/archive/v{{ version }}.tar.gz\n  sha256: e769bfc95f09a406a9db0f2ad6c039b8c254a93c365ef13137fd4a0be5904c95\n  folder: src\n\nbuild:\n  number: 0\n\noutputs:\n\n  - name: mcstas-core\n    script: install-files-core.sh  # [unix]\n    script: install-files-core.bat  # [win]\n    requirements:\n      build:\n        - cmake\n        - make  # [unix]\n        - {{ compiler('c') }}\n        - {{ stdlib(\"c\") }}\n        - flex  # [unix]\n        - bison  # [unix]\n        - winflexbison  # [win]\n        - mslex  # [win]\n        - msmpi  # [win]\n        - openmpi  # [not win]\n      host:\n        - dirent  # [win]\n      run:\n        - python\n        - {{ compiler('c') }}\n        - {{ stdlib(\"c\") }}\n        - gsl\n        - bash  # [unix]\n        # for mcrun\n        - pyaml\n        # for traces from mcrun\n        - ply\n        - mslex  # [win]\n        - msmpi  # [win]\n        - openmpi  # [not win]\n        - nexus  # [not (aarch64 or ppc64le)]\n        - nexpy  # [not (aarch64 or ppc64le)]\n    test:\n      files:\n        - test_pkg.py\n      commands:\n        - python test_pkg.py core\n      source_files:\n        - src/mcstas-comps/examples/BNL/BNL_H8/BNL_H8.instr\n        - src/mcstas-comps/examples/Union_demos/Union_manual_example/Union_manual_example.instr\n\n  - name: mcstas-data\n    build:\n      noarch: generic\n    script: install-files-data.sh  # [unix]\n    script: install-files-data.bat  # [win]\n    test:\n      files:\n        - test_pkg.py\n      requires:\n        - python\n      commands:\n        - python test_pkg.py data\n\n  - name: mcstas-mcgui\n    requirements:\n      run:\n        - mcstas-core\n        - pyqt\n        - qscintilla2\n    test:\n      files:\n        - test_pkg.py\n      commands:\n        - python test_pkg.py mcgui\n\n  - name: mcstas-vis\n    requirements:\n      run:\n        - mcstas-core\n        #  Note: conda-forge linter wants matplotlib-base and not matplotlib. It\n        #  actually makes no difference (as per October 2023) since we anyway\n        #  install tornado+pyqt.\n        - matplotlib-base\n        - numpy\n        - tornado >=5\n        - scipy\n        - pillow\n        - pyqtgraph\n        - pyqt >=5.10\n    test:\n      files:\n        - test_pkg.py\n      commands:\n        - python test_pkg.py vis\n\n  - name: mcstas\n    test:\n      files:\n        - test_pkg.py\n      requires:\n      commands:\n        - python test_pkg.py mcstas\n    requirements:\n      run:\n        - {{ pin_subpackage('mcstas-core', max_pin=\"x.x.x\") }}\n        - {{ pin_subpackage('mcstas-data', max_pin=\"x.x.x\") }}\n        - {{ pin_subpackage('mcstas-mcgui', max_pin=\"x.x.x\") }}\n        - {{ pin_subpackage('mcstas-vis', max_pin=\"x.x.x\") }}\n        - ncrystal  # [unix and not (aarch64 or ppc64le)]\n        - mcpl  # [unix and not (aarch64 or ppc64le)]\n\nabout:\n  home: https://mcstas.org/\n  summary: McStas is a general tool for simulating neutron scattering instruments and experiments.\n  description: |\n    McStas is a general tool for simulating neutron scattering instruments and\n    experiments.\n  license: GPL-3.0-only\n  license_family: GPL3\n  license_file: src/COPYING\n  doc_url: https://mcstas.org/\n  dev_url: https://github.com/McStasMcXtrace/McCode\n\nextra:\n  recipe-maintainers:\n    - willend\n    - tkittel\n",
+ "raw_meta_yaml": "{% set version = \"3.4.49\" %}\n\npackage:\n  name: mcstas-suite\n  version: {{ version }}\n\n# sha256 value manually found by\n# curl -sL url | openssl sha256\nsource:\n  url: https://github.com/McStasMcXtrace/McCode/archive/v{{ version }}.tar.gz\n  sha256: e769bfc95f09a406a9db0f2ad6c039b8c254a93c365ef13137fd4a0be5904c95\n  folder: src\n\nbuild:\n  number: 1\n\noutputs:\n\n  - name: mcstas-core\n    script: install-files-core.sh  # [unix]\n    script: install-files-core.bat  # [win]\n    requirements:\n      build:\n        - cmake\n        - make  # [unix]\n        - {{ compiler('c') }}\n        - {{ stdlib(\"c\") }}\n        - flex  # [unix]\n        - bison  # [unix]\n        - winflexbison  # [win]\n        - mslex  # [win]\n        - msmpi  # [win]\n        - openmpi=4  # [osx]\n        - openmpi  # [not (win or osx)]\n      host:\n        - dirent  # [win]\n      run:\n        - python\n        - {{ compiler('c') }}\n        - {{ stdlib(\"c\") }}\n        - gsl\n        - bash  # [unix]\n        # for mcrun\n        - pyaml\n        # for traces from mcrun\n        - ply\n        - mslex  # [win]\n        - msmpi  # [win]\n        - openmpi=4  # [osx]\n        - openmpi  # [not (win or osx)]\n        - nexus  # [not (aarch64 or ppc64le)]\n        - nexpy  # [not (aarch64 or ppc64le)]\n    test:\n      files:\n        - test_pkg.py\n      commands:\n        - python test_pkg.py core\n      source_files:\n        - src/mcstas-comps/examples/BNL/BNL_H8/BNL_H8.instr\n        - src/mcstas-comps/examples/Union_demos/Union_manual_example/Union_manual_example.instr\n\n  - name: mcstas-data\n    build:\n      noarch: generic\n    script: install-files-data.sh  # [unix]\n    script: install-files-data.bat  # [win]\n    test:\n      files:\n        - test_pkg.py\n      requires:\n        - python\n      commands:\n        - python test_pkg.py data\n\n  - name: mcstas-mcgui\n    requirements:\n      run:\n        - mcstas-core\n        - pyqt\n        - qscintilla2\n    test:\n      files:\n        - test_pkg.py\n      commands:\n        - python test_pkg.py mcgui\n\n  - name: mcstas-vis\n    requirements:\n      run:\n        - mcstas-core\n        #  Note: conda-forge linter wants matplotlib-base and not matplotlib. It\n        #  actually makes no difference (as per October 2023) since we anyway\n        #  install tornado+pyqt.\n        - matplotlib-base\n        - numpy\n        - tornado >=5\n        - scipy\n        - pillow\n        - pyqtgraph\n        - pyqt >=5.10\n    test:\n      files:\n        - test_pkg.py\n      commands:\n        - python test_pkg.py vis\n\n  - name: mcstas\n    test:\n      files:\n        - test_pkg.py\n      requires:\n      commands:\n        - python test_pkg.py mcstas\n    requirements:\n      run:\n        - {{ pin_subpackage('mcstas-core', max_pin=\"x.x.x\") }}\n        - {{ pin_subpackage('mcstas-data', max_pin=\"x.x.x\") }}\n        - {{ pin_subpackage('mcstas-mcgui', max_pin=\"x.x.x\") }}\n        - {{ pin_subpackage('mcstas-vis', max_pin=\"x.x.x\") }}\n        - ncrystal  # [unix and not (aarch64 or ppc64le)]\n        - mcpl  # [unix and not (aarch64 or ppc64le)]\n\nabout:\n  home: https://mcstas.org/\n  summary: McStas is a general tool for simulating neutron scattering instruments and experiments.\n  description: |\n    McStas is a general tool for simulating neutron scattering instruments and\n    experiments.\n  license: GPL-3.0-only\n  license_family: GPL3\n  license_file: src/COPYING\n  doc_url: https://mcstas.org/\n  dev_url: https://github.com/McStasMcXtrace/McCode\n\nextra:\n  recipe-maintainers:\n    - willend\n    - tkittel\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -1288,6 +1288,7 @@
     "mslex",
     "msmpi",
     "openmpi",
+    "openmpi=4",
     "winflexbison"
    ]
   },
@@ -1317,6 +1318,7 @@
     "nexus",
     "numpy",
     "openmpi",
+    "openmpi=4",
     "pillow",
     "ply",
     "pyaml",
@@ -1353,7 +1355,7 @@
    "summary": "McStas is a general tool for simulating neutron scattering instruments and experiments."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
