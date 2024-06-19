@@ -26,7 +26,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -38,22 +38,23 @@
   },
   "package": {
    "name": "django-cors-headers",
-   "version": "4.3.1"
+   "version": "4.4.0"
   },
   "requirements": {
    "host": [
-    "python >=3.7",
+    "python >=3.8",
     "setuptools",
     "pip"
    ],
    "run": [
-    "python >=3.7",
+    "python >=3.8",
+    "asgiref >=3.6",
     "django >=3.2"
    ]
   },
   "source": {
-   "sha256": "0bf65ef45e606aff1994d35503e6b677c0b26cafff6506f8fd7187f3be840207",
-   "url": "https://pypi.io/packages/source/d/django-cors-headers/django-cors-headers-4.3.1.tar.gz"
+   "sha256": "92cf4633e22af67a230a1456cb1b7a02bb213d6536d2dcb2a4a24092ea9cebc2",
+   "url": "https://pypi.io/packages/source/d/django-cors-headers/django_cors_headers-4.4.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -83,6 +84,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "asgiref",
     "django",
     "python"
    ]
@@ -107,7 +109,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -119,22 +121,23 @@
   },
   "package": {
    "name": "django-cors-headers",
-   "version": "4.3.1"
+   "version": "4.4.0"
   },
   "requirements": {
    "host": [
-    "python >=3.7",
+    "python >=3.8",
     "setuptools",
     "pip"
    ],
    "run": [
-    "python >=3.7",
+    "python >=3.8",
+    "asgiref >=3.6",
     "django >=3.2"
    ]
   },
   "source": {
-   "sha256": "0bf65ef45e606aff1994d35503e6b677c0b26cafff6506f8fd7187f3be840207",
-   "url": "https://pypi.io/packages/source/d/django-cors-headers/django-cors-headers-4.3.1.tar.gz"
+   "sha256": "92cf4633e22af67a230a1456cb1b7a02bb213d6536d2dcb2a4a24092ea9cebc2",
+   "url": "https://pypi.io/packages/source/d/django-cors-headers/django_cors_headers-4.4.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -162,10 +165,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/django-cors-headers.json"
  },
- "raw_meta_yaml": "{% set name = \"django-cors-headers\" %}\n{% set version = \"4.3.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 0bf65ef45e606aff1994d35503e6b677c0b26cafff6506f8fd7187f3be840207\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.7\n    - setuptools\n    - pip\n  run:\n    - python >=3.7\n    - django >=3.2\n\ntest:\n  imports:\n    - corsheaders\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/ottoyiu/django-cors-headers\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Django app for handling the server headers required for Cross-Origin Resource Sharing (CORS)\n\n  description: |\n    A Django App that adds CORS (Cross-Origin Resource Sharing) headers to responses.\n\n    Although JSON-P is useful, it is strictly limited to GET requests. \n    CORS builds on top of XmlHttpRequest to allow developers to make cross-domain requests, \n    similar to same-domain requests. Read more about it here <http://www.html5rocks.com/en/tutorials/cors/>.\n\n  dev_url: https://github.com/ottoyiu/django-cors-headers\n\nextra:\n  recipe-maintainers:\n    - rxm7706\n    - lsetiawan\n    - timsnyder\n    - MichelML\n",
+ "raw_meta_yaml": "{% set name = \"django-cors-headers\" %}\n{% set version = \"4.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/django_cors_headers-{{ version }}.tar.gz\n  sha256: 92cf4633e22af67a230a1456cb1b7a02bb213d6536d2dcb2a4a24092ea9cebc2\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools\n    - pip\n  run:\n    - python >=3.8\n    - asgiref >=3.6\n    - django >=3.2\n\ntest:\n  imports:\n    - corsheaders\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/ottoyiu/django-cors-headers\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Django app for handling the server headers required for Cross-Origin Resource Sharing (CORS)\n\n  description: |\n    A Django App that adds CORS (Cross-Origin Resource Sharing) headers to responses.\n\n    Although JSON-P is useful, it is strictly limited to GET requests. \n    CORS builds on top of XmlHttpRequest to allow developers to make cross-domain requests, \n    similar to same-domain requests. Read more about it here <http://www.html5rocks.com/en/tutorials/cors/>.\n\n  dev_url: https://github.com/ottoyiu/django-cors-headers\n\nextra:\n  recipe-maintainers:\n    - rxm7706\n    - lsetiawan\n    - timsnyder\n    - MichelML\n",
  "req": {
   "__set__": true,
   "elements": [
+   "asgiref",
    "django",
    "pip",
    "python",
@@ -188,6 +192,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "asgiref",
     "django",
     "python"
    ]
@@ -209,15 +214,16 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.7",
+    "python >=3.8",
     "setuptools"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "asgiref >=3.6",
     "django >=3.2",
-    "python >=3.7"
+    "python >=3.8"
    ]
   },
   "test": {
@@ -227,8 +233,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/d/django-cors-headers/django-cors-headers-4.3.1.tar.gz",
- "version": "4.3.1",
+ "url": "https://pypi.io/packages/source/d/django-cors-headers/django_cors_headers-4.4.0.tar.gz",
+ "version": "4.4.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/django-cors-headers.json"
  }
