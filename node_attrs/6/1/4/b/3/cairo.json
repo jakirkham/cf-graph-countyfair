@@ -38,7 +38,7 @@
    "summary": "Cairo is a 2D graphics library with support for multiple output devices."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "cairo"
    ]
@@ -60,6 +60,7 @@
    "build": [
     "xz",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -128,6 +129,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -190,7 +192,7 @@
    "summary": "Cairo is a 2D graphics library with support for multiple output devices."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "cairo"
    ]
@@ -212,6 +214,7 @@
    "build": [
     "xz",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -280,6 +283,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -342,7 +346,7 @@
    "summary": "Cairo is a 2D graphics library with support for multiple output devices."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "cairo"
    ]
@@ -364,6 +368,7 @@
    "build": [
     "xz",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -432,6 +437,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -494,7 +500,7 @@
    "summary": "Cairo is a 2D graphics library with support for multiple output devices."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "cairo"
    ]
@@ -516,6 +522,7 @@
    "build": [
     "xz",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -612,7 +619,7 @@
    "summary": "Cairo is a 2D graphics library with support for multiple output devices."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "cairo"
    ]
@@ -634,6 +641,7 @@
    "build": [
     "xz",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -687,6 +695,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -734,7 +743,7 @@
    "summary": "Cairo is a 2D graphics library with support for multiple output devices."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "cairo"
    ]
@@ -756,6 +765,7 @@
    "build": [
     "xz",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -809,6 +819,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -860,11 +871,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cairo.json"
  },
- "raw_meta_yaml": "{% set version = \"1.18.0\" %}\n\npackage:\n  name: cairo\n  version: {{ version }}\n\nsource:\n  url: http://cairographics.org/releases/cairo-{{ version }}.tar.xz\n  sha256: 243a0736b978a33dee29f9cca7521733b78a65b5418206fef7bd1c3d4cf10b64\n  patches:\n    - meson-darwin-versions.patch\n    - windows-soversion-continuity.patch  # [win]\n\nbuild:\n  number: 0\n  run_exports:\n    - {{ pin_subpackage('cairo') }}\n\nrequirements:\n  build:\n    - m2w64-xz              # [win]\n    - xz                    # [not win]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - meson\n    - ninja\n    - pkg-config\n    - pthread-stubs         # [linux]\n    - xcb-proto             # [linux]\n    - xorg-renderproto      # [linux]\n    - xorg-xproto           # [linux]\n  host:\n    - freetype\n    - fontconfig\n    - glib\n    - icu\n    - libpng\n    - libxcb                # [linux]\n    - pixman\n    - xorg-libice  # [linux]\n    - xorg-libsm  # [linux]\n    - xorg-libx11  # [linux]\n    - xorg-libxext  # [linux]\n    - xorg-libxrender  # [linux]\n    - zlib\n  run:\n    - xorg-libice  # [linux]\n    - xorg-libsm  # [linux]\n    - xorg-libx11  # [linux]\n    - xorg-libxext  # [linux]\n    - xorg-libxrender  # [linux]\n    # hmaarrfk: 2022/08\n    # While the dependencies below should be captured\n    # by run_exports, run_exports doesn't necessary\n    # bring in compile time depenencies\n    - zlib\n\ntest:\n  requires:\n    - glib  # needed for the pkg-config invocations below\n    - pkg-config\n\n  commands:\n    # Check commands.\n    - cairo-trace --help  # [not win]\n\n    # Verify libraries. Note that on Windows, we patch Cairo's build system to\n    # produce DLL names like `cairo.dll` rather than `cairo-2.dll` to maintain\n    # continuity with binaries shipped before the switch to Meson.\n    {% set cairo_libs = [\n            \"cairo\",\n            \"cairo-gobject\",\n            \"cairo-script-interpreter\",\n    ] %}\n    {% for each_cairo_lib in cairo_libs %}\n    - test -f $PREFIX/lib/lib{{ each_cairo_lib }}.a                   # [not win]\n    - test -f $PREFIX/lib/lib{{ each_cairo_lib }}.dylib               # [osx]\n    - test -f $PREFIX/lib/lib{{ each_cairo_lib }}.so                  # [linux]\n    - if not exist %LIBRARY_BIN%\\{{ each_cairo_lib }}.dll exit /b 1   # [win]\n    - if not exist %LIBRARY_LIB%\\{{ each_cairo_lib }}.lib exit /b 1   # [win]\n    - if not exist %LIBRARY_LIB%\\lib{{ each_cairo_lib }}.a exit /b 1  # [win]\n    {% endfor %}\n\n    # Check pkg-config files.\n    - test -f $PREFIX/lib/pkgconfig/cairo-quartz.pc                  # [osx]\n    - test -f $PREFIX/lib/pkgconfig/cairo-xlib.pc                    # [linux]\n    - if not exist %LIBRARY_LIB%\\pkgconfig\\cairo-win32.pc exit /b 1  # [win]\n\n    # check include files\n    - test -f $PREFIX/include/cairo/cairo.h               # [unix]\n    - if not exist %LIBRARY_INC%\\cairo\\cairo.h exit /b 1  # [win]\n\n    # check that cairo was built with fontconfig support\n    - grep -q \"CAIRO_HAS_FC_FONT 1\" $PREFIX/include/cairo/cairo-features.h  # [unix]\n\n    - export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig   # [not win]\n    - set \"PKG_CONFIG_PATH=%LIBRARY_LIB%\\pkgconfig\"  # [win]\n    - pkg-config --cflags cairo\n    - pkg-config --cflags cairo-fc\n    - pkg-config --cflags cairo-gobject\n\nabout:\n  home: http://cairographics.org/\n  dev_url: https://gitlab.freedesktop.org/cairo/cairo\n  doc_url: https://www.cairographics.org/documentation/\n  license: LGPL-2.1-only or MPL-1.1\n  license_file:\n    - COPYING\n    - COPYING-LGPL-2.1\n    - COPYING-MPL-1.1\n  summary: 'Cairo is a 2D graphics library with support for multiple output devices.'\n\nextra:\n  recipe-maintainers:\n    - ccordoba12\n    - jakirkham\n    - ocefpaf\n    - pkgw\n    - tschoonj\n",
+ "raw_meta_yaml": "{% set version = \"1.18.0\" %}\n\npackage:\n  name: cairo\n  version: {{ version }}\n\nsource:\n  url: http://cairographics.org/releases/cairo-{{ version }}.tar.xz\n  sha256: 243a0736b978a33dee29f9cca7521733b78a65b5418206fef7bd1c3d4cf10b64\n  patches:\n    - meson-darwin-versions.patch\n    - windows-soversion-continuity.patch  # [win]\n\nbuild:\n  number: 1\n  run_exports:\n    - {{ pin_subpackage('cairo') }}\n\nrequirements:\n  build:\n    - m2w64-xz              # [win]\n    - xz                    # [not win]\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - meson\n    - ninja\n    - pkg-config\n    - pthread-stubs         # [linux]\n    - xcb-proto             # [linux]\n    - xorg-renderproto      # [linux]\n    - xorg-xproto           # [linux]\n  host:\n    - freetype\n    - fontconfig\n    - glib\n    - icu\n    - libpng\n    - libxcb                # [linux]\n    - pixman\n    - xorg-libice  # [linux]\n    - xorg-libsm  # [linux]\n    - xorg-libx11  # [linux]\n    - xorg-libxext  # [linux]\n    - xorg-libxrender  # [linux]\n    - zlib\n  run:\n    - xorg-libice  # [linux]\n    - xorg-libsm  # [linux]\n    - xorg-libx11  # [linux]\n    - xorg-libxext  # [linux]\n    - xorg-libxrender  # [linux]\n    # hmaarrfk: 2022/08\n    # While the dependencies below should be captured\n    # by run_exports, run_exports doesn't necessary\n    # bring in compile time depenencies\n    - zlib\n\ntest:\n  requires:\n    - glib  # needed for the pkg-config invocations below\n    - pkg-config\n\n  commands:\n    # Check commands.\n    - cairo-trace --help  # [not win]\n\n    # Verify libraries. Note that on Windows, we patch Cairo's build system to\n    # produce DLL names like `cairo.dll` rather than `cairo-2.dll` to maintain\n    # continuity with binaries shipped before the switch to Meson.\n    {% set cairo_libs = [\n            \"cairo\",\n            \"cairo-gobject\",\n            \"cairo-script-interpreter\",\n    ] %}\n    {% for each_cairo_lib in cairo_libs %}\n    - test -f $PREFIX/lib/lib{{ each_cairo_lib }}.a                   # [not win]\n    - test -f $PREFIX/lib/lib{{ each_cairo_lib }}.dylib               # [osx]\n    - test -f $PREFIX/lib/lib{{ each_cairo_lib }}.so                  # [linux]\n    - if not exist %LIBRARY_BIN%\\{{ each_cairo_lib }}.dll exit /b 1   # [win]\n    - if not exist %LIBRARY_LIB%\\{{ each_cairo_lib }}.lib exit /b 1   # [win]\n    - if not exist %LIBRARY_LIB%\\lib{{ each_cairo_lib }}.a exit /b 1  # [win]\n    {% endfor %}\n\n    # Check pkg-config files.\n    - test -f $PREFIX/lib/pkgconfig/cairo-quartz.pc                  # [osx]\n    - test -f $PREFIX/lib/pkgconfig/cairo-xlib.pc                    # [linux]\n    - if not exist %LIBRARY_LIB%\\pkgconfig\\cairo-win32.pc exit /b 1  # [win]\n\n    # check include files\n    - test -f $PREFIX/include/cairo/cairo.h               # [unix]\n    - if not exist %LIBRARY_INC%\\cairo\\cairo.h exit /b 1  # [win]\n\n    # check that cairo was built with fontconfig support\n    - grep -q \"CAIRO_HAS_FC_FONT 1\" $PREFIX/include/cairo/cairo-features.h  # [unix]\n\n    - export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig   # [not win]\n    - set \"PKG_CONFIG_PATH=%LIBRARY_LIB%\\pkgconfig\"  # [win]\n    - pkg-config --cflags cairo\n    - pkg-config --cflags cairo-fc\n    - pkg-config --cflags cairo-gobject\n\nabout:\n  home: http://cairographics.org/\n  dev_url: https://gitlab.freedesktop.org/cairo/cairo\n  doc_url: https://www.cairographics.org/documentation/\n  license: LGPL-2.1-only or MPL-1.1\n  license_file:\n    - COPYING\n    - COPYING-LGPL-2.1\n    - COPYING-MPL-1.1\n  summary: 'Cairo is a 2D graphics library with support for multiple output devices.'\n\nextra:\n  recipe-maintainers:\n    - ccordoba12\n    - jakirkham\n    - ocefpaf\n    - pkgw\n    - tschoonj\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "fontconfig",
    "freetype",
@@ -895,6 +907,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "m2w64-xz",
     "meson",
@@ -911,6 +924,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fontconfig",
     "freetype",
@@ -931,6 +945,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "xorg-libice",
     "xorg-libsm",
@@ -954,6 +969,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "m2w64-xz",
     "meson",
@@ -1022,7 +1038,7 @@
    "summary": "Cairo is a 2D graphics library with support for multiple output devices."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "cairo"
    ]
@@ -1044,6 +1060,7 @@
    "build": [
     "m2w64-xz",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -1099,6 +1116,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "m2w64-xz",
     "meson",
