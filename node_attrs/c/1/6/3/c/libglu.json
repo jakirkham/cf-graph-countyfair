@@ -30,7 +30,7 @@
    "summary": "Mesa OpenGL utility library (GLU)"
   },
   "build": {
-   "number": "1003"
+   "number": "1004"
   },
   "extra": {
    "recipe-maintainers": [
@@ -45,6 +45,7 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cdt_stub",
     "pkg-config",
@@ -83,6 +84,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cxx_compiler_stub",
     "gnuconfig",
@@ -122,7 +124,7 @@
    "summary": "Mesa OpenGL utility library (GLU)"
   },
   "build": {
-   "number": "1003"
+   "number": "1004"
   },
   "extra": {
    "recipe-maintainers": [
@@ -137,6 +139,7 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cdt_stub",
     "pkg-config",
@@ -177,6 +180,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cxx_compiler_stub",
     "gnuconfig",
@@ -218,7 +222,7 @@
    "summary": "Mesa OpenGL utility library (GLU)"
   },
   "build": {
-   "number": "1003"
+   "number": "1004"
   },
   "extra": {
    "recipe-maintainers": [
@@ -233,6 +237,7 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cdt_stub",
     "pkg-config",
@@ -273,6 +278,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cxx_compiler_stub",
     "gnuconfig",
@@ -314,7 +320,7 @@
    "summary": "Mesa OpenGL utility library (GLU)"
   },
   "build": {
-   "number": "1003"
+   "number": "1004"
   },
   "extra": {
    "recipe-maintainers": [
@@ -329,6 +335,7 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cdt_stub",
     "pkg-config",
@@ -380,11 +387,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libglu.json"
  },
- "raw_meta_yaml": "{% set version = '9.0.0' %}\n\npackage:\n  name: libglu\n  version: {{ version }}\n\nsource:\n  url: ftp://ftp.freedesktop.org/pub/mesa/glu/glu-{{ version }}.tar.gz\n  sha256: 4387476a1933f36fec1531178ea204057bbeb04cc2d8396c9ea32720a1f7e264\n  patches:\n    - 001-update-config-guess.patch\n\nbuild:\n  number: 1003\n  skip: True  # [win or osx]\n\nrequirements:\n  build:\n    - gnuconfig  # [unix]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ cdt('mesa-libgl-devel') }}  # [linux]\n    - {{ cdt('mesa-dri-drivers') }}  # [linux]\n    - {{ cdt('libdrm-devel') }}          # [linux]\n    # These dependencies are only for cos7 platforms\n    - {{ cdt('mesa-libglapi') }}     # [linux & (ppc64le | aarch64)]\n    - {{ cdt('mesa-khr-devel') }}    # [linux & (ppc64le | aarch64)]\n    - pkg-config                    # [unix]\n    - make                          # [unix]\n  host:\n    - xorg-libx11                        # [linux]\n    - xorg-fixesproto                    # [linux]\n    - xorg-xproto                        # [linux]\n    - xorg-kbproto                       # [linux]\n    - xorg-xextproto                     # [linux]\n    - xorg-damageproto                   # [linux]\n    - xorg-xf86vidmodeproto              # [linux]\n    - xorg-libxext                       # [linux]\n    - xorg-libxdamage                    # [linux]\n    - xorg-libxxf86vm                    # [linux]\n    - libxcb       # [linux]\n    # These dependencies are only for cos7 platforms\n    - xorg-libxau  # [linux & (ppc64le | aarch64)]\n    - xorg-libxdmcp  # [linux & (ppc64le | aarch64)]\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/libGLU.a  # [not win]\n    - test -f ${PREFIX}/lib/libGLU${SHLIB_EXT}  # [not win]\n\nabout:\n  home: http://www.mesa3d.org/glu.html\n  license: SGI-2\n  summary: Mesa OpenGL utility library (GLU)\n\nextra:\n  recipe-maintainers:\n    - bgruening\n",
+ "raw_meta_yaml": "{% set version = '9.0.0' %}\n\npackage:\n  name: libglu\n  version: {{ version }}\n\nsource:\n  url: ftp://ftp.freedesktop.org/pub/mesa/glu/glu-{{ version }}.tar.gz\n  sha256: 4387476a1933f36fec1531178ea204057bbeb04cc2d8396c9ea32720a1f7e264\n  patches:\n    - 001-update-config-guess.patch\n\nbuild:\n  number: 1004\n  skip: True  # [win or osx]\n\nrequirements:\n  build:\n    - gnuconfig  # [unix]\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - {{ cdt('mesa-libgl-devel') }}  # [linux]\n    - {{ cdt('mesa-dri-drivers') }}  # [linux]\n    - {{ cdt('libdrm-devel') }}          # [linux]\n    # These dependencies are only for cos7 platforms\n    - {{ cdt('mesa-libglapi') }}     # [linux & (ppc64le | aarch64)]\n    - {{ cdt('mesa-khr-devel') }}    # [linux & (ppc64le | aarch64)]\n    - pkg-config                    # [unix]\n    - make                          # [unix]\n  host:\n    - xorg-libx11                        # [linux]\n    - xorg-fixesproto                    # [linux]\n    - xorg-xproto                        # [linux]\n    - xorg-kbproto                       # [linux]\n    - xorg-xextproto                     # [linux]\n    - xorg-damageproto                   # [linux]\n    - xorg-xf86vidmodeproto              # [linux]\n    - xorg-libxext                       # [linux]\n    - xorg-libxdamage                    # [linux]\n    - xorg-libxxf86vm                    # [linux]\n    - libxcb                             # [linux]\n    # These dependencies are only for cos7 platforms\n    - xorg-libxau  # [linux & (ppc64le | aarch64)]\n    - xorg-libxdmcp  # [linux & (ppc64le | aarch64)]\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/libGLU.a  # [not win]\n    - test -f ${PREFIX}/lib/libGLU${SHLIB_EXT}  # [not win]\n\nabout:\n  home: http://www.mesa3d.org/glu.html\n  license: SGI-2\n  summary: Mesa OpenGL utility library (GLU)\n\nextra:\n  recipe-maintainers:\n    - bgruening\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cdt_stub",
    "cxx_compiler_stub",
    "gnuconfig",
@@ -410,6 +418,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cxx_compiler_stub",
     "gnuconfig",
@@ -421,6 +430,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libxcb",
     "xorg-damageproto",
@@ -441,6 +451,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -455,6 +466,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cxx_compiler_stub",
     "gnuconfig",
