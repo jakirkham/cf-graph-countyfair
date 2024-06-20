@@ -26,7 +26,7 @@
    "summary": "The NCEPLIBS-bufr library contains routines and utilites for working with the WMO BUFR format."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -108,7 +108,7 @@
    "summary": "The NCEPLIBS-bufr library contains routines and utilites for working with the WMO BUFR format."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -160,7 +160,7 @@
    "summary": "The NCEPLIBS-bufr library contains routines and utilites for working with the WMO BUFR format."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -240,7 +240,7 @@
    "summary": "The NCEPLIBS-bufr library contains routines and utilites for working with the WMO BUFR format."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -326,7 +326,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/nceplibs-bufr.json"
  },
- "raw_meta_yaml": "{% set name = \"NCEPLIBS-bufr\" %}\n{% set version = \"12.0.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/NOAA-EMC/NCEPLIBS-bufr/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 525f26238dba6511a453fc71cecc05f59e4800a603de2abbbbfb8cbb5adf5708\n\nbuild:\n  # NOTE: No Windows support in initial feedstock (known use cases are only osx and linux)\n  skip: True  # [win]\n  # NOTE: Only support recent Python releases. Cannot support Python==3.12 because build\n  # system in NCEPLIBS-bufr_v12.0.1 uses a hard-coded dependency on distutils, which was\n  # removed from the standard library.\n  skip: True  # [py<310 or py==312]\n\n  number: 1\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('fortran') }}\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - make  # [linux]\n    - cmake\n    - pkg-config >=0.29\n  host:\n    - python\n    - numpy\n  run:\n    - python\n    - numpy\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/libbufr_4${SHLIB_EXT}\n  imports:\n    - ncepbufr\n\nabout:\n  home: https://github.com/NOAA-EMC/NCEPLIBS-bufr/\n  summary: The NCEPLIBS-bufr library contains routines and utilites for working with the WMO BUFR format.\n  license: LGPL-3.0-only\n  license_file: LICENSE.md\n  doc_url: https://noaa-emc.github.io/NCEPLIBS-bufr/\n\nextra:\n  recipe-maintainers:\n    - darothen\n",
+ "raw_meta_yaml": "{% set name = \"NCEPLIBS-bufr\" %}\n{% set version = \"12.0.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/NOAA-EMC/NCEPLIBS-bufr/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 525f26238dba6511a453fc71cecc05f59e4800a603de2abbbbfb8cbb5adf5708\n\nbuild:\n  # NOTE: No Windows support in initial feedstock (known use cases are only osx and linux)\n  skip: True  # [win]\n  # NOTE: Only support recent Python releases. Cannot support Python==3.12 because build\n  # system in NCEPLIBS-bufr_v12.0.1 uses a hard-coded dependency on distutils, which was\n  # removed from the standard library.\n  skip: True  # [py<310 or py==312]\n\n  number: 2\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('fortran') }}\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - make  # [linux]\n    - cmake\n    - pkg-config >=0.29\n  host:\n    - python\n    - numpy\n  run:\n    - python\n    - numpy\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/libbufr_4${SHLIB_EXT}\n  imports:\n    - ncepbufr\n\nabout:\n  home: https://github.com/NOAA-EMC/NCEPLIBS-bufr/\n  summary: The NCEPLIBS-bufr library contains routines and utilites for working with the WMO BUFR format.\n  license: LGPL-3.0-only\n  license_file: LICENSE.md\n  doc_url: https://noaa-emc.github.io/NCEPLIBS-bufr/\n\nextra:\n  recipe-maintainers:\n    - darothen\n",
  "req": {
   "__set__": true,
   "elements": [
