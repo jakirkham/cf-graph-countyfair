@@ -16,7 +16,7 @@
  "linux_64_meta_yaml": {
   "about": {
    "dev_url": "https://github.com/lttng/lttng-ust",
-   "doc_url": "https://lttng.org/docs/v2.13.4/",
+   "doc_url": "https://lttng.org/docs/v2.13.8/",
    "home": "https://lttng.org/",
    "license": "LGPL-2.1-only",
    "license_family": "LGPL",
@@ -37,11 +37,12 @@
   },
   "package": {
    "name": "lttng-ust",
-   "version": "2.13.4"
+   "version": "2.13.8"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "make",
     "pkg-config",
@@ -58,8 +59,8 @@
   },
   "source": [
    {
-    "sha256": "698f82ec5dc56e981c0bb08c46ebabaf31c60e877c2e365b9fd6d3a9fff8b398",
-    "url": "http://lttng.org/files/lttng-ust/lttng-ust-2.13.4.tar.bz2"
+    "sha256": "d4ef98dab9a37ad4f524ccafdfd50af4f266039b528dd5afabce78e49024d937",
+    "url": "http://lttng.org/files/lttng-ust/lttng-ust-2.13.8.tar.bz2"
    }
   ],
   "test": {
@@ -74,6 +75,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "libuuid",
     "libxml2",
@@ -102,7 +104,7 @@
  "meta_yaml": {
   "about": {
    "dev_url": "https://github.com/lttng/lttng-ust",
-   "doc_url": "https://lttng.org/docs/v2.13.4/",
+   "doc_url": "https://lttng.org/docs/v2.13.8/",
    "home": "https://lttng.org/",
    "license": "LGPL-2.1-only",
    "license_family": "LGPL",
@@ -123,11 +125,12 @@
   },
   "package": {
    "name": "lttng-ust",
-   "version": "2.13.4"
+   "version": "2.13.8"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "make",
     "pkg-config",
@@ -144,8 +147,8 @@
   },
   "source": [
    {
-    "sha256": "698f82ec5dc56e981c0bb08c46ebabaf31c60e877c2e365b9fd6d3a9fff8b398",
-    "url": "http://lttng.org/files/lttng-ust/lttng-ust-2.13.4.tar.bz2"
+    "sha256": "d4ef98dab9a37ad4f524ccafdfd50af4f266039b528dd5afabce78e49024d937",
+    "url": "http://lttng.org/files/lttng-ust/lttng-ust-2.13.8.tar.bz2"
    }
   ],
   "test": {
@@ -169,11 +172,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/lttng-ust.json"
  },
- "raw_meta_yaml": "{% set name = \"lttng-ust\" %}\n{% set version = \"2.13.4\" %}\n\npackage:\n  name: lttng-ust\n  version: {{ version }}\n\nsource:\n  - url: http://lttng.org/files/lttng-ust/lttng-ust-{{ version }}.tar.bz2\n    sha256: 698f82ec5dc56e981c0bb08c46ebabaf31c60e877c2e365b9fd6d3a9fff8b398\n\nbuild:\n  skip: true  # [win or osx]\n  number: 0\n  run_exports:\n    - '{{ pin_subpackage(name, max_pin=\"x.x\") }}'\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ cdt('numactl') }}\n    - make\n    - pkg-config\n    - libuuid\n    - popt\n    - libxml2\n  host:\n    - liburcu\n  run:\n    - liburcu\n\ntest:\n  commands:\n    - test -e $PREFIX/include/lttng/tracepoint.h\n    - test -e $PREFIX/lib/liblttng-ust.so\n\nabout:\n  home: https://lttng.org/\n  license: LGPL-2.1-only\n  license_family: LGPL\n  license_file: LICENSE\n  summary: The LTTng User Space Tracing (LTTng-UST) library allows any C/C++ application to be instrumented for and traced by LTTng.\n  doc_url: https://lttng.org/docs/v{{ version }}/\n  dev_url: https://github.com/lttng/lttng-ust\n\nextra:\n  recipe-maintainers:\n    - ZimmerA\n    - wolfv\n",
+ "raw_meta_yaml": "{% set name = \"lttng-ust\" %}\n{% set version = \"2.13.8\" %}\n\npackage:\n  name: lttng-ust\n  version: {{ version }}\n\nsource:\n  - url: http://lttng.org/files/lttng-ust/lttng-ust-{{ version }}.tar.bz2\n    sha256: d4ef98dab9a37ad4f524ccafdfd50af4f266039b528dd5afabce78e49024d937\n\nbuild:\n  skip: true  # [win or osx]\n  number: 0\n  run_exports:\n    - '{{ pin_subpackage(name, max_pin=\"x.x\") }}'\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ cdt('numactl') }}\n    - make\n    - pkg-config\n    - libuuid\n    - popt\n    - libxml2\n  host:\n    - liburcu\n  run:\n    - liburcu\n\ntest:\n  commands:\n    - test -e $PREFIX/include/lttng/tracepoint.h\n    - test -e $PREFIX/lib/liblttng-ust.so\n\nabout:\n  home: https://lttng.org/\n  license: LGPL-2.1-only\n  license_family: LGPL\n  license_file: LICENSE\n  summary: The LTTng User Space Tracing (LTTng-UST) library allows any C/C++ application to be instrumented for and traced by LTTng.\n  doc_url: https://lttng.org/docs/v{{ version }}/\n  dev_url: https://github.com/lttng/lttng-ust\n\nextra:\n  recipe-maintainers:\n    - ZimmerA\n    - wolfv\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cdt_stub",
    "liburcu",
    "libuuid",
@@ -188,6 +192,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "libuuid",
     "libxml2",
@@ -200,6 +205,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "liburcu"
    ]
   },
@@ -207,6 +213,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "liburcu"
    ]
   },
@@ -221,6 +228,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "libuuid",
     "libxml2",
@@ -246,8 +254,8 @@
    "elements": []
   }
  },
- "url": "http://lttng.org/files/lttng-ust/lttng-ust-2.13.4.tar.bz2",
- "version": "2.13.4",
+ "url": "http://lttng.org/files/lttng-ust/lttng-ust-2.13.8.tar.bz2",
+ "version": "2.13.8",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/lttng-ust.json"
  }
