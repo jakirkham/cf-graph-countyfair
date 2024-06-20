@@ -31,7 +31,7 @@
    "summary": "Python bindings for SLEPc"
   },
   "build": {
-   "number": "101",
+   "number": "102",
    "script": [
     "export PETSC_DIR=$PREFIX",
     "export SLEPC_DIR=$PREFIX",
@@ -133,7 +133,7 @@
    "summary": "Python bindings for SLEPc"
   },
   "build": {
-   "number": "101",
+   "number": "102",
    "script": [
     "export PETSC_DIR=$PREFIX",
     "export SLEPC_DIR=$PREFIX",
@@ -235,7 +235,7 @@
    "summary": "Python bindings for SLEPc"
   },
   "build": {
-   "number": "101",
+   "number": "102",
    "script": [
     "export PETSC_DIR=$PREFIX",
     "export SLEPC_DIR=$PREFIX",
@@ -337,7 +337,7 @@
    "summary": "Python bindings for SLEPc"
   },
   "build": {
-   "number": "101",
+   "number": "102",
    "script": [
     "export PETSC_DIR=$PREFIX",
     "export SLEPC_DIR=$PREFIX",
@@ -403,7 +403,7 @@
    "summary": "Python bindings for SLEPc"
   },
   "build": {
-   "number": "101",
+   "number": "102",
    "script": [
     "export PETSC_DIR=$PREFIX",
     "export SLEPC_DIR=$PREFIX",
@@ -501,7 +501,7 @@
    "summary": "Python bindings for SLEPc"
   },
   "build": {
-   "number": "101",
+   "number": "102",
    "script": [
     "export PETSC_DIR=$PREFIX",
     "export SLEPC_DIR=$PREFIX",
@@ -608,7 +608,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/slepc4py.json"
  },
- "raw_meta_yaml": "{% set name = \"slepc4py\" %}\n{% set version = \"3.21.1\" %}\n{% set sha256 = \"bc8e0e270643eef9b63b249080b8fe4433be0b697d55032d9f768ef310bd7b07\" %}\n{% set build = 101 %}\n\n{% set version_xy = version.rsplit('.', 1)[0] %}\n\npackage:\n  name: slepc4py\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: {{ build }}\n  script:\n    - export OPAL_PREFIX=$PREFIX  # [mpi == 'openmpi']\n    - export PETSC_DIR=$PREFIX\n    - export SLEPC_DIR=$PREFIX\n    - {{ PYTHON }} -m pip -v install --no-deps .\n  skip: true  # [win]\n  track_features:\n    - slepc4py_complex  # [scalar == \"complex\"]\n    - slepc4py_cuda     # [device != \"host\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - python                              # [build_platform != target_platform]\n    - cython >=3                          # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - numpy                               # [build_platform != target_platform]\n    - {{ mpi }}  # [mpi == 'openmpi' and build_platform != target_platform]\n  host:\n    - python\n    - cython >=3\n    - pip\n    - numpy\n    - {{ mpi }}\n    - slepc {{ version_xy }}.* {{ scalar }}_*               # [device == 'host']\n    - slepc {{ version_xy }}.* {{ device }}_{{ scalar }}_*  # [device != 'host']\n    - petsc4py\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - {{ mpi }}\n    - slepc  # pinned by slepc run_exports\n    - petsc4py {{ version_xy }}.*  # build pinned by petsc4py->petsc\n  run_constrained:\n    - mpi4py >=3.0.1\n\nabout:\n  home: https://gitlab.com/slepc/slepc\n  summary: Python bindings for SLEPc\n  license: BSD-2-Clause\n  license_file: LICENSE.rst\n\nextra:\n  recipe-maintainers:\n    - dalcinl\n    - joseeroman\n    - minrk\n",
+ "raw_meta_yaml": "{% set name = \"slepc4py\" %}\n{% set version = \"3.21.1\" %}\n{% set sha256 = \"bc8e0e270643eef9b63b249080b8fe4433be0b697d55032d9f768ef310bd7b07\" %}\n{% set build = 102 %}\n\n{% set version_xy = version.rsplit('.', 1)[0] %}\n\npackage:\n  name: slepc4py\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: {{ build }}\n  script:\n    - export OPAL_PREFIX=$PREFIX  # [mpi == 'openmpi']\n    - export PETSC_DIR=$PREFIX\n    - export SLEPC_DIR=$PREFIX\n    - {{ PYTHON }} -m pip -v install --no-deps .\n  skip: true  # [win]\n  track_features:\n    - slepc4py_complex  # [scalar == \"complex\"]\n    - slepc4py_cuda     # [device != \"host\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - python                              # [build_platform != target_platform]\n    - cython >=3                          # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - numpy                               # [build_platform != target_platform]\n    - {{ mpi }}  # [mpi == 'openmpi' and build_platform != target_platform]\n  host:\n    - python\n    - cython >=3\n    - pip\n    - numpy\n    - {{ mpi }}\n    - slepc {{ version_xy }}.* {{ scalar }}_*               # [device == 'host']\n    - slepc {{ version_xy }}.* {{ device }}_{{ scalar }}_*  # [device != 'host']\n    - petsc4py\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - {{ mpi }}\n    - slepc  # pinned by slepc run_exports\n    - petsc4py {{ version_xy }}.*  # build pinned by petsc4py->petsc\n  run_constrained:\n    - mpi4py >=3.0.1\n\nabout:\n  home: https://gitlab.com/slepc/slepc\n  summary: Python bindings for SLEPc\n  license: BSD-2-Clause\n  license_file: LICENSE.rst\n\nextra:\n  recipe-maintainers:\n    - dalcinl\n    - joseeroman\n    - minrk\n",
  "req": {
   "__set__": true,
   "elements": [
