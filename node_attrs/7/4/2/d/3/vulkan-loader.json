@@ -37,7 +37,7 @@
    "ignore_run_exports_from": [
     "libxcb"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "vulkan-loader",
@@ -54,6 +54,7 @@
     "cmake",
     "ninja",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "python"
    ],
    "host": [
@@ -83,6 +84,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja",
@@ -118,7 +120,7 @@
    "ignore_run_exports_from": [
     "libxcb"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "vulkan-loader",
@@ -135,6 +137,7 @@
     "cmake",
     "ninja",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "python"
    ],
    "host": [
@@ -164,6 +167,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja",
@@ -199,7 +203,7 @@
    "ignore_run_exports_from": [
     "libxcb"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "vulkan-loader",
@@ -216,6 +220,7 @@
     "cmake",
     "ninja",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "python"
    ],
    "host": [
@@ -245,6 +250,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja",
@@ -280,7 +286,7 @@
    "ignore_run_exports_from": [
     "libxcb"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "vulkan-loader",
@@ -297,6 +303,7 @@
     "cmake",
     "ninja",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "python"
    ],
    "host": [
@@ -337,7 +344,7 @@
    "ignore_run_exports_from": [
     "libxcb"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "vulkan-loader",
@@ -354,6 +361,7 @@
     "cmake",
     "ninja",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "python"
    ],
    "host": [
@@ -381,6 +389,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja",
@@ -413,7 +422,7 @@
    "ignore_run_exports_from": [
     "libxcb"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "vulkan-loader",
@@ -430,6 +439,7 @@
     "cmake",
     "ninja",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "python"
    ],
    "host": [
@@ -457,6 +467,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja",
@@ -496,10 +507,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/vulkan-loader.json"
  },
- "raw_meta_yaml": "{% set name = \"libvulkan-loader\" %}\n{% set version = \"1.3.250.0\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\n# For this repo, v**** tags exists, but apparently the stable tags (the one corresponding to versions\n# that are available for download at https://vulkan.lunarg.com/sdk/home) are the sdk-*** ones\n# See https://github.com/KhronosGroup/Vulkan-Headers#version-tagging-scheme\nsource:\n  url: https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/sdk-{{ version }}.tar.gz\n  sha256: 17f8683fd8320d5dfebdb22879f26f82c014d320a6a0622118cd298887626295\n  patches:\n    - disable_macos_framework.patch\n\nbuild:\n  number: 0\n  ignore_run_exports_from:\n    # only the headers are used by the feedstock\n    - libxcb\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - {{ compiler('cxx') }}\n    - python\n  host:\n    - libvulkan-headers {{ version }}\n    - libxcb  # [linux]\n    - xorg-libx11  # [linux]\n    - xorg-libxrandr  # [linux]\n  run_constrained:\n    - libvulkan-headers {{ version }}\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/libvulkan${SHLIB_EXT}  # [unix]\n    - test ! -e ${PREFIX}/loader/vulkan.framework  # [osx]\n    - if not exist %LIBRARY_LIB%\\\\vulkan-1.lib exit 1  # [win]\n    - if not exist %LIBRARY_BIN%\\\\vulkan-1.dll exit 1  # [win]\n\nabout:\n  home: https://github.com/KhronosGroup/Vulkan-Loader\n  license: Apache-2.0\n  license_file: LICENSE.txt\n  summary: Khronos official Vulkan ICD desktop loader for Windows, Linux, and MacOS.\n\nextra:\n  feedstock-name: vulkan-loader\n  recipe-maintainers:\n    - traversaro\n",
+ "raw_meta_yaml": "{% set name = \"libvulkan-loader\" %}\n{% set version = \"1.3.250.0\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\n# For this repo, v**** tags exists, but apparently the stable tags (the one corresponding to versions\n# that are available for download at https://vulkan.lunarg.com/sdk/home) are the sdk-*** ones\n# See https://github.com/KhronosGroup/Vulkan-Headers#version-tagging-scheme\nsource:\n  url: https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/sdk-{{ version }}.tar.gz\n  sha256: 17f8683fd8320d5dfebdb22879f26f82c014d320a6a0622118cd298887626295\n  patches:\n    - disable_macos_framework.patch\n\nbuild:\n  number: 1\n  ignore_run_exports_from:\n    # only the headers are used by the feedstock\n    - libxcb\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - python\n  host:\n    - libvulkan-headers {{ version }}\n    - libxcb  # [linux]\n    - xorg-libx11  # [linux]\n    - xorg-libxrandr  # [linux]\n  run_constrained:\n    - libvulkan-headers {{ version }}\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/libvulkan${SHLIB_EXT}  # [unix]\n    - test ! -e ${PREFIX}/loader/vulkan.framework  # [osx]\n    - if not exist %LIBRARY_LIB%\\\\vulkan-1.lib exit 1  # [win]\n    - if not exist %LIBRARY_BIN%\\\\vulkan-1.dll exit 1  # [win]\n\nabout:\n  home: https://github.com/KhronosGroup/Vulkan-Loader\n  license: Apache-2.0\n  license_file: LICENSE.txt\n  summary: Khronos official Vulkan ICD desktop loader for Windows, Linux, and MacOS.\n\nextra:\n  feedstock-name: vulkan-loader\n  recipe-maintainers:\n    - traversaro\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "libvulkan-headers",
@@ -514,6 +526,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja",
@@ -523,6 +536,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libvulkan-headers",
     "libxcb",
@@ -533,6 +547,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -546,6 +561,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja",
@@ -586,7 +602,7 @@
    "ignore_run_exports_from": [
     "libxcb"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "vulkan-loader",
@@ -603,6 +619,7 @@
     "cmake",
     "ninja",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "python"
    ],
    "host": [
@@ -630,6 +647,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja",
