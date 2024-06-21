@@ -41,7 +41,7 @@
     "ptrepack = tables.scripts.ptrepack:main",
     "pttree = tables.scripts.pttree:main"
    ],
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -59,6 +59,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -110,6 +111,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -166,7 +168,7 @@
     "ptrepack = tables.scripts.ptrepack:main",
     "pttree = tables.scripts.pttree:main"
    ],
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -184,6 +186,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -235,6 +238,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -291,7 +295,7 @@
     "ptrepack = tables.scripts.ptrepack:main",
     "pttree = tables.scripts.pttree:main"
    ],
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -309,6 +313,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -360,6 +365,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -416,7 +422,7 @@
     "ptrepack = tables.scripts.ptrepack:main",
     "pttree = tables.scripts.pttree:main"
    ],
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -434,6 +440,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -498,7 +505,7 @@
     "ptrepack = tables.scripts.ptrepack:main",
     "pttree = tables.scripts.pttree:main"
    ],
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -516,6 +523,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -566,6 +574,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -621,7 +630,7 @@
     "ptrepack = tables.scripts.ptrepack:main",
     "pttree = tables.scripts.pttree:main"
    ],
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -639,6 +648,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -689,6 +699,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -745,7 +756,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pytables.json"
  },
- "raw_meta_yaml": "{% set version = \"3.9.2\" %}\n\npackage:\n  name: pytables\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/t/tables/tables-{{ version }}.tar.gz\n  sha256: d470263c2e50c4b7c8635a0d99ac1ff2f9e704c24d71e5fa33c4529e7d0ad9c3\n  patches:\n    - do_not_rely_on_python-blosc2.patch\n\nbuild:\n  number: 2\n  entry_points:\n    - pt2to3 = tables.scripts.pt2to3:main\n    - ptdump = tables.scripts.ptdump:main\n    - ptrepack = tables.scripts.ptrepack:main\n    - pttree = tables.scripts.pttree:main\n  skip: true  # [py<39]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython 0                               # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip\n    - cython 0\n    - numpy\n    - zlib\n    - lzo  # [linux]\n    - bzip2\n    - hdf5\n    - numexpr\n    - blosc\n    - c-blosc2 >=2.14.4\n    - packaging\n    - py-cpuinfo\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - numexpr\n    - packaging\n    - py-cpuinfo\n\ntest:\n  requires:\n    - setuptools\n    - pip\n  commands:\n    - pt2to3 -h\n    - ptdump -h\n    - ptrepack -h\n    - pttree -h\n    - pip check\n\nabout:\n  home: http://www.pytables.org\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: Brings together Python, HDF5 and NumPy to easily handle large amounts of data.\n  description: |\n    PyTables is a package for managing hierarchical datasets and designed to\n    efficiently and easily cope with extremely large amounts of data. PyTables\n    is built on top of the HDF5 library, using the Python language and the\n    NumPy package.\n  doc_url: http://www.pytables.org/\n  dev_url: https://github.com/PyTables\n\nextra:\n  recipe-maintainers:\n    - msarahan\n    - ocefpaf\n    - tomkooij\n    - scopatz\n    - avalentino\n",
+ "raw_meta_yaml": "{% set version = \"3.9.2\" %}\n\npackage:\n  name: pytables\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/t/tables/tables-{{ version }}.tar.gz\n  sha256: d470263c2e50c4b7c8635a0d99ac1ff2f9e704c24d71e5fa33c4529e7d0ad9c3\n  patches:\n    - do_not_rely_on_python-blosc2.patch\n\nbuild:\n  number: 3\n  entry_points:\n    - pt2to3 = tables.scripts.pt2to3:main\n    - ptdump = tables.scripts.ptdump:main\n    - ptrepack = tables.scripts.ptrepack:main\n    - pttree = tables.scripts.pttree:main\n  skip: true  # [py<39]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython 0                               # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip\n    - cython 0\n    - numpy\n    - zlib\n    - lzo  # [linux]\n    - bzip2\n    - hdf5\n    - numexpr\n    - blosc\n    - c-blosc2 >=2.14.4\n    - packaging\n    - py-cpuinfo\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - numexpr\n    - packaging\n    - py-cpuinfo\n\ntest:\n  requires:\n    - setuptools\n    - pip\n  commands:\n    - pt2to3 -h\n    - ptdump -h\n    - ptrepack -h\n    - pttree -h\n    - pip check\n\nabout:\n  home: http://www.pytables.org\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: Brings together Python, HDF5 and NumPy to easily handle large amounts of data.\n  description: |\n    PyTables is a package for managing hierarchical datasets and designed to\n    efficiently and easily cope with extremely large amounts of data. PyTables\n    is built on top of the HDF5 library, using the Python language and the\n    NumPy package.\n  doc_url: http://www.pytables.org/\n  dev_url: https://github.com/PyTables\n\nextra:\n  recipe-maintainers:\n    - msarahan\n    - ocefpaf\n    - tomkooij\n    - scopatz\n    - avalentino\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -753,6 +764,7 @@
    "bzip2",
    "c-blosc2",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "cython",
    "hdf5",
@@ -771,6 +783,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -781,6 +794,7 @@
     "bzip2",
     "c-blosc2",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython",
     "hdf5",
@@ -798,6 +812,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numexpr",
     "numpy",
@@ -820,6 +835,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -881,7 +897,7 @@
     "ptrepack = tables.scripts.ptrepack:main",
     "pttree = tables.scripts.pttree:main"
    ],
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -899,6 +915,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
@@ -949,6 +966,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
