@@ -23,7 +23,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed -vv "
   },
   "extra": {
@@ -38,19 +38,17 @@
   "requirements": {
    "host": [
     "pip",
-    "python >=3.6"
+    "python >=3.7"
    ],
    "run": [
-    "lunardate",
-    "convertdate",
-    "skyfield",
-    "skyfield-data",
-    "pyluach",
-    "python >=3.6",
+    "python >=3.7",
     "python-dateutil",
-    "pytz",
-    "setuptools >=1.0",
-    "freezegun"
+    "lunardate",
+    "backports.zoneinfo",
+    "tzdata",
+    "convertdate",
+    "pyluach",
+    "importlib-metadata"
    ]
   },
   "source": {
@@ -58,6 +56,9 @@
    "url": "https://pypi.io/packages/source/w/workalendar/workalendar-17.0.0.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "workalendar",
     "workalendar.africa",
@@ -67,8 +68,10 @@
     "workalendar.europe.scotland",
     "workalendar.europe.scotland.mixins",
     "workalendar.oceania",
-    "workalendar.tests",
     "workalendar.usa"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -87,21 +90,21 @@
   "run": {
    "__set__": true,
    "elements": [
+    "backports.zoneinfo",
     "convertdate",
-    "freezegun",
+    "importlib-metadata",
     "lunardate",
     "pyluach",
     "python",
     "python-dateutil",
-    "pytz",
-    "setuptools",
-    "skyfield",
-    "skyfield-data"
+    "tzdata"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
@@ -114,7 +117,7 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . --no-deps --ignore-installed -vv "
   },
   "extra": {
@@ -129,19 +132,17 @@
   "requirements": {
    "host": [
     "pip",
-    "python >=3.6"
+    "python >=3.7"
    ],
    "run": [
-    "lunardate",
-    "convertdate",
-    "skyfield",
-    "skyfield-data",
-    "pyluach",
-    "python >=3.6",
+    "python >=3.7",
     "python-dateutil",
-    "pytz",
-    "setuptools >=1.0",
-    "freezegun"
+    "lunardate",
+    "backports.zoneinfo",
+    "tzdata",
+    "convertdate",
+    "pyluach",
+    "importlib-metadata"
    ]
   },
   "source": {
@@ -149,6 +150,9 @@
    "url": "https://pypi.io/packages/source/w/workalendar/workalendar-17.0.0.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "workalendar",
     "workalendar.africa",
@@ -158,8 +162,10 @@
     "workalendar.europe.scotland",
     "workalendar.europe.scotland.mixins",
     "workalendar.oceania",
-    "workalendar.tests",
     "workalendar.usa"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -177,21 +183,19 @@
  "pr_info": {
   "__lazy_json__": "pr_info/workalendar.json"
  },
- "raw_meta_yaml": "{% set name = \"workalendar\" %}\n{% set version = \"17.0.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: b82d6024aed452505b01baf06dbe8d6309a3135ff1d39dee07c31b21ece853b4\n\nbuild:\n  noarch: python\n  number: 0\n  script: '{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv '\n\nrequirements:\n  host:\n    - pip\n    - python >=3.6\n\n  run:\n    - lunardate\n    - convertdate\n    - skyfield\n    - skyfield-data\n    - pyluach\n    - python >=3.6\n    - python-dateutil\n    - pytz\n    - setuptools >=1.0\n    - freezegun\n\ntest:\n  imports:\n    - workalendar\n    - workalendar.africa\n    - workalendar.america\n    - workalendar.asia\n    - workalendar.europe\n    - workalendar.europe.scotland\n    - workalendar.europe.scotland.mixins\n    - workalendar.oceania\n    - workalendar.tests\n    - workalendar.usa\n\nabout:\n  home: https://github.com/peopledoc/workalendar\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE.txt\n  summary: Worldwide holidays and working days helper and toolkit.\n\nextra:\n  recipe-maintainers:\n    - Matt-BF\n",
+ "raw_meta_yaml": "{% set name = \"workalendar\" %}\n{% set version = \"17.0.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: b82d6024aed452505b01baf06dbe8d6309a3135ff1d39dee07c31b21ece853b4\n\nbuild:\n  noarch: python\n  number: 1\n  script: '{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv '\n\nrequirements:\n  host:\n    - pip\n    - python >=3.7\n\n  run:\n    - python >=3.7\n    - python-dateutil\n    - lunardate\n    - backports.zoneinfo\n    - tzdata\n    - convertdate\n    - pyluach\n    - importlib-metadata\n\ntest:\n  imports:\n    - workalendar\n    - workalendar.africa\n    - workalendar.america\n    - workalendar.asia\n    - workalendar.europe\n    - workalendar.europe.scotland\n    - workalendar.europe.scotland.mixins\n    - workalendar.oceania\n    - workalendar.usa\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/peopledoc/workalendar\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE.txt\n  summary: Worldwide holidays and working days helper and toolkit.\n\nextra:\n  recipe-maintainers:\n    - Matt-BF\n",
  "req": {
   "__set__": true,
   "elements": [
+   "backports.zoneinfo",
    "convertdate",
-   "freezegun",
+   "importlib-metadata",
    "lunardate",
    "pip",
    "pyluach",
    "python",
    "python-dateutil",
-   "pytz",
-   "setuptools",
-   "skyfield",
-   "skyfield-data"
+   "tzdata"
   ]
  },
  "requirements": {
@@ -209,21 +213,21 @@
   "run": {
    "__set__": true,
    "elements": [
+    "backports.zoneinfo",
     "convertdate",
-    "freezegun",
+    "importlib-metadata",
     "lunardate",
     "pyluach",
     "python",
     "python-dateutil",
-    "pytz",
-    "setuptools",
-    "skyfield",
-    "skyfield-data"
+    "tzdata"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
@@ -236,27 +240,27 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6"
+    "python >=3.7"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "backports.zoneinfo",
     "convertdate",
-    "freezegun",
+    "importlib-metadata",
     "lunardate",
     "pyluach",
-    "python >=3.6",
+    "python >=3.7",
     "python-dateutil",
-    "pytz",
-    "setuptools >=1.0",
-    "skyfield",
-    "skyfield-data"
+    "tzdata"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "url": "https://pypi.io/packages/source/w/workalendar/workalendar-17.0.0.tar.gz",
