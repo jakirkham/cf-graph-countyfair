@@ -18,50 +18,52 @@
    "home": "https://github.com/pmav99/inspectds.git",
    "license": "Unlicense",
    "license_file": "LICENSE",
-   "summary": "A CLI utility to print metadata of datasets in various formats (e.g. NetCDF, zarr, GRIB etc)"
+   "summary": "A CLI utility to print metadata of datasets in various formats (e.g. NetCDF, zarr, GRIB, Selafin etc)"
   },
   "build": {
    "entry_points": [
-    "inspectds = \"inspectds.cli:app\""
+    "inspectds = inspectds.cli:app"
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
-    "pmav99"
+    "pmav99",
+    "tomsail"
    ]
   },
   "package": {
    "name": "inspectds",
-   "version": "0.2.2"
+   "version": "0.3.1"
   },
   "requirements": {
    "host": [
     "python >=3.9",
+    "pip",
     "poetry-core >=1.0.0",
-    "poetry-dynamic-versioning",
-    "pip"
+    "poetry-dynamic-versioning"
    ],
    "run": [
     "python >=3.9",
-    "xarray",
-    "zarr >=2.8",
+    "netcdf4",
     "typer",
-    "netcdf4"
-   ],
-   "run_constrained": [
+    "xarray",
+    "xarray_selafin",
+    "zarr >=2.8",
     "cfgrib >=0.9"
    ]
   },
   "source": {
-   "sha256": "dacfc2243921a2822d8ba1d5101ffc4a899c0dfcd4db178bdf32131b9c1d05d5",
-   "url": "https://pypi.io/packages/source/i/inspectds/inspectds-0.2.2.tar.gz"
+   "sha256": "da6fe196464ac9ef7d348f46f79be12cd07d967e2a4e47359b19688c398946f0",
+   "url": "https://pypi.io/packages/source/i/inspectds/inspectds-0.3.1.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "inspectds --version",
+    "inspectds --help"
    ],
    "imports": [
     "inspectds"
@@ -88,10 +90,12 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cfgrib",
     "netcdf4",
     "python",
     "typer",
     "xarray",
+    "xarray_selafin",
     "zarr"
    ]
   },
@@ -107,50 +111,52 @@
    "home": "https://github.com/pmav99/inspectds.git",
    "license": "Unlicense",
    "license_file": "LICENSE",
-   "summary": "A CLI utility to print metadata of datasets in various formats (e.g. NetCDF, zarr, GRIB etc)"
+   "summary": "A CLI utility to print metadata of datasets in various formats (e.g. NetCDF, zarr, GRIB, Selafin etc)"
   },
   "build": {
    "entry_points": [
-    "inspectds = \"inspectds.cli:app\""
+    "inspectds = inspectds.cli:app"
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
-    "pmav99"
+    "pmav99",
+    "tomsail"
    ]
   },
   "package": {
    "name": "inspectds",
-   "version": "0.2.2"
+   "version": "0.3.1"
   },
   "requirements": {
    "host": [
     "python >=3.9",
+    "pip",
     "poetry-core >=1.0.0",
-    "poetry-dynamic-versioning",
-    "pip"
+    "poetry-dynamic-versioning"
    ],
    "run": [
     "python >=3.9",
-    "xarray",
-    "zarr >=2.8",
+    "netcdf4",
     "typer",
-    "netcdf4"
-   ],
-   "run_constrained": [
+    "xarray",
+    "xarray_selafin",
+    "zarr >=2.8",
     "cfgrib >=0.9"
    ]
   },
   "source": {
-   "sha256": "dacfc2243921a2822d8ba1d5101ffc4a899c0dfcd4db178bdf32131b9c1d05d5",
-   "url": "https://pypi.io/packages/source/i/inspectds/inspectds-0.2.2.tar.gz"
+   "sha256": "da6fe196464ac9ef7d348f46f79be12cd07d967e2a4e47359b19688c398946f0",
+   "url": "https://pypi.io/packages/source/i/inspectds/inspectds-0.3.1.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "inspectds --version",
+    "inspectds --help"
    ],
    "imports": [
     "inspectds"
@@ -174,10 +180,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/inspectds.json"
  },
- "raw_meta_yaml": "{% set name = \"inspectds\" %}\n{% set version = \"0.2.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/inspectds-{{ version }}.tar.gz\n  sha256: dacfc2243921a2822d8ba1d5101ffc4a899c0dfcd4db178bdf32131b9c1d05d5\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  noarch: python\n  entry_points:\n    - inspectds = \"inspectds.cli:app\"\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.9\n    - poetry-core >=1.0.0\n    - poetry-dynamic-versioning\n    - pip\n  run:\n    - python >=3.9\n    - xarray\n    - zarr >=2.8\n    - typer\n    - netcdf4\n  run_constrained:\n    - cfgrib >=0.9\n\ntest:\n  imports:\n    - inspectds\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/pmav99/inspectds.git\n  summary: 'A CLI utility to print metadata of datasets in various formats (e.g. NetCDF, zarr, GRIB etc)'\n  license: Unlicense\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - pmav99\n",
+ "raw_meta_yaml": "{% set name = \"inspectds\" %}\n{% set version = \"0.3.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/inspectds-{{ version }}.tar.gz\n  sha256: da6fe196464ac9ef7d348f46f79be12cd07d967e2a4e47359b19688c398946f0\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  noarch: python\n  entry_points:\n    - inspectds = inspectds.cli:app\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.9\n    - pip\n    - poetry-core >=1.0.0\n    - poetry-dynamic-versioning\n  run:\n    - python >=3.9\n    - netcdf4\n    - typer\n    - xarray\n    - xarray_selafin\n    - zarr >=2.8\n    - cfgrib >=0.9\n\ntest:\n  imports:\n    - inspectds\n  commands:\n    - pip check\n    - inspectds --version\n    - inspectds --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/pmav99/inspectds.git\n  summary: 'A CLI utility to print metadata of datasets in various formats (e.g. NetCDF, zarr, GRIB, Selafin etc)'\n  license: Unlicense\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - pmav99\n    - tomsail\n",
  "req": {
   "__set__": true,
   "elements": [
+   "cfgrib",
    "netcdf4",
    "pip",
    "poetry-core",
@@ -185,6 +192,7 @@
    "python",
    "typer",
    "xarray",
+   "xarray_selafin",
    "zarr"
   ]
  },
@@ -205,10 +213,12 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cfgrib",
     "netcdf4",
     "python",
     "typer",
     "xarray",
+    "xarray_selafin",
     "zarr"
    ]
   },
@@ -237,10 +247,12 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cfgrib >=0.9",
     "netcdf4",
     "python >=3.9",
     "typer",
     "xarray",
+    "xarray_selafin",
     "zarr >=2.8"
    ]
   },
@@ -251,8 +263,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/i/inspectds/inspectds-0.2.2.tar.gz",
- "version": "0.2.2",
+ "url": "https://pypi.io/packages/source/i/inspectds/inspectds-0.3.1.tar.gz",
+ "version": "0.3.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/inspectds.json"
  }

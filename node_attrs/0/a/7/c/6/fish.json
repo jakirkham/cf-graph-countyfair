@@ -35,7 +35,7 @@
    "summary": "The user-friendly command line shell."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -51,6 +51,7 @@
    "build": [
     "gnuconfig",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -79,6 +80,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "gettext",
@@ -117,7 +119,7 @@
    "summary": "The user-friendly command line shell."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -133,6 +135,7 @@
    "build": [
     "gnuconfig",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -161,6 +164,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "gettext",
@@ -199,7 +203,7 @@
    "summary": "The user-friendly command line shell."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -215,6 +219,7 @@
    "build": [
     "gnuconfig",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -243,6 +248,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "gettext",
@@ -281,7 +287,7 @@
    "summary": "The user-friendly command line shell."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -297,6 +303,7 @@
    "build": [
     "gnuconfig",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -308,9 +315,7 @@
     "pcre2",
     "zlib"
    ],
-   "run": [
-    "__osx >=10.10"
-   ]
+   "run": []
   },
   "source": {
    "sha256": "614c9f5643cd0799df391395fa6bbc3649427bb839722ce3b114d3bbc1a3b250",
@@ -336,7 +341,7 @@
    "summary": "The user-friendly command line shell."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -352,6 +357,7 @@
    "build": [
     "gnuconfig",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -363,9 +369,7 @@
     "pcre2",
     "zlib"
    ],
-   "run": [
-    "__osx >=10.10"
-   ]
+   "run": []
   },
   "source": {
    "sha256": "614c9f5643cd0799df391395fa6bbc3649427bb839722ce3b114d3bbc1a3b250",
@@ -382,6 +386,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "gettext",
@@ -401,9 +406,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "__osx"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -422,7 +425,7 @@
    "summary": "The user-friendly command line shell."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -438,6 +441,7 @@
    "build": [
     "gnuconfig",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config",
@@ -466,6 +470,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "gettext",
@@ -509,11 +514,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/fish.json"
  },
- "raw_meta_yaml": "{% set name = \"fish\" %}\n{% set version = \"3.7.1\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/fish-shell/fish-shell/releases/download/{{ version }}/{{ name }}-{{ version }}.tar.xz\n  sha256: 614c9f5643cd0799df391395fa6bbc3649427bb839722ce3b114d3bbc1a3b250\n\nbuild:\n  number: 0\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - gnuconfig  # [unix]\n    - {{ compiler('cxx') }}\n    - cmake\n    - make\n    - pkg-config\n    - gettext\n  host:\n    - gettext\n    - ncurses\n    - pcre2\n    - zlib\n  run:\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n\ntest:\n  commands:\n    - fish -v\n    - fish_indent -v\n    # - fish_key_reader -v  # returns 1 for any flag, so we can't really test it.\n\nabout:\n  home: https://fishshell.com/\n  license: GPL-2.0-only AND BSD-3-Clause\n  license_file:\n    - COPYING\n  summary: The user-friendly command line shell.\n  doc_url: https://fishshell.com/docs/current/index.html\n  dev_url: https://github.com/fish-shell/fish-shell\n\nextra:\n  recipe-maintainers:\n    - chrisburr\n    - mdraw\n",
+ "raw_meta_yaml": "{% set name = \"fish\" %}\n{% set version = \"3.7.1\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/fish-shell/fish-shell/releases/download/{{ version }}/{{ name }}-{{ version }}.tar.xz\n  sha256: 614c9f5643cd0799df391395fa6bbc3649427bb839722ce3b114d3bbc1a3b250\n\nbuild:\n  number: 1\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - gnuconfig  # [unix]\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - make\n    - pkg-config\n    - gettext\n  host:\n    - gettext\n    - ncurses\n    - pcre2\n    - zlib\n  run:\n\ntest:\n  commands:\n    - fish -v\n    - fish_indent -v\n    # - fish_key_reader -v  # returns 1 for any flag, so we can't really test it.\n\nabout:\n  home: https://fishshell.com/\n  license: GPL-2.0-only AND BSD-3-Clause\n  license_file:\n    - COPYING\n  summary: The user-friendly command line shell.\n  doc_url: https://fishshell.com/docs/current/index.html\n  dev_url: https://github.com/fish-shell/fish-shell\n\nextra:\n  recipe-maintainers:\n    - chrisburr\n    - mdraw\n",
  "req": {
   "__set__": true,
   "elements": [
-   "__osx",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "gettext",
@@ -529,6 +534,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "gettext",
@@ -540,6 +546,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gettext",
     "ncurses",
@@ -550,7 +557,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -564,6 +571,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "gettext",
@@ -583,9 +591,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "__osx >=10.10"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
