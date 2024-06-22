@@ -43,7 +43,7 @@
    "missing_dso_whitelist": [
     "/usr/lib/libc++abi.dylib"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "libcxx",
@@ -138,7 +138,6 @@
    {
     "patches": [
      "patches/0001-Support-legacy-standalone-builds.patch",
-     "patches/0002-Fix-ABI-compatibility-with-system.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
      "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
     ],
@@ -195,7 +194,7 @@
    "missing_dso_whitelist": [
     "/usr/lib/libc++abi.dylib"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "libcxx",
@@ -287,11 +286,160 @@
      ],
      "host": [],
      "run": [],
+     "run_constrained": [
+      "__osx <12"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo 0",
+      "echo pre-12",
+      "test -f $PREFIX/include/c++/v1/iterator",
+      "bash compile_test.sh",
+      "if [ 0 -eq $(cat ${PREFIX}/include/c++/v1/__availability | grep \"availability(macos\" | grep -vE \"(conda-forge|10.9|10.1[0-3])\" | wc -l) ]; then exit 0; else exit 1; fi",
+      "if [ -f $PREFIX/lib/libc++abi.dylib ]; then exit 1; fi"
+     ],
+     "downstreams": [
+      "python-symengine",
+      "openturns",
+      "libcxx-testing 0.18",
+      "libcxx-testing 0.17",
+      "libcxx-testing 0.16",
+      "libcxx-testing 0.15",
+      "libcxx-testing 0.14",
+      "libcxx-testing 0.13",
+      "libcxx-testing 0.12",
+      "libcxx-testing 0.11"
+     ],
+     "files": [
+      "test_sources",
+      "compile_test.sh"
+     ],
+     "requires": [
+      "clang",
+      "clangxx",
+      "ld64",
+      "cctools",
+      "llvm-tools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "files": [
+     "lib/libc++abi.*"
+    ],
+    "name": "libcxxabi",
+    "requirements": {
+     "run_constrained": [
+      "libcxx 17.0.6.*"
+     ]
+    },
+    "test": {
+     "commands": null
+    }
+   },
+   {
+    "files": [
+     "include/c++",
+     "Library/include/c++",
+     "lib/libc++.*",
+     "lib/libc++fs.*",
+     "lib/libc++experimental.*",
+     "Library/bin/c++*.dll",
+     "Library/lib/c++*.lib",
+     "Library/lib/libc++*.lib"
+    ],
+    "name": "libcxx",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [],
+     "run": [],
      "run_constrained": null
     },
     "test": {
      "commands": [
       "echo 0",
+      "echo post-12",
+      "test -f $PREFIX/include/c++/v1/iterator",
+      "bash compile_test.sh",
+      "if [ 0 -eq $(cat ${PREFIX}/include/c++/v1/__availability | grep \"availability(macos\" | grep -vE \"(conda-forge|10.9|10.1[0-3])\" | wc -l) ]; then exit 0; else exit 1; fi",
+      "if [ -f $PREFIX/lib/libc++abi.dylib ]; then exit 1; fi"
+     ],
+     "downstreams": [
+      "python-symengine",
+      "openturns",
+      "libcxx-testing 0.18",
+      "libcxx-testing 0.17",
+      "libcxx-testing 0.16",
+      "libcxx-testing 0.15",
+      "libcxx-testing 0.14",
+      "libcxx-testing 0.13",
+      "libcxx-testing 0.12",
+      "libcxx-testing 0.11"
+     ],
+     "files": [
+      "test_sources",
+      "compile_test.sh"
+     ],
+     "requires": [
+      "clang",
+      "clangxx",
+      "ld64",
+      "cctools",
+      "llvm-tools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "files": [
+     "lib/libc++abi.*"
+    ],
+    "name": "libcxxabi",
+    "requirements": {
+     "run_constrained": [
+      "libcxx 17.0.6.*"
+     ]
+    },
+    "test": {
+     "commands": null
+    }
+   },
+   {
+    "files": [
+     "include/c++",
+     "Library/include/c++",
+     "lib/libc++.*",
+     "lib/libc++fs.*",
+     "lib/libc++experimental.*",
+     "Library/bin/c++*.dll",
+     "Library/lib/c++*.lib",
+     "Library/lib/libc++*.lib"
+    ],
+    "name": "libcxx",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [],
+     "run": [],
+     "run_constrained": [
+      "__osx <12"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo 1",
+      "echo pre-12",
       "test -f $PREFIX/include/c++/v1/iterator",
       "bash compile_test.sh",
       "if [ 0 -eq $(cat ${PREFIX}/include/c++/v1/__availability | grep \"availability(macos\" | grep -vE \"(conda-forge|10.9|10.1[0-3])\" | wc -l) ]; then exit 0; else exit 1; fi",
@@ -363,6 +511,7 @@
     "test": {
      "commands": [
       "echo 1",
+      "echo post-12",
       "test -f $PREFIX/include/c++/v1/iterator",
       "bash compile_test.sh",
       "if [ 0 -eq $(cat ${PREFIX}/include/c++/v1/__availability | grep \"availability(macos\" | grep -vE \"(conda-forge|10.9|10.1[0-3])\" | wc -l) ]; then exit 0; else exit 1; fi",
@@ -432,7 +581,6 @@
    {
     "patches": [
      "patches/0001-Support-legacy-standalone-builds.patch",
-     "patches/0002-Fix-ABI-compatibility-with-system.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
      "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
     ],
@@ -452,7 +600,25 @@
    {
     "patches": [
      "patches/0001-Support-legacy-standalone-builds.patch",
+     "patches/0003-custom-error-message-for-old-sdk.patch",
+     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+    ],
+    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+   },
+   {
+    "patches": [
+     "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0002-Fix-ABI-compatibility-with-system.patch",
+     "patches/0003-custom-error-message-for-old-sdk.patch",
+     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+    ],
+    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+   },
+   {
+    "patches": [
+     "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
      "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
     ],
@@ -478,7 +644,7 @@
    "missing_dso_whitelist": [
     "/usr/lib/libc++abi.dylib"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "libcxx",
@@ -512,11 +678,86 @@
      ],
      "host": [],
      "run": [],
+     "run_constrained": [
+      "__osx <12"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo 0",
+      "echo pre-12",
+      "test -f $PREFIX/include/c++/v1/iterator",
+      "bash compile_test.sh",
+      "if [ 0 -eq $(cat ${PREFIX}/include/c++/v1/__availability | grep \"availability(macos\" | grep -vE \"(conda-forge|10.9|10.1[0-3])\" | wc -l) ]; then exit 0; else exit 1; fi",
+      "if [ -f $PREFIX/lib/libc++abi.dylib ]; then exit 1; fi"
+     ],
+     "downstreams": [
+      "python-symengine",
+      "openturns",
+      "libcxx-testing 0.18",
+      "libcxx-testing 0.17",
+      "libcxx-testing 0.16",
+      "libcxx-testing 0.15",
+      "libcxx-testing 0.14",
+      "libcxx-testing 0.13",
+      "libcxx-testing 0.12",
+      "libcxx-testing 0.11"
+     ],
+     "files": [
+      "test_sources",
+      "compile_test.sh"
+     ],
+     "requires": [
+      "clang",
+      "clangxx",
+      "ld64",
+      "cctools",
+      "llvm-tools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "files": [
+     "lib/libc++abi.*"
+    ],
+    "name": "libcxxabi",
+    "requirements": {
+     "run_constrained": [
+      "libcxx 17.0.6.*"
+     ]
+    },
+    "test": {
+     "commands": null
+    }
+   },
+   {
+    "files": [
+     "include/c++",
+     "Library/include/c++",
+     "lib/libc++.*",
+     "lib/libc++fs.*",
+     "lib/libc++experimental.*",
+     "Library/bin/c++*.dll",
+     "Library/lib/c++*.lib",
+     "Library/lib/libc++*.lib"
+    ],
+    "name": "libcxx",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [],
+     "run": [],
      "run_constrained": null
     },
     "test": {
      "commands": [
       "echo 0",
+      "echo post-12",
       "test -f $PREFIX/include/c++/v1/iterator",
       "bash compile_test.sh",
       "if [ 0 -eq $(cat ${PREFIX}/include/c++/v1/__availability | grep \"availability(macos\" | grep -vE \"(conda-forge|10.9|10.1[0-3])\" | wc -l) ]; then exit 0; else exit 1; fi",
@@ -583,6 +824,15 @@
     "patches": [
      "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0002-Fix-ABI-compatibility-with-system.patch",
+     "patches/0003-custom-error-message-for-old-sdk.patch",
+     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+    ],
+    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+   },
+   {
+    "patches": [
+     "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
      "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
     ],
@@ -636,7 +886,7 @@
    "missing_dso_whitelist": [
     "/usr/lib/libc++abi.dylib"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "feedstock-name": "libcxx",
@@ -670,11 +920,86 @@
      ],
      "host": [],
      "run": [],
+     "run_constrained": [
+      "__osx <12"
+     ]
+    },
+    "test": {
+     "commands": [
+      "echo 1",
+      "echo pre-12",
+      "test -f $PREFIX/include/c++/v1/iterator",
+      "bash compile_test.sh",
+      "if [ 0 -eq $(cat ${PREFIX}/include/c++/v1/__availability | grep \"availability(macos\" | grep -vE \"(conda-forge|10.9|10.1[0-3])\" | wc -l) ]; then exit 0; else exit 1; fi",
+      "if [ -f $PREFIX/lib/libc++abi.dylib ]; then exit 1; fi"
+     ],
+     "downstreams": [
+      "python-symengine",
+      "openturns",
+      "libcxx-testing 0.18",
+      "libcxx-testing 0.17",
+      "libcxx-testing 0.16",
+      "libcxx-testing 0.15",
+      "libcxx-testing 0.14",
+      "libcxx-testing 0.13",
+      "libcxx-testing 0.12",
+      "libcxx-testing 0.11"
+     ],
+     "files": [
+      "test_sources",
+      "compile_test.sh"
+     ],
+     "requires": [
+      "clang",
+      "clangxx",
+      "ld64",
+      "cctools",
+      "llvm-tools"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "files": [
+     "lib/libc++abi.*"
+    ],
+    "name": "libcxxabi",
+    "requirements": {
+     "run_constrained": [
+      "libcxx 17.0.6.*"
+     ]
+    },
+    "test": {
+     "commands": null
+    }
+   },
+   {
+    "files": [
+     "include/c++",
+     "Library/include/c++",
+     "lib/libc++.*",
+     "lib/libc++fs.*",
+     "lib/libc++experimental.*",
+     "Library/bin/c++*.dll",
+     "Library/lib/c++*.lib",
+     "Library/lib/libc++*.lib"
+    ],
+    "name": "libcxx",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub"
+     ],
+     "host": [],
+     "run": [],
      "run_constrained": null
     },
     "test": {
      "commands": [
       "echo 1",
+      "echo post-12",
       "test -f $PREFIX/include/c++/v1/iterator",
       "bash compile_test.sh",
       "if [ 0 -eq $(cat ${PREFIX}/include/c++/v1/__availability | grep \"availability(macos\" | grep -vE \"(conda-forge|10.9|10.1[0-3])\" | wc -l) ]; then exit 0; else exit 1; fi",
@@ -746,6 +1071,15 @@
     ],
     "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
     "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+   },
+   {
+    "patches": [
+     "patches/0001-Support-legacy-standalone-builds.patch",
+     "patches/0003-custom-error-message-for-old-sdk.patch",
+     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+    ],
+    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
    }
   ]
  },
@@ -794,7 +1128,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libcxx.json"
  },
- "raw_meta_yaml": "{% set version = \"17.0.6\" %}\n\npackage:\n  name: libcxx_and_libcxxabi\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(\".rc\", \"-rc\") }}/llvm-project-{{ version.replace(\".rc\", \"rc\") }}.src.tar.xz\n    sha256: 58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813\n    patches:\n      - patches/0001-Support-legacy-standalone-builds.patch\n      # See https://lists.llvm.org/pipermail/libcxx-dev/2021-July/001172.html\n      - patches/0002-Fix-ABI-compatibility-with-system.patch\n      - patches/0003-custom-error-message-for-old-sdk.patch\n      # upstream removed fallbacks in case the underlying libc didn't support C11 in\n      # https://github.com/llvm/llvm-project/commit/21f73d5826fb5024a27eaacafadfa316f58949c5;\n      # using new libcxx with old clang versions (beyond what upstream supports) relies on\n      # having these fallbacks in place. Drop if conflict-resolution becomes too messy.\n      - patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  skip: true  # [ppc64le or aarch64]\n  ignore_run_exports:\n    - libstdcxx-ng\n  missing_dso_whitelist:\n    - /usr/lib/libc++abi.dylib\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - python >3               # [not osx]\n  host:\n    - clangdev {{ version }}  # [not osx]\n    - llvmdev {{ version }}   # [not osx]\n\noutputs:\n  - name: libcxx\n    files:\n      - include/c++\n      - Library/include/c++\n      - lib/libc++.*\n      - lib/libc++fs.*\n      - lib/libc++experimental.*\n      - Library/bin/c++*.dll\n      - Library/lib/c++*.lib\n      - Library/lib/libc++*.lib\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ stdlib('c') }}\n      host:\n      run:\n        - {{ pin_subpackage(\"libcxxabi\", exact=True) }}    # [linux]\n      run_constrained:\n        - sysroot_{{ target_platform }} >={{ c_stdlib_version }}    # [linux]\n    test:\n      requires:\n        - clang                  # [osx]\n        - clangxx\n        - ld64                   # [osx]\n        - cctools                # [osx]\n        - llvm-tools             # [osx]\n        - {{ compiler('cxx') }}  # [not osx]\n      files:\n        - test_sources\n        - compile_test.sh   # [unix]\n        - compile_test.bat  # [win]\n      commands:\n        # Dummy var for different hashes\n        - echo {{ dummy_var }}                                    # [osx]\n        - if not exist %LIBRARY_INC%\\\\c++\\\\v1\\\\iterator exit 1    # [win]\n        - test -f $PREFIX/include/c++/v1/iterator                 # [unix]\n        - bash compile_test.sh                                    # [unix]\n        - compile_test.bat                                        # [win]\n        # make sure we inserted link to our docs wherever it is necessary;\n        # i.e. everywhere there's a string \"availability(macos,...,introduced=<ver>)\" for osx version >10.13;\n        # 'grep -v' inverts the match but returns non-zero exit code if no lines are returned; so we use 'wc -l';\n        # we want to have zero lines that don't either: contain our link or are for <=10.13 (lowest occurring in that file is 10.9)\n        - if [ 0 -eq $(cat ${PREFIX}/include/c++/v1/__availability | grep \"availability(macos\" | grep -vE \"(conda-forge|10.9|10.1[0-3])\" | wc -l) ]; then exit 0; else exit 1; fi  # [osx]\n        # !!!!!!!!!!!! README !!!!!!!!!!!!!!!!!!\n        # we do not ship libcxxabi on OSX - this breaks exception passing\n        - if [ -f $PREFIX/lib/libc++abi.dylib ]; then exit 1; fi  # [osx]\n        - test -f $PREFIX/lib/libc++abi.so                        # [linux]\n\n      # Following 2 projects had issues with libc++, so check them\n      # before releasing just to be sure.\n      downstreams:              # [osx]\n        - python-symengine      # [osx]\n        - openturns             # [osx]\n        # test current libcxx against old clang builds;\n        # version correspondence is 0.{{ CLANG_MAJOR }}\n        - libcxx-testing 0.18   # [osx]\n        - libcxx-testing 0.17   # [osx]\n        - libcxx-testing 0.16   # [osx]\n        - libcxx-testing 0.15   # [osx]\n        - libcxx-testing 0.14   # [osx]\n        - libcxx-testing 0.13   # [osx]\n        - libcxx-testing 0.12   # [osx]\n        - libcxx-testing 0.11   # [osx]\n\n  - name: libcxxabi\n    build:\n      skip: true  # [not linux]\n    files:\n      - lib/libc++abi.*\n    requirements:\n      run_constrained:\n        - libcxx {{ version }}.*\n    test:\n      commands:\n        - test -f $PREFIX/lib/libc++abi.so  # [linux]\n\nabout:\n  home: http://libcxx.llvm.org/\n  license: Apache-2.0 WITH LLVM-exception\n  license_file: libcxx/LICENSE.TXT\n  license_family: Apache\n  summary: LLVM C++ standard library\n  dev_url: https://github.com/llvm/llvm-project\n\nextra:\n  recipe-maintainers:\n    - SylvainCorlay\n    - inducer\n    - jakirkham\n    - isuruf\n    - beckermr\n    - timsnyder\n    - h-vetinari\n  feedstock-name: libcxx\n",
+ "raw_meta_yaml": "{% set version = \"17.0.6\" %}\n\npackage:\n  name: libcxx_and_libcxxabi\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(\".rc\", \"-rc\") }}/llvm-project-{{ version.replace(\".rc\", \"rc\") }}.src.tar.xz\n    sha256: 58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813\n    patches:\n      - patches/0001-Support-legacy-standalone-builds.patch\n      # See https://discourse.llvm.org/t/shipping-custom-libc-on-macos/58606\n      - patches/0002-Fix-ABI-compatibility-with-system.patch    # [sys_abi == \"pre-12\"]\n      - patches/0003-custom-error-message-for-old-sdk.patch\n      # upstream removed fallbacks in case the underlying libc didn't support C11 in\n      # https://github.com/llvm/llvm-project/commit/21f73d5826fb5024a27eaacafadfa316f58949c5;\n      # using new libcxx with old clang versions (beyond what upstream supports) relies on\n      # having these fallbacks in place. Drop if conflict-resolution becomes too messy.\n      - patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch\n\nbuild:\n  number: 1\n  skip: true  # [win]\n  skip: true  # [ppc64le or aarch64]\n  ignore_run_exports:\n    - libstdcxx-ng\n  missing_dso_whitelist:\n    - /usr/lib/libc++abi.dylib\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}       # [not osx]\n    # use sys_abi as selector, so smithy breaks up CI jobs\n    - {{ stdlib('c') }}       # [osx and (sys_abi == \"pre-12\")]\n    - {{ stdlib('c') }}       # [osx and (sys_abi == \"post-12\")]\n    - python >3               # [not osx]\n  host:\n    - clangdev {{ version }}  # [not osx]\n    - llvmdev {{ version }}   # [not osx]\n\noutputs:\n  - name: libcxx\n    files:\n      - include/c++\n      - Library/include/c++\n      - lib/libc++.*\n      - lib/libc++fs.*\n      - lib/libc++experimental.*\n      - Library/bin/c++*.dll\n      - Library/lib/c++*.lib\n      - Library/lib/libc++*.lib\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ stdlib('c') }}\n      host:\n      run:\n        - {{ pin_subpackage(\"libcxxabi\", exact=True) }}    # [linux]\n      run_constrained:\n        - __osx <12                                        # [osx and (sys_abi == \"pre-12\")]\n        - sysroot_{{ target_platform }} >={{ c_stdlib_version }}    # [linux]\n    test:\n      requires:\n        - clang                  # [osx]\n        - clangxx\n        - ld64                   # [osx]\n        - cctools                # [osx]\n        - llvm-tools             # [osx]\n        - {{ compiler('cxx') }}  # [not osx]\n      files:\n        - test_sources\n        - compile_test.sh   # [unix]\n        - compile_test.bat  # [win]\n      commands:\n        # Dummy var for different hashes\n        - echo {{ dummy_var }}                                    # [osx]\n        - echo {{ sys_abi }}                                      # [osx]\n        - if not exist %LIBRARY_INC%\\\\c++\\\\v1\\\\iterator exit 1    # [win]\n        - test -f $PREFIX/include/c++/v1/iterator                 # [unix]\n        - bash compile_test.sh                                    # [unix]\n        - compile_test.bat                                        # [win]\n        # make sure we inserted link to our docs wherever it is necessary;\n        # i.e. everywhere there's a string \"availability(macos,...,introduced=<ver>)\" for osx version >10.13;\n        # 'grep -v' inverts the match but returns non-zero exit code if no lines are returned; so we use 'wc -l';\n        # we want to have zero lines that don't either: contain our link or are for <=10.13 (lowest occurring in that file is 10.9)\n        - if [ 0 -eq $(cat ${PREFIX}/include/c++/v1/__availability | grep \"availability(macos\" | grep -vE \"(conda-forge|10.9|10.1[0-3])\" | wc -l) ]; then exit 0; else exit 1; fi  # [osx]\n        # !!!!!!!!!!!! README !!!!!!!!!!!!!!!!!!\n        # we do not ship libcxxabi on OSX - this breaks exception passing\n        - if [ -f $PREFIX/lib/libc++abi.dylib ]; then exit 1; fi  # [osx]\n        - test -f $PREFIX/lib/libc++abi.so                        # [linux]\n\n      # Following 2 projects had issues with libc++, so check them\n      # before releasing just to be sure.\n      downstreams:              # [osx]\n        - python-symengine      # [osx]\n        - openturns             # [osx]\n        # test current libcxx against old clang builds;\n        # version correspondence is 0.{{ CLANG_MAJOR }}\n        - libcxx-testing 0.18   # [osx]\n        - libcxx-testing 0.17   # [osx]\n        - libcxx-testing 0.16   # [osx]\n        - libcxx-testing 0.15   # [osx]\n        - libcxx-testing 0.14   # [osx]\n        - libcxx-testing 0.13   # [osx]\n        - libcxx-testing 0.12   # [osx]\n        - libcxx-testing 0.11   # [osx]\n\n  - name: libcxxabi\n    build:\n      skip: true  # [not linux]\n    files:\n      - lib/libc++abi.*\n    requirements:\n      run_constrained:\n        - libcxx {{ version }}.*\n    test:\n      commands:\n        - test -f $PREFIX/lib/libc++abi.so  # [linux]\n\nabout:\n  home: http://libcxx.llvm.org/\n  license: Apache-2.0 WITH LLVM-exception\n  license_file: libcxx/LICENSE.TXT\n  license_family: Apache\n  summary: LLVM C++ standard library\n  dev_url: https://github.com/llvm/llvm-project\n\nextra:\n  recipe-maintainers:\n    - SylvainCorlay\n    - inducer\n    - jakirkham\n    - isuruf\n    - beckermr\n    - timsnyder\n    - h-vetinari\n  feedstock-name: libcxx\n",
  "req": {
   "__set__": true,
   "elements": [
