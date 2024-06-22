@@ -26,7 +26,7 @@
    "summary": "GenomeKit is a Python library for fast and easy access to genomic resources such as sequence, data tracks, and annotations."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install --no-deps --ignore-installed .",
    "skip": true
   },
@@ -55,7 +55,6 @@
    ],
    "run": [
     "appdirs",
-    "crc32c",
     "google-cloud-storage >=2.10.0",
     "numpy",
     "typing-extensions",
@@ -109,7 +108,6 @@
    "__set__": true,
    "elements": [
     "appdirs",
-    "crc32c",
     "google-cloud-storage",
     "importlib-metadata",
     "numpy",
@@ -135,7 +133,7 @@
    "summary": "GenomeKit is a Python library for fast and easy access to genomic resources such as sequence, data tracks, and annotations."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install --no-deps --ignore-installed .",
    "skip": true
   },
@@ -164,7 +162,6 @@
    ],
    "run": [
     "appdirs",
-    "crc32c",
     "google-cloud-storage >=2.10.0",
     "numpy",
     "typing-extensions",
@@ -204,7 +201,7 @@
    "summary": "GenomeKit is a Python library for fast and easy access to genomic resources such as sequence, data tracks, and annotations."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install --no-deps --ignore-installed .",
    "skip": true
   },
@@ -233,7 +230,6 @@
    ],
    "run": [
     "appdirs",
-    "crc32c",
     "google-cloud-storage >=2.10.0",
     "numpy",
     "typing-extensions",
@@ -287,7 +283,6 @@
    "__set__": true,
    "elements": [
     "appdirs",
-    "crc32c",
     "google-cloud-storage",
     "importlib-metadata",
     "numpy",
@@ -313,7 +308,7 @@
    "summary": "GenomeKit is a Python library for fast and easy access to genomic resources such as sequence, data tracks, and annotations."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install --no-deps --ignore-installed .",
    "skip": true
   },
@@ -342,7 +337,6 @@
    ],
    "run": [
     "appdirs",
-    "crc32c",
     "google-cloud-storage >=2.10.0",
     "numpy",
     "typing-extensions",
@@ -396,7 +390,6 @@
    "__set__": true,
    "elements": [
     "appdirs",
-    "crc32c",
     "google-cloud-storage",
     "importlib-metadata",
     "numpy",
@@ -429,13 +422,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/genomekit.json"
  },
- "raw_meta_yaml": "{% set version = \"5.1.0\" %}\n\npackage:\n  name: genomekit\n  version: {{ version }}\n\nsource:\n  url: https://github.com/deepgenomics/GenomeKit/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 42cac1166b661c10924b5376a812e2a557a5d3d1b23d4cf2c608f34f66575551\n\nbuild:\n  number: 0\n  script: {{ PYTHON }} -m pip install --no-deps --ignore-installed .\n  skip: true  # [py>310 or py<38]\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n\n  host:\n    - appdirs\n    - fmt\n    - numpy  # [not win or py>38]\n     # avoid build failure on Windows\n    - numpy >=1.18.0,<1.19.0  # [win and py==38]\n    - typing-extensions\n    - zlib\n    - python {{ python }}\n    - pip\n\n  run:\n    - appdirs\n    - crc32c\n    - google-cloud-storage >=2.10.0\n    - {{ pin_compatible('numpy') }}\n    - typing-extensions\n    - importlib-metadata\n    - tqdm\n    - python {{ python }}\n\ntest:\n  imports:\n    - genome_kit\n  requires:\n    - pytest-cov\n    - pip\n  source_files:\n    - tests\n  commands:\n    - pip check\n    - python -m unittest discover\n\nabout:\n  doc_url: https://genomekit.readthedocs.io/\n  home: https://github.com/deepgenomics/GenomeKit\n  license: \"Apache-2.0\"\n  license_file: \"LICENSE\"\n  summary: GenomeKit is a Python library for fast and easy access to genomic resources such as sequence, data tracks, and annotations.\n\nextra:\n  recipe-maintainers:\n    - ovesh\n",
+ "raw_meta_yaml": "{% set version = \"5.1.0\" %}\n\npackage:\n  name: genomekit\n  version: {{ version }}\n\nsource:\n  url: https://github.com/deepgenomics/GenomeKit/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 42cac1166b661c10924b5376a812e2a557a5d3d1b23d4cf2c608f34f66575551\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install --no-deps --ignore-installed .\n  skip: true  # [py>310 or py<38]\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n\n  host:\n    - appdirs\n    - fmt\n    - numpy  # [not win or py>38]\n     # avoid build failure on Windows\n    - numpy >=1.18.0,<1.19.0  # [win and py==38]\n    - typing-extensions\n    - zlib\n    - python {{ python }}\n    - pip\n\n  run:\n    - appdirs\n    - google-cloud-storage >=2.10.0\n    - {{ pin_compatible('numpy') }}\n    - typing-extensions\n    - importlib-metadata\n    - tqdm\n    - python {{ python }}\n\ntest:\n  imports:\n    - genome_kit\n  requires:\n    - pytest-cov\n    - pip\n  source_files:\n    - tests\n  commands:\n    - pip check\n    - python -m unittest discover\n\nabout:\n  doc_url: https://genomekit.readthedocs.io/\n  home: https://github.com/deepgenomics/GenomeKit\n  license: \"Apache-2.0\"\n  license_file: \"LICENSE\"\n  summary: GenomeKit is a Python library for fast and easy access to genomic resources such as sequence, data tracks, and annotations.\n\nextra:\n  recipe-maintainers:\n    - ovesh\n",
  "req": {
   "__set__": true,
   "elements": [
    "appdirs",
    "c_stdlib_stub",
-   "crc32c",
    "cxx_compiler_stub",
    "fmt",
    "google-cloud-storage",
@@ -475,7 +467,6 @@
    "elements": [
     "appdirs",
     "c_stdlib_stub",
-    "crc32c",
     "cxx_compiler_stub",
     "google-cloud-storage",
     "importlib-metadata",
@@ -518,7 +509,6 @@
    "__set__": true,
    "elements": [
     "appdirs",
-    "crc32c",
     "google-cloud-storage >=2.10.0",
     "importlib-metadata",
     "numpy",
@@ -549,7 +539,7 @@
    "summary": "GenomeKit is a Python library for fast and easy access to genomic resources such as sequence, data tracks, and annotations."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install --no-deps --ignore-installed .",
    "skip": true
   },
@@ -578,7 +568,6 @@
    ],
    "run": [
     "appdirs",
-    "crc32c",
     "google-cloud-storage >=2.10.0",
     "numpy",
     "typing-extensions",
@@ -632,7 +621,6 @@
    "__set__": true,
    "elements": [
     "appdirs",
-    "crc32c",
     "google-cloud-storage",
     "importlib-metadata",
     "numpy",
