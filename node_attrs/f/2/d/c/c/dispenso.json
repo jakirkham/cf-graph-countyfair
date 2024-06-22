@@ -27,7 +27,7 @@
    "summary": "The project provides high-performance concurrency, enabling highly parallel computation."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -50,7 +50,8 @@
   "source": [
    {
     "patches": [
-     "disable-install-gtest.patch"
+     "disable-install-gtest.patch",
+     "ubuntu-prevent-double-free.patch"
     ],
     "sha256": "824afe8d0d36bfd9bc9b1cbe9be89e7f3ed642a3612766d1c99d5f8dfc647c63",
     "url": "https://github.com/facebookincubator/dispenso/archive/v1.3.0.tar.gz"
@@ -96,7 +97,7 @@
    "summary": "The project provides high-performance concurrency, enabling highly parallel computation."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -119,7 +120,8 @@
   "source": [
    {
     "patches": [
-     "disable-install-gtest.patch"
+     "disable-install-gtest.patch",
+     "ubuntu-prevent-double-free.patch"
     ],
     "sha256": "824afe8d0d36bfd9bc9b1cbe9be89e7f3ed642a3612766d1c99d5f8dfc647c63",
     "url": "https://github.com/facebookincubator/dispenso/archive/v1.3.0.tar.gz"
@@ -164,7 +166,7 @@
    "summary": "The project provides high-performance concurrency, enabling highly parallel computation."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -233,7 +235,7 @@
    "summary": "The project provides high-performance concurrency, enabling highly parallel computation."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -308,7 +310,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/dispenso.json"
  },
- "raw_meta_yaml": "{% set name = \"Dispenso\" %}\n{% set version = \"1.3.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/facebookincubator/dispenso/archive/v{{ version }}.tar.gz\n    sha256: 824afe8d0d36bfd9bc9b1cbe9be89e7f3ed642a3612766d1c99d5f8dfc647c63\n    patches:\n      - disable-install-gtest.patch\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - cmake\n    - ninja  # [not win]\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/cmake/Dispenso-{{ version }}/DispensoConfig.cmake  # [not win]\n    - if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\Dispenso-{{ version }}\\\\DispensoConfig.cmake exit 1  # [win]\n\nabout:\n  home: https://github.com/facebookincubator/dispenso\n  summary: 'The project provides high-performance concurrency, enabling highly parallel computation.'\n  description: |\n    Dispenso is a library for working with sets of tasks in parallel. It provides mechanisms for\n    thread pools, task sets, parallel for loops, futures, pipelines, and more. Dispenso is a\n    well-tested C++14 library designed to have minimal dependencies (some dependencies are required\n    for the tests and benchmarks), and designed to be clean with compiler sanitizers (ASAN, TSAN).\n  license: MIT\n  license_file: LICENSE\n  dev_url: https://github.com/facebookincubator/dispenso\n\nextra:\n  recipe-maintainers:\n    - jeongseok-meta\n",
+ "raw_meta_yaml": "{% set name = \"Dispenso\" %}\n{% set version = \"1.3.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/facebookincubator/dispenso/archive/v{{ version }}.tar.gz\n    sha256: 824afe8d0d36bfd9bc9b1cbe9be89e7f3ed642a3612766d1c99d5f8dfc647c63\n    patches:\n      - disable-install-gtest.patch\n      - ubuntu-prevent-double-free.patch  # [linux]\n\nbuild:\n  number: 2\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - cmake\n    - ninja  # [not win]\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/cmake/Dispenso-{{ version }}/DispensoConfig.cmake  # [not win]\n    - if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\Dispenso-{{ version }}\\\\DispensoConfig.cmake exit 1  # [win]\n\nabout:\n  home: https://github.com/facebookincubator/dispenso\n  summary: 'The project provides high-performance concurrency, enabling highly parallel computation.'\n  description: |\n    Dispenso is a library for working with sets of tasks in parallel. It provides mechanisms for\n    thread pools, task sets, parallel for loops, futures, pipelines, and more. Dispenso is a\n    well-tested C++14 library designed to have minimal dependencies (some dependencies are required\n    for the tests and benchmarks), and designed to be clean with compiler sanitizers (ASAN, TSAN).\n  license: MIT\n  license_file: LICENSE\n  dev_url: https://github.com/facebookincubator/dispenso\n\nextra:\n  recipe-maintainers:\n    - jeongseok-meta\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -391,7 +393,7 @@
    "summary": "The project provides high-performance concurrency, enabling highly parallel computation."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
