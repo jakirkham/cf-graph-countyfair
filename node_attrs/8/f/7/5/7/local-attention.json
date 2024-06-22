@@ -20,12 +20,12 @@
    "license_file": [
     "LICENSE"
    ],
-   "summary": "Local windowed attention, for language modeling"
+   "summary": "Local attention, window with lookback, for language modeling"
   },
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -34,12 +34,14 @@
   },
   "package": {
    "name": "local-attention",
-   "version": "1.9.0"
+   "version": "1.9.3"
   },
   "requirements": {
    "host": [
     "python >=3.6",
-    "pip"
+    "pip",
+    "setuptools",
+    "pytest-runner"
    ],
    "run": [
     "python >=3.6",
@@ -48,8 +50,8 @@
    ]
   },
   "source": {
-   "sha256": "a7b179dc922358b4bb48b3172cfb349edb459d1bdce589d83786a57a5e3690a6",
-   "url": "https://pypi.io/packages/source/l/local-attention/local-attention-1.9.0.tar.gz"
+   "sha256": "77e4385f37ccf14229f38344cbdb66cca90a97eef0cdddde656e4e575bc16168",
+   "url": "https://pypi.io/packages/source/l/local-attention/local_attention-1.9.3.tar.gz"
   },
   "test": {
    "commands": [
@@ -72,7 +74,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "pytest-runner",
+    "python",
+    "setuptools"
    ]
   },
   "run": {
@@ -97,12 +101,12 @@
    "license_file": [
     "LICENSE"
    ],
-   "summary": "Local windowed attention, for language modeling"
+   "summary": "Local attention, window with lookback, for language modeling"
   },
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -111,12 +115,14 @@
   },
   "package": {
    "name": "local-attention",
-   "version": "1.9.0"
+   "version": "1.9.3"
   },
   "requirements": {
    "host": [
     "python >=3.6",
-    "pip"
+    "pip",
+    "setuptools",
+    "pytest-runner"
    ],
    "run": [
     "python >=3.6",
@@ -125,8 +131,8 @@
    ]
   },
   "source": {
-   "sha256": "a7b179dc922358b4bb48b3172cfb349edb459d1bdce589d83786a57a5e3690a6",
-   "url": "https://pypi.io/packages/source/l/local-attention/local-attention-1.9.0.tar.gz"
+   "sha256": "77e4385f37ccf14229f38344cbdb66cca90a97eef0cdddde656e4e575bc16168",
+   "url": "https://pypi.io/packages/source/l/local-attention/local_attention-1.9.3.tar.gz"
   },
   "test": {
    "commands": [
@@ -154,14 +160,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/local-attention.json"
  },
- "raw_meta_yaml": "{% set name = \"local-attention\" %}\n{% set version = \"1.9.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/local-attention-{{ version }}.tar.gz\n  sha256: a7b179dc922358b4bb48b3172cfb349edb459d1bdce589d83786a57a5e3690a6\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n  run:\n    - python >=3.6\n    - einops >=0.6.0\n    - pytorch\n\ntest:\n  imports:\n    - local_attention\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/lucidrains/local-attention\n  summary: Local windowed attention, for language modeling\n  license: MIT\n  license_file:\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - maresb\n",
+ "raw_meta_yaml": "{% set name = \"local-attention\" %}\n{% set version = \"1.9.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz\n  sha256: 77e4385f37ccf14229f38344cbdb66cca90a97eef0cdddde656e4e575bc16168\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n    - setuptools\n    - pytest-runner\n  run:\n    - python >=3.6\n    - einops >=0.6.0\n    - pytorch\n\ntest:\n  imports:\n    - local_attention\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/lucidrains/local-attention\n  summary: Local attention, window with lookback, for language modeling\n  license: MIT\n  license_file:\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - maresb\n",
  "req": {
   "__set__": true,
   "elements": [
    "einops",
    "pip",
+   "pytest-runner",
    "python",
-   "pytorch"
+   "pytorch",
+   "setuptools"
   ]
  },
  "requirements": {
@@ -173,7 +181,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "pytest-runner",
+    "python",
+    "setuptools"
    ]
   },
   "run": {
@@ -201,7 +211,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6"
+    "pytest-runner",
+    "python >=3.6",
+    "setuptools"
    ]
   },
   "run": {
@@ -219,8 +231,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/l/local-attention/local-attention-1.9.0.tar.gz",
- "version": "1.9.0",
+ "url": "https://pypi.io/packages/source/l/local-attention/local_attention-1.9.3.tar.gz",
+ "version": "1.9.3",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/local-attention.json"
  }
