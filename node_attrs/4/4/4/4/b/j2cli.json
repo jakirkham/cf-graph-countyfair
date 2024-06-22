@@ -15,7 +15,7 @@
  "hash_type": "sha256",
  "linux_64_meta_yaml": {
   "about": {
-   "home": "https://github.com/simplejson/simplejson",
+   "home": "https://github.com/kolypto/j2cli",
    "license": "BSD-2-Clause",
    "license_family": "BSD",
    "license_file": "LICENSE",
@@ -26,8 +26,12 @@
     "j2 = j2cli:main"
    ],
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": [
+    "sed -i '/import pkg_resources/d' j2cli/__init__.py",
+    "sed -i 's/__version__ = .*/__version__ = \"0.3.10\"/' j2cli/__init__.py",
+    "PYTHON -m pip install . -vv"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -40,11 +44,11 @@
   },
   "requirements": {
    "host": [
-    "python",
+    "python >=3.6,<3.12.0a0",
     "pip"
    ],
    "run": [
-    "python",
+    "python >=3.6,<3.12.0a0",
     "jinja2",
     "yaml"
    ]
@@ -86,7 +90,7 @@
  },
  "meta_yaml": {
   "about": {
-   "home": "https://github.com/simplejson/simplejson",
+   "home": "https://github.com/kolypto/j2cli",
    "license": "BSD-2-Clause",
    "license_family": "BSD",
    "license_file": "LICENSE",
@@ -97,8 +101,12 @@
     "j2 = j2cli:main"
    ],
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": [
+    "sed -i '/import pkg_resources/d' j2cli/__init__.py",
+    "sed -i 's/__version__ = .*/__version__ = \"0.3.10\"/' j2cli/__init__.py",
+    "PYTHON -m pip install . -vv"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -111,11 +119,11 @@
   },
   "requirements": {
    "host": [
-    "python",
+    "python >=3.6,<3.12.0a0",
     "pip"
    ],
    "run": [
-    "python",
+    "python >=3.6,<3.12.0a0",
     "jinja2",
     "yaml"
    ]
@@ -144,7 +152,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/j2cli.json"
  },
- "raw_meta_yaml": "{% set name = \"j2cli\" %}\n{% set version = \"0.3.10\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 6f6f643b3fa5c0f72fbe9f07e246f8e138052b9f689e14c7c64d582c59709ae4\n\nbuild:\n  noarch: python\n  number: 0\n  script: \"{{ PYTHON }} -m pip install . -vv\"\n  entry_points:\n    - j2 = j2cli:main\n\nrequirements:\n  host:\n    - python\n    - pip\n  run:\n    - python\n    - jinja2\n    - yaml\n\ntest:\n  commands:\n    - j2 --help\n\nabout:\n  home: https://github.com/simplejson/simplejson\n  license: BSD-2-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: 'Jinja2 Command-Line Tool, reworked'\n\nextra:\n  recipe-maintainers:\n    - hmaarrfk\n",
+ "raw_meta_yaml": "{% set name = \"j2cli\" %}\n{% set version = \"0.3.10\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 6f6f643b3fa5c0f72fbe9f07e246f8e138052b9f689e14c7c64d582c59709ae4\n\nbuild:\n  noarch: python\n  number: 1\n  script:\n    - sed -i '/import pkg_resources/d' j2cli/__init__.py\n    - sed -i 's/__version__ = .*/__version__ = \"{{ version }}\"/' j2cli/__init__.py\n    - {{ PYTHON }} -m pip install . -vv\n  entry_points:\n    - j2 = j2cli:main\n\nrequirements:\n  host:\n    - python >=3.6,<3.12.0a0\n    - pip\n  run:\n    - python >=3.6,<3.12.0a0\n    - jinja2\n    - yaml\n\ntest:\n  commands:\n    - j2 --help\n\nabout:\n  home: https://github.com/kolypto/j2cli\n  license: BSD-2-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: 'Jinja2 Command-Line Tool, reworked'\n\nextra:\n  recipe-maintainers:\n    - hmaarrfk\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -189,14 +197,14 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python >=3.6,<3.12.0a0"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "jinja2",
-    "python",
+    "python >=3.6,<3.12.0a0",
     "yaml"
    ]
   },
