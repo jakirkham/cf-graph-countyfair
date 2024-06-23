@@ -27,37 +27,43 @@
    "summary": "TensorDict is a pytorch dedicated tensor container."
   },
   "build": {
-   "noarch": "python",
    "number": "0",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
    "recipe-maintainers": [
-    "sugatoray"
+    "sugatoray",
+    "jan-janssen"
    ]
   },
   "package": {
    "name": "tensordict",
-   "version": "0.1.2"
+   "version": "0.4.0"
   },
   "requirements": {
+   "build": [
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ],
    "host": [
-    "python >=3.8",
+    "python",
     "setuptools",
     "wheel",
     "pytorch",
     "pip"
    ],
    "run": [
-    "python >=3.8",
+    "python",
     "pytorch",
     "numpy",
-    "cloudpickle"
+    "cloudpickle",
+    "packaging"
    ]
   },
   "source": {
-   "sha256": "9c784b90233ee4d493ff15b99c62873511ce70098e096851f0fb29037f52387b",
-   "url": "https://github.com/pytorch-labs/tensordict/archive/v0.1.2.tar.gz"
+   "sha256": "c6a565cc88d4f8bc1e1f5e6aba23c2c099f08799730c2716fe6b8706d015b7a5",
+   "url": "https://github.com/pytorch-labs/tensordict/archive/v0.4.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -74,7 +80,11 @@
  "linux_64_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
@@ -91,6 +101,7 @@
    "elements": [
     "cloudpickle",
     "numpy",
+    "packaging",
     "python",
     "pytorch"
    ]
@@ -113,37 +124,43 @@
    "summary": "TensorDict is a pytorch dedicated tensor container."
   },
   "build": {
-   "noarch": "python",
    "number": "0",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
    "recipe-maintainers": [
-    "sugatoray"
+    "sugatoray",
+    "jan-janssen"
    ]
   },
   "package": {
    "name": "tensordict",
-   "version": "0.1.2"
+   "version": "0.4.0"
   },
   "requirements": {
+   "build": [
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ],
    "host": [
-    "python >=3.8",
+    "python",
     "setuptools",
     "wheel",
     "pytorch",
     "pip"
    ],
    "run": [
-    "python >=3.8",
+    "python",
     "pytorch",
     "numpy",
-    "cloudpickle"
+    "cloudpickle",
+    "packaging"
    ]
   },
   "source": {
-   "sha256": "9c784b90233ee4d493ff15b99c62873511ce70098e096851f0fb29037f52387b",
-   "url": "https://github.com/pytorch-labs/tensordict/archive/v0.1.2.tar.gz"
+   "sha256": "c6a565cc88d4f8bc1e1f5e6aba23c2c099f08799730c2716fe6b8706d015b7a5",
+   "url": "https://github.com/pytorch-labs/tensordict/archive/v0.4.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -158,36 +175,75 @@
   }
  },
  "name": "tensordict",
- "outputs_names": {
-  "__set__": true,
-  "elements": [
-   "tensordict"
-  ]
+ "osx_64_meta_yaml": {
+  "about": {
+   "description": "`TensorDict` is a dictionary-like class that inherits properties from tensors,\nsuch as indexing, shape operations, casting to device or point-to-point communication\nin distributed settings.\n\nThe main purpose of TensorDict is to make code-bases more _readable_ and _modular_ by\nabstracting away tailored operations:\n\n```python\nfor i, tensordict in enumerate(dataset):\n\n    tensordict = model(tensordict)\n    loss = loss_module(tensordict)\n    loss.backward()\n    optimizer.step()\n    optimizer.zero_grad()\n```\n\nWith this level of abstraction, one can recycle a training loop for highly heterogeneous task.\nEach individual step of the training loop (data collection and transform, model prediction,\nloss computation etc.) can be tailored to the use case at hand without impacting the others.\nFor instance, the above example can be easily used across classification and segmentation tasks,\namong many others.\n\nPyPI: [https://pypi.org/project/tensordict/](https://pypi.org/project/tensordict/)\n\n---\n\n\n\n:fire: The conda-forge recipe was generated with [Conda-Forger App](https://sugatoray-conda-forger.streamlit.app/).\n\n:point_right: [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://sugatoray-conda-forger.streamlit.app/)\n\n[_streamlit-conda-forger-app]: https://sugatoray-conda-forger.streamlit.app/\n",
+   "dev_url": "https://github.com/pytorch-labs/tensordict",
+   "doc_url": "https://pytorch-labs.github.io/tensordict/",
+   "home": "https://github.com/pytorch-labs/tensordict",
+   "license": "MIT",
+   "license_file": "LICENSE",
+   "summary": "TensorDict is a pytorch dedicated tensor container."
+  },
+  "build": {
+   "number": "0",
+   "script": "PYTHON -m pip install . -vv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "sugatoray",
+    "jan-janssen"
+   ]
+  },
+  "package": {
+   "name": "tensordict",
+   "version": "0.4.0"
+  },
+  "requirements": {
+   "build": [
+    "cxx_compiler_stub",
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "python",
+    "setuptools",
+    "wheel",
+    "pytorch",
+    "pip"
+   ],
+   "run": [
+    "python",
+    "pytorch",
+    "numpy",
+    "cloudpickle",
+    "packaging"
+   ]
+  },
+  "source": {
+   "sha256": "c6a565cc88d4f8bc1e1f5e6aba23c2c099f08799730c2716fe6b8706d015b7a5",
+   "url": "https://github.com/pytorch-labs/tensordict/archive/v0.4.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "tensordict"
+   ],
+   "requires": [
+    "pip"
+   ]
+  }
  },
- "parsing_error": false,
- "platforms": [
-  "linux_64"
- ],
- "pr_info": {
-  "__lazy_json__": "pr_info/tensordict.json"
- },
- "raw_meta_yaml": "{% set name = \"tensordict\" %}\n{% set version = \"0.1.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  # NOTE:\n  # The PyPI address does not have any package-source available yet\n  # Once the source is added there, change the recipe to build with\n  # the source from PyPI.\n  url: https://github.com/pytorch-labs/tensordict/archive/v{{ version }}.tar.gz\n  sha256: 9c784b90233ee4d493ff15b99c62873511ce70098e096851f0fb29037f52387b\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools\n    - wheel\n    - pytorch\n    - pip\n  run:\n    - python >=3.8\n    - pytorch\n    - numpy\n    - cloudpickle\n\ntest:\n  imports:\n    - tensordict\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/pytorch-labs/tensordict\n  summary: TensorDict is a pytorch dedicated tensor container.\n  license: MIT\n  license_file: LICENSE\n  description: |\n    `TensorDict` is a dictionary-like class that inherits properties from tensors,\n    such as indexing, shape operations, casting to device or point-to-point communication\n    in distributed settings.\n\n    The main purpose of TensorDict is to make code-bases more _readable_ and _modular_ by\n    abstracting away tailored operations:\n\n    ```python\n    for i, tensordict in enumerate(dataset):\n        # the model reads and writes tensordicts\n        tensordict = model(tensordict)\n        loss = loss_module(tensordict)\n        loss.backward()\n        optimizer.step()\n        optimizer.zero_grad()\n    ```\n\n    With this level of abstraction, one can recycle a training loop for highly heterogeneous task.\n    Each individual step of the training loop (data collection and transform, model prediction,\n    loss computation etc.) can be tailored to the use case at hand without impacting the others.\n    For instance, the above example can be easily used across classification and segmentation tasks,\n    among many others.\n\n    PyPI: [https://pypi.org/project/tensordict/](https://pypi.org/project/tensordict/)\n\n    ---\n\n    ### **Conda-Forge Package Made with Conda-Forger App**: :zap:\n\n    :fire: The conda-forge recipe was generated with [Conda-Forger App](https://sugatoray-conda-forger.streamlit.app/).\n\n    :point_right: [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://sugatoray-conda-forger.streamlit.app/)\n\n    [_streamlit-conda-forger-app]: https://sugatoray-conda-forger.streamlit.app/\n\n  doc_url: https://pytorch-labs.github.io/tensordict/\n  dev_url: https://github.com/pytorch-labs/tensordict\n\nextra:\n  recipe-maintainers:\n    - sugatoray\n",
- "req": {
-  "__set__": true,
-  "elements": [
-   "cloudpickle",
-   "numpy",
-   "pip",
-   "python",
-   "pytorch",
-   "setuptools",
-   "wheel"
-  ]
- },
- "requirements": {
+ "osx_64_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
@@ -204,6 +260,80 @@
    "elements": [
     "cloudpickle",
     "numpy",
+    "packaging",
+    "python",
+    "pytorch"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "pip"
+   ]
+  }
+ },
+ "outputs_names": {
+  "__set__": true,
+  "elements": [
+   "tensordict"
+  ]
+ },
+ "parsing_error": false,
+ "platforms": [
+  "linux_64",
+  "osx_64"
+ ],
+ "pr_info": {
+  "__lazy_json__": "pr_info/tensordict.json"
+ },
+ "raw_meta_yaml": "{% set name = \"tensordict\" %}\n{% set version = \"0.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  # NOTE:\n  # The PyPI address does not have any package-source available yet\n  # Once the source is added there, change the recipe to build with\n  # the source from PyPI.\n  url: https://github.com/pytorch-labs/tensordict/archive/v{{ version }}.tar.gz\n  sha256: c6a565cc88d4f8bc1e1f5e6aba23c2c099f08799730c2716fe6b8706d015b7a5\n\nbuild:\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [win] \n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - setuptools\n    - wheel\n    - pytorch\n    - pip\n  run:\n    - python\n    - pytorch\n    - numpy\n    - cloudpickle\n    - packaging\n\ntest:\n  imports:\n    - tensordict\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/pytorch-labs/tensordict\n  summary: TensorDict is a pytorch dedicated tensor container.\n  license: MIT\n  license_file: LICENSE\n  description: |\n    `TensorDict` is a dictionary-like class that inherits properties from tensors,\n    such as indexing, shape operations, casting to device or point-to-point communication\n    in distributed settings.\n\n    The main purpose of TensorDict is to make code-bases more _readable_ and _modular_ by\n    abstracting away tailored operations:\n\n    ```python\n    for i, tensordict in enumerate(dataset):\n        # the model reads and writes tensordicts\n        tensordict = model(tensordict)\n        loss = loss_module(tensordict)\n        loss.backward()\n        optimizer.step()\n        optimizer.zero_grad()\n    ```\n\n    With this level of abstraction, one can recycle a training loop for highly heterogeneous task.\n    Each individual step of the training loop (data collection and transform, model prediction,\n    loss computation etc.) can be tailored to the use case at hand without impacting the others.\n    For instance, the above example can be easily used across classification and segmentation tasks,\n    among many others.\n\n    PyPI: [https://pypi.org/project/tensordict/](https://pypi.org/project/tensordict/)\n\n    ---\n\n    ### **Conda-Forge Package Made with Conda-Forger App**: :zap:\n\n    :fire: The conda-forge recipe was generated with [Conda-Forger App](https://sugatoray-conda-forger.streamlit.app/).\n\n    :point_right: [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://sugatoray-conda-forger.streamlit.app/)\n\n    [_streamlit-conda-forger-app]: https://sugatoray-conda-forger.streamlit.app/\n\n  doc_url: https://pytorch-labs.github.io/tensordict/\n  dev_url: https://github.com/pytorch-labs/tensordict\n\nextra:\n  recipe-maintainers:\n    - sugatoray\n    - jan-janssen\n",
+ "req": {
+  "__set__": true,
+  "elements": [
+   "c_compiler_stub",
+   "c_stdlib_stub",
+   "cloudpickle",
+   "cxx_compiler_stub",
+   "numpy",
+   "packaging",
+   "pip",
+   "python",
+   "pytorch",
+   "setuptools",
+   "wheel"
+  ]
+ },
+ "requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "pip",
+    "python",
+    "pytorch",
+    "setuptools",
+    "wheel"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cloudpickle",
+    "cxx_compiler_stub",
+    "numpy",
+    "packaging",
     "python",
     "pytorch"
    ]
@@ -219,13 +349,17 @@
  "total_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.8",
+    "python",
     "pytorch",
     "setuptools",
     "wheel"
@@ -236,7 +370,8 @@
    "elements": [
     "cloudpickle",
     "numpy",
-    "python >=3.8",
+    "packaging",
+    "python",
     "pytorch"
    ]
   },
@@ -247,8 +382,8 @@
    ]
   }
  },
- "url": "https://github.com/pytorch-labs/tensordict/archive/v0.1.2.tar.gz",
- "version": "0.1.2",
+ "url": "https://github.com/pytorch-labs/tensordict/archive/v0.4.0.tar.gz",
+ "version": "0.4.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/tensordict.json"
  }
