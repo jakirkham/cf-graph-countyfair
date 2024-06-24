@@ -56,9 +56,9 @@
      ],
      "run": [
       "python >=3.9",
+      "numpy >=1.22",
       "pandas >=1.4.0",
-      "shapely >=1.8.0",
-      "pyproj >=3.3.0",
+      "shapely >=2.0.0",
       "packaging"
      ]
     },
@@ -82,8 +82,8 @@
      "run": [
       "python >=3.9",
       "geopandas-base",
-      "fiona >=1.8.21",
-      "rtree",
+      "pyproj >=3.3.0",
+      "pyogrio >=0.7.2",
       "matplotlib-base",
       "mapclassify >=2.4.0",
       "folium",
@@ -103,11 +103,11 @@
   ],
   "package": {
    "name": "geopandas",
-   "version": "0.14.4"
+   "version": "1.0.0"
   },
   "source": {
-   "sha256": "56765be9d58e2c743078085db3bd07dc6be7719f0dbe1dfdc1d705cb80be7c25",
-   "url": "https://github.com/geopandas/geopandas/releases/download/v0.14.4/geopandas-0.14.4.tar.gz"
+   "sha256": "386d42c028047e2b0f09191d7859268304761c4711a247173a88891b6161f711",
+   "url": "https://github.com/geopandas/geopandas/releases/download/v1.0.0/geopandas-1.0.0.tar.gz"
   }
  },
  "linux_64_requirements": {
@@ -125,16 +125,16 @@
   "run": {
    "__set__": true,
    "elements": [
-    "fiona",
     "folium",
     "geopandas-base",
     "mapclassify",
     "matplotlib-base",
+    "numpy",
     "packaging",
     "pandas",
+    "pyogrio",
     "pyproj",
     "python",
-    "rtree",
     "shapely",
     "xyzservices"
    ]
@@ -177,9 +177,9 @@
      ],
      "run": [
       "python >=3.9",
+      "numpy >=1.22",
       "pandas >=1.4.0",
-      "shapely >=1.8.0",
-      "pyproj >=3.3.0",
+      "shapely >=2.0.0",
       "packaging"
      ]
     },
@@ -203,8 +203,8 @@
      "run": [
       "python >=3.9",
       "geopandas-base",
-      "fiona >=1.8.21",
-      "rtree",
+      "pyproj >=3.3.0",
+      "pyogrio >=0.7.2",
       "matplotlib-base",
       "mapclassify >=2.4.0",
       "folium",
@@ -224,11 +224,11 @@
   ],
   "package": {
    "name": "geopandas",
-   "version": "0.14.4"
+   "version": "1.0.0"
   },
   "source": {
-   "sha256": "56765be9d58e2c743078085db3bd07dc6be7719f0dbe1dfdc1d705cb80be7c25",
-   "url": "https://github.com/geopandas/geopandas/releases/download/v0.14.4/geopandas-0.14.4.tar.gz"
+   "sha256": "386d42c028047e2b0f09191d7859268304761c4711a247173a88891b6161f711",
+   "url": "https://github.com/geopandas/geopandas/releases/download/v1.0.0/geopandas-1.0.0.tar.gz"
   }
  },
  "name": "geopandas",
@@ -246,21 +246,21 @@
  "pr_info": {
   "__lazy_json__": "pr_info/geopandas.json"
  },
- "raw_meta_yaml": "{% set version = \"0.14.4\" %}\n\npackage:\n  name: geopandas\n  version: {{ version }}\n\nsource:\n  url: https://github.com/geopandas/geopandas/releases/download/v{{ version }}/geopandas-{{ version }}.tar.gz\n  sha256: 56765be9d58e2c743078085db3bd07dc6be7719f0dbe1dfdc1d705cb80be7c25\n\nbuild:\n  number: 0\n  noarch: python\n\noutputs:\n  - name: geopandas-base\n    script: build_base.sh\n    build:\n      noarch: python\n    requirements:\n      build:\n        - python                                 # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n      host:\n        - python >=3.9\n        - pip\n      run:\n        - python >=3.9\n        - pandas >=1.4.0\n        - shapely >=1.8.0\n        - pyproj >=3.3.0\n        - packaging\n\n    test:\n      imports:\n        - geopandas\n        - geopandas.io\n      files:\n        - test_data\n\n  - name: geopandas\n    requirements:\n      host:\n        - python >=3.9\n      run:\n        - python >=3.9\n        - {{ pin_subpackage('geopandas-base', exact=True) }}\n        - fiona >=1.8.21\n        - rtree\n        - matplotlib-base\n        - mapclassify >=2.4.0\n        - folium\n        - xyzservices\n\n    test:\n      imports:\n        - geopandas\n        - geopandas.io\n      files:\n        - test_data\n\nabout:\n  home: http://geopandas.org\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: Geographic pandas extensions\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n    - jorisvandenbossche\n    - jdmcbr\n    - martinfleis\n",
+ "raw_meta_yaml": "{% set version = \"1.0.0\" %}\n\npackage:\n  name: geopandas\n  version: {{ version }}\n\nsource:\n  url: https://github.com/geopandas/geopandas/releases/download/v{{ version }}/geopandas-{{ version }}.tar.gz\n  sha256: 386d42c028047e2b0f09191d7859268304761c4711a247173a88891b6161f711\n\nbuild:\n  number: 0\n  noarch: python\n\noutputs:\n  - name: geopandas-base\n    script: build_base.sh\n    build:\n      noarch: python\n    requirements:\n      build:\n        - python                                 # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n      host:\n        - python >=3.9\n        - pip\n      run:\n        - python >=3.9\n        - numpy >=1.22\n        - pandas >=1.4.0\n        - shapely >=2.0.0\n        - packaging\n\n    test:\n      imports:\n        - geopandas\n        - geopandas.io\n      files:\n        - test_data\n\n  - name: geopandas\n    requirements:\n      host:\n        - python >=3.9\n      run:\n        - python >=3.9\n        - {{ pin_subpackage('geopandas-base', exact=True) }}\n        - pyproj >=3.3.0\n        - pyogrio >=0.7.2\n        - matplotlib-base\n        - mapclassify >=2.4.0\n        - folium\n        - xyzservices\n\n    test:\n      imports:\n        - geopandas\n        - geopandas.io\n      files:\n        - test_data\n\nabout:\n  home: http://geopandas.org\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: Geographic pandas extensions\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n    - jorisvandenbossche\n    - jdmcbr\n    - martinfleis\n",
  "req": {
   "__set__": true,
   "elements": [
-   "fiona",
    "folium",
    "geopandas-base",
    "mapclassify",
    "matplotlib-base",
+   "numpy",
    "packaging",
    "pandas",
    "pip",
+   "pyogrio",
    "pyproj",
    "python",
-   "rtree",
    "shapely",
    "xyzservices"
   ]
@@ -280,16 +280,16 @@
   "run": {
    "__set__": true,
    "elements": [
-    "fiona",
     "folium",
     "geopandas-base",
     "mapclassify",
     "matplotlib-base",
+    "numpy",
     "packaging",
     "pandas",
+    "pyogrio",
     "pyproj",
     "python",
-    "rtree",
     "shapely",
     "xyzservices"
    ]
@@ -315,17 +315,17 @@
   "run": {
    "__set__": true,
    "elements": [
-    "fiona >=1.8.21",
     "folium",
     "geopandas-base",
     "mapclassify >=2.4.0",
     "matplotlib-base",
+    "numpy >=1.22",
     "packaging",
     "pandas >=1.4.0",
+    "pyogrio >=0.7.2",
     "pyproj >=3.3.0",
     "python >=3.9",
-    "rtree",
-    "shapely >=1.8.0",
+    "shapely >=2.0.0",
     "xyzservices"
    ]
   },
@@ -334,8 +334,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/geopandas/geopandas/releases/download/v0.14.4/geopandas-0.14.4.tar.gz",
- "version": "0.14.4",
+ "url": "https://github.com/geopandas/geopandas/releases/download/v1.0.0/geopandas-1.0.0.tar.gz",
+ "version": "1.0.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/geopandas.json"
  }
