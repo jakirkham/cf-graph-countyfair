@@ -3,7 +3,7 @@
  "branch": "main",
  "conda-forge.yml": {
   "bot": {
-   "automerge": true
+   "inspection": "update-grayskull"
   },
   "conda_build": {
    "pkg_format": "2"
@@ -29,7 +29,7 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -38,23 +38,21 @@
   },
   "package": {
    "name": "livereload",
-   "version": "2.6.3"
+   "version": "2.7.0"
   },
   "requirements": {
-   "build": [
-    "python",
+   "host": [
+    "python >=3.7",
     "pip"
    ],
    "run": [
-    "python",
-    "setuptools",
-    "tornado",
-    "six"
+    "python >=3.7",
+    "tornado"
    ]
   },
   "source": {
-   "sha256": "1d31d598d8dea0445e5d53e592e5fce5befd2265b001ce8995462200d3d247bf",
-   "url": "https://github.com/lepture/python-livereload/archive/2.6.3.tar.gz"
+   "sha256": "f4ba199ef93248902841e298670eebfe1aa9e148e19b343bc57dbf1b74de0513",
+   "url": "https://pypi.io/packages/source/l/livereload/livereload-2.7.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -72,21 +70,19 @@
  "linux_64_requirements": {
   "build": {
    "__set__": true,
+   "elements": []
+  },
+  "host": {
+   "__set__": true,
    "elements": [
     "pip",
     "python"
    ]
   },
-  "host": {
-   "__set__": true,
-   "elements": []
-  },
   "run": {
    "__set__": true,
    "elements": [
     "python",
-    "setuptools",
-    "six",
     "tornado"
    ]
   },
@@ -110,7 +106,7 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -119,23 +115,21 @@
   },
   "package": {
    "name": "livereload",
-   "version": "2.6.3"
+   "version": "2.7.0"
   },
   "requirements": {
-   "build": [
-    "python",
+   "host": [
+    "python >=3.7",
     "pip"
    ],
    "run": [
-    "python",
-    "setuptools",
-    "tornado",
-    "six"
+    "python >=3.7",
+    "tornado"
    ]
   },
   "source": {
-   "sha256": "1d31d598d8dea0445e5d53e592e5fce5befd2265b001ce8995462200d3d247bf",
-   "url": "https://github.com/lepture/python-livereload/archive/2.6.3.tar.gz"
+   "sha256": "f4ba199ef93248902841e298670eebfe1aa9e148e19b343bc57dbf1b74de0513",
+   "url": "https://pypi.io/packages/source/l/livereload/livereload-2.7.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -164,35 +158,31 @@
  "pr_info": {
   "__lazy_json__": "pr_info/livereload.json"
  },
- "raw_meta_yaml": "{% set version = \"2.6.3\" %}\n\npackage:\n  name: livereload\n  version: {{ version }}\n\nsource:\n  url: https://github.com/lepture/python-livereload/archive/{{ version }}.tar.gz\n  sha256: 1d31d598d8dea0445e5d53e592e5fce5befd2265b001ce8995462200d3d247bf\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  entry_points:\n    - livereload = livereload.cli:main\n\nrequirements:\n  build:\n    - python\n    - pip\n  run:\n    - python\n    - setuptools\n    - tornado\n    - six\n\ntest:\n  imports:\n    - livereload\n  commands:\n    - pip check\n    - livereload --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/lepture/python-livereload\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: Python LiveReload is an awesome tool for web developers\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n",
+ "raw_meta_yaml": "{% set name = \"livereload\" %}\n{% set version = \"2.7.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/livereload-{{ version }}.tar.gz\n  sha256: f4ba199ef93248902841e298670eebfe1aa9e148e19b343bc57dbf1b74de0513\n\nbuild:\n  entry_points:\n    - livereload = livereload.cli:main\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n  run:\n    - python >=3.7\n    - tornado\n\ntest:\n  imports:\n    - livereload\n  commands:\n    - pip check\n    - livereload --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/lepture/python-livereload\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: Python LiveReload is an awesome tool for web developers\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n",
  "req": {
   "__set__": true,
   "elements": [
    "pip",
    "python",
-   "setuptools",
-   "six",
    "tornado"
   ]
  },
  "requirements": {
   "build": {
    "__set__": true,
+   "elements": []
+  },
+  "host": {
+   "__set__": true,
    "elements": [
     "pip",
     "python"
    ]
   },
-  "host": {
-   "__set__": true,
-   "elements": []
-  },
   "run": {
    "__set__": true,
    "elements": [
     "python",
-    "setuptools",
-    "six",
     "tornado"
    ]
   },
@@ -207,21 +197,19 @@
  "total_requirements": {
   "build": {
    "__set__": true,
-   "elements": [
-    "pip",
-    "python"
-   ]
+   "elements": []
   },
   "host": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip",
+    "python >=3.7"
+   ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "python",
-    "setuptools",
-    "six",
+    "python >=3.7",
     "tornado"
    ]
   },
@@ -232,8 +220,8 @@
    ]
   }
  },
- "url": "https://github.com/lepture/python-livereload/archive/2.6.3.tar.gz",
- "version": "2.6.3",
+ "url": "https://pypi.io/packages/source/l/livereload/livereload-2.7.0.tar.gz",
+ "version": "2.7.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/livereload.json"
  }
