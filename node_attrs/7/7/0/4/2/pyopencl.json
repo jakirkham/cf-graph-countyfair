@@ -3,6 +3,7 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -33,7 +34,7 @@
    "summary": "Python wrapper for OpenCL"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -64,7 +65,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "pytools",
     "setuptools",
     "mako",
@@ -120,7 +120,6 @@
    "__set__": true,
    "elements": [
     "mako",
-    "numpy",
     "ocl-icd",
     "platformdirs",
     "python",
@@ -147,7 +146,7 @@
    "summary": "Python wrapper for OpenCL"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -178,7 +177,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "pytools",
     "setuptools",
     "mako",
@@ -233,7 +231,6 @@
    "__set__": true,
    "elements": [
     "mako",
-    "numpy",
     "ocl-icd",
     "platformdirs",
     "python",
@@ -260,7 +257,7 @@
    "summary": "Python wrapper for OpenCL"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -291,7 +288,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "pytools",
     "setuptools",
     "mako",
@@ -346,7 +342,6 @@
    "__set__": true,
    "elements": [
     "mako",
-    "numpy",
     "ocl-icd",
     "platformdirs",
     "python",
@@ -373,7 +368,7 @@
    "summary": "Python wrapper for OpenCL"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -405,7 +400,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "pytools",
     "setuptools",
     "mako",
@@ -451,7 +445,7 @@
    "summary": "Python wrapper for OpenCL"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -482,7 +476,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "pytools",
     "setuptools",
     "mako",
@@ -540,7 +533,6 @@
    "elements": [
     "khronos-opencl-icd-loader",
     "mako",
-    "numpy",
     "platformdirs",
     "python",
     "pytools",
@@ -567,7 +559,7 @@
    "summary": "Python wrapper for OpenCL"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -598,7 +590,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "pytools",
     "setuptools",
     "mako",
@@ -656,7 +647,6 @@
    "elements": [
     "khronos-opencl-icd-loader",
     "mako",
-    "numpy",
     "platformdirs",
     "python",
     "pytools",
@@ -690,7 +680,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyopencl.json"
  },
- "raw_meta_yaml": "{% set name = \"pyopencl\" %}\n{% set version = \"2024.2.6\" %}\n{% set build_number = 0 %}\n{% set sha256 = \"ceb9beeef0b6162e601c05922fede29b5094554a66eb473c610cabc14308ba82\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: {{ build_number }}\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - nanobind >=1.9.2                       # [build_platform != target_platform]\n    - scikit-build-core >=0.9.3              # [build_platform != target_platform]\n    - cmake\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - make  # [unix]\n  host:\n    - python\n    - pip\n    - setuptools\n    - nanobind >=1.9.2\n    - scikit-build-core >=0.9.3\n    - numpy\n    - ocl-icd      # [linux]\n    - khronos-opencl-icd-loader      # [win or osx]\n\n  run:\n    - python\n    - {{ pin_compatible(\"numpy\") }}\n    - pytools\n        # for pkg_resources\n    - setuptools\n    - mako\n    - platformdirs\n    - khronos-opencl-icd-loader      # [win or osx]\n    - ocl-icd      # [linux]\n\ntest:\n  requires:\n    - pytest\n    - pocl  >=0.14      # [linux or osx]\n    - oclgrind          # [win]\n    # See https://github.com/conda-forge/pocl-feedstock/pull/96:\n    - ld64 <711         # [osx]\n  imports:\n    - {{ name }}\n  source_files:\n    - test\n    - examples/demo.py\n  commands:\n    - echo %OCL_ICD_FILENAMES%  # [win]\n    - python examples/demo.py\n    # tests crash on aarch64/ppc64le\n    - python -m pytest -v test/   # [linux64 or osx]\n\nabout:\n  home: https://pypi.python.org/pypi/pyopencl\n  doc_url: https://documen.tician.de/pyopencl\n  dev_url: https://github.com/inducer/pyopencl\n  license: MIT\n  license_file: LICENSE\n  summary: Python wrapper for OpenCL\n  description: |\n    PyOpenCL lets you access GPUs, multi-core CPUs, and other massively\n    parallel compute devices from Python, through the OpenCL parallel\n    compute interface.\n\nextra:\n  recipe-maintainers:\n    - inducer\n    - isuruf\n    - matthiasdiener\n",
+ "raw_meta_yaml": "{% set name = \"pyopencl\" %}\n{% set version = \"2024.2.6\" %}\n{% set build_number = 1 %}\n{% set sha256 = \"ceb9beeef0b6162e601c05922fede29b5094554a66eb473c610cabc14308ba82\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: {{ build_number }}\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - nanobind >=1.9.2                       # [build_platform != target_platform]\n    - scikit-build-core >=0.9.3              # [build_platform != target_platform]\n    - cmake\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - make  # [unix]\n  host:\n    - python\n    - pip\n    - setuptools\n    - nanobind >=1.9.2\n    - scikit-build-core >=0.9.3\n    - numpy\n    - ocl-icd      # [linux]\n    - khronos-opencl-icd-loader      # [win or osx]\n\n  run:\n    - python\n    - pytools\n        # for pkg_resources\n    - setuptools\n    - mako\n    - platformdirs\n    - khronos-opencl-icd-loader      # [win or osx]\n    - ocl-icd      # [linux]\n\ntest:\n  requires:\n    - pytest\n    - pocl  >=0.14      # [linux or osx]\n    - oclgrind          # [win]\n    # See https://github.com/conda-forge/pocl-feedstock/pull/96:\n    - ld64 <711         # [osx]\n  imports:\n    - {{ name }}\n  source_files:\n    - test\n    - examples/demo.py\n  commands:\n    - echo %OCL_ICD_FILENAMES%  # [win]\n    - python examples/demo.py\n    # tests crash on aarch64/ppc64le\n    - python -m pytest -v test/   # [linux64 or osx]\n\nabout:\n  home: https://pypi.python.org/pypi/pyopencl\n  doc_url: https://documen.tician.de/pyopencl\n  dev_url: https://github.com/inducer/pyopencl\n  license: MIT\n  license_file: LICENSE\n  summary: Python wrapper for OpenCL\n  description: |\n    PyOpenCL lets you access GPUs, multi-core CPUs, and other massively\n    parallel compute devices from Python, through the OpenCL parallel\n    compute interface.\n\nextra:\n  recipe-maintainers:\n    - inducer\n    - isuruf\n    - matthiasdiener\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -743,7 +733,6 @@
     "cxx_compiler_stub",
     "khronos-opencl-icd-loader",
     "mako",
-    "numpy",
     "ocl-icd",
     "platformdirs",
     "python",
@@ -790,7 +779,6 @@
    "elements": [
     "khronos-opencl-icd-loader",
     "mako",
-    "numpy",
     "ocl-icd",
     "platformdirs",
     "python",
@@ -824,7 +812,7 @@
    "summary": "Python wrapper for OpenCL"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -854,7 +842,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "pytools",
     "setuptools",
     "mako",
@@ -910,7 +897,6 @@
    "elements": [
     "khronos-opencl-icd-loader",
     "mako",
-    "numpy",
     "platformdirs",
     "python",
     "pytools",
