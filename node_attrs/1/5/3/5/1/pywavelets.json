@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "update-grayskull"
+  },
   "build_platform": {
    "linux_aarch64": "linux_64",
    "linux_ppc64le": "linux_ppc64le",
@@ -32,8 +35,13 @@
    "summary": "Discrete Wavelet Transforms in Python"
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "number": "0",
+   "script": [
+    "mkdir builddir",
+    "PYTHON -m mesonbuild.mesonmain setup $MESON_ARGS builddir",
+    "PYTHON -m build --wheel --no-isolation --skip-dependency-check -Cbuilddir=builddir",
+    "PYTHON -m pip install --find-links dist pywavelets"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -45,36 +53,41 @@
   },
   "package": {
    "name": "pywavelets",
-   "version": "1.4.1"
+   "version": "1.6.0"
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "ninja",
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
+    "python-build",
     "pip",
-    "cython",
-    "numpy"
+    "cython >=3.0.4,<3.1",
+    "numpy",
+    "meson-python >=0.15.0"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
-   "sha256": "6437af3ddf083118c26d8f97ab43b0724b956c9f958e9ea788659f6a2834ba93",
-   "url": "https://pypi.io/packages/source/P/PyWavelets/PyWavelets-1.4.1.tar.gz"
+   "sha256": "ea027c70977122c5fc27b2510f0a0d9528f9c3df6ea3e4c577ca55fd00325a5b",
+   "url": "https://pypi.io/packages/source/p/pywavelets/pywavelets-1.6.0.tar.gz"
   },
   "test": {
    "commands": [
-    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50']))\""
+    "pip check",
+    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50', '-k', 'not (test_mra_axis or test_mra2_axes or test_mra2_roundtrip or test_iswtn_mixed_dtypes)']))\""
    ],
    "imports": [
     "pywt"
    ],
    "requires": [
-    "pytest"
+    "pytest",
+    "pip"
    ]
   }
  },
@@ -82,28 +95,32 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "cython",
+    "meson-python",
     "numpy",
     "pip",
-    "python"
+    "python",
+    "python-build"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "pip",
     "pytest"
    ]
   }
@@ -116,8 +133,13 @@
    "summary": "Discrete Wavelet Transforms in Python"
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "number": "0",
+   "script": [
+    "mkdir builddir",
+    "PYTHON -m mesonbuild.mesonmain setup $MESON_ARGS builddir",
+    "PYTHON -m build --wheel --no-isolation --skip-dependency-check -Cbuilddir=builddir",
+    "PYTHON -m pip install --find-links dist pywavelets"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -129,36 +151,41 @@
   },
   "package": {
    "name": "pywavelets",
-   "version": "1.4.1"
+   "version": "1.6.0"
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "ninja",
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
+    "python-build",
     "pip",
-    "cython",
-    "numpy"
+    "cython >=3.0.4,<3.1",
+    "numpy",
+    "meson-python >=0.15.0"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
-   "sha256": "6437af3ddf083118c26d8f97ab43b0724b956c9f958e9ea788659f6a2834ba93",
-   "url": "https://pypi.io/packages/source/P/PyWavelets/PyWavelets-1.4.1.tar.gz"
+   "sha256": "ea027c70977122c5fc27b2510f0a0d9528f9c3df6ea3e4c577ca55fd00325a5b",
+   "url": "https://pypi.io/packages/source/p/pywavelets/pywavelets-1.6.0.tar.gz"
   },
   "test": {
    "commands": [
-    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50']))\""
+    "pip check",
+    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50', '-k', 'not (test_mra_axis or test_mra2_axes or test_mra2_roundtrip or test_iswtn_mixed_dtypes)']))\""
    ],
    "imports": [
     "pywt"
    ],
    "requires": [
-    "pytest"
+    "pytest",
+    "pip"
    ]
   }
  },
@@ -166,28 +193,32 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "cython",
+    "meson-python",
     "numpy",
     "pip",
-    "python"
+    "python",
+    "python-build"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "pip",
     "pytest"
    ]
   }
@@ -200,8 +231,13 @@
    "summary": "Discrete Wavelet Transforms in Python"
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "number": "0",
+   "script": [
+    "mkdir builddir",
+    "PYTHON -m mesonbuild.mesonmain setup $MESON_ARGS builddir",
+    "PYTHON -m build --wheel --no-isolation --skip-dependency-check -Cbuilddir=builddir",
+    "PYTHON -m pip install --find-links dist pywavelets"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -213,36 +249,41 @@
   },
   "package": {
    "name": "pywavelets",
-   "version": "1.4.1"
+   "version": "1.6.0"
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "ninja",
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
+    "python-build",
     "pip",
-    "cython",
-    "numpy"
+    "cython >=3.0.4,<3.1",
+    "numpy",
+    "meson-python >=0.15.0"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
-   "sha256": "6437af3ddf083118c26d8f97ab43b0724b956c9f958e9ea788659f6a2834ba93",
-   "url": "https://pypi.io/packages/source/P/PyWavelets/PyWavelets-1.4.1.tar.gz"
+   "sha256": "ea027c70977122c5fc27b2510f0a0d9528f9c3df6ea3e4c577ca55fd00325a5b",
+   "url": "https://pypi.io/packages/source/p/pywavelets/pywavelets-1.6.0.tar.gz"
   },
   "test": {
    "commands": [
-    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50']))\""
+    "pip check",
+    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50', '-k', 'not (test_mra_axis or test_mra2_axes or test_mra2_roundtrip or test_iswtn_mixed_dtypes)']))\""
    ],
    "imports": [
     "pywt"
    ],
    "requires": [
-    "pytest"
+    "pytest",
+    "pip"
    ]
   }
  },
@@ -250,28 +291,32 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "cython",
+    "meson-python",
     "numpy",
     "pip",
-    "python"
+    "python",
+    "python-build"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "pip",
     "pytest"
    ]
   }
@@ -284,8 +329,14 @@
    "summary": "Discrete Wavelet Transforms in Python"
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "number": "0",
+   "script": [
+    "mkdir builddir",
+    "PYTHON -m mesonbuild.mesonmain setup $MESON_ARGS builddir",
+    "PYTHON -m build --wheel --no-isolation --skip-dependency-check -Cbuilddir=builddir",
+    "PYTHON -m pip install --find-links dist pywavelets",
+    "PYTHON -m mesonbuild.mesonmain setup %MESON_ARGS% builddir"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -297,36 +348,41 @@
   },
   "package": {
    "name": "pywavelets",
-   "version": "1.4.1"
+   "version": "1.6.0"
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "ninja",
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
+    "python-build",
     "pip",
-    "cython",
-    "numpy"
+    "cython >=3.0.4,<3.1",
+    "numpy",
+    "meson-python >=0.15.0"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
-   "sha256": "6437af3ddf083118c26d8f97ab43b0724b956c9f958e9ea788659f6a2834ba93",
-   "url": "https://pypi.io/packages/source/P/PyWavelets/PyWavelets-1.4.1.tar.gz"
+   "sha256": "ea027c70977122c5fc27b2510f0a0d9528f9c3df6ea3e4c577ca55fd00325a5b",
+   "url": "https://pypi.io/packages/source/p/pywavelets/pywavelets-1.6.0.tar.gz"
   },
   "test": {
    "commands": [
-    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50']))\""
+    "pip check",
+    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50', '-k', 'not (test_mra_axis or test_mra2_axes or test_mra2_roundtrip or test_iswtn_mixed_dtypes)']))\""
    ],
    "imports": [
     "pywt"
    ],
    "requires": [
-    "pytest"
+    "pytest",
+    "pip"
    ]
   }
  },
@@ -339,8 +395,13 @@
    "summary": "Discrete Wavelet Transforms in Python"
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "number": "0",
+   "script": [
+    "mkdir builddir",
+    "PYTHON -m mesonbuild.mesonmain setup $MESON_ARGS builddir",
+    "PYTHON -m build --wheel --no-isolation --skip-dependency-check -Cbuilddir=builddir",
+    "PYTHON -m pip install --find-links dist pywavelets"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -352,36 +413,41 @@
   },
   "package": {
    "name": "pywavelets",
-   "version": "1.4.1"
+   "version": "1.6.0"
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "ninja",
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
+    "python-build",
     "pip",
-    "cython",
-    "numpy"
+    "cython >=3.0.4,<3.1",
+    "numpy",
+    "meson-python >=0.15.0"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
-   "sha256": "6437af3ddf083118c26d8f97ab43b0724b956c9f958e9ea788659f6a2834ba93",
-   "url": "https://pypi.io/packages/source/P/PyWavelets/PyWavelets-1.4.1.tar.gz"
+   "sha256": "ea027c70977122c5fc27b2510f0a0d9528f9c3df6ea3e4c577ca55fd00325a5b",
+   "url": "https://pypi.io/packages/source/p/pywavelets/pywavelets-1.6.0.tar.gz"
   },
   "test": {
    "commands": [
-    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50']))\""
+    "pip check",
+    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50', '-k', 'not (test_mra_axis or test_mra2_axes or test_mra2_roundtrip or test_iswtn_mixed_dtypes)']))\""
    ],
    "imports": [
     "pywt"
    ],
    "requires": [
-    "pytest"
+    "pytest",
+    "pip"
    ]
   }
  },
@@ -389,28 +455,32 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "cython",
+    "meson-python",
     "numpy",
     "pip",
-    "python"
+    "python",
+    "python-build"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "pip",
     "pytest"
    ]
   }
@@ -423,8 +493,13 @@
    "summary": "Discrete Wavelet Transforms in Python"
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "number": "0",
+   "script": [
+    "mkdir builddir",
+    "PYTHON -m mesonbuild.mesonmain setup $MESON_ARGS builddir",
+    "PYTHON -m build --wheel --no-isolation --skip-dependency-check -Cbuilddir=builddir",
+    "PYTHON -m pip install --find-links dist pywavelets"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -436,36 +511,41 @@
   },
   "package": {
    "name": "pywavelets",
-   "version": "1.4.1"
+   "version": "1.6.0"
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "ninja",
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
+    "python-build",
     "pip",
-    "cython",
-    "numpy"
+    "cython >=3.0.4,<3.1",
+    "numpy",
+    "meson-python >=0.15.0"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
-   "sha256": "6437af3ddf083118c26d8f97ab43b0724b956c9f958e9ea788659f6a2834ba93",
-   "url": "https://pypi.io/packages/source/P/PyWavelets/PyWavelets-1.4.1.tar.gz"
+   "sha256": "ea027c70977122c5fc27b2510f0a0d9528f9c3df6ea3e4c577ca55fd00325a5b",
+   "url": "https://pypi.io/packages/source/p/pywavelets/pywavelets-1.6.0.tar.gz"
   },
   "test": {
    "commands": [
-    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50']))\""
+    "pip check",
+    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50', '-k', 'not (test_mra_axis or test_mra2_axes or test_mra2_roundtrip or test_iswtn_mixed_dtypes)']))\""
    ],
    "imports": [
     "pywt"
    ],
    "requires": [
-    "pytest"
+    "pytest",
+    "pip"
    ]
   }
  },
@@ -473,28 +553,32 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "cython",
+    "meson-python",
     "numpy",
     "pip",
-    "python"
+    "python",
+    "python-build"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "pip",
     "pytest"
    ]
   }
@@ -517,45 +601,55 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pywavelets.json"
  },
- "raw_meta_yaml": "{% set label = \"'full'\" %}\n{% set tests = \"['pywt']\" %}\n{% set name = \"PyWavelets\" %}\n{% set version = \"1.4.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 6437af3ddf083118c26d8f97ab43b0724b956c9f958e9ea788659f6a2834ba93\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n  host:\n    - python\n    - pip\n    - cython\n    - numpy\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  requires:\n    - pytest\n  imports:\n    - pywt\n  commands:\n    {% set label = \"'full'\" %}\n    {% set tests = \"['pywt']\" %}\n    - python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label={{ label }}, tests={{ tests }}, extra_argv=['--durations=50']))\"\n\nabout:\n  home: https://github.com/PyWavelets/pywt\n  license: MIT\n  license_file: LICENSE\n  summary: Discrete Wavelet Transforms in Python\n\nextra:\n  recipe-maintainers:\n    - grlee77\n    - jakirkham\n    - ocefpaf\n    - rgommers\n",
+ "raw_meta_yaml": "{% set label = \"'full'\" %}\n{% set tests = \"['pywt']\" %}\n{% set name = \"pywavelets\" %}\n{% set version = \"1.6.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: ea027c70977122c5fc27b2510f0a0d9528f9c3df6ea3e4c577ca55fd00325a5b\n\nbuild:\n  number: 0\n  skip: True  # [py<39]\n  script:\n    - mkdir builddir\n    - {{ PYTHON }} -m mesonbuild.mesonmain setup $MESON_ARGS builddir   # [unix]\n    - {{ PYTHON }} -m mesonbuild.mesonmain setup %MESON_ARGS% builddir  # [win]\n    - {{ PYTHON }} -m build --wheel --no-isolation --skip-dependency-check -Cbuilddir=builddir\n    - {{ PYTHON }} -m pip install --find-links dist pywavelets\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython >=3.0.4,<3.1                    # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - ninja                                  # [unix]\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n  host:\n    - python\n    - python-build\n    - pip\n    - cython >=3.0.4,<3.1\n    - numpy\n    - meson-python >=0.15.0\n  run:\n    - python\n\ntest:\n  requires:\n    - pytest\n    - pip\n  imports:\n    - pywt\n  commands:\n    - pip check\n    {% set label = \"'full'\" %}\n    {% set tests = \"['pywt']\" %}\n    - python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label={{ label }}, tests={{ tests }}, extra_argv=['--durations=50', '-k', 'not (test_mra_axis or test_mra2_axes or test_mra2_roundtrip or test_iswtn_mixed_dtypes)']))\"\n\nabout:\n  home: https://github.com/PyWavelets/pywt\n  license: MIT\n  license_file: LICENSE\n  summary: Discrete Wavelet Transforms in Python\n\nextra:\n  recipe-maintainers:\n    - grlee77\n    - jakirkham\n    - ocefpaf\n    - rgommers\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cython",
+   "meson-python",
+   "ninja",
    "numpy",
    "pip",
-   "python"
+   "python",
+   "python-build"
   ]
  },
  "requirements": {
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
+    "meson-python",
     "numpy",
     "pip",
-    "python"
+    "python",
+    "python-build"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "numpy",
+    "c_stdlib_stub",
     "python"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "pip",
     "pytest"
    ]
   }
@@ -565,34 +659,38 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "cython",
+    "cython >=3.0.4,<3.1",
+    "meson-python >=0.15.0",
     "numpy",
     "pip",
-    "python"
+    "python",
+    "python-build"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "pip",
     "pytest"
    ]
   }
  },
- "url": "https://pypi.io/packages/source/P/PyWavelets/PyWavelets-1.4.1.tar.gz",
- "version": "1.4.1",
+ "url": "https://pypi.io/packages/source/p/pywavelets/pywavelets-1.6.0.tar.gz",
+ "version": "1.6.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pywavelets.json"
  },
@@ -604,8 +702,13 @@
    "summary": "Discrete Wavelet Transforms in Python"
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "number": "0",
+   "script": [
+    "mkdir builddir",
+    "PYTHON -m mesonbuild.mesonmain setup %MESON_ARGS% builddir",
+    "PYTHON -m build --wheel --no-isolation --skip-dependency-check -Cbuilddir=builddir",
+    "PYTHON -m pip install --find-links dist pywavelets"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -617,36 +720,40 @@
   },
   "package": {
    "name": "pywavelets",
-   "version": "1.4.1"
+   "version": "1.6.0"
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
+    "python-build",
     "pip",
-    "cython",
-    "numpy"
+    "cython >=3.0.4,<3.1",
+    "numpy",
+    "meson-python >=0.15.0"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
-   "sha256": "6437af3ddf083118c26d8f97ab43b0724b956c9f958e9ea788659f6a2834ba93",
-   "url": "https://pypi.io/packages/source/P/PyWavelets/PyWavelets-1.4.1.tar.gz"
+   "sha256": "ea027c70977122c5fc27b2510f0a0d9528f9c3df6ea3e4c577ca55fd00325a5b",
+   "url": "https://pypi.io/packages/source/p/pywavelets/pywavelets-1.6.0.tar.gz"
   },
   "test": {
    "commands": [
-    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50']))\""
+    "pip check",
+    "python -c \"import sys; import pywt; sys.exit(not pywt.test(verbose=2, label='full', tests=['pywt'], extra_argv=['--durations=50', '-k', 'not (test_mra_axis or test_mra2_axes or test_mra2_roundtrip or test_iswtn_mixed_dtypes)']))\""
    ],
    "imports": [
     "pywt"
    ],
    "requires": [
-    "pytest"
+    "pytest",
+    "pip"
    ]
   }
  },
@@ -654,28 +761,31 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "cython",
+    "meson-python",
     "numpy",
     "pip",
-    "python"
+    "python",
+    "python-build"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "pip",
     "pytest"
    ]
   }
