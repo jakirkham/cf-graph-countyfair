@@ -32,7 +32,7 @@
    "summary": "COIN-OR Utilities (CoinUtils)"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "coin-or-utils"
    ]
@@ -53,6 +53,7 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "pkg-config",
@@ -90,6 +91,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "gnuconfig",
@@ -129,7 +131,7 @@
    "summary": "COIN-OR Utilities (CoinUtils)"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "coin-or-utils"
    ]
@@ -150,6 +152,7 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "pkg-config",
@@ -187,6 +190,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "gnuconfig",
@@ -226,7 +230,7 @@
    "summary": "COIN-OR Utilities (CoinUtils)"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "coin-or-utils"
    ]
@@ -247,6 +251,7 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "pkg-config",
@@ -284,6 +289,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "gnuconfig",
@@ -323,7 +329,7 @@
    "summary": "COIN-OR Utilities (CoinUtils)"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "coin-or-utils"
    ]
@@ -344,6 +350,7 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "pkg-config",
@@ -396,7 +403,7 @@
    "summary": "COIN-OR Utilities (CoinUtils)"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "coin-or-utils"
    ]
@@ -417,6 +424,7 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "pkg-config",
@@ -454,6 +462,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "gnuconfig",
@@ -493,7 +502,7 @@
    "summary": "COIN-OR Utilities (CoinUtils)"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "coin-or-utils"
    ]
@@ -514,6 +523,7 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "pkg-config",
@@ -551,6 +561,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "gnuconfig",
@@ -597,13 +608,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/coin-or-utils.json"
  },
- "raw_meta_yaml": "{% set name = \"coin-or-utils\" %}\n{% set version = \"2.11.11\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/coin-or/CoinUtils/archive/releases/{{ version }}.tar.gz\n  sha256: 27da344479f38c82112d738501643dcb229e4ee96a5f87d4f406456bdc1b2cb4\n  patches:\n    - 0001-Patch-for-downstream.patch\n\nbuild:\n  number: 0\n  run_exports:\n    - {{ pin_subpackage(name, min_pin='x.x', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - gnuconfig\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}  # [unix]\n    - pkg-config  # [unix]\n    - make  # [unix]\n    - m2-make  # [win]\n    - m2-pkg-config  # [win]\n    - m2-grep  # [win]\n    - m2-sed  # [win]\n    - m2-bash  # [win]\n    - m2-base  # [win]\n    \n  host:\n    - blas-devel\n    - libblas  # [unix]\n    - libcblas\n    - liblapack\n    - liblapacke  # [unix]\n    - zlib\n    - bzip2\n  \n  run_constrained:\n    - coincbc * *_metapackage\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libCoinUtils${SHLIB_EXT}         # [unix]\n    - test -f $PREFIX/include/coin/CoinSort.hpp            # [unix]\n    - if not exist %LIBRARY_LIB%/libCoinUtils.lib exit 1   # [win]\n    - if not exist %LIBRARY_INC%/coin/CoinSort.hpp exit 1  # [win]\nabout:\n  home: https://github.com/coin-or/CoinUtils\n  dev_url: https://github.com/coin-or/CoinUtils\n  license: EPL-2.0\n  license_family: OTHER\n  license_file: LICENSE\n  summary: COIN-OR Utilities (CoinUtils)\n  description: |\n    CoinUtils (Coin-OR Utilities) is an open-source collection of classes and\n    functions that are generally useful to more than one COIN-OR project. These\n    utilities include:\n\n      - classes for storing and manipulating sparse matrices and vectors,\n      - performing matrix factorization,\n      - parsing input files in standard formats, e.g. MPS,\n      - building representations of mathematical programs,\n      - performing simple presolve operations,\n      - warm starting algorithms for mathematical programs, and\n      - comparing floating point numbers with a tolerance, among others.\n\nextra:\n  recipe-maintainers:\n    - wolfv\n    - tkralphs\n    - jschueller\n    - jpfeuffer\n",
+ "raw_meta_yaml": "{% set name = \"coin-or-utils\" %}\n{% set version = \"2.11.11\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/coin-or/CoinUtils/archive/releases/{{ version }}.tar.gz\n  sha256: 27da344479f38c82112d738501643dcb229e4ee96a5f87d4f406456bdc1b2cb4\n  patches:\n    - 0001-Patch-for-downstream.patch\n\nbuild:\n  number: 1\n  run_exports:\n    - {{ pin_subpackage(name, min_pin='x.x', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - gnuconfig\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('fortran') }}  # [unix]\n    - pkg-config  # [unix]\n    - make  # [unix]\n    - m2-make  # [win]\n    - m2-pkg-config  # [win]\n    - m2-grep  # [win]\n    - m2-sed  # [win]\n    - m2-bash  # [win]\n    - m2-base  # [win]\n    \n  host:\n    - blas-devel\n    - libblas  # [unix]\n    - libcblas\n    - liblapack\n    - liblapacke  # [unix]\n    - zlib\n    - bzip2\n  \n  run_constrained:\n    - coincbc * *_metapackage\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libCoinUtils${SHLIB_EXT}         # [unix]\n    - test -f $PREFIX/include/coin/CoinSort.hpp            # [unix]\n    - if not exist %LIBRARY_LIB%/libCoinUtils.lib exit 1   # [win]\n    - if not exist %LIBRARY_INC%/coin/CoinSort.hpp exit 1  # [win]\nabout:\n  home: https://github.com/coin-or/CoinUtils\n  dev_url: https://github.com/coin-or/CoinUtils\n  license: EPL-2.0\n  license_family: OTHER\n  license_file: LICENSE\n  summary: COIN-OR Utilities (CoinUtils)\n  description: |\n    CoinUtils (Coin-OR Utilities) is an open-source collection of classes and\n    functions that are generally useful to more than one COIN-OR project. These\n    utilities include:\n\n      - classes for storing and manipulating sparse matrices and vectors,\n      - performing matrix factorization,\n      - parsing input files in standard formats, e.g. MPS,\n      - building representations of mathematical programs,\n      - performing simple presolve operations,\n      - warm starting algorithms for mathematical programs, and\n      - comparing floating point numbers with a tolerance, among others.\n\nextra:\n  recipe-maintainers:\n    - wolfv\n    - tkralphs\n    - jschueller\n    - jpfeuffer\n",
  "req": {
   "__set__": true,
   "elements": [
    "blas-devel",
    "bzip2",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "fortran_compiler_stub",
    "gnuconfig",
@@ -627,6 +639,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "gnuconfig",
@@ -646,6 +659,7 @@
     "blas-devel",
     "bzip2",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "libblas",
@@ -659,6 +673,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub"
    ]
@@ -674,6 +689,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "gnuconfig",
@@ -724,7 +740,7 @@
    "summary": "COIN-OR Utilities (CoinUtils)"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "coin-or-utils"
    ]
@@ -745,6 +761,7 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "m2-make",
     "m2-pkg-config",
@@ -783,6 +800,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnuconfig",
     "m2-base",
