@@ -26,7 +26,9 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . --no-deps --ignore-installed -vvv"
+   "script": [
+    "PYTHON -m pip install . -vv --no-deps --no-cache-dir --no-build-isolation"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -37,12 +39,14 @@
   },
   "package": {
    "name": "motor",
-   "version": "3.4.0"
+   "version": "3.5.0"
   },
   "requirements": {
    "host": [
     "pip",
     "aiohttp",
+    "hatchling >=1.24",
+    "hatch-requirements-txt >=0.4.1",
     "tornado >=6.0",
     "pymongo >=4.5,<5",
     "python >=3.7"
@@ -55,8 +59,8 @@
    ]
   },
   "source": {
-   "sha256": "c89b4e4eb2e711345e91c7c9b122cb68cce0e5e869ed0387dd0acb10775e3131",
-   "url": "https://pypi.io/packages/source/m/motor/motor-3.4.0.tar.gz"
+   "sha256": "2b38e405e5a0c52d499edb8d23fa029debdf0158da092c21b44d92cac7f59942",
+   "url": "https://pypi.io/packages/source/m/motor/motor-3.5.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -95,6 +99,8 @@
    "__set__": true,
    "elements": [
     "aiohttp",
+    "hatch-requirements-txt",
+    "hatchling",
     "pip",
     "pymongo",
     "python",
@@ -135,7 +141,9 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . --no-deps --ignore-installed -vvv"
+   "script": [
+    "PYTHON -m pip install . -vv --no-deps --no-cache-dir --no-build-isolation"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -146,12 +154,14 @@
   },
   "package": {
    "name": "motor",
-   "version": "3.4.0"
+   "version": "3.5.0"
   },
   "requirements": {
    "host": [
     "pip",
     "aiohttp",
+    "hatchling >=1.24",
+    "hatch-requirements-txt >=0.4.1",
     "tornado >=6.0",
     "pymongo >=4.5,<5",
     "python >=3.7"
@@ -164,8 +174,8 @@
    ]
   },
   "source": {
-   "sha256": "c89b4e4eb2e711345e91c7c9b122cb68cce0e5e869ed0387dd0acb10775e3131",
-   "url": "https://pypi.io/packages/source/m/motor/motor-3.4.0.tar.gz"
+   "sha256": "2b38e405e5a0c52d499edb8d23fa029debdf0158da092c21b44d92cac7f59942",
+   "url": "https://pypi.io/packages/source/m/motor/motor-3.5.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -209,11 +219,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/motor.json"
  },
- "raw_meta_yaml": "{% set name = \"motor\" %}\n{% set version = \"3.4.0\" %}\n{% set sha256 = \"c89b4e4eb2e711345e91c7c9b122cb68cce0e5e869ed0387dd0acb10775e3131\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv\n\nrequirements:\n  host:\n    - pip\n    - aiohttp\n    - tornado >=6.0\n    - pymongo >=4.5,<5\n    - python >=3.7\n  run:\n    - aiohttp\n    - tornado >=6.0\n    - pymongo >=4.5,<5\n    - python >=3.7\n\ntest:\n  source_files:\n    - .\n  files:\n    - run_the_tests.sh\n  requires:\n    - mongodb\n    - setuptools\n    - pytest\n    - mockupdb\n    - pymongo >=4.5,<5\n    - pip\n  imports:\n    - motor\n    - motor.aiohttp\n    - motor.frameworks\n    - motor.frameworks.asyncio\n    - motor.frameworks.tornado\n  commands:\n    - bash run_the_tests.sh\n    - pip check\n\nabout:\n  home: https://github.com/mongodb/motor/\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: Non-blocking MongoDB driver for Tornado or asyncio\n  doc_url: https://motor.readthedocs.io\n  dev_url: https://github.com/mongodb/motor\n\nextra:\n  recipe-maintainers:\n    - hodgsonw\n    - ShaneHarvey\n    - blink1073\n    - hodgsonw\n",
+ "raw_meta_yaml": "{% set name = \"motor\" %}\n{% set version = \"3.5.0\" %}\n{% set sha256 = \"2b38e405e5a0c52d499edb8d23fa029debdf0158da092c21b44d92cac7f59942\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  noarch: python\n  script: \n    - {{ PYTHON }} -m pip install . -vv --no-deps --no-cache-dir --no-build-isolation\n\nrequirements:\n  host:\n    - pip\n    - aiohttp\n    - hatchling >=1.24\n    - hatch-requirements-txt >=0.4.1\n    - tornado >=6.0\n    - pymongo >=4.5,<5\n    - python >=3.7\n  run:\n    - aiohttp\n    - tornado >=6.0\n    - pymongo >=4.5,<5\n    - python >=3.7\n\ntest:\n  source_files:\n    - .\n  files:\n    - run_the_tests.sh\n  requires:\n    - mongodb\n    - setuptools\n    - pytest\n    - mockupdb\n    - pymongo >=4.5,<5\n    - pip\n  imports:\n    - motor\n    - motor.aiohttp\n    - motor.frameworks\n    - motor.frameworks.asyncio\n    - motor.frameworks.tornado\n  commands:\n    - bash run_the_tests.sh\n    - pip check\n\nabout:\n  home: https://github.com/mongodb/motor/\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  summary: Non-blocking MongoDB driver for Tornado or asyncio\n  doc_url: https://motor.readthedocs.io\n  dev_url: https://github.com/mongodb/motor\n\nextra:\n  recipe-maintainers:\n    - hodgsonw\n    - ShaneHarvey\n    - blink1073\n    - hodgsonw\n",
  "req": {
   "__set__": true,
   "elements": [
    "aiohttp",
+   "hatch-requirements-txt",
+   "hatchling",
    "pip",
    "pymongo",
    "python",
@@ -229,6 +241,8 @@
    "__set__": true,
    "elements": [
     "aiohttp",
+    "hatch-requirements-txt",
+    "hatchling",
     "pip",
     "pymongo",
     "python",
@@ -266,6 +280,8 @@
    "__set__": true,
    "elements": [
     "aiohttp",
+    "hatch-requirements-txt >=0.4.1",
+    "hatchling >=1.24",
     "pip",
     "pymongo >=4.5,<5",
     "python >=3.7",
@@ -293,8 +309,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/m/motor/motor-3.4.0.tar.gz",
- "version": "3.4.0",
+ "url": "https://pypi.io/packages/source/m/motor/motor-3.5.0.tar.gz",
+ "version": "3.5.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/motor.json"
  }
