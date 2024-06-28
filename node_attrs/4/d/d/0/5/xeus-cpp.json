@@ -35,7 +35,7 @@
    "ignore_run_exports": [
     "zlib"
    ],
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "xeus-cpp"
    ]
@@ -60,7 +60,6 @@
     "make"
    ],
    "host": [
-    "cppzmq >=4.6.0,<5",
     "xeus-zmq >=3.0,<4.0",
     "xeus >=5",
     "pugixml",
@@ -70,7 +69,6 @@
     "cppinterop"
    ],
    "run": [
-    "cppzmq",
     "nlohmann_json"
    ]
   },
@@ -103,7 +101,6 @@
    "elements": [
     "cpp-argparse",
     "cppinterop",
-    "cppzmq",
     "nlohmann_json",
     "pugixml",
     "xeus",
@@ -114,7 +111,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "cppzmq",
     "nlohmann_json"
    ]
   },
@@ -140,7 +136,7 @@
    "ignore_run_exports": [
     "zlib"
    ],
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "xeus-cpp"
    ]
@@ -165,7 +161,6 @@
     "make"
    ],
    "host": [
-    "cppzmq >=4.6.0,<5",
     "xeus-zmq >=3.0,<4.0",
     "xeus >=5",
     "pugixml",
@@ -175,7 +170,6 @@
     "cppinterop"
    ],
    "run": [
-    "cppzmq",
     "nlohmann_json"
    ]
   },
@@ -208,7 +202,6 @@
    "elements": [
     "cpp-argparse",
     "cppinterop",
-    "cppzmq",
     "nlohmann_json",
     "pugixml",
     "xeus",
@@ -219,7 +212,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "cppzmq",
     "nlohmann_json"
    ]
   },
@@ -245,7 +237,7 @@
    "ignore_run_exports": [
     "zlib"
    ],
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "xeus-cpp"
    ]
@@ -270,7 +262,6 @@
     "make"
    ],
    "host": [
-    "cppzmq >=4.6.0,<5",
     "xeus-zmq >=3.0,<4.0",
     "xeus >=5",
     "pugixml",
@@ -280,7 +271,6 @@
     "cppinterop"
    ],
    "run": [
-    "cppzmq",
     "nlohmann_json"
    ]
   },
@@ -315,7 +305,7 @@
    "ignore_run_exports": [
     "zlib"
    ],
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "xeus-cpp"
    ]
@@ -340,7 +330,6 @@
     "make"
    ],
    "host": [
-    "cppzmq >=4.6.0,<5",
     "xeus-zmq >=3.0,<4.0",
     "xeus >=5",
     "pugixml",
@@ -350,7 +339,6 @@
     "cppinterop"
    ],
    "run": [
-    "cppzmq",
     "nlohmann_json"
    ]
   },
@@ -383,7 +371,6 @@
    "elements": [
     "cpp-argparse",
     "cppinterop",
-    "cppzmq",
     "nlohmann_json",
     "pugixml",
     "xeus",
@@ -394,7 +381,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "cppzmq",
     "nlohmann_json"
    ]
   },
@@ -420,7 +406,7 @@
    "ignore_run_exports": [
     "zlib"
    ],
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "xeus-cpp"
    ]
@@ -445,7 +431,6 @@
     "make"
    ],
    "host": [
-    "cppzmq >=4.6.0,<5",
     "xeus-zmq >=3.0,<4.0",
     "xeus >=5",
     "pugixml",
@@ -455,7 +440,6 @@
     "cppinterop"
    ],
    "run": [
-    "cppzmq",
     "nlohmann_json"
    ]
   },
@@ -488,7 +472,6 @@
    "elements": [
     "cpp-argparse",
     "cppinterop",
-    "cppzmq",
     "nlohmann_json",
     "pugixml",
     "xeus",
@@ -499,7 +482,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "cppzmq",
     "nlohmann_json"
    ]
   },
@@ -527,7 +509,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/xeus-cpp.json"
  },
- "raw_meta_yaml": "{% set name = \"xeus-cpp\" %}\n{% set version = \"0.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/compiler-research/xeus-cpp/archive/{{ version }}.tar.gz\n  sha256: 352400083227e3ef8f747ddaffe37ca19af6cd760254cb033114ea6027929aec\n\nbuild:\n  number: 1\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n  ignore_run_exports:\n    - zlib\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - make  # [unix]\n  host:\n    - cppzmq >=4.6.0,<5\n    - xeus-zmq >=3.0,<4.0\n    - xeus >=5\n    - pugixml\n    - cpp-argparse >=2.9,<3.1\n    - nlohmann_json ==3.11.3\n    - zlib\n    - cppinterop\n  run:\n    # Even though cppzmq and nlohmann_json are header-only,\n    # they are used at runtime by the c++ interpreter.\n    - {{ pin_compatible('cppzmq', max_pin='x.x') }}\n    - {{ pin_compatible('nlohmann_json', max_pin='x.x.x') }}\n\ntest:\n  requires:\n    - jupyter_kernel_test\n  commands:\n    - test -f ${PREFIX}/bin/xcpp  # [unix]\n    - if exist %LIBRARY_PREFIX%\\bin\\xcpp.exe (exit 0) else (exit 1)  # [win]\n\nabout:\n  home: https://github.com/compiler-research/xeus-cpp\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Jupyter kernel for the C++ programming language\n  description: Jupyter kernel for the C++ programming languague, based on clang\n  doc_url: https://github.com/compiler-research/xeus-cpp\n  dev_url: https://github.com/compiler-research/xeus-cpp\n\nextra:\n  recipe-maintainers:\n    - vgvassilev\n    - alexander-penev\n    - SylvainCorlay\n    - JohanMabille\n",
+ "raw_meta_yaml": "{% set name = \"xeus-cpp\" %}\n{% set version = \"0.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://github.com/compiler-research/xeus-cpp/archive/{{ version }}.tar.gz\n  sha256: 352400083227e3ef8f747ddaffe37ca19af6cd760254cb033114ea6027929aec\n\nbuild:\n  number: 2\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n  ignore_run_exports:\n    - zlib\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - make  # [unix]\n  host:\n    - xeus-zmq >=3.0,<4.0\n    - xeus >=5\n    - pugixml\n    - cpp-argparse >=2.9,<3.1\n    - nlohmann_json ==3.11.3\n    - zlib\n    - cppinterop\n  run:\n    # Even though nlohmann_json is header-only,\n    # it is used at runtime by the c++ interpreter.\n    - {{ pin_compatible('nlohmann_json', max_pin='x.x.x') }}\n\ntest:\n  requires:\n    - jupyter_kernel_test\n  commands:\n    - test -f ${PREFIX}/bin/xcpp  # [unix]\n    - if exist %LIBRARY_PREFIX%\\bin\\xcpp.exe (exit 0) else (exit 1)  # [win]\n\nabout:\n  home: https://github.com/compiler-research/xeus-cpp\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Jupyter kernel for the C++ programming language\n  description: Jupyter kernel for the C++ programming languague, based on clang\n  doc_url: https://github.com/compiler-research/xeus-cpp\n  dev_url: https://github.com/compiler-research/xeus-cpp\n\nextra:\n  recipe-maintainers:\n    - vgvassilev\n    - alexander-penev\n    - SylvainCorlay\n    - JohanMabille\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -535,7 +517,6 @@
    "cmake",
    "cpp-argparse",
    "cppinterop",
-   "cppzmq",
    "cxx_compiler_stub",
    "make",
    "nlohmann_json",
@@ -561,7 +542,6 @@
     "c_stdlib_stub",
     "cpp-argparse",
     "cppinterop",
-    "cppzmq",
     "cxx_compiler_stub",
     "nlohmann_json",
     "pugixml",
@@ -574,7 +554,6 @@
    "__set__": true,
    "elements": [
     "c_stdlib_stub",
-    "cppzmq",
     "cxx_compiler_stub",
     "nlohmann_json"
    ]
@@ -602,7 +581,6 @@
    "elements": [
     "cpp-argparse >=2.9,<3.1",
     "cppinterop",
-    "cppzmq >=4.6.0,<5",
     "nlohmann_json ==3.11.3",
     "pugixml",
     "xeus >=5",
@@ -613,7 +591,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "cppzmq",
     "nlohmann_json"
    ]
   },
@@ -644,7 +621,7 @@
    "ignore_run_exports": [
     "zlib"
    ],
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "xeus-cpp"
    ]
@@ -668,7 +645,6 @@
     "cmake"
    ],
    "host": [
-    "cppzmq >=4.6.0,<5",
     "xeus-zmq >=3.0,<4.0",
     "xeus >=5",
     "pugixml",
@@ -678,7 +654,6 @@
     "cppinterop"
    ],
    "run": [
-    "cppzmq",
     "nlohmann_json"
    ]
   },
@@ -710,7 +685,6 @@
    "elements": [
     "cpp-argparse",
     "cppinterop",
-    "cppzmq",
     "nlohmann_json",
     "pugixml",
     "xeus",
@@ -721,7 +695,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "cppzmq",
     "nlohmann_json"
    ]
   },
