@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "azure": {
+   "free_disk_space": true
+  },
   "build_platform": {
    "linux_aarch64": "linux_64",
    "linux_ppc64le": "linux_64",
@@ -36,8 +39,13 @@
    "summary": "LightGBM is a gradient boosting framework that uses tree based learning algorithms."
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install ."
+   "number": "2",
+   "script": [
+    "export CMAKE_ARGS=\"${CMAKE_ARGS} -DUSE_CUDA=1\"",
+    "PYTHON -m pip install . -vv",
+    "export CMAKE_ARGS=\"${CMAKE_ARGS} -DUSE_GPU=1\""
+   ],
+   "string": "cuda_py3.9h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -57,13 +65,16 @@
     "make",
     "c_compiler_stub",
     "c_stdlib_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "cuda_compiler_stub"
    ],
    "host": [
     "scikit-build-core >=0.9.3",
     "python",
     "pip",
-    "libgomp"
+    "libgomp",
+    "libboost-devel",
+    "ocl-icd"
    ],
    "run": [
     "python",
@@ -79,6 +90,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "boost_shared.diff"
+   ],
    "sha256": "9e8a7640911481134e60987d5d1e1cd157f430c3b4b38de8d36fc55c302bc299",
    "url": "https://pypi.io/packages/source/l/lightgbm/lightgbm-4.4.0.tar.gz"
   },
@@ -102,6 +116,7 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cmake",
+    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -109,7 +124,9 @@
   "host": {
    "__set__": true,
    "elements": [
+    "libboost-devel",
     "libgomp",
+    "ocl-icd",
     "pip",
     "python",
     "scikit-build-core"
@@ -143,8 +160,13 @@
    "summary": "LightGBM is a gradient boosting framework that uses tree based learning algorithms."
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install ."
+   "number": "2",
+   "script": [
+    "export CMAKE_ARGS=\"${CMAKE_ARGS} -DUSE_CUDA=1\"",
+    "PYTHON -m pip install . -vv",
+    "export CMAKE_ARGS=\"${CMAKE_ARGS} -DUSE_GPU=1\""
+   ],
+   "string": "cpu_py3.9h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -164,13 +186,16 @@
     "make",
     "c_compiler_stub",
     "c_stdlib_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "cuda_compiler_stub"
    ],
    "host": [
     "scikit-build-core >=0.9.3",
     "python",
     "pip",
-    "libgomp"
+    "libgomp",
+    "libboost-devel",
+    "ocl-icd"
    ],
    "run": [
     "python",
@@ -186,6 +211,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "boost_shared.diff"
+   ],
    "sha256": "9e8a7640911481134e60987d5d1e1cd157f430c3b4b38de8d36fc55c302bc299",
    "url": "https://pypi.io/packages/source/l/lightgbm/lightgbm-4.4.0.tar.gz"
   },
@@ -209,6 +237,7 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cmake",
+    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -216,7 +245,9 @@
   "host": {
    "__set__": true,
    "elements": [
+    "libboost-devel",
     "libgomp",
+    "ocl-icd",
     "pip",
     "python",
     "scikit-build-core"
@@ -250,8 +281,13 @@
    "summary": "LightGBM is a gradient boosting framework that uses tree based learning algorithms."
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install ."
+   "number": "2",
+   "script": [
+    "export CMAKE_ARGS=\"${CMAKE_ARGS} -DUSE_CUDA=1\"",
+    "PYTHON -m pip install . -vv",
+    "export CMAKE_ARGS=\"${CMAKE_ARGS} -DUSE_GPU=1\""
+   ],
+   "string": "cpu_py3.9h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -271,13 +307,16 @@
     "make",
     "c_compiler_stub",
     "c_stdlib_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "cuda_compiler_stub"
    ],
    "host": [
     "scikit-build-core >=0.9.3",
     "python",
     "pip",
-    "libgomp"
+    "libgomp",
+    "libboost-devel",
+    "ocl-icd"
    ],
    "run": [
     "python",
@@ -293,6 +332,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "boost_shared.diff"
+   ],
    "sha256": "9e8a7640911481134e60987d5d1e1cd157f430c3b4b38de8d36fc55c302bc299",
    "url": "https://pypi.io/packages/source/l/lightgbm/lightgbm-4.4.0.tar.gz"
   },
@@ -316,6 +358,7 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cmake",
+    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -323,7 +366,9 @@
   "host": {
    "__set__": true,
    "elements": [
+    "libboost-devel",
     "libgomp",
+    "ocl-icd",
     "pip",
     "python",
     "scikit-build-core"
@@ -357,8 +402,17 @@
    "summary": "LightGBM is a gradient boosting framework that uses tree based learning algorithms."
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install ."
+   "number": "2",
+   "script": [
+    "export CMAKE_ARGS=\"${CMAKE_ARGS} -DUSE_CUDA=1\"",
+    "PYTHON -m pip install . -vv",
+    "export CMAKE_ARGS=\"${CMAKE_ARGS} -DUSE_GPU=1\"",
+    "set \"CMAKE_GENERATOR_PLATFORM=\"",
+    "set \"CMAKE_GENERATOR_TOOLSET=\"",
+    "set CMAKE_GENERATOR=Ninja",
+    "set \"CMAKE_ARGS=%CMAKE_ARGS% -DUSE_GPU=1\""
+   ],
+   "string": "cpu_py3.9h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -378,14 +432,19 @@
     "make",
     "c_compiler_stub",
     "c_stdlib_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "cuda_compiler_stub",
+    "ninja"
    ],
    "host": [
     "scikit-build-core >=0.9.3",
     "python",
     "pip",
     "libgomp",
-    "llvm-openmp"
+    "libboost-devel",
+    "ocl-icd",
+    "llvm-openmp",
+    "khronos-opencl-icd-loader"
    ],
    "run": [
     "python",
@@ -401,6 +460,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "boost_shared.diff"
+   ],
    "sha256": "9e8a7640911481134e60987d5d1e1cd157f430c3b4b38de8d36fc55c302bc299",
    "url": "https://pypi.io/packages/source/l/lightgbm/lightgbm-4.4.0.tar.gz"
   },
@@ -430,8 +492,12 @@
    "summary": "LightGBM is a gradient boosting framework that uses tree based learning algorithms."
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install ."
+   "number": "2",
+   "script": [
+    "export CMAKE_ARGS=\"${CMAKE_ARGS} -DUSE_GPU=1\"",
+    "PYTHON -m pip install . -vv"
+   ],
+   "string": "cpu_py3.9h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -457,7 +523,9 @@
     "scikit-build-core >=0.9.3",
     "python",
     "pip",
-    "llvm-openmp"
+    "llvm-openmp",
+    "libboost-devel",
+    "khronos-opencl-icd-loader"
    ],
    "run": [
     "python",
@@ -473,6 +541,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "boost_shared.diff"
+   ],
    "sha256": "9e8a7640911481134e60987d5d1e1cd157f430c3b4b38de8d36fc55c302bc299",
    "url": "https://pypi.io/packages/source/l/lightgbm/lightgbm-4.4.0.tar.gz"
   },
@@ -503,6 +574,8 @@
   "host": {
    "__set__": true,
    "elements": [
+    "khronos-opencl-icd-loader",
+    "libboost-devel",
     "llvm-openmp",
     "pip",
     "python",
@@ -537,8 +610,12 @@
    "summary": "LightGBM is a gradient boosting framework that uses tree based learning algorithms."
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install ."
+   "number": "2",
+   "script": [
+    "export CMAKE_ARGS=\"${CMAKE_ARGS} -DUSE_GPU=1\"",
+    "PYTHON -m pip install . -vv"
+   ],
+   "string": "cpu_py3.9h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -564,7 +641,9 @@
     "scikit-build-core >=0.9.3",
     "python",
     "pip",
-    "llvm-openmp"
+    "llvm-openmp",
+    "libboost-devel",
+    "khronos-opencl-icd-loader"
    ],
    "run": [
     "python",
@@ -580,6 +659,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "boost_shared.diff"
+   ],
    "sha256": "9e8a7640911481134e60987d5d1e1cd157f430c3b4b38de8d36fc55c302bc299",
    "url": "https://pypi.io/packages/source/l/lightgbm/lightgbm-4.4.0.tar.gz"
   },
@@ -610,6 +692,8 @@
   "host": {
    "__set__": true,
    "elements": [
+    "khronos-opencl-icd-loader",
+    "libboost-devel",
     "llvm-openmp",
     "pip",
     "python",
@@ -650,18 +734,23 @@
  "pr_info": {
   "__lazy_json__": "pr_info/lightgbm.json"
  },
- "raw_meta_yaml": "{% set name = \"lightgbm\" %}\n{% set version = \"4.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 9e8a7640911481134e60987d5d1e1cd157f430c3b4b38de8d36fc55c302bc299\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install .\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cmake >=3.18\n    - make\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n  host:\n    - scikit-build-core >=0.9.3\n    - python\n    - pip\n    - llvm-openmp  # [osx]\n    - libgomp  # [linux]\n  run:\n    - python\n    - numpy >=1.17.0\n    - scipy\n  # optional dependencies from [project.optional-dependencies]\n  # at https://github.com/microsoft/LightGBM/blob/master/python-package/pyproject.toml\n  run_constrained:\n    - cffi >=1.15.1\n    - dask >=2.0.0\n    - pandas >=0.24.0\n    - pyarrow >=6.0.1\n    - scikit-learn !=0.22.0\n\ntest:\n  imports:\n    - lightgbm\n  requires:\n    - pip\n    - scikit-learn\n  commands:\n    - pip check\n\n\nabout:\n  home: https://github.com/Microsoft/LightGBM\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: LightGBM is a gradient boosting framework that uses tree based learning algorithms.\n\n  description: |\n    A fast, distributed, high performance gradient boosting (GBDT, GBRT, GBM or MART) framework based on decision tree algorithms, used for ranking, classification and many other machine learning tasks.\n  doc_url: http://lightgbm.readthedocs.io/en/latest/\n  dev_url: https://github.com/Microsoft/LightGBM\n\nextra:\n  recipe-maintainers:\n    - synapticarbors\n    - aldanor\n    - xhochy\n    - jameslamb\n",
+ "raw_meta_yaml": "{% set name = \"lightgbm\" %}\n{% set version = \"4.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 9e8a7640911481134e60987d5d1e1cd157f430c3b4b38de8d36fc55c302bc299\n  patches:\n    - boost_shared.diff\n\nbuild:\n  number: 2\n  string: cuda_py{{ PY_VER }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != \"None\"]\n  string: cpu_py{{ PY_VER }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}   # [cuda_compiler_version == \"None\"]\n  # CUDA is not supported in windows\n  skip: True  # [cuda_compiler_version != \"None\" and win]\n  script:\n    - set \"CMAKE_GENERATOR_PLATFORM=\"                 # [win]\n    - set \"CMAKE_GENERATOR_TOOLSET=\"                  # [win]\n    - set CMAKE_GENERATOR=Ninja                       # [win]\n    - set \"CMAKE_ARGS=%CMAKE_ARGS% -DUSE_CUDA=1\"      # [cuda_compiler_version != \"None\" and win]\n    # For CPU builds, we include OpenCL too. USE_GPU means OpenCL and not CUDA builds\n    - set \"CMAKE_ARGS=%CMAKE_ARGS% -DUSE_GPU=1\"       # [cuda_compiler_version == \"None\" and win]\n    - export CMAKE_ARGS=\"${CMAKE_ARGS} -DUSE_CUDA=1\"  # [cuda_compiler_version != \"None\" and not win]\n    - export CMAKE_ARGS=\"${CMAKE_ARGS} -DUSE_GPU=1\"   # [cuda_compiler_version == \"None\" and not win]\n    - {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cmake >=3.18\n    - make    # [not win]\n    - ninja   # [win]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}                 # [cuda_compiler_version != \"None\"]\n  host:\n    - scikit-build-core >=0.9.3\n    - python\n    - pip\n    - llvm-openmp  # [osx]\n    - libgomp  # [linux]\n    - libboost-devel              # [cuda_compiler_version == \"None\"]\n    - ocl-icd                     # [cuda_compiler_version == \"None\" and linux]\n    - khronos-opencl-icd-loader   # [cuda_compiler_version == \"None\" and not linux]\n  run:\n    - python\n    - numpy >=1.17.0\n    - scipy\n  # optional dependencies from [project.optional-dependencies]\n  # at https://github.com/microsoft/LightGBM/blob/master/python-package/pyproject.toml\n  run_constrained:\n    - cffi >=1.15.1\n    - dask >=2.0.0\n    - pandas >=0.24.0\n    - pyarrow >=6.0.1\n    - scikit-learn !=0.22.0\n\ntest:\n  imports:\n    - lightgbm\n  requires:\n    - pip\n    - scikit-learn\n  commands:\n    - pip check\n\n\nabout:\n  home: https://github.com/Microsoft/LightGBM\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: LightGBM is a gradient boosting framework that uses tree based learning algorithms.\n\n  description: |\n    A fast, distributed, high performance gradient boosting (GBDT, GBRT, GBM or MART) framework based on decision tree algorithms, used for ranking, classification and many other machine learning tasks.\n  doc_url: http://lightgbm.readthedocs.io/en/latest/\n  dev_url: https://github.com/Microsoft/LightGBM\n\nextra:\n  recipe-maintainers:\n    - synapticarbors\n    - aldanor\n    - xhochy\n    - jameslamb\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
    "c_stdlib_stub",
    "cmake",
+   "cuda_compiler_stub",
    "cxx_compiler_stub",
+   "khronos-opencl-icd-loader",
+   "libboost-devel",
    "libgomp",
    "llvm-openmp",
    "make",
+   "ninja",
    "numpy",
+   "ocl-icd",
    "pip",
    "python",
    "scikit-build-core",
@@ -675,8 +764,10 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cmake",
+    "cuda_compiler_stub",
     "cxx_compiler_stub",
-    "make"
+    "make",
+    "ninja"
    ]
   },
   "host": {
@@ -685,9 +776,13 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "ctng-compilers",
+    "cuda_compiler_stub",
     "cxx_compiler_stub",
+    "khronos-opencl-icd-loader",
+    "libboost-devel",
     "libgomp",
     "llvm-openmp",
+    "ocl-icd",
     "openmp",
     "pip",
     "python",
@@ -700,6 +795,7 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "ctng-compilers",
+    "cuda_compiler_stub",
     "cxx_compiler_stub",
     "numpy",
     "openmp",
@@ -723,15 +819,20 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cmake >=3.18",
+    "cuda_compiler_stub",
     "cxx_compiler_stub",
-    "make"
+    "make",
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "khronos-opencl-icd-loader",
+    "libboost-devel",
     "libgomp",
     "llvm-openmp",
+    "ocl-icd",
     "pip",
     "python",
     "scikit-build-core >=0.9.3"
@@ -770,8 +871,15 @@
    "summary": "LightGBM is a gradient boosting framework that uses tree based learning algorithms."
   },
   "build": {
-   "number": "1",
-   "script": "PYTHON -m pip install ."
+   "number": "2",
+   "script": [
+    "set \"CMAKE_GENERATOR_PLATFORM=\"",
+    "set \"CMAKE_GENERATOR_TOOLSET=\"",
+    "set CMAKE_GENERATOR=Ninja",
+    "set \"CMAKE_ARGS=%CMAKE_ARGS% -DUSE_GPU=1\"",
+    "PYTHON -m pip install . -vv"
+   ],
+   "string": "cpu_py3.9h1234567_2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -788,7 +896,7 @@
   "requirements": {
    "build": [
     "cmake >=3.18",
-    "make",
+    "ninja",
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub"
@@ -796,7 +904,9 @@
    "host": [
     "scikit-build-core >=0.9.3",
     "python",
-    "pip"
+    "pip",
+    "libboost-devel",
+    "khronos-opencl-icd-loader"
    ],
    "run": [
     "python",
@@ -812,6 +922,9 @@
    ]
   },
   "source": {
+   "patches": [
+    "boost_shared.diff"
+   ],
    "sha256": "9e8a7640911481134e60987d5d1e1cd157f430c3b4b38de8d36fc55c302bc299",
    "url": "https://pypi.io/packages/source/l/lightgbm/lightgbm-4.4.0.tar.gz"
   },
@@ -836,12 +949,14 @@
     "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
-    "make"
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
+    "khronos-opencl-icd-loader",
+    "libboost-devel",
     "pip",
     "python",
     "scikit-build-core"
