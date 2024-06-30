@@ -32,7 +32,7 @@
    "summary": "Zsh is a shell designed for interactive use, although it is also a powerful scripting language."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -49,7 +49,8 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "make",
-    "gnuconfig"
+    "gnuconfig",
+    "texinfo"
    ],
    "host": [
     "ncurses",
@@ -62,8 +63,9 @@
   },
   "test": {
    "commands": [
+    "test -f $PREFIX/bin/zsh",
     "zsh --version",
-    "zsh -c 'echo hi'"
+    "zsh -c 'echo hi' | grep hi"
    ]
   }
  },
@@ -74,7 +76,8 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "gnuconfig",
-    "make"
+    "make",
+    "texinfo"
    ]
   },
   "host": {
@@ -104,7 +107,7 @@
    "summary": "Zsh is a shell designed for interactive use, although it is also a powerful scripting language."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -121,7 +124,8 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "make",
-    "gnuconfig"
+    "gnuconfig",
+    "texinfo"
    ],
    "host": [
     "ncurses",
@@ -134,8 +138,9 @@
   },
   "test": {
    "commands": [
+    "test -f $PREFIX/bin/zsh",
     "zsh --version",
-    "zsh -c 'echo hi'"
+    "zsh -c 'echo hi' | grep hi"
    ]
   }
  },
@@ -146,7 +151,8 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "gnuconfig",
-    "make"
+    "make",
+    "texinfo"
    ]
   },
   "host": {
@@ -176,7 +182,7 @@
    "summary": "Zsh is a shell designed for interactive use, although it is also a powerful scripting language."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -193,7 +199,8 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "make",
-    "gnuconfig"
+    "gnuconfig",
+    "texinfo"
    ],
    "host": [
     "ncurses",
@@ -206,8 +213,9 @@
   },
   "test": {
    "commands": [
+    "test -f $PREFIX/bin/zsh",
     "zsh --version",
-    "zsh -c 'echo hi'"
+    "zsh -c 'echo hi' | grep hi"
    ]
   }
  },
@@ -218,7 +226,8 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "gnuconfig",
-    "make"
+    "make",
+    "texinfo"
    ]
   },
   "host": {
@@ -248,7 +257,7 @@
    "summary": "Zsh is a shell designed for interactive use, although it is also a powerful scripting language."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -265,7 +274,8 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "make",
-    "gnuconfig"
+    "gnuconfig",
+    "texinfo"
    ],
    "host": [
     "ncurses",
@@ -278,8 +288,9 @@
   },
   "test": {
    "commands": [
+    "test -f $PREFIX/bin/zsh",
     "zsh --version",
-    "zsh -c 'echo hi'"
+    "zsh -c 'echo hi' | grep hi"
    ]
   }
  },
@@ -295,7 +306,7 @@
    "summary": "Zsh is a shell designed for interactive use, although it is also a powerful scripting language."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -325,8 +336,9 @@
   },
   "test": {
    "commands": [
+    "test -f $PREFIX/bin/zsh",
     "zsh --version",
-    "zsh -c 'echo hi'"
+    "zsh -c 'echo hi' | grep hi"
    ]
   }
  },
@@ -367,7 +379,7 @@
    "summary": "Zsh is a shell designed for interactive use, although it is also a powerful scripting language."
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -397,8 +409,9 @@
   },
   "test": {
    "commands": [
+    "test -f $PREFIX/bin/zsh",
     "zsh --version",
-    "zsh -c 'echo hi'"
+    "zsh -c 'echo hi' | grep hi"
    ]
   }
  },
@@ -445,7 +458,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/zsh.json"
  },
- "raw_meta_yaml": "{% set version = \"5.9\" %}\n\npackage:\n  name: zsh\n  version: {{ version }}\n\nsource:\n  url: https://cfhcable.dl.sourceforge.net/project/zsh/zsh/{{ version }}/zsh-{{ version }}.tar.xz\n  sha256: 9b8d1ecedd5b5e81fbf1918e876752a7dd948e05c1a0dba10ab863842d45acd5\n\nbuild:\n  number: 1\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - make\n    - gnuconfig   # [unix]\n  host:\n    - ncurses\n    - pcre\n\ntest:\n  commands:\n    - zsh --version\n    - zsh -c 'echo hi'\n\nabout:\n  home: https://zsh.org/\n  license: MIT\n  license_family: MIT\n  license_file: LICENCE\n  summary: Zsh is a shell designed for interactive use, although it is also a powerful scripting language.\n  doc_url: https://zsh.sourceforge.io/Doc/Release/zsh_toc.html\n  dev_url: https://sourceforge.net/p/zsh/code/ci/master/tree\n\nextra:\n  recipe-maintainers:\n    - djsutherland\n    - matthiasdiener\n",
+ "raw_meta_yaml": "{% set version = \"5.9\" %}\n\npackage:\n  name: zsh\n  version: {{ version }}\n\nsource:\n  url: https://cfhcable.dl.sourceforge.net/project/zsh/zsh/{{ version }}/zsh-{{ version }}.tar.xz\n  sha256: 9b8d1ecedd5b5e81fbf1918e876752a7dd948e05c1a0dba10ab863842d45acd5\n\nbuild:\n  number: 2\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - make\n    - gnuconfig   # [unix]\n    - texinfo     # [linux]\n  host:\n    - ncurses\n    - pcre\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/zsh\n    - zsh --version\n    - zsh -c 'echo hi' | grep hi\n\nabout:\n  home: https://zsh.org/\n  license: MIT\n  license_family: MIT\n  license_file: LICENCE\n  summary: Zsh is a shell designed for interactive use, although it is also a powerful scripting language.\n  doc_url: https://zsh.sourceforge.io/Doc/Release/zsh_toc.html\n  dev_url: https://sourceforge.net/p/zsh/code/ci/master/tree\n\nextra:\n  recipe-maintainers:\n    - djsutherland\n    - matthiasdiener\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -454,7 +467,8 @@
    "gnuconfig",
    "make",
    "ncurses",
-   "pcre"
+   "pcre",
+   "texinfo"
   ]
  },
  "requirements": {
@@ -464,7 +478,8 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "gnuconfig",
-    "make"
+    "make",
+    "texinfo"
    ]
   },
   "host": {
@@ -496,7 +511,8 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "gnuconfig",
-    "make"
+    "make",
+    "texinfo"
    ]
   },
   "host": {
