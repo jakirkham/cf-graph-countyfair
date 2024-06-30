@@ -37,7 +37,7 @@
    "summary": "Guesses the MIME type from a filename extension using the data derived from /etc/mime.types in UNIX-type systems."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -55,6 +55,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -82,6 +83,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -113,7 +115,7 @@
    "summary": "Guesses the MIME type from a filename extension using the data derived from /etc/mime.types in UNIX-type systems."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -131,6 +133,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -158,6 +161,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -189,7 +193,7 @@
    "summary": "Guesses the MIME type from a filename extension using the data derived from /etc/mime.types in UNIX-type systems."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -207,6 +211,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -234,6 +239,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -265,8 +271,7 @@
    "summary": "Guesses the MIME type from a filename extension using the data derived from /etc/mime.types in UNIX-type systems."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -284,8 +289,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -295,8 +302,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -325,7 +331,7 @@
    "summary": "Guesses the MIME type from a filename extension using the data derived from /etc/mime.types in UNIX-type systems."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -343,6 +349,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -370,6 +377,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -401,7 +409,7 @@
    "summary": "Guesses the MIME type from a filename extension using the data derived from /etc/mime.types in UNIX-type systems."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -419,6 +427,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -446,6 +455,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -484,15 +494,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-mime.json"
  },
- "raw_meta_yaml": "{% set version = \"0.12\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-mime\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/mime_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/mime/mime_{{ version }}.tar.gz\n  sha256: a9001051d6c1e556e881910b1816b42872a1ee41ab76d0040ce66a27135e3849\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('mime')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('mime')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/yihui/mime\n  license: GPL-2.0-or-later\n  summary: Guesses the MIME type from a filename extension using the data derived from /etc/mime.types in UNIX-type systems.\n  license_family: GPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: mime\n# Type: Package\n# Title: Map Filenames to MIME Types\n# Version: 0.7\n# Authors@R: c( person(\"Yihui\", \"Xie\", role = c(\"aut\", \"cre\"), email = \"xie@yihui.name\", comment = c(ORCID = \"0000-0003-0645-5666\")), person(\"Jeffrey\", \"Horner\", role = \"ctb\"), person(\"Beilei\", \"Bian\", role = \"ctb\") )\n# Description: Guesses the MIME type from a filename extension using the data derived from /etc/mime.types in UNIX-type systems.\n# Imports: tools\n# License: GPL\n# URL: https://github.com/yihui/mime\n# BugReports: https://github.com/yihui/mime/issues\n# LazyData: TRUE\n# RoxygenNote: 6.1.0\n# Encoding: UTF-8\n# NeedsCompilation: yes\n# Packaged: 2019-06-11 19:49:18 UTC; yihui\n# Author: Yihui Xie [aut, cre] (<https://orcid.org/0000-0003-0645-5666>), Jeffrey Horner [ctb], Beilei Bian [ctb]\n# Maintainer: Yihui Xie <xie@yihui.name>\n# Repository: CRAN\n# Date/Publication: 2019-06-11 20:10:03 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.12\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-mime\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/mime_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/mime/mime_{{ version }}.tar.gz\n  sha256: a9001051d6c1e556e881910b1816b42872a1ee41ab76d0040ce66a27135e3849\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('mime')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('mime')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/yihui/mime\n  license: GPL-2.0-or-later\n  summary: Guesses the MIME type from a filename extension using the data derived from /etc/mime.types in UNIX-type systems.\n  license_family: GPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: mime\n# Type: Package\n# Title: Map Filenames to MIME Types\n# Version: 0.7\n# Authors@R: c( person(\"Yihui\", \"Xie\", role = c(\"aut\", \"cre\"), email = \"xie@yihui.name\", comment = c(ORCID = \"0000-0003-0645-5666\")), person(\"Jeffrey\", \"Horner\", role = \"ctb\"), person(\"Beilei\", \"Bian\", role = \"ctb\") )\n# Description: Guesses the MIME type from a filename extension using the data derived from /etc/mime.types in UNIX-type systems.\n# Imports: tools\n# License: GPL\n# URL: https://github.com/yihui/mime\n# BugReports: https://github.com/yihui/mime/issues\n# LazyData: TRUE\n# RoxygenNote: 6.1.0\n# Encoding: UTF-8\n# NeedsCompilation: yes\n# Packaged: 2019-06-11 19:49:18 UTC; yihui\n# Author: Yihui Xie [aut, cre] (<https://orcid.org/0000-0003-0645-5666>), Jeffrey Horner [ctb], Beilei Bian [ctb]\n# Maintainer: Yihui Xie <xie@yihui.name>\n# Repository: CRAN\n# Date/Publication: 2019-06-11 20:10:03 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "sed",
@@ -504,9 +515,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -516,6 +529,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -523,7 +537,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -538,9 +552,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -555,7 +571,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -593,8 +608,7 @@
    "summary": "Guesses the MIME type from a filename extension using the data derived from /etc/mime.types in UNIX-type systems."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -612,6 +626,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -622,8 +637,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -646,6 +660,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -660,7 +675,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
