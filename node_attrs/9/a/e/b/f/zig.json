@@ -2,6 +2,10 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "linux_aarch64": "linux_64",
+   "win_64": "linux_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -12,7 +16,8 @@
   },
   "os_version": {
    "linux_64": "cos7"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "zig",
  "hash_type": "sha256",
@@ -20,18 +25,18 @@
   "about": {
    "description": "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.\nRobust: Behavior is correct even for edge cases such as out of memory.\nOptimal: Write programs the best way they can behave and perform.\nReusable: The same code works in many environments which have different constraints.\nMaintainable: Precisely communicate intent to the compiler and other programmers.\n  The language imposes a low overhead to reading code and is resilient to changing requirements and environments.\n",
    "dev_url": "https://github.com/ziglang/zig",
-   "doc_url": "https://ziglang.org/documentation/0.12.0/",
+   "doc_url": "https://ziglang.org/documentation/0.13.0/",
    "home": "https://ziglang.org/",
    "license": "MIT",
    "license_family": "MIT",
-   "license_file": "LICENSE",
+   "license_file": "zig-source/LICENSE",
    "summary": "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software."
   },
   "build": {
-   "number": "1",
-   "script_env": [
-    "LIBC_CONDA_VERSION=2.28"
-   ]
+   "ignore_run_exports": [
+    "__glibc"
+   ],
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -41,43 +46,65 @@
   },
   "package": {
    "name": "zig",
-   "version": "0.12.0"
+   "version": "0.13.0"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "c_stdlib_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake >=3.5",
     "ninja"
    ],
    "host": [
-    "clangdev 17",
-    "llvmdev 17",
-    "llvm 17",
-    "lld 17",
-    "libclang-cpp 17",
+    "clangdev 18",
+    "llvmdev 18",
+    "llvm 18",
+    "lld 18",
+    "libclang-cpp 18",
     "zlib",
     "zstd"
-   ]
+   ],
+   "run": []
   },
   "source": [
    {
-    "patches": [
-     "0001-add-patchelf-zig2.patch"
-    ],
-    "sha256": "57d7e0ad565ef734d9f3fe8cff7a815f2ab012ec3d8e155a316dfc79f789c432",
-    "url": "https://github.com/ziglang/zig/archive/refs/tags/0.12.0.tar.gz"
+    "folder": "zig-source",
+    "patches": null,
+    "sha256": "d3912858003e340f315224bf177d0f441d86b81f62854f5c141b6d51ab6b5516",
+    "url": "https://github.com/ziglang/zig/archive/refs/tags/0.13.0.tar.gz"
+   },
+   {
+    "folder": "zig-bootstrap",
+    "sha256": "d45312e61ebcc48032b77bc4cf7fd6915c11fa16e4aad116b66c9468211230ea",
+    "url": "https://ziglang.org/download/0.13.0/zig-linux-x86_64-0.13.0.tar.xz"
    }
   ],
   "test": {
    "commands": [
+    "test -f ${PREFIX}/bin/zig",
+    "test -f ${PREFIX}/doc/langref.html",
+    "test -f ${PREFIX}/lib/zig/c.zig",
+    "test -f ${PREFIX}/lib/zig/compiler_rt.zig",
+    "test -f ${PREFIX}/lib/zig/zig.h",
+    "test -d ${PREFIX}/lib/zig/compiler",
+    "test -d ${PREFIX}/lib/zig/compiler_rt",
+    "test -d ${PREFIX}/lib/zig/docs",
+    "test -d ${PREFIX}/lib/zig/include",
+    "test -d ${PREFIX}/lib/zig/init",
+    "test -d ${PREFIX}/lib/zig/libc",
+    "test -d ${PREFIX}/lib/zig/libcxx",
+    "test -d ${PREFIX}/lib/zig/libcxxabi",
+    "test -d ${PREFIX}/lib/zig/libunwind",
+    "test -d ${PREFIX}/lib/zig/std",
+    "test -d ${PREFIX}/lib/zig/tsan",
     "zig version",
     "zig zen",
-    "zig init && zig test test/behavior.zig"
+    "zig init",
+    "zig test zig-source/test/behavior.zig"
    ],
    "source_files": [
-    "test"
+    "zig-source/test"
    ]
   }
  },
@@ -113,22 +140,22 @@
    "elements": []
   }
  },
- "meta_yaml": {
+ "linux_aarch64_meta_yaml": {
   "about": {
    "description": "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.\nRobust: Behavior is correct even for edge cases such as out of memory.\nOptimal: Write programs the best way they can behave and perform.\nReusable: The same code works in many environments which have different constraints.\nMaintainable: Precisely communicate intent to the compiler and other programmers.\n  The language imposes a low overhead to reading code and is resilient to changing requirements and environments.\n",
    "dev_url": "https://github.com/ziglang/zig",
-   "doc_url": "https://ziglang.org/documentation/0.12.0/",
+   "doc_url": "https://ziglang.org/documentation/0.13.0/",
    "home": "https://ziglang.org/",
    "license": "MIT",
    "license_family": "MIT",
-   "license_file": "LICENSE",
+   "license_file": "zig-source/LICENSE",
    "summary": "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software."
   },
   "build": {
-   "number": "1",
-   "script_env": [
-    "LIBC_CONDA_VERSION=2.28"
-   ]
+   "ignore_run_exports": [
+    "__glibc"
+   ],
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -138,47 +165,345 @@
   },
   "package": {
    "name": "zig",
-   "version": "0.12.0"
+   "version": "0.13.0"
   },
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "c_stdlib_stub",
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake >=3.5",
     "ninja"
    ],
    "host": [
-    "clangdev 17",
-    "llvmdev 17",
-    "llvm 17",
-    "lld 17",
-    "libclang-cpp 17",
+    "clangdev 18",
+    "llvmdev 18",
+    "llvm 18",
+    "lld 18",
+    "libclang-cpp 18",
+    "sysroot_linux-aarch64 >=2.28",
     "zlib",
     "zstd"
+   ],
+   "run": [
+    "sysroot_linux-aarch64 >=2.28"
    ]
   },
   "source": [
    {
+    "folder": "zig-source",
     "patches": [
-     "0001-add-patchelf-zig2.patch"
+     "patches/0001-cross-findllvm.patch"
     ],
-    "sha256": "57d7e0ad565ef734d9f3fe8cff7a815f2ab012ec3d8e155a316dfc79f789c432",
-    "url": "https://github.com/ziglang/zig/archive/refs/tags/0.12.0.tar.gz"
+    "sha256": "d3912858003e340f315224bf177d0f441d86b81f62854f5c141b6d51ab6b5516",
+    "url": "https://github.com/ziglang/zig/archive/refs/tags/0.13.0.tar.gz"
+   },
+   {
+    "folder": "zig-bootstrap",
+    "sha256": "d45312e61ebcc48032b77bc4cf7fd6915c11fa16e4aad116b66c9468211230ea",
+    "url": "https://ziglang.org/download/0.13.0/zig-linux-x86_64-0.13.0.tar.xz"
    }
   ],
   "test": {
    "commands": [
+    "test -f ${PREFIX}/bin/zig",
+    "test -f ${PREFIX}/doc/langref.html",
+    "test -f ${PREFIX}/lib/zig/c.zig",
+    "test -f ${PREFIX}/lib/zig/compiler_rt.zig",
+    "test -f ${PREFIX}/lib/zig/zig.h",
+    "test -d ${PREFIX}/lib/zig/compiler",
+    "test -d ${PREFIX}/lib/zig/compiler_rt",
+    "test -d ${PREFIX}/lib/zig/docs",
+    "test -d ${PREFIX}/lib/zig/include",
+    "test -d ${PREFIX}/lib/zig/init",
+    "test -d ${PREFIX}/lib/zig/libc",
+    "test -d ${PREFIX}/lib/zig/libcxx",
+    "test -d ${PREFIX}/lib/zig/libcxxabi",
+    "test -d ${PREFIX}/lib/zig/libunwind",
+    "test -d ${PREFIX}/lib/zig/std",
+    "test -d ${PREFIX}/lib/zig/tsan",
     "zig version",
     "zig zen",
-    "zig init && zig test test/behavior.zig"
+    "zig init",
+    "zig test zig-source/test/behavior.zig"
    ],
    "source_files": [
-    "test"
+    "zig-source/test"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "clangdev",
+    "libclang-cpp",
+    "lld",
+    "llvm",
+    "llvmdev",
+    "sysroot_linux-aarch64",
+    "zlib",
+    "zstd"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "sysroot_linux-aarch64"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "meta_yaml": {
+  "about": {
+   "description": "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.\nRobust: Behavior is correct even for edge cases such as out of memory.\nOptimal: Write programs the best way they can behave and perform.\nReusable: The same code works in many environments which have different constraints.\nMaintainable: Precisely communicate intent to the compiler and other programmers.\n  The language imposes a low overhead to reading code and is resilient to changing requirements and environments.\n",
+   "dev_url": "https://github.com/ziglang/zig",
+   "doc_url": "https://ziglang.org/documentation/0.13.0/",
+   "home": "https://ziglang.org/",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": "zig-source/LICENSE",
+   "summary": "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software."
+  },
+  "build": {
+   "ignore_run_exports": [
+    "__glibc"
+   ],
+   "number": "0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "MementoRC",
+    "xmnlab"
+   ]
+  },
+  "package": {
+   "name": "zig",
+   "version": "0.13.0"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_stdlib_stub",
+    "cmake >=3.5",
+    "ninja"
+   ],
+   "host": [
+    "clangdev 18",
+    "llvmdev 18",
+    "llvm 18",
+    "lld 18",
+    "libclang-cpp 18",
+    "zlib",
+    "zstd",
+    "sysroot_linux-aarch64 >=2.28",
+    "libcxx 16"
+   ],
+   "run": [
+    "sysroot_linux-aarch64 >=2.28"
+   ]
+  },
+  "source": [
+   {
+    "folder": "zig-source",
+    "patches": null,
+    "sha256": "d3912858003e340f315224bf177d0f441d86b81f62854f5c141b6d51ab6b5516",
+    "url": "https://github.com/ziglang/zig/archive/refs/tags/0.13.0.tar.gz"
+   },
+   {
+    "folder": "zig-bootstrap",
+    "sha256": "d45312e61ebcc48032b77bc4cf7fd6915c11fa16e4aad116b66c9468211230ea",
+    "url": "https://ziglang.org/download/0.13.0/zig-linux-x86_64-0.13.0.tar.xz"
+   },
+   {
+    "folder": "zig-source",
+    "patches": [
+     "patches/0001-cross-findllvm.patch"
+    ],
+    "sha256": "d3912858003e340f315224bf177d0f441d86b81f62854f5c141b6d51ab6b5516",
+    "url": "https://github.com/ziglang/zig/archive/refs/tags/0.13.0.tar.gz"
+   },
+   {
+    "folder": "zig-bootstrap",
+    "sha256": "d45312e61ebcc48032b77bc4cf7fd6915c11fa16e4aad116b66c9468211230ea",
+    "url": "https://ziglang.org/download/0.13.0/zig-linux-x86_64-0.13.0.tar.xz"
+   },
+   {
+    "folder": "zig-source",
+    "patches": null,
+    "sha256": "d3912858003e340f315224bf177d0f441d86b81f62854f5c141b6d51ab6b5516",
+    "url": "https://github.com/ziglang/zig/archive/refs/tags/0.13.0.tar.gz"
+   },
+   {
+    "folder": "zig-bootstrap",
+    "sha256": "8b06ed1091b2269b700b3b07f8e3be3b833000841bae5aa6a09b1a8b4773effd",
+    "url": "https://ziglang.org/download/0.13.0/zig-macos-x86_64-0.13.0.tar.xz"
+   }
+  ],
+  "test": {
+   "commands": [
+    "test -f ${PREFIX}/bin/zig",
+    "test -f ${PREFIX}/doc/langref.html",
+    "test -f ${PREFIX}/lib/zig/c.zig",
+    "test -f ${PREFIX}/lib/zig/compiler_rt.zig",
+    "test -f ${PREFIX}/lib/zig/zig.h",
+    "test -d ${PREFIX}/lib/zig/compiler",
+    "test -d ${PREFIX}/lib/zig/compiler_rt",
+    "test -d ${PREFIX}/lib/zig/docs",
+    "test -d ${PREFIX}/lib/zig/include",
+    "test -d ${PREFIX}/lib/zig/init",
+    "test -d ${PREFIX}/lib/zig/libc",
+    "test -d ${PREFIX}/lib/zig/libcxx",
+    "test -d ${PREFIX}/lib/zig/libcxxabi",
+    "test -d ${PREFIX}/lib/zig/libunwind",
+    "test -d ${PREFIX}/lib/zig/std",
+    "test -d ${PREFIX}/lib/zig/tsan",
+    "zig version",
+    "zig zen",
+    "zig init",
+    "zig test zig-source/test/behavior.zig"
+   ],
+   "source_files": [
+    "zig-source/test"
    ]
   }
  },
  "name": "zig",
+ "osx_64_meta_yaml": {
+  "about": {
+   "description": "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.\nRobust: Behavior is correct even for edge cases such as out of memory.\nOptimal: Write programs the best way they can behave and perform.\nReusable: The same code works in many environments which have different constraints.\nMaintainable: Precisely communicate intent to the compiler and other programmers.\n  The language imposes a low overhead to reading code and is resilient to changing requirements and environments.\n",
+   "dev_url": "https://github.com/ziglang/zig",
+   "doc_url": "https://ziglang.org/documentation/0.13.0/",
+   "home": "https://ziglang.org/",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": "zig-source/LICENSE",
+   "summary": "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software."
+  },
+  "build": {
+   "ignore_run_exports": [
+    "__glibc"
+   ],
+   "number": "0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "MementoRC",
+    "xmnlab"
+   ]
+  },
+  "package": {
+   "name": "zig",
+   "version": "0.13.0"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_stdlib_stub",
+    "cmake >=3.5",
+    "ninja"
+   ],
+   "host": [
+    "clangdev 18",
+    "llvmdev 18",
+    "llvm 18",
+    "lld 18",
+    "libclang-cpp 18",
+    "libcxx 16",
+    "zlib",
+    "zstd"
+   ],
+   "run": []
+  },
+  "source": [
+   {
+    "folder": "zig-source",
+    "patches": null,
+    "sha256": "d3912858003e340f315224bf177d0f441d86b81f62854f5c141b6d51ab6b5516",
+    "url": "https://github.com/ziglang/zig/archive/refs/tags/0.13.0.tar.gz"
+   },
+   {
+    "folder": "zig-bootstrap",
+    "sha256": "8b06ed1091b2269b700b3b07f8e3be3b833000841bae5aa6a09b1a8b4773effd",
+    "url": "https://ziglang.org/download/0.13.0/zig-macos-x86_64-0.13.0.tar.xz"
+   }
+  ],
+  "test": {
+   "commands": [
+    "test -f ${PREFIX}/bin/zig",
+    "test -f ${PREFIX}/doc/langref.html",
+    "test -f ${PREFIX}/lib/zig/c.zig",
+    "test -f ${PREFIX}/lib/zig/compiler_rt.zig",
+    "test -f ${PREFIX}/lib/zig/zig.h",
+    "test -d ${PREFIX}/lib/zig/compiler",
+    "test -d ${PREFIX}/lib/zig/compiler_rt",
+    "test -d ${PREFIX}/lib/zig/docs",
+    "test -d ${PREFIX}/lib/zig/include",
+    "test -d ${PREFIX}/lib/zig/init",
+    "test -d ${PREFIX}/lib/zig/libc",
+    "test -d ${PREFIX}/lib/zig/libcxx",
+    "test -d ${PREFIX}/lib/zig/libcxxabi",
+    "test -d ${PREFIX}/lib/zig/libunwind",
+    "test -d ${PREFIX}/lib/zig/std",
+    "test -d ${PREFIX}/lib/zig/tsan",
+    "zig version",
+    "zig zen",
+    "zig init",
+    "zig test zig-source/test/behavior.zig"
+   ],
+   "source_files": [
+    "zig-source/test"
+   ]
+  }
+ },
+ "osx_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "clangdev",
+    "libclang-cpp",
+    "libcxx",
+    "lld",
+    "llvm",
+    "llvmdev",
+    "zlib",
+    "zstd"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -187,12 +512,14 @@
  },
  "parsing_error": false,
  "platforms": [
-  "linux_64"
+  "linux_64",
+  "linux_aarch64",
+  "osx_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/zig.json"
  },
- "raw_meta_yaml": "{% set name = \"zig\" %}\n{% set version = \"0.12.0\" %}\n{% set llvm_version = \"17\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/ziglang/{{ name }}/archive/refs/tags/{{ version }}.tar.gz\n    sha256: 57d7e0ad565ef734d9f3fe8cff7a815f2ab012ec3d8e155a316dfc79f789c432\n    patches:\n      - 0001-add-patchelf-zig2.patch  # [linux and x86_64]\n\n  # - folder: zig-bootstrap\n  #   url: https://ziglang.org/download/0.12.0/zig-linux-x86_64-0.12.0.tar.xz\n  #   sha256: c7ae866b8a76a568e2d5cfd31fe89cdb629bdd161fdd5018b29a4a0a17045cad\n\nbuild:\n  number: 1\n  skip: true  # [not unix]\n  script_env:\n    - LIBC_CONDA_VERSION=2.28\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - cmake >=3.5\n    - ninja\n  host:\n    - clangdev {{ llvm_version }}\n    - llvmdev {{ llvm_version }}\n    - llvm {{ llvm_version }}\n    - lld {{ llvm_version }}\n    - libclang-cpp {{ llvm_version }}\n    - zlib\n    - zstd\n\ntest:\n  commands:\n    - zig version\n    - zig zen\n    - zig init && zig test test/behavior.zig\n  source_files:\n    - test\n\nabout:\n  home: https://ziglang.org/\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.\n  description: |\n    Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.\n    Robust: Behavior is correct even for edge cases such as out of memory.\n    Optimal: Write programs the best way they can behave and perform.\n    Reusable: The same code works in many environments which have different constraints.\n    Maintainable: Precisely communicate intent to the compiler and other programmers. \n      The language imposes a low overhead to reading code and is resilient to changing requirements and environments.\n  doc_url: https://ziglang.org/documentation/{{ version }}/\n  dev_url: https://github.com/ziglang/zig\n\nextra:\n  recipe-maintainers:\n    - MementoRC\n    - xmnlab\n",
+ "raw_meta_yaml": "{% set name = \"zig\" %}\n{% set version = \"0.13.0\" %}\n{% set llvm_version = \"18\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/ziglang/zig/archive/refs/tags/{{ version }}.tar.gz\n    sha256: d3912858003e340f315224bf177d0f441d86b81f62854f5c141b6d51ab6b5516\n    patches:\n      - patches/0001-cross-findllvm.patch  # [linux and aarch64]\n    folder: zig-source\n\n  # We use the upstrean binary as bootstrap. Installing previous conda version of zig\n  # may trigger issues with dependencies (i.e. llvm)\n  - folder: zig-bootstrap\n    url: https://ziglang.org/download/{{ version }}/zig-windows-x86_64-{{ version }}.zip  # [win]\n    sha256: d859994725ef9402381e557c60bb57497215682e355204d754ee3df75ee3c158  # [win]\n    url: https://ziglang.org/download/{{ version }}/zig-macos-x86_64-{{ version }}.tar.xz  # [osx]\n    sha256: 8b06ed1091b2269b700b3b07f8e3be3b833000841bae5aa6a09b1a8b4773effd  # [osx]\n    url: https://ziglang.org/download/{{ version }}/zig-linux-x86_64-{{ version }}.tar.xz  # [linux]\n    sha256: d45312e61ebcc48032b77bc4cf7fd6915c11fa16e4aad116b66c9468211230ea  # [linux]\n\nbuild:\n  number: 0\n  skip: true  # [not linux and not (osx and x86_64)]\n  ignore_run_exports:\n    - __glibc\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake >=3.5\n    - ninja\n  host:\n    - clangdev {{ llvm_version }}\n    - llvmdev {{ llvm_version }}\n    - llvm {{ llvm_version }}\n    - lld {{ llvm_version }}\n    - libclang-cpp {{ llvm_version }}\n    - libcxx {{ cxx_compiler_version }}  # [osx]\n    - sysroot_{{ target_platform }} >=2.28  # [linux and aarch64]\n    - zlib\n    - zstd\n  run:\n    - sysroot_{{ target_platform }} >=2.28  # [linux and aarch64]\n\ntest:\n  commands:\n    - test -f ${PREFIX}/bin/zig  # [unix]\n    - test -f ${PREFIX}/doc/langref.html  # [unix]\n    - test -f ${PREFIX}/lib/zig/c.zig  # [unix]\n    - test -f ${PREFIX}/lib/zig/compiler_rt.zig  # [unix]\n    - test -f ${PREFIX}/lib/zig/zig.h  # [unix]\n    - if not exist %PREFIX%\\\\bin\\\\zig.exe exit 1  # [win]\n    - if not exist %PREFIX%\\\\doc\\\\langref.html exit 1  # [win]\n    - if not exist %PREFIX%\\\\lib\\\\zig\\\\c.zig exit 1  # [win]\n    - if not exist %PREFIX%\\\\lib\\\\zig\\\\compiler_rt.zig exit 1  # [win]\n    - if not exist %PREFIX%\\\\lib\\\\zig\\\\zig.h exit 1  # [win]\n    {% set lib_dirs = [\n      \"compiler\", \"compiler_rt\", \"docs\", \"include\", \"init\", \"libc\",\n      \"libcxx\", \"libcxxabi\", \"libunwind\", \"std\", \"tsan\"\n    ] %}\n    {% for lib_dir in lib_dirs %}\n    - test -d ${PREFIX}/lib/zig/{{ lib_dir }}  # [not (osx and arm64 or win)]\n    - if not exist %PREFIX%\\\\lib\\\\zig\\\\{{ lib_dir }} exit 1  # [win]\n    {% endfor %}\n\n    # Functionality tests\n    - zig version\n    - zig zen\n    - zig init\n    - zig test zig-source/test/behavior.zig\n  source_files:\n    - zig-source/test\n\nabout:\n  home: https://ziglang.org/\n  license: MIT\n  license_family: MIT\n  license_file: zig-source/LICENSE\n  summary: Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.\n  description: |\n    Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.\n    Robust: Behavior is correct even for edge cases such as out of memory.\n    Optimal: Write programs the best way they can behave and perform.\n    Reusable: The same code works in many environments which have different constraints.\n    Maintainable: Precisely communicate intent to the compiler and other programmers. \n      The language imposes a low overhead to reading code and is resilient to changing requirements and environments.\n  doc_url: https://ziglang.org/documentation/{{ version }}/\n  dev_url: https://github.com/ziglang/zig\n\nextra:\n  recipe-maintainers:\n    - MementoRC\n    - xmnlab\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -202,10 +529,12 @@
    "cmake",
    "cxx_compiler_stub",
    "libclang-cpp",
+   "libcxx",
    "lld",
    "llvm",
    "llvmdev",
    "ninja",
+   "sysroot_linux-aarch64",
    "zlib",
    "zstd"
   ]
@@ -229,9 +558,12 @@
     "clangdev",
     "cxx_compiler_stub",
     "libclang-cpp",
+    "libcxx",
+    "linux-sysroot",
     "lld",
     "llvm",
     "llvmdev",
+    "sysroot_linux-aarch64",
     "zlib",
     "zstd"
    ]
@@ -241,7 +573,9 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "linux-sysroot",
+    "sysroot_linux-aarch64"
    ]
   },
   "test": {
@@ -264,26 +598,30 @@
   "host": {
    "__set__": true,
    "elements": [
-    "clangdev 17",
-    "libclang-cpp 17",
-    "lld 17",
-    "llvm 17",
-    "llvmdev 17",
+    "clangdev 18",
+    "libclang-cpp 18",
+    "libcxx 16",
+    "lld 18",
+    "llvm 18",
+    "llvmdev 18",
+    "sysroot_linux-aarch64 >=2.28",
     "zlib",
     "zstd"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "sysroot_linux-aarch64 >=2.28"
+   ]
   },
   "test": {
    "__set__": true,
    "elements": []
   }
  },
- "url": "https://github.com/ziglang/zig/archive/refs/tags/0.12.0.tar.gz",
- "version": "0.12.0",
+ "url": "https://github.com/ziglang/zig/archive/refs/tags/0.13.0.tar.gz",
+ "version": "0.13.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/zig.json"
  }
