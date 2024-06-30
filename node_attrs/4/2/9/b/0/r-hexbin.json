@@ -37,7 +37,7 @@
    "summary": "Binning and plotting functions for hexagonal bins."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -55,6 +55,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -85,6 +86,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -119,7 +121,7 @@
    "summary": "Binning and plotting functions for hexagonal bins."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -137,6 +139,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -167,6 +170,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -201,7 +205,7 @@
    "summary": "Binning and plotting functions for hexagonal bins."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -219,6 +223,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -249,6 +254,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -283,8 +289,7 @@
    "summary": "Binning and plotting functions for hexagonal bins."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -302,9 +307,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -317,8 +324,7 @@
    ],
    "run": [
     "r-base",
-    "r-lattice",
-    "gcc-libs"
+    "r-lattice"
    ]
   },
   "source": {
@@ -347,7 +353,7 @@
    "summary": "Binning and plotting functions for hexagonal bins."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -365,6 +371,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -395,6 +402,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -429,7 +437,7 @@
    "summary": "Binning and plotting functions for hexagonal bins."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -447,6 +455,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -477,6 +486,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -518,16 +528,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-hexbin.json"
  },
- "raw_meta_yaml": "{% set version = \"1.28.3\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-hexbin\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/hexbin_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/hexbin/hexbin_{{ version }}.tar.gz\n  sha256: 0eb33511c1a4ff29dda8b89fee420ea7041033f981c7f16484c9f504d749de5f\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-lattice                  # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [not win]\n    - {{ compiler('fortran') }}  # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('m2w64_fortran') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-lattice\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-lattice\n\ntest:\n  commands:\n    - $R -e \"library('hexbin')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('hexbin')\\\"\"  # [win]\n\nabout:\n  home: http://github.com/edzer/hexbin\n  license: GPL-2.0-only\n  summary: Binning and plotting functions for hexagonal bins.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: hexbin\n# Version: 1.27.3\n# Title: Hexagonal Binning Routines\n# Author: Dan Carr <dcarr@voxel.galaxy.gmu.edu>, ported by Nicholas Lewin-Koh and Martin Maechler <maechler@stat.math.ethz.ch>, contains copies of lattice functions written by Deepayan Sarkar  <deepayan.sarkar@r-project.org>\n# Maintainer: Edzer Pebesma <edzer.pebesma@uni-muenster.de>\n# Depends: R (>= 2.0.1), methods\n# Imports: lattice, grid, graphics, grDevices, stats, utils\n# Suggests: marray, affy, Biobase, limma\n# Description: Binning and plotting functions for hexagonal bins.\n# Collate: lattice.R BTC.R BTY.R grid.hexagons.R grid.hexlegend.R hbox.R hdiffplot.R hexbinList.R hexbinplot.R hexbin.s4.R hexpanel.R hexplom.R hexPlotMA.R hexutil.R hexViewport.R HO.R LINGRAY.R LOCS.R MAG.R RB.R smoothHexbin.R\n# License: GPL-2\n# NeedsCompilation: yes\n# URL: http://github.com/edzer/hexbin\n# Packaged: 2019-05-14 13:56:49 UTC; edzer\n# Repository: CRAN\n# Date/Publication: 2019-05-14 14:50:03 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.28.3\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-hexbin\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/hexbin_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/hexbin/hexbin_{{ version }}.tar.gz\n  sha256: 0eb33511c1a4ff29dda8b89fee420ea7041033f981c7f16484c9f504d749de5f\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-lattice                  # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('fortran') }}  # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('m2w64_fortran') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-lattice\n  run:\n    - r-base\n    - r-lattice\n\ntest:\n  commands:\n    - $R -e \"library('hexbin')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('hexbin')\\\"\"  # [win]\n\nabout:\n  home: http://github.com/edzer/hexbin\n  license: GPL-2.0-only\n  summary: Binning and plotting functions for hexagonal bins.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: hexbin\n# Version: 1.27.3\n# Title: Hexagonal Binning Routines\n# Author: Dan Carr <dcarr@voxel.galaxy.gmu.edu>, ported by Nicholas Lewin-Koh and Martin Maechler <maechler@stat.math.ethz.ch>, contains copies of lattice functions written by Deepayan Sarkar  <deepayan.sarkar@r-project.org>\n# Maintainer: Edzer Pebesma <edzer.pebesma@uni-muenster.de>\n# Depends: R (>= 2.0.1), methods\n# Imports: lattice, grid, graphics, grDevices, stats, utils\n# Suggests: marray, affy, Biobase, limma\n# Description: Binning and plotting functions for hexagonal bins.\n# Collate: lattice.R BTC.R BTY.R grid.hexagons.R grid.hexlegend.R hbox.R hdiffplot.R hexbinList.R hexbinplot.R hexbin.s4.R hexpanel.R hexplom.R hexPlotMA.R hexutil.R hexViewport.R HO.R LINGRAY.R LOCS.R MAG.R RB.R smoothHexbin.R\n# License: GPL-2\n# NeedsCompilation: yes\n# URL: http://github.com/edzer/hexbin\n# Packaged: 2019-05-14 13:56:49 UTC; edzer\n# Repository: CRAN\n# Date/Publication: 2019-05-14 14:50:03 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "r-base",
@@ -541,10 +552,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -555,6 +568,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "r-base",
     "r-lattice"
@@ -564,8 +578,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-lattice"
    ]
@@ -581,10 +595,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -601,7 +617,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-lattice"
    ]
@@ -640,8 +655,7 @@
    "summary": "Binning and plotting functions for hexagonal bins."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -659,6 +673,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "make",
@@ -672,7 +687,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-lattice"
    ]
   },
@@ -696,6 +710,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -712,7 +727,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-lattice"
    ]
