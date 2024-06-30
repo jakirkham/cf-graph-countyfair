@@ -38,7 +38,7 @@
    "summary": "Reading and writing data stored by some versions of 'Epi Info', 'Minitab', 'S', 'SAS', 'SPSS', 'Stata', 'Systat', 'Weka', and for reading and writing some 'dBase' files."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -117,7 +117,7 @@
    "summary": "Reading and writing data stored by some versions of 'Epi Info', 'Minitab', 'S', 'SAS', 'SPSS', 'Stata', 'Systat', 'Weka', and for reading and writing some 'dBase' files."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -196,7 +196,7 @@
    "summary": "Reading and writing data stored by some versions of 'Epi Info', 'Minitab', 'S', 'SAS', 'SPSS', 'Stata', 'Systat', 'Weka', and for reading and writing some 'dBase' files."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -275,8 +275,7 @@
    "summary": "Reading and writing data stored by some versions of 'Epi Info', 'Minitab', 'S', 'SAS', 'SPSS', 'Stata', 'Systat', 'Weka', and for reading and writing some 'dBase' files."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -307,8 +306,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -338,7 +336,7 @@
    "summary": "Reading and writing data stored by some versions of 'Epi Info', 'Minitab', 'S', 'SAS', 'SPSS', 'Stata', 'Systat', 'Weka', and for reading and writing some 'dBase' files."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -417,7 +415,7 @@
    "summary": "Reading and writing data stored by some versions of 'Epi Info', 'Minitab', 'S', 'SAS', 'SPSS', 'Stata', 'Systat', 'Weka', and for reading and writing some 'dBase' files."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -502,7 +500,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-foreign.json"
  },
- "raw_meta_yaml": "{% set version = \"0.8-87\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-foreign\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/foreign_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/foreign/foreign_{{ version }}.tar.gz\n  sha256: 1a24acf4c8e87acc740599e950388b88e5beab7e54f699a015366fbd86db2856\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ stdlib(\"m2w64_c\") }}    # [win]\n    - {{ posix }}filesystem      # [win]\n    - {{ posix }}make\n    - {{ posix }}sed             # [win]\n    - {{ posix }}coreutils       # [win]\n    - {{ posix }}zip             # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs       # [win]\n\ntest:\n  commands:\n    - $R -e \"library('foreign')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('foreign')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=foreign\n  license: GPL-2.0-or-later\n  summary: Reading and writing data stored by some versions of 'Epi Info', 'Minitab', 'S', 'SAS', 'SPSS', 'Stata', 'Systat', 'Weka', and for reading and writing some 'dBase' files.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.8-87\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-foreign\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/foreign_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/foreign/foreign_{{ version }}.tar.gz\n  sha256: 1a24acf4c8e87acc740599e950388b88e5beab7e54f699a015366fbd86db2856\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ stdlib(\"m2w64_c\") }}    # [win]\n    - {{ posix }}filesystem      # [win]\n    - {{ posix }}make\n    - {{ posix }}sed             # [win]\n    - {{ posix }}coreutils       # [win]\n    - {{ posix }}zip             # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('foreign')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('foreign')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=foreign\n  license: GPL-2.0-or-later\n  summary: Reading and writing data stored by some versions of 'Epi Info', 'Minitab', 'S', 'SAS', 'SPSS', 'Stata', 'Systat', 'Weka', and for reading and writing some 'dBase' files.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -510,7 +508,6 @@
    "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
    "m2w64_c_stdlib_stub",
    "make",
@@ -547,7 +544,6 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -581,7 +577,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -620,8 +615,7 @@
    "summary": "Reading and writing data stored by some versions of 'Epi Info', 'Minitab', 'S', 'SAS', 'SPSS', 'Stata', 'Systat', 'Weka', and for reading and writing some 'dBase' files."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -650,8 +644,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -689,7 +682,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
