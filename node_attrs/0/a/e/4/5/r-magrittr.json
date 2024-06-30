@@ -39,7 +39,7 @@
    "summary": "Provides a mechanism for chaining commands with a new forward-pipe operator, %>%. This operator will forward a value, or the result of an expression, into the next function call/expression. There is flexible support for the type of right-hand side expressions. For more information, see package vignette. To quote Rene Magritte, \"Ceci n'est pas un pipe.\""
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -58,6 +58,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -85,6 +86,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -117,7 +119,7 @@
    "summary": "Provides a mechanism for chaining commands with a new forward-pipe operator, %>%. This operator will forward a value, or the result of an expression, into the next function call/expression. There is flexible support for the type of right-hand side expressions. For more information, see package vignette. To quote Rene Magritte, \"Ceci n'est pas un pipe.\""
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -136,6 +138,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -163,6 +166,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -195,7 +199,7 @@
    "summary": "Provides a mechanism for chaining commands with a new forward-pipe operator, %>%. This operator will forward a value, or the result of an expression, into the next function call/expression. There is flexible support for the type of right-hand side expressions. For more information, see package vignette. To quote Rene Magritte, \"Ceci n'est pas un pipe.\""
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -214,6 +218,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -241,6 +246,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -273,8 +279,7 @@
    "summary": "Provides a mechanism for chaining commands with a new forward-pipe operator, %>%. This operator will forward a value, or the result of an expression, into the next function call/expression. There is flexible support for the type of right-hand side expressions. For more information, see package vignette. To quote Rene Magritte, \"Ceci n'est pas un pipe.\""
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -293,8 +298,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -304,8 +311,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -335,7 +341,7 @@
    "summary": "Provides a mechanism for chaining commands with a new forward-pipe operator, %>%. This operator will forward a value, or the result of an expression, into the next function call/expression. There is flexible support for the type of right-hand side expressions. For more information, see package vignette. To quote Rene Magritte, \"Ceci n'est pas un pipe.\""
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -354,6 +360,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -381,6 +388,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -413,7 +421,7 @@
    "summary": "Provides a mechanism for chaining commands with a new forward-pipe operator, %>%. This operator will forward a value, or the result of an expression, into the next function call/expression. There is flexible support for the type of right-hand side expressions. For more information, see package vignette. To quote Rene Magritte, \"Ceci n'est pas un pipe.\""
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -432,6 +440,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -459,6 +468,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -497,15 +507,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-magrittr.json"
  },
- "raw_meta_yaml": "{% set version = \"2.0.3\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-magrittr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/magrittr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/magrittr/magrittr_{{ version }}.tar.gz\n  sha256: a2bff83f792a1acb801bfe6330bb62724c74d5308832f2cb6a6178336ace55d2\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('magrittr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('magrittr')\\\"\"  # [win]\n\nabout:\n  home: https://magrittr.tidyverse.org, https://github.com/tidyverse/magrittr\n  license: MIT\n  summary: Provides a mechanism for chaining commands with a new forward-pipe operator, %>%. This operator will forward a value, or the result of an expression, into the next function call/expression. There is flexible support for the type of right-hand side expressions. For more information, see package vignette. To quote\n    Rene Magritte, \"Ceci n'est pas un pipe.\"\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - ocefpaf\n\n# Type: Package\n# Package: magrittr\n# Title: A Forward-Pipe Operator for R\n# Version: 2.0.1\n# Authors@R: c(person(given = \"Stefan Milton\", family = \"Bache\", role = c(\"aut\", \"cph\"), email = \"stefan@stefanbache.dk\", comment = \"Original author and creator of magrittr\"), person(given = \"Hadley\", family = \"Wickham\", role = \"aut\", email = \"hadley@rstudio.com\"), person(given = \"Lionel\", family = \"Henry\", role = \"cre\", email = \"lionel@rstudio.com\"), person(given = \"RStudio\", role = c(\"cph\", \"fnd\")))\n# Description: Provides a mechanism for chaining commands with a new forward-pipe operator, %>%. This operator will forward a value, or the result of an expression, into the next function call/expression. There is flexible support for the type of right-hand side expressions. For more information, see package vignette.  To quote Rene Magritte, \"Ceci n'est pas un pipe.\"\n# License: MIT + file LICENSE\n# URL: https://magrittr.tidyverse.org, https://github.com/tidyverse/magrittr\n# BugReports: https://github.com/tidyverse/magrittr/issues\n# Suggests: covr, knitr, rlang, rmarkdown, testthat\n# VignetteBuilder: knitr\n# ByteCompile: Yes\n# Encoding: UTF-8\n# RoxygenNote: 7.1.1\n# NeedsCompilation: yes\n# Packaged: 2020-11-17 12:44:34 UTC; lionel\n# Author: Stefan Milton Bache [aut, cph] (Original author and creator of magrittr), Hadley Wickham [aut], Lionel Henry [cre], RStudio [cph, fnd]\n# Maintainer: Lionel Henry <lionel@rstudio.com>\n# Repository: CRAN\n# Date/Publication: 2020-11-17 16:20:06 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.0.3\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-magrittr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/magrittr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/magrittr/magrittr_{{ version }}.tar.gz\n  sha256: a2bff83f792a1acb801bfe6330bb62724c74d5308832f2cb6a6178336ace55d2\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('magrittr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('magrittr')\\\"\"  # [win]\n\nabout:\n  home: https://magrittr.tidyverse.org, https://github.com/tidyverse/magrittr\n  license: MIT\n  summary: Provides a mechanism for chaining commands with a new forward-pipe operator, %>%. This operator will forward a value, or the result of an expression, into the next function call/expression. There is flexible support for the type of right-hand side expressions. For more information, see package vignette. To quote\n    Rene Magritte, \"Ceci n'est pas un pipe.\"\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - ocefpaf\n\n# Type: Package\n# Package: magrittr\n# Title: A Forward-Pipe Operator for R\n# Version: 2.0.1\n# Authors@R: c(person(given = \"Stefan Milton\", family = \"Bache\", role = c(\"aut\", \"cph\"), email = \"stefan@stefanbache.dk\", comment = \"Original author and creator of magrittr\"), person(given = \"Hadley\", family = \"Wickham\", role = \"aut\", email = \"hadley@rstudio.com\"), person(given = \"Lionel\", family = \"Henry\", role = \"cre\", email = \"lionel@rstudio.com\"), person(given = \"RStudio\", role = c(\"cph\", \"fnd\")))\n# Description: Provides a mechanism for chaining commands with a new forward-pipe operator, %>%. This operator will forward a value, or the result of an expression, into the next function call/expression. There is flexible support for the type of right-hand side expressions. For more information, see package vignette.  To quote Rene Magritte, \"Ceci n'est pas un pipe.\"\n# License: MIT + file LICENSE\n# URL: https://magrittr.tidyverse.org, https://github.com/tidyverse/magrittr\n# BugReports: https://github.com/tidyverse/magrittr/issues\n# Suggests: covr, knitr, rlang, rmarkdown, testthat\n# VignetteBuilder: knitr\n# ByteCompile: Yes\n# Encoding: UTF-8\n# RoxygenNote: 7.1.1\n# NeedsCompilation: yes\n# Packaged: 2020-11-17 12:44:34 UTC; lionel\n# Author: Stefan Milton Bache [aut, cph] (Original author and creator of magrittr), Hadley Wickham [aut], Lionel Henry [cre], RStudio [cph, fnd]\n# Maintainer: Lionel Henry <lionel@rstudio.com>\n# Repository: CRAN\n# Date/Publication: 2020-11-17 16:20:06 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "sed",
@@ -517,9 +528,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -529,6 +542,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -536,7 +550,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -551,9 +565,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -568,7 +584,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -607,8 +622,7 @@
    "summary": "Provides a mechanism for chaining commands with a new forward-pipe operator, %>%. This operator will forward a value, or the result of an expression, into the next function call/expression. There is flexible support for the type of right-hand side expressions. For more information, see package vignette. To quote Rene Magritte, \"Ceci n'est pas un pipe.\""
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -627,6 +641,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -637,8 +652,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -661,6 +675,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -675,7 +690,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
