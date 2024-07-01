@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "pyfes",
  "hash_type": "sha256",
@@ -23,7 +27,7 @@
    "summary": "FES prediction software"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -116,7 +120,7 @@
    "summary": "FES prediction software"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -174,7 +178,7 @@
    "summary": "FES prediction software"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -251,6 +255,93 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "This package is the fully revised version of the FES distribution.\nThis distribution includes the FES tidal prediction software.\n",
+   "home": "https://github.com/CNES/aviso-fes",
+   "license": "BSD-3-Clause",
+   "license_family": "BSD",
+   "license_file": "LICENSE",
+   "summary": "FES prediction software"
+  },
+  "build": {
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "fbriol"
+   ]
+  },
+  "package": {
+   "name": "pyfes",
+   "version": "2024.6.0"
+  },
+  "requirements": {
+   "build": [
+    "cxx_compiler_stub",
+    "c_stdlib_stub",
+    "cmake"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "cmake",
+    "eigen",
+    "setuptools-scm",
+    "libboost-headers >=1.79"
+   ],
+   "run": [
+    "numpy",
+    "python",
+    "netcdf4",
+    "pyyaml"
+   ]
+  },
+  "source": {
+   "sha256": "8e89ff5bb318f7131471f52233602fdc5ab4bcdc3293f64d8314a6db45d1acce",
+   "url": "https://github.com/CNES/aviso-fes/releases/download/2024.6.0/pyfes-2024.6.0.tar.gz"
+  },
+  "test": {
+   "imports": [
+    "pyfes"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_stdlib_stub",
+    "cmake",
+    "cxx_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "cmake",
+    "eigen",
+    "libboost-headers",
+    "pip",
+    "python",
+    "setuptools-scm"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "netcdf4",
+    "numpy",
+    "python",
+    "pyyaml"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -261,12 +352,13 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/pyfes.json"
  },
- "raw_meta_yaml": "{% set name = \"pyfes\" %}\n{% set version = \"2024.6.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/CNES/aviso-fes/releases/download/{{ version }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 8e89ff5bb318f7131471f52233602fdc5ab4bcdc3293f64d8314a6db45d1acce\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n  skip: True  # [py<310]\n\nrequirements:\n  build:\n    - python                              # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - setuptools                          # [build_platform != target_platform]\n    - {{ compiler('cxx') }}               # [linux or osx]\n    - {{ stdlib(\"c\") }}\n    - vs2017_win-64                       # [win]\n    - cmake\n    - make                                # [linux]\n  host:\n    - python \n    - pip\n    - cmake\n    - eigen\n    - mkl                                 # [linux or win]\n    - setuptools-scm\n    - libboost-headers >=1.79\n  run:\n    - {{ pin_compatible('numpy') }}\n    - python\n    - netcdf4\n    - pyyaml\n    - mkl                                 # [linux or win]\n\ntest:\n  imports:\n    - pyfes\n\nabout:\n  home: https://github.com/CNES/aviso-fes\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: 'FES prediction software'\n  description: |\n    This package is the fully revised version of the FES distribution.\n    This distribution includes the FES tidal prediction software.\n\nextra:\n  recipe-maintainers:\n    - fbriol\n",
+ "raw_meta_yaml": "{% set name = \"pyfes\" %}\n{% set version = \"2024.6.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/CNES/aviso-fes/releases/download/{{ version }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 8e89ff5bb318f7131471f52233602fdc5ab4bcdc3293f64d8314a6db45d1acce\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 1\n  skip: True  # [py<310]\n\nrequirements:\n  build:\n    - python                              # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - setuptools                          # [build_platform != target_platform]\n    - {{ compiler('cxx') }}               # [linux or osx]\n    - {{ stdlib(\"c\") }}\n    - vs2017_win-64                       # [win]\n    - cmake\n    - make                                # [linux]\n  host:\n    - python \n    - pip\n    - cmake\n    - eigen\n    - mkl                                 # [linux or win]\n    - setuptools-scm\n    - libboost-headers >=1.79\n  run:\n    - {{ pin_compatible('numpy') }}\n    - python\n    - netcdf4\n    - pyyaml\n    - mkl                                 # [linux or win]\n\ntest:\n  imports:\n    - pyfes\n\nabout:\n  home: https://github.com/CNES/aviso-fes\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: 'FES prediction software'\n  description: |\n    This package is the fully revised version of the FES distribution.\n    This distribution includes the FES tidal prediction software.\n\nextra:\n  recipe-maintainers:\n    - fbriol\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -384,7 +476,7 @@
    "summary": "FES prediction software"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
