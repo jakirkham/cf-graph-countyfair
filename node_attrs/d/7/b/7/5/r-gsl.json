@@ -28,7 +28,7 @@
    "summary": " An R wrapper for some of the functionality of the Gnu Scientific Library."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "pkg-config",
@@ -81,6 +82,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "pkg-config"
    ]
@@ -114,8 +116,7 @@
    "summary": " An R wrapper for some of the functionality of the Gnu Scientific Library."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -133,11 +134,13 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "pkg-config",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "grep",
@@ -152,8 +155,7 @@
    ],
    "run": [
     "r-base",
-    "gsl",
-    "gcc-libs"
+    "gsl"
    ]
   },
   "source": {
@@ -180,7 +182,7 @@
    "summary": " An R wrapper for some of the functionality of the Gnu Scientific Library."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -198,6 +200,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "pkg-config",
@@ -233,6 +236,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "pkg-config"
    ]
@@ -272,7 +276,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-gsl.json"
  },
- "raw_meta_yaml": "{% set version = \"2.1-8\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-gsl\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/gsl_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/gsl/gsl_{{ version }}.tar.gz\n  sha256: f33609bf485abd190e65ff5d0fdab438b759294c47b921d983d89d6f053a2d95\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - {{ native }}gsl             # [win]\n    - gsl                       # [not win]\n    - libblas\n  run:\n    - r-base\n    - {{ native }}gsl             # [win]\n    - gsl                       # [not win]\n    - {{ native }}gcc-libs        # [win]\n\ntest:\n  commands:\n    - $R -e \"library('gsl')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('gsl')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/RobinHankin/gsl.git\n  license: GPL-3.0-only\n  summary: ' An R wrapper for some of the functionality of the Gnu Scientific Library.'\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: gsl\n# Version: 2.1-6\n# Depends: R (>= 3.1.0)\n# Title: Wrapper for the Gnu Scientific Library\n# Authors@R: c(person(given=c(\"Robin\", \"K. S.\"), family=\"Hankin\", role = c(\"aut\",\"cre\"), email=\"hankin.robin@gmail.com\", comment = c(ORCID = \"0000-0001-5982-0415\")), person(given=\"Andrew\",family=\"Clausen\",role=\"ctb\",comment=\"multimin functionality\"), person(given=\"Duncan\",family=\"Murdoch\",role=\"ctb\",comment=\"qrng functions\"))\n# SystemRequirements: Gnu Scientific Library version >= 2.1\n# Description:  An R wrapper for some of the functionality of the Gnu Scientific Library.\n# Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>\n# License: GPL-3\n# URL: https://github.com/RobinHankin/gsl.git\n# BugReports: https://github.com/RobinHankin/gsl/issues\n# NeedsCompilation: yes\n# Packaged: 2019-03-25 00:29:54 UTC; rhankin\n# Author: Robin K. S. Hankin [aut, cre] (<https://orcid.org/0000-0001-5982-0415>), Andrew Clausen [ctb] (multimin functionality), Duncan Murdoch [ctb] (qrng functions)\n# Repository: CRAN\n# Date/Publication: 2019-03-25 09:10:03 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.1-8\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-gsl\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/gsl_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/gsl/gsl_{{ version }}.tar.gz\n  sha256: f33609bf485abd190e65ff5d0fdab438b759294c47b921d983d89d6f053a2d95\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - gsl             # [win]\n    - gsl                       # [not win]\n    - libblas\n  run:\n    - r-base\n    - gsl             # [win]\n    - gsl                       # [not win]\n\ntest:\n  commands:\n    - $R -e \"library('gsl')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('gsl')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/RobinHankin/gsl.git\n  license: GPL-3.0-only\n  summary: ' An R wrapper for some of the functionality of the Gnu Scientific Library.'\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: gsl\n# Version: 2.1-6\n# Depends: R (>= 3.1.0)\n# Title: Wrapper for the Gnu Scientific Library\n# Authors@R: c(person(given=c(\"Robin\", \"K. S.\"), family=\"Hankin\", role = c(\"aut\",\"cre\"), email=\"hankin.robin@gmail.com\", comment = c(ORCID = \"0000-0001-5982-0415\")), person(given=\"Andrew\",family=\"Clausen\",role=\"ctb\",comment=\"multimin functionality\"), person(given=\"Duncan\",family=\"Murdoch\",role=\"ctb\",comment=\"qrng functions\"))\n# SystemRequirements: Gnu Scientific Library version >= 2.1\n# Description:  An R wrapper for some of the functionality of the Gnu Scientific Library.\n# Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>\n# License: GPL-3\n# URL: https://github.com/RobinHankin/gsl.git\n# BugReports: https://github.com/RobinHankin/gsl/issues\n# NeedsCompilation: yes\n# Packaged: 2019-03-25 00:29:54 UTC; rhankin\n# Author: Robin K. S. Hankin [aut, cre] (<https://orcid.org/0000-0001-5982-0415>), Andrew Clausen [ctb] (multimin functionality), Duncan Murdoch [ctb] (qrng functions)\n# Repository: CRAN\n# Date/Publication: 2019-03-25 09:10:03 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -280,13 +284,14 @@
    "automake",
    "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "grep",
    "gsl",
    "libblas",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "pkg-config",
    "r-base",
@@ -302,10 +307,12 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "pkg-config",
     "sed",
@@ -316,6 +323,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "gsl",
     "libblas",
     "r-base"
@@ -325,7 +333,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "gsl",
     "r-base"
    ]
@@ -344,10 +352,12 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "pkg-config",
     "sed",
@@ -365,7 +375,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "gsl",
     "r-base"
    ]
@@ -396,8 +405,7 @@
    "summary": " An R wrapper for some of the functionality of the Gnu Scientific Library."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -415,6 +423,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "grep",
@@ -432,8 +441,7 @@
    ],
    "run": [
     "r-base",
-    "gsl",
-    "gcc-libs"
+    "gsl"
    ]
   },
   "source": {
@@ -459,6 +467,7 @@
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "pkg-config",
     "sed",
@@ -476,7 +485,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "gsl",
     "r-base"
    ]
