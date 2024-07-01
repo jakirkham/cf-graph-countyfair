@@ -9,11 +9,14 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "noarch_platforms": [
+   "osx_64"
+  ]
  },
  "feedstock_name": "dmgbuild",
  "hash_type": "sha256",
- "linux_64_meta_yaml": {
+ "meta_yaml": {
   "about": {
    "doc_url": "https://dmgbuild.readthedocs.io/en/latest/",
    "home": "https://github.com/dmgbuild/dmgbuild",
@@ -28,7 +31,7 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -41,12 +44,12 @@
   },
   "requirements": {
    "host": [
-    "python >=3.9",
+    "python >=3.8",
     "pip",
     "setuptools"
    ],
    "run": [
-    "python >=3.9",
+    "python >=3.8",
     "ds_store >=1.1.0",
     "mac_alias >=2.0.1",
     "__osx"
@@ -74,7 +77,69 @@
    ]
   }
  },
- "linux_64_requirements": {
+ "name": "dmgbuild",
+ "osx_64_meta_yaml": {
+  "about": {
+   "doc_url": "https://dmgbuild.readthedocs.io/en/latest/",
+   "home": "https://github.com/dmgbuild/dmgbuild",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": "LICENSE",
+   "summary": "macOS command line utility to build disk images"
+  },
+  "build": {
+   "entry_points": [
+    "dmgbuild = dmgbuild.__main__:main"
+   ],
+   "noarch": "python",
+   "number": "0",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "marcelotduarte"
+   ]
+  },
+  "package": {
+   "name": "dmgbuild",
+   "version": "1.6.1"
+  },
+  "requirements": {
+   "host": [
+    "python >=3.8",
+    "pip",
+    "setuptools"
+   ],
+   "run": [
+    "python >=3.8",
+    "ds_store >=1.1.0",
+    "mac_alias >=2.0.1",
+    "__osx"
+   ]
+  },
+  "source": {
+   "sha256": "7ced2603d684e29c22b4cd507d1e15a1907e91b86259924b8cfe480d80553b43",
+   "url": "https://pypi.io/packages/source/d/dmgbuild/dmgbuild-1.6.1.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "tox -e py"
+   ],
+   "imports": [
+    "dmgbuild"
+   ],
+   "requires": [
+    "pip",
+    "pytest",
+    "pytest-cov",
+    "tox"
+   ],
+   "source_files": [
+    "tests"
+   ]
+  }
+ },
+ "osx_64_requirements": {
   "build": {
    "__set__": true,
    "elements": []
@@ -106,68 +171,6 @@
    ]
   }
  },
- "meta_yaml": {
-  "about": {
-   "doc_url": "https://dmgbuild.readthedocs.io/en/latest/",
-   "home": "https://github.com/dmgbuild/dmgbuild",
-   "license": "MIT",
-   "license_family": "MIT",
-   "license_file": "LICENSE",
-   "summary": "macOS command line utility to build disk images"
-  },
-  "build": {
-   "entry_points": [
-    "dmgbuild = dmgbuild.__main__:main"
-   ],
-   "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "marcelotduarte"
-   ]
-  },
-  "package": {
-   "name": "dmgbuild",
-   "version": "1.6.1"
-  },
-  "requirements": {
-   "host": [
-    "python >=3.9",
-    "pip",
-    "setuptools"
-   ],
-   "run": [
-    "python >=3.9",
-    "ds_store >=1.1.0",
-    "mac_alias >=2.0.1",
-    "__osx"
-   ]
-  },
-  "source": {
-   "sha256": "7ced2603d684e29c22b4cd507d1e15a1907e91b86259924b8cfe480d80553b43",
-   "url": "https://pypi.io/packages/source/d/dmgbuild/dmgbuild-1.6.1.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "tox -e py"
-   ],
-   "imports": [
-    "dmgbuild"
-   ],
-   "requires": [
-    "pip",
-    "pytest",
-    "pytest-cov",
-    "tox"
-   ],
-   "source_files": [
-    "tests"
-   ]
-  }
- },
- "name": "dmgbuild",
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -176,12 +179,12 @@
  },
  "parsing_error": false,
  "platforms": [
-  "linux_64"
+  "osx_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/dmgbuild.json"
  },
- "raw_meta_yaml": "{% set name = \"dmgbuild\" %}\n{% set version = \"1.6.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 7ced2603d684e29c22b4cd507d1e15a1907e91b86259924b8cfe480d80553b43\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  entry_points:\n    - dmgbuild = dmgbuild.__main__:main\n\nrequirements:\n  host:\n    - python >=3.9\n    - pip\n    - setuptools\n  run:\n    - python >=3.9\n    - ds_store >=1.1.0\n    - mac_alias >=2.0.1\n    - __osx\n\ntest:\n  imports:\n    - dmgbuild\n  requires:\n    - pip\n    - pytest\n    - pytest-cov\n    - tox\n  source_files:\n    - tests\n  commands:\n    - tox -e py\n\nabout:\n  home: https://github.com/dmgbuild/dmgbuild\n  doc_url: https://dmgbuild.readthedocs.io/en/latest/\n  summary: macOS command line utility to build disk images\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - marcelotduarte\n",
+ "raw_meta_yaml": "{% set name = \"dmgbuild\" %}\n{% set version = \"1.6.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 7ced2603d684e29c22b4cd507d1e15a1907e91b86259924b8cfe480d80553b43\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  entry_points:\n    - dmgbuild = dmgbuild.__main__:main\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n    - setuptools\n  run:\n    - python >=3.8\n    - ds_store >=1.1.0\n    - mac_alias >=2.0.1\n    - __osx\n\ntest:\n  imports:\n    - dmgbuild\n  requires:\n    - pip\n    - pytest\n    - pytest-cov\n    - tox\n  source_files:\n    - tests\n  commands:\n    - tox -e py\n\nabout:\n  home: https://github.com/dmgbuild/dmgbuild\n  doc_url: https://dmgbuild.readthedocs.io/en/latest/\n  summary: macOS command line utility to build disk images\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - marcelotduarte\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -235,7 +238,7 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.9",
+    "python >=3.8",
     "setuptools"
    ]
   },
@@ -245,7 +248,7 @@
     "__osx",
     "ds_store >=1.1.0",
     "mac_alias >=2.0.1",
-    "python >=3.9"
+    "python >=3.8"
    ]
   },
   "test": {
