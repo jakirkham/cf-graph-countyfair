@@ -33,7 +33,7 @@
    "summary": "Contains some functions catching all messages, 'stdout' and other useful information while evaluating R code and other helpers to return user specified text elements (like: header, paragraph, table, image, lists etc.) in 'pandoc' markdown or several type of R objects similarly automatically transformed to markdown format. Also capable of exporting/converting (the resulting) complex 'pandoc' documents to e.g. HTML, 'PDF', 'docx' or 'odt'. This latter reporting feature is supported in brew syntax or with a custom reference class with a smarty caching 'backend'."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -51,6 +51,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -85,6 +86,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -124,7 +126,7 @@
    "summary": "Contains some functions catching all messages, 'stdout' and other useful information while evaluating R code and other helpers to return user specified text elements (like: header, paragraph, table, image, lists etc.) in 'pandoc' markdown or several type of R objects similarly automatically transformed to markdown format. Also capable of exporting/converting (the resulting) complex 'pandoc' documents to e.g. HTML, 'PDF', 'docx' or 'odt'. This latter reporting feature is supported in brew syntax or with a custom reference class with a smarty caching 'backend'."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -142,6 +144,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -176,6 +179,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -215,8 +219,7 @@
    "summary": "Contains some functions catching all messages, 'stdout' and other useful information while evaluating R code and other helpers to return user specified text elements (like: header, paragraph, table, image, lists etc.) in 'pandoc' markdown or several type of R objects similarly automatically transformed to markdown format. Also capable of exporting/converting (the resulting) complex 'pandoc' documents to e.g. HTML, 'PDF', 'docx' or 'odt'. This latter reporting feature is supported in brew syntax or with a custom reference class with a smarty caching 'backend'."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -234,9 +237,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -253,8 +258,7 @@
     "r-base",
     "r-rcpp",
     "r-digest",
-    "pandoc",
-    "gcc-libs"
+    "pandoc"
    ]
   },
   "source": {
@@ -284,7 +288,7 @@
    "summary": "Contains some functions catching all messages, 'stdout' and other useful information while evaluating R code and other helpers to return user specified text elements (like: header, paragraph, table, image, lists etc.) in 'pandoc' markdown or several type of R objects similarly automatically transformed to markdown format. Also capable of exporting/converting (the resulting) complex 'pandoc' documents to e.g. HTML, 'PDF', 'docx' or 'odt'. This latter reporting feature is supported in brew syntax or with a custom reference class with a smarty caching 'backend'."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -302,6 +306,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -336,6 +341,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -379,16 +385,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-pander.json"
  },
- "raw_meta_yaml": "{% set version = \"0.6.5\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-pander\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/pander_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/pander/pander_{{ version }}.tar.gz\n  sha256: 2add076bd2ca6749715a044e26baf1e0aee5d50211903ee6bfceecc30b9e9f90\n\nbuild:\n  merge_build_host: true  # [win]\n  skip: true              # [ppc64le]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-rcpp\n    - r-digest\n    - pandoc\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp\n    - r-digest\n    - pandoc\n\ntest:\n  commands:\n    - $R -e \"library('pander')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('pander')\\\"\"  # [win]\n\nabout:\n  home: http://rapporter.github.io/pander\n  license: AGPL-3.0-only\n  summary: \"Contains some functions catching all messages, 'stdout' and other useful information while evaluating R code and other helpers to return user specified text elements (like: header, paragraph, table, image, lists etc.) in 'pandoc' markdown or several type of R objects similarly automatically transformed to markdown\\\n    \\ format. Also capable of exporting/converting (the resulting) complex 'pandoc' documents to e.g. HTML, 'PDF', 'docx' or 'odt'. This latter reporting feature is supported in brew syntax or with a custom reference class with a smarty caching 'backend'.\"\n  license_family: AGPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/AGPL-3\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.6.5\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-pander\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/pander_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/pander/pander_{{ version }}.tar.gz\n  sha256: 2add076bd2ca6749715a044e26baf1e0aee5d50211903ee6bfceecc30b9e9f90\n\nbuild:\n  skip: true              # [ppc64le]\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-rcpp\n    - r-digest\n    - pandoc\n  run:\n    - r-base\n    - r-rcpp\n    - r-digest\n    - pandoc\n\ntest:\n  commands:\n    - $R -e \"library('pander')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('pander')\\\"\"  # [win]\n\nabout:\n  home: http://rapporter.github.io/pander\n  license: AGPL-3.0-only\n  summary: \"Contains some functions catching all messages, 'stdout' and other useful information while evaluating R code and other helpers to return user specified text elements (like: header, paragraph, table, image, lists etc.) in 'pandoc' markdown or several type of R objects similarly automatically transformed to markdown\\\n    \\ format. Also capable of exporting/converting (the resulting) complex 'pandoc' documents to e.g. HTML, 'PDF', 'docx' or 'odt'. This latter reporting feature is supported in brew syntax or with a custom reference class with a smarty caching 'backend'.\"\n  license_family: AGPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/AGPL-3\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "pandoc",
@@ -404,10 +411,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -418,6 +427,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pandoc",
     "r-base",
@@ -429,8 +439,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "pandoc",
     "r-base",
     "r-digest",
@@ -448,10 +458,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -470,7 +482,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "pandoc",
     "r-base",
     "r-digest",
@@ -508,8 +519,7 @@
    "summary": "Contains some functions catching all messages, 'stdout' and other useful information while evaluating R code and other helpers to return user specified text elements (like: header, paragraph, table, image, lists etc.) in 'pandoc' markdown or several type of R objects similarly automatically transformed to markdown format. Also capable of exporting/converting (the resulting) complex 'pandoc' documents to e.g. HTML, 'PDF', 'docx' or 'odt'. This latter reporting feature is supported in brew syntax or with a custom reference class with a smarty caching 'backend'."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -527,6 +537,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -542,7 +553,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp",
     "r-digest",
     "pandoc"
@@ -568,6 +578,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -586,7 +597,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "pandoc",
     "r-base",
     "r-digest",

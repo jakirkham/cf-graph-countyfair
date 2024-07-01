@@ -6,6 +6,7 @@
    "automerge": true
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -37,7 +38,7 @@
    "summary": "An R interface to the C libstemmer library that implements Porter's word stemming algorithm for collapsing words to a common root to aid comparison of vocabulary. Currently supported languages are Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish, Swedish and Turkish."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -56,6 +57,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -83,6 +85,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -115,7 +118,7 @@
    "summary": "An R interface to the C libstemmer library that implements Porter's word stemming algorithm for collapsing words to a common root to aid comparison of vocabulary. Currently supported languages are Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish, Swedish and Turkish."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -134,6 +137,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -161,6 +165,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -193,7 +198,7 @@
    "summary": "An R interface to the C libstemmer library that implements Porter's word stemming algorithm for collapsing words to a common root to aid comparison of vocabulary. Currently supported languages are Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish, Swedish and Turkish."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -212,6 +217,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -239,6 +245,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -271,8 +278,7 @@
    "summary": "An R interface to the C libstemmer library that implements Porter's word stemming algorithm for collapsing words to a common root to aid comparison of vocabulary. Currently supported languages are Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish, Swedish and Turkish."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -291,8 +297,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -302,8 +310,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -333,7 +340,7 @@
    "summary": "An R interface to the C libstemmer library that implements Porter's word stemming algorithm for collapsing words to a common root to aid comparison of vocabulary. Currently supported languages are Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish, Swedish and Turkish."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -352,6 +359,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -379,6 +387,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -411,7 +420,7 @@
    "summary": "An R interface to the C libstemmer library that implements Porter's word stemming algorithm for collapsing words to a common root to aid comparison of vocabulary. Currently supported languages are Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish, Swedish and Turkish."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -430,6 +439,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -457,6 +467,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -495,15 +506,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-snowballc.json"
  },
- "raw_meta_yaml": "{% set version = \"0.7.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-snowballc\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/SnowballC_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/SnowballC/SnowballC_{{ version }}.tar.gz\n  sha256: 753cf13f3206751662c03b1cf39bce9e680024f6d9f8503b836a83797181c034\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('SnowballC')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('SnowballC')\\\"\"  # [win]\n\nabout:\n  home: https://r-forge.r-project.org/projects/r-temis/\n  license: BSD-3-Clause\n  summary: An R interface to the C libstemmer library that implements Porter's word stemming algorithm for collapsing words to a common root to aid comparison of vocabulary. Currently supported languages are Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish,\n    Swedish and Turkish.\n  license_family: BSD\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/BSD_3_clause'\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - croth1\n\n# Package: SnowballC\n# Type: Package\n# Version: 0.6.0\n# Date: 2019-01-07\n# Title: Snowball Stemmers Based on the C 'libstemmer' UTF-8 Library\n# Authors@R: person(\"Milan\", \"Bouchet-Valat\", email=\"nalimilan@club.fr\", role=c(\"aut\", \"cre\"))\n# Description: An R interface to the C 'libstemmer' library that implements Porter's word stemming algorithm for collapsing words to a common root to aid comparison of vocabulary. Currently supported languages are Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish, Swedish and Turkish.\n# License: BSD_3_clause + file LICENSE\n# Copyright: Dr Martin Porter (2001) and Richard Boulton (2004, 2005) for the 'libstemmer' C library, and Milan Bouchet-Valat (2013) for the R package contents.\n# URL: https://r-forge.r-project.org/projects/r-temis/\n# BugReports: https://r-forge.r-project.org/tracker/?group_id=1437\n# NeedsCompilation: yes\n# Packaged: 2019-01-08 13:36:02 UTC; milan\n# Author: Milan Bouchet-Valat [aut, cre]\n# Maintainer: Milan Bouchet-Valat <nalimilan@club.fr>\n# Repository: CRAN\n# Date/Publication: 2019-01-15 16:10:03 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.7.1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-snowballc\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/SnowballC_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/SnowballC/SnowballC_{{ version }}.tar.gz\n  sha256: 753cf13f3206751662c03b1cf39bce9e680024f6d9f8503b836a83797181c034\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('SnowballC')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('SnowballC')\\\"\"  # [win]\n\nabout:\n  home: https://r-forge.r-project.org/projects/r-temis/\n  license: BSD-3-Clause\n  summary: An R interface to the C libstemmer library that implements Porter's word stemming algorithm for collapsing words to a common root to aid comparison of vocabulary. Currently supported languages are Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish,\n    Swedish and Turkish.\n  license_family: BSD\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/BSD_3_clause'\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - croth1\n\n# Package: SnowballC\n# Type: Package\n# Version: 0.6.0\n# Date: 2019-01-07\n# Title: Snowball Stemmers Based on the C 'libstemmer' UTF-8 Library\n# Authors@R: person(\"Milan\", \"Bouchet-Valat\", email=\"nalimilan@club.fr\", role=c(\"aut\", \"cre\"))\n# Description: An R interface to the C 'libstemmer' library that implements Porter's word stemming algorithm for collapsing words to a common root to aid comparison of vocabulary. Currently supported languages are Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish, Swedish and Turkish.\n# License: BSD_3_clause + file LICENSE\n# Copyright: Dr Martin Porter (2001) and Richard Boulton (2004, 2005) for the 'libstemmer' C library, and Milan Bouchet-Valat (2013) for the R package contents.\n# URL: https://r-forge.r-project.org/projects/r-temis/\n# BugReports: https://r-forge.r-project.org/tracker/?group_id=1437\n# NeedsCompilation: yes\n# Packaged: 2019-01-08 13:36:02 UTC; milan\n# Author: Milan Bouchet-Valat [aut, cre]\n# Maintainer: Milan Bouchet-Valat <nalimilan@club.fr>\n# Repository: CRAN\n# Date/Publication: 2019-01-15 16:10:03 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "sed",
@@ -515,9 +527,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -527,6 +541,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -534,7 +549,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -549,9 +564,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -566,7 +583,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -605,8 +621,7 @@
    "summary": "An R interface to the C libstemmer library that implements Porter's word stemming algorithm for collapsing words to a common root to aid comparison of vocabulary. Currently supported languages are Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish, Swedish and Turkish."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -625,6 +640,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -635,8 +651,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -659,6 +674,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -673,7 +689,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
