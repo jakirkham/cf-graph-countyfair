@@ -29,7 +29,7 @@
   },
   "build": {
    "noarch": "generic",
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -99,7 +99,7 @@
   },
   "build": {
    "noarch": "generic",
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -151,7 +151,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-runit.json"
  },
- "raw_meta_yaml": "{% set version = \"0.4.33\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-runit\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: RUnit_{{ version }}.tar.gz\n  url:\n    - {{ cran_mirror }}/src/contrib/RUnit_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/RUnit/RUnit_{{ version }}.tar.gz\n  sha256: b2a4c5afc7ef9534dac5006f6ef1b2af68630bb73eb74ef70ec7ed53dae6cb5f\n\nbuild:\n  noarch: generic\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('RUnit')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('RUnit')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=RUnit\n  license: GPL-2\n  summary: R functions implementing a standard Unit Testing framework, with additional code inspection and report generation tools.\n  license_family: GPL2\n  license_file: '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.4.33\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-runit\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: RUnit_{{ version }}.tar.gz\n  url:\n    - {{ cran_mirror }}/src/contrib/RUnit_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/RUnit/RUnit_{{ version }}.tar.gz\n  sha256: b2a4c5afc7ef9534dac5006f6ef1b2af68630bb73eb74ef70ec7ed53dae6cb5f\n\nbuild:\n  noarch: generic\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('RUnit')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('RUnit')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=RUnit\n  license: GPL-2\n  summary: R functions implementing a standard Unit Testing framework, with additional code inspection and report generation tools.\n  license_family: GPL2\n  license_file: '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
