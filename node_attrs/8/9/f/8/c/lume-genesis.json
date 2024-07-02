@@ -20,7 +20,7 @@
   "about": {
    "description": "Genesis tools for use in LUME.\n",
    "home": "https://github.com/slaclab/lume-genesis",
-   "license": "APACHE-2.0",
+   "license": "Apache-2.0",
    "license_family": "APACHE",
    "license_file": "LICENSE",
    "summary": "Genesis tools for use in LUME"
@@ -33,41 +33,59 @@
   "extra": {
    "recipe-maintainers": [
     "balticfish",
-    "ChristopherMayes"
+    "ChristopherMayes",
+    "ken-lauer"
    ]
   },
   "package": {
    "name": "lume-genesis",
-   "version": "0.6.3"
+   "version": "1.0.0"
   },
   "requirements": {
    "host": [
-    "python >=3.6",
-    "pip"
+    "python >=3.9",
+    "pip",
+    "setuptools_scm"
    ],
    "run": [
-    "python >=3.6",
-    "scipy",
+    "python >=3.9",
+    "eval-type-backport",
     "genesis2",
-    "lume-base"
+    "genesis4 >=4.6.6",
+    "jinja2",
+    "lark",
+    "lume-base",
+    "matplotlib-base",
+    "numpy",
+    "openpmd-beamphysics",
+    "prettytable",
+    "psutil",
+    "pydantic >2",
+    "pydantic-settings",
+    "scipy",
+    "typing-extensions"
    ]
   },
   "source": {
-   "sha256": "799d17d3d2d4b974c7ff416a5de6f416fda1ec58d106e62574c9d8e52e9f3a16",
-   "url": "https://github.com/slaclab/lume-genesis/archive/v0.6.3.tar.gz"
+   "sha256": "3e1f0d876f9e158dbcefb20fe341355d2f29e698e29be9e7a33ce0233a700b49",
+   "url": "https://github.com/slaclab/lume-genesis/archive/v1.0.0.tar.gz"
   },
   "test": {
    "commands": [
-    "pytest tests"
+    "pytest -v -k 'not particles and not profile_array'"
    ],
    "imports": [
     "genesis"
    ],
    "requires": [
-    "pytest"
+    "pytest",
+    "pytest-cov",
+    "ffmpeg"
    ],
    "source_files": [
-    "tests"
+    "docs",
+    "genesis",
+    "pyproject.toml"
    ]
   }
  },
@@ -80,22 +98,37 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools_scm"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "eval-type-backport",
     "genesis2",
+    "genesis4",
+    "jinja2",
+    "lark",
     "lume-base",
+    "matplotlib-base",
+    "numpy",
+    "openpmd-beamphysics",
+    "prettytable",
+    "psutil",
+    "pydantic",
+    "pydantic-settings",
     "python",
-    "scipy"
+    "scipy",
+    "typing-extensions"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "pytest"
+    "ffmpeg",
+    "pytest",
+    "pytest-cov"
    ]
   }
  },
@@ -103,7 +136,7 @@
   "about": {
    "description": "Genesis tools for use in LUME.\n",
    "home": "https://github.com/slaclab/lume-genesis",
-   "license": "APACHE-2.0",
+   "license": "Apache-2.0",
    "license_family": "APACHE",
    "license_file": "LICENSE",
    "summary": "Genesis tools for use in LUME"
@@ -116,41 +149,59 @@
   "extra": {
    "recipe-maintainers": [
     "balticfish",
-    "ChristopherMayes"
+    "ChristopherMayes",
+    "ken-lauer"
    ]
   },
   "package": {
    "name": "lume-genesis",
-   "version": "0.6.3"
+   "version": "1.0.0"
   },
   "requirements": {
    "host": [
-    "python >=3.6",
-    "pip"
+    "python >=3.9",
+    "pip",
+    "setuptools_scm"
    ],
    "run": [
-    "python >=3.6",
-    "scipy",
+    "python >=3.9",
+    "eval-type-backport",
     "genesis2",
-    "lume-base"
+    "genesis4 >=4.6.6",
+    "jinja2",
+    "lark",
+    "lume-base",
+    "matplotlib-base",
+    "numpy",
+    "openpmd-beamphysics",
+    "prettytable",
+    "psutil",
+    "pydantic >2",
+    "pydantic-settings",
+    "scipy",
+    "typing-extensions"
    ]
   },
   "source": {
-   "sha256": "799d17d3d2d4b974c7ff416a5de6f416fda1ec58d106e62574c9d8e52e9f3a16",
-   "url": "https://github.com/slaclab/lume-genesis/archive/v0.6.3.tar.gz"
+   "sha256": "3e1f0d876f9e158dbcefb20fe341355d2f29e698e29be9e7a33ce0233a700b49",
+   "url": "https://github.com/slaclab/lume-genesis/archive/v1.0.0.tar.gz"
   },
   "test": {
    "commands": [
-    "pytest tests"
+    "pytest -v -k 'not particles and not profile_array'"
    ],
    "imports": [
     "genesis"
    ],
    "requires": [
-    "pytest"
+    "pytest",
+    "pytest-cov",
+    "ffmpeg"
    ],
    "source_files": [
-    "tests"
+    "docs",
+    "genesis",
+    "pyproject.toml"
    ]
   }
  },
@@ -168,15 +219,28 @@
  "pr_info": {
   "__lazy_json__": "pr_info/lume-genesis.json"
  },
- "raw_meta_yaml": "{% set name = \"lume-genesis\" %}\n{% set version = \"0.6.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/slaclab/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 799d17d3d2d4b974c7ff416a5de6f416fda1ec58d106e62574c9d8e52e9f3a16\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n  run:\n    - python >=3.6\n    - scipy\n    - genesis2\n    - lume-base\n\ntest:\n  imports:\n    - genesis\n  requires:\n    - pytest\n  source_files:\n    - tests\n  commands:\n    - pytest tests\n\nabout:\n  home: https://github.com/slaclab/{{ name }}\n  license: APACHE-2.0\n  license_family: APACHE\n  license_file: LICENSE\n  summary: Genesis tools for use in LUME\n  description: |\n    Genesis tools for use in LUME.\n\nextra:\n  recipe-maintainers:\n    - balticfish\n    - ChristopherMayes\n",
+ "raw_meta_yaml": "{% set name = \"lume-genesis\" %}\n{% set version = \"1.0.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/slaclab/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 3e1f0d876f9e158dbcefb20fe341355d2f29e698e29be9e7a33ce0233a700b49\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.9\n    - pip\n    - setuptools_scm\n  run:\n    - python >=3.9\n    - eval-type-backport\n    - genesis2\n    - genesis4 >=4.6.6\n    - jinja2\n    - lark\n    - lume-base\n    - matplotlib-base\n    - numpy\n    - openpmd-beamphysics\n    - prettytable\n    - psutil\n    - pydantic >2\n    - pydantic-settings\n    - scipy\n    - typing-extensions\n\ntest:\n  imports:\n    - genesis\n  requires:\n    - pytest\n    - pytest-cov\n    - ffmpeg\n  source_files:\n    - docs\n    - genesis\n    - pyproject.toml\n  commands:\n    # Avoid a couple tests which require a lot of memory (15.3GiB)\n    - pytest -v -k 'not particles and not profile_array'\n\nabout:\n  home: https://github.com/slaclab/lume-genesis\n  license: Apache-2.0\n  license_family: APACHE\n  license_file: LICENSE\n  summary: Genesis tools for use in LUME\n  description: |\n    Genesis tools for use in LUME.\n\nextra:\n  recipe-maintainers:\n    - balticfish\n    - ChristopherMayes\n    - ken-lauer\n",
  "req": {
   "__set__": true,
   "elements": [
+   "eval-type-backport",
    "genesis2",
+   "genesis4",
+   "jinja2",
+   "lark",
    "lume-base",
+   "matplotlib-base",
+   "numpy",
+   "openpmd-beamphysics",
    "pip",
+   "prettytable",
+   "psutil",
+   "pydantic",
+   "pydantic-settings",
    "python",
-   "scipy"
+   "scipy",
+   "setuptools_scm",
+   "typing-extensions"
   ]
  },
  "requirements": {
@@ -188,22 +252,37 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools_scm"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "eval-type-backport",
     "genesis2",
+    "genesis4",
+    "jinja2",
+    "lark",
     "lume-base",
+    "matplotlib-base",
+    "numpy",
+    "openpmd-beamphysics",
+    "prettytable",
+    "psutil",
+    "pydantic",
+    "pydantic-settings",
     "python",
-    "scipy"
+    "scipy",
+    "typing-extensions"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "pytest"
+    "ffmpeg",
+    "pytest",
+    "pytest-cov"
    ]
   }
  },
@@ -217,27 +296,42 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6"
+    "python >=3.9",
+    "setuptools_scm"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "eval-type-backport",
     "genesis2",
+    "genesis4 >=4.6.6",
+    "jinja2",
+    "lark",
     "lume-base",
-    "python >=3.6",
-    "scipy"
+    "matplotlib-base",
+    "numpy",
+    "openpmd-beamphysics",
+    "prettytable",
+    "psutil",
+    "pydantic >2",
+    "pydantic-settings",
+    "python >=3.9",
+    "scipy",
+    "typing-extensions"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "pytest"
+    "ffmpeg",
+    "pytest",
+    "pytest-cov"
    ]
   }
  },
- "url": "https://github.com/slaclab/lume-genesis/archive/v0.6.3.tar.gz",
- "version": "0.6.3",
+ "url": "https://github.com/slaclab/lume-genesis/archive/v1.0.0.tar.gz",
+ "version": "1.0.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/lume-genesis.json"
  }

@@ -27,7 +27,7 @@
    "summary": "Stores large arrays in files to avoid occupying large memories. Implemented with super\nfast gigabyte-level multi-threaded reading/writing via 'OpenMP'. Supports multiple\nnon-character data types (double, float, complex, integer, logical, and raw).\n"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -84,6 +85,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -126,8 +128,7 @@
    "summary": "Stores large arrays in files to avoid occupying large memories. Implemented with super\nfast gigabyte-level multi-threaded reading/writing via 'OpenMP'. Supports multiple\nnon-character data types (double, float, complex, integer, logical, and raw).\n"
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -146,9 +147,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -169,8 +172,7 @@
     "r-rcpp",
     "r-digest",
     "r-uuid",
-    "r-fastmap",
-    "gcc-libs"
+    "r-fastmap"
    ]
   },
   "source": {
@@ -199,7 +201,7 @@
    "summary": "Stores large arrays in files to avoid occupying large memories. Implemented with super\nfast gigabyte-level multi-threaded reading/writing via 'OpenMP'. Supports multiple\nnon-character data types (double, float, complex, integer, logical, and raw).\n"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -218,6 +220,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -256,6 +259,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -302,16 +306,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-filearray.json"
  },
- "raw_meta_yaml": "{% set version = \"0.1.6\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-filearray\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/filearray_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/filearray/filearray_{{ version }}.tar.gz\n  sha256: fbe1e2e0543cd1026cb7097d6be36a938e526a1106692a5f814983e39e43c4f5\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-bh\n    - r-rcpp\n    - r-digest\n    - r-uuid\n    - r-fastmap\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-bh\n    - r-rcpp\n    - r-digest\n    - r-uuid\n    - r-fastmap\n\ntest:\n  commands:\n    - $R -e \"library('filearray')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('filearray')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/dipterix/filearray\n  license: LGPL-3.0-only\n  summary: |\n    Stores large arrays in files to avoid occupying large memories. Implemented with super\n    fast gigabyte-level multi-threaded reading/writing via 'OpenMP'. Supports multiple\n    non-character data types (double, float, complex, integer, logical, and raw).\n  license_family: LGPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/LGPL-3\n\nextra:\n  recipe-maintainers:\n    - dipterix\n    - conda-forge/r\n\n# Package: filearray\n# Type: Package\n# Title: File-Backed Array for Out-of-Memory Computation\n# Version: 0.1.5\n# Language: en-US\n# Encoding: UTF-8\n# License: LGPL-3\n# URL: https://dipterix.org/filearray/, https://github.com/dipterix/filearray\n# BugReports: https://github.com/dipterix/filearray/issues\n# Authors@R: c( person( \"Zhengjia\", \"Wang\", role = c(\"aut\", \"cre\", \"cph\"), email = \"dipterix.wang@gmail.com\" ))\n# Description: Stores large arrays in files to avoid occupying large memories. Implemented with super fast gigabyte-level multi-threaded reading/writing via 'OpenMP'. Supports multiple non-character data types (double, float, complex, integer, logical, and raw).\n# Imports: digest, methods, Rcpp\n# Suggests: rmarkdown, knitr, testthat (>= 3.0.0)\n# RoxygenNote: 7.2.1\n# LinkingTo: BH, Rcpp\n# Config/testthat/edition: 3\n# VignetteBuilder: knitr\n# NeedsCompilation: yes\n# Packaged: 2022-10-15 14:13:41 UTC; dipterix\n# Author: Zhengjia Wang [aut, cre, cph]\n# Maintainer: Zhengjia Wang <dipterix.wang@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2022-10-16 07:42:32 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.1.6\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-filearray\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/filearray_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/filearray/filearray_{{ version }}.tar.gz\n  sha256: fbe1e2e0543cd1026cb7097d6be36a938e526a1106692a5f814983e39e43c4f5\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-bh\n    - r-rcpp\n    - r-digest\n    - r-uuid\n    - r-fastmap\n  run:\n    - r-base\n    - r-bh\n    - r-rcpp\n    - r-digest\n    - r-uuid\n    - r-fastmap\n\ntest:\n  commands:\n    - $R -e \"library('filearray')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('filearray')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/dipterix/filearray\n  license: LGPL-3.0-only\n  summary: |\n    Stores large arrays in files to avoid occupying large memories. Implemented with super\n    fast gigabyte-level multi-threaded reading/writing via 'OpenMP'. Supports multiple\n    non-character data types (double, float, complex, integer, logical, and raw).\n  license_family: LGPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/LGPL-3\n\nextra:\n  recipe-maintainers:\n    - dipterix\n    - conda-forge/r\n\n# Package: filearray\n# Type: Package\n# Title: File-Backed Array for Out-of-Memory Computation\n# Version: 0.1.5\n# Language: en-US\n# Encoding: UTF-8\n# License: LGPL-3\n# URL: https://dipterix.org/filearray/, https://github.com/dipterix/filearray\n# BugReports: https://github.com/dipterix/filearray/issues\n# Authors@R: c( person( \"Zhengjia\", \"Wang\", role = c(\"aut\", \"cre\", \"cph\"), email = \"dipterix.wang@gmail.com\" ))\n# Description: Stores large arrays in files to avoid occupying large memories. Implemented with super fast gigabyte-level multi-threaded reading/writing via 'OpenMP'. Supports multiple non-character data types (double, float, complex, integer, logical, and raw).\n# Imports: digest, methods, Rcpp\n# Suggests: rmarkdown, knitr, testthat (>= 3.0.0)\n# RoxygenNote: 7.2.1\n# LinkingTo: BH, Rcpp\n# Config/testthat/edition: 3\n# VignetteBuilder: knitr\n# NeedsCompilation: yes\n# Packaged: 2022-10-15 14:13:41 UTC; dipterix\n# Author: Zhengjia Wang [aut, cre, cph]\n# Maintainer: Zhengjia Wang <dipterix.wang@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2022-10-16 07:42:32 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -329,10 +334,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -343,6 +350,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-bh",
@@ -356,8 +364,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-bh",
     "r-digest",
@@ -377,10 +385,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -401,7 +411,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-bh",
     "r-digest",
@@ -438,8 +447,7 @@
    "summary": "Stores large arrays in files to avoid occupying large memories. Implemented with super\nfast gigabyte-level multi-threaded reading/writing via 'OpenMP'. Supports multiple\nnon-character data types (double, float, complex, integer, logical, and raw).\n"
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -458,6 +466,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -475,7 +484,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-bh",
     "r-rcpp",
     "r-digest",
@@ -503,6 +511,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -523,7 +532,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-bh",
     "r-digest",
