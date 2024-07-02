@@ -12,6 +12,9 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
+  },
+  "provider": {
+   "linux_aarch64": "default"
   }
  },
  "feedstock_name": "ldc",
@@ -27,7 +30,7 @@
    "summary": "The LLVM-based D Compiler"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -103,6 +106,93 @@
    "elements": []
   }
  },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "description": "The LDC project provides a portable D programming language compiler with modern optimization and code generation capabilities.\nThe compiler uses the official DMD frontend to support the latest version of D2, and relies on the LLVM Core libraries for code generation.\n",
+   "dev_url": "https://github.com/ldc-developers/ldc",
+   "doc_url": "https://wiki.dlang.org/LDC",
+   "home": "https://github.com/ldc-developers/ldc",
+   "license": "BSD, MIT, LDC",
+   "license_file": "LICENSE",
+   "summary": "The LLVM-based D Compiler"
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "brainstorm",
+    "martin-g"
+   ]
+  },
+  "package": {
+   "name": "ldc",
+   "version": "1.38.0"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_stdlib_stub",
+    "git",
+    "cmake",
+    "make",
+    "ninja"
+   ],
+   "host": [
+    "libconfig",
+    "libedit",
+    "ncurses",
+    "curl",
+    "clangdev >=6,<=12",
+    "llvmdev",
+    "llvm"
+   ]
+  },
+  "source": {
+   "sha256": "ca6238efe022e34cd3076741f8a070c6a377196351c61949a48a48c99379f38e",
+   "url": "https://github.com/ldc-developers/ldc/releases/download/v1.38.0/ldc-1.38.0-src.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "ldc2 --version"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "git",
+    "make",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "clangdev",
+    "curl",
+    "libconfig",
+    "libedit",
+    "llvm",
+    "llvmdev",
+    "ncurses"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "meta_yaml": {
   "about": {
    "description": "The LDC project provides a portable D programming language compiler with modern optimization and code generation capabilities.\nThe compiler uses the official DMD frontend to support the latest version of D2, and relies on the LLVM Core libraries for code generation.\n",
@@ -114,7 +204,7 @@
    "summary": "The LLVM-based D Compiler"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -169,7 +259,7 @@
    "summary": "The LLVM-based D Compiler"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -254,13 +344,14 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
   "osx_64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/ldc.json"
  },
- "raw_meta_yaml": "{% set name = \"ldc\" %}\n{% set version = \"1.38.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ldc-developers/ldc/releases/download/v{{ version }}/ldc-{{ version }}-src.tar.gz  # [unix]\n  sha256: ca6238efe022e34cd3076741f8a070c6a377196351c61949a48a48c99379f38e  # [unix]\n\n  # Use the pre-built binaries for windows.\n  url: https://github.com/ldc-developers/ldc/releases/download/v{{ version }}/ldc2-{{ version }}-windows-x64.7z  # [win]\n  sha256: 51661c30983b94a05b1dbcfc5330e0300ea14609c8088d14f0ff34453b99b641  # [win]\n\nbuild:\n  number: 0\n  skip: true  # [win and vc<14]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [unix]\n    - {{ compiler('cxx') }}      # [unix]\n    - {{ stdlib('c') }}          # [unix]\n    - git                        # [unix]\n    - cmake                      # [unix]\n    - make                       # [unix]\n    - ninja                      # [unix]\n    - 7za                        # [win]\n  host:\n    - libconfig                  # [unix]\n    - libedit                    # [unix]\n    - ncurses                    # [unix]\n    - curl                       # [unix]\n    - clangdev >=6,<=12          # [unix]\n    - llvmdev                    # [unix]\n    - llvm                       # [unix]\n\ntest:\n  commands:\n    - ldc2 --version\n\nabout:\n  home: https://github.com/ldc-developers/ldc\n  license: BSD, MIT, LDC\n  license_file: LICENSE\n  summary: The LLVM-based D Compiler\n\n  description: |\n    The LDC project provides a portable D programming language compiler with modern optimization and code generation capabilities.\n    The compiler uses the official DMD frontend to support the latest version of D2, and relies on the LLVM Core libraries for code generation.\n  doc_url: https://wiki.dlang.org/LDC\n  dev_url: https://github.com/ldc-developers/ldc\n\nextra:\n  recipe-maintainers:\n    - brainstorm\n    - martin-g\n",
+ "raw_meta_yaml": "{% set name = \"ldc\" %}\n{% set version = \"1.38.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ldc-developers/ldc/releases/download/v{{ version }}/ldc-{{ version }}-src.tar.gz  # [unix]\n  sha256: ca6238efe022e34cd3076741f8a070c6a377196351c61949a48a48c99379f38e  # [unix]\n\n  # Use the pre-built binaries for windows.\n  url: https://github.com/ldc-developers/ldc/releases/download/v{{ version }}/ldc2-{{ version }}-windows-x64.7z  # [win]\n  sha256: 51661c30983b94a05b1dbcfc5330e0300ea14609c8088d14f0ff34453b99b641  # [win]\n\nbuild:\n  number: 1\n  skip: true  # [win and vc<14]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [unix]\n    - {{ compiler('cxx') }}      # [unix]\n    - {{ stdlib('c') }}          # [unix]\n    - git                        # [unix]\n    - cmake                      # [unix]\n    - make                       # [unix]\n    - ninja                      # [unix]\n    - 7za                        # [win]\n  host:\n    - libconfig                  # [unix]\n    - libedit                    # [unix]\n    - ncurses                    # [unix]\n    - curl                       # [unix]\n    - clangdev >=6,<=12          # [unix]\n    - llvmdev                    # [unix]\n    - llvm                       # [unix]\n\ntest:\n  commands:\n    - ldc2 --version\n\nabout:\n  home: https://github.com/ldc-developers/ldc\n  license: BSD, MIT, LDC\n  license_file: LICENSE\n  summary: The LLVM-based D Compiler\n\n  description: |\n    The LDC project provides a portable D programming language compiler with modern optimization and code generation capabilities.\n    The compiler uses the official DMD frontend to support the latest version of D2, and relies on the LLVM Core libraries for code generation.\n  doc_url: https://wiki.dlang.org/LDC\n  dev_url: https://github.com/ldc-developers/ldc\n\nextra:\n  recipe-maintainers:\n    - brainstorm\n    - martin-g\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -375,7 +466,7 @@
    "summary": "The LLVM-based D Compiler"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
