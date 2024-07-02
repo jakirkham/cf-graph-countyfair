@@ -32,7 +32,7 @@
    "summary": "Maximally selected rank statistics with several p-value approximations."
   },
   "build": {
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -81,6 +82,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -116,7 +118,7 @@
    "summary": "Maximally selected rank statistics with several p-value approximations."
   },
   "build": {
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -134,6 +136,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -165,6 +168,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -200,7 +204,7 @@
    "summary": "Maximally selected rank statistics with several p-value approximations."
   },
   "build": {
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -218,6 +222,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -249,6 +254,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -284,8 +290,7 @@
    "summary": "Maximally selected rank statistics with several p-value approximations."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -303,8 +308,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -318,8 +325,7 @@
    "run": [
     "r-base",
     "r-exactranktests >=0.8_23",
-    "r-mvtnorm >=0.5_10",
-    "gcc-libs"
+    "r-mvtnorm >=0.5_10"
    ]
   },
   "source": {
@@ -348,7 +354,7 @@
    "summary": "Maximally selected rank statistics with several p-value approximations."
   },
   "build": {
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -366,6 +372,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -397,6 +404,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -438,15 +446,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-maxstat.json"
  },
- "raw_meta_yaml": "{% set version = '0.7-25' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-maxstat\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/maxstat_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/maxstat/maxstat_{{ version }}.tar.gz\n  sha256: 6fc13b8d83797e10fc148183eb440a30584442fdf73628652c606ede790e9f84\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 1006\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-exactranktests >=0.8_23\n    - r-mvtnorm >=0.5_10\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-exactranktests >=0.8_23\n    - r-mvtnorm >=0.5_10\n\ntest:\n  commands:\n    - $R -e \"library('maxstat')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('maxstat')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=maxstat\n  license: GPL-2.0-or-later\n  summary: Maximally selected rank statistics with several p-value approximations.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = '0.7-25' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-maxstat\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/maxstat_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/maxstat/maxstat_{{ version }}.tar.gz\n  sha256: 6fc13b8d83797e10fc148183eb440a30584442fdf73628652c606ede790e9f84\n\nbuild:\n  number: 1007\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-exactranktests >=0.8_23\n    - r-mvtnorm >=0.5_10\n  run:\n    - r-base\n    - r-exactranktests >=0.8_23\n    - r-mvtnorm >=0.5_10\n\ntest:\n  commands:\n    - $R -e \"library('maxstat')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('maxstat')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=maxstat\n  license: GPL-2.0-or-later\n  summary: Maximally selected rank statistics with several p-value approximations.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-exactranktests",
@@ -460,9 +469,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -472,6 +483,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-exactranktests",
     "r-mvtnorm"
@@ -481,7 +493,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-exactranktests",
     "r-mvtnorm"
@@ -498,9 +510,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -517,7 +531,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-exactranktests >=0.8_23",
     "r-mvtnorm >=0.5_10"
@@ -555,8 +568,7 @@
    "summary": "Maximally selected rank statistics with several p-value approximations."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -574,6 +586,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -587,7 +600,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-exactranktests >=0.8_23",
     "r-mvtnorm >=0.5_10"
    ]
@@ -612,6 +624,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -628,7 +641,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-exactranktests",
     "r-mvtnorm"
