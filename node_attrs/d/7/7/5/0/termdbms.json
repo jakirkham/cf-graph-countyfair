@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "termdbms",
  "hash_type": "sha256",
@@ -151,6 +155,15 @@
    {
     "sha256": "bfa9bf72a72ca009fd62a8f84fca3dca67e51d93af96352723646599898b6cf5",
     "url": "https://github.com/cznic/mathutil/raw/master/LICENSE"
+   },
+   {
+    "folder": "src",
+    "sha256": "7ad5cfb55bcbf7dafb679ae1dfc63ac85de005de6f0a62f494a24f0782008240",
+    "url": "https://github.com/mathaou/termdbms/archive/v0.9-alpha.tar.gz"
+   },
+   {
+    "sha256": "bfa9bf72a72ca009fd62a8f84fca3dca67e51d93af96352723646599898b6cf5",
+    "url": "https://github.com/cznic/mathutil/raw/master/LICENSE"
    }
   ],
   "test": {
@@ -235,6 +248,80 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/mathaou/termdbms",
+   "home": "https://github.com/mathaou/termdbms",
+   "license": "MIT",
+   "license_file": [
+    "src/LICENSE",
+    "LICENSE-modernc-mathutil",
+    "license-files/"
+   ],
+   "summary": "TUI for viewing and editing database files"
+  },
+  "build": {
+   "number": "0",
+   "script": [
+    "mv LICENSE LICENSE-modernc-mathutil",
+    "cd src",
+    "go build -v -o $PREFIX/bin/termdbms",
+    "go-licenses save . --save_path=../license-files --ignore modernc.org/mathutil"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "pavelzw"
+   ]
+  },
+  "package": {
+   "name": "termdbms",
+   "version": "0.9"
+  },
+  "requirements": {
+   "build": [
+    "go-nocgo_compiler_stub",
+    "go-licenses"
+   ]
+  },
+  "source": [
+   {
+    "folder": "src",
+    "sha256": "7ad5cfb55bcbf7dafb679ae1dfc63ac85de005de6f0a62f494a24f0782008240",
+    "url": "https://github.com/mathaou/termdbms/archive/v0.9-alpha.tar.gz"
+   },
+   {
+    "sha256": "bfa9bf72a72ca009fd62a8f84fca3dca67e51d93af96352723646599898b6cf5",
+    "url": "https://github.com/cznic/mathutil/raw/master/LICENSE"
+   }
+  ],
+  "test": {
+   "commands": [
+    "which termdbms"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "go-licenses",
+    "go-nocgo_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -245,6 +332,7 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
