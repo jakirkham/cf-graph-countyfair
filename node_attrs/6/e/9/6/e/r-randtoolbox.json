@@ -32,7 +32,7 @@
    "summary": "Provides (1) pseudo random generators - general linear congruential generators,  multiple recursive generators and generalized feedback shift register (SF-Mersenne Twister algorithm and WELL generators); (2) quasi random generators - the Torus algorithm, the Sobol sequence, the Halton sequence (including the Van der Corput sequence) and (3) some generator tests - the gap test, the serial test, the poker test. See e.g. Gentle (2003) <doi:10.1007/b97336>. The package can be provided without the rngWELL dependency on demand. Take a look at the Distribution task view of types and tests of random number generators. Version in Memoriam of Diethelm and Barbara Wuertz."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "autoconf",
     "automake",
@@ -85,6 +86,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "pkg-config"
@@ -118,8 +120,7 @@
    "summary": "Provides (1) pseudo random generators - general linear congruential generators,  multiple recursive generators and generalized feedback shift register (SF-Mersenne Twister algorithm and WELL generators); (2) quasi random generators - the Torus algorithm, the Sobol sequence, the Halton sequence (including the Van der Corput sequence) and (3) some generator tests - the gap test, the serial test, the poker test. See e.g. Gentle (2003) <doi:10.1007/b97336>. The package can be provided without the rngWELL dependency on demand. Take a look at the Distribution task view of types and tests of random number generators. Version in Memoriam of Diethelm and Barbara Wuertz."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -137,12 +138,14 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "autoconf",
     "automake",
     "pkg-config",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -157,8 +160,7 @@
    ],
    "run": [
     "r-base",
-    "r-rngwell >=0.10_1",
-    "gcc-libs"
+    "r-rngwell >=0.10_1"
    ]
   },
   "source": {
@@ -185,7 +187,7 @@
    "summary": "Provides (1) pseudo random generators - general linear congruential generators,  multiple recursive generators and generalized feedback shift register (SF-Mersenne Twister algorithm and WELL generators); (2) quasi random generators - the Torus algorithm, the Sobol sequence, the Halton sequence (including the Van der Corput sequence) and (3) some generator tests - the gap test, the serial test, the poker test. See e.g. Gentle (2003) <doi:10.1007/b97336>. The package can be provided without the rngWELL dependency on demand. Take a look at the Distribution task view of types and tests of random number generators. Version in Memoriam of Diethelm and Barbara Wuertz."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -203,6 +205,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "autoconf",
     "automake",
@@ -238,6 +241,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "pkg-config"
@@ -271,7 +275,7 @@
    "summary": "Provides (1) pseudo random generators - general linear congruential generators,  multiple recursive generators and generalized feedback shift register (SF-Mersenne Twister algorithm and WELL generators); (2) quasi random generators - the Torus algorithm, the Sobol sequence, the Halton sequence (including the Van der Corput sequence) and (3) some generator tests - the gap test, the serial test, the poker test. See e.g. Gentle (2003) <doi:10.1007/b97336>. The package can be provided without the rngWELL dependency on demand. Take a look at the Distribution task view of types and tests of random number generators. Version in Memoriam of Diethelm and Barbara Wuertz."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -289,6 +293,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "autoconf",
     "automake",
@@ -324,6 +329,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "pkg-config"
@@ -364,7 +370,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-randtoolbox.json"
  },
- "raw_meta_yaml": "{% set version = \"2.0.4\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-randtoolbox\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/randtoolbox_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/randtoolbox/randtoolbox_{{ version }}.tar.gz\n  sha256: 94da14953e4ffc7981d7a9398622082c4eda3bd9d912d1437b527d949da39e4b\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-rngwell                  # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [not win]\n    - {{ compiler('fortran') }}  # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('m2w64_fortran') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rngwell >=0.10_1\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rngwell >=0.10_1\n\ntest:\n  commands:\n    - $R -e \"library('randtoolbox')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('randtoolbox')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=randtoolbox\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: Provides (1) pseudo random generators - general linear congruential generators,  multiple recursive generators and generalized feedback shift register (SF-Mersenne Twister algorithm and WELL generators); (2) quasi random generators - the Torus algorithm, the Sobol sequence, the Halton sequence (including the Van\n    der Corput sequence) and (3) some generator tests - the gap test, the serial test, the poker test. See e.g. Gentle (2003) <doi:10.1007/b97336>. The package can be provided without the rngWELL dependency on demand. Take a look at the Distribution task view of types and tests of random number generators. Version in Memoriam\n    of Diethelm and Barbara Wuertz.\n  license_family: BSD\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: randtoolbox\n# Type: Package\n# Title: Toolbox for Pseudo and Quasi Random Number Generation and Random Generator Tests\n# Version: 1.30.0\n# Author: R port by Yohan Chalabi, Christophe Dutang, Petr Savicky and Diethelm Wuertz with some underlying C codes of (i) the SFMT algorithm from M. Matsumoto and M. Saito, (ii) the Knuth-TAOCP RNG from D. Knuth.\n# Maintainer: Christophe Dutang <christophe.dutang@ensimag.fr>\n# Description: Provides (1) pseudo random generators - general linear congruential generators,  multiple recursive generators and generalized feedback shift register (SF-Mersenne Twister algorithm and WELL generators); (2) quasi random generators - the Torus algorithm, the Sobol sequence, the Halton sequence (including the Van der Corput sequence) and (3) some generator tests - the gap test, the serial test, the poker test. See e.g. Gentle (2003) <doi:10.1007/b97336>. The package can be provided without the rngWELL dependency on demand. Take a look at the Distribution task view of types and tests of random number generators. Version in Memoriam of Diethelm and Barbara Wuertz.\n# Depends: rngWELL (>= 0.10-1)\n# License: BSD_3_clause + file LICENSE\n# NeedsCompilation: yes\n# Packaged: 2019-04-19 20:30:35 UTC; dutang\n# Repository: CRAN\n# Date/Publication: 2019-04-21 15:20:03 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.0.4\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-randtoolbox\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/randtoolbox_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/randtoolbox/randtoolbox_{{ version }}.tar.gz\n  sha256: 94da14953e4ffc7981d7a9398622082c4eda3bd9d912d1437b527d949da39e4b\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-rngwell                  # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('fortran') }}  # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('m2w64_fortran') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rngwell >=0.10_1\n  run:\n    - r-base\n    - r-rngwell >=0.10_1\n\ntest:\n  commands:\n    - $R -e \"library('randtoolbox')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('randtoolbox')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=randtoolbox\n  license: BSD-3-Clause\n  license_file: LICENSE\n  summary: Provides (1) pseudo random generators - general linear congruential generators,  multiple recursive generators and generalized feedback shift register (SF-Mersenne Twister algorithm and WELL generators); (2) quasi random generators - the Torus algorithm, the Sobol sequence, the Halton sequence (including the Van\n    der Corput sequence) and (3) some generator tests - the gap test, the serial test, the poker test. See e.g. Gentle (2003) <doi:10.1007/b97336>. The package can be provided without the rngWELL dependency on demand. Take a look at the Distribution task view of types and tests of random number generators. Version in Memoriam\n    of Diethelm and Barbara Wuertz.\n  license_family: BSD\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: randtoolbox\n# Type: Package\n# Title: Toolbox for Pseudo and Quasi Random Number Generation and Random Generator Tests\n# Version: 1.30.0\n# Author: R port by Yohan Chalabi, Christophe Dutang, Petr Savicky and Diethelm Wuertz with some underlying C codes of (i) the SFMT algorithm from M. Matsumoto and M. Saito, (ii) the Knuth-TAOCP RNG from D. Knuth.\n# Maintainer: Christophe Dutang <christophe.dutang@ensimag.fr>\n# Description: Provides (1) pseudo random generators - general linear congruential generators,  multiple recursive generators and generalized feedback shift register (SF-Mersenne Twister algorithm and WELL generators); (2) quasi random generators - the Torus algorithm, the Sobol sequence, the Halton sequence (including the Van der Corput sequence) and (3) some generator tests - the gap test, the serial test, the poker test. See e.g. Gentle (2003) <doi:10.1007/b97336>. The package can be provided without the rngWELL dependency on demand. Take a look at the Distribution task view of types and tests of random number generators. Version in Memoriam of Diethelm and Barbara Wuertz.\n# Depends: rngWELL (>= 0.10-1)\n# License: BSD_3_clause + file LICENSE\n# NeedsCompilation: yes\n# Packaged: 2019-04-19 20:30:35 UTC; dutang\n# Repository: CRAN\n# Date/Publication: 2019-04-21 15:20:03 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -372,12 +378,13 @@
    "automake",
    "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "grep",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "pkg-config",
@@ -395,11 +402,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "pkg-config",
@@ -411,6 +420,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "r-base",
     "r-rngwell"
@@ -420,8 +430,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-rngwell"
    ]
@@ -440,11 +450,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "pkg-config",
@@ -462,7 +474,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rngwell >=0.10_1"
    ]
@@ -495,8 +506,7 @@
    "summary": "Provides (1) pseudo random generators - general linear congruential generators,  multiple recursive generators and generalized feedback shift register (SF-Mersenne Twister algorithm and WELL generators); (2) quasi random generators - the Torus algorithm, the Sobol sequence, the Halton sequence (including the Van der Corput sequence) and (3) some generator tests - the gap test, the serial test, the poker test. See e.g. Gentle (2003) <doi:10.1007/b97336>. The package can be provided without the rngWELL dependency on demand. Take a look at the Distribution task view of types and tests of random number generators. Version in Memoriam of Diethelm and Barbara Wuertz."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -514,6 +524,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -531,7 +542,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rngwell >=0.10_1"
    ]
   },
@@ -558,6 +568,7 @@
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "pkg-config",
@@ -575,7 +586,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rngwell"
    ]
