@@ -32,7 +32,7 @@
    "summary": "In contrast to RFC3548, the 62nd character (\"+\") is replaced with \"-\", the 63rd character (\"/\") is replaced with \"_\". Furthermore, the encoder does not fill the string with trailing \"=\". The resulting encoded strings comply to the regular expression pattern \"[A-Za-z0-9_-]\" and thus are safe to use in URLs or for file names. The package also comes with a simple base32 encoder/decoder suited for case insensitive file systems."
   },
   "build": {
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -51,6 +51,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -80,6 +81,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -113,7 +115,7 @@
    "summary": "In contrast to RFC3548, the 62nd character (\"+\") is replaced with \"-\", the 63rd character (\"/\") is replaced with \"_\". Furthermore, the encoder does not fill the string with trailing \"=\". The resulting encoded strings comply to the regular expression pattern \"[A-Za-z0-9_-]\" and thus are safe to use in URLs or for file names. The package also comes with a simple base32 encoder/decoder suited for case insensitive file systems."
   },
   "build": {
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -132,6 +134,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -161,6 +164,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -194,7 +198,7 @@
    "summary": "In contrast to RFC3548, the 62nd character (\"+\") is replaced with \"-\", the 63rd character (\"/\") is replaced with \"_\". Furthermore, the encoder does not fill the string with trailing \"=\". The resulting encoded strings comply to the regular expression pattern \"[A-Za-z0-9_-]\" and thus are safe to use in URLs or for file names. The package also comes with a simple base32 encoder/decoder suited for case insensitive file systems."
   },
   "build": {
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -213,6 +217,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -242,6 +247,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -275,8 +281,7 @@
    "summary": "In contrast to RFC3548, the 62nd character (\"+\") is replaced with \"-\", the 63rd character (\"/\") is replaced with \"_\". Furthermore, the encoder does not fill the string with trailing \"=\". The resulting encoded strings comply to the regular expression pattern \"[A-Za-z0-9_-]\" and thus are safe to use in URLs or for file names. The package also comes with a simple base32 encoder/decoder suited for case insensitive file systems."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -295,8 +300,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -308,8 +315,7 @@
    ],
    "run": [
     "r-base",
-    "r-backports >=1.1.0",
-    "gcc-libs"
+    "r-backports >=1.1.0"
    ]
   },
   "source": {
@@ -338,7 +344,7 @@
    "summary": "In contrast to RFC3548, the 62nd character (\"+\") is replaced with \"-\", the 63rd character (\"/\") is replaced with \"_\". Furthermore, the encoder does not fill the string with trailing \"=\". The resulting encoded strings comply to the regular expression pattern \"[A-Za-z0-9_-]\" and thus are safe to use in URLs or for file names. The package also comes with a simple base32 encoder/decoder suited for case insensitive file systems."
   },
   "build": {
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -357,6 +363,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -386,6 +393,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -425,15 +433,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-base64url.json"
  },
- "raw_meta_yaml": "{% set version = '1.4' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-base64url\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/base64url_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/base64url/base64url_{{ version }}.tar.gz\n  sha256: 1d058f138660e9155ebb331d7a2561e2541ee3321b8da90f6c41fd8dcc122c58\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 1006\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-backports >=1.1.0\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-backports >=1.1.0\n\ntest:\n  commands:\n    - $R -e \"library('base64url')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('base64url')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/mllg/base64url\n  license: GPL-3.0-only\n  summary: In contrast to RFC3548, the 62nd character (\"+\") is replaced with \"-\", the 63rd character\n    (\"/\") is replaced with \"_\". Furthermore, the encoder does not fill the string with\n    trailing \"=\". The resulting encoded strings comply to the regular expression pattern\n    \"[A-Za-z0-9_-]\" and thus are safe to use in URLs or for file names. The package\n    also comes with a simple base32 encoder/decoder suited for case insensitive file\n    systems.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - nick-youngblut\n",
+ "raw_meta_yaml": "{% set version = '1.4' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-base64url\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/base64url_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/base64url/base64url_{{ version }}.tar.gz\n  sha256: 1d058f138660e9155ebb331d7a2561e2541ee3321b8da90f6c41fd8dcc122c58\n\nbuild:\n  number: 1007\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-backports >=1.1.0\n  run:\n    - r-base\n    - r-backports >=1.1.0\n\ntest:\n  commands:\n    - $R -e \"library('base64url')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('base64url')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/mllg/base64url\n  license: GPL-3.0-only\n  summary: In contrast to RFC3548, the 62nd character (\"+\") is replaced with \"-\", the 63rd character\n    (\"/\") is replaced with \"_\". Furthermore, the encoder does not fill the string with\n    trailing \"=\". The resulting encoded strings comply to the regular expression pattern\n    \"[A-Za-z0-9_-]\" and thus are safe to use in URLs or for file names. The package\n    also comes with a simple base32 encoder/decoder suited for case insensitive file\n    systems.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - nick-youngblut\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-backports",
    "r-base",
@@ -446,9 +455,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -458,6 +469,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-backports",
     "r-base"
    ]
@@ -466,7 +478,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-backports",
     "r-base"
    ]
@@ -482,9 +494,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -500,7 +514,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-backports >=1.1.0",
     "r-base"
    ]
@@ -537,8 +550,7 @@
    "summary": "In contrast to RFC3548, the 62nd character (\"+\") is replaced with \"-\", the 63rd character (\"/\") is replaced with \"_\". Furthermore, the encoder does not fill the string with trailing \"=\". The resulting encoded strings comply to the regular expression pattern \"[A-Za-z0-9_-]\" and thus are safe to use in URLs or for file names. The package also comes with a simple base32 encoder/decoder suited for case insensitive file systems."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -557,6 +569,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -569,7 +582,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-backports >=1.1.0"
    ]
   },
@@ -593,6 +605,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -608,7 +621,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-backports",
     "r-base"
    ]
