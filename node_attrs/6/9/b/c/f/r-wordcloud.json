@@ -30,7 +30,7 @@
    "summary": "Functionality to create pretty word clouds, visualize differences and similarity between documents, and avoid over-plotting in scatter plots with text."
   },
   "build": {
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -48,6 +48,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -80,6 +81,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -114,7 +116,7 @@
    "summary": "Functionality to create pretty word clouds, visualize differences and similarity between documents, and avoid over-plotting in scatter plots with text."
   },
   "build": {
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -132,6 +134,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -164,6 +167,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -198,7 +202,7 @@
    "summary": "Functionality to create pretty word clouds, visualize differences and similarity between documents, and avoid over-plotting in scatter plots with text."
   },
   "build": {
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -216,6 +220,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -248,6 +253,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -282,8 +288,7 @@
    "summary": "Functionality to create pretty word clouds, visualize differences and similarity between documents, and avoid over-plotting in scatter plots with text."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -301,9 +306,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -318,8 +325,7 @@
    "run": [
     "r-base",
     "r-rcolorbrewer",
-    "r-rcpp >=0.9.4",
-    "gcc-libs"
+    "r-rcpp >=0.9.4"
    ]
   },
   "source": {
@@ -346,7 +352,7 @@
    "summary": "Functionality to create pretty word clouds, visualize differences and similarity between documents, and avoid over-plotting in scatter plots with text."
   },
   "build": {
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -364,6 +370,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -396,6 +403,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -438,16 +446,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-wordcloud.json"
  },
- "raw_meta_yaml": "{% set version = '2.6' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-wordcloud\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/wordcloud_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/wordcloud/wordcloud_{{ version }}.tar.gz\n  sha256: 53716954430acd4f164bfd8eacd7068a908ee3358293ded6cd992d53b7f72649\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 4\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcolorbrewer\n    - r-rcpp >=0.9.4\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcolorbrewer\n    - r-rcpp >=0.9.4\n\ntest:\n  commands:\n    - $R -e \"library('wordcloud')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('wordcloud')\\\"\"  # [win]\n\nabout:\n  home: http://blog.fellstat.com/?cat=11 http://www.fellstat.com\n  license: LGPL-2.1-only\n  summary: Functionality to create pretty word clouds, visualize differences and similarity between\n    documents, and avoid over-plotting in scatter plots with text.\n  license_family: LGPL\n  license_file: '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/LGPL-2.1'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: wordcloud\n# Type: Package\n# Title: Word Clouds\n# Version: 2.6\n# Author: Ian Fellows\n# Maintainer: Ian Fellows <ian@fellstat.com>\n# Description: Functionality to create pretty word clouds, visualize differences and similarity between documents, and avoid over-plotting in scatter plots with text.\n# License: LGPL-2.1\n# LazyLoad: yes\n# Depends: methods, RColorBrewer\n# Imports: Rcpp (>= 0.9.4)\n# Suggests: tm (>= 0.6), slam\n# URL: http://blog.fellstat.com/?cat=11 http://www.fellstat.com\n# LinkingTo: Rcpp\n# NeedsCompilation: yes\n# Packaged: 2018-08-24 18:57:30 UTC; ianfellows\n# Repository: CRAN\n# Date/Publication: 2018-08-24 19:20:03 UTC\n",
+ "raw_meta_yaml": "{% set version = '2.6' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-wordcloud\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/wordcloud_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/wordcloud/wordcloud_{{ version }}.tar.gz\n  sha256: 53716954430acd4f164bfd8eacd7068a908ee3358293ded6cd992d53b7f72649\n\nbuild:\n  number: 5\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcolorbrewer\n    - r-rcpp >=0.9.4\n  run:\n    - r-base\n    - r-rcolorbrewer\n    - r-rcpp >=0.9.4\n\ntest:\n  commands:\n    - $R -e \"library('wordcloud')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('wordcloud')\\\"\"  # [win]\n\nabout:\n  home: http://blog.fellstat.com/?cat=11 http://www.fellstat.com\n  license: LGPL-2.1-only\n  summary: Functionality to create pretty word clouds, visualize differences and similarity between\n    documents, and avoid over-plotting in scatter plots with text.\n  license_family: LGPL\n  license_file: '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/LGPL-2.1'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: wordcloud\n# Type: Package\n# Title: Word Clouds\n# Version: 2.6\n# Author: Ian Fellows\n# Maintainer: Ian Fellows <ian@fellstat.com>\n# Description: Functionality to create pretty word clouds, visualize differences and similarity between documents, and avoid over-plotting in scatter plots with text.\n# License: LGPL-2.1\n# LazyLoad: yes\n# Depends: methods, RColorBrewer\n# Imports: Rcpp (>= 0.9.4)\n# Suggests: tm (>= 0.6), slam\n# URL: http://blog.fellstat.com/?cat=11 http://www.fellstat.com\n# LinkingTo: Rcpp\n# NeedsCompilation: yes\n# Packaged: 2018-08-24 18:57:30 UTC; ianfellows\n# Repository: CRAN\n# Date/Publication: 2018-08-24 19:20:03 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -462,10 +471,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -476,6 +487,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-rcolorbrewer",
@@ -486,8 +498,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-rcolorbrewer",
     "r-rcpp"
@@ -504,10 +516,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -525,7 +539,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcolorbrewer",
     "r-rcpp >=0.9.4"
@@ -561,8 +574,7 @@
    "summary": "Functionality to create pretty word clouds, visualize differences and similarity between documents, and avoid over-plotting in scatter plots with text."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -580,6 +592,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -594,7 +607,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcolorbrewer",
     "r-rcpp >=0.9.4"
    ]
@@ -619,6 +631,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -636,7 +649,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcolorbrewer",
     "r-rcpp"
