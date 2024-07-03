@@ -32,7 +32,7 @@
    "summary": "Determine the full path of the executing script."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -111,7 +111,7 @@
    "summary": "Determine the full path of the executing script."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -190,7 +190,7 @@
    "summary": "Determine the full path of the executing script."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -269,8 +269,7 @@
    "summary": "Determine the full path of the executing script."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -301,8 +300,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -332,7 +330,7 @@
    "summary": "Determine the full path of the executing script."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -416,7 +414,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-this.path.json"
  },
- "raw_meta_yaml": "{% set version = \"2.5.0\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-this.path\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/this.path_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/this.path/this.path_{{ version }}.tar.gz\n  sha256: 17e466e46762ee2b348335676e3fee791140112022c18dfe34f151ac8da89345\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('this.path')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('this.path')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/ArcadeAntics/this.path\n  license: MIT\n  summary: Determine the full path of the executing script.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: this.path\n# Version: 1.0.1\n# License: MIT + file LICENSE\n# Title: Get Executing Script's Path, from 'RStudio', 'Rgui', 'VSCode', 'Rscript' (Shells Including Windows Command-Line / / Unix Terminal), and 'source'\n# Description: Determine the full path of the executing script. Works when running a line or selection from a script in 'RStudio', 'Rgui', and 'VSCode', when using 'source', 'sys.source', 'debugSource' in 'RStudio', and 'testthat::source_file', and when running from a shell.\n# Author: Andrew Simmons\n# Maintainer: Andrew Simmons <akwsimmo@gmail.com>\n# Suggests: utils, microbenchmark\n# Enhances: rprojroot, rstudioapi, testthat\n# URL: https://github.com/ArcadeAntics/this.path\n# BugReports: https://github.com/ArcadeAntics/this.path/issues\n# Encoding: UTF-8\n# NeedsCompilation: yes\n# Packaged: 2022-09-22 07:19:05 UTC; andre\n# Repository: CRAN\n# Date/Publication: 2022-09-23 11:20:02 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.5.0\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-this.path\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/this.path_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/this.path/this.path_{{ version }}.tar.gz\n  sha256: 17e466e46762ee2b348335676e3fee791140112022c18dfe34f151ac8da89345\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('this.path')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('this.path')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/ArcadeAntics/this.path\n  license: MIT\n  summary: Determine the full path of the executing script.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: this.path\n# Version: 1.0.1\n# License: MIT + file LICENSE\n# Title: Get Executing Script's Path, from 'RStudio', 'Rgui', 'VSCode', 'Rscript' (Shells Including Windows Command-Line / / Unix Terminal), and 'source'\n# Description: Determine the full path of the executing script. Works when running a line or selection from a script in 'RStudio', 'Rgui', and 'VSCode', when using 'source', 'sys.source', 'debugSource' in 'RStudio', and 'testthat::source_file', and when running from a shell.\n# Author: Andrew Simmons\n# Maintainer: Andrew Simmons <akwsimmo@gmail.com>\n# Suggests: utils, microbenchmark\n# Enhances: rprojroot, rstudioapi, testthat\n# URL: https://github.com/ArcadeAntics/this.path\n# BugReports: https://github.com/ArcadeAntics/this.path/issues\n# Encoding: UTF-8\n# NeedsCompilation: yes\n# Packaged: 2022-09-22 07:19:05 UTC; andre\n# Repository: CRAN\n# Date/Publication: 2022-09-23 11:20:02 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -424,7 +422,6 @@
    "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
    "m2w64_c_stdlib_stub",
    "make",
@@ -461,7 +458,6 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -495,7 +491,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -532,8 +527,7 @@
    "summary": "Determine the full path of the executing script."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -562,8 +556,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -601,7 +594,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
