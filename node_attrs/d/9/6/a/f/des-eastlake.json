@@ -31,7 +31,7 @@
    "summary": "Y6 processing pipelines for balrog and image sims"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -45,6 +45,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "gnuconfig"
    ],
@@ -122,6 +123,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "gnuconfig",
     "make"
    ]
@@ -197,7 +199,7 @@
    "summary": "Y6 processing pipelines for balrog and image sims"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -211,6 +213,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "gnuconfig"
    ],
@@ -298,7 +301,7 @@
    "summary": "Y6 processing pipelines for balrog and image sims"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -312,6 +315,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "gnuconfig"
    ],
@@ -389,6 +393,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "gnuconfig",
     "make"
    ]
@@ -464,7 +469,7 @@
    "summary": "Y6 processing pipelines for balrog and image sims"
   },
   "build": {
-   "number": "1"
+   "number": "2"
   },
   "extra": {
    "recipe-maintainers": [
@@ -478,6 +483,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "gnuconfig"
    ],
@@ -555,6 +561,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "gnuconfig",
     "make"
    ]
@@ -631,7 +638,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/des-eastlake.json"
  },
- "raw_meta_yaml": "{% set name = \"des-eastlake\" %}\n{% set version = \"0.8.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/des-science/eastlake/archive/refs/tags/{{ version }}.tar.gz\n  sha256: a9867011d8715571d97973078a1742df14643b5420842112c70a49529e714028\n  patches:\n    - 0000_updated_autotools_guess.patch\n\nbuild:\n  # this recipe is not noarch due to using the scripts kwarg w/ setuptools\n  skip: true  # [win]\n  number: 1\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - make\n    - gnuconfig  # [unix]\n  host:\n    - python\n    - pip\n    - setuptools_scm\n    - setuptools_scm_git_archive\n    - fftw\n    - libtool\n    - autoconf\n    - automake\n    - cfitsio\n    # only builds against openblas\n    - openblas\n  run:\n    - libblas * *openblas\n    - libcblas * *openblas\n    - liblapack * *openblas\n    - liblapacke * *openblas\n    - openblas\n    - libopenblas\n    - python\n    - astropy\n    - cfitsio  # for fpack and builds\n    - des-desmeds >=0.9.17\n    - des-pixcorrect\n    - des-pizza-cutter-metadetect\n    - esutil\n    - fitsio\n    - galsim\n    - h5py\n    - importlib_metadata\n    - joblib\n    - lsstdesc-coord\n    - matplotlib-base\n    - meds\n    - metadetect\n    - ngmix\n    - numpy\n    - numba\n    - piff\n    - pixmappy\n    - psfex\n    - pyyaml\n    - scipy\n    - setuptools\n    - tqdm\n  run_constrained:\n    - des_montara >=0.7.0\n\ntest:\n  imports:\n    - eastlake\n  commands:\n    - eastlake-swarp -dd\n    - eastlake-src-extractor -dd\n    - run-eastlake-sim --help\n    - python -c \"import eastlake; assert eastlake.__version__ == '{{ version }}'\"\n\nabout:\n  home: https://github.com/des-science/eastlake\n  license: BSD-3-Clause AND GPL-3.0-only\n  license_file:\n    - LICENSE\n    - LICENSE-srcex\n    - LICENSE-swarp\n    - COPYRIGHT-srcex\n    - COPYRIGHT-swarp\n  summary: Y6 processing pipelines for balrog and image sims\n\nextra:\n  recipe-maintainers:\n    - beckermr\n",
+ "raw_meta_yaml": "{% set name = \"des-eastlake\" %}\n{% set version = \"0.8.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/des-science/eastlake/archive/refs/tags/{{ version }}.tar.gz\n  sha256: a9867011d8715571d97973078a1742df14643b5420842112c70a49529e714028\n  patches:\n    - 0000_updated_autotools_guess.patch\n\nbuild:\n  # this recipe is not noarch due to using the scripts kwarg w/ setuptools\n  skip: true  # [win or py >= 312 or py <= 38]\n  number: 2\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - make\n    - gnuconfig  # [unix]\n  host:\n    - python\n    - pip\n    - setuptools_scm\n    - setuptools_scm_git_archive\n    - fftw\n    - libtool\n    - autoconf\n    - automake\n    - cfitsio\n    # only builds against openblas\n    - openblas\n  run:\n    - libblas * *openblas\n    - libcblas * *openblas\n    - liblapack * *openblas\n    - liblapacke * *openblas\n    - openblas\n    - libopenblas\n    - python\n    - astropy\n    - cfitsio  # for fpack and builds\n    - des-desmeds >=0.9.17\n    - des-pixcorrect\n    - des-pizza-cutter-metadetect\n    - esutil\n    - fitsio\n    - galsim\n    - h5py\n    - importlib_metadata\n    - joblib\n    - lsstdesc-coord\n    - matplotlib-base\n    - meds\n    - metadetect\n    - ngmix\n    - numpy\n    - numba\n    - piff\n    - pixmappy\n    - psfex\n    - pyyaml\n    - scipy\n    - setuptools\n    - tqdm\n  run_constrained:\n    - des_montara >=0.7.0\n\ntest:\n  imports:\n    - eastlake\n  commands:\n    - eastlake-swarp -dd\n    - eastlake-src-extractor -dd\n    - run-eastlake-sim --help\n    - python -c \"import eastlake; assert eastlake.__version__ == '{{ version }}'\"\n\nabout:\n  home: https://github.com/des-science/eastlake\n  license: BSD-3-Clause AND GPL-3.0-only\n  license_file:\n    - LICENSE\n    - LICENSE-srcex\n    - LICENSE-swarp\n    - COPYRIGHT-srcex\n    - COPYRIGHT-swarp\n  summary: Y6 processing pipelines for balrog and image sims\n\nextra:\n  recipe-maintainers:\n    - beckermr\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -639,6 +646,7 @@
    "autoconf",
    "automake",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cfitsio",
    "des-desmeds",
    "des-pixcorrect",
@@ -684,6 +692,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "gnuconfig",
     "make"
    ]
@@ -694,6 +703,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cfitsio",
     "fftw",
     "libtool",
@@ -709,6 +719,7 @@
    "elements": [
     "astropy",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cfitsio",
     "des-desmeds",
     "des-pixcorrect",
@@ -753,6 +764,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "gnuconfig",
     "make"
    ]

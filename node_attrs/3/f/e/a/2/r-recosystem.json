@@ -28,7 +28,7 @@
    "summary": "R wrapper of the 'libmf' library <https://www.csie.ntu.edu.tw/~cjlin/libmf/> for recommender system using matrix factorization. It is typically used to approximate an incomplete matrix using the product of two matrices in a latent space. Other common names for this task include \"collaborative filtering\", \"matrix completion\", \"matrix recovery\", etc. High performance multi-core parallel computing is supported in this package."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -81,6 +82,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -121,8 +123,7 @@
    "summary": "R wrapper of the 'libmf' library <https://www.csie.ntu.edu.tw/~cjlin/libmf/> for recommender system using matrix factorization. It is typically used to approximate an incomplete matrix using the product of two matrices in a latent space. Other common names for this task include \"collaborative filtering\", \"matrix completion\", \"matrix recovery\", etc. High performance multi-core parallel computing is supported in this package."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -140,9 +141,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -161,8 +164,7 @@
     "r-base",
     "r-rcpp >=0.11.0",
     "r-rcppprogress",
-    "r-float",
-    "gcc-libs"
+    "r-float"
    ]
   },
   "source": {
@@ -192,7 +194,7 @@
    "summary": "R wrapper of the 'libmf' library <https://www.csie.ntu.edu.tw/~cjlin/libmf/> for recommender system using matrix factorization. It is typically used to approximate an incomplete matrix using the product of two matrices in a latent space. Other common names for this task include \"collaborative filtering\", \"matrix completion\", \"matrix recovery\", etc. High performance multi-core parallel computing is supported in this package."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -210,6 +212,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -245,6 +248,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -288,18 +292,19 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-recosystem.json"
  },
- "raw_meta_yaml": "{% set version = \"0.5.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-recosystem\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/recosystem_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/recosystem/recosystem_{{ version }}.tar.gz\n  sha256: 5207d76d899368472043e5a6a99eb3f260a806ce02afa41733c0b4cd6fc8a805\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - _openmp_mutex                # [linux]\n    - llvm-openmp                  # [osx]\n    - r-base\n    - r-rcpp >=0.11.0\n    - r-rcppprogress\n    - r-float\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp >=0.11.0\n    - r-rcppprogress\n    - r-float\n\ntest:\n  commands:\n    - $R -e \"library('recosystem')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('recosystem')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/yixuan/recosystem\n  license: BSD-3-Clause\n  summary: R wrapper of the 'libmf' library <https://www.csie.ntu.edu.tw/~cjlin/libmf/> for recommender system using matrix factorization. It is typically used to approximate an incomplete matrix using the product of two matrices in a latent space. Other common names for this task include \"collaborative filtering\", \"matrix\n    completion\", \"matrix recovery\", etc. High performance multi-core parallel computing is supported in this package.\n  license_family: BSD\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/BSD_3_clause\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.5.1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-recosystem\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/recosystem_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/recosystem/recosystem_{{ version }}.tar.gz\n  sha256: 5207d76d899368472043e5a6a99eb3f260a806ce02afa41733c0b4cd6fc8a805\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - _openmp_mutex                # [linux]\n    - llvm-openmp                  # [osx]\n    - r-base\n    - r-rcpp >=0.11.0\n    - r-rcppprogress\n    - r-float\n  run:\n    - r-base\n    - r-rcpp >=0.11.0\n    - r-rcppprogress\n    - r-float\n\ntest:\n  commands:\n    - $R -e \"library('recosystem')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('recosystem')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/yixuan/recosystem\n  license: BSD-3-Clause\n  summary: R wrapper of the 'libmf' library <https://www.csie.ntu.edu.tw/~cjlin/libmf/> for recommender system using matrix factorization. It is typically used to approximate an incomplete matrix using the product of two matrices in a latent space. Other common names for this task include \"collaborative filtering\", \"matrix\n    completion\", \"matrix recovery\", etc. High performance multi-core parallel computing is supported in this package.\n  license_family: BSD\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/BSD_3_clause\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "_openmp_mutex",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "llvm-openmp",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -315,10 +320,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -330,6 +337,7 @@
    "elements": [
     "_openmp_mutex",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "llvm-openmp",
@@ -344,9 +352,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
-    "gcc-libs",
     "openmp",
     "r-base",
     "r-float",
@@ -365,10 +373,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -389,7 +399,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-float",
     "r-rcpp >=0.11.0",
@@ -425,8 +434,7 @@
    "summary": "R wrapper of the 'libmf' library <https://www.csie.ntu.edu.tw/~cjlin/libmf/> for recommender system using matrix factorization. It is typically used to approximate an incomplete matrix using the product of two matrices in a latent space. Other common names for this task include \"collaborative filtering\", \"matrix completion\", \"matrix recovery\", etc. High performance multi-core parallel computing is supported in this package."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -444,6 +452,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -459,7 +468,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp >=0.11.0",
     "r-rcppprogress",
     "r-float"
@@ -485,6 +493,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -503,7 +512,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-float",
     "r-rcpp",
