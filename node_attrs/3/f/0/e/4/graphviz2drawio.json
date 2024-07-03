@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "hint-all"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -16,11 +19,11 @@
  "linux_64_meta_yaml": {
   "about": {
    "dev_url": "https://github.com/hbmartin/graphviz2drawio",
-   "doc_source_url": "https://github.com/hbmartin/graphviz2drawio/tree/v0.2.0/doc/source",
+   "doc_source_url": "https://github.com/hbmartin/graphviz2drawio/tree/v0.3.0/doc/source",
    "doc_url": "https://graphviz2drawio.readthedocs.io",
    "home": "https://github.com/hbmartin/graphviz2drawio",
    "license": "GPL-3.0-or-later",
-   "license_file": "src/LICENSE.md",
+   "license_file": "dist/LICENSE.md",
    "summary": "Convert graphviz (dot) files into draw.io (mxGraph) format"
   },
   "build": {
@@ -29,7 +32,7 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "cd dist && PYTHON -m pip install . -vv"
+   "script": "cd dist && PYTHON -m pip install . -vv --no-build-isolation --no-deps"
   },
   "extra": {
    "recipe-maintainers": [
@@ -38,16 +41,16 @@
   },
   "package": {
    "name": "graphviz2drawio",
-   "version": "0.2.0"
+   "version": "0.3.0"
   },
   "requirements": {
    "host": [
     "pip",
-    "python >=3.5"
+    "python >=3.10"
    ],
    "run": [
     "pygraphviz",
-    "python >=3.5",
+    "python >=3.10",
     "raven",
     "svg.path"
    ]
@@ -55,13 +58,13 @@
   "source": [
    {
     "folder": "dist",
-    "sha256": "a74334f51ccf72d197cc4bfed2621068a47f60b03fee5876ffc7dafe0cfbe946",
-    "url": "https://pypi.io/packages/source/g/graphviz2drawio/graphviz2drawio-0.2.0.tar.gz"
+    "sha256": "dc068c92b73bee70d5cbf01518b15566db0973e2850df7c3bfb18a3be048290b",
+    "url": "https://pypi.io/packages/source/g/graphviz2drawio/graphviz2drawio-0.3.0.tar.gz"
    },
    {
     "folder": "src",
-    "sha256": "96cca81190451d1a4dcee039c3efc32ff468f954e09e68f570c4ee71069ccf77",
-    "url": "https://github.com/hbmartin/graphviz2drawio/archive/v0.2.0.tar.gz"
+    "sha256": "95aa3836cf2eae730a4e9d80970145d40d77ad9f7ebeccd8df16ac81e60ae435",
+    "url": "https://github.com/hbmartin/graphviz2drawio/archive/v0.3.0.tar.gz"
    }
   ],
   "test": {
@@ -70,7 +73,8 @@
     "graphviz2drawio --version",
     "graphviz2drawio --help",
     "graphviz2drawio src/test/directed/hello.gv.txt",
-    "cd src/test && python -m pytest -vv -s --tb=short --cov graphviz2drawio --cov-fail-under 77 --no-cov-on-fail --cov-report term-missing:skip-covered"
+    "cd src && coverage run --source=graphviz2drawio --branch -m pytest -vv --tb=long --color=yes",
+    "coverage report --show-missing --skip-covered --fail-under=74"
    ],
    "imports": [
     "graphviz2drawio",
@@ -78,7 +82,8 @@
    ],
    "requires": [
     "pip",
-    "pytest-cov"
+    "pytest",
+    "coverage"
    ],
    "source_files": [
     "src/test"
@@ -109,19 +114,20 @@
   "test": {
    "__set__": true,
    "elements": [
+    "coverage",
     "pip",
-    "pytest-cov"
+    "pytest"
    ]
   }
  },
  "meta_yaml": {
   "about": {
    "dev_url": "https://github.com/hbmartin/graphviz2drawio",
-   "doc_source_url": "https://github.com/hbmartin/graphviz2drawio/tree/v0.2.0/doc/source",
+   "doc_source_url": "https://github.com/hbmartin/graphviz2drawio/tree/v0.3.0/doc/source",
    "doc_url": "https://graphviz2drawio.readthedocs.io",
    "home": "https://github.com/hbmartin/graphviz2drawio",
    "license": "GPL-3.0-or-later",
-   "license_file": "src/LICENSE.md",
+   "license_file": "dist/LICENSE.md",
    "summary": "Convert graphviz (dot) files into draw.io (mxGraph) format"
   },
   "build": {
@@ -130,7 +136,7 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "cd dist && PYTHON -m pip install . -vv"
+   "script": "cd dist && PYTHON -m pip install . -vv --no-build-isolation --no-deps"
   },
   "extra": {
    "recipe-maintainers": [
@@ -139,16 +145,16 @@
   },
   "package": {
    "name": "graphviz2drawio",
-   "version": "0.2.0"
+   "version": "0.3.0"
   },
   "requirements": {
    "host": [
     "pip",
-    "python >=3.5"
+    "python >=3.10"
    ],
    "run": [
     "pygraphviz",
-    "python >=3.5",
+    "python >=3.10",
     "raven",
     "svg.path"
    ]
@@ -156,13 +162,13 @@
   "source": [
    {
     "folder": "dist",
-    "sha256": "a74334f51ccf72d197cc4bfed2621068a47f60b03fee5876ffc7dafe0cfbe946",
-    "url": "https://pypi.io/packages/source/g/graphviz2drawio/graphviz2drawio-0.2.0.tar.gz"
+    "sha256": "dc068c92b73bee70d5cbf01518b15566db0973e2850df7c3bfb18a3be048290b",
+    "url": "https://pypi.io/packages/source/g/graphviz2drawio/graphviz2drawio-0.3.0.tar.gz"
    },
    {
     "folder": "src",
-    "sha256": "96cca81190451d1a4dcee039c3efc32ff468f954e09e68f570c4ee71069ccf77",
-    "url": "https://github.com/hbmartin/graphviz2drawio/archive/v0.2.0.tar.gz"
+    "sha256": "95aa3836cf2eae730a4e9d80970145d40d77ad9f7ebeccd8df16ac81e60ae435",
+    "url": "https://github.com/hbmartin/graphviz2drawio/archive/v0.3.0.tar.gz"
    }
   ],
   "test": {
@@ -171,7 +177,8 @@
     "graphviz2drawio --version",
     "graphviz2drawio --help",
     "graphviz2drawio src/test/directed/hello.gv.txt",
-    "cd src/test && python -m pytest -vv -s --tb=short --cov graphviz2drawio --cov-fail-under 77 --no-cov-on-fail --cov-report term-missing:skip-covered"
+    "cd src && coverage run --source=graphviz2drawio --branch -m pytest -vv --tb=long --color=yes",
+    "coverage report --show-missing --skip-covered --fail-under=74"
    ],
    "imports": [
     "graphviz2drawio",
@@ -179,7 +186,8 @@
    ],
    "requires": [
     "pip",
-    "pytest-cov"
+    "pytest",
+    "coverage"
    ],
    "source_files": [
     "src/test"
@@ -200,7 +208,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/graphviz2drawio.json"
  },
- "raw_meta_yaml": "{% set name = \"graphviz2drawio\" %}\n{% set version = \"0.2.0\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  - folder: dist\n    url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n    sha256: a74334f51ccf72d197cc4bfed2621068a47f60b03fee5876ffc7dafe0cfbe946\n  - folder: src\n    url: https://github.com/hbmartin/graphviz2drawio/archive/v{{ version }}.tar.gz\n    sha256: 96cca81190451d1a4dcee039c3efc32ff468f954e09e68f570c4ee71069ccf77\n\nbuild:\n  number: 0\n  noarch: python\n  entry_points:\n    - graphviz2drawio=graphviz2drawio.__main__:main\n  script: cd dist && {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - pip\n    - python >=3.5\n  run:\n    - pygraphviz\n    - python >=3.5\n    - raven\n    - svg.path\n\ntest:\n  source_files:\n    - src/test\n  imports:\n    - graphviz2drawio\n    - graphviz2drawio.graphviz2drawio\n  commands:\n    - pip check\n    - graphviz2drawio --version\n    - graphviz2drawio --help\n    - graphviz2drawio src/test/directed/hello.gv.txt\n    #    uses relative paths                 segfaults otherwise\n    #    |                                   |\n    - cd src/test && python -m pytest -vv -s --tb=short --cov graphviz2drawio --cov-fail-under 77 --no-cov-on-fail --cov-report term-missing:skip-covered\n  requires:\n    - pip\n    - pytest-cov\n\nabout:\n  home: https://github.com/hbmartin/graphviz2drawio\n  summary: Convert graphviz (dot) files into draw.io (mxGraph) format\n  dev_url: https://github.com/hbmartin/graphviz2drawio\n  license: GPL-3.0-or-later\n  # TODO: remove after https://github.com/hbmartin/graphviz2drawio/pull/35\n  license_file: src/LICENSE.md\n  doc_url: https://graphviz2drawio.readthedocs.io\n  doc_source_url: https://github.com/hbmartin/graphviz2drawio/tree/v{{ version }}/doc/source\n\nextra:\n  recipe-maintainers:\n    - bollwyvl\n",
+ "raw_meta_yaml": "{% set version = \"0.3.0\" %}\n\npackage:\n  name: graphviz2drawio\n  version: {{ version }}\n\nsource:\n  - folder: dist\n    url: https://pypi.io/packages/source/g/graphviz2drawio/graphviz2drawio-{{ version }}.tar.gz\n    sha256: dc068c92b73bee70d5cbf01518b15566db0973e2850df7c3bfb18a3be048290b\n  - folder: src\n    url: https://github.com/hbmartin/graphviz2drawio/archive/v{{ version }}.tar.gz\n    sha256: 95aa3836cf2eae730a4e9d80970145d40d77ad9f7ebeccd8df16ac81e60ae435\n\nbuild:\n  number: 0\n  noarch: python\n  script: cd dist && {{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps\n  entry_points:\n    - graphviz2drawio=graphviz2drawio.__main__:main\n\nrequirements:\n  host:\n    - pip\n    - python >=3.10\n  run:\n    - pygraphviz\n    - python >=3.10\n    - raven\n    - svg.path\n\ntest:\n  source_files:\n    - src/test\n  imports:\n    - graphviz2drawio\n    - graphviz2drawio.graphviz2drawio\n  commands:\n    - pip check\n    - graphviz2drawio --version\n    - graphviz2drawio --help\n    - graphviz2drawio src/test/directed/hello.gv.txt\n    - cd src && coverage run --source=graphviz2drawio --branch -m pytest -vv --tb=long --color=yes\n    - coverage report --show-missing --skip-covered --fail-under=74\n  requires:\n    - pip\n    - pytest\n    - coverage\n\nabout:\n  home: https://github.com/hbmartin/graphviz2drawio\n  summary: Convert graphviz (dot) files into draw.io (mxGraph) format\n  dev_url: https://github.com/hbmartin/graphviz2drawio\n  license: GPL-3.0-or-later\n  license_file: dist/LICENSE.md\n  doc_url: https://graphviz2drawio.readthedocs.io\n  doc_source_url: https://github.com/hbmartin/graphviz2drawio/tree/v{{ version }}/doc/source\n\nextra:\n  recipe-maintainers:\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -235,8 +243,9 @@
   "test": {
    "__set__": true,
    "elements": [
+    "coverage",
     "pip",
-    "pytest-cov"
+    "pytest"
    ]
   }
  },
@@ -250,14 +259,14 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.5"
+    "python >=3.10"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "pygraphviz",
-    "python >=3.5",
+    "python >=3.10",
     "raven",
     "svg.path"
    ]
@@ -265,13 +274,14 @@
   "test": {
    "__set__": true,
    "elements": [
+    "coverage",
     "pip",
-    "pytest-cov"
+    "pytest"
    ]
   }
  },
- "url": "https://pypi.io/packages/source/g/graphviz2drawio/graphviz2drawio-0.2.0.tar.gz",
- "version": "0.2.0",
+ "url": "https://pypi.io/packages/source/g/graphviz2drawio/graphviz2drawio-0.3.0.tar.gz",
+ "version": "0.3.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/graphviz2drawio.json"
  }
