@@ -27,7 +27,7 @@
    "summary": "Computes 46 optimized distance and similarity measures for comparing probability functions (Drost (2018) <doi:10.21105/joss.00765>). These comparisons between probability functions have their foundations in a broad range of scientific disciplines from mathematics to ecology. The aim of this package is to provide a core framework for clustering, classification, statistical inference, goodness-of-fit, non-parametric statistics, information theory, and machine learning tasks that are based on comparing univariate or multivariate probability functions."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -45,6 +45,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -79,6 +80,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -117,8 +119,7 @@
    "summary": "Computes 46 optimized distance and similarity measures for comparing probability functions (Drost (2018) <doi:10.21105/joss.00765>). These comparisons between probability functions have their foundations in a broad range of scientific disciplines from mathematics to ecology. The aim of this package is to provide a core framework for clustering, classification, statistical inference, goodness-of-fit, non-parametric statistics, information theory, and machine learning tasks that are based on comparing univariate or multivariate probability functions."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -136,9 +137,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -155,8 +158,7 @@
     "r-base",
     "r-kernsmooth",
     "r-rcpp",
-    "r-poorman",
-    "gcc-libs"
+    "r-poorman"
    ]
   },
   "source": {
@@ -185,7 +187,7 @@
    "summary": "Computes 46 optimized distance and similarity measures for comparing probability functions (Drost (2018) <doi:10.21105/joss.00765>). These comparisons between probability functions have their foundations in a broad range of scientific disciplines from mathematics to ecology. The aim of this package is to provide a core framework for clustering, classification, statistical inference, goodness-of-fit, non-parametric statistics, information theory, and machine learning tasks that are based on comparing univariate or multivariate probability functions."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -203,6 +205,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -237,6 +240,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -279,16 +283,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-philentropy.json"
  },
- "raw_meta_yaml": "{% set version = \"0.8.0\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-philentropy\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/philentropy_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/philentropy/philentropy_{{ version }}.tar.gz\n  sha256: 3aa6d4918168f4fe2c56ea3f26381b0ffc02f1d5b9b95e294bac1a34bf66be3e\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-kernsmooth\n    - r-rcpp\n    - r-poorman\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-kernsmooth\n    - r-rcpp\n    - r-poorman\n\ntest:\n  commands:\n    - $R -e \"library('philentropy')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('philentropy')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/HajkD/philentropy\n  license: GPL-2.0-only\n  summary: Computes 46 optimized distance and similarity measures for comparing probability functions (Drost (2018) <doi:10.21105/joss.00765>). These comparisons between probability functions have their foundations in a broad range of scientific disciplines from mathematics to ecology. The aim of this package is to provide\n    a core framework for clustering, classification, statistical inference, goodness-of-fit, non-parametric statistics, information theory, and machine learning tasks that are based on comparing univariate or multivariate probability functions.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: philentropy\n# Type: Package\n# Title: Similarity and Distance Quantification Between Probability Functions\n# Version: 0.4.0\n# Date: 2020-01-09\n# Authors@R: person(\"Hajk-Georg\", \"Drost\", role = c(\"aut\", \"cre\"), email = \"hajk-georg.drost@tuebingen.mpg.de\", comment = c(ORCID = \"http://orcid.org/0000-0002-1567-306X\"))\n# Maintainer: Hajk-Georg Drost <hajk-georg.drost@tuebingen.mpg.de>\n# Description: Computes 46 optimized distance and similarity measures for comparing probability functions (Drost (2018) <doi:10.21105/joss.00765>). These comparisons between probability functions have their foundations in a broad range of scientific disciplines from mathematics to ecology. The aim of this package is to provide a core framework for clustering, classification, statistical inference, goodness-of-fit, non-parametric statistics, information theory, and machine learning tasks that are based on comparing univariate or multivariate probability functions.\n# Depends: R (>= 3.1.2)\n# Imports: Rcpp, dplyr, KernSmooth\n# License: GPL-2\n# LazyData: true\n# LinkingTo: Rcpp\n# URL: https://github.com/HajkD/philentropy\n# Suggests: testthat, knitr\n# VignetteBuilder: knitr\n# BugReports: https://github.com/HajkD/philentropy/issues\n# RoxygenNote: 7.0.2\n# NeedsCompilation: yes\n# Packaged: 2020-01-09 14:20:07 UTC; hdrost\n# Author: Hajk-Georg Drost [aut, cre] (<https://orcid.org/0000-0002-1567-306X>)\n# Repository: CRAN\n# Date/Publication: 2020-01-10 00:00:03 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.8.0\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-philentropy\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/philentropy_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/philentropy/philentropy_{{ version }}.tar.gz\n  sha256: 3aa6d4918168f4fe2c56ea3f26381b0ffc02f1d5b9b95e294bac1a34bf66be3e\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-kernsmooth\n    - r-rcpp\n    - r-poorman\n  run:\n    - r-base\n    - r-kernsmooth\n    - r-rcpp\n    - r-poorman\n\ntest:\n  commands:\n    - $R -e \"library('philentropy')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('philentropy')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/HajkD/philentropy\n  license: GPL-2.0-only\n  summary: Computes 46 optimized distance and similarity measures for comparing probability functions (Drost (2018) <doi:10.21105/joss.00765>). These comparisons between probability functions have their foundations in a broad range of scientific disciplines from mathematics to ecology. The aim of this package is to provide\n    a core framework for clustering, classification, statistical inference, goodness-of-fit, non-parametric statistics, information theory, and machine learning tasks that are based on comparing univariate or multivariate probability functions.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: philentropy\n# Type: Package\n# Title: Similarity and Distance Quantification Between Probability Functions\n# Version: 0.4.0\n# Date: 2020-01-09\n# Authors@R: person(\"Hajk-Georg\", \"Drost\", role = c(\"aut\", \"cre\"), email = \"hajk-georg.drost@tuebingen.mpg.de\", comment = c(ORCID = \"http://orcid.org/0000-0002-1567-306X\"))\n# Maintainer: Hajk-Georg Drost <hajk-georg.drost@tuebingen.mpg.de>\n# Description: Computes 46 optimized distance and similarity measures for comparing probability functions (Drost (2018) <doi:10.21105/joss.00765>). These comparisons between probability functions have their foundations in a broad range of scientific disciplines from mathematics to ecology. The aim of this package is to provide a core framework for clustering, classification, statistical inference, goodness-of-fit, non-parametric statistics, information theory, and machine learning tasks that are based on comparing univariate or multivariate probability functions.\n# Depends: R (>= 3.1.2)\n# Imports: Rcpp, dplyr, KernSmooth\n# License: GPL-2\n# LazyData: true\n# LinkingTo: Rcpp\n# URL: https://github.com/HajkD/philentropy\n# Suggests: testthat, knitr\n# VignetteBuilder: knitr\n# BugReports: https://github.com/HajkD/philentropy/issues\n# RoxygenNote: 7.0.2\n# NeedsCompilation: yes\n# Packaged: 2020-01-09 14:20:07 UTC; hdrost\n# Author: Hajk-Georg Drost [aut, cre] (<https://orcid.org/0000-0002-1567-306X>)\n# Repository: CRAN\n# Date/Publication: 2020-01-10 00:00:03 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -304,10 +309,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -318,6 +325,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-kernsmooth",
@@ -329,8 +337,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-kernsmooth",
     "r-poorman",
@@ -348,10 +356,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -370,7 +380,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-kernsmooth",
     "r-poorman",
@@ -405,8 +414,7 @@
    "summary": "Computes 46 optimized distance and similarity measures for comparing probability functions (Drost (2018) <doi:10.21105/joss.00765>). These comparisons between probability functions have their foundations in a broad range of scientific disciplines from mathematics to ecology. The aim of this package is to provide a core framework for clustering, classification, statistical inference, goodness-of-fit, non-parametric statistics, information theory, and machine learning tasks that are based on comparing univariate or multivariate probability functions."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -424,6 +432,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -439,7 +448,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-kernsmooth",
     "r-rcpp",
     "r-poorman"
@@ -465,6 +473,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -483,7 +492,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-kernsmooth",
     "r-poorman",
