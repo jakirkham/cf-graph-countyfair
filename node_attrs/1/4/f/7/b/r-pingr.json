@@ -35,7 +35,7 @@
    "summary": "Check if a remote computer is up. It can either just call the system ping command, or check a specified TCP port."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -53,6 +53,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -82,6 +83,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -116,8 +118,7 @@
    "summary": "Check if a remote computer is up. It can either just call the system ping command, or check a specified TCP port."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -135,8 +136,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -148,8 +151,7 @@
    ],
    "run": [
     "r-base",
-    "r-processx",
-    "gcc-libs"
+    "r-processx"
    ]
   },
   "source": {
@@ -179,7 +181,7 @@
    "summary": "Check if a remote computer is up. It can either just call the system ping command, or check a specified TCP port."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -197,6 +199,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -226,6 +229,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -260,7 +264,7 @@
    "summary": "Check if a remote computer is up. It can either just call the system ping command, or check a specified TCP port."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -278,6 +282,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -307,6 +312,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -345,15 +351,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-pingr.json"
  },
- "raw_meta_yaml": "{% set version = \"2.0.3\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-pingr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/pingr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/pingr/pingr_{{ version }}.tar.gz\n  sha256: 3c29c0be588c3fee267a2c0f60faa08e37682ba001db6c0249b065abc6aed863\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-processx                 # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-processx\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-processx\n\ntest:\n  commands:\n    - $R -e \"library('pingr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('pingr')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/r-lib/pingr#readme\n  license: MIT\n  summary: Check if a remote computer is up. It can either just call the system ping command, or check a specified TCP port.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: pingr\n# Title: Check if a Remote Computer is Up\n# Version: 2.0.0\n# Authors@R: person(given = \"Gabor\", family = \"Csardi\", role = c(\"aut\", \"cre\"), email = \"csardi.gabor@gmail.com\")\n# Description: Check if a remote computer is up. It can either just call the system ping command, or check a specified TCP port.\n# License: MIT + file LICENSE\n# LazyData: true\n# URL: https://github.com/r-lib/pingr#readme\n# BugReports: https://github.com/r-lib/pingr/issues\n# Suggests: covr, testthat\n# Imports: processx, utils\n# RoxygenNote: 6.1.99.9001\n# Encoding: UTF-8\n# NeedsCompilation: yes\n# Packaged: 2019-10-21 14:15:34 UTC; gaborcsardi\n# Author: Gabor Csardi [aut, cre]\n# Maintainer: Gabor Csardi <csardi.gabor@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2019-10-21 16:20:02 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.0.3\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-pingr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/pingr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/pingr/pingr_{{ version }}.tar.gz\n  sha256: 3c29c0be588c3fee267a2c0f60faa08e37682ba001db6c0249b065abc6aed863\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-processx                 # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-processx\n  run:\n    - r-base\n    - r-processx\n\ntest:\n  commands:\n    - $R -e \"library('pingr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('pingr')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/r-lib/pingr#readme\n  license: MIT\n  summary: Check if a remote computer is up. It can either just call the system ping command, or check a specified TCP port.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: pingr\n# Title: Check if a Remote Computer is Up\n# Version: 2.0.0\n# Authors@R: person(given = \"Gabor\", family = \"Csardi\", role = c(\"aut\", \"cre\"), email = \"csardi.gabor@gmail.com\")\n# Description: Check if a remote computer is up. It can either just call the system ping command, or check a specified TCP port.\n# License: MIT + file LICENSE\n# LazyData: true\n# URL: https://github.com/r-lib/pingr#readme\n# BugReports: https://github.com/r-lib/pingr/issues\n# Suggests: covr, testthat\n# Imports: processx, utils\n# RoxygenNote: 6.1.99.9001\n# Encoding: UTF-8\n# NeedsCompilation: yes\n# Packaged: 2019-10-21 14:15:34 UTC; gaborcsardi\n# Author: Gabor Csardi [aut, cre]\n# Maintainer: Gabor Csardi <csardi.gabor@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2019-10-21 16:20:02 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-processx",
@@ -366,9 +373,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -378,6 +387,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-processx"
    ]
@@ -386,7 +396,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-processx"
    ]
@@ -402,9 +412,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -420,7 +432,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-processx"
    ]
@@ -456,8 +467,7 @@
    "summary": "Check if a remote computer is up. It can either just call the system ping command, or check a specified TCP port."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -475,6 +485,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -487,7 +498,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-processx"
    ]
   },
@@ -511,6 +521,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -526,7 +537,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-processx"
    ]
