@@ -32,7 +32,7 @@
    "summary": "Density, distribution, quantile and hazard functions of a stable variate; generalized regression models for the parameters of a stable distribution. See the README for how to make equivalent calls to those of 'stabledist'. See github for Journal article."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -81,6 +82,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -114,8 +116,7 @@
    "summary": "Density, distribution, quantile and hazard functions of a stable variate; generalized regression models for the parameters of a stable distribution. See the README for how to make equivalent calls to those of 'stabledist'. See github for Journal article."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -133,8 +134,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -148,8 +151,7 @@
    "run": [
     "r-base",
     "r-rmutil",
-    "r-stabledist",
-    "gcc-libs"
+    "r-stabledist"
    ]
   },
   "source": {
@@ -176,7 +178,7 @@
    "summary": "Density, distribution, quantile and hazard functions of a stable variate; generalized regression models for the parameters of a stable distribution. See the README for how to make equivalent calls to those of 'stabledist'. See github for Journal article."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -194,6 +196,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -225,6 +228,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -258,7 +262,7 @@
    "summary": "Density, distribution, quantile and hazard functions of a stable variate; generalized regression models for the parameters of a stable distribution. See the README for how to make equivalent calls to those of 'stabledist'. See github for Journal article."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -276,6 +280,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -307,6 +312,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -347,15 +353,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-stable.json"
  },
- "raw_meta_yaml": "{% set version = \"1.1.6\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-stable\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/stable_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/stable/stable_{{ version }}.tar.gz\n  sha256: 2238788a35b5aa9e175ad7b92348640c3dcad68b6ab0a0bc04aeec9084d29da4\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-rmutil                   # [build_platform != target_platform]\n    - r-stabledist               # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rmutil\n    - r-stabledist\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rmutil\n    - r-stabledist\n\ntest:\n  commands:\n    - $R -e \"library('stable')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('stable')\\\"\"  # [win]\n\nabout:\n  home: http://www.commanster.eu/rcode.html\n  license: GPL-2.0-or-later\n  summary: Density, distribution, quantile and hazard functions of a stable variate; generalized regression models for the parameters of a stable distribution. See the README for how to make equivalent calls to those of 'stabledist'. See github for Journal article.\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: stable\n# Version: 1.1.4\n# Title: Probability Functions and Generalized Regression Models for Stable Distributions\n# Authors@R: c( person(\"Bruce\", \"Swihart\", email=\"bruce.swihart@gmail.com\", role=c(\"cre\", \"aut\")), person(\"Jim\"  , \"Lindsey\", email=\"jlindsey@gen.unimaas.nl\", role=\"aut\", comment=\"Jim created this package, Bruce is maintaining the CRAN version\"), person(\"Philippe\", \"Lambert\", email=\"phlambert@stat.ucl.ac.be\", role=\"aut\") )\n# Imports: stabledist\n# Depends: R (>= 1.4), rmutil\n# Description: Density, distribution, quantile and hazard functions of a stable variate; generalized regression models for the parameters of a stable distribution. See the README for how to make equivalent calls to those of 'stabledist'. See github for Journal article.\n# License: GPL (>= 2)\n# URL: http://www.commanster.eu/rcode.html\n# BugReports: https://github.com/swihart/stable/issues\n# Encoding: UTF-8\n# LazyData: true\n# LazyLoad: true\n# RoxygenNote: 6.1.0\n# NeedsCompilation: yes\n# Packaged: 2019-02-04 18:54:26 UTC; swihartbj\n# Author: Bruce Swihart [cre, aut], Jim Lindsey [aut] (Jim created this package, Bruce is maintaining the CRAN version), Philippe Lambert [aut]\n# Maintainer: Bruce Swihart <bruce.swihart@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2019-02-04 19:20:03 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.1.6\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-stable\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/stable_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/stable/stable_{{ version }}.tar.gz\n  sha256: 2238788a35b5aa9e175ad7b92348640c3dcad68b6ab0a0bc04aeec9084d29da4\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-rmutil                   # [build_platform != target_platform]\n    - r-stabledist               # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rmutil\n    - r-stabledist\n  run:\n    - r-base\n    - r-rmutil\n    - r-stabledist\n\ntest:\n  commands:\n    - $R -e \"library('stable')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('stable')\\\"\"  # [win]\n\nabout:\n  home: http://www.commanster.eu/rcode.html\n  license: GPL-2.0-or-later\n  summary: Density, distribution, quantile and hazard functions of a stable variate; generalized regression models for the parameters of a stable distribution. See the README for how to make equivalent calls to those of 'stabledist'. See github for Journal article.\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: stable\n# Version: 1.1.4\n# Title: Probability Functions and Generalized Regression Models for Stable Distributions\n# Authors@R: c( person(\"Bruce\", \"Swihart\", email=\"bruce.swihart@gmail.com\", role=c(\"cre\", \"aut\")), person(\"Jim\"  , \"Lindsey\", email=\"jlindsey@gen.unimaas.nl\", role=\"aut\", comment=\"Jim created this package, Bruce is maintaining the CRAN version\"), person(\"Philippe\", \"Lambert\", email=\"phlambert@stat.ucl.ac.be\", role=\"aut\") )\n# Imports: stabledist\n# Depends: R (>= 1.4), rmutil\n# Description: Density, distribution, quantile and hazard functions of a stable variate; generalized regression models for the parameters of a stable distribution. See the README for how to make equivalent calls to those of 'stabledist'. See github for Journal article.\n# License: GPL (>= 2)\n# URL: http://www.commanster.eu/rcode.html\n# BugReports: https://github.com/swihart/stable/issues\n# Encoding: UTF-8\n# LazyData: true\n# LazyLoad: true\n# RoxygenNote: 6.1.0\n# NeedsCompilation: yes\n# Packaged: 2019-02-04 18:54:26 UTC; swihartbj\n# Author: Bruce Swihart [cre, aut], Jim Lindsey [aut] (Jim created this package, Bruce is maintaining the CRAN version), Philippe Lambert [aut]\n# Maintainer: Bruce Swihart <bruce.swihart@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2019-02-04 19:20:03 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-rmutil",
@@ -369,9 +376,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -381,6 +390,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-rmutil",
     "r-stabledist"
@@ -390,7 +400,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-rmutil",
     "r-stabledist"
@@ -407,9 +417,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -426,7 +438,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rmutil",
     "r-stabledist"
@@ -460,8 +471,7 @@
    "summary": "Density, distribution, quantile and hazard functions of a stable variate; generalized regression models for the parameters of a stable distribution. See the README for how to make equivalent calls to those of 'stabledist'. See github for Journal article."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -479,6 +489,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -492,7 +503,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rmutil",
     "r-stabledist"
    ]
@@ -517,6 +527,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -533,7 +544,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rmutil",
     "r-stabledist"
