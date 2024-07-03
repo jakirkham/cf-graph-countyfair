@@ -41,7 +41,7 @@
   },
   "package": {
    "name": "arize-phoenix",
-   "version": "4.5.0"
+   "version": "4.6.2"
   },
   "requirements": {
    "host": [
@@ -54,13 +54,13 @@
     "python >=3.8,<3.13",
     "scikit-learn",
     "numpy",
-    "pandas",
+    "pandas >=1.0",
     "umap-learn",
     "hdbscan >=0.8.33",
     "starlette",
     "uvicorn",
     "psutil",
-    "strawberry-graphql ==0.208.2",
+    "strawberry-graphql ==0.235.0",
     "pyarrow",
     "typing-extensions >=4.5",
     "scipy",
@@ -74,23 +74,27 @@
     "opentelemetry-sdk",
     "opentelemetry-proto >=1.12.0",
     "opentelemetry-exporter-otlp",
-    "openinference-semantic-conventions >=0.1.5",
+    "openinference-semantic-conventions >=0.1.9",
     "openinference-instrumentation",
-    "openinference-instrumentation-openai >=0.1.3",
-    "openinference-instrumentation-langchain >=0.1.11",
-    "openinference-instrumentation-llama-index >=1.1.1",
+    "openinference-instrumentation-langchain >=0.1.12",
+    "openinference-instrumentation-llama-index >=1.2.0",
+    "openinference-instrumentation-openai >=0.1.4",
     "sqlalchemy >=2.0.4, <3",
     "greenlet !=0.4.17",
     "alembic >=1.3.0, <2",
     "aiosqlite",
     "aioitertools",
     "sqlean.py >=3.45.1",
-    "cachetools"
+    "cachetools",
+    "httpx",
+    "python-multipart",
+    "arize-phoenix-evals >=0.13.1",
+    "pyyaml"
    ]
   },
   "source": {
-   "sha256": "66e51c6d54f478cec8e4aa2e7a39a1623b55bff4143e8378fe0ae87201c33d24",
-   "url": "https://pypi.io/packages/source/a/arize-phoenix/arize_phoenix-4.5.0.tar.gz"
+   "sha256": "9460b8906a60084c6b005ff46e239296d8fd7c3832151e6c0b2aa89289a26994",
+   "url": "https://pypi.io/packages/source/a/arize-phoenix/arize_phoenix-4.6.2.tar.gz"
   },
   "test": {
    "imports": [
@@ -118,10 +122,12 @@
     "aioitertools",
     "aiosqlite",
     "alembic",
+    "arize-phoenix-evals",
     "cachetools",
     "ddsketch",
     "greenlet",
     "hdbscan",
+    "httpx",
     "jinja2",
     "numpy",
     "openinference-instrumentation",
@@ -137,6 +143,8 @@
     "psutil",
     "pyarrow",
     "python",
+    "python-multipart",
+    "pyyaml",
     "requests",
     "scikit-learn",
     "scipy",
@@ -182,7 +190,7 @@
   },
   "package": {
    "name": "arize-phoenix",
-   "version": "4.5.0"
+   "version": "4.6.2"
   },
   "requirements": {
    "host": [
@@ -195,13 +203,13 @@
     "python >=3.8,<3.13",
     "scikit-learn",
     "numpy",
-    "pandas",
+    "pandas >=1.0",
     "umap-learn",
     "hdbscan >=0.8.33",
     "starlette",
     "uvicorn",
     "psutil",
-    "strawberry-graphql ==0.208.2",
+    "strawberry-graphql ==0.235.0",
     "pyarrow",
     "typing-extensions >=4.5",
     "scipy",
@@ -215,23 +223,27 @@
     "opentelemetry-sdk",
     "opentelemetry-proto >=1.12.0",
     "opentelemetry-exporter-otlp",
-    "openinference-semantic-conventions >=0.1.5",
+    "openinference-semantic-conventions >=0.1.9",
     "openinference-instrumentation",
-    "openinference-instrumentation-openai >=0.1.3",
-    "openinference-instrumentation-langchain >=0.1.11",
-    "openinference-instrumentation-llama-index >=1.1.1",
+    "openinference-instrumentation-langchain >=0.1.12",
+    "openinference-instrumentation-llama-index >=1.2.0",
+    "openinference-instrumentation-openai >=0.1.4",
     "sqlalchemy >=2.0.4, <3",
     "greenlet !=0.4.17",
     "alembic >=1.3.0, <2",
     "aiosqlite",
     "aioitertools",
     "sqlean.py >=3.45.1",
-    "cachetools"
+    "cachetools",
+    "httpx",
+    "python-multipart",
+    "arize-phoenix-evals >=0.13.1",
+    "pyyaml"
    ]
   },
   "source": {
-   "sha256": "66e51c6d54f478cec8e4aa2e7a39a1623b55bff4143e8378fe0ae87201c33d24",
-   "url": "https://pypi.io/packages/source/a/arize-phoenix/arize_phoenix-4.5.0.tar.gz"
+   "sha256": "9460b8906a60084c6b005ff46e239296d8fd7c3832151e6c0b2aa89289a26994",
+   "url": "https://pypi.io/packages/source/a/arize-phoenix/arize_phoenix-4.6.2.tar.gz"
   },
   "test": {
    "imports": [
@@ -253,19 +265,21 @@
  "pr_info": {
   "__lazy_json__": "pr_info/arize-phoenix.json"
  },
- "raw_meta_yaml": "{% set name = \"arize-phoenix\" %}\n{% set version = \"4.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/arize_phoenix-{{ version }}.tar.gz\n  sha256: 66e51c6d54f478cec8e4aa2e7a39a1623b55bff4143e8378fe0ae87201c33d24\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8,<3.13\n    - hatchling\n    - hatch-jupyter-builder\n    - pip\n  run:\n    - python >=3.8,<3.13\n    - scikit-learn\n    - numpy\n    - pandas\n    - umap-learn\n    - hdbscan >=0.8.33\n    - starlette\n    - uvicorn\n    - psutil\n    - strawberry-graphql ==0.208.2\n    - pyarrow\n    - typing-extensions >=4.5\n    - scipy\n    - wrapt\n    - sortedcontainers\n    - protobuf >=3.20, <5.0\n    - jinja2\n    - ddsketch\n    - tqdm\n    - requests\n    - opentelemetry-sdk\n    - opentelemetry-proto >=1.12.0\n    - opentelemetry-exporter-otlp\n    - openinference-semantic-conventions >=0.1.5\n    - openinference-instrumentation\n    - openinference-instrumentation-openai >=0.1.3\n    - openinference-instrumentation-langchain >=0.1.11\n    - openinference-instrumentation-llama-index >=1.1.1\n    - sqlalchemy >=2.0.4, <3\n    - greenlet !=0.4.17\n    - alembic >=1.3.0, <2\n    - aiosqlite\n    - aioitertools\n    - sqlean.py >=3.45.1\n    - cachetools\n\n\ntest:\n  imports:\n    - phoenix\n\nabout:\n  summary: ML Observability in your notebook\n  home: https://github.com/Arize-ai/phoenix\n  doc_url: https://docs.arize.com/phoenix\n  license: Elastic-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - anticorrelator\n    - mikeldking\n    - rogerhyang\n    - michaelschiff\n    - fjcasti1\n    - axiomofjoy\n",
+ "raw_meta_yaml": "{% set name = \"arize-phoenix\" %}\n{% set version = \"4.6.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/arize_phoenix-{{ version }}.tar.gz\n  sha256: 9460b8906a60084c6b005ff46e239296d8fd7c3832151e6c0b2aa89289a26994\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8,<3.13\n    - hatchling\n    - hatch-jupyter-builder\n    - pip\n  run:\n    - python >=3.8,<3.13\n    - scikit-learn\n    - numpy\n    - pandas >=1.0\n    - umap-learn\n    - hdbscan >=0.8.33\n    - starlette\n    - uvicorn\n    - psutil\n    - strawberry-graphql ==0.235.0\n    - pyarrow\n    - typing-extensions >=4.5\n    - scipy\n    - wrapt\n    - sortedcontainers\n    - protobuf >=3.20, <5.0\n    - jinja2\n    - ddsketch\n    - tqdm\n    - requests\n    - opentelemetry-sdk\n    - opentelemetry-proto >=1.12.0\n    - opentelemetry-exporter-otlp\n    - openinference-semantic-conventions >=0.1.9\n    - openinference-instrumentation\n    - openinference-instrumentation-langchain >=0.1.12\n    - openinference-instrumentation-llama-index >=1.2.0\n    - openinference-instrumentation-openai >=0.1.4\n    - sqlalchemy >=2.0.4, <3\n    - greenlet !=0.4.17\n    - alembic >=1.3.0, <2\n    - aiosqlite\n    - aioitertools\n    - sqlean.py >=3.45.1\n    - cachetools\n    - httpx\n    - python-multipart\n    - arize-phoenix-evals >=0.13.1\n    - pyyaml\n\n\ntest:\n  imports:\n    - phoenix\n\nabout:\n  summary: ML Observability in your notebook\n  home: https://github.com/Arize-ai/phoenix\n  doc_url: https://docs.arize.com/phoenix\n  license: Elastic-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - anticorrelator\n    - mikeldking\n    - rogerhyang\n    - michaelschiff\n    - fjcasti1\n    - axiomofjoy\n",
  "req": {
   "__set__": true,
   "elements": [
    "aioitertools",
    "aiosqlite",
    "alembic",
+   "arize-phoenix-evals",
    "cachetools",
    "ddsketch",
    "greenlet",
    "hatch-jupyter-builder",
    "hatchling",
    "hdbscan",
+   "httpx",
    "jinja2",
    "numpy",
    "openinference-instrumentation",
@@ -282,6 +296,8 @@
    "psutil",
    "pyarrow",
    "python",
+   "python-multipart",
+   "pyyaml",
    "requests",
    "scikit-learn",
    "scipy",
@@ -317,10 +333,12 @@
     "aioitertools",
     "aiosqlite",
     "alembic",
+    "arize-phoenix-evals",
     "cachetools",
     "ddsketch",
     "greenlet",
     "hdbscan",
+    "httpx",
     "jinja2",
     "numpy",
     "openinference-instrumentation",
@@ -336,6 +354,8 @@
     "psutil",
     "pyarrow",
     "python",
+    "python-multipart",
+    "pyyaml",
     "requests",
     "scikit-learn",
     "scipy",
@@ -377,25 +397,29 @@
     "aioitertools",
     "aiosqlite",
     "alembic >=1.3.0, <2",
+    "arize-phoenix-evals >=0.13.1",
     "cachetools",
     "ddsketch",
     "greenlet !=0.4.17",
     "hdbscan >=0.8.33",
+    "httpx",
     "jinja2",
     "numpy",
     "openinference-instrumentation",
-    "openinference-instrumentation-langchain >=0.1.11",
-    "openinference-instrumentation-llama-index >=1.1.1",
-    "openinference-instrumentation-openai >=0.1.3",
-    "openinference-semantic-conventions >=0.1.5",
+    "openinference-instrumentation-langchain >=0.1.12",
+    "openinference-instrumentation-llama-index >=1.2.0",
+    "openinference-instrumentation-openai >=0.1.4",
+    "openinference-semantic-conventions >=0.1.9",
     "opentelemetry-exporter-otlp",
     "opentelemetry-proto >=1.12.0",
     "opentelemetry-sdk",
-    "pandas",
+    "pandas >=1.0",
     "protobuf >=3.20, <5.0",
     "psutil",
     "pyarrow",
     "python >=3.8,<3.13",
+    "python-multipart",
+    "pyyaml",
     "requests",
     "scikit-learn",
     "scipy",
@@ -403,7 +427,7 @@
     "sqlalchemy >=2.0.4, <3",
     "sqlean.py >=3.45.1",
     "starlette",
-    "strawberry-graphql ==0.208.2",
+    "strawberry-graphql ==0.235.0",
     "tqdm",
     "typing-extensions >=4.5",
     "umap-learn",
@@ -416,8 +440,8 @@
    "elements": []
   }
  },
- "url": "https://pypi.io/packages/source/a/arize-phoenix/arize_phoenix-4.5.0.tar.gz",
- "version": "4.5.0",
+ "url": "https://pypi.io/packages/source/a/arize-phoenix/arize_phoenix-4.6.2.tar.gz",
+ "version": "4.6.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/arize-phoenix.json"
  }
