@@ -5,7 +5,8 @@
   "bot": {
    "abi_migration_branches": [
     "16.x",
-    "18.x"
+    "18.x",
+    "20.x"
    ],
    "automerge": true
   },
@@ -21,9 +22,15 @@
    "branch_name": "main",
    "tooling_branch_name": "main"
   },
+  "github_actions": {
+   "self_hosted": true,
+   "triggers": [
+    "push",
+    "pull_request"
+   ]
+  },
   "provider": {
-   "linux_aarch64": "default",
-   "win": "default"
+   "linux_64": "github_actions"
   },
   "test": "native_and_emulated"
  },
@@ -54,13 +61,13 @@
   },
   "package": {
    "name": "nodejs",
-   "version": "20.12.2"
+   "version": "22.3.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "sysroot_linux-64 2.17",
     "python 3.8",
     "git",
     "ninja",
@@ -82,14 +89,12 @@
   },
   "source": {
    "patches": [
-    "linux-librt.patch",
-    "cinttypes.patch",
-    "less-shared-intermediate.patch",
-    "0001-Forward-ceilf-floorf.patch",
-    "0001-Disable-unsupported-branch-protection.patch"
+    "patches/0001-stop-removing-librt.patch",
+    "patches/0002-include-obj-name-in-shared-intermediate.patch",
+    "patches/0003-Forward-ceilf-floorf.patch"
    ],
-   "sha256": "bc57ee721a12cc8be55bb90b4a9a2f598aed5581d5199ec3bd171a4781bfecda",
-   "url": "https://nodejs.org/dist/v20.12.2/node-v20.12.2.tar.gz"
+   "sha256": "6326484853093ab6b8f361a267445f4a5bff469042cda11a3585497b13136b55",
+   "url": "https://nodejs.org/dist/v22.3.0/node-v22.3.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -99,7 +104,7 @@
     "npm install -h",
     "npm config get prefix -g",
     "test $(echo \"console.log(1 + 3)\" | node) == 4",
-    "test -f $PREFIX/lib/libnode.so.115"
+    "test -f $PREFIX/lib/libnode.so.127"
    ]
   }
  },
@@ -108,13 +113,13 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "git",
     "libuv",
     "ninja",
     "pkg-config",
-    "python",
-    "sysroot_linux-64"
+    "python"
    ]
   },
   "host": {
@@ -165,10 +170,11 @@
   },
   "package": {
    "name": "nodejs",
-   "version": "20.12.2"
+   "version": "22.3.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "python 3.8",
@@ -192,14 +198,12 @@
   },
   "source": {
    "patches": [
-    "linux-librt.patch",
-    "cinttypes.patch",
-    "less-shared-intermediate.patch",
-    "0001-Forward-ceilf-floorf.patch",
-    "0001-Disable-unsupported-branch-protection.patch"
+    "patches/0001-stop-removing-librt.patch",
+    "patches/0002-include-obj-name-in-shared-intermediate.patch",
+    "patches/0003-Forward-ceilf-floorf.patch"
    ],
-   "sha256": "bc57ee721a12cc8be55bb90b4a9a2f598aed5581d5199ec3bd171a4781bfecda",
-   "url": "https://nodejs.org/dist/v20.12.2/node-v20.12.2.tar.gz"
+   "sha256": "6326484853093ab6b8f361a267445f4a5bff469042cda11a3585497b13136b55",
+   "url": "https://nodejs.org/dist/v22.3.0/node-v22.3.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -209,7 +213,7 @@
     "npm install -h",
     "npm config get prefix -g",
     "test $(echo \"console.log(1 + 3)\" | node) == 4",
-    "test -f $PREFIX/lib/libnode.so.115"
+    "test -f $PREFIX/lib/libnode.so.127"
    ]
   }
  },
@@ -218,6 +222,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "git",
     "libuv",
@@ -274,13 +279,13 @@
   },
   "package": {
    "name": "nodejs",
-   "version": "20.12.2"
+   "version": "22.3.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
-    "sysroot_linux-64 2.17",
     "python 3.8",
     "git",
     "ninja",
@@ -298,13 +303,12 @@
     "libuv",
     "openssl",
     "zlib"
-   ],
-   "run_constrained": null
+   ]
   },
   "source": {
    "patches": null,
-   "sha256": "66dda1717cae30a13be6bb17ad96ee54b69f2c23c85acd9c3299b095fa26b452",
-   "url": "https://nodejs.org/dist/v20.12.2/node-v20.12.2-win-x64.zip"
+   "sha256": "3dadc19ba6b36c6fb93aeda08247107fdb2ed55c24831304566d32de6b6080d7",
+   "url": "https://nodejs.org/dist/v22.3.0/node-v22.3.0-win-x64.zip"
   },
   "test": {
    "commands": [
@@ -314,8 +318,8 @@
     "npm install -h",
     "npm config get prefix -g",
     "test $(echo \"console.log(1 + 3)\" | node) == 4",
-    "test -f $PREFIX/lib/libnode.so.115",
-    "test -f $PREFIX/lib/libnode.115.dylib"
+    "test -f $PREFIX/lib/libnode.so.127",
+    "test -f $PREFIX/lib/libnode.127.dylib"
    ]
   }
  },
@@ -345,10 +349,11 @@
   },
   "package": {
    "name": "nodejs",
-   "version": "20.12.2"
+   "version": "22.3.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "python 3.8",
@@ -367,20 +372,16 @@
     "libuv",
     "openssl",
     "zlib"
-   ],
-   "run_constrained": [
-    "__osx >=10.15"
    ]
   },
   "source": {
    "patches": [
-    "linux-librt.patch",
-    "less-shared-intermediate.patch",
-    "0001-Forward-ceilf-floorf.patch",
-    "0001-Disable-unsupported-branch-protection.patch"
+    "patches/0001-stop-removing-librt.patch",
+    "patches/0002-include-obj-name-in-shared-intermediate.patch",
+    "patches/0003-Forward-ceilf-floorf.patch"
    ],
-   "sha256": "bc57ee721a12cc8be55bb90b4a9a2f598aed5581d5199ec3bd171a4781bfecda",
-   "url": "https://nodejs.org/dist/v20.12.2/node-v20.12.2.tar.gz"
+   "sha256": "6326484853093ab6b8f361a267445f4a5bff469042cda11a3585497b13136b55",
+   "url": "https://nodejs.org/dist/v22.3.0/node-v22.3.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -390,7 +391,7 @@
     "npm install -h",
     "npm config get prefix -g",
     "test $(echo \"console.log(1 + 3)\" | node) == 4",
-    "test -f $PREFIX/lib/libnode.115.dylib"
+    "test -f $PREFIX/lib/libnode.127.dylib"
    ]
   }
  },
@@ -399,6 +400,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libuv",
     "ninja",
@@ -454,10 +456,11 @@
   },
   "package": {
    "name": "nodejs",
-   "version": "20.12.2"
+   "version": "22.3.0"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "python 3.8",
@@ -476,18 +479,16 @@
     "libuv",
     "openssl",
     "zlib"
-   ],
-   "run_constrained": null
+   ]
   },
   "source": {
    "patches": [
-    "linux-librt.patch",
-    "less-shared-intermediate.patch",
-    "0001-Forward-ceilf-floorf.patch",
-    "0001-Disable-unsupported-branch-protection.patch"
+    "patches/0001-stop-removing-librt.patch",
+    "patches/0002-include-obj-name-in-shared-intermediate.patch",
+    "patches/0003-Forward-ceilf-floorf.patch"
    ],
-   "sha256": "bc57ee721a12cc8be55bb90b4a9a2f598aed5581d5199ec3bd171a4781bfecda",
-   "url": "https://nodejs.org/dist/v20.12.2/node-v20.12.2.tar.gz"
+   "sha256": "6326484853093ab6b8f361a267445f4a5bff469042cda11a3585497b13136b55",
+   "url": "https://nodejs.org/dist/v22.3.0/node-v22.3.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -497,7 +498,7 @@
     "npm install -h",
     "npm config get prefix -g",
     "test $(echo \"console.log(1 + 3)\" | node) == 4",
-    "test -f $PREFIX/lib/libnode.115.dylib"
+    "test -f $PREFIX/lib/libnode.127.dylib"
    ]
   }
  },
@@ -506,6 +507,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libuv",
     "ninja",
@@ -553,11 +555,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/nodejs.json"
  },
- "raw_meta_yaml": "{% set version = \"20.12.2\" %}\n\n# NODE_MODULE_VERSION set in src/node_version.h\n{% set NODE_MODULE_VERSION = 115 %}\n\npackage:\n  name: nodejs\n  version: {{ version }}\n\nsource:\n  # checksums from https://nodejs.org/dist/vX.Y.Z/SHASUMS256.txt.asc\n  url: https://nodejs.org/dist/v{{ version }}/node-v{{ version }}.tar.gz  # [unix]\n  sha256: bc57ee721a12cc8be55bb90b4a9a2f598aed5581d5199ec3bd171a4781bfecda  # [unix]\n  url: https://nodejs.org/dist/v{{ version }}/node-v{{ version }}-win-x64.zip  # [win]\n  sha256: 66dda1717cae30a13be6bb17ad96ee54b69f2c23c85acd9c3299b095fa26b452  # [win]\n  patches:\n    - linux-librt.patch  # [not win]\n    - cinttypes.patch  # [linux]\n    - less-shared-intermediate.patch  # [not win]\n    - 0001-Forward-ceilf-floorf.patch  # [not win]\n    - 0001-Disable-unsupported-branch-protection.patch  # [not win]\n\nbuild:\n  number: 0\n  # Prefix replacement breaks in the binary embedded configurations.\n  detect_binary_files_with_prefix: false\n  run_exports:\n    - {{ pin_subpackage('nodejs', max_pin='x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}  # [not win]\n    - {{ compiler('cxx') }}  # [not win]\n    - sysroot_linux-64 2.17  # [linux64]\n    - python 3.8  # [not win]\n    - git  # [linux]\n    - ninja  # [not win]\n    - pkg-config  # [not win]\n\n    # libuv is a bootstrap dependency in js2c\n    # starting with 20.3 (https://github.com/nodejs/node/pull/46997)\n    - libuv\n\n    # need host builds of several lib dependencies\n    # when cross-compiling\n    - icu  # [build_platform != target_platform]\n    - openssl  # [build_platform != target_platform]\n    - zlib  # [build_platform != target_platform]\n  host:\n    - icu  # [not win]\n    - libuv  # [not win]\n    - openssl  # [not win]\n    - zlib  # [not win]\n  run:\n    - icu  # [not win]\n    - libuv  # [not win]\n    - openssl  # [not win]\n    - zlib  # [not win]\n  run_constrained:   # [osx]\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n\ntest:\n  commands:\n    - node -h\n    - node -v\n    - npm version\n    - npm install -h\n    - npm config get prefix -g\n    - test $(echo \"console.log(1 + 3)\" | node) == 4  # [not win]\n    - test -f $PREFIX/lib/libnode.{{ NODE_MODULE_VERSION }}.dylib  # [osx]\n    - test -f $PREFIX/lib/libnode.so.{{ NODE_MODULE_VERSION }}  # [linux]\n\nabout:\n  home: https://nodejs.org/\n  license: MIT\n  license_file: LICENSE\n  summary: a platform for easily building fast, scalable network applications\n\nextra:\n  recipe-maintainers:\n    - minrk\n    - msarahan\n    - pelson\n    - blink1073\n    - xhochy\n",
+ "raw_meta_yaml": "{% set version = \"22.3.0\" %}\n\n# NODE_MODULE_VERSION set in src/node_version.h\n{% set NODE_MODULE_VERSION = 127 %}\n\npackage:\n  name: nodejs\n  version: {{ version }}\n\nsource:\n  # checksums from https://nodejs.org/dist/vX.Y.Z/SHASUMS256.txt.asc\n  url: https://nodejs.org/dist/v{{ version }}/node-v{{ version }}.tar.gz  # [unix]\n  sha256: 6326484853093ab6b8f361a267445f4a5bff469042cda11a3585497b13136b55  # [unix]\n  url: https://nodejs.org/dist/v{{ version }}/node-v{{ version }}-win-x64.zip  # [win]\n  sha256: 3dadc19ba6b36c6fb93aeda08247107fdb2ed55c24831304566d32de6b6080d7  # [win]\n  patches:\n    - patches/0001-stop-removing-librt.patch  # [not win]\n    - patches/0002-include-obj-name-in-shared-intermediate.patch  # [not win]\n    - patches/0003-Forward-ceilf-floorf.patch  # [not win]\n\nbuild:\n  number: 0\n  # Prefix replacement breaks in the binary embedded configurations.\n  detect_binary_files_with_prefix: false\n  run_exports:\n    - {{ pin_subpackage('nodejs', max_pin='x') }}\n\nrequirements:\n  build:\n    - {{ stdlib('c') }}      # [not win]\n    - {{ compiler('c') }}    # [not win]\n    - {{ compiler('cxx') }}  # [not win]\n    - python 3.8  # [not win]\n    - git  # [linux]\n    - ninja  # [not win]\n    - pkg-config  # [not win]\n\n    # libuv is a bootstrap dependency in js2c\n    # starting with 20.3 (https://github.com/nodejs/node/pull/46997)\n    - libuv\n\n    # need host builds of several lib dependencies\n    # when cross-compiling\n    - icu  # [build_platform != target_platform]\n    - openssl  # [build_platform != target_platform]\n    - zlib  # [build_platform != target_platform]\n  host:\n    - icu  # [not win]\n    - libuv  # [not win]\n    - openssl  # [not win]\n    - zlib  # [not win]\n  run:\n    - icu  # [not win]\n    - libuv  # [not win]\n    - openssl  # [not win]\n    - zlib  # [not win]\n\ntest:\n  commands:\n    - node -h\n    - node -v\n    - npm version\n    - npm install -h\n    - npm config get prefix -g\n    - test $(echo \"console.log(1 + 3)\" | node) == 4  # [not win]\n    - test -f $PREFIX/lib/libnode.{{ NODE_MODULE_VERSION }}.dylib  # [osx]\n    - test -f $PREFIX/lib/libnode.so.{{ NODE_MODULE_VERSION }}  # [linux]\n\nabout:\n  home: https://nodejs.org/\n  license: MIT\n  license_file: LICENSE\n  summary: a platform for easily building fast, scalable network applications\n\nextra:\n  recipe-maintainers:\n    - minrk\n    - msarahan\n    - pelson\n    - blink1073\n    - xhochy\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "git",
    "icu",
@@ -566,7 +569,6 @@
    "openssl",
    "pkg-config",
    "python",
-   "sysroot_linux-64",
    "zlib"
   ]
  },
@@ -575,23 +577,23 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "git",
     "libuv",
     "ninja",
     "pkg-config",
-    "python",
-    "sysroot_linux-64"
+    "python"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "icu",
     "libuv",
-    "linux-sysroot",
     "openssl",
     "zlib"
    ]
@@ -600,10 +602,10 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "icu",
     "libuv",
-    "linux-sysroot",
     "openssl",
     "zlib"
    ]
@@ -619,13 +621,13 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "git",
     "libuv",
     "ninja",
     "pkg-config",
-    "python 3.8",
-    "sysroot_linux-64 2.17"
+    "python 3.8"
    ]
   },
   "host": {
@@ -651,8 +653,8 @@
    "elements": []
   }
  },
- "url": "https://nodejs.org/dist/v20.12.2/node-v20.12.2-win-x64.zip",
- "version": "20.12.2",
+ "url": "https://nodejs.org/dist/v22.3.0/node-v22.3.0-win-x64.zip",
+ "version": "22.3.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/nodejs.json"
  },
@@ -681,7 +683,7 @@
   },
   "package": {
    "name": "nodejs",
-   "version": "20.12.2"
+   "version": "22.3.0"
   },
   "requirements": {
    "build": [
@@ -692,8 +694,8 @@
   },
   "source": {
    "patches": null,
-   "sha256": "66dda1717cae30a13be6bb17ad96ee54b69f2c23c85acd9c3299b095fa26b452",
-   "url": "https://nodejs.org/dist/v20.12.2/node-v20.12.2-win-x64.zip"
+   "sha256": "3dadc19ba6b36c6fb93aeda08247107fdb2ed55c24831304566d32de6b6080d7",
+   "url": "https://nodejs.org/dist/v22.3.0/node-v22.3.0-win-x64.zip"
   },
   "test": {
    "commands": [
