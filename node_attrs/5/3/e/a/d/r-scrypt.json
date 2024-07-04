@@ -27,7 +27,7 @@
    "summary": "Functions for working with the scrypt key derivation functions originally described by Colin Percival <https://www.tarsnap.com/scrypt/scrypt.pdf> and in Percival and Josefsson (2016) <doi:10.17487/RFC7914>. Scrypt is a password-based key derivation function created by Colin Percival. The algorithm was specifically designed to make it costly to perform large-scale custom hardware attacks by requiring large amounts of memory."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -81,6 +82,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -116,8 +118,7 @@
    "summary": "Functions for working with the scrypt key derivation functions originally described by Colin Percival <https://www.tarsnap.com/scrypt/scrypt.pdf> and in Percival and Josefsson (2016) <doi:10.17487/RFC7914>. Scrypt is a password-based key derivation function created by Colin Percival. The algorithm was specifically designed to make it costly to perform large-scale custom hardware attacks by requiring large amounts of memory."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -136,12 +137,14 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
     "pkg-config",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -156,8 +159,7 @@
    ],
    "run": [
     "r-base",
-    "r-rcpp >=0.10.6",
-    "gcc-libs"
+    "r-rcpp >=0.10.6"
    ]
   },
   "source": {
@@ -186,7 +188,7 @@
    "summary": "Functions for working with the scrypt key derivation functions originally described by Colin Percival <https://www.tarsnap.com/scrypt/scrypt.pdf> and in Percival and Josefsson (2016) <doi:10.17487/RFC7914>. Scrypt is a password-based key derivation function created by Colin Percival. The algorithm was specifically designed to make it costly to perform large-scale custom hardware attacks by requiring large amounts of memory."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -205,6 +207,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -240,6 +243,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -279,7 +283,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-scrypt.json"
  },
- "raw_meta_yaml": "{% set version = \"0.1.6\" %}\n\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-scrypt\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/scrypt_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/scrypt/scrypt_{{ version }}.tar.gz\n  sha256: 014a233e33a505d677d72ab29c6193e74a660751073c43685f8f1615c0becc86\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-rcpp >=0.10.6\n\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp >=0.10.6\n\ntest:\n  commands:\n    - $R -e \"library('scrypt')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('scrypt')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/rstudio/rscrypt\n\n  license: BSD-2-Clause\n  summary: Functions for working with the scrypt key derivation functions originally described by Colin Percival <https://www.tarsnap.com/scrypt/scrypt.pdf> and in Percival and Josefsson (2016) <doi:10.17487/RFC7914>. Scrypt is a password-based key derivation function created by Colin Percival. The algorithm was specifically\n    designed to make it costly to perform large-scale custom hardware attacks by requiring large amounts of memory.\n\n  license_family: BSD\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/BSD_2_clause\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - tdido\n",
+ "raw_meta_yaml": "{% set version = \"0.1.6\" %}\n\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-scrypt\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/scrypt_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/scrypt/scrypt_{{ version }}.tar.gz\n  sha256: 014a233e33a505d677d72ab29c6193e74a660751073c43685f8f1615c0becc86\n\nbuild:\n  number: 2\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-rcpp >=0.10.6\n\n  run:\n    - r-base\n    - r-rcpp >=0.10.6\n\ntest:\n  commands:\n    - $R -e \"library('scrypt')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('scrypt')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/rstudio/rscrypt\n\n  license: BSD-2-Clause\n  summary: Functions for working with the scrypt key derivation functions originally described by Colin Percival <https://www.tarsnap.com/scrypt/scrypt.pdf> and in Percival and Josefsson (2016) <doi:10.17487/RFC7914>. Scrypt is a password-based key derivation function created by Colin Percival. The algorithm was specifically\n    designed to make it costly to perform large-scale custom hardware attacks by requiring large amounts of memory.\n\n  license_family: BSD\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/BSD_2_clause\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - tdido\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -287,12 +291,13 @@
    "automake",
    "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "grep",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "pkg-config",
@@ -310,11 +315,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -326,6 +333,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-rcpp"
@@ -335,8 +343,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-rcpp"
    ]
@@ -355,11 +363,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -377,7 +387,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp >=0.10.6"
    ]
@@ -410,8 +419,7 @@
    "summary": "Functions for working with the scrypt key derivation functions originally described by Colin Percival <https://www.tarsnap.com/scrypt/scrypt.pdf> and in Percival and Josefsson (2016) <doi:10.17487/RFC7914>. Scrypt is a password-based key derivation function created by Colin Percival. The algorithm was specifically designed to make it costly to perform large-scale custom hardware attacks by requiring large amounts of memory."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -430,6 +438,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -447,7 +456,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp >=0.10.6"
    ]
   },
@@ -474,6 +482,7 @@
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -491,7 +500,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp"
    ]
