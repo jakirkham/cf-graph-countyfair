@@ -36,7 +36,7 @@
     "cxfreeze = cx_Freeze.cli:main",
     "cxfreeze-quickstart = cx_Freeze.setupwriter:main"
    ],
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -68,7 +68,8 @@
   },
   "source": {
    "patches": [
-    "2490.diff"
+    "2466.patch",
+    "2490.patch"
    ],
    "sha256": "335c30bad0e3e653655f230993308458bedc997baf5b7a995e8641deba2eb287",
    "url": "https://pypi.io/packages/source/c/cx_Freeze/cx_freeze-7.1.1.tar.gz"
@@ -147,7 +148,7 @@
     "cxfreeze = cx_Freeze.cli:main",
     "cxfreeze-quickstart = cx_Freeze.setupwriter:main"
    ],
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -182,7 +183,8 @@
   },
   "source": {
    "patches": [
-    "2490.diff"
+    "2466.patch",
+    "2490.patch"
    ],
    "sha256": "335c30bad0e3e653655f230993308458bedc997baf5b7a995e8641deba2eb287",
    "url": "https://pypi.io/packages/source/c/cx_Freeze/cx_freeze-7.1.1.tar.gz"
@@ -225,7 +227,7 @@
     "cxfreeze = cx_Freeze.cli:main",
     "cxfreeze-quickstart = cx_Freeze.setupwriter:main"
    ],
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -256,7 +258,8 @@
   },
   "source": {
    "patches": [
-    "2490.diff"
+    "2466.patch",
+    "2490.patch"
    ],
    "sha256": "335c30bad0e3e653655f230993308458bedc997baf5b7a995e8641deba2eb287",
    "url": "https://pypi.io/packages/source/c/cx_Freeze/cx_freeze-7.1.1.tar.gz"
@@ -334,7 +337,7 @@
     "cxfreeze = cx_Freeze.cli:main",
     "cxfreeze-quickstart = cx_Freeze.setupwriter:main"
    ],
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -365,7 +368,8 @@
   },
   "source": {
    "patches": [
-    "2490.diff"
+    "2466.patch",
+    "2490.patch"
    ],
    "sha256": "335c30bad0e3e653655f230993308458bedc997baf5b7a995e8641deba2eb287",
    "url": "https://pypi.io/packages/source/c/cx_Freeze/cx_freeze-7.1.1.tar.gz"
@@ -446,7 +450,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cx_freeze.json"
  },
- "raw_meta_yaml": "{% set name = \"cx_Freeze\" %}\n{% set version = \"7.1.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower }}-{{ version }}.tar.gz\n  sha256: 335c30bad0e3e653655f230993308458bedc997baf5b7a995e8641deba2eb287\n  patches:\n    #  tests: make test pass in conda-forge [osx, linux] #2490\n    - 2490.diff\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  entry_points:\n    - cxfreeze = cx_Freeze.cli:main\n    - cxfreeze-quickstart = cx_Freeze.setupwriter:main\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler(\"c\") }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip\n    - setuptools >=65.6.3\n    - typing_extensions >=4.10.0  # [py<310]\n    - cx_logging >=3.1   # [win]\n  run:\n    - python\n    - setuptools >=65.6.3\n    # cabarchive >=0.2.4\n    - filelock >=3.12.3\n    # striprtf >=0.0.26\n    - patchelf >=0.14    # [linux]\n    # dmgbuild >=1.6.1   # [osx]\n    - cx_logging >=3.1   # [win]\n    - py-lief >=0.12.0   # [win]\n\ntest:\n  imports:\n    - cx_Freeze\n  requires:\n    - pytest\n    - pytest-cov\n    - pytest-datafiles\n    - pytest-mock\n    - pytest-timeout\n    - pytest-xdist\n  source_files:\n    - pyproject.toml\n    - cx_Freeze/icons\n    - samples\n    - tests\n  commands:\n    - cxfreeze --version\n    - pytest -nauto --no-cov\n\nabout:\n  home: https://marcelotduarte.github.io/cx_Freeze\n  license: PSF-2.0\n  license_family: PSF\n  license_file: LICENSE.md\n  summary: Create standalone executables from Python scripts, with the same performance and is cross-platform.\n\nextra:\n  recipe-maintainers:\n    - marcelotduarte\n    - jschueller\n",
+ "raw_meta_yaml": "{% set name = \"cx_Freeze\" %}\n{% set version = \"7.1.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name|lower }}-{{ version }}.tar.gz\n  sha256: 335c30bad0e3e653655f230993308458bedc997baf5b7a995e8641deba2eb287\n  patches:\n    # hooks: support numpy 2.0 (#2466)\n    - 2466.patch\n    # tests: make test pass in conda-forge [osx, linux] (#2490)\n    - 2490.patch\n\nbuild:\n  number: 2\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  entry_points:\n    - cxfreeze = cx_Freeze.cli:main\n    - cxfreeze-quickstart = cx_Freeze.setupwriter:main\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler(\"c\") }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip\n    - setuptools >=65.6.3\n    - typing_extensions >=4.10.0  # [py<310]\n    - cx_logging >=3.1   # [win]\n  run:\n    - python\n    - setuptools >=65.6.3\n    # cabarchive >=0.2.4\n    - filelock >=3.12.3\n    # striprtf >=0.0.26\n    - patchelf >=0.14    # [linux]\n    # dmgbuild >=1.6.1   # [osx]\n    - cx_logging >=3.1   # [win]\n    - py-lief >=0.12.0   # [win]\n\ntest:\n  imports:\n    - cx_Freeze\n  requires:\n    - pytest\n    - pytest-cov\n    - pytest-datafiles\n    - pytest-mock\n    - pytest-timeout\n    - pytest-xdist\n  source_files:\n    - pyproject.toml\n    - cx_Freeze/icons\n    - samples\n    - tests\n  commands:\n    - cxfreeze --version\n    - pytest -nauto --no-cov\n\nabout:\n  home: https://marcelotduarte.github.io/cx_Freeze\n  license: PSF-2.0\n  license_family: PSF\n  license_file: LICENSE.md\n  summary: Create standalone executables from Python scripts, with the same performance and is cross-platform.\n\nextra:\n  recipe-maintainers:\n    - marcelotduarte\n    - jschueller\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -564,7 +568,7 @@
     "cxfreeze = cx_Freeze.cli:main",
     "cxfreeze-quickstart = cx_Freeze.setupwriter:main"
    ],
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -598,7 +602,8 @@
   },
   "source": {
    "patches": [
-    "2490.diff"
+    "2466.patch",
+    "2490.patch"
    ],
    "sha256": "335c30bad0e3e653655f230993308458bedc997baf5b7a995e8641deba2eb287",
    "url": "https://pypi.io/packages/source/c/cx_Freeze/cx_freeze-7.1.1.tar.gz"
