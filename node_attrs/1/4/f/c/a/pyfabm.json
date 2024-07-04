@@ -45,7 +45,7 @@
   },
   "package": {
    "name": "pyfabm",
-   "version": "2.0.2"
+   "version": "2.1.0"
   },
   "requirements": {
    "build": [
@@ -65,10 +65,11 @@
   },
   "source": {
    "patches": [
-    "ersem.patch"
+    "ersem.patch",
+    "ogs.patch"
    ],
-   "sha256": "cc37f38f7e6e02b6361c13fec2f7e13ba6e053c03d20f280f8b4229101957226",
-   "url": "https://github.com/fabm-model/fabm/releases/download/v2.0.2/code.tar.gz"
+   "sha256": "a2b551669acfcff4018e9d8b19d83100c26aac12dba3699d0976448ccdfc0717",
+   "url": "https://github.com/fabm-model/fabm/releases/download/v2.1.0/code.tar.gz"
   },
   "test": {
    "commands": [
@@ -151,14 +152,15 @@
   },
   "package": {
    "name": "pyfabm",
-   "version": "2.0.2"
+   "version": "2.1.0"
   },
   "requirements": {
    "build": [
     "cmake",
     "fortran_compiler_stub",
     "make",
-    "m2w64_fortran_compiler_stub"
+    "m2w64_fortran_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -173,10 +175,11 @@
   },
   "source": {
    "patches": [
-    "ersem.patch"
+    "ersem.patch",
+    "ogs.patch"
    ],
-   "sha256": "cc37f38f7e6e02b6361c13fec2f7e13ba6e053c03d20f280f8b4229101957226",
-   "url": "https://github.com/fabm-model/fabm/releases/download/v2.0.2/code.tar.gz"
+   "sha256": "a2b551669acfcff4018e9d8b19d83100c26aac12dba3699d0976448ccdfc0717",
+   "url": "https://github.com/fabm-model/fabm/releases/download/v2.1.0/code.tar.gz"
   },
   "test": {
    "commands": [
@@ -228,7 +231,7 @@
   },
   "package": {
    "name": "pyfabm",
-   "version": "2.0.2"
+   "version": "2.1.0"
   },
   "requirements": {
    "build": [
@@ -248,10 +251,11 @@
   },
   "source": {
    "patches": [
-    "ersem.patch"
+    "ersem.patch",
+    "ogs.patch"
    ],
-   "sha256": "cc37f38f7e6e02b6361c13fec2f7e13ba6e053c03d20f280f8b4229101957226",
-   "url": "https://github.com/fabm-model/fabm/releases/download/v2.0.2/code.tar.gz"
+   "sha256": "a2b551669acfcff4018e9d8b19d83100c26aac12dba3699d0976448ccdfc0717",
+   "url": "https://github.com/fabm-model/fabm/releases/download/v2.1.0/code.tar.gz"
   },
   "test": {
    "commands": [
@@ -334,7 +338,7 @@
   },
   "package": {
    "name": "pyfabm",
-   "version": "2.0.2"
+   "version": "2.1.0"
   },
   "requirements": {
    "build": [
@@ -354,10 +358,11 @@
   },
   "source": {
    "patches": [
-    "ersem.patch"
+    "ersem.patch",
+    "ogs.patch"
    ],
-   "sha256": "cc37f38f7e6e02b6361c13fec2f7e13ba6e053c03d20f280f8b4229101957226",
-   "url": "https://github.com/fabm-model/fabm/releases/download/v2.0.2/code.tar.gz"
+   "sha256": "a2b551669acfcff4018e9d8b19d83100c26aac12dba3699d0976448ccdfc0717",
+   "url": "https://github.com/fabm-model/fabm/releases/download/v2.1.0/code.tar.gz"
   },
   "test": {
    "commands": [
@@ -428,10 +433,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyfabm.json"
  },
- "raw_meta_yaml": "{% set version = \"2.0.2\" %}\n{% set build = 0 %}\n\npackage:\n  name: pyfabm\n  version: {{ version }}\n\nsource:\n  url: https://github.com/fabm-model/fabm/releases/download/v{{ version }}/code.tar.gz\n  sha256: cc37f38f7e6e02b6361c13fec2f7e13ba6e053c03d20f280f8b4229101957226\n  patches:\n    #- fabm.patch\n    - ersem.patch\n\nbuild:\n  number: {{ build }}\n  entry_points:\n    - fabm_complete_yaml = pyfabm.utils.fabm_complete_yaml:main\n    - fabm_configuration_gui = pyfabm.utils.fabm_configuration_gui:main\n    - fabm_describe_model = pyfabm.utils.fabm_describe_model:main\n    - fabm_evaluate = pyfabm.utils.fabm_evaluate:main\n    - fabm_stress_test = pyfabm.utils.fabm_stress_test:main\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cmake\n    - {{ compiler('fortran') }}  # [unix]\n    - make  # [unix]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n  host:\n    - python\n    - pip\n  run:\n    - python\n    - numpy\n    - pyyaml\n    - m2w64-gcc-libgfortran  # [win]\n\ntest:\n  source_files:\n    - testcases/fabm-gotm-npzd.yaml\n  imports:\n    - pyfabm\n  requires:\n    - netcdf4\n    - pyqt\n  commands:\n    - fabm_complete_yaml -h\n    - fabm_configuration_gui -h\n    - fabm_describe_model -h\n    - fabm_evaluate -h\n    - fabm_stress_test -h\n    - fabm_describe_model testcases/fabm-gotm-npzd.yaml\n\nabout:\n  home: https://fabm.net/python\n  summary: 'Python interface to the Framework for Aquatic Biogeochemical Models'\n  description: |\n    The Framework for Aquatic Biogeochemical Models (FABM) is a Fortran 2003\n    programming framework for biogeochemical models of marine and freshwater\n    systems.\n  license: GPL-2.0-only\n  license_family: GPL\n  license_file: COPYING\n  doc_url: https://fabm.net/wiki\n  dev_url: https://fabm.net/code\n\nextra:\n  recipe-maintainers:\n    - jornbr\n",
+ "raw_meta_yaml": "{% set version = \"2.1.0\" %}\n{% set build = 0 %}\n\npackage:\n  name: pyfabm\n  version: {{ version }}\n\nsource:\n  url: https://github.com/fabm-model/fabm/releases/download/v{{ version }}/code.tar.gz\n  sha256: a2b551669acfcff4018e9d8b19d83100c26aac12dba3699d0976448ccdfc0717\n  patches:\n    #- fabm.patch\n    - ersem.patch\n    - ogs.patch\n\nbuild:\n  number: {{ build }}\n  entry_points:\n    - fabm_complete_yaml = pyfabm.utils.fabm_complete_yaml:main\n    - fabm_configuration_gui = pyfabm.utils.fabm_configuration_gui:main\n    - fabm_describe_model = pyfabm.utils.fabm_describe_model:main\n    - fabm_evaluate = pyfabm.utils.fabm_evaluate:main\n    - fabm_stress_test = pyfabm.utils.fabm_stress_test:main\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cmake\n    - {{ compiler('fortran') }}  # [unix]\n    - make  # [unix]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ stdlib(\"c\") }}    # [win]\n  host:\n    - python\n    - pip\n  run:\n    - python\n    - numpy\n    - pyyaml\n    - m2w64-gcc-libgfortran  # [win]\n\ntest:\n  source_files:\n    - testcases/fabm-gotm-npzd.yaml\n  imports:\n    - pyfabm\n  requires:\n    - netcdf4\n    - pyqt\n  commands:\n    - fabm_complete_yaml -h\n    - fabm_configuration_gui -h\n    - fabm_describe_model -h\n    - fabm_evaluate -h\n    - fabm_stress_test -h\n    - fabm_describe_model testcases/fabm-gotm-npzd.yaml\n\nabout:\n  home: https://fabm.net/python\n  summary: 'Python interface to the Framework for Aquatic Biogeochemical Models'\n  description: |\n    The Framework for Aquatic Biogeochemical Models (FABM) is a Fortran 2003\n    programming framework for biogeochemical models of marine and freshwater\n    systems.\n  license: GPL-2.0-only\n  license_family: GPL\n  license_file: COPYING\n  doc_url: https://fabm.net/wiki\n  dev_url: https://fabm.net/code\n\nextra:\n  recipe-maintainers:\n    - jornbr\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "fortran_compiler_stub",
    "m2w64-gcc-libgfortran",
@@ -447,6 +453,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "m2w64_fortran_compiler_stub",
@@ -456,6 +463,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "pip",
     "python"
@@ -464,6 +472,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "m2w64-gcc-libgfortran",
     "numpy",
@@ -484,6 +493,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "m2w64_fortran_compiler_stub",
@@ -514,8 +524,8 @@
    ]
   }
  },
- "url": "https://github.com/fabm-model/fabm/releases/download/v2.0.2/code.tar.gz",
- "version": "2.0.2",
+ "url": "https://github.com/fabm-model/fabm/releases/download/v2.1.0/code.tar.gz",
+ "version": "2.1.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pyfabm.json"
  },
@@ -547,12 +557,13 @@
   },
   "package": {
    "name": "pyfabm",
-   "version": "2.0.2"
+   "version": "2.1.0"
   },
   "requirements": {
    "build": [
     "cmake",
-    "m2w64_fortran_compiler_stub"
+    "m2w64_fortran_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -567,10 +578,11 @@
   },
   "source": {
    "patches": [
-    "ersem.patch"
+    "ersem.patch",
+    "ogs.patch"
    ],
-   "sha256": "cc37f38f7e6e02b6361c13fec2f7e13ba6e053c03d20f280f8b4229101957226",
-   "url": "https://github.com/fabm-model/fabm/releases/download/v2.0.2/code.tar.gz"
+   "sha256": "a2b551669acfcff4018e9d8b19d83100c26aac12dba3699d0976448ccdfc0717",
+   "url": "https://github.com/fabm-model/fabm/releases/download/v2.1.0/code.tar.gz"
   },
   "test": {
    "commands": [
@@ -597,6 +609,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "m2w64_fortran_compiler_stub"
    ]
