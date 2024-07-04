@@ -32,7 +32,7 @@
    "summary": "Implements synchronization between R processes (spawned by using the \"parallel\" package for instance) using file locks. Supports both exclusive and shared locking."
   },
   "build": {
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -80,6 +81,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -114,7 +116,7 @@
    "summary": "Implements synchronization between R processes (spawned by using the \"parallel\" package for instance) using file locks. Supports both exclusive and shared locking."
   },
   "build": {
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -132,6 +134,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -162,6 +165,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -196,7 +200,7 @@
    "summary": "Implements synchronization between R processes (spawned by using the \"parallel\" package for instance) using file locks. Supports both exclusive and shared locking."
   },
   "build": {
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -214,6 +218,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -244,6 +249,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -278,8 +284,7 @@
    "summary": "Implements synchronization between R processes (spawned by using the \"parallel\" package for instance) using file locks. Supports both exclusive and shared locking."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -297,9 +302,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -312,8 +319,7 @@
    ],
    "run": [
     "r-base",
-    "r-rcpp >=0.11.3",
-    "gcc-libs"
+    "r-rcpp >=0.11.3"
    ]
   },
   "source": {
@@ -342,7 +348,7 @@
    "summary": "Implements synchronization between R processes (spawned by using the \"parallel\" package for instance) using file locks. Supports both exclusive and shared locking."
   },
   "build": {
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -360,6 +366,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -390,6 +397,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -430,16 +438,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-flock.json"
  },
- "raw_meta_yaml": "{% set version = \"0.7\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-flock\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/flock_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/flock/flock_{{ version }}.tar.gz\n  sha256: 47ebdeaeeb63ec93c800782bafa7f2846f73bb905adb6a3b5c44b248ce1de9fd\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1005\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-rcpp >=0.11.3\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp >=0.11.3\n\ntest:\n  commands:\n    - $R -e \"library('flock')\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('flock')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=flock\n  license: Apache-2.0\n  summary: Implements synchronization between R processes (spawned by using the \"parallel\" package for instance) using file locks. Supports both exclusive and shared locking.\n  license_family: APACHE\n  license_file:\n    - LICENSE-2.0.txt\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.7\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-flock\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/flock_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/flock/flock_{{ version }}.tar.gz\n  sha256: 47ebdeaeeb63ec93c800782bafa7f2846f73bb905adb6a3b5c44b248ce1de9fd\n\nbuild:\n  number: 1006\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-rcpp >=0.11.3\n  run:\n    - r-base\n    - r-rcpp >=0.11.3\n\ntest:\n  commands:\n    - $R -e \"library('flock')\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('flock')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=flock\n  license: Apache-2.0\n  summary: Implements synchronization between R processes (spawned by using the \"parallel\" package for instance) using file locks. Supports both exclusive and shared locking.\n  license_family: APACHE\n  license_file:\n    - LICENSE-2.0.txt\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -453,10 +462,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -467,6 +478,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-rcpp"
@@ -476,8 +488,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-rcpp"
    ]
@@ -493,10 +505,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -513,7 +527,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp >=0.11.3"
    ]
@@ -550,8 +563,7 @@
    "summary": "Implements synchronization between R processes (spawned by using the \"parallel\" package for instance) using file locks. Supports both exclusive and shared locking."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -569,6 +581,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -582,7 +595,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp >=0.11.3"
    ]
   },
@@ -606,6 +618,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -622,7 +635,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp"
    ]
