@@ -30,7 +30,7 @@
    "summary": "The Gaussian Process Toolbox"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -58,11 +58,12 @@
    ],
    "run": [
     "python",
-    "paramz >=0.9.0",
+    "cython",
+    "paramz >=0.9.6",
     "numpy",
-    "scipy >=0.16",
+    "scipy <1.12.0,>=1.3.0",
     "six",
-    "matplotlib-base"
+    "matplotlib-base <3.9.0"
    ]
   },
   "source": {
@@ -72,7 +73,11 @@
   },
   "test": {
    "commands": [
-    "python -c \"import GPy\""
+    "python -c \"import GPy\"",
+    "pip check"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -97,6 +102,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cython",
     "matplotlib-base",
     "numpy",
     "paramz",
@@ -107,7 +113,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
@@ -120,7 +128,7 @@
    "summary": "The Gaussian Process Toolbox"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -148,11 +156,12 @@
    ],
    "run": [
     "python",
-    "paramz >=0.9.0",
+    "cython",
+    "paramz >=0.9.6",
     "numpy",
-    "scipy >=0.16",
+    "scipy <1.12.0,>=1.3.0",
     "six",
-    "matplotlib-base"
+    "matplotlib-base <3.9.0"
    ]
   },
   "source": {
@@ -162,7 +171,11 @@
   },
   "test": {
    "commands": [
-    "python -c \"import GPy\""
+    "python -c \"import GPy\"",
+    "pip check"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -177,7 +190,7 @@
    "summary": "The Gaussian Process Toolbox"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -205,11 +218,12 @@
    ],
    "run": [
     "python",
-    "paramz >=0.9.0",
+    "cython",
+    "paramz >=0.9.6",
     "numpy",
-    "scipy >=0.16",
+    "scipy <1.12.0,>=1.3.0",
     "six",
-    "matplotlib-base"
+    "matplotlib-base <3.9.0"
    ]
   },
   "source": {
@@ -219,7 +233,11 @@
   },
   "test": {
    "commands": [
-    "python -c \"import GPy\""
+    "python -c \"import GPy\"",
+    "pip check"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -244,6 +262,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cython",
     "matplotlib-base",
     "numpy",
     "paramz",
@@ -254,7 +273,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "osx_arm64_meta_yaml": {
@@ -267,7 +288,7 @@
    "summary": "The Gaussian Process Toolbox"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -295,11 +316,12 @@
    ],
    "run": [
     "python",
-    "paramz >=0.9.0",
+    "cython",
+    "paramz >=0.9.6",
     "numpy",
-    "scipy >=0.16",
+    "scipy <1.12.0,>=1.3.0",
     "six",
-    "matplotlib-base"
+    "matplotlib-base <3.9.0"
    ]
   },
   "source": {
@@ -309,7 +331,11 @@
   },
   "test": {
    "commands": [
-    "python -c \"import GPy\""
+    "python -c \"import GPy\"",
+    "pip check"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -334,6 +360,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cython",
     "matplotlib-base",
     "numpy",
     "paramz",
@@ -344,7 +371,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "outputs_names": {
@@ -363,12 +392,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/gpy.json"
  },
- "raw_meta_yaml": "{% set name = \"GPy\" %}\n{% set version = \"1.13.1\" %}\n{% set sha256 = \"64d2edd6533b9ddcfe0585a4f401234c2e7181360d8f5bb3ce1adc2b89cfa115\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  skip: true  # [py<=38]\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip\n    - numpy\n    - scipy >=0.16\n    - six\n  run:\n    - python\n    - paramz >=0.9.0\n    - {{ pin_compatible('numpy') }}\n    - scipy >=0.16\n    - six\n    - matplotlib-base\n\ntest:\n  commands:\n    - export MPLBACKEND=\"AGG\"  # [linux and py2k]\n    - python -c \"import GPy\"\n\nabout:\n  home: http://github.com/SheffieldML/GPy\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: The Gaussian Process Toolbox\n  doc_url: https://pythonhosted.org/GPy/\n  dev_url: https://github.com/SheffieldML/GPy\n\nextra:\n  recipe-maintainers:\n    - dirmeier\n    - thompsonsed\n    - jan-janssen\n",
+ "raw_meta_yaml": "{% set name = \"GPy\" %}\n{% set version = \"1.13.1\" %}\n{% set sha256 = \"64d2edd6533b9ddcfe0585a4f401234c2e7181360d8f5bb3ce1adc2b89cfa115\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 1\n  skip: true  # [py<=38]\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip\n    - numpy\n    - scipy >=0.16\n    - six\n  run:\n    - python\n    - cython\n    - paramz >=0.9.6\n    - {{ pin_compatible('numpy') }}\n    - scipy <1.12.0,>=1.3.0\n    - six\n    - matplotlib-base <3.9.0\n\ntest:\n  commands:\n    - export MPLBACKEND=\"AGG\"  # [linux and py2k]\n    - python -c \"import GPy\"\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: http://github.com/SheffieldML/GPy\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: The Gaussian Process Toolbox\n  doc_url: https://pythonhosted.org/GPy/\n  dev_url: https://github.com/SheffieldML/GPy\n\nextra:\n  recipe-maintainers:\n    - dirmeier\n    - thompsonsed\n    - jan-janssen\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
    "c_stdlib_stub",
+   "cython",
    "matplotlib-base",
    "numpy",
    "paramz",
@@ -403,6 +433,7 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "cython",
     "matplotlib-base",
     "numpy",
     "paramz",
@@ -413,7 +444,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
@@ -438,17 +471,20 @@
   "run": {
    "__set__": true,
    "elements": [
-    "matplotlib-base",
+    "cython",
+    "matplotlib-base <3.9.0",
     "numpy",
-    "paramz >=0.9.0",
+    "paramz >=0.9.6",
     "python",
-    "scipy >=0.16",
+    "scipy <1.12.0,>=1.3.0",
     "six"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "url": "https://pypi.io/packages/source/G/GPy/GPy-1.13.1.tar.gz",
@@ -466,7 +502,7 @@
    "summary": "The Gaussian Process Toolbox"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -494,11 +530,12 @@
    ],
    "run": [
     "python",
-    "paramz >=0.9.0",
+    "cython",
+    "paramz >=0.9.6",
     "numpy",
-    "scipy >=0.16",
+    "scipy <1.12.0,>=1.3.0",
     "six",
-    "matplotlib-base"
+    "matplotlib-base <3.9.0"
    ]
   },
   "source": {
@@ -508,7 +545,11 @@
   },
   "test": {
    "commands": [
-    "python -c \"import GPy\""
+    "python -c \"import GPy\"",
+    "pip check"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -533,6 +574,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "cython",
     "matplotlib-base",
     "numpy",
     "paramz",
@@ -543,7 +585,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  }
 }
