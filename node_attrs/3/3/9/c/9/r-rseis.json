@@ -30,7 +30,7 @@
    "summary": "Multiple interactive codes to view and analyze seismic data, via spectrum analysis, wavelet transforms, particle motion, hodograms.  Includes general time-series tools, plotting, filtering, interactive display."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -48,6 +48,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -79,6 +80,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -114,8 +116,7 @@
    "summary": "Multiple interactive codes to view and analyze seismic data, via spectrum analysis, wavelet transforms, particle motion, hodograms.  Includes general time-series tools, plotting, filtering, interactive display."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -133,8 +134,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -148,8 +151,7 @@
    "run": [
     "r-base",
     "r-rpmg",
-    "r-rwave",
-    "gcc-libs"
+    "r-rwave"
    ]
   },
   "source": {
@@ -178,7 +180,7 @@
    "summary": "Multiple interactive codes to view and analyze seismic data, via spectrum analysis, wavelet transforms, particle motion, hodograms.  Includes general time-series tools, plotting, filtering, interactive display."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -196,6 +198,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -227,6 +230,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -266,15 +270,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-rseis.json"
  },
- "raw_meta_yaml": "{% set version = \"4.2-0\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-rseis\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/RSEIS_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/RSEIS/RSEIS_{{ version }}.tar.gz\n  sha256: 93ec391f69660fffdeee79a16b312522dada399a83a35758e69422145e682d14\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rpmg\n    - r-rwave\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rpmg\n    - r-rwave\n\ntest:\n  commands:\n    - $R -e \"library('RSEIS')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('RSEIS')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=RSEIS\n  license: GPL-2.0-or-later\n  summary: Multiple interactive codes to view and analyze seismic data, via spectrum analysis, wavelet transforms, particle motion, hodograms.  Includes general time-series tools, plotting, filtering, interactive display.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: RSEIS\n# Type: Package\n# Title: Seismic Time Series Analysis Tools\n# Version: 3.9-0\n# Date: 2019-09-15\n# Depends: R (>= 3.0)\n# Imports: RPMG, Rwave\n# Suggests: stats\n# Authors@R: c(person(given=\"Jonathan M.\", family=\"Lees\", role = c(\"aut\", \"cre\"),email = \"jonathan.lees@unc.edu\"), person(given=\"Jake\", family=\"Anderson\", role = \"ctb\", email = \"ajakef@gmail.com\"), person(given='Leonard', family='Lisapaly', role = \"ctb\", email = \"leonardl@fisika.ui.ac.id\"), person(given='Dave', family='Harris', role=c('aut', 'cph') ) )\n# Author: Jonathan M. Lees [aut, cre], Jake Anderson [ctb], Leonard Lisapaly [ctb], Dave Harris [aut, cph]\n# Maintainer: Jonathan M. Lees <jonathan.lees@unc.edu>\n# Description: Multiple interactive codes to view and analyze seismic data, via spectrum analysis, wavelet transforms, particle motion, hodograms.  Includes general time-series tools, plotting, filtering, interactive display.\n# License: GPL (>= 2)\n# Copyright: see inst/COPYRIGHTS\n# Packaged: 2019-09-18 17:39:37 UTC; lees\n# NeedsCompilation: yes\n# Repository: CRAN\n# Date/Publication: 2019-09-18 19:20:05 UTC\n",
+ "raw_meta_yaml": "{% set version = \"4.2-0\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-rseis\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/RSEIS_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/RSEIS/RSEIS_{{ version }}.tar.gz\n  sha256: 93ec391f69660fffdeee79a16b312522dada399a83a35758e69422145e682d14\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rpmg\n    - r-rwave\n  run:\n    - r-base\n    - r-rpmg\n    - r-rwave\n\ntest:\n  commands:\n    - $R -e \"library('RSEIS')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('RSEIS')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=RSEIS\n  license: GPL-2.0-or-later\n  summary: Multiple interactive codes to view and analyze seismic data, via spectrum analysis, wavelet transforms, particle motion, hodograms.  Includes general time-series tools, plotting, filtering, interactive display.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: RSEIS\n# Type: Package\n# Title: Seismic Time Series Analysis Tools\n# Version: 3.9-0\n# Date: 2019-09-15\n# Depends: R (>= 3.0)\n# Imports: RPMG, Rwave\n# Suggests: stats\n# Authors@R: c(person(given=\"Jonathan M.\", family=\"Lees\", role = c(\"aut\", \"cre\"),email = \"jonathan.lees@unc.edu\"), person(given=\"Jake\", family=\"Anderson\", role = \"ctb\", email = \"ajakef@gmail.com\"), person(given='Leonard', family='Lisapaly', role = \"ctb\", email = \"leonardl@fisika.ui.ac.id\"), person(given='Dave', family='Harris', role=c('aut', 'cph') ) )\n# Author: Jonathan M. Lees [aut, cre], Jake Anderson [ctb], Leonard Lisapaly [ctb], Dave Harris [aut, cph]\n# Maintainer: Jonathan M. Lees <jonathan.lees@unc.edu>\n# Description: Multiple interactive codes to view and analyze seismic data, via spectrum analysis, wavelet transforms, particle motion, hodograms.  Includes general time-series tools, plotting, filtering, interactive display.\n# License: GPL (>= 2)\n# Copyright: see inst/COPYRIGHTS\n# Packaged: 2019-09-18 17:39:37 UTC; lees\n# NeedsCompilation: yes\n# Repository: CRAN\n# Date/Publication: 2019-09-18 19:20:05 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-rpmg",
@@ -288,9 +293,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -300,6 +307,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-rpmg",
     "r-rwave"
@@ -309,7 +317,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-rpmg",
     "r-rwave"
@@ -326,9 +334,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -345,7 +355,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rpmg",
     "r-rwave"
@@ -379,8 +388,7 @@
    "summary": "Multiple interactive codes to view and analyze seismic data, via spectrum analysis, wavelet transforms, particle motion, hodograms.  Includes general time-series tools, plotting, filtering, interactive display."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -398,6 +406,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -411,7 +420,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rpmg",
     "r-rwave"
    ]
@@ -436,6 +444,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -452,7 +461,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rpmg",
     "r-rwave"
