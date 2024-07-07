@@ -27,7 +27,7 @@
    "summary": "This package implements some basic procedures for dealing with log maximally skew stable distributions, which are also called finite moment log stable distributions."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -45,6 +45,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -72,6 +73,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -103,8 +105,7 @@
    "summary": "This package implements some basic procedures for dealing with log maximally skew stable distributions, which are also called finite moment log stable distributions."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -122,8 +123,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -133,8 +136,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -163,7 +165,7 @@
    "summary": "This package implements some basic procedures for dealing with log maximally skew stable distributions, which are also called finite moment log stable distributions."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -181,6 +183,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -208,6 +211,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -243,15 +247,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-fmstable.json"
  },
- "raw_meta_yaml": "{% set version = \"0.1-4\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-fmstable\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/FMStable_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/FMStable/FMStable_{{ version }}.tar.gz\n  sha256: 2a391061dc2d2e89f6639aada07e839fdf950c0b20e27566219bb89befb4e93a\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('FMStable')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('FMStable')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=FMStable\n  license: GPL-3.0-only\n  summary: This package implements some basic procedures for dealing with log maximally skew stable distributions, which are also called finite moment log stable distributions.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: FMStable\n# Version: 0.1-2\n# Date: 2012-08-30\n# Title: Finite Moment Stable Distributions\n# Author: Geoff Robinson\n# Maintainer: Geoff Robinson <Geoff.Robinson@CSIRO.au>\n# Description: This package implements some basic procedures for dealing with log maximally skew stable distributions, which are also called finite moment log stable distributions.\n# License: GPL-3\n# Packaged: 2012-09-06 06:06:05 UTC; rob400\n# Repository: CRAN\n# Date/Publication: 2012-09-06 06:40:04\n",
+ "raw_meta_yaml": "{% set version = \"0.1-4\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-fmstable\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/FMStable_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/FMStable/FMStable_{{ version }}.tar.gz\n  sha256: 2a391061dc2d2e89f6639aada07e839fdf950c0b20e27566219bb89befb4e93a\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('FMStable')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('FMStable')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=FMStable\n  license: GPL-3.0-only\n  summary: This package implements some basic procedures for dealing with log maximally skew stable distributions, which are also called finite moment log stable distributions.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: FMStable\n# Version: 0.1-2\n# Date: 2012-08-30\n# Title: Finite Moment Stable Distributions\n# Author: Geoff Robinson\n# Maintainer: Geoff Robinson <Geoff.Robinson@CSIRO.au>\n# Description: This package implements some basic procedures for dealing with log maximally skew stable distributions, which are also called finite moment log stable distributions.\n# License: GPL-3\n# Packaged: 2012-09-06 06:06:05 UTC; rob400\n# Repository: CRAN\n# Date/Publication: 2012-09-06 06:40:04\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "sed",
@@ -263,9 +268,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -275,6 +282,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -282,7 +290,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -297,9 +305,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -314,7 +324,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -346,8 +355,7 @@
    "summary": "This package implements some basic procedures for dealing with log maximally skew stable distributions, which are also called finite moment log stable distributions."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -365,6 +373,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -375,8 +384,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -399,6 +407,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -413,7 +422,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
