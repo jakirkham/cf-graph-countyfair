@@ -28,7 +28,7 @@
    "summary": "Bindings to the 'libgraphqlparser' C++ library. Parses GraphQL syntax and exports the AST in JSON format."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -47,6 +47,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -79,6 +80,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -116,8 +118,7 @@
    "summary": "Bindings to the 'libgraphqlparser' C++ library. Parses GraphQL syntax and exports the AST in JSON format."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -136,9 +137,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -153,8 +156,7 @@
    "run": [
     "r-base",
     "r-rcpp >=0.12.12",
-    "r-jsonlite",
-    "gcc-libs"
+    "r-jsonlite"
    ]
   },
   "source": {
@@ -184,7 +186,7 @@
    "summary": "Bindings to the 'libgraphqlparser' C++ library. Parses GraphQL syntax and exports the AST in JSON format."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -203,6 +205,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -235,6 +238,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -275,16 +279,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-graphql.json"
  },
- "raw_meta_yaml": "{% set version = \"1.5.1\" %}\n\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-graphql\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/graphql_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/graphql/graphql_{{ version }}.tar.gz\n  sha256: 68f324cc49eee06f866532c28cd5602eff293e99b6157a81b151ef00f18af783\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n\n  host:\n    - r-base\n    - r-rcpp >=0.12.12\n    - r-jsonlite\n\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp >=0.12.12\n    - r-jsonlite\n\ntest:\n  commands:\n    - $R -e \"library('graphql')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('graphql')\\\"\"  # [win]\n\nabout:\n  home: http://graphql.org (upstream) https://github.com/ropensci/graphql (devel)\n  license: MIT\n  summary: Bindings to the 'libgraphqlparser' C++ library. Parses GraphQL syntax and exports the AST in JSON format.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - jezcope\n\n# The original CRAN metadata for this package was:\n\n# Package: graphql\n# Type: Package\n# Title: A GraphQL Query Parser\n# Version: 1.5\n# Authors@R: c( person(\"Jeroen\", \"Ooms\", , \"jeroen@berkeley.edu\", role = c(\"cre\", \"aut\")), person(\"Barret\", \"Schloerke\", , \"schloerke@gmail.com\", role = \"ctb\"), person(\"Scott\", \"Wolchok\", role = \"ctb\"), person(\"Facebook, Inc\", role = c(\"aut\",\"cph\"), comment = \"libgraphqlparser C++ library\"))\n# Description: Bindings to the 'libgraphqlparser' C++ library. Parses GraphQL syntax and exports the AST in JSON format.\n# License: MIT + file LICENSE\n# Encoding: UTF-8\n# URL: http://graphql.org (upstream) https://github.com/ropensci/graphql (devel)\n# BugReports: https://github.com/ropensci/graphql/issues\n# LinkingTo: Rcpp\n# Imports: Rcpp (>= 0.12.12), jsonlite\n# Suggests: testthat\n# RoxygenNote: 6.0.1\n# NeedsCompilation: yes\n# Packaged: 2018-12-01 13:16:31 UTC; jeroen\n# Author: Jeroen Ooms [cre, aut], Barret Schloerke [ctb], Scott Wolchok [ctb], Facebook, Inc [aut, cph] (libgraphqlparser C++ library)\n# Maintainer: Jeroen Ooms <jeroen@berkeley.edu>\n# Repository: CRAN\n# Date/Publication: 2018-12-01 14:00:03 UTC\n\n# See\n# https://docs.conda.io/projects/conda-build for\n# more information about meta.yaml\n",
+ "raw_meta_yaml": "{% set version = \"1.5.1\" %}\n\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-graphql\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/graphql_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/graphql/graphql_{{ version }}.tar.gz\n  sha256: 68f324cc49eee06f866532c28cd5602eff293e99b6157a81b151ef00f18af783\n\nbuild:\n  number: 3\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n\n  host:\n    - r-base\n    - r-rcpp >=0.12.12\n    - r-jsonlite\n\n  run:\n    - r-base\n    - r-rcpp >=0.12.12\n    - r-jsonlite\n\ntest:\n  commands:\n    - $R -e \"library('graphql')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('graphql')\\\"\"  # [win]\n\nabout:\n  home: http://graphql.org (upstream) https://github.com/ropensci/graphql (devel)\n  license: MIT\n  summary: Bindings to the 'libgraphqlparser' C++ library. Parses GraphQL syntax and exports the AST in JSON format.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - jezcope\n\n# The original CRAN metadata for this package was:\n\n# Package: graphql\n# Type: Package\n# Title: A GraphQL Query Parser\n# Version: 1.5\n# Authors@R: c( person(\"Jeroen\", \"Ooms\", , \"jeroen@berkeley.edu\", role = c(\"cre\", \"aut\")), person(\"Barret\", \"Schloerke\", , \"schloerke@gmail.com\", role = \"ctb\"), person(\"Scott\", \"Wolchok\", role = \"ctb\"), person(\"Facebook, Inc\", role = c(\"aut\",\"cph\"), comment = \"libgraphqlparser C++ library\"))\n# Description: Bindings to the 'libgraphqlparser' C++ library. Parses GraphQL syntax and exports the AST in JSON format.\n# License: MIT + file LICENSE\n# Encoding: UTF-8\n# URL: http://graphql.org (upstream) https://github.com/ropensci/graphql (devel)\n# BugReports: https://github.com/ropensci/graphql/issues\n# LinkingTo: Rcpp\n# Imports: Rcpp (>= 0.12.12), jsonlite\n# Suggests: testthat\n# RoxygenNote: 6.0.1\n# NeedsCompilation: yes\n# Packaged: 2018-12-01 13:16:31 UTC; jeroen\n# Author: Jeroen Ooms [cre, aut], Barret Schloerke [ctb], Scott Wolchok [ctb], Facebook, Inc [aut, cph] (libgraphqlparser C++ library)\n# Maintainer: Jeroen Ooms <jeroen@berkeley.edu>\n# Repository: CRAN\n# Date/Publication: 2018-12-01 14:00:03 UTC\n\n# See\n# https://docs.conda.io/projects/conda-build for\n# more information about meta.yaml\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -299,10 +304,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -313,6 +320,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-jsonlite",
@@ -323,8 +331,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-jsonlite",
     "r-rcpp"
@@ -341,10 +349,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -362,7 +372,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-jsonlite",
     "r-rcpp >=0.12.12"
@@ -397,8 +406,7 @@
    "summary": "Bindings to the 'libgraphqlparser' C++ library. Parses GraphQL syntax and exports the AST in JSON format."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -417,6 +425,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -431,7 +440,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp >=0.12.12",
     "r-jsonlite"
    ]
@@ -456,6 +464,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -473,7 +482,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-jsonlite",
     "r-rcpp"
