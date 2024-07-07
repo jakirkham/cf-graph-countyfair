@@ -47,7 +47,7 @@
   },
   "package": {
    "name": "adios4dolfinx",
-   "version": "0.8.1"
+   "version": "0.8.2"
   },
   "requirements": {
    "host": [
@@ -63,8 +63,8 @@
    ]
   },
   "source": {
-   "sha256": "5e1ba02f2cdebe22193d6134684e4b733e500f07146e1a84cb8aaa329098dbba",
-   "url": "https://github.com/jorgensd/adios4dolfinx/archive/refs/tags/v0.8.1.tar.gz"
+   "sha256": "00c874ed65809b2dd47c6150d693bf1c76a1e9a55ae0e96084bdf167331083e3",
+   "url": "https://github.com/jorgensd/adios4dolfinx/archive/refs/tags/v0.8.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -148,7 +148,7 @@
   },
   "package": {
    "name": "adios4dolfinx",
-   "version": "0.8.1"
+   "version": "0.8.2"
   },
   "requirements": {
    "host": [
@@ -164,8 +164,8 @@
    ]
   },
   "source": {
-   "sha256": "5e1ba02f2cdebe22193d6134684e4b733e500f07146e1a84cb8aaa329098dbba",
-   "url": "https://github.com/jorgensd/adios4dolfinx/archive/refs/tags/v0.8.1.tar.gz"
+   "sha256": "00c874ed65809b2dd47c6150d693bf1c76a1e9a55ae0e96084bdf167331083e3",
+   "url": "https://github.com/jorgensd/adios4dolfinx/archive/refs/tags/v0.8.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -198,7 +198,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/adios4dolfinx.json"
  },
- "raw_meta_yaml": "{% set name = \"adios4dolfinx\" %}\n{% set version = \"0.8.1\" %}\n{% set major_minor = version.rsplit(\".\", 1)[0] %}\n\npackage:\n  name: adios4dolfinx\n  version: {{ version }}\n\nsource:\n  url: https://github.com/jorgensd/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 5e1ba02f2cdebe22193d6134684e4b733e500f07146e1a84cb8aaa329098dbba\n\nbuild:\n  number: 0\n  noarch: python\n\n  # openmpi oversubscribe env\n  script_env:\n    - OMPI_ALLOW_RUN_AS_ROOT=1\n    - OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1\n    - OMPI_MCA_rmaps_base_oversubscribe=1\n    - OMPI_MCA_plm=isolated\n    - OMPI_MCA_btl=vader,self\n    - OMPI_MCA_btl_vader_single_copy_mechanism=none\n    - MPIEXEC_TIMEOUT=400\n\n  script: python -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.9\n    - pip\n  run:\n    - fenics-dolfinx {{ major_minor }}\n    - adios2 * mpi_*\n    - numpy >=1.21\n    - python >=3.9\n    - mpi4py\n\ntest:\n  source_files:\n    - pyproject.toml\n    - tests\n  requires:\n    - pip\n    - ipyparallel\n    - pytest\n  commands:\n    - pytest -vs tests\n    - mpirun -n 2 pytest tests\n    - pip check\n\nabout:\n  home: https://github.com/jorgensd/adios4dolfinx\n  summary: Checkpointing for DOLFINx\n  description: |\n    This library contains an add-on to FEniCSx enabling the checkpointing meshes and solutions from DOLFINx\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  doc_url: https://jorgensd.github.io/adios4dolfinx/\n  dev_url: https://github.com/jorgensd/adios4dolfinx/\n\nextra:\n  feedstock-name: adios4dolfinx\n  recipe-maintainers:\n    - jorgensd\n    - minrk\n",
+ "raw_meta_yaml": "{% set name = \"adios4dolfinx\" %}\n{% set version = \"0.8.2\" %}\n{% set major_minor = version.rsplit(\".\", 1)[0] %}\n\npackage:\n  name: adios4dolfinx\n  version: {{ version }}\n\nsource:\n  url: https://github.com/jorgensd/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 00c874ed65809b2dd47c6150d693bf1c76a1e9a55ae0e96084bdf167331083e3\n\nbuild:\n  number: 0\n  noarch: python\n\n  # openmpi oversubscribe env\n  script_env:\n    - OMPI_ALLOW_RUN_AS_ROOT=1\n    - OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1\n    - OMPI_MCA_rmaps_base_oversubscribe=1\n    - OMPI_MCA_plm=isolated\n    - OMPI_MCA_btl=vader,self\n    - OMPI_MCA_btl_vader_single_copy_mechanism=none\n    - MPIEXEC_TIMEOUT=400\n\n  script: python -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.9\n    - pip\n  run:\n    - fenics-dolfinx {{ major_minor }}\n    - adios2 * mpi_*\n    - numpy >=1.21\n    - python >=3.9\n    - mpi4py\n\ntest:\n  source_files:\n    - pyproject.toml\n    - tests\n  requires:\n    - pip\n    - ipyparallel\n    - pytest\n  commands:\n    - pytest -vs tests\n    - mpirun -n 2 pytest tests\n    - pip check\n\nabout:\n  home: https://github.com/jorgensd/adios4dolfinx\n  summary: Checkpointing for DOLFINx\n  description: |\n    This library contains an add-on to FEniCSx enabling the checkpointing meshes and solutions from DOLFINx\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  doc_url: https://jorgensd.github.io/adios4dolfinx/\n  dev_url: https://github.com/jorgensd/adios4dolfinx/\n\nextra:\n  feedstock-name: adios4dolfinx\n  recipe-maintainers:\n    - jorgensd\n    - minrk\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -273,8 +273,8 @@
    ]
   }
  },
- "url": "https://github.com/jorgensd/adios4dolfinx/archive/refs/tags/v0.8.1.tar.gz",
- "version": "0.8.1",
+ "url": "https://github.com/jorgensd/adios4dolfinx/archive/refs/tags/v0.8.2.tar.gz",
+ "version": "0.8.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/adios4dolfinx.json"
  }
