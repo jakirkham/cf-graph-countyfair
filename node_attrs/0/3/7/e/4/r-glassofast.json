@@ -31,7 +31,7 @@
    "summary": "A fast and improved implementation of the graphical LASSO."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -51,6 +51,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -79,6 +80,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -111,8 +113,7 @@
    "summary": "A fast and improved implementation of the graphical LASSO."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -132,9 +133,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -145,8 +148,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -175,7 +177,7 @@
    "summary": "A fast and improved implementation of the graphical LASSO."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -195,6 +197,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -223,6 +226,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -255,7 +259,7 @@
    "summary": "A fast and improved implementation of the graphical LASSO."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -275,6 +279,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -303,6 +308,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -340,16 +346,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-glassofast.json"
  },
- "raw_meta_yaml": "{% set version = \"1.0.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-glassofast\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/glassoFast_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/glassoFast/glassoFast_{{ version }}.tar.gz\n  sha256: ffc340420d7693af4e361811fb8cf593083c2c341b07376b902533c373addb5b\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('glassoFast')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('glassoFast')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=glassoFast\n  license: GPL-3.0-only\n  summary: A fast and improved implementation of the graphical LASSO.\n  license_family: GPL3\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - cpauvert\n    - JClavel\n\n# Package: glassoFast\n# Type: Package\n# Title: Fast Graphical LASSO\n# Version: 1.0\n# Date: 2018-07-17\n# Suggests: glasso, rbenchmark\n# Author: Matyas A Sustik [aut, cph], Ben Calderhead [aut, cph], Julien Clavel [com, ctb]\n# Maintainer: Julien Clavel <julien.clavel@hotmail.fr>\n# Description: A fast and improved implementation of the graphical LASSO.\n# License: GPL (>= 3)\n# NeedsCompilation: yes\n# Packaged: 2018-07-26 11:48:33 UTC; julienclavel\n# Repository: CRAN\n# Date/Publication: 2018-07-30 12:10:12 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.0.1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-glassofast\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/glassoFast_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/glassoFast/glassoFast_{{ version }}.tar.gz\n  sha256: ffc340420d7693af4e361811fb8cf593083c2c341b07376b902533c373addb5b\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('glassoFast')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('glassoFast')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=glassoFast\n  license: GPL-3.0-only\n  summary: A fast and improved implementation of the graphical LASSO.\n  license_family: GPL3\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - cpauvert\n    - JClavel\n\n# Package: glassoFast\n# Type: Package\n# Title: Fast Graphical LASSO\n# Version: 1.0\n# Date: 2018-07-17\n# Suggests: glasso, rbenchmark\n# Author: Matyas A Sustik [aut, cph], Ben Calderhead [aut, cph], Julien Clavel [com, ctb]\n# Maintainer: Julien Clavel <julien.clavel@hotmail.fr>\n# Description: A fast and improved implementation of the graphical LASSO.\n# License: GPL (>= 3)\n# NeedsCompilation: yes\n# Packaged: 2018-07-26 11:48:33 UTC; julienclavel\n# Repository: CRAN\n# Date/Publication: 2018-07-30 12:10:12 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "r-base",
@@ -362,10 +369,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -376,6 +385,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "r-base"
    ]
@@ -384,8 +394,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -400,10 +410,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -419,7 +431,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -453,8 +464,7 @@
    "summary": "A fast and improved implementation of the graphical LASSO."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -474,6 +484,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "make",
@@ -485,8 +496,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -509,6 +519,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -524,7 +535,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
