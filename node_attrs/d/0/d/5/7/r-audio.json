@@ -28,7 +28,7 @@
    "summary": "Interfaces to audio devices (mainly sample-based) from R to allow recording and playback of audio. Built-in devices include Windows MM, Mac OS X AudioUnits and PortAudio (the last one is very experimental)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -47,6 +47,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "pkg-config",
@@ -79,6 +80,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "pkg-config"
    ]
@@ -112,8 +114,7 @@
    "summary": "Interfaces to audio devices (mainly sample-based) from R to allow recording and playback of audio. Built-in devices include Windows MM, Mac OS X AudioUnits and PortAudio (the last one is very experimental)."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -132,11 +133,13 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "pkg-config",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "grep",
@@ -148,8 +151,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -179,7 +181,7 @@
    "summary": "Interfaces to audio devices (mainly sample-based) from R to allow recording and playback of audio. Built-in devices include Windows MM, Mac OS X AudioUnits and PortAudio (the last one is very experimental)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -198,6 +200,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "pkg-config",
@@ -230,6 +233,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "pkg-config"
    ]
@@ -266,7 +270,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-audio.json"
  },
- "raw_meta_yaml": "{% set version = \"0.1-11\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-audio\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/audio_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/audio/audio_{{ version }}.tar.gz\n  sha256: 1052f6335be4df4b2e145c077d82e781eaf6658f3ed4821033b07e57bb4ce17c\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('audio')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('audio')\\\"\"  # [win]\n\nabout:\n  home: http://www.rforge.net/audio/\n  license: MIT\n  summary: Interfaces to audio devices (mainly sample-based) from R to allow recording and playback of audio. Built-in devices include Windows MM, Mac OS X AudioUnits and PortAudio (the last one is very experimental).\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - mfansler\n\n# Package: audio\n# Version: 0.1-8\n# Title: Audio Interface for R\n# Author: Simon Urbanek <simon.urbanek@r-project.org>\n# Maintainer: Simon Urbanek <simon.urbanek@r-project.org>\n# Depends: R (>= 2.0.0)\n# Description: Interfaces to audio devices (mainly sample-based) from R to allow recording and playback of audio. Built-in devices include Windows MM, Mac OS X AudioUnits and PortAudio (the last one is very experimental).\n# License: MIT + file LICENSE\n# URL: http://www.rforge.net/audio/\n# NeedsCompilation: yes\n# Packaged: 2021-09-08 04:44:17 UTC; rforge\n# Repository: CRAN\n# Date/Publication: 2021-09-08 06:12:23 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.1-11\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-audio\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/audio_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/audio/audio_{{ version }}.tar.gz\n  sha256: 1052f6335be4df4b2e145c077d82e781eaf6658f3ed4821033b07e57bb4ce17c\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('audio')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('audio')\\\"\"  # [win]\n\nabout:\n  home: http://www.rforge.net/audio/\n  license: MIT\n  summary: Interfaces to audio devices (mainly sample-based) from R to allow recording and playback of audio. Built-in devices include Windows MM, Mac OS X AudioUnits and PortAudio (the last one is very experimental).\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - mfansler\n\n# Package: audio\n# Version: 0.1-8\n# Title: Audio Interface for R\n# Author: Simon Urbanek <simon.urbanek@r-project.org>\n# Maintainer: Simon Urbanek <simon.urbanek@r-project.org>\n# Depends: R (>= 2.0.0)\n# Description: Interfaces to audio devices (mainly sample-based) from R to allow recording and playback of audio. Built-in devices include Windows MM, Mac OS X AudioUnits and PortAudio (the last one is very experimental).\n# License: MIT + file LICENSE\n# URL: http://www.rforge.net/audio/\n# NeedsCompilation: yes\n# Packaged: 2021-09-08 04:44:17 UTC; rforge\n# Repository: CRAN\n# Date/Publication: 2021-09-08 06:12:23 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -274,11 +278,12 @@
    "automake",
    "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "grep",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "pkg-config",
    "r-base",
@@ -294,10 +299,12 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "pkg-config",
     "sed",
@@ -308,6 +315,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -315,7 +323,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -333,10 +341,12 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "pkg-config",
     "sed",
@@ -352,7 +362,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -385,8 +394,7 @@
    "summary": "Interfaces to audio devices (mainly sample-based) from R to allow recording and playback of audio. Built-in devices include Windows MM, Mac OS X AudioUnits and PortAudio (the last one is very experimental)."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -405,6 +413,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "grep",
@@ -419,8 +428,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -446,6 +454,7 @@
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "pkg-config",
     "sed",
@@ -461,7 +470,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
