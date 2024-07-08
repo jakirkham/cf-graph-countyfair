@@ -28,7 +28,7 @@
    "summary": "A collection of functions which (i) assess the quality of variable subsets as surrogates for a full data set, in either an exploratory data analysis or in the context of a multivariate linear model, and (ii) search for subsets which are optimal under various criteria."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make"
@@ -82,6 +83,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make"
@@ -119,8 +121,7 @@
    "summary": "A collection of functions which (i) assess the quality of variable subsets as surrogates for a full data set, in either an exploratory data analysis or in the context of a multivariate linear model, and (ii) search for subsets which are optimal under various criteria."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -138,10 +139,12 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
@@ -159,8 +162,7 @@
     "r-base",
     "r-iswr",
     "r-mass",
-    "r-corpcor",
-    "gcc-libs"
+    "r-corpcor"
    ]
   },
   "source": {
@@ -188,7 +190,7 @@
    "summary": "A collection of functions which (i) assess the quality of variable subsets as surrogates for a full data set, in either an exploratory data analysis or in the context of a multivariate linear model, and (ii) search for subsets which are optimal under various criteria."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -206,6 +208,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make"
@@ -242,6 +245,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make"
@@ -285,17 +289,18 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-subselect.json"
  },
- "raw_meta_yaml": "{% set version = \"0.15.5\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-subselect\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: subselect_{{ version }}.tar.gz\n  url:\n    - {{ cran_mirror }}/src/contrib/subselect_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/subselect/subselect_{{ version }}.tar.gz\n  sha256: fc8ed96262627683355c64f03e0ab7bbeb45e258e6a49b8fdd67053c91f288f7\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n    - {{ compiler('fortran') }}  # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('m2w64_cxx') }}        # [win]\n    - {{ compiler('m2w64_fortran') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-iswr\n    - r-mass\n    - r-corpcor\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-iswr\n    - r-mass\n    - r-corpcor\n\ntest:\n  commands:\n    - $R -e \"library('subselect')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('subselect')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=subselect\n  license: GPL (>= 2)\n  summary: A collection of functions which (i) assess the quality of variable subsets as surrogates for a full data set, in either an exploratory data analysis or in the context of a multivariate linear model, and (ii) search for subsets which are optimal under various criteria.\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.15.5\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-subselect\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: subselect_{{ version }}.tar.gz\n  url:\n    - {{ cran_mirror }}/src/contrib/subselect_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/subselect/subselect_{{ version }}.tar.gz\n  sha256: fc8ed96262627683355c64f03e0ab7bbeb45e258e6a49b8fdd67053c91f288f7\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n    - {{ compiler('fortran') }}  # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('m2w64_cxx') }}        # [win]\n    - {{ compiler('m2w64_fortran') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-iswr\n    - r-mass\n    - r-corpcor\n  run:\n    - r-base\n    - r-iswr\n    - r-mass\n    - r-corpcor\n\ntest:\n  commands:\n    - $R -e \"library('subselect')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('subselect')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=subselect\n  license: GPL (>= 2)\n  summary: A collection of functions which (i) assess the quality of variable subsets as surrogates for a full data set, in either an exploratory data analysis or in the context of a multivariate linear model, and (ii) search for subsets which are optimal under various criteria.\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "m2w64_fortran_compiler_stub",
    "make",
@@ -312,11 +317,13 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "m2w64_fortran_compiler_stub",
     "make",
@@ -328,6 +335,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "r-base",
@@ -340,9 +348,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-corpcor",
     "r-iswr",
@@ -360,11 +368,13 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "m2w64_fortran_compiler_stub",
     "make",
@@ -384,7 +394,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-corpcor",
     "r-iswr",
@@ -417,8 +426,7 @@
    "summary": "A collection of functions which (i) assess the quality of variable subsets as surrogates for a full data set, in either an exploratory data analysis or in the context of a multivariate linear model, and (ii) search for subsets which are optimal under various criteria."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -436,6 +444,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
@@ -452,7 +461,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-iswr",
     "r-mass",
     "r-corpcor"
@@ -479,6 +487,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "m2w64_fortran_compiler_stub",
     "make",
@@ -498,7 +507,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-corpcor",
     "r-iswr",
