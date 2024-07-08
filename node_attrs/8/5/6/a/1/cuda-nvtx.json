@@ -125,11 +125,11 @@
   ],
   "package": {
    "name": "cuda-nvtx",
-   "version": "12.5.39"
+   "version": "12.5.82"
   },
   "source": {
-   "sha256": "c2cd53ef7b3351e7068b4584910239f8d0a7f677078112fe2abc0d0eda2c9314",
-   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/windows-x86_64/cuda_nvtx-windows-x86_64-12.5.39-archive.zip"
+   "sha256": "f12a029386f8fbd87f71311d8f4cc51a94414b997c52cf5eabc62c83c655ea47",
+   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/windows-x86_64/cuda_nvtx-windows-x86_64-12.5.82-archive.zip"
   },
   "test": {
    "commands": [
@@ -283,11 +283,11 @@
   ],
   "package": {
    "name": "cuda-nvtx",
-   "version": "12.5.39"
+   "version": "12.5.82"
   },
   "source": {
-   "sha256": "ed75919953354db617da04a030c3b49cb17df372e4c794358b1a6e88c57c7737",
-   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/windows-x86_64/cuda_nvtx-windows-x86_64-12.5.39-archive.zip"
+   "sha256": "8a0d3787f1cce8db70cbad05e6303e72602415c171f8a383da4d1118ce5e89b3",
+   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/windows-x86_64/cuda_nvtx-windows-x86_64-12.5.82-archive.zip"
   },
   "test": {
    "commands": [
@@ -578,11 +578,11 @@
   ],
   "package": {
    "name": "cuda-nvtx",
-   "version": "12.5.39"
+   "version": "12.5.82"
   },
   "source": {
-   "sha256": "7bf6dd414c982f75d4dcb8f184cd65b0e2d48c356b4a999d79faf75f30ff0bc7",
-   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/windows-x86_64/cuda_nvtx-windows-x86_64-12.5.39-archive.zip"
+   "sha256": "07f301cff5390b9b56361dda033c2f467f1bddbe3609285afa5a79f31c6e38d6",
+   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/windows-x86_64/cuda_nvtx-windows-x86_64-12.5.82-archive.zip"
   },
   "test": {
    "commands": null,
@@ -609,7 +609,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cuda-nvtx.json"
  },
- "raw_meta_yaml": "{% set name = \"cuda-nvtx\" %}\n{% set version = \"12.5.39\" %}\n{% set cuda_version = \"12.5\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"linux-sbsa\" %}  # [aarch64]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set target_name = \"x86_64-linux\" %}  # [linux64]\n{% set target_name = \"ppc64le-linux\" %}  # [ppc64le]\n{% set target_name = \"sbsa-linux\" %}  # [aarch64]\n{% set target_name = \"x64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/{{ platform }}/cuda_nvtx-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: c2cd53ef7b3351e7068b4584910239f8d0a7f677078112fe2abc0d0eda2c9314  # [linux64]\n  sha256: ed75919953354db617da04a030c3b49cb17df372e4c794358b1a6e88c57c7737  # [aarch64]\n  sha256: 7bf6dd414c982f75d4dcb8f184cd65b0e2d48c356b4a999d79faf75f30ff0bc7  # [win]\n\nbuild:\n  number: 0\n  skip: true  # [osx or ppc64le]\n  binary_relocation: false\n\ntest:\n  requires:\n    - patchelf  # [linux]\n  files:\n    - test-rpath.sh\n  commands:\n    - test -L $PREFIX/lib/libnvToolsExt.so.1                                # [linux]\n    - test -L $PREFIX/lib/libnvToolsExt.so.1.0.0                            # [linux]\n    - test -L $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1      # [linux]\n    - test -f $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0  # [linux]\n    - bash test-rpath.sh                                                    # [linux]\n\noutputs:\n  - name: cuda-nvtx\n    build:\n        skip: true  # [not linux]\n    files:\n      - lib/libnv*.so.*                       # [linux]\n      - targets/{{ target_name }}/lib/*.so.*  # [linux]\n    requirements:\n      build:\n        - {{ compiler(\"c\") }}\n        - {{ compiler(\"cxx\") }}\n        - {{ stdlib(\"c\") }}  # [linux]\n        - arm-variant * {{ arm_variant_type }}  # [aarch64]\n        - patchelf <0.18.0  # [linux]\n      host:\n        - cuda-version {{ cuda_version }}\n      run:\n        - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n      run_constrained:\n        - arm-variant * {{ arm_variant_type }}  # [aarch64]\n    # Tests are defined at the top level, due to package/output name conflicts.\n    about:\n      home: https://developer.nvidia.com/cuda-toolkit\n      license_file: LICENSE\n      license: LicenseRef-NVIDIA-End-User-License-Agreement\n      license_url: https://docs.nvidia.com/cuda/eula/index.html\n      summary: A C-based API for annotating events, code ranges, and resources\n      description: |\n        A C-based API for annotating events, code ranges, and resources in your\n        applications. Applications which integrate NVTX can use the Visual Profiler\n        to capture and visualize these events and ranges.\n      doc_url: https://docs.nvidia.com/nvtx/\n\n  - name: cuda-nvtx-dev\n    build:\n      run_exports:                                        # [linux]\n        - {{ pin_subpackage(\"cuda-nvtx\", max_pin='x') }}  # [linux]\n    files:\n      - lib/libnv*.so                                    # [linux]\n      - lib/pkgconfig                                    # [linux]\n      - targets/{{ target_name }}/lib/*.so               # [linux]\n      - targets/{{ target_name }}/include/nvToolsExt*.h  # [linux]\n      - targets/{{ target_name }}/include/nvtx3          # [linux]\n      - Library\\include\\targets\\{{ target_name }}        # [win]\n    requirements:\n      build:\n        - arm-variant * {{ arm_variant_type }}  # [aarch64]\n      host:\n        - cuda-version {{ cuda_version }}\n      run:\n        - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n        - {{ pin_subpackage(\"cuda-nvtx\", exact=True) }}  # [linux]\n      run_constrained:\n        - arm-variant * {{ arm_variant_type }}  # [aarch64]\n    test:\n      commands:\n        - test -L $PREFIX/lib/libnvToolsExt.so                                                      # [linux]\n        - test -f $PREFIX/lib/pkgconfig/nvToolsExt*.pc                                              # [linux]\n        - test -f $PREFIX/targets/{{ target_name }}/include/nvToolsExtCuda.h                        # [linux]\n        - test -f $PREFIX/targets/{{ target_name }}/include/nvtx3/nvToolsExtCuda.h                  # [linux]\n        - test -L $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so                            # [linux]\n        - if not exist %LIBRARY_INC%\\targets\\{{ target_name }}\\nvtx3\\nvToolsExt.h exit 1  # [win]\n    about:\n      home: https://developer.nvidia.com/cuda-toolkit\n      license_file: LICENSE\n      license: LicenseRef-NVIDIA-End-User-License-Agreement\n      license_url: https://docs.nvidia.com/cuda/eula/index.html\n      summary: A C-based API for annotating events, code ranges, and resources\n      description: |\n        A C-based API for annotating events, code ranges, and resources in your\n        applications. Applications which integrate NVTX can use the Visual Profiler\n        to capture and visualize these events and ranges.\n      doc_url: https://docs.nvidia.com/nvtx/\n\nabout:\n  home: https://developer.nvidia.com/cuda-toolkit\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: A C-based API for annotating events, code ranges, and resources\n  description: |\n    A C-based API for annotating events, code ranges, and resources in your\n    applications. Applications which integrate NVTX can use the Visual Profiler\n    to capture and visualize these events and ranges.\n  doc_url: https://docs.nvidia.com/nvtx/\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
+ "raw_meta_yaml": "{% set name = \"cuda-nvtx\" %}\n{% set version = \"12.5.82\" %}\n{% set cuda_version = \"12.5\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"linux-sbsa\" %}  # [aarch64]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set target_name = \"x86_64-linux\" %}  # [linux64]\n{% set target_name = \"ppc64le-linux\" %}  # [ppc64le]\n{% set target_name = \"sbsa-linux\" %}  # [aarch64]\n{% set target_name = \"x64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/{{ platform }}/cuda_nvtx-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: f12a029386f8fbd87f71311d8f4cc51a94414b997c52cf5eabc62c83c655ea47  # [linux64]\n  sha256: 8a0d3787f1cce8db70cbad05e6303e72602415c171f8a383da4d1118ce5e89b3  # [aarch64]\n  sha256: 07f301cff5390b9b56361dda033c2f467f1bddbe3609285afa5a79f31c6e38d6  # [win]\n\nbuild:\n  number: 0\n  skip: true  # [osx or ppc64le]\n  binary_relocation: false\n\ntest:\n  requires:\n    - patchelf  # [linux]\n  files:\n    - test-rpath.sh\n  commands:\n    - test -L $PREFIX/lib/libnvToolsExt.so.1                                # [linux]\n    - test -L $PREFIX/lib/libnvToolsExt.so.1.0.0                            # [linux]\n    - test -L $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1      # [linux]\n    - test -f $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so.1.0.0  # [linux]\n    - bash test-rpath.sh                                                    # [linux]\n\noutputs:\n  - name: cuda-nvtx\n    build:\n        skip: true  # [not linux]\n    files:\n      - lib/libnv*.so.*                       # [linux]\n      - targets/{{ target_name }}/lib/*.so.*  # [linux]\n    requirements:\n      build:\n        - {{ compiler(\"c\") }}\n        - {{ compiler(\"cxx\") }}\n        - {{ stdlib(\"c\") }}  # [linux]\n        - arm-variant * {{ arm_variant_type }}  # [aarch64]\n        - patchelf <0.18.0  # [linux]\n      host:\n        - cuda-version {{ cuda_version }}\n      run:\n        - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n      run_constrained:\n        - arm-variant * {{ arm_variant_type }}  # [aarch64]\n    # Tests are defined at the top level, due to package/output name conflicts.\n    about:\n      home: https://developer.nvidia.com/cuda-toolkit\n      license_file: LICENSE\n      license: LicenseRef-NVIDIA-End-User-License-Agreement\n      license_url: https://docs.nvidia.com/cuda/eula/index.html\n      summary: A C-based API for annotating events, code ranges, and resources\n      description: |\n        A C-based API for annotating events, code ranges, and resources in your\n        applications. Applications which integrate NVTX can use the Visual Profiler\n        to capture and visualize these events and ranges.\n      doc_url: https://docs.nvidia.com/nvtx/\n\n  - name: cuda-nvtx-dev\n    build:\n      run_exports:                                        # [linux]\n        - {{ pin_subpackage(\"cuda-nvtx\", max_pin='x') }}  # [linux]\n    files:\n      - lib/libnv*.so                                    # [linux]\n      - lib/pkgconfig                                    # [linux]\n      - targets/{{ target_name }}/lib/*.so               # [linux]\n      - targets/{{ target_name }}/include/nvToolsExt*.h  # [linux]\n      - targets/{{ target_name }}/include/nvtx3          # [linux]\n      - Library\\include\\targets\\{{ target_name }}        # [win]\n    requirements:\n      build:\n        - arm-variant * {{ arm_variant_type }}  # [aarch64]\n      host:\n        - cuda-version {{ cuda_version }}\n      run:\n        - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n        - {{ pin_subpackage(\"cuda-nvtx\", exact=True) }}  # [linux]\n      run_constrained:\n        - arm-variant * {{ arm_variant_type }}  # [aarch64]\n    test:\n      commands:\n        - test -L $PREFIX/lib/libnvToolsExt.so                                                      # [linux]\n        - test -f $PREFIX/lib/pkgconfig/nvToolsExt*.pc                                              # [linux]\n        - test -f $PREFIX/targets/{{ target_name }}/include/nvToolsExtCuda.h                        # [linux]\n        - test -f $PREFIX/targets/{{ target_name }}/include/nvtx3/nvToolsExtCuda.h                  # [linux]\n        - test -L $PREFIX/targets/{{ target_name }}/lib/libnvToolsExt.so                            # [linux]\n        - if not exist %LIBRARY_INC%\\targets\\{{ target_name }}\\nvtx3\\nvToolsExt.h exit 1  # [win]\n    about:\n      home: https://developer.nvidia.com/cuda-toolkit\n      license_file: LICENSE\n      license: LicenseRef-NVIDIA-End-User-License-Agreement\n      license_url: https://docs.nvidia.com/cuda/eula/index.html\n      summary: A C-based API for annotating events, code ranges, and resources\n      description: |\n        A C-based API for annotating events, code ranges, and resources in your\n        applications. Applications which integrate NVTX can use the Visual Profiler\n        to capture and visualize these events and ranges.\n      doc_url: https://docs.nvidia.com/nvtx/\n\nabout:\n  home: https://developer.nvidia.com/cuda-toolkit\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: A C-based API for annotating events, code ranges, and resources\n  description: |\n    A C-based API for annotating events, code ranges, and resources in your\n    applications. Applications which integrate NVTX can use the Visual Profiler\n    to capture and visualize these events and ranges.\n  doc_url: https://docs.nvidia.com/nvtx/\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -687,8 +687,8 @@
    "elements": []
   }
  },
- "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/windows-x86_64/cuda_nvtx-windows-x86_64-12.5.39-archive.zip",
- "version": "12.5.39",
+ "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/windows-x86_64/cuda_nvtx-windows-x86_64-12.5.82-archive.zip",
+ "version": "12.5.82",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/cuda-nvtx.json"
  },
@@ -775,11 +775,11 @@
   ],
   "package": {
    "name": "cuda-nvtx",
-   "version": "12.5.39"
+   "version": "12.5.82"
   },
   "source": {
-   "sha256": "7bf6dd414c982f75d4dcb8f184cd65b0e2d48c356b4a999d79faf75f30ff0bc7",
-   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/windows-x86_64/cuda_nvtx-windows-x86_64-12.5.39-archive.zip"
+   "sha256": "07f301cff5390b9b56361dda033c2f467f1bddbe3609285afa5a79f31c6e38d6",
+   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvtx/windows-x86_64/cuda_nvtx-windows-x86_64-12.5.82-archive.zip"
   },
   "test": {
    "commands": null,
