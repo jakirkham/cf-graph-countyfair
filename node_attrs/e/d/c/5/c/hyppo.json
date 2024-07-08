@@ -2,6 +2,10 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "automerge": true,
+   "inspection": "update-grayskull"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -18,42 +22,41 @@
    "dev_url": "https://github.com/neurodata/hyppo",
    "home": "https://hyppo.neurodata.io/",
    "license": "MIT",
-   "license_file": [
-    "LICENSE.md"
-   ],
+   "license_file": "LICENSE.md",
    "summary": "A comprehensive independence testing package"
   },
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
-    "thewchan"
+    "thewchan",
+    "jan-janssen"
    ]
   },
   "package": {
    "name": "hyppo",
-   "version": "0.3.2"
+   "version": "0.4.0"
   },
   "requirements": {
    "host": [
-    "pip",
-    "python >=3.6"
+    "python >=3.7",
+    "pip"
    ],
    "run": [
-    "autograd >=1.3",
+    "python >=3.7",
+    "numpy >=1.17,<2",
+    "scipy >=1.4.0",
     "numba >=0.46",
-    "numpy >=1.17",
-    "python >=3.6",
     "scikit-learn >=0.19.1",
-    "scipy >=1.4.0"
+    "autograd >=1.3"
    ]
   },
   "source": {
-   "sha256": "1c3b830dca2792a621bbe06ce215200884685068f60de29c5c521493ae61eaf3",
-   "url": "https://pypi.io/packages/source/h/hyppo/hyppo-0.3.2.tar.gz"
+   "sha256": "1dd14e651895c34f209b65588a4b5f96b3810cf3bf28fd7172b0c2ca872d4d59",
+   "url": "https://github.com/neurodata/hyppo/archive/v0.4.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -102,42 +105,41 @@
    "dev_url": "https://github.com/neurodata/hyppo",
    "home": "https://hyppo.neurodata.io/",
    "license": "MIT",
-   "license_file": [
-    "LICENSE.md"
-   ],
+   "license_file": "LICENSE.md",
    "summary": "A comprehensive independence testing package"
   },
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
-    "thewchan"
+    "thewchan",
+    "jan-janssen"
    ]
   },
   "package": {
    "name": "hyppo",
-   "version": "0.3.2"
+   "version": "0.4.0"
   },
   "requirements": {
    "host": [
-    "pip",
-    "python >=3.6"
+    "python >=3.7",
+    "pip"
    ],
    "run": [
-    "autograd >=1.3",
+    "python >=3.7",
+    "numpy >=1.17,<2",
+    "scipy >=1.4.0",
     "numba >=0.46",
-    "numpy >=1.17",
-    "python >=3.6",
     "scikit-learn >=0.19.1",
-    "scipy >=1.4.0"
+    "autograd >=1.3"
    ]
   },
   "source": {
-   "sha256": "1c3b830dca2792a621bbe06ce215200884685068f60de29c5c521493ae61eaf3",
-   "url": "https://pypi.io/packages/source/h/hyppo/hyppo-0.3.2.tar.gz"
+   "sha256": "1dd14e651895c34f209b65588a4b5f96b3810cf3bf28fd7172b0c2ca872d4d59",
+   "url": "https://github.com/neurodata/hyppo/archive/v0.4.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -165,7 +167,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/hyppo.json"
  },
- "raw_meta_yaml": "{% set name = \"hyppo\" %}\n{% set version = \"0.3.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/hyppo-{{ version }}.tar.gz\n  sha256: 1c3b830dca2792a621bbe06ce215200884685068f60de29c5c521493ae61eaf3\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - pip\n    - python >=3.6\n  run:\n    - autograd >=1.3\n    - numba >=0.46\n    - numpy >=1.17\n    - python >=3.6\n    - scikit-learn >=0.19.1\n    - scipy >=1.4.0\n\ntest:\n  imports:\n    - hyppo\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://hyppo.neurodata.io/\n  dev_url: https://github.com/neurodata/hyppo\n  summary: A comprehensive independence testing package\n  license: MIT\n  license_file:\n    - LICENSE.md\n\nextra:\n  recipe-maintainers:\n    - thewchan\n",
+ "raw_meta_yaml": "{% set name = \"hyppo\" %}\n{% set version = \"0.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/neurodata/hyppo/archive/v{{ version }}.tar.gz\n  sha256: 1dd14e651895c34f209b65588a4b5f96b3810cf3bf28fd7172b0c2ca872d4d59\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n  run:\n    - python >=3.7\n    - numpy >=1.17,<2\n    - scipy >=1.4.0\n    - numba >=0.46\n    - scikit-learn >=0.19.1\n    - autograd >=1.3\n\ntest:\n  imports:\n    - hyppo\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://hyppo.neurodata.io/\n  dev_url: https://github.com/neurodata/hyppo\n  summary: A comprehensive independence testing package\n  license: MIT\n  license_file: LICENSE.md\n\nextra:\n  recipe-maintainers:\n    - thewchan\n    - jan-janssen\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -218,7 +220,7 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6"
+    "python >=3.7"
    ]
   },
   "run": {
@@ -226,8 +228,8 @@
    "elements": [
     "autograd >=1.3",
     "numba >=0.46",
-    "numpy >=1.17",
-    "python >=3.6",
+    "numpy >=1.17,<2",
+    "python >=3.7",
     "scikit-learn >=0.19.1",
     "scipy >=1.4.0"
    ]
@@ -239,8 +241,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/h/hyppo/hyppo-0.3.2.tar.gz",
- "version": "0.3.2",
+ "url": "https://github.com/neurodata/hyppo/archive/v0.4.0.tar.gz",
+ "version": "0.4.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/hyppo.json"
  }
