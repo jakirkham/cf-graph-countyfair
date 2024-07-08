@@ -27,7 +27,7 @@
    "summary": "Lightweight library for rolling windows operations. Package enables full control over the window length, window lag and a time indices. With a runner one can apply any R function on a rolling windows. The package eases work with equally and unequally spaced time series."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -45,6 +45,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -75,6 +76,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -109,8 +111,7 @@
    "summary": "Lightweight library for rolling windows operations. Package enables full control over the window length, window lag and a time indices. With a runner one can apply any R function on a rolling windows. The package eases work with equally and unequally spaced time series."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -128,9 +129,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -143,8 +146,7 @@
    ],
    "run": [
     "r-base",
-    "r-rcpp",
-    "gcc-libs"
+    "r-rcpp"
    ]
   },
   "source": {
@@ -173,7 +175,7 @@
    "summary": "Lightweight library for rolling windows operations. Package enables full control over the window length, window lag and a time indices. With a runner one can apply any R function on a rolling windows. The package eases work with equally and unequally spaced time series."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -191,6 +193,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -221,6 +224,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -259,16 +263,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-runner.json"
  },
- "raw_meta_yaml": "{% set version = \"0.4.4\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-runner\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/runner_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/runner/runner_{{ version }}.tar.gz\n  sha256: 04b28813579fe22c89b1f84a3237cfa153754ddfb11971c989e38fceb895186e\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-rcpp\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp\n\ntest:\n  commands:\n    - $R -e \"library('runner')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('runner')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=runner\n  license: GPL-2.0-or-later\n  summary: Lightweight library for rolling windows operations. Package enables full control over the window length, window lag and a time indices. With a runner one can apply any R function on a rolling windows. The package eases work with equally and unequally spaced time series.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.4.4\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-runner\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/runner_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/runner/runner_{{ version }}.tar.gz\n  sha256: 04b28813579fe22c89b1f84a3237cfa153754ddfb11971c989e38fceb895186e\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-rcpp\n  run:\n    - r-base\n    - r-rcpp\n\ntest:\n  commands:\n    - $R -e \"library('runner')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('runner')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=runner\n  license: GPL-2.0-or-later\n  summary: Lightweight library for rolling windows operations. Package enables full control over the window length, window lag and a time indices. With a runner one can apply any R function on a rolling windows. The package eases work with equally and unequally spaced time series.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -282,10 +287,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -296,6 +303,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-rcpp"
@@ -305,8 +313,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-rcpp"
    ]
@@ -322,10 +330,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -342,7 +352,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp"
    ]
@@ -375,8 +384,7 @@
    "summary": "Lightweight library for rolling windows operations. Package enables full control over the window length, window lag and a time indices. With a runner one can apply any R function on a rolling windows. The package eases work with equally and unequally spaced time series."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -394,6 +402,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -407,7 +416,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp"
    ]
   },
@@ -431,6 +439,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -447,7 +456,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp"
    ]
