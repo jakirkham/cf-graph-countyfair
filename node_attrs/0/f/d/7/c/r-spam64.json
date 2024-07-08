@@ -30,7 +30,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -48,6 +48,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -85,6 +86,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -123,13 +125,12 @@
    "summary": "Provides the Fortran code of the R package 'spam' with 64-bit integers. Loading this package together with the R package spam enables the sparse matrix class spam to handle huge sparse matrices with more than 2^31-1 non-zero elements. Documentation is provided in Gerber, Moesinger and Furrer (2017) <doi:10.1016/j.cageo.2016.11.015>."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll",
     "*/Rblas.dll",
     "*/Rlapack.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -147,9 +148,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -162,8 +165,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ],
    "run_constrained": [
     "r-spam ==2.10_0"
@@ -203,7 +205,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -221,6 +223,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -258,6 +261,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -298,18 +302,19 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-spam64.json"
  },
- "raw_meta_yaml": "{% set version = '2.10-0' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-spam64\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/spam64_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/spam64/spam64_{{ version }}.tar.gz\n  sha256: 969a003edd72a048b08e8f22ca173f3a80560b3a777470562111ac2ec297674d\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'           # [win]\n    - '*/Rblas.dll'       # [win]\n    - '*/Rlapack.dll'     # [win]\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}        # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem            # [win]\n    - {{ posix }}make\n    - {{ posix }}sed                   # [win]\n    - {{ posix }}coreutils             # [win]\n    - {{ posix }}zip                   # [win]\n  host:\n    - libblas\n    - liblapack\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs             # [win]\n  run_constrained:\n    - r-spam =={{ version|replace(\"-\", \"_\") }}\n\ntest:\n  requires:\n    - r-spam\n  commands:\n    - $R -e \"library('spam64')\"                           # [not win]\n    - $R -e \"library('spam');library('spam64')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('spam64')\\\"\"                  # [win]\n    - \"\\\"%R%\\\" -e \\\"library('spam');library('spam64')\\\"\"  # [win]\n\nabout:\n  home: https://git.math.uzh.ch/reinhard.furrer/spam\n  license: LGPL-2.0-only OR BSD-3-Clause\n  summary: Provides the Fortran code of the R package 'spam' with 64-bit integers. Loading this\n    package together with the R package spam enables the sparse matrix class spam to\n    handle huge sparse matrices with more than 2^31-1 non-zero elements. Documentation\n    is provided in Gerber, Moesinger and Furrer (2017) <doi:10.1016/j.cageo.2016.11.015>.\n  license_family: LGPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/LGPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/BSD_3_clause\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: spam64\n# Type: Package\n# Title: 64-Bit Extension of the SPArse Matrix R Package 'spam'\n# Version: 2.10-0\n# Date: 2023-10-17\n# Authors@R: c(person(\"Reinhard\", \"Furrer\", role = c(\"aut\", \"cre\"), email = \"reinhard.furrer@math.uzh.ch\", comment = c(ORCID = \"0000-0002-6319-2332\")), person(\"Florian\", \"Gerber\", role = c(\"aut\"), email = \"florian.gerber@math.uzh.ch\", comment = c(ORCID = \"0000-0001-8545-5263\")), person(\"Roman\", \"Flury\", role = c(\"aut\"), email = \"roman.flury@math.uzh.ch\", comment = c(ORCID = \"0000-0002-0349-8698\")), person(\"Daniel\", \"Gerber\", role = \"ctb\", email = \"daniel_gerber_2222@hotmail.com\"), person(\"Kaspar\", \"Moesinger\", role = \"ctb\", email = \"kaspar.moesinger@gmail.com\"), person(\"Youcef\", \"Saad\", role = \"ctb\", comment = \"SPARSEKIT http://www-users.cs.umn.edu/~saad/software/SPARSKIT/\"), person(c(\"Esmond\", \"G.\"), \"Ng\", role = \"ctb\", comment = \"Fortran Cholesky routines\"), person(c(\"Barry\", \"W.\"), \"Peyton\", role = \"ctb\", comment = \"Fortran Cholesky routines\"), person(c(\"Joseph\", \"W.H.\"), \"Liu\", role = \"ctb\", comment = \"Fortran Cholesky routines\"), person(c(\"Alan\", \"D.\"), \"George\", role = \"ctb\", comment = \"Fortran Cholesky routines\"), person(c(\"Lehoucq\", \"B.\"), \"Rich\", role = \"ctb\", comment = \"ARPACK\"), person(c(\"Maschhoff\"), \"Kristi\", role = \"ctb\", comment = \"ARPACK\"), person(c(\"Sorensen\", \"C.\"), \"Danny\", role = \"ctb\", comment = \"ARPACK\"), person(c(\"Yang\"), \"Chao\", role = \"ctb\", comment = \"ARPACK\"))\n# Description: Provides the Fortran code of the R package 'spam' with 64-bit integers. Loading this package together with the R package spam enables the sparse matrix class spam to handle huge sparse matrices with more than 2^31-1 non-zero elements. Documentation is provided in Gerber, Moesinger and Furrer (2017) <doi:10.1016/j.cageo.2016.11.015>.\n# Suggests: spam (== 2.10-0)\n# License: LGPL-2 | BSD_3_clause + file LICENSE\n# URL: https://git.math.uzh.ch/reinhard.furrer/spam\n# NeedsCompilation: yes\n# Packaged: 2023-10-17 18:28:47 UTC; furrer\n# Author: Reinhard Furrer [aut, cre] (<https://orcid.org/0000-0002-6319-2332>), Florian Gerber [aut] (<https://orcid.org/0000-0001-8545-5263>), Roman Flury [aut] (<https://orcid.org/0000-0002-0349-8698>), Daniel Gerber [ctb], Kaspar Moesinger [ctb], Youcef Saad [ctb] (SPARSEKIT http://www-users.cs.umn.edu/~saad/software/SPARSKIT/), Esmond G. Ng [ctb] (Fortran Cholesky routines), Barry W. Peyton [ctb] (Fortran Cholesky routines), Joseph W.H. Liu [ctb] (Fortran Cholesky routines), Alan D. George [ctb] (Fortran Cholesky routines), Lehoucq B. Rich [ctb] (ARPACK), Maschhoff Kristi [ctb] (ARPACK), Sorensen C. Danny [ctb] (ARPACK), Yang Chao [ctb] (ARPACK)\n# Maintainer: Reinhard Furrer <reinhard.furrer@math.uzh.ch>\n# Repository: CRAN\n# Date/Publication: 2023-10-17 20:10:02 UTC\n",
+ "raw_meta_yaml": "{% set version = '2.10-0' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-spam64\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/spam64_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/spam64/spam64_{{ version }}.tar.gz\n  sha256: 969a003edd72a048b08e8f22ca173f3a80560b3a777470562111ac2ec297674d\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'           # [win]\n    - '*/Rblas.dll'       # [win]\n    - '*/Rlapack.dll'     # [win]\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}        # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem            # [win]\n    - {{ posix }}make\n    - {{ posix }}sed                   # [win]\n    - {{ posix }}coreutils             # [win]\n    - {{ posix }}zip                   # [win]\n  host:\n    - libblas\n    - liblapack\n    - r-base\n  run:\n    - r-base\n  run_constrained:\n    - r-spam =={{ version|replace(\"-\", \"_\") }}\n\ntest:\n  requires:\n    - r-spam\n  commands:\n    - $R -e \"library('spam64')\"                           # [not win]\n    - $R -e \"library('spam');library('spam64')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('spam64')\\\"\"                  # [win]\n    - \"\\\"%R%\\\" -e \\\"library('spam');library('spam64')\\\"\"  # [win]\n\nabout:\n  home: https://git.math.uzh.ch/reinhard.furrer/spam\n  license: LGPL-2.0-only OR BSD-3-Clause\n  summary: Provides the Fortran code of the R package 'spam' with 64-bit integers. Loading this\n    package together with the R package spam enables the sparse matrix class spam to\n    handle huge sparse matrices with more than 2^31-1 non-zero elements. Documentation\n    is provided in Gerber, Moesinger and Furrer (2017) <doi:10.1016/j.cageo.2016.11.015>.\n  license_family: LGPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/LGPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/BSD_3_clause\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: spam64\n# Type: Package\n# Title: 64-Bit Extension of the SPArse Matrix R Package 'spam'\n# Version: 2.10-0\n# Date: 2023-10-17\n# Authors@R: c(person(\"Reinhard\", \"Furrer\", role = c(\"aut\", \"cre\"), email = \"reinhard.furrer@math.uzh.ch\", comment = c(ORCID = \"0000-0002-6319-2332\")), person(\"Florian\", \"Gerber\", role = c(\"aut\"), email = \"florian.gerber@math.uzh.ch\", comment = c(ORCID = \"0000-0001-8545-5263\")), person(\"Roman\", \"Flury\", role = c(\"aut\"), email = \"roman.flury@math.uzh.ch\", comment = c(ORCID = \"0000-0002-0349-8698\")), person(\"Daniel\", \"Gerber\", role = \"ctb\", email = \"daniel_gerber_2222@hotmail.com\"), person(\"Kaspar\", \"Moesinger\", role = \"ctb\", email = \"kaspar.moesinger@gmail.com\"), person(\"Youcef\", \"Saad\", role = \"ctb\", comment = \"SPARSEKIT http://www-users.cs.umn.edu/~saad/software/SPARSKIT/\"), person(c(\"Esmond\", \"G.\"), \"Ng\", role = \"ctb\", comment = \"Fortran Cholesky routines\"), person(c(\"Barry\", \"W.\"), \"Peyton\", role = \"ctb\", comment = \"Fortran Cholesky routines\"), person(c(\"Joseph\", \"W.H.\"), \"Liu\", role = \"ctb\", comment = \"Fortran Cholesky routines\"), person(c(\"Alan\", \"D.\"), \"George\", role = \"ctb\", comment = \"Fortran Cholesky routines\"), person(c(\"Lehoucq\", \"B.\"), \"Rich\", role = \"ctb\", comment = \"ARPACK\"), person(c(\"Maschhoff\"), \"Kristi\", role = \"ctb\", comment = \"ARPACK\"), person(c(\"Sorensen\", \"C.\"), \"Danny\", role = \"ctb\", comment = \"ARPACK\"), person(c(\"Yang\"), \"Chao\", role = \"ctb\", comment = \"ARPACK\"))\n# Description: Provides the Fortran code of the R package 'spam' with 64-bit integers. Loading this package together with the R package spam enables the sparse matrix class spam to handle huge sparse matrices with more than 2^31-1 non-zero elements. Documentation is provided in Gerber, Moesinger and Furrer (2017) <doi:10.1016/j.cageo.2016.11.015>.\n# Suggests: spam (== 2.10-0)\n# License: LGPL-2 | BSD_3_clause + file LICENSE\n# URL: https://git.math.uzh.ch/reinhard.furrer/spam\n# NeedsCompilation: yes\n# Packaged: 2023-10-17 18:28:47 UTC; furrer\n# Author: Reinhard Furrer [aut, cre] (<https://orcid.org/0000-0002-6319-2332>), Florian Gerber [aut] (<https://orcid.org/0000-0001-8545-5263>), Roman Flury [aut] (<https://orcid.org/0000-0002-0349-8698>), Daniel Gerber [ctb], Kaspar Moesinger [ctb], Youcef Saad [ctb] (SPARSEKIT http://www-users.cs.umn.edu/~saad/software/SPARSKIT/), Esmond G. Ng [ctb] (Fortran Cholesky routines), Barry W. Peyton [ctb] (Fortran Cholesky routines), Joseph W.H. Liu [ctb] (Fortran Cholesky routines), Alan D. George [ctb] (Fortran Cholesky routines), Lehoucq B. Rich [ctb] (ARPACK), Maschhoff Kristi [ctb] (ARPACK), Sorensen C. Danny [ctb] (ARPACK), Yang Chao [ctb] (ARPACK)\n# Maintainer: Reinhard Furrer <reinhard.furrer@math.uzh.ch>\n# Repository: CRAN\n# Date/Publication: 2023-10-17 20:10:02 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "libblas",
    "liblapack",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "r-base",
@@ -322,10 +327,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -336,6 +343,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "libblas",
     "liblapack",
@@ -346,8 +354,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -364,10 +372,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -385,7 +395,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -421,13 +430,12 @@
    "summary": "Provides the Fortran code of the R package 'spam' with 64-bit integers. Loading this package together with the R package spam enables the sparse matrix class spam to handle huge sparse matrices with more than 2^31-1 non-zero elements. Documentation is provided in Gerber, Moesinger and Furrer (2017) <doi:10.1016/j.cageo.2016.11.015>."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll",
     "*/Rblas.dll",
     "*/Rlapack.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -445,6 +453,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "make",
@@ -458,8 +467,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ],
    "run_constrained": [
     "r-spam ==2.10_0"
@@ -489,6 +497,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -506,7 +515,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
