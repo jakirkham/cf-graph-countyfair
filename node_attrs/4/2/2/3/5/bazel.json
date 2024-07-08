@@ -52,7 +52,7 @@
   },
   "package": {
    "name": "bazel",
-   "version": "6.5.0"
+   "version": "7.2.1"
   },
   "requirements": {
    "build": [
@@ -60,10 +60,12 @@
     "c_compiler_stub",
     "cxx_compiler_stub",
     "sed",
-    "openjdk >=8,<17",
+    "openjdk 21.*",
     "grpc_java_plugin",
     "libgrpc",
     "libprotobuf",
+    "ijar 7.2.1",
+    "singlejar 7.2.1",
     "bazel-toolchain >=0.2.0",
     "zip",
     "unzip"
@@ -74,23 +76,28 @@
     "libprotobuf"
    ],
    "run": [
-    "openjdk >=8,<17"
+    "openjdk >=21",
+    "ijar 7.2.1",
+    "singlejar 7.2.1"
    ]
   },
-  "source": {
-   "patches": [
-    "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
-    "patches/0002-Build-with-native-dependencies.patch",
-    "patches/0003-Match-version-of-protobuf-java-with-libprotobuf.patch",
-    "patches/0005-Link-to-abseil-libraries.patch",
-    "patches/0007-grpc-java-plugin-from-build.patch",
-    "patches/0010-win-Disable-VS-activation-and-make-build-verbose.patch",
-    "patches/0011-Use-old-style-conditions.patch",
-    "patches/0012-Use-old-sytle-condition-for-linux64.patch"
-   ],
-   "sha256": "fc89da919415289f29e4ff18a5e01270ece9a6fe83cb60967218bac4a3bb3ed2",
-   "url": "https://github.com/bazelbuild/bazel/releases/download/6.5.0/bazel-6.5.0-dist.zip"
-  },
+  "source": [
+   {
+    "patches": [
+     "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
+     "patches/0002-Build-with-native-dependencies.patch",
+     "patches/0003-use-C-17.patch",
+     "patches/0004-Use-conda-packages-for-build-tools.patch",
+     "patches/0005-grpc-java-plugin-from-build.patch",
+     "patches/0007-Adjust-cross-bazel-resultpath.patch",
+     "patches/0008-win-Disable-VS-activation-and-make-build-verbose.patch",
+     "patches/0009-Install-protobuf-via-maven.patch",
+     "patches/0010-Adopt-system-libprotobuf.patch"
+    ],
+    "sha256": "dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.2.1/bazel-7.2.1-dist.zip"
+   }
+  ],
   "test": {
    "commands": [
     "bazel -h",
@@ -98,7 +105,8 @@
    ],
    "requires": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "bazel-toolchain >=0.2"
    ]
   }
  },
@@ -111,10 +119,12 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "grpc_java_plugin",
+    "ijar",
     "libgrpc",
     "libprotobuf",
     "openjdk",
     "sed",
+    "singlejar",
     "unzip",
     "zip"
    ]
@@ -130,12 +140,15 @@
   "run": {
    "__set__": true,
    "elements": [
-    "openjdk"
+    "ijar",
+    "openjdk",
+    "singlejar"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "bazel-toolchain",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ]
@@ -167,7 +180,7 @@
   },
   "package": {
    "name": "bazel",
-   "version": "6.5.0"
+   "version": "7.2.1"
   },
   "requirements": {
    "build": [
@@ -175,10 +188,12 @@
     "c_compiler_stub",
     "cxx_compiler_stub",
     "sed",
-    "openjdk >=8,<17",
+    "openjdk 21.*",
     "grpc_java_plugin",
     "libgrpc",
     "libprotobuf",
+    "ijar 7.2.1",
+    "singlejar 7.2.1",
     "bazel-toolchain >=0.2.0",
     "zip",
     "unzip"
@@ -189,23 +204,28 @@
     "libprotobuf"
    ],
    "run": [
-    "openjdk >=8,<17"
+    "openjdk >=21",
+    "ijar 7.2.1",
+    "singlejar 7.2.1"
    ]
   },
-  "source": {
-   "patches": [
-    "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
-    "patches/0002-Build-with-native-dependencies.patch",
-    "patches/0003-Match-version-of-protobuf-java-with-libprotobuf.patch",
-    "patches/0005-Link-to-abseil-libraries.patch",
-    "patches/0007-grpc-java-plugin-from-build.patch",
-    "patches/0010-win-Disable-VS-activation-and-make-build-verbose.patch",
-    "patches/0011-Use-old-style-conditions.patch",
-    "patches/0012-Use-old-sytle-condition-for-linux64.patch"
-   ],
-   "sha256": "fc89da919415289f29e4ff18a5e01270ece9a6fe83cb60967218bac4a3bb3ed2",
-   "url": "https://github.com/bazelbuild/bazel/releases/download/6.5.0/bazel-6.5.0-dist.zip"
-  },
+  "source": [
+   {
+    "patches": [
+     "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
+     "patches/0002-Build-with-native-dependencies.patch",
+     "patches/0003-use-C-17.patch",
+     "patches/0004-Use-conda-packages-for-build-tools.patch",
+     "patches/0005-grpc-java-plugin-from-build.patch",
+     "patches/0007-Adjust-cross-bazel-resultpath.patch",
+     "patches/0008-win-Disable-VS-activation-and-make-build-verbose.patch",
+     "patches/0009-Install-protobuf-via-maven.patch",
+     "patches/0010-Adopt-system-libprotobuf.patch"
+    ],
+    "sha256": "dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.2.1/bazel-7.2.1-dist.zip"
+   }
+  ],
   "test": {
    "commands": [
     "bazel -h",
@@ -213,7 +233,8 @@
    ],
    "requires": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "bazel-toolchain >=0.2"
    ]
   }
  },
@@ -226,10 +247,12 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "grpc_java_plugin",
+    "ijar",
     "libgrpc",
     "libprotobuf",
     "openjdk",
     "sed",
+    "singlejar",
     "unzip",
     "zip"
    ]
@@ -245,127 +268,15 @@
   "run": {
    "__set__": true,
    "elements": [
-    "openjdk"
+    "ijar",
+    "openjdk",
+    "singlejar"
    ]
   },
   "test": {
-   "__set__": true,
-   "elements": [
-    "c_compiler_stub",
-    "cxx_compiler_stub"
-   ]
-  }
- },
- "linux_ppc64le_meta_yaml": {
-  "about": {
-   "dev_url": "https://github.com/bazelbuild/bazel",
-   "home": "https://bazel.build/",
-   "license": "Apache-2.0",
-   "license_family": "Apache",
-   "license_file": "LICENSE",
-   "summary": "a fast, scalable, multi-language and extensible build system"
-  },
-  "build": {
-   "binary_relocation": false,
-   "ignore_prefix_files": true,
-   "number": "0"
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "h-vetinari",
-    "nehaljwani",
-    "abhi18av",
-    "jschueller",
-    "adrianchia",
-    "xhochy"
-   ]
-  },
-  "package": {
-   "name": "bazel",
-   "version": "6.5.0"
-  },
-  "requirements": {
-   "build": [
-    "c_stdlib_stub",
-    "c_compiler_stub",
-    "cxx_compiler_stub",
-    "sed",
-    "openjdk >=8,<17",
-    "grpc_java_plugin",
-    "libgrpc",
-    "libprotobuf",
-    "bazel-toolchain <0.2",
-    "zip",
-    "unzip"
-   ],
-   "host": [
-    "libabseil",
-    "libgrpc",
-    "libprotobuf"
-   ],
-   "run": [
-    "openjdk >=8,<17"
-   ]
-  },
-  "source": {
-   "patches": [
-    "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
-    "patches/0002-Build-with-native-dependencies.patch",
-    "patches/0003-Match-version-of-protobuf-java-with-libprotobuf.patch",
-    "patches/0005-Link-to-abseil-libraries.patch",
-    "patches/0007-grpc-java-plugin-from-build.patch",
-    "patches/0010-win-Disable-VS-activation-and-make-build-verbose.patch",
-    "patches/0011-Use-old-style-conditions.patch",
-    "patches/0012-Use-old-sytle-condition-for-linux64.patch"
-   ],
-   "sha256": "fc89da919415289f29e4ff18a5e01270ece9a6fe83cb60967218bac4a3bb3ed2",
-   "url": "https://github.com/bazelbuild/bazel/releases/download/6.5.0/bazel-6.5.0-dist.zip"
-  },
-  "test": {
-   "commands": [
-    "bazel -h",
-    "bazel version"
-   ],
-   "requires": [
-    "c_compiler_stub",
-    "cxx_compiler_stub"
-   ]
-  }
- },
- "linux_ppc64le_requirements": {
-  "build": {
    "__set__": true,
    "elements": [
     "bazel-toolchain",
-    "c_compiler_stub",
-    "c_stdlib_stub",
-    "cxx_compiler_stub",
-    "grpc_java_plugin",
-    "libgrpc",
-    "libprotobuf",
-    "openjdk",
-    "sed",
-    "unzip",
-    "zip"
-   ]
-  },
-  "host": {
-   "__set__": true,
-   "elements": [
-    "libabseil",
-    "libgrpc",
-    "libprotobuf"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "openjdk"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": [
     "c_compiler_stub",
     "cxx_compiler_stub"
    ]
@@ -397,7 +308,7 @@
   },
   "package": {
    "name": "bazel",
-   "version": "6.5.0"
+   "version": "7.2.1"
   },
   "requirements": {
    "build": [
@@ -405,43 +316,105 @@
     "c_compiler_stub",
     "cxx_compiler_stub",
     "sed",
-    "openjdk >=8,<17",
+    "openjdk 21.*",
     "grpc_java_plugin",
     "libgrpc",
     "libprotobuf",
+    "ijar 7.2.1",
+    "singlejar 7.2.1",
     "bazel-toolchain >=0.2.0",
     "zip",
     "unzip",
-    "bazel-toolchain <0.2",
     "python *"
    ],
    "host": [
     "libabseil",
     "libgrpc",
     "libprotobuf",
-    "openjdk >=8,<17",
+    "openjdk 21.*",
     "posix"
    ],
    "run": [
-    "openjdk >=8,<17",
+    "openjdk >=21",
+    "ijar 7.2.1",
+    "singlejar 7.2.1",
     "posix"
    ]
   },
-  "source": {
-   "patches": [
-    "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
-    "patches/0002-Build-with-native-dependencies.patch",
-    "patches/0003-Match-version-of-protobuf-java-with-libprotobuf.patch",
-    "patches/0005-Link-to-abseil-libraries.patch",
-    "patches/0007-grpc-java-plugin-from-build.patch",
-    "patches/0010-win-Disable-VS-activation-and-make-build-verbose.patch",
-    "patches/0011-Use-old-style-conditions.patch",
-    "patches/0012-Use-old-sytle-condition-for-linux64.patch",
-    "patches/0008-bazel-bin-loader-path.patch"
-   ],
-   "sha256": "fc89da919415289f29e4ff18a5e01270ece9a6fe83cb60967218bac4a3bb3ed2",
-   "url": "https://github.com/bazelbuild/bazel/releases/download/6.5.0/bazel-6.5.0-dist.zip"
-  },
+  "source": [
+   {
+    "patches": [
+     "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
+     "patches/0002-Build-with-native-dependencies.patch",
+     "patches/0003-use-C-17.patch",
+     "patches/0004-Use-conda-packages-for-build-tools.patch",
+     "patches/0005-grpc-java-plugin-from-build.patch",
+     "patches/0007-Adjust-cross-bazel-resultpath.patch",
+     "patches/0008-win-Disable-VS-activation-and-make-build-verbose.patch",
+     "patches/0009-Install-protobuf-via-maven.patch",
+     "patches/0010-Adopt-system-libprotobuf.patch"
+    ],
+    "sha256": "dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.2.1/bazel-7.2.1-dist.zip"
+   },
+   {
+    "patches": [
+     "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
+     "patches/0002-Build-with-native-dependencies.patch",
+     "patches/0003-use-C-17.patch",
+     "patches/0004-Use-conda-packages-for-build-tools.patch",
+     "patches/0005-grpc-java-plugin-from-build.patch",
+     "patches/0007-Adjust-cross-bazel-resultpath.patch",
+     "patches/0008-win-Disable-VS-activation-and-make-build-verbose.patch",
+     "patches/0009-Install-protobuf-via-maven.patch",
+     "patches/0010-Adopt-system-libprotobuf.patch"
+    ],
+    "sha256": "dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.2.1/bazel-7.2.1-dist.zip"
+   },
+   {
+    "patches": [
+     "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
+     "patches/0002-Build-with-native-dependencies.patch",
+     "patches/0003-use-C-17.patch",
+     "patches/0004-Use-conda-packages-for-build-tools.patch",
+     "patches/0005-grpc-java-plugin-from-build.patch",
+     "patches/0006-bazel-bin-loader-path.patch",
+     "patches/0007-Adjust-cross-bazel-resultpath.patch",
+     "patches/0008-win-Disable-VS-activation-and-make-build-verbose.patch",
+     "patches/0009-Install-protobuf-via-maven.patch",
+     "patches/0010-Adopt-system-libprotobuf.patch"
+    ],
+    "sha256": "dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.2.1/bazel-7.2.1-dist.zip"
+   },
+   {
+    "patches": [
+     "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
+     "patches/0002-Build-with-native-dependencies.patch",
+     "patches/0003-use-C-17.patch",
+     "patches/0004-Use-conda-packages-for-build-tools.patch",
+     "patches/0005-grpc-java-plugin-from-build.patch",
+     "patches/0006-bazel-bin-loader-path.patch",
+     "patches/0007-Adjust-cross-bazel-resultpath.patch",
+     "patches/0008-win-Disable-VS-activation-and-make-build-verbose.patch",
+     "patches/0009-Install-protobuf-via-maven.patch",
+     "patches/0010-Adopt-system-libprotobuf.patch"
+    ],
+    "sha256": "dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.2.1/bazel-7.2.1-dist.zip"
+   },
+   {
+    "patches": [
+     "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
+     "patches/0003-use-C-17.patch",
+     "patches/0007-Adjust-cross-bazel-resultpath.patch",
+     "patches/0008-win-Disable-VS-activation-and-make-build-verbose.patch"
+    ],
+    "sha256": "dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.2.1/bazel-7.2.1-dist.zip"
+   }
+  ],
   "test": {
    "commands": [
     "bazel -h",
@@ -449,7 +422,8 @@
    ],
    "requires": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "bazel-toolchain >=0.2"
    ]
   }
  },
@@ -480,7 +454,7 @@
   },
   "package": {
    "name": "bazel",
-   "version": "6.5.0"
+   "version": "7.2.1"
   },
   "requirements": {
    "build": [
@@ -488,10 +462,12 @@
     "c_compiler_stub",
     "cxx_compiler_stub",
     "sed",
-    "openjdk >=8,<17",
+    "openjdk 21.*",
     "grpc_java_plugin",
     "libgrpc",
     "libprotobuf",
+    "ijar 7.2.1",
+    "singlejar 7.2.1",
     "bazel-toolchain >=0.2.0"
    ],
    "host": [
@@ -500,24 +476,29 @@
     "libprotobuf"
    ],
    "run": [
-    "openjdk >=8,<17"
+    "openjdk >=21",
+    "ijar 7.2.1",
+    "singlejar 7.2.1"
    ]
   },
-  "source": {
-   "patches": [
-    "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
-    "patches/0002-Build-with-native-dependencies.patch",
-    "patches/0003-Match-version-of-protobuf-java-with-libprotobuf.patch",
-    "patches/0005-Link-to-abseil-libraries.patch",
-    "patches/0007-grpc-java-plugin-from-build.patch",
-    "patches/0008-bazel-bin-loader-path.patch",
-    "patches/0010-win-Disable-VS-activation-and-make-build-verbose.patch",
-    "patches/0011-Use-old-style-conditions.patch",
-    "patches/0012-Use-old-sytle-condition-for-linux64.patch"
-   ],
-   "sha256": "fc89da919415289f29e4ff18a5e01270ece9a6fe83cb60967218bac4a3bb3ed2",
-   "url": "https://github.com/bazelbuild/bazel/releases/download/6.5.0/bazel-6.5.0-dist.zip"
-  },
+  "source": [
+   {
+    "patches": [
+     "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
+     "patches/0002-Build-with-native-dependencies.patch",
+     "patches/0003-use-C-17.patch",
+     "patches/0004-Use-conda-packages-for-build-tools.patch",
+     "patches/0005-grpc-java-plugin-from-build.patch",
+     "patches/0006-bazel-bin-loader-path.patch",
+     "patches/0007-Adjust-cross-bazel-resultpath.patch",
+     "patches/0008-win-Disable-VS-activation-and-make-build-verbose.patch",
+     "patches/0009-Install-protobuf-via-maven.patch",
+     "patches/0010-Adopt-system-libprotobuf.patch"
+    ],
+    "sha256": "dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.2.1/bazel-7.2.1-dist.zip"
+   }
+  ],
   "test": {
    "commands": [
     "bazel -h",
@@ -525,7 +506,8 @@
    ],
    "requires": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "bazel-toolchain >=0.2"
    ]
   }
  },
@@ -538,10 +520,12 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "grpc_java_plugin",
+    "ijar",
     "libgrpc",
     "libprotobuf",
     "openjdk",
-    "sed"
+    "sed",
+    "singlejar"
    ]
   },
   "host": {
@@ -555,12 +539,15 @@
   "run": {
    "__set__": true,
    "elements": [
-    "openjdk"
+    "ijar",
+    "openjdk",
+    "singlejar"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "bazel-toolchain",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ]
@@ -592,7 +579,7 @@
   },
   "package": {
    "name": "bazel",
-   "version": "6.5.0"
+   "version": "7.2.1"
   },
   "requirements": {
    "build": [
@@ -600,10 +587,12 @@
     "c_compiler_stub",
     "cxx_compiler_stub",
     "sed",
-    "openjdk >=8,<17",
+    "openjdk 21.*",
     "grpc_java_plugin",
     "libgrpc",
     "libprotobuf",
+    "ijar 7.2.1",
+    "singlejar 7.2.1",
     "bazel-toolchain >=0.2.0"
    ],
    "host": [
@@ -612,24 +601,29 @@
     "libprotobuf"
    ],
    "run": [
-    "openjdk >=8,<17"
+    "openjdk >=21",
+    "ijar 7.2.1",
+    "singlejar 7.2.1"
    ]
   },
-  "source": {
-   "patches": [
-    "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
-    "patches/0002-Build-with-native-dependencies.patch",
-    "patches/0003-Match-version-of-protobuf-java-with-libprotobuf.patch",
-    "patches/0005-Link-to-abseil-libraries.patch",
-    "patches/0007-grpc-java-plugin-from-build.patch",
-    "patches/0008-bazel-bin-loader-path.patch",
-    "patches/0010-win-Disable-VS-activation-and-make-build-verbose.patch",
-    "patches/0011-Use-old-style-conditions.patch",
-    "patches/0012-Use-old-sytle-condition-for-linux64.patch"
-   ],
-   "sha256": "fc89da919415289f29e4ff18a5e01270ece9a6fe83cb60967218bac4a3bb3ed2",
-   "url": "https://github.com/bazelbuild/bazel/releases/download/6.5.0/bazel-6.5.0-dist.zip"
-  },
+  "source": [
+   {
+    "patches": [
+     "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
+     "patches/0002-Build-with-native-dependencies.patch",
+     "patches/0003-use-C-17.patch",
+     "patches/0004-Use-conda-packages-for-build-tools.patch",
+     "patches/0005-grpc-java-plugin-from-build.patch",
+     "patches/0006-bazel-bin-loader-path.patch",
+     "patches/0007-Adjust-cross-bazel-resultpath.patch",
+     "patches/0008-win-Disable-VS-activation-and-make-build-verbose.patch",
+     "patches/0009-Install-protobuf-via-maven.patch",
+     "patches/0010-Adopt-system-libprotobuf.patch"
+    ],
+    "sha256": "dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.2.1/bazel-7.2.1-dist.zip"
+   }
+  ],
   "test": {
    "commands": [
     "bazel -h",
@@ -637,7 +631,8 @@
    ],
    "requires": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "bazel-toolchain >=0.2"
    ]
   }
  },
@@ -650,10 +645,12 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "grpc_java_plugin",
+    "ijar",
     "libgrpc",
     "libprotobuf",
     "openjdk",
-    "sed"
+    "sed",
+    "singlejar"
    ]
   },
   "host": {
@@ -667,12 +664,15 @@
   "run": {
    "__set__": true,
    "elements": [
-    "openjdk"
+    "ijar",
+    "openjdk",
+    "singlejar"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "bazel-toolchain",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ]
@@ -688,7 +688,6 @@
  "platforms": [
   "linux_64",
   "linux_aarch64",
-  "linux_ppc64le",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -696,7 +695,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/bazel.json"
  },
- "raw_meta_yaml": "{% set version = \"6.5.0\" %}\n\npackage:\n  name: bazel\n  version: {{ version }}\n\nsource:\n  url: https://github.com/bazelbuild/bazel/releases/download/{{ version }}/bazel-{{ version }}-dist.zip\n  sha256: fc89da919415289f29e4ff18a5e01270ece9a6fe83cb60967218bac4a3bb3ed2\n  patches:\n    # bazel depends on https://github.com/conda-forge/singlejar-feedstock to build,\n    # which patches the same sources; the patches from singlejar should either be\n    # taken over here, or synced back if change is necessary\n    - patches/0001-allow-args-to-be-passed-to-bazel_build.patch\n    - patches/0002-Build-with-native-dependencies.patch                        # [unix]\n    # This patch ensures that the relevant version of protobuf-java matches libprotobuf.\n    # Note that \"relevant\" here means minor.patch, where minor is based on the last two\n    # digits of the calendar year. The major version may be different per language, see\n    # https://protobuf.dev/support/version-support/\n    # If the java major version changes, it needs to be bumped manually in build.sh.\n    - patches/0003-Match-version-of-protobuf-java-with-libprotobuf.patch       # [unix]\n    # synced from singlejar, by unused on this feedstock\n    # - patches/0004-use-C-17.patch                                            # [unix]\n    # add abseil linkage for protobuf 4.x; depends on patch 0002\n    - patches/0005-Link-to-abseil-libraries.patch                              # [unix]\n    - patches/0006-Use-conda-packages-for-build-tools.patch                    # [build_platform != target_platform]\n    - patches/0007-grpc-java-plugin-from-build.patch                           # [unix]\n    - patches/0008-bazel-bin-loader-path.patch                                 # [osx]\n    - patches/0009-Adjust-cross-bazel-resultpath.patch                         # [build_platform != target_platform]\n    - patches/0010-win-Disable-VS-activation-and-make-build-verbose.patch\n    - patches/0011-Use-old-style-conditions.patch\n    - patches/0012-Use-old-sytle-condition-for-linux64.patch\n\nbuild:\n  number: 0\n  ignore_prefix_files: true\n  binary_relocation: false\n\nrequirements:\n  build:\n    - {{ stdlib('c') }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - sed                      # [unix]\n    - openjdk >=8,<17          # [unix]\n    # we need $BUILD_PREFIX/bin/{grpc_cpp_plugin,grpc_java_plugin,protoc}\n    - grpc_java_plugin         # [unix]\n    - libgrpc                  # [unix]\n    - libprotobuf              # [unix]\n    - ijar {{ version }}       # [build_platform != target_platform]\n    - singlejar {{ version }}  # [build_platform != target_platform]\n    - bazel-toolchain <0.2     # [ppc64le]\n    - bazel-toolchain >=0.2.0  # [unix and not ppc64le]\n    - zip                      # [linux]\n    - unzip                    # [linux]\n    - python *                 # [win]\n  host:\n    - libabseil        # [unix]\n    - libgrpc          # [unix]\n    - libprotobuf      # [unix]\n    - openjdk >=8,<17  # [win]\n    - posix            # [win]\n  run:\n    - openjdk >=8,<17\n    - posix                    # [win]\n    - ijar {{ version }}       # [build_platform != target_platform]\n    - singlejar {{ version }}  # [build_platform != target_platform]\n\ntest:\n  requires:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  commands:\n    - bazel -h\n    - bazel version\n\nabout:\n  home: https://bazel.build/\n  summary: a fast, scalable, multi-language and extensible build system\n  dev_url: https://github.com/bazelbuild/bazel\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - h-vetinari\n    - nehaljwani\n    - abhi18av\n    - jschueller\n    - adrianchia\n    - xhochy\n",
+ "raw_meta_yaml": "{% set version = \"7.2.1\" %}\n{% set base_url = \"https://github.com/bazelbuild/bazel/releases/download\" %}\n\npackage:\n  name: bazel\n  version: {{ version }}\n\nsource:\n  - url: {{ base_url }}/{{ version }}/bazel-{{ version }}-dist.zip\n    sha256: dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d\n    patches:\n      ## bazel depends on https://github.com/conda-forge/singlejar-feedstock to build,\n      ## which patches the same sources; the patches from singlejar should either be\n      ## taken over here, or synced back if change is necessary\n      - patches/0001-allow-args-to-be-passed-to-bazel_build.patch\n      - patches/0002-Build-with-native-dependencies.patch         # [unix]\n      - patches/0003-use-C-17.patch\n      - patches/0004-Use-conda-packages-for-build-tools.patch     # [unix]\n      - patches/0005-grpc-java-plugin-from-build.patch            # [unix]\n      - patches/0006-bazel-bin-loader-path.patch                  # [osx]\n      - patches/0007-Adjust-cross-bazel-resultpath.patch\n      - patches/0008-win-Disable-VS-activation-and-make-build-verbose.patch\n      - patches/0009-Install-protobuf-via-maven.patch             # [unix]\n      - patches/0010-Adopt-system-libprotobuf.patch               # [unix]\n\nbuild:\n  number: 0\n  ignore_prefix_files: true\n  binary_relocation: false\n  # We are currently unable to select a JDK toolchain for the build.\n  # This can be re-enabled once someone finds the correct option.\n  skip: true  # [ppc64le]\n\nrequirements:\n  build:\n    - {{ stdlib('c') }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - sed                      # [unix]\n    - openjdk 21.*             # [unix]\n    # we need $BUILD_PREFIX/bin/{grpc_cpp_plugin,grpc_java_plugin,protoc}\n    - grpc_java_plugin         # [unix]\n    - libgrpc                  # [unix]\n    - libprotobuf              # [unix]\n    - ijar {{ version }}       # [unix]\n    - singlejar {{ version }}  # [unix]\n    - bazel-toolchain >=0.2.0  # [unix]\n    - zip                      # [linux]\n    - unzip                    # [linux]\n    - python *                 # [win]\n  host:\n    - libabseil        # [unix]\n    - libgrpc          # [unix]\n    - libprotobuf      # [unix]\n    - openjdk 21.*     # [win]\n    - posix            # [win]\n  run:\n    - openjdk >=21\n    - posix                    # [win]\n    - ijar {{ version }}       # [unix]\n    - singlejar {{ version }}  # [unix]\n\ntest:\n  requires:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - bazel-toolchain >=0.2  # [unix]\n  commands:\n    - bazel -h\n    - bazel version\n\nabout:\n  home: https://bazel.build/\n  summary: a fast, scalable, multi-language and extensible build system\n  dev_url: https://github.com/bazelbuild/bazel\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - h-vetinari\n    - nehaljwani\n    - abhi18av\n    - jschueller\n    - adrianchia\n    - xhochy\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -705,6 +704,7 @@
    "c_stdlib_stub",
    "cxx_compiler_stub",
    "grpc_java_plugin",
+   "ijar",
    "libabseil",
    "libgrpc",
    "libprotobuf",
@@ -712,6 +712,7 @@
    "posix",
    "python",
    "sed",
+   "singlejar",
    "unzip",
    "zip"
   ]
@@ -725,11 +726,13 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "grpc_java_plugin",
+    "ijar",
     "libgrpc",
     "libprotobuf",
     "openjdk",
     "python",
     "sed",
+    "singlejar",
     "unzip",
     "zip"
    ]
@@ -753,13 +756,16 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
+    "ijar",
     "openjdk",
-    "posix"
+    "posix",
+    "singlejar"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "bazel-toolchain",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ]
@@ -770,17 +776,18 @@
   "build": {
    "__set__": true,
    "elements": [
-    "bazel-toolchain <0.2",
     "bazel-toolchain >=0.2.0",
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "grpc_java_plugin",
+    "ijar 7.2.1",
     "libgrpc",
     "libprotobuf",
-    "openjdk >=8,<17",
+    "openjdk 21.*",
     "python *",
     "sed",
+    "singlejar 7.2.1",
     "unzip",
     "zip"
    ]
@@ -791,27 +798,30 @@
     "libabseil",
     "libgrpc",
     "libprotobuf",
-    "openjdk >=8,<17",
+    "openjdk 21.*",
     "posix"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "openjdk >=8,<17",
-    "posix"
+    "ijar 7.2.1",
+    "openjdk >=21",
+    "posix",
+    "singlejar 7.2.1"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
+    "bazel-toolchain >=0.2",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ]
   }
  },
- "url": "https://github.com/bazelbuild/bazel/releases/download/6.5.0/bazel-6.5.0-dist.zip",
- "version": "6.5.0",
+ "url": "https://github.com/bazelbuild/bazel/releases/download/7.2.1/bazel-7.2.1-dist.zip",
+ "version": "7.2.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/bazel.json"
  },
@@ -841,7 +851,7 @@
   },
   "package": {
    "name": "bazel",
-   "version": "6.5.0"
+   "version": "7.2.1"
   },
   "requirements": {
    "build": [
@@ -851,24 +861,26 @@
     "python *"
    ],
    "host": [
-    "openjdk >=8,<17",
+    "openjdk 21.*",
     "posix"
    ],
    "run": [
-    "openjdk >=8,<17",
+    "openjdk >=21",
     "posix"
    ]
   },
-  "source": {
-   "patches": [
-    "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
-    "patches/0010-win-Disable-VS-activation-and-make-build-verbose.patch",
-    "patches/0011-Use-old-style-conditions.patch",
-    "patches/0012-Use-old-sytle-condition-for-linux64.patch"
-   ],
-   "sha256": "fc89da919415289f29e4ff18a5e01270ece9a6fe83cb60967218bac4a3bb3ed2",
-   "url": "https://github.com/bazelbuild/bazel/releases/download/6.5.0/bazel-6.5.0-dist.zip"
-  },
+  "source": [
+   {
+    "patches": [
+     "patches/0001-allow-args-to-be-passed-to-bazel_build.patch",
+     "patches/0003-use-C-17.patch",
+     "patches/0007-Adjust-cross-bazel-resultpath.patch",
+     "patches/0008-win-Disable-VS-activation-and-make-build-verbose.patch"
+    ],
+    "sha256": "dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.2.1/bazel-7.2.1-dist.zip"
+   }
+  ],
   "test": {
    "commands": [
     "bazel -h",
