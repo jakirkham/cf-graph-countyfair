@@ -27,7 +27,7 @@
    "summary": "Uses both ridge and lasso penalties (and extensions) to penalize specific parameters in structural equation models. The package offers additional cost functions, cross validation, and other extensions beyond traditional structural equation models. Also contains a function to perform exploratory mediation (XMed)."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -85,6 +86,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -128,8 +130,7 @@
    "summary": "Uses both ridge and lasso penalties (and extensions) to penalize specific parameters in structural equation models. The package offers additional cost functions, cross validation, and other extensions beyond traditional structural equation models. Also contains a function to perform exploratory mediation (XMed)."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -148,9 +149,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -172,8 +175,7 @@
     "r-rcpp",
     "r-rcpparmadillo",
     "r-rsolnp",
-    "r-lavaan",
-    "gcc-libs"
+    "r-lavaan"
    ]
   },
   "source": {
@@ -202,7 +204,7 @@
    "summary": "Uses both ridge and lasso penalties (and extensions) to penalize specific parameters in structural equation models. The package offers additional cost functions, cross validation, and other extensions beyond traditional structural equation models. Also contains a function to perform exploratory mediation (XMed)."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -221,6 +223,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -260,6 +263,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -307,19 +311,20 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-regsem.json"
  },
- "raw_meta_yaml": "{% set version = \"1.9.5\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-regsem\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/regsem_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/regsem/regsem_{{ version }}.tar.gz\n  sha256: 7392bd644efe82f96da0df470a962de398f1d0162273cba1ff31c2ecd7f17a53\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-rcpp\n    - r-rcpparmadillo\n    - r-rsolnp\n    - r-lavaan\n    - libblas\n    - libcblas\n    - liblapack\n\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp\n    - r-rcpparmadillo\n    - r-rsolnp\n    - r-lavaan\n\ntest:\n  commands:\n    - $R -e \"library('regsem')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('regsem')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=regsem\n  license: GPL-2.0-or-later\n  summary: Uses both ridge and lasso penalties (and extensions) to penalize specific parameters in structural equation models. The package offers additional cost functions, cross validation, and other extensions beyond traditional structural equation models. Also contains a function to perform exploratory mediation (XMed).\n\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - izahn\n",
+ "raw_meta_yaml": "{% set version = \"1.9.5\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-regsem\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/regsem_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/regsem/regsem_{{ version }}.tar.gz\n  sha256: 7392bd644efe82f96da0df470a962de398f1d0162273cba1ff31c2ecd7f17a53\n\nbuild:\n  number: 2\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-rcpp\n    - r-rcpparmadillo\n    - r-rsolnp\n    - r-lavaan\n    - libblas\n    - libcblas\n    - liblapack\n\n  run:\n    - r-base\n    - r-rcpp\n    - r-rcpparmadillo\n    - r-rsolnp\n    - r-lavaan\n\ntest:\n  commands:\n    - $R -e \"library('regsem')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('regsem')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=regsem\n  license: GPL-2.0-or-later\n  summary: Uses both ridge and lasso penalties (and extensions) to penalize specific parameters in structural equation models. The package offers additional cost functions, cross validation, and other extensions beyond traditional structural equation models. Also contains a function to perform exploratory mediation (XMed).\n\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - izahn\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "libblas",
    "libcblas",
    "liblapack",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -336,10 +341,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -350,6 +357,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libblas",
     "libcblas",
@@ -365,8 +373,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-lavaan",
     "r-rcpp",
@@ -385,10 +393,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -411,7 +421,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-lavaan",
     "r-rcpp",
@@ -447,8 +456,7 @@
    "summary": "Uses both ridge and lasso penalties (and extensions) to penalize specific parameters in structural equation models. The package offers additional cost functions, cross validation, and other extensions beyond traditional structural equation models. Also contains a function to perform exploratory mediation (XMed)."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -467,6 +475,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -486,7 +495,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp",
     "r-rcpparmadillo",
     "r-rsolnp",
@@ -513,6 +521,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -535,7 +544,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-lavaan",
     "r-rcpp",
