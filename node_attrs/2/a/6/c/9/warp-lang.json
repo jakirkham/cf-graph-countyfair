@@ -29,7 +29,7 @@
   },
   "build": {
    "number": "0",
-   "string": "cuda120_h1234567_0"
+   "string": "cpu312_h1234567_0"
   },
   "extra": {
    "recipe-maintainers": [
@@ -39,7 +39,7 @@
   },
   "package": {
    "name": "warp-lang",
-   "version": "1.2.1"
+   "version": "1.2.2"
   },
   "requirements": {
    "build": [
@@ -77,8 +77,8 @@
     "03-install_deps_llvm_conda.patch",
     "04-find_nvcc_env.patch"
    ],
-   "sha256": "44575c2ff17ae5265e0c01e7a5324a9b7b54921e9b133a5d2723249444dfead6",
-   "url": "https://github.com/NVIDIA/warp/archive/refs/tags/v1.2.1.tar.gz"
+   "sha256": "0539bfa287fb7d777eac02dfef17ea2340ae5adfc2f5182b5cad9ee248af2069",
+   "url": "https://github.com/NVIDIA/warp/archive/refs/tags/v1.2.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -163,7 +163,7 @@
   },
   "package": {
    "name": "warp-lang",
-   "version": "1.2.1"
+   "version": "1.2.2"
   },
   "requirements": {
    "build": [
@@ -203,8 +203,8 @@
     "03-install_deps_llvm_conda.patch",
     "04-find_nvcc_env.patch"
    ],
-   "sha256": "44575c2ff17ae5265e0c01e7a5324a9b7b54921e9b133a5d2723249444dfead6",
-   "url": "https://github.com/NVIDIA/warp/archive/refs/tags/v1.2.1.tar.gz"
+   "sha256": "0539bfa287fb7d777eac02dfef17ea2340ae5adfc2f5182b5cad9ee248af2069",
+   "url": "https://github.com/NVIDIA/warp/archive/refs/tags/v1.2.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -245,7 +245,7 @@
   },
   "package": {
    "name": "warp-lang",
-   "version": "1.2.1"
+   "version": "1.2.2"
   },
   "requirements": {
    "build": [
@@ -277,8 +277,8 @@
     "03-install_deps_llvm_conda.patch",
     "04-find_nvcc_env.patch"
    ],
-   "sha256": "44575c2ff17ae5265e0c01e7a5324a9b7b54921e9b133a5d2723249444dfead6",
-   "url": "https://github.com/NVIDIA/warp/archive/refs/tags/v1.2.1.tar.gz"
+   "sha256": "0539bfa287fb7d777eac02dfef17ea2340ae5adfc2f5182b5cad9ee248af2069",
+   "url": "https://github.com/NVIDIA/warp/archive/refs/tags/v1.2.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -350,7 +350,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/warp-lang.json"
  },
- "raw_meta_yaml": "{% set name = \"warp-lang\" %}\n{% set version = \"1.2.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/NVIDIA/warp/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 44575c2ff17ae5265e0c01e7a5324a9b7b54921e9b133a5d2723249444dfead6\n  patches:\n    - 01-find_g++_env.patch\n    - 02-add_macro_def_build.patch\n    - 03-install_deps_llvm_conda.patch\n    - 04-find_nvcc_env.patch\n\nbuild:\n  string: cpu{{ CONDA_PY }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == \"None\"]\n  string: cuda{{ cuda_compiler_version | replace('.', '') }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != \"None\"]\n  number: 0\n  skip: true  # [cuda_compiler_version == \"11.2\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}  # [cuda_compiler_version != \"None\"]\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - ninja\n  host:\n    - cuda-cudart-dev    # [(cuda_compiler_version or \"\").startswith(\"12\") and win]\n    - cuda-nvcc          # [(cuda_compiler_version or \"\").startswith(\"12\") and win]\n    - cuda-nvrtc-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-nvrtc-static  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != \"None\"]\n    - python\n    - pip\n    - gitpython\n    - numpy\n  run:\n    - __cuda   # [cuda_compiler_version != \"None\"]\n    - python\n    - numpy\n    - jax  # [not win]\n    - scipy\n    - treelib\n    - typeguard\n\ntest:\n  imports:\n    - warp\n  commands:\n    - pip check\n    # Testing main functionalities to avoid OOM errors\n    - python -m warp.tests -s autodetect -p 'test_c*.py' -p 'test_m*.py' -p 'test_s*.py'\n  requires:\n    - python\n    - pip\n    - pytest\n\nabout:\n  home: https://github.com/NVIDIA/warp\n  summary: 'A Python framework for high-performance simulation and graphics programming.'\n  license: LicenseRef-NvidiaProprietary\n  license_file:\n    - LICENSE.md\n    - warp/native/cutlass/LICENSE.txt\n    - licenses/llvm-LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - flferretti\n    - traversaro\n",
+ "raw_meta_yaml": "{% set name = \"warp-lang\" %}\n{% set version = \"1.2.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/NVIDIA/warp/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 0539bfa287fb7d777eac02dfef17ea2340ae5adfc2f5182b5cad9ee248af2069\n  patches:\n    - 01-find_g++_env.patch\n    - 02-add_macro_def_build.patch\n    - 03-install_deps_llvm_conda.patch\n    - 04-find_nvcc_env.patch\n\nbuild:\n  string: cpu{{ CONDA_PY }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == \"None\"]\n  string: cuda{{ cuda_compiler_version | replace('.', '') }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != \"None\"]\n  number: 0\n  skip: true  # [cuda_compiler_version == \"11.2\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}  # [cuda_compiler_version != \"None\"]\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - ninja\n  host:\n    - cuda-cudart-dev    # [(cuda_compiler_version or \"\").startswith(\"12\") and win]\n    - cuda-nvcc          # [(cuda_compiler_version or \"\").startswith(\"12\") and win]\n    - cuda-nvrtc-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-nvrtc-static  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != \"None\"]\n    - python\n    - pip\n    - gitpython\n    - numpy\n  run:\n    - __cuda   # [cuda_compiler_version != \"None\"]\n    - python\n    - numpy\n    - jax  # [not win]\n    - scipy\n    - treelib\n    - typeguard\n\ntest:\n  imports:\n    - warp\n  commands:\n    - pip check\n    # Testing main functionalities to avoid OOM errors\n    - python -m warp.tests -s autodetect -p 'test_c*.py' -p 'test_m*.py' -p 'test_s*.py'\n  requires:\n    - python\n    - pip\n    - pytest\n\nabout:\n  home: https://github.com/NVIDIA/warp\n  summary: 'A Python framework for high-performance simulation and graphics programming.'\n  license: LicenseRef-NvidiaProprietary\n  license_file:\n    - LICENSE.md\n    - warp/native/cutlass/LICENSE.txt\n    - licenses/llvm-LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - flferretti\n    - traversaro\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -480,8 +480,8 @@
    ]
   }
  },
- "url": "https://github.com/NVIDIA/warp/archive/refs/tags/v1.2.1.tar.gz",
- "version": "1.2.1",
+ "url": "https://github.com/NVIDIA/warp/archive/refs/tags/v1.2.2.tar.gz",
+ "version": "1.2.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/warp-lang.json"
  },
@@ -508,7 +508,7 @@
   },
   "package": {
    "name": "warp-lang",
-   "version": "1.2.1"
+   "version": "1.2.2"
   },
   "requirements": {
    "build": [
@@ -547,8 +547,8 @@
     "03-install_deps_llvm_conda.patch",
     "04-find_nvcc_env.patch"
    ],
-   "sha256": "44575c2ff17ae5265e0c01e7a5324a9b7b54921e9b133a5d2723249444dfead6",
-   "url": "https://github.com/NVIDIA/warp/archive/refs/tags/v1.2.1.tar.gz"
+   "sha256": "0539bfa287fb7d777eac02dfef17ea2340ae5adfc2f5182b5cad9ee248af2069",
+   "url": "https://github.com/NVIDIA/warp/archive/refs/tags/v1.2.2.tar.gz"
   },
   "test": {
    "commands": [
