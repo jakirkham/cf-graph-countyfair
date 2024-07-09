@@ -59,7 +59,7 @@
   },
   "package": {
    "name": "pennylane-lightning-gpu",
-   "version": "0.36.0"
+   "version": "0.37.0"
   },
   "requirements": {
    "build": [
@@ -82,13 +82,13 @@
    ],
    "run": [
     "cuda-version",
-    "pennylane >=0.36",
+    "pennylane >=0.37",
     "python"
    ]
   },
   "source": {
-   "sha256": "c5fb24bdaf2ebdeaf614bfb3a8bcc07ee83c2c7251a3893399bb0c189d2d1d01",
-   "url": "https://github.com/PennyLaneAI/pennylane-lightning/archive/refs/tags/v0.36.0.tar.gz"
+   "sha256": "3f70e3e3b7e4d0f6a679919c0c83e451e129666b021bb529dd02eb915d0666a0",
+   "url": "https://github.com/PennyLaneAI/pennylane-lightning/archive/refs/tags/v0.37.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -171,7 +171,7 @@
   },
   "package": {
    "name": "pennylane-lightning-gpu",
-   "version": "0.36.0"
+   "version": "0.37.0"
   },
   "requirements": {
    "build": [
@@ -194,13 +194,13 @@
    ],
    "run": [
     "cuda-version",
-    "pennylane >=0.36",
+    "pennylane >=0.37",
     "python"
    ]
   },
   "source": {
-   "sha256": "c5fb24bdaf2ebdeaf614bfb3a8bcc07ee83c2c7251a3893399bb0c189d2d1d01",
-   "url": "https://github.com/PennyLaneAI/pennylane-lightning/archive/refs/tags/v0.36.0.tar.gz"
+   "sha256": "3f70e3e3b7e4d0f6a679919c0c83e451e129666b021bb529dd02eb915d0666a0",
+   "url": "https://github.com/PennyLaneAI/pennylane-lightning/archive/refs/tags/v0.37.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -283,7 +283,7 @@
   },
   "package": {
    "name": "pennylane-lightning-gpu",
-   "version": "0.36.0"
+   "version": "0.37.0"
   },
   "requirements": {
    "build": [
@@ -306,13 +306,13 @@
    ],
    "run": [
     "cuda-version",
-    "pennylane >=0.36",
+    "pennylane >=0.37",
     "python"
    ]
   },
   "source": {
-   "sha256": "c5fb24bdaf2ebdeaf614bfb3a8bcc07ee83c2c7251a3893399bb0c189d2d1d01",
-   "url": "https://github.com/PennyLaneAI/pennylane-lightning/archive/refs/tags/v0.36.0.tar.gz"
+   "sha256": "3f70e3e3b7e4d0f6a679919c0c83e451e129666b021bb529dd02eb915d0666a0",
+   "url": "https://github.com/PennyLaneAI/pennylane-lightning/archive/refs/tags/v0.37.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -395,7 +395,7 @@
   },
   "package": {
    "name": "pennylane-lightning-gpu",
-   "version": "0.36.0"
+   "version": "0.37.0"
   },
   "requirements": {
    "build": [
@@ -418,13 +418,13 @@
    ],
    "run": [
     "cuda-version",
-    "pennylane >=0.36",
+    "pennylane >=0.37",
     "python"
    ]
   },
   "source": {
-   "sha256": "c5fb24bdaf2ebdeaf614bfb3a8bcc07ee83c2c7251a3893399bb0c189d2d1d01",
-   "url": "https://github.com/PennyLaneAI/pennylane-lightning/archive/refs/tags/v0.36.0.tar.gz"
+   "sha256": "3f70e3e3b7e4d0f6a679919c0c83e451e129666b021bb529dd02eb915d0666a0",
+   "url": "https://github.com/PennyLaneAI/pennylane-lightning/archive/refs/tags/v0.37.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -455,7 +455,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pennylane-lightning-gpu.json"
  },
- "raw_meta_yaml": "{% set name = \"pennylane-lightning-gpu\" %}\n{% set version = \"0.36.0\" %}\n{% set build_num = 0 %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/PennyLaneAI/pennylane-lightning/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: c5fb24bdaf2ebdeaf614bfb3a8bcc07ee83c2c7251a3893399bb0c189d2d1d01\n\nbuild:\n  number: {{ build_num }}\n  skip: true  # [py==38 or (not linux) or not (cuda_compiler_version or \"\").startswith(\"12\")]\n  script: PL_BACKEND=lightning_gpu {{ PYTHON }} -m pip install . --no-deps -vv\n  ignore_run_exports_from:\n    - {{ compiler('cuda') }}\n  missing_dso_whitelist:\n    - '*/libcuda.*'   # [linux]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - cmake\n    - ninja\n  host:\n    - libgomp          # [linux]\n    - pip\n    - pybind11\n    - python\n    - custatevec\n    - cuda-cudart-dev  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcublas-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusparse-dev  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-version {{ cuda_compiler_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", min_pin=\"x\", max_pin=\"x\") }}\n    - pennylane >=0.36\n    - python\ntest:\n  imports:\n    - pennylane_lightning\n  commands:\n    - python -c \"import pennylane as qml; qml.about()\"\n    - pip check\n  requires:\n    - pip\nabout:\n  home: https://docs.pennylane.ai/projects/lightning-gpu/en/latest/\n  summary: The PennyLane-Lightning-GPU plugin extends the Pennylane-Lightning state-vector simulator written in C++, and offloads to the NVIDIA cuQuantum SDK for GPU accelerated circuit simulation.\n  license: Apache-2.0\n  # MIT is pennylane/grouping/graph_colouring.py\n  license_file: LICENSE\n  doc_url: https://docs.pennylane.ai/projects/lightning-gpu/en/latest/devices.html\n\nextra:\n  recipe-maintainers:\n    - leofang\n    - maliasadi\n    - vincentmr\n  feedstock-name: {{ name }}\n",
+ "raw_meta_yaml": "{% set name = \"pennylane-lightning-gpu\" %}\n{% set version = \"0.37.0\" %}\n{% set build_num = 0 %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/PennyLaneAI/pennylane-lightning/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 3f70e3e3b7e4d0f6a679919c0c83e451e129666b021bb529dd02eb915d0666a0\n\nbuild:\n  number: {{ build_num }}\n  skip: true  # [py==38 or (not linux) or not (cuda_compiler_version or \"\").startswith(\"12\")]\n  script: PL_BACKEND=lightning_gpu {{ PYTHON }} -m pip install . --no-deps -vv\n  ignore_run_exports_from:\n    - {{ compiler('cuda') }}\n  missing_dso_whitelist:\n    - '*/libcuda.*'   # [linux]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - cmake\n    - ninja\n  host:\n    - libgomp          # [linux]\n    - pip\n    - pybind11\n    - python\n    - custatevec\n    - cuda-cudart-dev  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcublas-dev    # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusparse-dev  # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-version {{ cuda_compiler_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", min_pin=\"x\", max_pin=\"x\") }}\n    - pennylane >=0.37\n    - python\ntest:\n  imports:\n    - pennylane_lightning\n  commands:\n    - python -c \"import pennylane as qml; qml.about()\"\n    - pip check\n  requires:\n    - pip\nabout:\n  home: https://docs.pennylane.ai/projects/lightning-gpu/en/latest/\n  summary: The PennyLane-Lightning-GPU plugin extends the Pennylane-Lightning state-vector simulator written in C++, and offloads to the NVIDIA cuQuantum SDK for GPU accelerated circuit simulation.\n  license: Apache-2.0\n  # MIT is pennylane/grouping/graph_colouring.py\n  license_file: LICENSE\n  doc_url: https://docs.pennylane.ai/projects/lightning-gpu/en/latest/devices.html\n\nextra:\n  recipe-maintainers:\n    - leofang\n    - maliasadi\n    - vincentmr\n  feedstock-name: {{ name }}\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -554,7 +554,7 @@
    "__set__": true,
    "elements": [
     "cuda-version",
-    "pennylane >=0.36",
+    "pennylane >=0.37",
     "python"
    ]
   },
@@ -565,8 +565,8 @@
    ]
   }
  },
- "url": "https://github.com/PennyLaneAI/pennylane-lightning/archive/refs/tags/v0.36.0.tar.gz",
- "version": "0.36.0",
+ "url": "https://github.com/PennyLaneAI/pennylane-lightning/archive/refs/tags/v0.37.0.tar.gz",
+ "version": "0.37.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pennylane-lightning-gpu.json"
  }
