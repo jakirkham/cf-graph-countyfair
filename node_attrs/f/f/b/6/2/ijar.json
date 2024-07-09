@@ -18,8 +18,9 @@
    "branch_name": "main",
    "tooling_branch_name": "main"
   },
-  "os_version": {
-   "linux_64": "cos7"
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "default"
   },
   "test": "native_and_emulated"
  },
@@ -472,7 +473,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/ijar.json"
  },
- "raw_meta_yaml": "{% set version = \"7.2.1\" %}\n\n{% set base_url = \"https://github.com/bazelbuild/bazel/releases/download\" %}\n\npackage:\n  name: ijar\n  version: {{ version }}\n\nsource:\n  - url: {{ base_url }}/{{ version }}/bazel-{{ version }}-dist.zip\n    sha256: dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d\n\n  - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64  # [build_platform == \"osx-64\"]\n    sha256: ba0a10ecbdaa70bf348bfdbad2fbcf0ba926a5ee07b613f6656046a1d3f60e07  # [build_platform == \"osx-64\"]\n    fn: bazel  # [build_platform == \"osx-64\"]\n  - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-arm64    # [build_platform == \"osx-arm64\"]\n    sha256: ef15ff2c9ca3cbf2b09dcc88ea6d7d89575cfd6904e560d7691831a1d7daaf82    # [build_platform == \"osx-arm64\"]\n    fn: bazel                                                                   # [build_platform == \"osx-arm64\"]\n  - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64  # [build_platform == \"linux-64\"]\n    sha256: 1c7a167ad2c45374afb19f60093465f58f9209a5142d53d63bc4aadb567323fa  # [build_platform == \"linux-64\"]\n    fn: bazel  # [build_platform == \"linux-64\"]\n\nbuild:\n  number: 0\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - bazel-toolchain >=0.2.0\n    - openjdk\n    - sed\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/ijar\n    - test -f $PREFIX/bin/zipper\n\nabout:\n  home: https://github.com/bazelbuild/bazel/tree/master/third_party/ijar\n  license: Apache-2.0\n  license_family: MIT\n  license_file: third_party/ijar/LICENSE\n  summary: A tool for generating interface .jars from normal .jars\n\nextra:\n  recipe-maintainers:\n    - xhochy\n",
+ "raw_meta_yaml": "{% set version = \"7.2.1\" %}\n\n{% set base_url = \"https://github.com/bazelbuild/bazel/releases/download\" %}\n\npackage:\n  name: ijar\n  version: {{ version }}\n\nsource:\n  - url: {{ base_url }}/{{ version }}/bazel-{{ version }}-dist.zip\n    sha256: dfd823f52fe31328e9e63c27684168b1ab855212b84034c9cd8ccfc7b9af5e0d\n\n  - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-x86_64   # [build_platform == \"osx-64\"]\n    sha256: ba0a10ecbdaa70bf348bfdbad2fbcf0ba926a5ee07b613f6656046a1d3f60e07    # [build_platform == \"osx-64\"]\n    fn: bazel                                                                   # [build_platform == \"osx-64\"]\n  - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-darwin-arm64    # [build_platform == \"osx-arm64\"]\n    sha256: ef15ff2c9ca3cbf2b09dcc88ea6d7d89575cfd6904e560d7691831a1d7daaf82    # [build_platform == \"osx-arm64\"]\n    fn: bazel                                                                   # [build_platform == \"osx-arm64\"]\n  - url: {{ base_url }}/{{ version }}/bazel_nojdk-{{ version }}-linux-x86_64    # [build_platform == \"linux-64\"]\n    sha256: 1c7a167ad2c45374afb19f60093465f58f9209a5142d53d63bc4aadb567323fa    # [build_platform == \"linux-64\"]\n    fn: bazel                                                                   # [build_platform == \"linux-64\"]\n\nbuild:\n  number: 0\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - bazel-toolchain >=0.2.0\n    - openjdk\n    - sed\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/ijar\n    - test -f $PREFIX/bin/zipper\n\nabout:\n  home: https://github.com/bazelbuild/bazel/tree/master/third_party/ijar\n  license: Apache-2.0\n  license_family: MIT\n  license_file: third_party/ijar/LICENSE\n  summary: A tool for generating interface .jars from normal .jars\n\nextra:\n  recipe-maintainers:\n    - xhochy\n",
  "req": {
   "__set__": true,
   "elements": [
