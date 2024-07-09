@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "pygotm",
  "hash_type": "sha256",
@@ -232,6 +236,88 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "This package provides access to the turbulence and vertical diffusion\nalgorithms of the General Ocean Turbulence Model\n",
+   "home": "https://github.com/BoldingBruggeman/pygotm",
+   "license": "GPL-2.0-only",
+   "license_family": "GPL",
+   "license_file": "LICENSE",
+   "summary": "Python interface to the General Ocean Turbulence Model"
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "jornbr"
+   ]
+  },
+  "package": {
+   "name": "pygotm",
+   "version": "0.1.1"
+  },
+  "requirements": {
+   "build": [
+    "cmake",
+    "make",
+    "c_compiler_stub",
+    "fortran_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "python",
+    "cython",
+    "pip",
+    "setuptools",
+    "numpy"
+   ],
+   "run": [
+    "python"
+   ]
+  },
+  "source": {
+   "sha256": "91bd4a64c288e129365e655fd936761d98490f4fb8d03897eb6c0a7aeb356e87",
+   "url": "https://github.com/BoldingBruggeman/pygotm/releases/download/v0.1.1/code.tar.gz"
+  },
+  "test": {
+   "imports": [
+    "pygotm"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "fortran_compiler_stub",
+    "make"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "cython",
+    "numpy",
+    "pip",
+    "python",
+    "setuptools"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -242,12 +328,13 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/pygotm.json"
  },
- "raw_meta_yaml": "{% set version = \"0.1.1\" %}\n{% set build = 1 %}\n\npackage:\n  name: pygotm\n  version: {{ version }}\n\nsource:\n  #git_url: https://github.com/BoldingBruggeman/pygotm.git\n  url: https://github.com/BoldingBruggeman/pygotm/releases/download/v{{ version }}/code.tar.gz\n  sha256: 91bd4a64c288e129365e655fd936761d98490f4fb8d03897eb6c0a7aeb356e87\n\nbuild:\n  number: {{ build }}\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - cmake\n    - make                                   # [not win]\n    - {{ compiler('c') }}                    # [not win] NB on windows this would activate Visual Studio and make that the default C/C++ compiler\n    - {{ compiler('fortran') }}              # [not win]\n    - {{ compiler('m2w64_c') }}              # [win]\n    - {{ compiler('m2w64_fortran') }}        # [win]\n    - {{ stdlib(\"c\") }}                      # [not win] on Windows this pulls in VS and causes cmake to use its cl.exe, which is incompatible with the m2w64 version of windres.exe\n  host:\n    - python {{ python }}\n    - cython\n    - pip\n    - setuptools\n    - numpy\n    - libpython                  # [win]\n  run:\n    - python\n    - m2w64-gcc-libgfortran      # [win] NB m2w64-gcc-libs and m2w64-gcc-libs-core are added automatically by m2w64 compiler functions under build\n\n\ntest:\n  imports:\n    - pygotm\n\nabout:\n  home: https://github.com/BoldingBruggeman/pygotm\n  summary: 'Python interface to the General Ocean Turbulence Model'\n  description: |\n    This package provides access to the turbulence and vertical diffusion\n    algorithms of the General Ocean Turbulence Model\n  license: GPL-2.0-only\n  license_family: GPL\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - jornbr\n",
+ "raw_meta_yaml": "{% set version = \"0.1.1\" %}\n{% set build = 1 %}\n\npackage:\n  name: pygotm\n  version: {{ version }}\n\nsource:\n  #git_url: https://github.com/BoldingBruggeman/pygotm.git\n  url: https://github.com/BoldingBruggeman/pygotm/releases/download/v{{ version }}/code.tar.gz\n  sha256: 91bd4a64c288e129365e655fd936761d98490f4fb8d03897eb6c0a7aeb356e87\n\nbuild:\n  number: {{ build }}\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - cmake\n    - make                                   # [not win]\n    - {{ compiler('c') }}                    # [not win] NB on windows this would activate Visual Studio and make that the default C/C++ compiler\n    - {{ compiler('fortran') }}              # [not win]\n    - {{ compiler('m2w64_c') }}              # [win]\n    - {{ compiler('m2w64_fortran') }}        # [win]\n    - {{ stdlib(\"c\") }}                      # [not win] on Windows this pulls in VS and causes cmake to use its cl.exe, which is incompatible with the m2w64 version of windres.exe\n  host:\n    - python {{ python }}\n    - cython\n    - pip\n    - setuptools\n    - numpy\n    - libpython                  # [win]\n  run:\n    - python\n    - m2w64-gcc-libgfortran      # [win] NB m2w64-gcc-libs and m2w64-gcc-libs-core are added automatically by m2w64 compiler functions under build\n\n\ntest:\n  imports:\n    - pygotm\n\nabout:\n  home: https://github.com/BoldingBruggeman/pygotm\n  summary: 'Python interface to the General Ocean Turbulence Model'\n  description: |\n    This package provides access to the turbulence and vertical diffusion\n    algorithms of the General Ocean Turbulence Model\n  license: GPL-2.0-only\n  license_family: GPL\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - jornbr\n",
  "req": {
   "__set__": true,
   "elements": [
