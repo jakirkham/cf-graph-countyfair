@@ -2,6 +2,10 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -13,7 +17,8 @@
   "provider": {
    "linux_aarch64": "default",
    "linux_ppc64le": "default"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "libunwind",
  "hash_type": "sha256",
@@ -42,10 +47,11 @@
   },
   "package": {
    "name": "libunwind",
-   "version": "1.6.2"
+   "version": "1.7.2"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "make",
@@ -56,8 +62,8 @@
    "host": []
   },
   "source": {
-   "sha256": "4a6aec666991fb45d0889c44aede8ad6eb108071c3554fcdff671f9c94794976",
-   "url": "http://download.savannah.nongnu.org/releases/libunwind/libunwind-1.6.2.tar.gz"
+   "sha256": "c76c4f340071ede486af6342d50e17747f7b0db1c05077c8f7c677c09b324f73",
+   "url": "https://github.com/libunwind/libunwind/archive/refs/tags/v1.7.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -75,6 +81,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -118,10 +125,11 @@
   },
   "package": {
    "name": "libunwind",
-   "version": "1.6.2"
+   "version": "1.7.2"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "make",
@@ -132,8 +140,8 @@
    "host": []
   },
   "source": {
-   "sha256": "4a6aec666991fb45d0889c44aede8ad6eb108071c3554fcdff671f9c94794976",
-   "url": "http://download.savannah.nongnu.org/releases/libunwind/libunwind-1.6.2.tar.gz"
+   "sha256": "c76c4f340071ede486af6342d50e17747f7b0db1c05077c8f7c677c09b324f73",
+   "url": "https://github.com/libunwind/libunwind/archive/refs/tags/v1.7.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -151,6 +159,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -194,10 +203,11 @@
   },
   "package": {
    "name": "libunwind",
-   "version": "1.6.2"
+   "version": "1.7.2"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "make",
@@ -208,8 +218,8 @@
    "host": []
   },
   "source": {
-   "sha256": "4a6aec666991fb45d0889c44aede8ad6eb108071c3554fcdff671f9c94794976",
-   "url": "http://download.savannah.nongnu.org/releases/libunwind/libunwind-1.6.2.tar.gz"
+   "sha256": "c76c4f340071ede486af6342d50e17747f7b0db1c05077c8f7c677c09b324f73",
+   "url": "https://github.com/libunwind/libunwind/archive/refs/tags/v1.7.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -227,6 +237,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -270,10 +281,11 @@
   },
   "package": {
    "name": "libunwind",
-   "version": "1.6.2"
+   "version": "1.7.2"
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "make",
@@ -284,8 +296,8 @@
    "host": []
   },
   "source": {
-   "sha256": "4a6aec666991fb45d0889c44aede8ad6eb108071c3554fcdff671f9c94794976",
-   "url": "http://download.savannah.nongnu.org/releases/libunwind/libunwind-1.6.2.tar.gz"
+   "sha256": "c76c4f340071ede486af6342d50e17747f7b0db1c05077c8f7c677c09b324f73",
+   "url": "https://github.com/libunwind/libunwind/archive/refs/tags/v1.7.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -312,13 +324,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libunwind.json"
  },
- "raw_meta_yaml": "{% set name = \"libunwind\" %}\n{% set version = \"1.6.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: http://download.savannah.nongnu.org/releases/libunwind/libunwind-{{ version }}.tar.gz\n  sha256: 4a6aec666991fb45d0889c44aede8ad6eb108071c3554fcdff671f9c94794976\n\nbuild:\n  number: 0\n  run_exports:\n    # breaks backwards compatibility sometimes\n    # https://abi-laboratory.pro/index.php?view=timeline&l=libunwind\n    - {{ pin_subpackage('libunwind', max_pin='x.x') }}\n  skip: true  # [win or osx]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - make\n    - autoconf\n    - automake\n    - libtool\n  host:\n\ntest:\n  commands:\n    - test -f \"${PREFIX}/lib/libunwind.so\"\n    - test ! -f \"${PREFIX}/lib/libunwind.a\"\n    - test -f \"${PREFIX}/include/libunwind.h\"\n    - test -f \"${PREFIX}/include/unwind.h\"\n\nabout:\n  home: https://www.nongnu.org/libunwind\n  license: MIT\n  license_family: MIT\n  license_file: COPYING\n  summary: Defines a portable and efficient C programming interface (API) to determine the call-chain of a program\n  dev_url: https://github.com/libunwind/libunwind\n  doc_url: https://www.nongnu.org/libunwind/docs.html\n\nextra:\n  recipe-maintainers:\n    - synapticarbors\n    - xhochy\n    - matthiasdiener\n",
+ "raw_meta_yaml": "{% set version = \"1.7.2\" %}\n\npackage:\n  name: libunwind\n  version: {{ version }}\n\nsource:\n  url: https://github.com/libunwind/libunwind/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: c76c4f340071ede486af6342d50e17747f7b0db1c05077c8f7c677c09b324f73\n\nbuild:\n  number: 0\n  run_exports:\n    # breaks backwards compatibility sometimes\n    # https://abi-laboratory.pro/index.php?view=timeline&l=libunwind\n    - {{ pin_subpackage('libunwind', max_pin='x.x') }}\n  skip: true  # [win or osx]\n\nrequirements:\n  build:\n    - {{ stdlib('c') }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - make\n    - autoconf\n    - automake\n    - libtool\n  host:\n\ntest:\n  commands:\n    - test -f \"${PREFIX}/lib/libunwind.so\"\n    - test ! -f \"${PREFIX}/lib/libunwind.a\"\n    - test -f \"${PREFIX}/include/libunwind.h\"\n    - test -f \"${PREFIX}/include/unwind.h\"\n\nabout:\n  home: https://www.nongnu.org/libunwind\n  license: MIT\n  license_family: MIT\n  license_file: COPYING\n  summary: Defines a portable and efficient C programming interface (API) to determine the call-chain of a program\n  dev_url: https://github.com/libunwind/libunwind\n  doc_url: https://www.nongnu.org/libunwind/docs.html\n\nextra:\n  recipe-maintainers:\n    - synapticarbors\n    - xhochy\n    - matthiasdiener\n",
  "req": {
   "__set__": true,
   "elements": [
    "autoconf",
    "automake",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "libtool",
    "make"
@@ -331,6 +344,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -340,6 +354,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -347,6 +362,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -363,6 +379,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -381,8 +398,8 @@
    "elements": []
   }
  },
- "url": "http://download.savannah.nongnu.org/releases/libunwind/libunwind-1.6.2.tar.gz",
- "version": "1.6.2",
+ "url": "https://github.com/libunwind/libunwind/archive/refs/tags/v1.7.2.tar.gz",
+ "version": "1.7.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/libunwind.json"
  }
