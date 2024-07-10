@@ -17,7 +17,8 @@
    "tooling_branch_name": "main"
   },
   "provider": {
-   "linux_aarch64": "default"
+   "linux_aarch64": "default",
+   "linux_ppc64le": "default"
   },
   "test": "native_and_emulated"
  },
@@ -193,6 +194,109 @@
   }
  },
  "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "libgomp"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "eigen",
+    "fftw",
+    "numpy",
+    "pip",
+    "pybind11",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "astropy",
+    "eigen",
+    "lsstdesc.coord",
+    "numpy",
+    "pybind11",
+    "python",
+    "scipy"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "description": "GalSim is open-source software for simulating images of astronomical objects\n(stars, galaxies) in a variety of ways. The bulk of the calculations are\ncarried out in C++, and the user interface is in python. In addition, the\ncode can operate directly on \"config\" files, for those users who prefer not\nto work in python. (http://adsabs.harvard.edu/abs/2015A%26C....10..121R)\n",
+   "dev_url": "https://github.com/GalSim-developers/GalSim",
+   "doc_url": "https://github.com/GalSim-developers/GalSim/wiki",
+   "home": "https://github.com/GalSim-developers/GalSim",
+   "license": "MIT AND BSD-2-Clause",
+   "license_file": "LICENSE",
+   "summary": "The modular galaxy image simulation toolkit"
+  },
+  "build": {
+   "number": "0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "beckermr",
+    "rmjarvis",
+    "erykoff"
+   ]
+  },
+  "package": {
+   "name": "galsim",
+   "version": "2.5.3"
+  },
+  "requirements": {
+   "build": [
+    "cxx_compiler_stub",
+    "c_stdlib_stub",
+    "libgomp"
+   ],
+   "host": [
+    "python",
+    "numpy",
+    "pybind11 >=2.2",
+    "fftw",
+    "eigen >=3.3",
+    "pip"
+   ],
+   "run": [
+    "python",
+    "numpy",
+    "astropy >=2.0",
+    "pybind11 >=2.2",
+    "eigen >=3.3",
+    "lsstdesc.coord >=1.0.5",
+    "scipy"
+   ]
+  },
+  "source": {
+   "sha256": "22051ba4bf9617eaef6f8279a346419a7cae6f31b152ba53b1c38e3064c6336a",
+   "url": "https://github.com/Galsim-Developers/galsim/archive/v2.5.3.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "ls -lah $PREFIX/lib/libgalsim*",
+    "ldd $PREFIX/lib/libgalsim.so",
+    "test -f $PREFIX/lib/libgalsim${SHLIB_EXT}",
+    "test -L $PREFIX/lib/libgalsim${SHLIB_EXT}",
+    "test -f $PREFIX/include/GalSim.h",
+    "test -d $PREFIX/include/galsim"
+   ],
+   "imports": [
+    "galsim"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
   "build": {
    "__set__": true,
    "elements": [
@@ -517,6 +621,7 @@
  "platforms": [
   "linux_64",
   "linux_aarch64",
+  "linux_ppc64le",
   "osx_64",
   "osx_arm64"
  ],
