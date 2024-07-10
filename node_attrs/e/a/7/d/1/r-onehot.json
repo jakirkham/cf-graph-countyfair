@@ -28,7 +28,7 @@
    "summary": "Quickly create numeric matrices for machine learning algorithms that require them. It converts factor columns into onehot vectors."
   },
   "build": {
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -47,6 +47,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -74,6 +75,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -103,8 +105,7 @@
    "summary": "Quickly create numeric matrices for machine learning algorithms that require them. It converts factor columns into onehot vectors."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -123,8 +124,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -134,8 +137,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -162,7 +164,7 @@
    "summary": "Quickly create numeric matrices for machine learning algorithms that require them. It converts factor columns into onehot vectors."
   },
   "build": {
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -181,6 +183,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -208,6 +211,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -243,15 +247,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-onehot.json"
  },
- "raw_meta_yaml": "{% set version = '0.1.1' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-onehot\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/onehot_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/onehot/onehot_{{ version }}.tar.gz\n  sha256: 3dc62f56459a4f912a41c46831d300cc818ec983306e78cb2405647e00f8bab1\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 4\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('onehot')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('onehot')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=onehot\n  license: MIT\n  summary: Quickly create numeric matrices for machine learning algorithms that require them.\n    It converts factor columns into onehot vectors.\n  license_family: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - xhochy\n\n# Package: onehot\n# Type: Package\n# Title: Fast Onehot Encoding for Data.frames\n# Version: 0.1.1\n# Author: Eric E. Graves [aut, cre]\n# Maintainer: Eric E. Graves <gravcon5@gmail.com>\n# Description: Quickly create numeric matrices for machine learning algorithms that require them. It converts factor columns into onehot vectors.\n# License: MIT + file LICENSE\n# Encoding: UTF-8\n# LazyData: true\n# RoxygenNote: 6.0.1\n# NeedsCompilation: yes\n# Packaged: 2017-05-02 13:12:03 UTC; GravesEE\n# Repository: CRAN\n# Date/Publication: 2017-05-02 16:13:01 UTC\n",
+ "raw_meta_yaml": "{% set version = '0.1.1' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-onehot\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/onehot_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/onehot/onehot_{{ version }}.tar.gz\n  sha256: 3dc62f56459a4f912a41c46831d300cc818ec983306e78cb2405647e00f8bab1\n\nbuild:\n  number: 5\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('onehot')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('onehot')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=onehot\n  license: MIT\n  summary: Quickly create numeric matrices for machine learning algorithms that require them.\n    It converts factor columns into onehot vectors.\n  license_family: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - xhochy\n\n# Package: onehot\n# Type: Package\n# Title: Fast Onehot Encoding for Data.frames\n# Version: 0.1.1\n# Author: Eric E. Graves [aut, cre]\n# Maintainer: Eric E. Graves <gravcon5@gmail.com>\n# Description: Quickly create numeric matrices for machine learning algorithms that require them. It converts factor columns into onehot vectors.\n# License: MIT + file LICENSE\n# Encoding: UTF-8\n# LazyData: true\n# RoxygenNote: 6.0.1\n# NeedsCompilation: yes\n# Packaged: 2017-05-02 13:12:03 UTC; GravesEE\n# Repository: CRAN\n# Date/Publication: 2017-05-02 16:13:01 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "sed",
@@ -263,9 +268,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -275,6 +282,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -282,7 +290,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -297,9 +305,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -314,7 +324,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -344,8 +353,7 @@
    "summary": "Quickly create numeric matrices for machine learning algorithms that require them. It converts factor columns into onehot vectors."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -364,6 +372,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -374,8 +383,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -398,6 +406,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -412,7 +421,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
