@@ -43,7 +43,7 @@
    "missing_dso_whitelist": [
     "/usr/lib/libc++abi.dylib"
    ],
-   "number": "3"
+   "number": "0"
   },
   "extra": {
    "feedstock-name": "libcxx",
@@ -106,8 +106,11 @@
     ],
     "name": "libcxxabi",
     "requirements": {
-     "run_constrained": [
-      "libcxx 17.0.6.*"
+     "build": [
+      "c_stdlib_stub"
+     ],
+     "run": [
+      "libunwind"
      ]
     },
     "test": {
@@ -115,11 +118,31 @@
       "test -f $PREFIX/lib/libc++abi.so"
      ]
     }
+   },
+   {
+    "build": null,
+    "files": [
+     "lib/libunwind.*"
+    ],
+    "name": "libunwind",
+    "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
+     "run_constrained": [
+      "libcxx 18.1.8.*"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/libunwind.so"
+     ]
+    }
    }
   ],
   "package": {
    "name": "libcxx_and_libcxxabi",
-   "version": "17.0.6"
+   "version": "18.1.8"
   },
   "requirements": {
    "build": [
@@ -130,8 +153,8 @@
     "python >3"
    ],
    "host": [
-    "clangdev 17.0.6",
-    "llvmdev 17.0.6"
+    "clangdev 18.1.8",
+    "llvmdev 18.1.8"
    ]
   },
   "source": [
@@ -139,10 +162,11 @@
     "patches": [
      "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
-     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+     "patches/0005-disable-_LIBCPP_AVAILABILITY_HAS_INIT_PRIMARY_EXCEPT.patch",
+     "patches/0006-Work-around-stray-nostdlib-flags-causing-errors-with.patch"
     ],
-    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
-    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+    "sha256": "09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856",
+    "url": "https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-18.1.8.tar.gz"
    }
   ]
  },
@@ -167,7 +191,8 @@
   "run": {
    "__set__": true,
    "elements": [
-    "libcxxabi"
+    "libcxxabi",
+    "libunwind"
    ]
   },
   "test": {
@@ -194,7 +219,7 @@
    "missing_dso_whitelist": [
     "/usr/lib/libc++abi.dylib"
    ],
-   "number": "3"
+   "number": "0"
   },
   "extra": {
    "feedstock-name": "libcxx",
@@ -257,13 +282,36 @@
     ],
     "name": "libcxxabi",
     "requirements": {
-     "run_constrained": [
-      "libcxx 17.0.6.*"
+     "build": [
+      "c_stdlib_stub"
+     ],
+     "run": [
+      "libunwind"
      ]
     },
     "test": {
      "commands": [
       "test -f $PREFIX/lib/libc++abi.so"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "files": [
+     "lib/libunwind.*"
+    ],
+    "name": "libunwind",
+    "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
+     "run_constrained": [
+      "libcxx 18.1.8.*"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/libunwind.so"
      ]
     }
    },
@@ -300,8 +348,29 @@
     ],
     "name": "libcxxabi",
     "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
+     "run": []
+    },
+    "test": {
+     "commands": null
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "files": [
+     "lib/libunwind.*"
+    ],
+    "name": "libunwind",
+    "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
      "run_constrained": [
-      "libcxx 17.0.6.*"
+      "libcxx 18.1.8.*"
      ]
     },
     "test": {
@@ -344,11 +413,7 @@
       "libcxx-testing 0.18",
       "libcxx-testing 0.17",
       "libcxx-testing 0.16",
-      "libcxx-testing 0.15",
-      "libcxx-testing 0.14",
-      "libcxx-testing 0.13",
-      "libcxx-testing 0.12",
-      "libcxx-testing 0.11"
+      "libcxx-testing 0.15"
      ],
      "files": [
       "test_sources",
@@ -372,8 +437,29 @@
     ],
     "name": "libcxxabi",
     "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
+     "run": []
+    },
+    "test": {
+     "commands": null
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "files": [
+     "lib/libunwind.*"
+    ],
+    "name": "libunwind",
+    "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
      "run_constrained": [
-      "libcxx 17.0.6.*"
+      "libcxx 18.1.8.*"
      ]
     },
     "test": {
@@ -413,8 +499,29 @@
     ],
     "name": "libcxxabi",
     "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
+     "run": []
+    },
+    "test": {
+     "commands": null
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "files": [
+     "lib/libunwind.*"
+    ],
+    "name": "libunwind",
+    "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
      "run_constrained": [
-      "libcxx 17.0.6.*"
+      "libcxx 18.1.8.*"
      ]
     },
     "test": {
@@ -457,11 +564,7 @@
       "libcxx-testing 0.18",
       "libcxx-testing 0.17",
       "libcxx-testing 0.16",
-      "libcxx-testing 0.15",
-      "libcxx-testing 0.14",
-      "libcxx-testing 0.13",
-      "libcxx-testing 0.12",
-      "libcxx-testing 0.11"
+      "libcxx-testing 0.15"
      ],
      "files": [
       "test_sources",
@@ -485,8 +588,29 @@
     ],
     "name": "libcxxabi",
     "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
+     "run": []
+    },
+    "test": {
+     "commands": null
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "files": [
+     "lib/libunwind.*"
+    ],
+    "name": "libunwind",
+    "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
      "run_constrained": [
-      "libcxx 17.0.6.*"
+      "libcxx 18.1.8.*"
      ]
     },
     "test": {
@@ -496,7 +620,7 @@
   ],
   "package": {
    "name": "libcxx_and_libcxxabi",
-   "version": "17.0.6"
+   "version": "18.1.8"
   },
   "requirements": {
    "build": [
@@ -507,8 +631,8 @@
     "python >3"
    ],
    "host": [
-    "clangdev 17.0.6",
-    "llvmdev 17.0.6"
+    "clangdev 18.1.8",
+    "llvmdev 18.1.8"
    ]
   },
   "source": [
@@ -516,48 +640,53 @@
     "patches": [
      "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
-     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+     "patches/0005-disable-_LIBCPP_AVAILABILITY_HAS_INIT_PRIMARY_EXCEPT.patch",
+     "patches/0006-Work-around-stray-nostdlib-flags-causing-errors-with.patch"
     ],
-    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
-    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+    "sha256": "09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856",
+    "url": "https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-18.1.8.tar.gz"
    },
    {
     "patches": [
      "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0002-Fix-ABI-compatibility-with-system.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
-     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+     "patches/0005-disable-_LIBCPP_AVAILABILITY_HAS_INIT_PRIMARY_EXCEPT.patch",
+     "patches/0006-Work-around-stray-nostdlib-flags-causing-errors-with.patch"
     ],
-    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
-    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+    "sha256": "09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856",
+    "url": "https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-18.1.8.tar.gz"
    },
    {
     "patches": [
      "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
-     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+     "patches/0005-disable-_LIBCPP_AVAILABILITY_HAS_INIT_PRIMARY_EXCEPT.patch",
+     "patches/0006-Work-around-stray-nostdlib-flags-causing-errors-with.patch"
     ],
-    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
-    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+    "sha256": "09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856",
+    "url": "https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-18.1.8.tar.gz"
    },
    {
     "patches": [
      "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0002-Fix-ABI-compatibility-with-system.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
-     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+     "patches/0005-disable-_LIBCPP_AVAILABILITY_HAS_INIT_PRIMARY_EXCEPT.patch",
+     "patches/0006-Work-around-stray-nostdlib-flags-causing-errors-with.patch"
     ],
-    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
-    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+    "sha256": "09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856",
+    "url": "https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-18.1.8.tar.gz"
    },
    {
     "patches": [
      "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
-     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+     "patches/0005-disable-_LIBCPP_AVAILABILITY_HAS_INIT_PRIMARY_EXCEPT.patch",
+     "patches/0006-Work-around-stray-nostdlib-flags-causing-errors-with.patch"
     ],
-    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
-    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+    "sha256": "09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856",
+    "url": "https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-18.1.8.tar.gz"
    }
   ]
  },
@@ -578,7 +707,7 @@
    "missing_dso_whitelist": [
     "/usr/lib/libc++abi.dylib"
    ],
-   "number": "3"
+   "number": "0"
   },
   "extra": {
    "feedstock-name": "libcxx",
@@ -626,8 +755,29 @@
     ],
     "name": "libcxxabi",
     "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
+     "run": []
+    },
+    "test": {
+     "commands": null
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "files": [
+     "lib/libunwind.*"
+    ],
+    "name": "libunwind",
+    "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
      "run_constrained": [
-      "libcxx 17.0.6.*"
+      "libcxx 18.1.8.*"
      ]
     },
     "test": {
@@ -670,11 +820,7 @@
       "libcxx-testing 0.18",
       "libcxx-testing 0.17",
       "libcxx-testing 0.16",
-      "libcxx-testing 0.15",
-      "libcxx-testing 0.14",
-      "libcxx-testing 0.13",
-      "libcxx-testing 0.12",
-      "libcxx-testing 0.11"
+      "libcxx-testing 0.15"
      ],
      "files": [
       "test_sources",
@@ -698,8 +844,29 @@
     ],
     "name": "libcxxabi",
     "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
+     "run": []
+    },
+    "test": {
+     "commands": null
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "files": [
+     "lib/libunwind.*"
+    ],
+    "name": "libunwind",
+    "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
      "run_constrained": [
-      "libcxx 17.0.6.*"
+      "libcxx 18.1.8.*"
      ]
     },
     "test": {
@@ -709,7 +876,7 @@
   ],
   "package": {
    "name": "libcxx_and_libcxxabi",
-   "version": "17.0.6"
+   "version": "18.1.8"
   },
   "requirements": {
    "build": [
@@ -726,19 +893,21 @@
      "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0002-Fix-ABI-compatibility-with-system.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
-     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+     "patches/0005-disable-_LIBCPP_AVAILABILITY_HAS_INIT_PRIMARY_EXCEPT.patch",
+     "patches/0006-Work-around-stray-nostdlib-flags-causing-errors-with.patch"
     ],
-    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
-    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+    "sha256": "09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856",
+    "url": "https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-18.1.8.tar.gz"
    },
    {
     "patches": [
      "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
-     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+     "patches/0005-disable-_LIBCPP_AVAILABILITY_HAS_INIT_PRIMARY_EXCEPT.patch",
+     "patches/0006-Work-around-stray-nostdlib-flags-causing-errors-with.patch"
     ],
-    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
-    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+    "sha256": "09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856",
+    "url": "https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-18.1.8.tar.gz"
    }
   ]
  },
@@ -787,7 +956,7 @@
    "missing_dso_whitelist": [
     "/usr/lib/libc++abi.dylib"
    ],
-   "number": "3"
+   "number": "0"
   },
   "extra": {
    "feedstock-name": "libcxx",
@@ -835,8 +1004,29 @@
     ],
     "name": "libcxxabi",
     "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
+     "run": []
+    },
+    "test": {
+     "commands": null
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "files": [
+     "lib/libunwind.*"
+    ],
+    "name": "libunwind",
+    "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
      "run_constrained": [
-      "libcxx 17.0.6.*"
+      "libcxx 18.1.8.*"
      ]
     },
     "test": {
@@ -879,11 +1069,7 @@
       "libcxx-testing 0.18",
       "libcxx-testing 0.17",
       "libcxx-testing 0.16",
-      "libcxx-testing 0.15",
-      "libcxx-testing 0.14",
-      "libcxx-testing 0.13",
-      "libcxx-testing 0.12",
-      "libcxx-testing 0.11"
+      "libcxx-testing 0.15"
      ],
      "files": [
       "test_sources",
@@ -907,8 +1093,29 @@
     ],
     "name": "libcxxabi",
     "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
+     "run": []
+    },
+    "test": {
+     "commands": null
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "files": [
+     "lib/libunwind.*"
+    ],
+    "name": "libunwind",
+    "requirements": {
+     "build": [
+      "c_stdlib_stub"
+     ],
      "run_constrained": [
-      "libcxx 17.0.6.*"
+      "libcxx 18.1.8.*"
      ]
     },
     "test": {
@@ -918,7 +1125,7 @@
   ],
   "package": {
    "name": "libcxx_and_libcxxabi",
-   "version": "17.0.6"
+   "version": "18.1.8"
   },
   "requirements": {
    "build": [
@@ -935,19 +1142,21 @@
      "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0002-Fix-ABI-compatibility-with-system.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
-     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+     "patches/0005-disable-_LIBCPP_AVAILABILITY_HAS_INIT_PRIMARY_EXCEPT.patch",
+     "patches/0006-Work-around-stray-nostdlib-flags-causing-errors-with.patch"
     ],
-    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
-    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+    "sha256": "09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856",
+    "url": "https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-18.1.8.tar.gz"
    },
    {
     "patches": [
      "patches/0001-Support-legacy-standalone-builds.patch",
      "patches/0003-custom-error-message-for-old-sdk.patch",
-     "patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch"
+     "patches/0005-disable-_LIBCPP_AVAILABILITY_HAS_INIT_PRIMARY_EXCEPT.patch",
+     "patches/0006-Work-around-stray-nostdlib-flags-causing-errors-with.patch"
     ],
-    "sha256": "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813",
-    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz"
+    "sha256": "09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856",
+    "url": "https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-18.1.8.tar.gz"
    }
   ]
  },
@@ -984,7 +1193,8 @@
   "__set__": true,
   "elements": [
    "libcxx",
-   "libcxxabi"
+   "libcxxabi",
+   "libunwind"
   ]
  },
  "parsing_error": false,
@@ -996,7 +1206,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libcxx.json"
  },
- "raw_meta_yaml": "{% set version = \"17.0.6\" %}\n\n{% if sys_abi is undefined %}\n{% set sys_abi = \"dummy\" %}\n{% endif %}\n\npackage:\n  name: libcxx_and_libcxxabi\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(\".rc\", \"-rc\") }}/llvm-project-{{ version.replace(\".rc\", \"rc\") }}.src.tar.xz\n    sha256: 58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813\n    patches:\n      - patches/0001-Support-legacy-standalone-builds.patch\n      # See https://discourse.llvm.org/t/shipping-custom-libc-on-macos/58606\n      - patches/0002-Fix-ABI-compatibility-with-system.patch    # [sys_abi == \"pre-12\"]\n      - patches/0003-custom-error-message-for-old-sdk.patch\n      # upstream removed fallbacks in case the underlying libc didn't support C11 in\n      # https://github.com/llvm/llvm-project/commit/21f73d5826fb5024a27eaacafadfa316f58949c5;\n      # using new libcxx with old clang versions (beyond what upstream supports) relies on\n      # having these fallbacks in place. Drop if conflict-resolution becomes too messy.\n      - patches/0004-Revert-libc-Remove-workaround-for-C11-features-on-co.patch\n\nbuild:\n  number: 3\n  skip: true  # [win]\n  skip: true  # [ppc64le or aarch64]\n  ignore_run_exports:\n    - libstdcxx-ng\n  missing_dso_whitelist:\n    - /usr/lib/libc++abi.dylib\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}       # [not osx]\n    # use sys_abi as selector, so smithy breaks up CI jobs\n    - {{ stdlib('c') }}       # [osx and (sys_abi == \"pre-12\")]\n    - {{ stdlib('c') }}       # [osx and (sys_abi == \"post-12\")]\n    - python >3               # [not osx]\n  host:\n    - clangdev {{ version }}  # [not osx]\n    - llvmdev {{ version }}   # [not osx]\n\noutputs:\n  - name: libcxx\n    files:\n      - include/c++\n      - Library/include/c++\n      - lib/libc++.*\n      - lib/libc++fs.*\n      - lib/libc++experimental.*\n      - Library/bin/c++*.dll\n      - Library/lib/c++*.lib\n      - Library/lib/libc++*.lib\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ stdlib('c') }}\n      host:\n      run:\n        - {{ pin_subpackage(\"libcxxabi\", exact=True) }}    # [linux]\n      run_constrained:\n        - __osx <12                                        # [osx and (sys_abi == \"pre-12\")]\n        - sysroot_{{ target_platform }} >={{ c_stdlib_version }}    # [linux]\n\n    # package for old sys_abi is not installable on macOS-12 image anymore\n    {% if sys_abi != \"pre-12\" %}\n    test:\n      requires:\n        - clang                  # [osx]\n        - clangxx\n        - ld64                   # [osx]\n        - cctools                # [osx]\n        - llvm-tools             # [osx]\n        - {{ compiler('cxx') }}  # [not osx]\n      files:\n        - test_sources\n        - compile_test.sh   # [unix]\n        - compile_test.bat  # [win]\n      commands:\n        # Dummy var for different hashes\n        - echo {{ dummy_var }}                                    # [osx]\n        - echo {{ sys_abi }}                                      # [osx]\n        - if not exist %LIBRARY_INC%\\\\c++\\\\v1\\\\iterator exit 1    # [win]\n        - test -f $PREFIX/include/c++/v1/iterator                 # [unix]\n        - bash compile_test.sh                                    # [unix]\n        - compile_test.bat                                        # [win]\n        # make sure we inserted link to our docs wherever it is necessary;\n        # i.e. everywhere there's a string \"availability(macos,...,introduced=<ver>)\" for osx version >10.13;\n        # 'grep -v' inverts the match but returns non-zero exit code if no lines are returned; so we use 'wc -l';\n        # we want to have zero lines that don't either: contain our link or are for <=10.13 (lowest occurring in that file is 10.9)\n        - if [ 0 -eq $(cat ${PREFIX}/include/c++/v1/__availability | grep \"availability(macos\" | grep -vE \"(conda-forge|10.9|10.1[0-3])\" | wc -l) ]; then exit 0; else exit 1; fi  # [osx]\n        # !!!!!!!!!!!! README !!!!!!!!!!!!!!!!!!\n        # we do not ship libcxxabi on OSX - this breaks exception passing\n        - if [ -f $PREFIX/lib/libc++abi.dylib ]; then exit 1; fi  # [osx]\n        - test -f $PREFIX/lib/libc++abi.so                        # [linux]\n\n      # Following 2 projects had issues with libc++, so check them\n      # before releasing just to be sure.\n      downstreams:              # [osx]\n        - python-symengine      # [osx]\n        - openturns             # [osx]\n        # test current libcxx against old clang builds;\n        # version correspondence is 0.{{ CLANG_MAJOR }}\n        # these tests are unusual in that they use -Wl,-rpath, but not -L.\n        # we'd need the pre-12 system libcxx, but azure deleted the macOS-11 image\n        - libcxx-testing 0.18   # [osx]\n        - libcxx-testing 0.17   # [osx]\n        - libcxx-testing 0.16   # [osx]\n        - libcxx-testing 0.15   # [osx]\n        - libcxx-testing 0.14   # [osx]\n        - libcxx-testing 0.13   # [osx]\n        - libcxx-testing 0.12   # [osx]\n        - libcxx-testing 0.11   # [osx]\n    {% endif %}\n\n  - name: libcxxabi\n    build:\n      skip: true  # [not linux]\n    files:\n      - lib/libc++abi.*\n    requirements:\n      run_constrained:\n        - libcxx {{ version }}.*\n    test:\n      commands:\n        - test -f $PREFIX/lib/libc++abi.so  # [linux]\n\nabout:\n  home: http://libcxx.llvm.org/\n  license: Apache-2.0 WITH LLVM-exception\n  license_file: libcxx/LICENSE.TXT\n  license_family: Apache\n  summary: LLVM C++ standard library\n  dev_url: https://github.com/llvm/llvm-project\n\nextra:\n  recipe-maintainers:\n    - SylvainCorlay\n    - inducer\n    - jakirkham\n    - isuruf\n    - beckermr\n    - timsnyder\n    - h-vetinari\n  feedstock-name: libcxx\n",
+ "raw_meta_yaml": "{% set version = \"18.1.8\" %}\n\n{% if sys_abi is undefined %}\n{% set sys_abi = \"dummy\" %}\n{% endif %}\n\npackage:\n  name: libcxx_and_libcxxabi\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(\".rc\", \"-rc\") }}.tar.gz\n    sha256: 09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856\n    patches:\n      - patches/0001-Support-legacy-standalone-builds.patch\n      # See https://discourse.llvm.org/t/shipping-custom-libc-on-macos/58606\n      - patches/0002-Fix-ABI-compatibility-with-system.patch    # [sys_abi == \"pre-12\"]\n      - patches/0003-custom-error-message-for-old-sdk.patch\n      # disable feature that requires up-to-date libcxxabi, which we don't ship\n      - patches/0005-disable-_LIBCPP_AVAILABILITY_HAS_INIT_PRIMARY_EXCEPT.patch\n      # work around https://github.com/llvm/llvm-project/issues/90332\n      - patches/0006-Work-around-stray-nostdlib-flags-causing-errors-with.patch\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  skip: true  # [ppc64le or aarch64]\n  ignore_run_exports:\n    - libstdcxx-ng\n  missing_dso_whitelist:\n    - /usr/lib/libc++abi.dylib\n\nrequirements:\n  build:\n    - cmake\n    - ninja\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}       # [not osx]\n    # use sys_abi as selector, so smithy breaks up CI jobs\n    - {{ stdlib('c') }}       # [osx and (sys_abi == \"pre-12\")]\n    - {{ stdlib('c') }}       # [osx and (sys_abi == \"post-12\")]\n    - python >3               # [not osx]\n  host:\n    - clangdev {{ version }}  # [not osx]\n    - llvmdev {{ version }}   # [not osx]\n\noutputs:\n  - name: libcxx\n    files:\n      - include/c++\n      - Library/include/c++\n      - lib/libc++.*\n      - lib/libc++fs.*\n      - lib/libc++experimental.*\n      - Library/bin/c++*.dll\n      - Library/lib/c++*.lib\n      - Library/lib/libc++*.lib\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ stdlib('c') }}\n      host:\n      run:\n        - {{ pin_subpackage(\"libcxxabi\", exact=True) }}    # [linux]\n      run_constrained:\n        - __osx <12                                        # [osx and (sys_abi == \"pre-12\")]\n        - sysroot_{{ target_platform }} >={{ c_stdlib_version }}    # [linux]\n\n    # package for old sys_abi is not installable on macOS-12 image anymore\n    {% if sys_abi != \"pre-12\" %}\n    test:\n      requires:\n        - clang                  # [osx]\n        - clangxx\n        - ld64                   # [osx]\n        - cctools                # [osx]\n        - llvm-tools             # [osx]\n        - {{ compiler('cxx') }}  # [not osx]\n      files:\n        - test_sources\n        - compile_test.sh   # [unix]\n        - compile_test.bat  # [win]\n      commands:\n        # Dummy var for different hashes\n        - echo {{ dummy_var }}                                    # [osx]\n        - echo {{ sys_abi }}                                      # [osx]\n        - if not exist %LIBRARY_INC%\\\\c++\\\\v1\\\\iterator exit 1    # [win]\n        - test -f $PREFIX/include/c++/v1/iterator                 # [unix]\n        - bash compile_test.sh                                    # [unix]\n        - compile_test.bat                                        # [win]\n        # make sure we inserted link to our docs wherever it is necessary;\n        # i.e. everywhere there's a string \"availability(macos,...,introduced=<ver>)\" for osx version >10.13;\n        # 'grep -v' inverts the match but returns non-zero exit code if no lines are returned; so we use 'wc -l';\n        # we want to have zero lines that don't either: contain our link or are for <=10.13 (lowest occurring in that file is 10.9)\n        - if [ 0 -eq $(cat ${PREFIX}/include/c++/v1/__availability | grep \"availability(macos\" | grep -vE \"(conda-forge|10.9|10.1[0-3])\" | wc -l) ]; then exit 0; else exit 1; fi  # [osx]\n        # !!!!!!!!!!!! README !!!!!!!!!!!!!!!!!!\n        # we do not ship libcxxabi on OSX - this breaks exception passing\n        - if [ -f $PREFIX/lib/libc++abi.dylib ]; then exit 1; fi  # [osx]\n        - test -f $PREFIX/lib/libc++abi.so                        # [linux]\n\n      # Following 2 projects had issues with libc++, so check them\n      # before releasing just to be sure.\n      downstreams:              # [osx]\n        - python-symengine      # [osx]\n        - openturns             # [osx]\n        # test current libcxx against old clang builds;\n        # version correspondence is 0.{{ CLANG_MAJOR }}\n        # these tests are unusual in that they use -Wl,-rpath, but not -L.\n        # we'd need the pre-12 system libcxx, but azure deleted the macOS-11 image\n        - libcxx-testing 0.18   # [osx]\n        - libcxx-testing 0.17   # [osx]\n        - libcxx-testing 0.16   # [osx]\n        - libcxx-testing 0.15   # [osx]\n    {% endif %}\n\n  - name: libcxxabi\n    build:\n      skip: true  # [not linux]\n    files:\n      - lib/libc++abi.*\n    requirements:\n      build:\n        # for run-exports\n        - {{ stdlib('c') }}\n      run:\n        - {{ pin_subpackage(\"libunwind\", exact=True) }}  # [linux]\n    test:\n      commands:\n        - test -f $PREFIX/lib/libc++abi.so  # [linux]\n\n  - name: libunwind\n    build:\n      skip: true  # [not linux]\n    files:\n      - lib/libunwind.*\n    requirements:\n      build:\n        # for run-exports\n        - {{ stdlib('c') }}\n      run_constrained:\n        - libcxx {{ version }}.*\n    test:\n      commands:\n        - test -f $PREFIX/lib/libunwind.so  # [linux]\n\nabout:\n  home: http://libcxx.llvm.org/\n  license: Apache-2.0 WITH LLVM-exception\n  license_file: libcxx/LICENSE.TXT\n  license_family: Apache\n  summary: LLVM C++ standard library\n  dev_url: https://github.com/llvm/llvm-project\n\nextra:\n  recipe-maintainers:\n    - SylvainCorlay\n    - inducer\n    - jakirkham\n    - isuruf\n    - beckermr\n    - timsnyder\n    - h-vetinari\n  feedstock-name: libcxx\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -1005,6 +1215,7 @@
    "cmake",
    "cxx_compiler_stub",
    "libcxxabi",
+   "libunwind",
    "llvmdev",
    "ninja",
    "python"
@@ -1035,7 +1246,8 @@
    "elements": [
     "c_stdlib_stub",
     "cxx_compiler_stub",
-    "libcxxabi"
+    "libcxxabi",
+    "libunwind"
    ]
   },
   "test": {
@@ -1065,14 +1277,15 @@
   "host": {
    "__set__": true,
    "elements": [
-    "clangdev 17.0.6",
-    "llvmdev 17.0.6"
+    "clangdev 18.1.8",
+    "llvmdev 18.1.8"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "libcxxabi"
+    "libcxxabi",
+    "libunwind"
    ]
   },
   "test": {
@@ -1087,8 +1300,8 @@
    ]
   }
  },
- "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/llvm-project-17.0.6.src.tar.xz",
- "version": "17.0.6",
+ "url": "https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-18.1.8.tar.gz",
+ "version": "18.1.8",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/libcxx.json"
  }
