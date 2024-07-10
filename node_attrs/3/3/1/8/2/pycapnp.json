@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -21,10 +24,10 @@
    "summary": "A cython wrapping of the C++ Cap'n Proto library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "cp -f PREFIX/include/capnp/*.capnp ./capnp/",
-    "pip install ."
+    "python setup.py build_ext --force-system-libcapnp install"
    ]
   },
   "extra": {
@@ -39,7 +42,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "capnproto",
@@ -80,6 +84,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -117,12 +122,11 @@
    "summary": "A cython wrapping of the C++ Cap'n Proto library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "cp -f PREFIX/include/capnp/*.capnp ./capnp/",
-    "pip install .",
-    "copy /y \"\\capnp\\*.capnp\" .\\capnp\\",
-    "pip install . -C force-system-libcapnp=True"
+    "python setup.py build_ext --force-system-libcapnp install",
+    "copy /y \"\\capnp\\*.capnp\" .\\capnp\\"
    ]
   },
   "extra": {
@@ -137,7 +141,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "capnproto",
@@ -148,8 +153,7 @@
     "python"
    ],
    "run": [
-    "python",
-    "__osx >=10.13"
+    "python"
    ]
   },
   "source": {
@@ -183,10 +187,10 @@
    "summary": "A cython wrapping of the C++ Cap'n Proto library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "cp -f PREFIX/include/capnp/*.capnp ./capnp/",
-    "pip install ."
+    "python setup.py build_ext --force-system-libcapnp install"
    ]
   },
   "extra": {
@@ -201,7 +205,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "capnproto",
@@ -212,8 +217,7 @@
     "python"
    ],
    "run": [
-    "python",
-    "__osx >=10.13"
+    "python"
    ]
   },
   "source": {
@@ -243,6 +247,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -260,7 +265,104 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "pytest",
+    "pytest-asyncio",
+    "python"
+   ]
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "home": "https://github.com/capnproto/pycapnp",
+   "license": "BSD-2-Clause",
+   "license_file": "LICENSE.md",
+   "summary": "A cython wrapping of the C++ Cap'n Proto library"
+  },
+  "build": {
+   "number": "1",
+   "script": [
+    "cp -f PREFIX/include/capnp/*.capnp ./capnp/",
+    "python setup.py build_ext --force-system-libcapnp install"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "LehMaxence"
+   ]
+  },
+  "package": {
+   "name": "pycapnp",
+   "version": "2.0.0"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "capnproto",
+    "cython <3",
+    "pkgconfig",
+    "setuptools",
+    "pip",
+    "python"
+   ],
+   "run": [
+    "python"
+   ]
+  },
+  "source": {
+   "sha256": "a9e3acc58d8d67a08dbe6c86513b6bbff734a608a7fceb102883a88877643059",
+   "url": "https://github.com/capnproto/pycapnp/archive/refs/tags/v2.0.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pytest test"
+   ],
+   "imports": [
+    "capnp"
+   ],
+   "requires": [
+    "python",
+    "pytest",
+    "pytest-asyncio"
+   ],
+   "source_files": [
+    "test",
+    "examples"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "capnproto",
+    "cython",
+    "pip",
+    "pkgconfig",
+    "python",
+    "setuptools"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
     "python"
    ]
   },
@@ -283,17 +385,18 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/pycapnp.json"
  },
- "raw_meta_yaml": "{% set name = \"pycapnp\" %}\n{% set version = \"2.0.0\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  # as of 2.0.0, the PyPi source does not include the _custom_build/ directory, which is needed\n  # for pip install to work. This is why we are using the GitHub source.\n  url: https://github.com/capnproto/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: a9e3acc58d8d67a08dbe6c86513b6bbff734a608a7fceb102883a88877643059\n\nbuild:\n  skip: true  # [python_impl == 'pypy']\n  number: 0\n  script:\n    - copy /y \"{{ LIBRARY_INC }}\\capnp\\*.capnp\" .\\capnp\\  # [win]\n    - cp -f {{ PREFIX }}/include/capnp/*.capnp ./capnp/  # [not win]\n    - pip install . -C force-system-libcapnp=True  # [win]\n    - pip install .  # [not win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - capnproto\n    # <3 because https://github.com/capnproto/pycapnp/issues/319\n    - cython <3\n    - libxcrypt  # [py==38 and linux]\n    - pkgconfig\n    - setuptools\n    - pip\n    - python\n  run:\n    - python\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n\ntest:\n  source_files:\n    - test\n    - examples\n  requires:\n    - python\n    - pytest\n    - pytest-asyncio\n  imports:\n    - capnp\n  commands:\n    - pytest test\n\nabout:\n  home: https://github.com/capnproto/pycapnp\n  summary: A cython wrapping of the C++ Cap'n Proto library\n  license: BSD-2-Clause\n  license_file: LICENSE.md\n\nextra:\n  recipe-maintainers:\n    - LehMaxence\n",
+ "raw_meta_yaml": "{% set name = \"pycapnp\" %}\n{% set version = \"2.0.0\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  # as of 2.0.0, the PyPi source does not include the _custom_build/ directory, which is needed\n  # for pip install to work. This is why we are using the GitHub source.\n  url: https://github.com/capnproto/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: a9e3acc58d8d67a08dbe6c86513b6bbff734a608a7fceb102883a88877643059\n\nbuild:\n  skip: true  # [python_impl == 'pypy']\n  number: 1\n  script:\n    - copy /y \"{{ LIBRARY_INC }}\\capnp\\*.capnp\" .\\capnp\\  # [win]\n    - cp -f {{ PREFIX }}/include/capnp/*.capnp ./capnp/  # [not win]\n    # Can't use `pip install` because it doesn't seem there's a way to set this\n    # argument that way.\n    - python setup.py build_ext --force-system-libcapnp install\n\nrequirements:\n  build:\n    - capnproto                              # [build_platform != target_platform]\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    # <3 because https://github.com/capnproto/pycapnp/issues/319\n    - cython <3                              # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n  host:\n    - capnproto\n    # <3 because https://github.com/capnproto/pycapnp/issues/319\n    - cython <3\n    - libxcrypt  # [py==38 and linux]\n    - pkgconfig\n    - setuptools\n    - pip\n    - python\n  run:\n    - python\n\ntest:\n  source_files:\n    - test\n    - examples\n  requires:\n    - python\n    - pytest\n    - pytest-asyncio\n  imports:\n    - capnp        # [build_platform == target_platform]\n  commands:\n    - pytest test  # [build_platform == target_platform]\n\nabout:\n  home: https://github.com/capnproto/pycapnp\n  summary: A cython wrapping of the C++ Cap'n Proto library\n  license: BSD-2-Clause\n  license_file: LICENSE.md\n\nextra:\n  recipe-maintainers:\n    - LehMaxence\n",
  "req": {
   "__set__": true,
   "elements": [
-   "__osx",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "capnproto",
    "cxx_compiler_stub",
    "cython",
@@ -308,6 +411,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -315,6 +419,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "capnproto",
     "cxx_compiler_stub",
     "cython",
@@ -327,8 +432,8 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "python"
    ]
@@ -348,6 +453,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -365,7 +471,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx >=10.13",
     "python"
    ]
   },
@@ -391,10 +496,10 @@
    "summary": "A cython wrapping of the C++ Cap'n Proto library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "copy /y \"\\capnp\\*.capnp\" .\\capnp\\",
-    "pip install . -C force-system-libcapnp=True"
+    "python setup.py build_ext --force-system-libcapnp install"
    ]
   },
   "extra": {
@@ -409,7 +514,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "capnproto",
@@ -450,6 +556,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
