@@ -30,7 +30,7 @@
    "summary": "Provides functions for multivariate and propensity score matching  and for finding optimal balance based on a genetic search algorithm.  A variety of univariate and multivariate metrics to determine if balance has been obtained are also provided."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -51,6 +51,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -86,6 +87,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -121,8 +123,7 @@
    "summary": "Provides functions for multivariate and propensity score matching  and for finding optimal balance based on a genetic search algorithm.  A variety of univariate and multivariate metrics to determine if balance has been obtained are also provided."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -143,12 +144,14 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
     "pkg-config",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -163,8 +166,7 @@
    ],
    "run": [
     "r-base",
-    "r-mass >=7.2_1",
-    "gcc-libs"
+    "r-mass >=7.2_1"
    ]
   },
   "source": {
@@ -193,7 +195,7 @@
    "summary": "Provides functions for multivariate and propensity score matching  and for finding optimal balance based on a genetic search algorithm.  A variety of univariate and multivariate metrics to determine if balance has been obtained are also provided."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -214,6 +216,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -249,6 +252,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -288,7 +292,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-matching.json"
  },
- "raw_meta_yaml": "{% set version = \"4.10-14\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-matching\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/Matching_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/Matching/Matching_{{ version }}.tar.gz\n  sha256: bfb4286a5da29dcfcc4ddee6299e2d91c0de177720b060b8946fd16f32f6a6b0\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-mass >=7.2_1\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-mass >=7.2_1\n\ntest:\n  commands:\n    - $R -e \"library('Matching')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('Matching')\\\"\"  # [win]\n\nabout:\n  home: http://sekhon.berkeley.edu/matching\n  license: GPL-3.0-only\n  summary: Provides functions for multivariate and propensity score matching  and for finding optimal balance based on a genetic search algorithm.  A variety of univariate and multivariate metrics to determine if balance has been obtained are also provided.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - MathiasHaudgaard\n    - FrodePedersen\n    - ArneKr\n\n# Package: Matching\n# Version: 4.9-6\n# Date: 2019-04-07\n# Title: Multivariate and Propensity Score Matching with Balance Optimization\n# Author: Jasjeet Singh Sekhon <sekhon@berkeley.edu>\n# Maintainer: Jasjeet Singh Sekhon <sekhon@berkeley.edu>\n# Description: Provides functions for multivariate and propensity score matching  and for finding optimal balance based on a genetic search algorithm.  A variety of univariate and multivariate metrics to determine if balance has been obtained are also provided.\n# Depends: R (>= 2.6.0), MASS (>= 7.2-1), graphics, grDevices, stats\n# Suggests: parallel, rgenoud (>= 2.12), rbounds\n# License: GPL-3\n# URL: http://sekhon.berkeley.edu/matching\n# NeedsCompilation: yes\n# Packaged: 2019-05-07 21:02:01 UTC; sekhon\n# Repository: CRAN\n# Date/Publication: 2019-05-07 22:20:29 UTC\n",
+ "raw_meta_yaml": "{% set version = \"4.10-14\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-matching\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/Matching_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/Matching/Matching_{{ version }}.tar.gz\n  sha256: bfb4286a5da29dcfcc4ddee6299e2d91c0de177720b060b8946fd16f32f6a6b0\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-mass >=7.2_1\n  run:\n    - r-base\n    - r-mass >=7.2_1\n\ntest:\n  commands:\n    - $R -e \"library('Matching')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('Matching')\\\"\"  # [win]\n\nabout:\n  home: http://sekhon.berkeley.edu/matching\n  license: GPL-3.0-only\n  summary: Provides functions for multivariate and propensity score matching  and for finding optimal balance based on a genetic search algorithm.  A variety of univariate and multivariate metrics to determine if balance has been obtained are also provided.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - MathiasHaudgaard\n    - FrodePedersen\n    - ArneKr\n\n# Package: Matching\n# Version: 4.9-6\n# Date: 2019-04-07\n# Title: Multivariate and Propensity Score Matching with Balance Optimization\n# Author: Jasjeet Singh Sekhon <sekhon@berkeley.edu>\n# Maintainer: Jasjeet Singh Sekhon <sekhon@berkeley.edu>\n# Description: Provides functions for multivariate and propensity score matching  and for finding optimal balance based on a genetic search algorithm.  A variety of univariate and multivariate metrics to determine if balance has been obtained are also provided.\n# Depends: R (>= 2.6.0), MASS (>= 7.2-1), graphics, grDevices, stats\n# Suggests: parallel, rgenoud (>= 2.12), rbounds\n# License: GPL-3\n# URL: http://sekhon.berkeley.edu/matching\n# NeedsCompilation: yes\n# Packaged: 2019-05-07 21:02:01 UTC; sekhon\n# Repository: CRAN\n# Date/Publication: 2019-05-07 22:20:29 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -296,12 +300,13 @@
    "automake",
    "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "grep",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "pkg-config",
@@ -319,11 +324,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -335,6 +342,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-mass"
@@ -344,8 +352,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-mass"
    ]
@@ -364,11 +372,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -386,7 +396,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-mass >=7.2_1"
    ]
@@ -419,8 +428,7 @@
    "summary": "Provides functions for multivariate and propensity score matching  and for finding optimal balance based on a genetic search algorithm.  A variety of univariate and multivariate metrics to determine if balance has been obtained are also provided."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -441,6 +449,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -458,7 +467,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-mass >=7.2_1"
    ]
   },
@@ -485,6 +493,7 @@
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -502,7 +511,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-mass"
    ]
