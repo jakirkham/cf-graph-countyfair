@@ -21,7 +21,7 @@
    "summary": "A flexible framework for solving PDEs with modern spectral methods."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -38,7 +38,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -64,8 +65,8 @@
     "mpich",
     "mpi4py >=2.0.0",
     "numexpr",
-    "numpy",
-    "scipy >=1.9.1",
+    "numpy >=1.20.0",
+    "scipy >=1.9.1, <1.14",
     "py",
     "pytest",
     "pytest-benchmark",
@@ -94,7 +95,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -148,7 +150,7 @@
    "summary": "A flexible framework for solving PDEs with modern spectral methods."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -165,7 +167,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -191,8 +194,8 @@
     "mpich",
     "mpi4py >=2.0.0",
     "numexpr",
-    "numpy",
-    "scipy >=1.9.1",
+    "numpy >=1.20.0",
+    "scipy >=1.9.1, <1.14",
     "py",
     "pytest",
     "pytest-benchmark",
@@ -226,7 +229,7 @@
    "summary": "A flexible framework for solving PDEs with modern spectral methods."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -243,7 +246,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "pip",
@@ -269,8 +273,8 @@
     "mpich",
     "mpi4py >=2.0.0",
     "numexpr",
-    "numpy",
-    "scipy >=1.9.1",
+    "numpy >=1.20.0",
+    "scipy >=1.9.1, <1.14",
     "py",
     "pytest",
     "pytest-benchmark",
@@ -298,7 +302,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -357,11 +362,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/dedalus.json"
  },
- "raw_meta_yaml": "{% set name = \"dedalus\" %}\n{% set version = \"3.0.2\" %}\n{% set mpi_prefix = \"mpi_\" + mpi %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: fb8db776d2bf0c9112082d0d6d88b841fffb8b3e979067ba9f708042da1437f3\n\nbuild:\n  number: 0\n  skip: true  # [win or py<39]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n  host:\n    - pip\n    - python\n    - setuptools\n    - cython >=3.0.5\n    - mpi4py >=2.0.0\n    - numpy >=1.20.0\n    - {{ mpi }}\n    - fftw\n    - fftw * {{ mpi_prefix }}_*\n  run:\n    - python\n    - docopt\n    - hdf5 * {{ mpi_prefix }}_*\n    - h5py >=3.0 {{ mpi_prefix }}_*\n    - fftw\n    - fftw * {{ mpi_prefix }}_*\n    - matplotlib-base\n    - {{ mpi }}\n    - mpi4py >=2.0.0\n    - numexpr\n    - {{ pin_compatible('numpy') }}\n    - scipy >=1.9.1\n    - py\n    - pytest\n    - pytest-benchmark\n    - pytest-cov\n    - pytest-parallel\n    - openssh  # [linux]\n    - xarray\n\ntest:\n  imports:\n    - dedalus\n  commands: python3 -m dedalus test\n\nabout:\n  home: https://pypi.org/project/dedalus/\n  summary: A flexible framework for solving PDEs with modern spectral methods.\n  license: GPL-3.0-or-later\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - mxr-conda\n    - rluria14\n    - oblute\n    - ndmaxar\n    - kburns\n",
+ "raw_meta_yaml": "{% set name = \"dedalus\" %}\n{% set version = \"3.0.2\" %}\n{% set mpi_prefix = \"mpi_\" + mpi %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: fb8db776d2bf0c9112082d0d6d88b841fffb8b3e979067ba9f708042da1437f3\n\nbuild:\n  number: 1\n  skip: true  # [win or py<39]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - pip\n    - python\n    - setuptools\n    - cython >=3.0.5\n    - mpi4py >=2.0.0\n    - numpy >=1.20.0\n    - {{ mpi }}\n    - fftw\n    - fftw * {{ mpi_prefix }}_*\n  run:\n    - python\n    - docopt\n    - hdf5 * {{ mpi_prefix }}_*\n    - h5py >=3.0 {{ mpi_prefix }}_*\n    - fftw\n    - fftw * {{ mpi_prefix }}_*\n    - matplotlib-base\n    - {{ mpi }}\n    - mpi4py >=2.0.0\n    - numexpr\n    - numpy >=1.20.0\n    - scipy >=1.9.1, <1.14\n    - py\n    - pytest\n    - pytest-benchmark\n    - pytest-cov\n    - pytest-parallel\n    - openssh  # [linux]\n    - xarray\n\ntest:\n  imports:\n    - dedalus\n  commands: python3 -m dedalus test\n\nabout:\n  home: https://pypi.org/project/dedalus/\n  summary: A flexible framework for solving PDEs with modern spectral methods.\n  license: GPL-3.0-or-later\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - mxr-conda\n    - rluria14\n    - oblute\n    - ndmaxar\n    - kburns\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cython",
    "docopt",
    "fftw",
@@ -390,13 +396,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "fftw",
     "mpi4py",
@@ -412,6 +420,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "docopt",
     "fftw",
     "h5py",
@@ -443,7 +452,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -477,7 +487,7 @@
     "mpi4py >=2.0.0",
     "mpich",
     "numexpr",
-    "numpy",
+    "numpy >=1.20.0",
     "openmpi",
     "openssh",
     "py",
@@ -486,7 +496,7 @@
     "pytest-cov",
     "pytest-parallel",
     "python",
-    "scipy >=1.9.1",
+    "scipy >=1.9.1, <1.14",
     "xarray"
    ]
   },
