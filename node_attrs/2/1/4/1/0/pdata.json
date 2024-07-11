@@ -39,22 +39,24 @@
   },
   "package": {
    "name": "pdata",
-   "version": "2.2.0"
+   "version": "2.2.1"
   },
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "python",
-    "numpy"
+    "numpy",
+    "cython"
    ],
    "host": [
     "python",
     "pip",
-    "numpy"
+    "numpy",
+    "cython"
    ],
    "run": [
     "python",
-    "numpy",
     "jsondiff",
     "ipywidgets",
     "ipympl",
@@ -72,8 +74,8 @@
    ]
   },
   "source": {
-   "sha256": "b30387af20fc3a89336cb4a294a12a40b90e32c51f65d60e350b7e5e9c583ec0",
-   "url": "https://github.com/govenius/pdata/archive/refs/tags/v2.2.0.tar.gz"
+   "sha256": "97fd82b0874728fefa56b0ee3dacbba39af3a030247754fbe5ee8808c538fb0b",
+   "url": "https://github.com/govenius/pdata/archive/refs/tags/v2.2.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -100,7 +102,9 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
+    "cython",
     "numpy",
     "python"
    ]
@@ -108,6 +112,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cython",
     "numpy",
     "pip",
     "python"
@@ -125,7 +130,6 @@
     "jsondiff",
     "matplotlib-base",
     "notebook",
-    "numpy",
     "python",
     "python-dateutil",
     "pytz",
@@ -167,22 +171,24 @@
   },
   "package": {
    "name": "pdata",
-   "version": "2.2.0"
+   "version": "2.2.1"
   },
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "python",
-    "numpy"
+    "numpy",
+    "cython"
    ],
    "host": [
     "python",
     "pip",
-    "numpy"
+    "numpy",
+    "cython"
    ],
    "run": [
     "python",
-    "numpy",
     "jsondiff",
     "ipywidgets",
     "ipympl",
@@ -200,8 +206,8 @@
    ]
   },
   "source": {
-   "sha256": "b30387af20fc3a89336cb4a294a12a40b90e32c51f65d60e350b7e5e9c583ec0",
-   "url": "https://github.com/govenius/pdata/archive/refs/tags/v2.2.0.tar.gz"
+   "sha256": "97fd82b0874728fefa56b0ee3dacbba39af3a030247754fbe5ee8808c538fb0b",
+   "url": "https://github.com/govenius/pdata/archive/refs/tags/v2.2.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -251,22 +257,24 @@
   },
   "package": {
    "name": "pdata",
-   "version": "2.2.0"
+   "version": "2.2.1"
   },
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "python",
-    "numpy"
+    "numpy",
+    "cython"
    ],
    "host": [
     "python",
     "pip",
-    "numpy"
+    "numpy",
+    "cython"
    ],
    "run": [
     "python",
-    "numpy",
     "jsondiff",
     "ipywidgets",
     "ipympl",
@@ -284,8 +292,8 @@
    ]
   },
   "source": {
-   "sha256": "b30387af20fc3a89336cb4a294a12a40b90e32c51f65d60e350b7e5e9c583ec0",
-   "url": "https://github.com/govenius/pdata/archive/refs/tags/v2.2.0.tar.gz"
+   "sha256": "97fd82b0874728fefa56b0ee3dacbba39af3a030247754fbe5ee8808c538fb0b",
+   "url": "https://github.com/govenius/pdata/archive/refs/tags/v2.2.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -312,7 +320,9 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
+    "cython",
     "numpy",
     "python"
    ]
@@ -320,6 +330,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cython",
     "numpy",
     "pip",
     "python"
@@ -337,7 +348,6 @@
     "jsondiff",
     "matplotlib-base",
     "notebook",
-    "numpy",
     "python",
     "python-dateutil",
     "pytz",
@@ -368,11 +378,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pdata.json"
  },
- "raw_meta_yaml": "{% set name = \"pdata\" %}\n{% set version = \"2.2.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/govenius/pdata/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: b30387af20fc3a89336cb4a294a12a40b90e32c51f65d60e350b7e5e9c583ec0\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n  skip: true  # [py<38 or (unix and (not py>39)) or python_impl == 'pypy']\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - python\n    - numpy\n  host:\n    - python\n    - pip\n    - numpy\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - jsondiff\n    - ipywidgets\n    - ipympl\n    - ipylab\n    - matplotlib-base\n    - pytz\n    - python-dateutil\n    - requests\n    - ipykernel\n    - ipython\n    - notebook\n    - uncertainties\n    - xarray\n    - jinja2\n\n\ntest:\n  imports:\n    - numpy\n    - pdata\n    - pdata.procedural_data\n    - pdata.analysis.dataview\n    - pdata.analysis.dataexplorer\n    - pdata.analysis.fast_parser.tabular_data_parser\n  source_files:\n    - test/run_test.py\n  requires:\n    - pip\n  commands:\n    - pip check\n    - python -X utf8 test/run_test.py\n\nabout:\n  home: https://pdata.readthedocs.io/\n  summary: Simple-to-understand and robust data storage for experimental data\n  description: |\n    This procedural data storage package provides a self-contained interface focused\n    exclusively on storing and reading experimental data, using an approach independent\n    of the specific measurement framework used for instrument control.\n  license: MIT\n  license_family: MIT\n  license_file:\n    - LICENSE\n    - pdata/static/XARRAY_LICENSE\n    - pdata/static/ICOMOON_LICENSE\n  doc_url: https://pdata.readthedocs.io/\n  dev_url: https://github.com/govenius/pdata\n\nextra:\n  recipe-maintainers:\n    - govenius\n",
+ "raw_meta_yaml": "{% set name = \"pdata\" %}\n{% set version = \"2.2.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/govenius/pdata/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 97fd82b0874728fefa56b0ee3dacbba39af3a030247754fbe5ee8808c538fb0b\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n  skip: true  # [py<39 or (unix and (not py>39)) or python_impl == 'pypy']\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - python\n    - numpy\n    - cython\n  host:\n    - python\n    - pip\n    - numpy\n    - cython\n  run:\n    - python\n    - jsondiff\n    - ipywidgets\n    - ipympl\n    - ipylab\n    - matplotlib-base\n    - pytz\n    - python-dateutil\n    - requests\n    - ipykernel\n    - ipython\n    - notebook\n    - uncertainties\n    - xarray\n    - jinja2\n\n\ntest:\n  imports:\n    - numpy\n    - pdata\n    - pdata.procedural_data\n    - pdata.analysis.dataview\n    - pdata.analysis.dataexplorer\n    - pdata.analysis.fast_parser.tabular_data_parser\n  source_files:\n    - test/run_test.py\n  requires:\n    - pip\n  commands:\n    - pip check\n    - python -X utf8 test/run_test.py\n\nabout:\n  home: https://pdata.readthedocs.io/\n  summary: Simple-to-understand and robust data storage for experimental data\n  description: |\n    This procedural data storage package provides a self-contained interface focused\n    exclusively on storing and reading experimental data, using an approach independent\n    of the specific measurement framework used for instrument control.\n  license: MIT\n  license_family: MIT\n  license_file:\n    - LICENSE\n    - pdata/static/XARRAY_LICENSE\n    - pdata/static/ICOMOON_LICENSE\n  doc_url: https://pdata.readthedocs.io/\n  dev_url: https://github.com/govenius/pdata\n\nextra:\n  recipe-maintainers:\n    - govenius\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cxx_compiler_stub",
+   "cython",
    "ipykernel",
    "ipylab",
    "ipympl",
@@ -396,7 +408,9 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
+    "cython",
     "numpy",
     "python"
    ]
@@ -404,7 +418,9 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
+    "cython",
     "numpy",
     "pip",
     "python"
@@ -413,6 +429,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "ipykernel",
     "ipylab",
@@ -423,7 +440,6 @@
     "jsondiff",
     "matplotlib-base",
     "notebook",
-    "numpy",
     "python",
     "python-dateutil",
     "pytz",
@@ -444,7 +460,9 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
+    "cython",
     "numpy",
     "python"
    ]
@@ -452,6 +470,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cython",
     "numpy",
     "pip",
     "python"
@@ -469,7 +488,6 @@
     "jsondiff",
     "matplotlib-base",
     "notebook",
-    "numpy",
     "python",
     "python-dateutil",
     "pytz",
@@ -485,8 +503,8 @@
    ]
   }
  },
- "url": "https://github.com/govenius/pdata/archive/refs/tags/v2.2.0.tar.gz",
- "version": "2.2.0",
+ "url": "https://github.com/govenius/pdata/archive/refs/tags/v2.2.1.tar.gz",
+ "version": "2.2.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pdata.json"
  },
@@ -516,22 +534,24 @@
   },
   "package": {
    "name": "pdata",
-   "version": "2.2.0"
+   "version": "2.2.1"
   },
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "python",
-    "numpy"
+    "numpy",
+    "cython"
    ],
    "host": [
     "python",
     "pip",
-    "numpy"
+    "numpy",
+    "cython"
    ],
    "run": [
     "python",
-    "numpy",
     "jsondiff",
     "ipywidgets",
     "ipympl",
@@ -549,8 +569,8 @@
    ]
   },
   "source": {
-   "sha256": "b30387af20fc3a89336cb4a294a12a40b90e32c51f65d60e350b7e5e9c583ec0",
-   "url": "https://github.com/govenius/pdata/archive/refs/tags/v2.2.0.tar.gz"
+   "sha256": "97fd82b0874728fefa56b0ee3dacbba39af3a030247754fbe5ee8808c538fb0b",
+   "url": "https://github.com/govenius/pdata/archive/refs/tags/v2.2.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -577,7 +597,9 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
+    "cython",
     "numpy",
     "python"
    ]
@@ -585,6 +607,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "cython",
     "numpy",
     "pip",
     "python"
@@ -602,7 +625,6 @@
     "jsondiff",
     "matplotlib-base",
     "notebook",
-    "numpy",
     "python",
     "python-dateutil",
     "pytz",
