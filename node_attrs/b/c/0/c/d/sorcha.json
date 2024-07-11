@@ -22,11 +22,12 @@
   },
   "build": {
    "entry_points": [
-    "sorcha = sorcha.sorcha:main",
-    "makeConfigSorcha = sorcha.utilities.makeConfigPP:main",
-    "makeSLURMscript = sorcha.utilities.makeSLURMscript:main",
-    "createResultsSQLDatabase = sorcha.utilities.createResultsSQLDatabase:main",
-    "bootstrap_sorcha_data_files = sorcha.utilities.retrieve_ephemeris_data_files:main"
+    "sorcha = sorcha_cmdline.main:main",
+    "sorcha-run = sorcha_cmdline.run:main",
+    "sorcha-init = sorcha_cmdline.init:main",
+    "sorcha-demo = sorcha_cmdline.demo:main",
+    "sorcha-outputs = sorcha_cmdline.outputs:main",
+    "sorcha-boostrap = sorcha_cmdline.bootstrap:main"
    ],
    "noarch": "python",
    "number": "0",
@@ -41,7 +42,7 @@
   },
   "package": {
    "name": "sorcha",
-   "version": "0.6.4"
+   "version": "0.9.0"
   },
   "requirements": {
    "host": [
@@ -69,24 +70,23 @@
    ]
   },
   "source": {
-   "patches": [
-    "0001-demo-quicktest.sh-fix-for-new-command-line-directory.patch"
-   ],
-   "sha256": "7940e8e14b74247c88b5c66c0b9fad713c17d69175eb0da8a4706fa8147af1ed",
-   "url": "https://github.com/dirac-institute/sorcha/archive/v0.6.4.tar.gz"
+   "sha256": "3a80a0611fa5e6f10d0317609b523756bb855e37cd532ca01e7057f737009bd2",
+   "url": "https://github.com/dirac-institute/sorcha/archive/v0.9.0.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
     "sorcha --help",
-    "makeSLURMscript --help",
-    "createResultsSQLDatabase --help",
-    "bootstrap_sorcha_data_files --help",
-    "sorcha_copy_configs --help",
+    "sorcha run --help",
+    "sorcha init --help",
+    "sorcha demo --help",
+    "sorcha outputs --help",
+    "sorcha bootstrap --help",
     "bash -x ./demo/quicktest.sh"
    ],
    "imports": [
-    "sorcha"
+    "sorcha",
+    "sorcha_cmdline"
    ],
    "requires": [
     "pip"
@@ -150,11 +150,12 @@
   },
   "build": {
    "entry_points": [
-    "sorcha = sorcha.sorcha:main",
-    "makeConfigSorcha = sorcha.utilities.makeConfigPP:main",
-    "makeSLURMscript = sorcha.utilities.makeSLURMscript:main",
-    "createResultsSQLDatabase = sorcha.utilities.createResultsSQLDatabase:main",
-    "bootstrap_sorcha_data_files = sorcha.utilities.retrieve_ephemeris_data_files:main"
+    "sorcha = sorcha_cmdline.main:main",
+    "sorcha-run = sorcha_cmdline.run:main",
+    "sorcha-init = sorcha_cmdline.init:main",
+    "sorcha-demo = sorcha_cmdline.demo:main",
+    "sorcha-outputs = sorcha_cmdline.outputs:main",
+    "sorcha-boostrap = sorcha_cmdline.bootstrap:main"
    ],
    "noarch": "python",
    "number": "0",
@@ -169,7 +170,7 @@
   },
   "package": {
    "name": "sorcha",
-   "version": "0.6.4"
+   "version": "0.9.0"
   },
   "requirements": {
    "host": [
@@ -197,24 +198,23 @@
    ]
   },
   "source": {
-   "patches": [
-    "0001-demo-quicktest.sh-fix-for-new-command-line-directory.patch"
-   ],
-   "sha256": "7940e8e14b74247c88b5c66c0b9fad713c17d69175eb0da8a4706fa8147af1ed",
-   "url": "https://github.com/dirac-institute/sorcha/archive/v0.6.4.tar.gz"
+   "sha256": "3a80a0611fa5e6f10d0317609b523756bb855e37cd532ca01e7057f737009bd2",
+   "url": "https://github.com/dirac-institute/sorcha/archive/v0.9.0.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
     "sorcha --help",
-    "makeSLURMscript --help",
-    "createResultsSQLDatabase --help",
-    "bootstrap_sorcha_data_files --help",
-    "sorcha_copy_configs --help",
+    "sorcha run --help",
+    "sorcha init --help",
+    "sorcha demo --help",
+    "sorcha outputs --help",
+    "sorcha bootstrap --help",
     "bash -x ./demo/quicktest.sh"
    ],
    "imports": [
-    "sorcha"
+    "sorcha",
+    "sorcha_cmdline"
    ],
    "requires": [
     "pip"
@@ -242,7 +242,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/sorcha.json"
  },
- "raw_meta_yaml": "{% set name = \"sorcha\" %}\n{% set version = \"0.6.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/dirac-institute/sorcha/archive/v{{ version }}.tar.gz\n  sha256: 7940e8e14b74247c88b5c66c0b9fad713c17d69175eb0da8a4706fa8147af1ed\n#   path: /Users/mjuric/projects/github.com/mjuric/sorcha\n  patches:\n    - 0001-demo-quicktest.sh-fix-for-new-command-line-directory.patch\n\nbuild:\n  entry_points:\n    - sorcha = sorcha.sorcha:main\n    - makeConfigSorcha = sorcha.utilities.makeConfigPP:main\n    - makeSLURMscript = sorcha.utilities.makeSLURMscript:main\n    - createResultsSQLDatabase = sorcha.utilities.createResultsSQLDatabase:main\n    - bootstrap_sorcha_data_files = sorcha.utilities.retrieve_ephemeris_data_files:main\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools >=62\n    - setuptools-scm >=7.0\n    - pip\n  run:\n    - python >=3.8\n    - numpy\n    - pandas >=2.0\n    - astropy\n    - matplotlib-base\n    - sbpy\n    - pytables\n    - spiceypy\n    - healpy\n    - assist\n    - rebound\n    - pooch\n    - tqdm\n    - numba\n    - httpretty # HACK to work around ads package's missing requirement (at least v0.12.4)\n\ntest:\n  imports:\n    - sorcha\n  commands:\n    - pip check\n    - sorcha --help\n#    - sorcha_bootstrap_data_files --help\n#    - sorcha_copy_configs  --help\n#    - sorcha_copy_demo_files --help\n#    - sorcha_create_results_db --help\n#    - sorcha_demo_command --help\n    - makeSLURMscript --help\n    - createResultsSQLDatabase --help\n    - bootstrap_sorcha_data_files --help\n    - sorcha_copy_configs --help    \n    - bash -x ./demo/quicktest.sh\n  requires:\n    - pip\n  source_files:\n    - demo/quicktest.sh\n    - demo/baseline_v2.0_1yr.db\n    - demo/sorcha_config_demo.ini\n    - demo/sspp_testset_colours.txt\n    - demo/sspp_testset_orbits.des\n\nabout:\n  home: https://github.com/dirac-institute/sorcha\n  summary: The survey simulator post processing code for the LSST\n  license: BSD-3-Clause AND GPL-3.0-only\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - drewoldag\n    - mschwamb\n    - mjuric\n",
+ "raw_meta_yaml": "{% set name = \"sorcha\" %}\n{% set version = \"0.9.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/dirac-institute/sorcha/archive/v{{ version }}.tar.gz\n  # curl -L https://github.com/dirac-institute/sorcha/archive/v0.9.0.tar.gz | openssl sha256\n  sha256: 3a80a0611fa5e6f10d0317609b523756bb855e37cd532ca01e7057f737009bd2\n#  path: /Users/mjuric/projects/github.com/mjuric/sorcha\n\nbuild:\n  entry_points:\n    - sorcha = sorcha_cmdline.main:main\n    - sorcha-run = sorcha_cmdline.run:main\n    - sorcha-init = sorcha_cmdline.init:main\n    - sorcha-demo = sorcha_cmdline.demo:main\n    - sorcha-outputs = sorcha_cmdline.outputs:main\n    - sorcha-boostrap = sorcha_cmdline.bootstrap:main\n\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools >=62\n    - setuptools-scm >=7.0\n    - pip\n  run:\n    - python >=3.8\n    - numpy\n    - pandas >=2.0\n    - astropy\n    - matplotlib-base\n    - sbpy\n    - pytables\n    - spiceypy\n    - healpy\n    - assist\n    - rebound\n    - pooch\n    - tqdm\n    - numba\n    - httpretty # HACK to work around ads package's missing requirement (at least v0.12.4)\n\ntest:\n  imports:\n    - sorcha\n    - sorcha_cmdline\n  commands:\n    - pip check\n    - sorcha --help\n    - sorcha run --help\n    - sorcha init --help\n    - sorcha demo --help\n    - sorcha outputs --help\n    - sorcha bootstrap --help\n    - bash -x ./demo/quicktest.sh\n  requires:\n    - pip\n  source_files:\n    - demo/quicktest.sh\n    - demo/baseline_v2.0_1yr.db\n    - demo/sorcha_config_demo.ini\n    - demo/sspp_testset_colours.txt\n    - demo/sspp_testset_orbits.des\n\nabout:\n  home: https://github.com/dirac-institute/sorcha\n  summary: The survey simulator post processing code for the LSST\n  license: BSD-3-Clause AND GPL-3.0-only\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - drewoldag\n    - mschwamb\n    - mjuric\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -349,8 +349,8 @@
    ]
   }
  },
- "url": "https://github.com/dirac-institute/sorcha/archive/v0.6.4.tar.gz",
- "version": "0.6.4",
+ "url": "https://github.com/dirac-institute/sorcha/archive/v0.9.0.tar.gz",
+ "version": "0.9.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/sorcha.json"
  }
