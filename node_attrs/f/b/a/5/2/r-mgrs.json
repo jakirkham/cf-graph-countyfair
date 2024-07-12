@@ -25,7 +25,7 @@
    "summary": "The 'Military Grid Reference System' ('MGRS') is the geocoordinate standard used by 'NATO' militaries for locating points on the earth. The 'MGRS' is derived from the 'Universal Transverse Mercator' ('UTM') grid system and the universal polar stereographic ('UPS') grid system, but uses a different labeling convention. The 'MGRS' is used for the entire earth. Methods are provided to convert 'MGRS' coordinates to and from other coordinate systems."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -44,8 +44,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "git"
+    "git",
+    "make"
    ],
    "host": [
     "r-base",
@@ -76,8 +78,10 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "git"
+    "git",
+    "make"
    ]
   },
   "host": {
@@ -113,8 +117,7 @@
    "summary": "The 'Military Grid Reference System' ('MGRS') is the geocoordinate standard used by 'NATO' militaries for locating points on the earth. The 'MGRS' is derived from the 'Universal Transverse Mercator' ('UTM') grid system and the universal polar stereographic ('UPS') grid system, but uses a different labeling convention. The 'MGRS' is used for the entire earth. Methods are provided to convert 'MGRS' coordinates to and from other coordinate systems."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -133,11 +136,14 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "git",
+    "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
-    "posix",
+    "coreutils",
     "filesystem",
     "zip"
    ],
@@ -149,8 +155,7 @@
    "run": [
     "r-base",
     "r-rcpp",
-    "r-magrittr",
-    "gcc-libs"
+    "r-magrittr"
    ]
   },
   "source": {
@@ -180,7 +185,7 @@
    "summary": "The 'Military Grid Reference System' ('MGRS') is the geocoordinate standard used by 'NATO' militaries for locating points on the earth. The 'MGRS' is derived from the 'Universal Transverse Mercator' ('UTM') grid system and the universal polar stereographic ('UPS') grid system, but uses a different labeling convention. The 'MGRS' is used for the entire earth. Methods are provided to convert 'MGRS' coordinates to and from other coordinate systems."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -199,8 +204,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "git"
+    "git",
+    "make"
    ],
    "host": [
     "r-base",
@@ -231,8 +238,10 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "git"
+    "git",
+    "make"
    ]
   },
   "host": {
@@ -271,18 +280,20 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-mgrs.json"
  },
- "raw_meta_yaml": "{% set version = '0.2.1' %}\n\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-mgrs\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url: https://github.com/hrbrmstr/mgrs/archive/v{{ version }}.tar.gz\n  sha256: d2fe4a4db05ac34bbf0ce945ff08a52d53d762e1d609ed174af13cb0dfd4d03a\n  patches:\n    - 0001-Replace-PI-by-M_PI-for-STRICT_R_HEADERS.patch\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 3\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\n# Suggests: testthat, covr\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - posix                            # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}git\n    - {{ posix }}zip               # [win]\n\n  host:\n    - r-base\n    - r-rcpp\n    - r-magrittr\n\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp\n    - r-magrittr\n\ntest:\n  commands:\n    - $R -e \"library('mgrs')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('mgrs')\\\"\"  # [win]\n\nabout:\n  home: https://gitlab.com/hrbrmstr/mgrs\n  license: MIT\n  summary: The 'Military Grid Reference System' ('MGRS') is the geocoordinate standard used by\n    'NATO' militaries for locating points on the earth. The 'MGRS' is derived from the\n    'Universal Transverse Mercator' ('UTM') grid system and the universal polar stereographic\n    ('UPS') grid system, but uses a different labeling convention. The 'MGRS' is used\n    for the entire earth. Methods are provided to convert 'MGRS' coordinates to and\n    from other coordinate systems.\n  license_family: MIT\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT'\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - agcopenhaver\n    \n# The original CRAN metadata for this package was:\n\n# Package: mgrs\n# Type: Package\n# Title: Convert 'MGRS' ('Military Grid Reference System') Coordinates From/To Other Coordinate Systems\n# Version: 0.2.1\n# Date: 2019-11-28\n# Authors@R: c( person(\"Bob\", \"Rudis\", email = \"bob@rud.is\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0001-5670-2640\")), person(\"Gregory\", \"Smith\", email = \"mith.10305@buckeyemail.osu.edu\", role = c(\"ctb\")) )\n# Maintainer: Bob Rudis <bob@rud.is>\n# Description: The 'Military Grid Reference System' ('MGRS') is the geocoordinate standard used by 'NATO' militaries for locating points on the earth. The 'MGRS' is derived from the 'Universal Transverse Mercator' ('UTM') grid system and the universal polar stereographic ('UPS') grid system, but uses a different labeling convention. The 'MGRS' is used for the entire earth. Methods are provided to convert 'MGRS' coordinates to and from other coordinate systems.\n# URL: https://gitlab.com/hrbrmstr/mgrs\n# BugReports: https://gitlab.com/hrbrmstr/mgrs/issues\n# Encoding: UTF-8\n# Copyright: file inst/COPYRIGHTS\n# License: MIT + file LICENSE\n# Suggests: testthat, covr\n# Depends: R (>= 3.2.0)\n# Imports: Rcpp, magrittr\n# LinkingTo: Rcpp\n# RoxygenNote: 6.1.1\n",
+ "raw_meta_yaml": "{% set version = '0.2.1' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-mgrs\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url: https://github.com/hrbrmstr/mgrs/archive/v{{ version }}.tar.gz\n  sha256: d2fe4a4db05ac34bbf0ce945ff08a52d53d762e1d609ed174af13cb0dfd4d03a\n  patches:\n    - 0001-Replace-PI-by-M_PI-for-STRICT_R_HEADERS.patch\n\nbuild:\n  number: 4\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\n# Suggests: testthat, covr\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}git\n    - {{ posix }}make\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-magrittr\n  run:\n    - r-base\n    - r-rcpp\n    - r-magrittr\n\ntest:\n  commands:\n    - $R -e \"library('mgrs')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('mgrs')\\\"\"  # [win]\n\nabout:\n  home: https://gitlab.com/hrbrmstr/mgrs\n  license: MIT\n  summary: The 'Military Grid Reference System' ('MGRS') is the geocoordinate standard used by\n    'NATO' militaries for locating points on the earth. The 'MGRS' is derived from the\n    'Universal Transverse Mercator' ('UTM') grid system and the universal polar stereographic\n    ('UPS') grid system, but uses a different labeling convention. The 'MGRS' is used\n    for the entire earth. Methods are provided to convert 'MGRS' coordinates to and\n    from other coordinate systems.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - agcopenhaver\n    \n# The original CRAN metadata for this package was:\n\n# Package: mgrs\n# Type: Package\n# Title: Convert 'MGRS' ('Military Grid Reference System') Coordinates From/To Other Coordinate Systems\n# Version: 0.2.1\n# Date: 2019-11-28\n# Authors@R: c( person(\"Bob\", \"Rudis\", email = \"bob@rud.is\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0001-5670-2640\")), person(\"Gregory\", \"Smith\", email = \"mith.10305@buckeyemail.osu.edu\", role = c(\"ctb\")) )\n# Maintainer: Bob Rudis <bob@rud.is>\n# Description: The 'Military Grid Reference System' ('MGRS') is the geocoordinate standard used by 'NATO' militaries for locating points on the earth. The 'MGRS' is derived from the 'Universal Transverse Mercator' ('UTM') grid system and the universal polar stereographic ('UPS') grid system, but uses a different labeling convention. The 'MGRS' is used for the entire earth. Methods are provided to convert 'MGRS' coordinates to and from other coordinate systems.\n# URL: https://gitlab.com/hrbrmstr/mgrs\n# BugReports: https://gitlab.com/hrbrmstr/mgrs/issues\n# Encoding: UTF-8\n# Copyright: file inst/COPYRIGHTS\n# License: MIT + file LICENSE\n# Suggests: testthat, covr\n# Depends: R (>= 3.2.0)\n# Imports: Rcpp, magrittr\n# LinkingTo: Rcpp\n# RoxygenNote: 6.1.1\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
+   "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "git",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
-   "posix",
+   "make",
    "r-base",
    "r-magrittr",
    "r-rcpp",
@@ -294,12 +305,15 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "git",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
-    "posix",
+    "make",
     "zip"
    ]
   },
@@ -307,6 +321,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-magrittr",
@@ -317,8 +332,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-magrittr",
     "r-rcpp"
@@ -335,12 +350,15 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "git",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
-    "posix",
+    "make",
     "zip"
    ]
   },
@@ -355,7 +373,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-magrittr",
     "r-rcpp"
@@ -383,8 +400,7 @@
    "summary": "The 'Military Grid Reference System' ('MGRS') is the geocoordinate standard used by 'NATO' militaries for locating points on the earth. The 'MGRS' is derived from the 'Universal Transverse Mercator' ('UTM') grid system and the universal polar stereographic ('UPS') grid system, but uses a different labeling convention. The 'MGRS' is used for the entire earth. Methods are provided to convert 'MGRS' coordinates to and from other coordinate systems."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -403,10 +419,12 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
-    "posix",
+    "coreutils",
     "filesystem",
     "git",
+    "make",
     "zip"
    ],
    "host": [
@@ -416,7 +434,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp",
     "r-magrittr"
    ]
@@ -438,11 +455,13 @@
   "build": {
    "__set__": true,
    "elements": [
+    "coreutils",
     "filesystem",
     "git",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
-    "posix",
+    "make",
     "zip"
    ]
   },
@@ -457,7 +476,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-magrittr",
     "r-rcpp"
