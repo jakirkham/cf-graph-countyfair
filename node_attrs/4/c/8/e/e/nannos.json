@@ -25,7 +25,7 @@
    "summary": "Fourier Modal Method for multilayer metamaterials"
   },
   "build": {
-   "number": "0",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps"
   },
   "extra": {
@@ -45,7 +45,7 @@
    ],
    "run": [
     "python",
-    "numpy >=1.9",
+    "numpy >=1.9, <2",
     "scipy >=1.0",
     "autograd >=1.4",
     "matplotlib-base",
@@ -56,7 +56,7 @@
     "ipython",
     "nlopt",
     "pytorch",
-    "pytorch-cpu",
+    "pytorch =*=cpu*",
     "magma",
     "jax",
     "jaxlib",
@@ -116,7 +116,6 @@
     "psutil",
     "python",
     "pytorch",
-    "pytorch-cpu",
     "pyvista",
     "scipy",
     "shapely",
@@ -144,7 +143,7 @@
    "summary": "Fourier Modal Method for multilayer metamaterials"
   },
   "build": {
-   "number": "0",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps"
   },
   "extra": {
@@ -164,7 +163,7 @@
    ],
    "run": [
     "python",
-    "numpy >=1.9",
+    "numpy >=1.9, <2",
     "scipy >=1.0",
     "autograd >=1.4",
     "matplotlib-base",
@@ -175,7 +174,7 @@
     "ipython",
     "nlopt",
     "pytorch",
-    "pytorch-cpu",
+    "pytorch =*=cpu*",
     "magma",
     "jax",
     "jaxlib",
@@ -218,7 +217,7 @@
    "summary": "Fourier Modal Method for multilayer metamaterials"
   },
   "build": {
-   "number": "0",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps"
   },
   "extra": {
@@ -238,7 +237,7 @@
    ],
    "run": [
     "python",
-    "numpy >=1.9",
+    "numpy >=1.9, <2",
     "scipy >=1.0",
     "autograd >=1.4",
     "matplotlib-base",
@@ -249,7 +248,7 @@
     "ipython",
     "nlopt",
     "pytorch",
-    "pytorch-cpu",
+    "pytorch =*=cpu*",
     "jax",
     "jaxlib",
     "pyvista",
@@ -307,7 +306,6 @@
     "psutil",
     "python",
     "pytorch",
-    "pytorch-cpu",
     "pyvista",
     "scipy",
     "shapely",
@@ -338,7 +336,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/nannos.json"
  },
- "raw_meta_yaml": "{% set name = \"nannos\" %}\n{% set version = \"2.6.3\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://gitlab.com/{{ name }}/{{ name }}/-/archive/v{{ version }}/{{ name }}-v{{ version }}.tar.gz\n  sha256: 195cd40950f0e8b786812cffb408ae977135c792b232961bb9bbfb3e710efba3\n\n\nbuild:\n  number: 0\n  script: \"{{ PYTHON }} -m pip install . -vv --no-deps\"\n  skip: true  # [py<39]\n\nrequirements:\n  host:\n    - python\n    - pip\n    - setuptools\n  run:\n    - python\n    - numpy >=1.9\n    - scipy >=1.0\n    - autograd >=1.4\n    - matplotlib-base\n    - shapely\n    - joblib\n    - colorlog\n    - psutil\n    - ipython\n    - nlopt\n    - pytorch           # [not win]\n    - pytorch-cpu       # [cuda_compiler_version == \"None\" and not win]\n    - pytorch-gpu       # [cuda_compiler_version != \"None\" and not win]\n    - magma             # [not osx and not win]\n    - jax               # [not win]\n    - jaxlib            # [cuda_compiler_version == \"None\" and not win]\n    - jaxlib =*=*cuda*  # [cuda_compiler_version != \"None\" and not win]\n    - pyvista\n    - ipywidgets\n    - trame\n    - trame-vuetify\n    - trame-vtk\n    - importlib_metadata   # [py<38]\n\ntest:\n  imports:\n    - {{ name }}\n  source_files:\n    - test/conda_test.py\n  commands:\n    - pytest -s -vv ./test/conda_test.py\n  requires:\n    - pytest\n\nabout:\n  home: https://gitlab.com/nannos/nannos\n  license: GPL-3.0-or-later\n  license_family: GPL3\n  license_file: LICENSE.txt\n  summary: 'Fourier Modal Method for multilayer metamaterials'\n\n  description: |\n    Nannos is a Python package to solve Maxwell's equations in mono or \n    bi-periodic multilayer structures using the Fourier Modal Method. \n    It implements various formulations, automatic differentiation and \n    GPU acceleration.\n  doc_url: https://{{ name }}.gitlab.io\n  dev_url: https://gitlab.com/{{ name }}/{{ name }}\n\nextra:\n  recipe-maintainers:\n    - benvial\n",
+ "raw_meta_yaml": "{% set name = \"nannos\" %}\n{% set version = \"2.6.3\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://gitlab.com/{{ name }}/{{ name }}/-/archive/v{{ version }}/{{ name }}-v{{ version }}.tar.gz\n  sha256: 195cd40950f0e8b786812cffb408ae977135c792b232961bb9bbfb3e710efba3\n\n\nbuild:\n  number: 2\n  script: \"{{ PYTHON }} -m pip install . -vv --no-deps\"\n  skip: true  # [py<39]\n\nrequirements:\n  host:\n    - python\n    - pip\n    - setuptools\n  run:\n    - python\n    - numpy >=1.9, <2\n    - scipy >=1.0\n    - autograd >=1.4\n    - matplotlib-base\n    - shapely\n    - joblib\n    - colorlog\n    - psutil\n    - ipython\n    - nlopt\n    - pytorch           # [not win]\n    - pytorch =*=cpu*   # [cuda_compiler_version == \"None\" and not win] \n    - pytorch =*=cuda*  # [cuda_compiler_version != \"None\" and not win] \n    - magma             # [not osx and not win]\n    - jax               # [not win]\n    - jaxlib            # [cuda_compiler_version == \"None\" and not win]\n    - jaxlib =*=*cuda*  # [cuda_compiler_version != \"None\" and not win]\n    - pyvista\n    - ipywidgets\n    - trame\n    - trame-vuetify\n    - trame-vtk\n    - importlib_metadata   # [py<38]\n\ntest:\n  imports:\n    - {{ name }}\n  source_files:\n    - test/conda_test.py\n  commands:\n    - pytest -s -vv ./test/conda_test.py\n  requires:\n    - pytest\n\nabout:\n  home: https://gitlab.com/nannos/nannos\n  license: GPL-3.0-or-later\n  license_family: GPL3\n  license_file: LICENSE.txt\n  summary: 'Fourier Modal Method for multilayer metamaterials'\n\n  description: |\n    Nannos is a Python package to solve Maxwell's equations in mono or \n    bi-periodic multilayer structures using the Fourier Modal Method. \n    It implements various formulations, automatic differentiation and \n    GPU acceleration.\n  doc_url: https://{{ name }}.gitlab.io\n  dev_url: https://gitlab.com/{{ name }}/{{ name }}\n\nextra:\n  recipe-maintainers:\n    - benvial\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -357,7 +355,6 @@
    "psutil",
    "python",
    "pytorch",
-   "pytorch-cpu",
    "pyvista",
    "scipy",
    "setuptools",
@@ -397,7 +394,6 @@
     "psutil",
     "python",
     "pytorch",
-    "pytorch-cpu",
     "pyvista",
     "scipy",
     "shapely",
@@ -440,11 +436,11 @@
     "magma",
     "matplotlib-base",
     "nlopt",
-    "numpy >=1.9",
+    "numpy >=1.9, <2",
     "psutil",
     "python",
     "pytorch",
-    "pytorch-cpu",
+    "pytorch =*=cpu*",
     "pyvista",
     "scipy >=1.0",
     "shapely",
@@ -477,7 +473,7 @@
    "summary": "Fourier Modal Method for multilayer metamaterials"
   },
   "build": {
-   "number": "0",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv --no-deps"
   },
   "extra": {
@@ -497,7 +493,7 @@
    ],
    "run": [
     "python",
-    "numpy >=1.9",
+    "numpy >=1.9, <2",
     "scipy >=1.0",
     "autograd >=1.4",
     "matplotlib-base",
