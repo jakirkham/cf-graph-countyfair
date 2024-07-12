@@ -2,7 +2,12 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "azure": {
+   "store_build_artifacts": true
+  },
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -29,7 +34,7 @@
    "summary": "A JSON implementation in C"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "json-c"
    ]
@@ -49,19 +54,25 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
-   ],
-   "host": []
+   ]
   },
   "source": {
+   "patches": null,
    "sha256": "7550914d58fb63b2c3546f3ccfbe11f1c094147bd31a69dcd23714d7956159e6",
    "url": "https://s3.amazonaws.com/json-c_releases/releases/json-c-0.17.tar.gz"
   },
   "test": {
    "commands": [
     "test -f ${PREFIX}/lib/libjson-c.a",
-    "test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}"
+    "test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}",
+    "test -f $PREFIX/lib/pkgconfig/json-c.pc",
+    "pkg-config --exists json-c"
+   ],
+   "requires": [
+    "pkg-config"
    ]
   }
  },
@@ -70,6 +81,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "gnuconfig",
     "make"
@@ -85,7 +97,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pkg-config"
+   ]
   }
  },
  "linux_aarch64_meta_yaml": {
@@ -96,7 +110,7 @@
    "summary": "A JSON implementation in C"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "json-c"
    ]
@@ -116,19 +130,25 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
-   ],
-   "host": []
+   ]
   },
   "source": {
+   "patches": null,
    "sha256": "7550914d58fb63b2c3546f3ccfbe11f1c094147bd31a69dcd23714d7956159e6",
    "url": "https://s3.amazonaws.com/json-c_releases/releases/json-c-0.17.tar.gz"
   },
   "test": {
    "commands": [
     "test -f ${PREFIX}/lib/libjson-c.a",
-    "test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}"
+    "test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}",
+    "test -f $PREFIX/lib/pkgconfig/json-c.pc",
+    "pkg-config --exists json-c"
+   ],
+   "requires": [
+    "pkg-config"
    ]
   }
  },
@@ -137,6 +157,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "gnuconfig",
     "make"
@@ -152,7 +173,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pkg-config"
+   ]
   }
  },
  "linux_ppc64le_meta_yaml": {
@@ -163,7 +186,7 @@
    "summary": "A JSON implementation in C"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "json-c"
    ]
@@ -183,19 +206,25 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
-   ],
-   "host": []
+   ]
   },
   "source": {
+   "patches": null,
    "sha256": "7550914d58fb63b2c3546f3ccfbe11f1c094147bd31a69dcd23714d7956159e6",
    "url": "https://s3.amazonaws.com/json-c_releases/releases/json-c-0.17.tar.gz"
   },
   "test": {
    "commands": [
     "test -f ${PREFIX}/lib/libjson-c.a",
-    "test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}"
+    "test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}",
+    "test -f $PREFIX/lib/pkgconfig/json-c.pc",
+    "pkg-config --exists json-c"
+   ],
+   "requires": [
+    "pkg-config"
    ]
   }
  },
@@ -204,6 +233,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "gnuconfig",
     "make"
@@ -219,7 +249,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pkg-config"
+   ]
   }
  },
  "meta_yaml": {
@@ -230,7 +262,7 @@
    "summary": "A JSON implementation in C"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "json-c"
    ]
@@ -250,12 +282,15 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
-   ],
-   "host": []
+   ]
   },
   "source": {
+   "patches": [
+    "windows-pkgconfig.patch"
+   ],
    "sha256": "7550914d58fb63b2c3546f3ccfbe11f1c094147bd31a69dcd23714d7956159e6",
    "url": "https://s3.amazonaws.com/json-c_releases/releases/json-c-0.17.tar.gz"
   },
@@ -263,8 +298,14 @@
    "commands": [
     "test -f ${PREFIX}/lib/libjson-c.a",
     "test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}",
+    "test -f $PREFIX/lib/pkgconfig/json-c.pc",
+    "pkg-config --exists json-c",
     "if not exist %LIBRARY_BIN%/json-c.dll exit 1",
-    "if not exist %LIBRARY_LIB%/json-c.lib exit 1"
+    "if not exist %LIBRARY_LIB%/json-c.lib exit 1",
+    "if not exist %LIBRARY_LIB%\\pkgconfig\\json-c.pc exit 1"
+   ],
+   "requires": [
+    "pkg-config"
    ]
   }
  },
@@ -277,7 +318,7 @@
    "summary": "A JSON implementation in C"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "json-c"
    ]
@@ -297,19 +338,25 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
-   ],
-   "host": []
+   ]
   },
   "source": {
+   "patches": null,
    "sha256": "7550914d58fb63b2c3546f3ccfbe11f1c094147bd31a69dcd23714d7956159e6",
    "url": "https://s3.amazonaws.com/json-c_releases/releases/json-c-0.17.tar.gz"
   },
   "test": {
    "commands": [
     "test -f ${PREFIX}/lib/libjson-c.a",
-    "test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}"
+    "test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}",
+    "test -f $PREFIX/lib/pkgconfig/json-c.pc",
+    "pkg-config --exists json-c"
+   ],
+   "requires": [
+    "pkg-config"
    ]
   }
  },
@@ -318,6 +365,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "gnuconfig",
     "make"
@@ -333,7 +381,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pkg-config"
+   ]
   }
  },
  "osx_arm64_meta_yaml": {
@@ -344,7 +394,7 @@
    "summary": "A JSON implementation in C"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "json-c"
    ]
@@ -364,19 +414,25 @@
    "build": [
     "gnuconfig",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
-   ],
-   "host": []
+   ]
   },
   "source": {
+   "patches": null,
    "sha256": "7550914d58fb63b2c3546f3ccfbe11f1c094147bd31a69dcd23714d7956159e6",
    "url": "https://s3.amazonaws.com/json-c_releases/releases/json-c-0.17.tar.gz"
   },
   "test": {
    "commands": [
     "test -f ${PREFIX}/lib/libjson-c.a",
-    "test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}"
+    "test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}",
+    "test -f $PREFIX/lib/pkgconfig/json-c.pc",
+    "pkg-config --exists json-c"
+   ],
+   "requires": [
+    "pkg-config"
    ]
   }
  },
@@ -385,6 +441,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "gnuconfig",
     "make"
@@ -400,7 +457,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pkg-config"
+   ]
   }
  },
  "outputs_names": {
@@ -421,11 +480,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/json-c.json"
  },
- "raw_meta_yaml": "{% set name = \"json-c\" %}\n{% set version = \"0.17\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version.split('-')[0] }}\n\nsource:\n  url: https://s3.amazonaws.com/json-c_releases/releases/json-c-{{ version }}.tar.gz\n  sha256: 7550914d58fb63b2c3546f3ccfbe11f1c094147bd31a69dcd23714d7956159e6\n\nbuild:\n  number: 0\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n\nrequirements:\n  build:\n    - gnuconfig  # [unix]\n    - {{ compiler('c') }}\n    - cmake\n    - make\n  host:\n    - msinttypes  # [win and vc<=9]\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/libjson-c.a  # [not win]\n    - test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}  # [not win]\n    - if not exist %LIBRARY_BIN%/json-c.dll exit 1  # [win]\n    - if not exist %LIBRARY_LIB%/json-c.lib exit 1  # [win]\n\nabout:\n  home: https://github.com/json-c/json-c/wiki\n  license: MIT\n  license_file: COPYING\n  summary: A JSON implementation in C\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n    - sodre\n    - djsutherland\n",
+ "raw_meta_yaml": "{% set name = \"json-c\" %}\n{% set version = \"0.17\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version.split('-')[0] }}\n\nsource:\n  url: https://s3.amazonaws.com/json-c_releases/releases/json-c-{{ version }}.tar.gz\n  sha256: 7550914d58fb63b2c3546f3ccfbe11f1c094147bd31a69dcd23714d7956159e6\n  patches:\n    # https://github.com/json-c/json-c/pull/864\n    - windows-pkgconfig.patch  # [win]\n\nbuild:\n  number: 1\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n\nrequirements:\n  build:\n    - gnuconfig  # [unix]\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - cmake\n    - make\n\ntest:\n  requires:\n    - pkg-config\n  commands:\n    - test -f ${PREFIX}/lib/libjson-c.a  # [not win]\n    - test -f ${PREFIX}/lib/libjson-c${SHLIB_EXT}  # [not win]\n    - if not exist %LIBRARY_BIN%/json-c.dll exit 1  # [win]\n    - if not exist %LIBRARY_LIB%/json-c.lib exit 1  # [win]\n    - test -f $PREFIX/lib/pkgconfig/json-c.pc  # [not win]\n    - if not exist %LIBRARY_LIB%\\pkgconfig\\json-c.pc exit 1  # [win]\n    - pkg-config --exists json-c\n\nabout:\n  home: https://github.com/json-c/json-c/wiki\n  license: MIT\n  license_file: COPYING\n  summary: A JSON implementation in C\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n    - sodre\n    - djsutherland\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "gnuconfig",
    "make"
@@ -436,6 +496,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "gnuconfig",
     "make"
@@ -444,18 +505,22 @@
   "host": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pkg-config"
+   ]
   }
  },
  "strong_exports": false,
@@ -464,6 +529,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "gnuconfig",
     "make"
@@ -479,7 +545,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pkg-config"
+   ]
   }
  },
  "url": "https://s3.amazonaws.com/json-c_releases/releases/json-c-0.17.tar.gz",
@@ -495,7 +563,7 @@
    "summary": "A JSON implementation in C"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "json-c"
    ]
@@ -514,19 +582,27 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
-   ],
-   "host": []
+   ]
   },
   "source": {
+   "patches": [
+    "windows-pkgconfig.patch"
+   ],
    "sha256": "7550914d58fb63b2c3546f3ccfbe11f1c094147bd31a69dcd23714d7956159e6",
    "url": "https://s3.amazonaws.com/json-c_releases/releases/json-c-0.17.tar.gz"
   },
   "test": {
    "commands": [
     "if not exist %LIBRARY_BIN%/json-c.dll exit 1",
-    "if not exist %LIBRARY_LIB%/json-c.lib exit 1"
+    "if not exist %LIBRARY_LIB%/json-c.lib exit 1",
+    "if not exist %LIBRARY_LIB%\\pkgconfig\\json-c.pc exit 1",
+    "pkg-config --exists json-c"
+   ],
+   "requires": [
+    "pkg-config"
    ]
   }
  },
@@ -535,6 +611,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ]
@@ -549,7 +626,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pkg-config"
+   ]
   }
  }
 }
