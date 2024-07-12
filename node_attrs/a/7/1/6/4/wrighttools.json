@@ -20,17 +20,17 @@
   "about": {
    "home": "http://wright.tools/",
    "license": "MIT",
-   "license_family": "MIT",
    "license_file": "LICENSE.txt",
    "summary": "Tools for loading, processing, and plotting multidimensional spectroscopy data."
   },
   "build": {
    "entry_points": [
-    "wt-tree = WrightTools.__main__:wt_tree"
+    "wt5=WrightTools.cli._wt5:cli",
+    "wt-convert=WrightTools.cli._units:cli"
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -43,34 +43,43 @@
   },
   "package": {
    "name": "wrighttools",
-   "version": "3.5.2"
+   "version": "3.5.3"
   },
   "requirements": {
    "host": [
-    "python >=3.6",
-    "pip",
-    "setuptools"
+    "python >=3.7",
+    "pip"
    ],
    "run": [
-    "python >=3.6",
-    "h5py >=2.7.0",
-    "imageio",
-    "matplotlib-base >=3.3",
+    "python >=3.7",
+    "h5py",
+    "imageio >=2.28.0",
+    "matplotlib-base >=3.4.0",
     "numexpr",
-    "numpy >=1.15.0",
-    "python-dateutil",
+    "numpy >=1.15.0,<2.0",
     "pint",
+    "python-dateutil",
     "scipy",
-    "tidy_headers >=1.0"
+    "click",
+    "tidy_headers >=1.0.0",
+    "rich"
    ]
   },
   "source": {
-   "sha256": "e8fdc7778097f9336da8cb082e3b57393eaf4a1deebfe0ca699c387ea119d440",
-   "url": "https://pypi.io/packages/source/W/WrightTools/WrightTools-3.5.2.tar.gz"
+   "sha256": "8f2da35cd8c8b505fcbbb9ea6fcc9a3405b86e8b8ae66254a7ace3a7af6a82e2",
+   "url": "https://files.pythonhosted.org/packages/34/6e/e99283a8175e5cbf92a967946aa882794c51a094131814615d99ba34cfd7/wrighttools-3.5.3.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check",
+    "wt5 --help",
+    "wt-convert --help"
+   ],
    "imports": [
     "WrightTools"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -83,13 +92,13 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python",
-    "setuptools"
+    "python"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "click",
     "h5py",
     "imageio",
     "matplotlib-base",
@@ -98,30 +107,33 @@
     "pint",
     "python",
     "python-dateutil",
+    "rich",
     "scipy",
     "tidy_headers"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
   "about": {
    "home": "http://wright.tools/",
    "license": "MIT",
-   "license_family": "MIT",
    "license_file": "LICENSE.txt",
    "summary": "Tools for loading, processing, and plotting multidimensional spectroscopy data."
   },
   "build": {
    "entry_points": [
-    "wt-tree = WrightTools.__main__:wt_tree"
+    "wt5=WrightTools.cli._wt5:cli",
+    "wt-convert=WrightTools.cli._units:cli"
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -134,34 +146,43 @@
   },
   "package": {
    "name": "wrighttools",
-   "version": "3.5.2"
+   "version": "3.5.3"
   },
   "requirements": {
    "host": [
-    "python >=3.6",
-    "pip",
-    "setuptools"
+    "python >=3.7",
+    "pip"
    ],
    "run": [
-    "python >=3.6",
-    "h5py >=2.7.0",
-    "imageio",
-    "matplotlib-base >=3.3",
+    "python >=3.7",
+    "h5py",
+    "imageio >=2.28.0",
+    "matplotlib-base >=3.4.0",
     "numexpr",
-    "numpy >=1.15.0",
-    "python-dateutil",
+    "numpy >=1.15.0,<2.0",
     "pint",
+    "python-dateutil",
     "scipy",
-    "tidy_headers >=1.0"
+    "click",
+    "tidy_headers >=1.0.0",
+    "rich"
    ]
   },
   "source": {
-   "sha256": "e8fdc7778097f9336da8cb082e3b57393eaf4a1deebfe0ca699c387ea119d440",
-   "url": "https://pypi.io/packages/source/W/WrightTools/WrightTools-3.5.2.tar.gz"
+   "sha256": "8f2da35cd8c8b505fcbbb9ea6fcc9a3405b86e8b8ae66254a7ace3a7af6a82e2",
+   "url": "https://files.pythonhosted.org/packages/34/6e/e99283a8175e5cbf92a967946aa882794c51a094131814615d99ba34cfd7/wrighttools-3.5.3.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check",
+    "wt5 --help",
+    "wt-convert --help"
+   ],
    "imports": [
     "WrightTools"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -179,10 +200,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/wrighttools.json"
  },
- "raw_meta_yaml": "{% set name = \"WrightTools\" %}\n{% set version = \"3.5.2\" %}\n{% set sha256 = \"e8fdc7778097f9336da8cb082e3b57393eaf4a1deebfe0ca699c387ea119d440\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n  entry_points:\n    - wt-tree = WrightTools.__main__:wt_tree\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n    - setuptools\n  run:\n    - python >=3.6\n    - h5py >=2.7.0\n    - imageio\n    - matplotlib-base >=3.3\n    - numexpr\n    - numpy >=1.15.0\n    - python-dateutil\n    - pint\n    - scipy\n    - tidy_headers >=1.0\n\ntest:\n  imports:\n    - WrightTools\n\nabout:\n  home: http://wright.tools/\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE.txt\n  summary: Tools for loading, processing, and plotting multidimensional spectroscopy data.\n\nextra:\n  recipe-maintainers:\n    - untzag\n    - ksunden\n    - kameyer226\n    - ddkohler\n    - darienmorrow\n",
+ "raw_meta_yaml": "{% set name = \"WrightTools\" %}\n{% set version = \"3.5.3\" %}\n{% set sha256 = \"8f2da35cd8c8b505fcbbb9ea6fcc9a3405b86e8b8ae66254a7ace3a7af6a82e2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://files.pythonhosted.org/packages/34/6e/e99283a8175e5cbf92a967946aa882794c51a094131814615d99ba34cfd7/wrighttools-3.5.3.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  entry_points:\n    - wt5=WrightTools.cli._wt5:cli\n    - wt-convert=WrightTools.cli._units:cli\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n  run:\n    - python >=3.7\n    - h5py\n    - imageio >=2.28.0\n    - matplotlib-base >=3.4.0\n    - numexpr\n    - numpy >=1.15.0,<2.0\n    - pint\n    - python-dateutil\n    - scipy\n    - click\n    - tidy_headers >=1.0.0\n    - rich\n\ntest:\n  imports:\n    - WrightTools\n  commands:\n    - pip check\n    - wt5 --help\n    - wt-convert --help\n  requires:\n    - pip\n\nabout:\n  home: http://wright.tools/\n  license: MIT\n  license_file: LICENSE.txt\n  summary: Tools for loading, processing, and plotting multidimensional spectroscopy data.\n\nextra:\n  recipe-maintainers:\n    - untzag\n    - ksunden\n    - kameyer226\n    - ddkohler\n    - darienmorrow\n",
  "req": {
   "__set__": true,
   "elements": [
+   "click",
    "h5py",
    "imageio",
    "matplotlib-base",
@@ -192,8 +214,8 @@
    "pip",
    "python",
    "python-dateutil",
+   "rich",
    "scipy",
-   "setuptools",
    "tidy_headers"
   ]
  },
@@ -206,13 +228,13 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python",
-    "setuptools"
+    "python"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "click",
     "h5py",
     "imageio",
     "matplotlib-base",
@@ -221,13 +243,16 @@
     "pint",
     "python",
     "python-dateutil",
+    "rich",
     "scipy",
     "tidy_headers"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
@@ -240,32 +265,35 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6",
-    "setuptools"
+    "python >=3.7"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "h5py >=2.7.0",
-    "imageio",
-    "matplotlib-base >=3.3",
+    "click",
+    "h5py",
+    "imageio >=2.28.0",
+    "matplotlib-base >=3.4.0",
     "numexpr",
-    "numpy >=1.15.0",
+    "numpy >=1.15.0,<2.0",
     "pint",
-    "python >=3.6",
+    "python >=3.7",
     "python-dateutil",
+    "rich",
     "scipy",
-    "tidy_headers >=1.0"
+    "tidy_headers >=1.0.0"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
- "url": "https://pypi.io/packages/source/W/WrightTools/WrightTools-3.5.2.tar.gz",
- "version": "3.5.2",
+ "url": "https://files.pythonhosted.org/packages/34/6e/e99283a8175e5cbf92a967946aa882794c51a094131814615d99ba34cfd7/wrighttools-3.5.3.tar.gz",
+ "version": "3.5.3",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/wrighttools.json"
  }

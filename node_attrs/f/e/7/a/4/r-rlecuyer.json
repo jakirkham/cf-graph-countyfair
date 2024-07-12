@@ -27,7 +27,7 @@
    "summary": "Provides an interface to the C implementation of the random number generator with multiple independent streams developed by L'Ecuyer et al (2002). The main purpose of this package is to enable the use of this random number generator in parallel R applications."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -73,6 +74,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -104,8 +106,7 @@
    "summary": "Provides an interface to the C implementation of the random number generator with multiple independent streams developed by L'Ecuyer et al (2002). The main purpose of this package is to enable the use of this random number generator in parallel R applications."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -124,8 +125,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -135,8 +138,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -165,7 +167,7 @@
    "summary": "Provides an interface to the C implementation of the random number generator with multiple independent streams developed by L'Ecuyer et al (2002). The main purpose of this package is to enable the use of this random number generator in parallel R applications."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -184,6 +186,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -211,6 +214,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -246,15 +250,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-rlecuyer.json"
  },
- "raw_meta_yaml": "{% set version = \"0.3-8\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-rlecuyer\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/rlecuyer_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/rlecuyer/rlecuyer_{{ version }}.tar.gz\n  sha256: 66bed3543337535fe2cf2d3eee4165472599c14d3c5e4402f7a1ebf5112c75c9\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('rlecuyer')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('rlecuyer')\\\"\"  # [win]\n\nabout:\n  home: http://www.iro.umontreal.ca/~lecuyer/myftp/papers/streams00.pdf\n  license: GPL-2.0-or-later\n  summary: Provides an interface to the C implementation of the random number generator with multiple independent streams developed by L'Ecuyer et al (2002). The main purpose of this package is to enable the use of this random number generator in parallel R applications.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - FernandezMathieu\n\n# Package: rlecuyer\n# Version: 0.3-5\n# Date: 2019-11-19\n# Title: R Interface to RNG with Multiple Streams\n# Authors@R: c( person(\"Hana\", \"Sevcikova\", email=\"hanas@uw.edu\", role=c(\"aut\", \"cre\")), person(\"Tony\", \"Rossini\", email=\"anthony.rossini@novartis.com\", role=\"aut\"), person(\"Pierre\", \"L'Ecuyer\", role = \"cph\", comment=\"author of the underlying C code\"))\n# Description: Provides an interface to the C implementation of the random number generator with multiple independent streams developed by L'Ecuyer et al (2002). The main purpose of this package is to enable the use of this random number generator in parallel R applications.\n# License: GPL (>= 2)\n# URL: http://www.iro.umontreal.ca/~lecuyer/myftp/papers/streams00.pdf\n# NeedsCompilation: yes\n# Packaged: 2019-11-19 22:57:36 UTC; hana\n# Author: Hana Sevcikova [aut, cre], Tony Rossini [aut], Pierre L'Ecuyer [cph] (author of the underlying C code)\n# Maintainer: Hana Sevcikova <hanas@uw.edu>\n# Repository: CRAN\n# Date/Publication: 2019-11-21 22:40:02 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.3-8\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-rlecuyer\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/rlecuyer_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/rlecuyer/rlecuyer_{{ version }}.tar.gz\n  sha256: 66bed3543337535fe2cf2d3eee4165472599c14d3c5e4402f7a1ebf5112c75c9\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('rlecuyer')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('rlecuyer')\\\"\"  # [win]\n\nabout:\n  home: http://www.iro.umontreal.ca/~lecuyer/myftp/papers/streams00.pdf\n  license: GPL-2.0-or-later\n  summary: Provides an interface to the C implementation of the random number generator with multiple independent streams developed by L'Ecuyer et al (2002). The main purpose of this package is to enable the use of this random number generator in parallel R applications.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - FernandezMathieu\n\n# Package: rlecuyer\n# Version: 0.3-5\n# Date: 2019-11-19\n# Title: R Interface to RNG with Multiple Streams\n# Authors@R: c( person(\"Hana\", \"Sevcikova\", email=\"hanas@uw.edu\", role=c(\"aut\", \"cre\")), person(\"Tony\", \"Rossini\", email=\"anthony.rossini@novartis.com\", role=\"aut\"), person(\"Pierre\", \"L'Ecuyer\", role = \"cph\", comment=\"author of the underlying C code\"))\n# Description: Provides an interface to the C implementation of the random number generator with multiple independent streams developed by L'Ecuyer et al (2002). The main purpose of this package is to enable the use of this random number generator in parallel R applications.\n# License: GPL (>= 2)\n# URL: http://www.iro.umontreal.ca/~lecuyer/myftp/papers/streams00.pdf\n# NeedsCompilation: yes\n# Packaged: 2019-11-19 22:57:36 UTC; hana\n# Author: Hana Sevcikova [aut, cre], Tony Rossini [aut], Pierre L'Ecuyer [cph] (author of the underlying C code)\n# Maintainer: Hana Sevcikova <hanas@uw.edu>\n# Repository: CRAN\n# Date/Publication: 2019-11-21 22:40:02 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "sed",
@@ -266,9 +271,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -278,6 +285,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -285,7 +293,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -300,9 +308,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -317,7 +327,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -349,8 +358,7 @@
    "summary": "Provides an interface to the C implementation of the random number generator with multiple independent streams developed by L'Ecuyer et al (2002). The main purpose of this package is to enable the use of this random number generator in parallel R applications."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -369,6 +377,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -379,8 +388,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -403,6 +411,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -417,7 +426,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
