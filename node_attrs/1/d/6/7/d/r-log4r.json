@@ -30,7 +30,7 @@
    "summary": "The log4r package is meant to provide a fast, lightweight, object-oriented approach to logging in R based on the widely-emulated 'log4j' system and etymology."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -51,6 +51,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -78,6 +79,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -107,7 +109,7 @@
    "summary": "The log4r package is meant to provide a fast, lightweight, object-oriented approach to logging in R based on the widely-emulated 'log4j' system and etymology."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -128,6 +130,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -155,6 +158,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -184,7 +188,7 @@
    "summary": "The log4r package is meant to provide a fast, lightweight, object-oriented approach to logging in R based on the widely-emulated 'log4j' system and etymology."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -205,6 +209,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -232,6 +237,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -261,8 +267,7 @@
    "summary": "The log4r package is meant to provide a fast, lightweight, object-oriented approach to logging in R based on the widely-emulated 'log4j' system and etymology."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -283,8 +288,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -294,8 +301,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -322,7 +328,7 @@
    "summary": "The log4r package is meant to provide a fast, lightweight, object-oriented approach to logging in R based on the widely-emulated 'log4j' system and etymology."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -343,6 +349,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -370,6 +377,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -407,15 +415,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-log4r.json"
  },
- "raw_meta_yaml": "{% set version = \"0.4.3\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-log4r\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/log4r_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/log4r/log4r_{{ version }}.tar.gz\n  sha256: dfe3d49d35a8d8f3ad63f156d18e860540a01bd0af0e343cbab3e31a2cf5904c\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('log4r')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('log4r')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/johnmyleswhite/log4r\n  license: Artistic-2.0\n  summary: The log4r package is meant to provide a fast, lightweight, object-oriented approach to logging in R based on the widely-emulated 'log4j' system and etymology.\n  license_family: OTHER\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/Artistic-2.0\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - MathiasHaudgaard\n    - FrodePedersen\n    - ArneKr\n\n# Type: Package\n# Package: log4r\n# Title: A Simple Logging System for R, Based on 'log4j'\n# Version: 0.3.0\n# Authors@R: c( person(\"John Myles\", \"White\", role = c(\"aut\", \"cph\")), person(\"Kenton\", \"White\", role = \"ctb\"), person(\"Kirill\", \"Muller\", email = \"krlmlr+r@mailbox.org\", role = \"ctb\"), person(\"Aaron\", \"Jacobs\", email = \"atheriel@gmail.com\", role = c(\"aut\", \"cre\")) )\n# Description: The log4r package is meant to provide a fast, lightweight, object-oriented approach to logging in R based on the widely-emulated 'log4j' system and etymology.\n# License: Artistic-2.0\n# URL: https://github.com/johnmyleswhite/log4r\n# BugReports: https://github.com/johnmyleswhite/log4r/issues\n# Suggests: testthat\n# Encoding: UTF-8\n# LazyLoad: yes\n# RoxygenNote: 6.1.1\n# NeedsCompilation: yes\n# Packaged: 2019-06-20 22:46:08 UTC; aaronj\n# Author: John Myles White [aut, cph], Kenton White [ctb], Kirill Muller [ctb], Aaron Jacobs [aut, cre]\n# Maintainer: Aaron Jacobs <atheriel@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2019-06-21 08:00:11 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.4.3\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-log4r\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/log4r_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/log4r/log4r_{{ version }}.tar.gz\n  sha256: dfe3d49d35a8d8f3ad63f156d18e860540a01bd0af0e343cbab3e31a2cf5904c\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('log4r')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('log4r')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/johnmyleswhite/log4r\n  license: Artistic-2.0\n  summary: The log4r package is meant to provide a fast, lightweight, object-oriented approach to logging in R based on the widely-emulated 'log4j' system and etymology.\n  license_family: OTHER\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/Artistic-2.0\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - MathiasHaudgaard\n    - FrodePedersen\n    - ArneKr\n\n# Type: Package\n# Package: log4r\n# Title: A Simple Logging System for R, Based on 'log4j'\n# Version: 0.3.0\n# Authors@R: c( person(\"John Myles\", \"White\", role = c(\"aut\", \"cph\")), person(\"Kenton\", \"White\", role = \"ctb\"), person(\"Kirill\", \"Muller\", email = \"krlmlr+r@mailbox.org\", role = \"ctb\"), person(\"Aaron\", \"Jacobs\", email = \"atheriel@gmail.com\", role = c(\"aut\", \"cre\")) )\n# Description: The log4r package is meant to provide a fast, lightweight, object-oriented approach to logging in R based on the widely-emulated 'log4j' system and etymology.\n# License: Artistic-2.0\n# URL: https://github.com/johnmyleswhite/log4r\n# BugReports: https://github.com/johnmyleswhite/log4r/issues\n# Suggests: testthat\n# Encoding: UTF-8\n# LazyLoad: yes\n# RoxygenNote: 6.1.1\n# NeedsCompilation: yes\n# Packaged: 2019-06-20 22:46:08 UTC; aaronj\n# Author: John Myles White [aut, cph], Kenton White [ctb], Kirill Muller [ctb], Aaron Jacobs [aut, cre]\n# Maintainer: Aaron Jacobs <atheriel@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2019-06-21 08:00:11 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "sed",
@@ -427,9 +436,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -439,6 +450,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -446,7 +458,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -461,9 +473,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -478,7 +492,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -512,8 +525,7 @@
    "summary": "The log4r package is meant to provide a fast, lightweight, object-oriented approach to logging in R based on the widely-emulated 'log4j' system and etymology."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -534,6 +546,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -544,8 +557,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -568,6 +580,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -582,7 +595,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
