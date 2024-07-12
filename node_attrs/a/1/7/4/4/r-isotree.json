@@ -28,7 +28,7 @@
    "summary": "Fast and multi-threaded implementation of isolation forest (Liu, Ting, Zhou (2008) <doi:10.1109/ICDM.2008.17>), extended isolation forest (Hariri, Kind, Brunner (2018) <arXiv:1811.02141>), SCiForest (Liu, Ting, Zhou (2010) <doi:10.1007/978-3-642-15883-4_18>), fair-cut forest (Cortes (2021) <arXiv:2110:13402>), robust random-cut forest (Guha, Mishra, Roy, Schrijvers (2016) <http://proceedings.mlr.press/v48/guha16.html>), and customizable variations of them, for isolation-based outlier detection, clustered outlier detection, distance or similarity approximation (Cortes (2019) <arXiv:1910.12362>), isolation kernel calculation (Ting, Zhu, Zhou (2018) <doi:10.1145/3219819.3219990>), and imputation of missing values (Cortes (2019) <arXiv:1911.06646>), based on random or guided decision tree splitting, and providing different metrics for scoring anomalies based on isolation depth or density (Cortes (2021) <arXiv:2111.11639>). Provides simple heuristics for fitting the model to categorical columns and handling missing data, and offers options for varying between random and guided splits, and for using different splitting criteria."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -84,6 +85,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libgomp",
     "make",
@@ -123,7 +125,7 @@
    "summary": "Fast and multi-threaded implementation of isolation forest (Liu, Ting, Zhou (2008) <doi:10.1109/ICDM.2008.17>), extended isolation forest (Hariri, Kind, Brunner (2018) <arXiv:1811.02141>), SCiForest (Liu, Ting, Zhou (2010) <doi:10.1007/978-3-642-15883-4_18>), fair-cut forest (Cortes (2021) <arXiv:2110:13402>), robust random-cut forest (Guha, Mishra, Roy, Schrijvers (2016) <http://proceedings.mlr.press/v48/guha16.html>), and customizable variations of them, for isolation-based outlier detection, clustered outlier detection, distance or similarity approximation (Cortes (2019) <arXiv:1910.12362>), isolation kernel calculation (Ting, Zhu, Zhou (2018) <doi:10.1145/3219819.3219990>), and imputation of missing values (Cortes (2019) <arXiv:1911.06646>), based on random or guided decision tree splitting, and providing different metrics for scoring anomalies based on isolation depth or density (Cortes (2021) <arXiv:2111.11639>). Provides simple heuristics for fitting the model to categorical columns and handling missing data, and offers options for varying between random and guided splits, and for using different splitting criteria."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -141,13 +143,23 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
     "pkg-config",
     "make",
     "libgomp",
-    "llvm-openmp"
+    "llvm-openmp",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "filesystem",
+    "sed",
+    "grep",
+    "automake-wrapper",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -169,7 +181,8 @@
   },
   "test": {
    "commands": [
-    "$R -e \"library('isotree')\""
+    "$R -e \"library('isotree')\"",
+    "\"%R%\" -e \"library('isotree')\""
    ]
   }
  },
@@ -186,7 +199,7 @@
    "summary": "Fast and multi-threaded implementation of isolation forest (Liu, Ting, Zhou (2008) <doi:10.1109/ICDM.2008.17>), extended isolation forest (Hariri, Kind, Brunner (2018) <arXiv:1811.02141>), SCiForest (Liu, Ting, Zhou (2010) <doi:10.1007/978-3-642-15883-4_18>), fair-cut forest (Cortes (2021) <arXiv:2110:13402>), robust random-cut forest (Guha, Mishra, Roy, Schrijvers (2016) <http://proceedings.mlr.press/v48/guha16.html>), and customizable variations of them, for isolation-based outlier detection, clustered outlier detection, distance or similarity approximation (Cortes (2019) <arXiv:1910.12362>), isolation kernel calculation (Ting, Zhu, Zhou (2018) <doi:10.1145/3219819.3219990>), and imputation of missing values (Cortes (2019) <arXiv:1911.06646>), based on random or guided decision tree splitting, and providing different metrics for scoring anomalies based on isolation depth or density (Cortes (2021) <arXiv:2111.11639>). Provides simple heuristics for fitting the model to categorical columns and handling missing data, and offers options for varying between random and guided splits, and for using different splitting criteria."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -204,6 +217,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -242,6 +256,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "llvm-openmp",
     "make",
@@ -278,26 +293,37 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
-  "osx_64"
+  "osx_64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/r-isotree.json"
  },
- "raw_meta_yaml": "{% set version = \"0.6.1-1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-isotree\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/isotree_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/isotree/isotree_{{ version }}.tar.gz\n  sha256: 6d2f0534f3ef2fb6c18f3f0fe6fec6d9ba030ef9e12b7b97a96fd31a55c8146c\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - libgomp                      # [linux]\n    - llvm-openmp                  # [osx]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-jsonlite >=1.7.3\n    - r-rcpp >=1.0.1\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-jsonlite >=1.7.3\n    - r-rcpp >=1.0.1\n\ntest:\n  commands:\n    - $R -e \"library('isotree')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('isotree')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/david-cortes/isotree\n  license: BSD-2-Clause\n  summary: Fast and multi-threaded implementation of isolation forest (Liu, Ting, Zhou (2008) <doi:10.1109/ICDM.2008.17>), extended isolation forest (Hariri, Kind, Brunner (2018) <arXiv:1811.02141>), SCiForest (Liu, Ting, Zhou (2010) <doi:10.1007/978-3-642-15883-4_18>), fair-cut forest (Cortes (2021) <arXiv:2110:13402>),\n    robust random-cut forest (Guha, Mishra, Roy, Schrijvers (2016) <http://proceedings.mlr.press/v48/guha16.html>), and customizable variations of them, for isolation-based outlier detection, clustered outlier detection, distance or similarity approximation (Cortes (2019) <arXiv:1910.12362>), isolation kernel calculation\n    (Ting, Zhu, Zhou (2018) <doi:10.1145/3219819.3219990>), and imputation of missing values (Cortes (2019) <arXiv:1911.06646>), based on random or guided decision tree splitting, and providing different metrics for scoring anomalies based on isolation depth or density (Cortes (2021) <arXiv:2111.11639>). Provides simple\n    heuristics for fitting the model to categorical columns and handling missing data, and offers options for varying between random and guided splits, and for using different splitting criteria.\n  license_family: BSD\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/BSD_2_clause\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.6.1-1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-isotree\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/isotree_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/isotree/isotree_{{ version }}.tar.gz\n  sha256: 6d2f0534f3ef2fb6c18f3f0fe6fec6d9ba030ef9e12b7b97a96fd31a55c8146c\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  # Checking windows to see if it passes. Uncomment the line if it fails.\n  # skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - libgomp                      # [linux]\n    - llvm-openmp                  # [osx]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-jsonlite >=1.7.3\n    - r-rcpp >=1.0.1\n  run:\n    - r-base\n    - r-jsonlite >=1.7.3\n    - r-rcpp >=1.0.1\n\ntest:\n  commands:\n    - $R -e \"library('isotree')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('isotree')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/david-cortes/isotree\n  license: BSD-2-Clause\n  summary: Fast and multi-threaded implementation of isolation forest (Liu, Ting, Zhou (2008) <doi:10.1109/ICDM.2008.17>), extended isolation forest (Hariri, Kind, Brunner (2018) <arXiv:1811.02141>), SCiForest (Liu, Ting, Zhou (2010) <doi:10.1007/978-3-642-15883-4_18>), fair-cut forest (Cortes (2021) <arXiv:2110:13402>),\n    robust random-cut forest (Guha, Mishra, Roy, Schrijvers (2016) <http://proceedings.mlr.press/v48/guha16.html>), and customizable variations of them, for isolation-based outlier detection, clustered outlier detection, distance or similarity approximation (Cortes (2019) <arXiv:1910.12362>), isolation kernel calculation\n    (Ting, Zhu, Zhou (2018) <doi:10.1145/3219819.3219990>), and imputation of missing values (Cortes (2019) <arXiv:1911.06646>), based on random or guided decision tree splitting, and providing different metrics for scoring anomalies based on isolation depth or density (Cortes (2021) <arXiv:2111.11639>). Provides simple\n    heuristics for fitting the model to categorical columns and handling missing data, and offers options for varying between random and guided splits, and for using different splitting criteria.\n  license_family: BSD\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/BSD_2_clause\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "autoconf",
    "automake",
+   "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
+   "coreutils",
    "cxx_compiler_stub",
+   "filesystem",
+   "grep",
    "libgomp",
    "llvm-openmp",
+   "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
+   "m2w64_cxx_compiler_stub",
    "make",
    "pkg-config",
    "r-base",
    "r-jsonlite",
-   "r-rcpp"
+   "r-rcpp",
+   "sed",
+   "zip"
   ]
  },
  "requirements": {
@@ -306,18 +332,29 @@
    "elements": [
     "autoconf",
     "automake",
+    "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
+    "filesystem",
+    "grep",
     "libgomp",
     "llvm-openmp",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
     "make",
-    "pkg-config"
+    "pkg-config",
+    "sed",
+    "zip"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "openmp",
@@ -330,6 +367,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "openmp",
@@ -350,12 +388,22 @@
    "elements": [
     "autoconf",
     "automake",
+    "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
+    "filesystem",
+    "grep",
     "libgomp",
     "llvm-openmp",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
     "make",
-    "pkg-config"
+    "pkg-config",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -383,10 +431,117 @@
   "https://cran.r-project.org/src/contrib/isotree_0.6.1-1.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/isotree/isotree_0.6.1-1.tar.gz",
   "https://cran.r-project.org/src/contrib/isotree_0.6.1-1.tar.gz",
+  "https://cran.r-project.org/src/contrib/Archive/isotree/isotree_0.6.1-1.tar.gz",
+  "https://cran.r-project.org/src/contrib/isotree_0.6.1-1.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/isotree/isotree_0.6.1-1.tar.gz"
  ],
  "version": "0.6.1_1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/r-isotree.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "home": "https://github.com/david-cortes/isotree",
+   "license": "BSD-2-Clause",
+   "license_family": "BSD",
+   "license_file": [
+    "/lib/R/share/licenses/BSD_2_clause",
+    "LICENSE"
+   ],
+   "summary": "Fast and multi-threaded implementation of isolation forest (Liu, Ting, Zhou (2008) <doi:10.1109/ICDM.2008.17>), extended isolation forest (Hariri, Kind, Brunner (2018) <arXiv:1811.02141>), SCiForest (Liu, Ting, Zhou (2010) <doi:10.1007/978-3-642-15883-4_18>), fair-cut forest (Cortes (2021) <arXiv:2110:13402>), robust random-cut forest (Guha, Mishra, Roy, Schrijvers (2016) <http://proceedings.mlr.press/v48/guha16.html>), and customizable variations of them, for isolation-based outlier detection, clustered outlier detection, distance or similarity approximation (Cortes (2019) <arXiv:1910.12362>), isolation kernel calculation (Ting, Zhu, Zhou (2018) <doi:10.1145/3219819.3219990>), and imputation of missing values (Cortes (2019) <arXiv:1911.06646>), based on random or guided decision tree splitting, and providing different metrics for scoring anomalies based on isolation depth or density (Cortes (2021) <arXiv:2111.11639>). Provides simple heuristics for fitting the model to categorical columns and handling missing data, and offers options for varying between random and guided splits, and for using different splitting criteria."
+  },
+  "build": {
+   "number": "1",
+   "rpaths": [
+    "lib/R/lib/",
+    "lib/"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "conda-forge/r"
+   ]
+  },
+  "package": {
+   "name": "r-isotree",
+   "version": "0.6.1_1"
+  },
+  "requirements": {
+   "build": [
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "filesystem",
+    "sed",
+    "grep",
+    "autoconf",
+    "automake-wrapper",
+    "pkg-config",
+    "make",
+    "coreutils",
+    "zip"
+   ],
+   "host": [
+    "r-base",
+    "r-jsonlite >=1.7.3",
+    "r-rcpp >=1.0.1"
+   ],
+   "run": [
+    "r-base",
+    "r-jsonlite >=1.7.3",
+    "r-rcpp >=1.0.1"
+   ]
+  },
+  "source": {
+   "sha256": "6d2f0534f3ef2fb6c18f3f0fe6fec6d9ba030ef9e12b7b97a96fd31a55c8146c",
+   "url": [
+    "https://cran.r-project.org/src/contrib/isotree_0.6.1-1.tar.gz",
+    "https://cran.r-project.org/src/contrib/Archive/isotree/isotree_0.6.1-1.tar.gz"
+   ]
+  },
+  "test": {
+   "commands": [
+    "\"%R%\" -e \"library('isotree')\""
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "autoconf",
+    "automake-wrapper",
+    "coreutils",
+    "filesystem",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "make",
+    "pkg-config",
+    "sed",
+    "zip"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "r-base",
+    "r-jsonlite",
+    "r-rcpp"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "r-base",
+    "r-jsonlite",
+    "r-rcpp"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
  }
 }
