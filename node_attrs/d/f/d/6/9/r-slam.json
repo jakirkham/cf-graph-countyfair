@@ -6,6 +6,7 @@
    "automerge": true
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -36,7 +37,7 @@
    "summary": "Data structures and algorithms for sparse arrays and matrices, based on index arrays and simple triplet representations, respectively."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -55,6 +56,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -83,6 +85,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -115,7 +118,7 @@
    "summary": "Data structures and algorithms for sparse arrays and matrices, based on index arrays and simple triplet representations, respectively."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -134,6 +137,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -162,6 +166,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -194,7 +199,7 @@
    "summary": "Data structures and algorithms for sparse arrays and matrices, based on index arrays and simple triplet representations, respectively."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -213,6 +218,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -241,6 +247,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -273,8 +280,7 @@
    "summary": "Data structures and algorithms for sparse arrays and matrices, based on index arrays and simple triplet representations, respectively."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -293,8 +299,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -305,8 +313,7 @@
     "libblas"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -335,7 +342,7 @@
    "summary": "Data structures and algorithms for sparse arrays and matrices, based on index arrays and simple triplet representations, respectively."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -354,6 +361,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -382,6 +390,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -414,7 +423,7 @@
    "summary": "Data structures and algorithms for sparse arrays and matrices, based on index arrays and simple triplet representations, respectively."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -433,6 +442,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -461,6 +471,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -500,16 +511,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-slam.json"
  },
- "raw_meta_yaml": "{% set version = \"0.1-50\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-slam\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/slam_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/slam/slam_{{ version }}.tar.gz\n  sha256: 7899bf3266c204ecccefc1878f96940b117d4503af128f4fbc50fc409163f8bd\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - libblas\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('slam')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('slam')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=slam\n  license: GPL-2.0-only\n  summary: Data structures and algorithms for sparse arrays and matrices, based on index arrays and simple triplet representations, respectively.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - croth1\n\n# Package: slam\n# Version: 0.1-45\n# Title: Sparse Lightweight Arrays and Matrices\n# Authors@R: c(person(\"Kurt\", \"Hornik\", role = c(\"aut\", \"cre\"), email = \"Kurt.Hornik@R-project.org\", comment = c(ORCID = \"0000-0003-4198-9911\")), person(\"David\", \"Meyer\", role = \"aut\"), person(\"Christian\", \"Buchta\", role = \"aut\"))\n# Description: Data structures and algorithms for sparse arrays and matrices, based on index arrays and simple triplet representations, respectively.\n# Depends: R (>= 3.4.0)\n# Imports: stats\n# Enhances: Matrix, SparseM, spam\n# License: GPL-2\n# NeedsCompilation: yes\n# Packaged: 2019-02-26 10:47:45 UTC; hornik\n# Author: Kurt Hornik [aut, cre] (<https://orcid.org/0000-0003-4198-9911>), David Meyer [aut], Christian Buchta [aut]\n# Maintainer: Kurt Hornik <Kurt.Hornik@R-project.org>\n# Repository: CRAN\n# Date/Publication: 2019-02-26 11:23:12 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.1-50\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-slam\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/slam_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/slam/slam_{{ version }}.tar.gz\n  sha256: 7899bf3266c204ecccefc1878f96940b117d4503af128f4fbc50fc409163f8bd\n\nbuild:\n  number: 4\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - libblas\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('slam')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('slam')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=slam\n  license: GPL-2.0-only\n  summary: Data structures and algorithms for sparse arrays and matrices, based on index arrays and simple triplet representations, respectively.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - croth1\n\n# Package: slam\n# Version: 0.1-45\n# Title: Sparse Lightweight Arrays and Matrices\n# Authors@R: c(person(\"Kurt\", \"Hornik\", role = c(\"aut\", \"cre\"), email = \"Kurt.Hornik@R-project.org\", comment = c(ORCID = \"0000-0003-4198-9911\")), person(\"David\", \"Meyer\", role = \"aut\"), person(\"Christian\", \"Buchta\", role = \"aut\"))\n# Description: Data structures and algorithms for sparse arrays and matrices, based on index arrays and simple triplet representations, respectively.\n# Depends: R (>= 3.4.0)\n# Imports: stats\n# Enhances: Matrix, SparseM, spam\n# License: GPL-2\n# NeedsCompilation: yes\n# Packaged: 2019-02-26 10:47:45 UTC; hornik\n# Author: Kurt Hornik [aut, cre] (<https://orcid.org/0000-0003-4198-9911>), David Meyer [aut], Christian Buchta [aut]\n# Maintainer: Kurt Hornik <Kurt.Hornik@R-project.org>\n# Repository: CRAN\n# Date/Publication: 2019-02-26 11:23:12 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "libblas",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "sed",
@@ -521,9 +533,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -533,6 +547,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "libblas",
     "r-base"
    ]
@@ -541,7 +556,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -556,9 +571,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -574,7 +591,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -612,8 +628,7 @@
    "summary": "Data structures and algorithms for sparse arrays and matrices, based on index arrays and simple triplet representations, respectively."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -632,6 +647,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -643,8 +659,7 @@
     "libblas"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -667,6 +682,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -682,7 +698,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
