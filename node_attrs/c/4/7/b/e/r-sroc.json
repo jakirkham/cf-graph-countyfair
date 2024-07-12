@@ -22,13 +22,13 @@
  "linux_64_meta_yaml": {
   "about": {
    "home": "https://CRAN.R-project.org/package=sROC",
-   "license": "GPL (>= 3)",
+   "license": "GPL-3.0-or-later",
    "license_family": "GPL3",
    "license_file": "/lib/R/share/licenses/GPL-3",
    "summary": "This package contains a collection of functions to perform nonparametric estimation of receiver operating characteristic (ROC) curves for continuous data."
   },
   "build": {
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -45,7 +45,9 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "make"
    ],
    "host": [
     "r-base"
@@ -55,7 +57,6 @@
    ]
   },
   "source": {
-   "fn": "sROC_0.1-2.tar.gz",
    "sha256": "a3815fbf0c78d9f03ff2c456f0573347d12cbf43173752c872aed9346176e632",
    "url": [
     "https://cran.r-project.org/src/contrib/sROC_0.1-2.tar.gz",
@@ -72,7 +73,9 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "make"
    ]
   },
   "host": {
@@ -95,14 +98,13 @@
  "meta_yaml": {
   "about": {
    "home": "https://CRAN.R-project.org/package=sROC",
-   "license": "GPL (>= 3)",
+   "license": "GPL-3.0-or-later",
    "license_family": "GPL3",
    "license_file": "/lib/R/share/licenses/GPL-3",
    "summary": "This package contains a collection of functions to perform nonparametric estimation of receiver operating characteristic (ROC) curves for continuous data."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -120,8 +122,14 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "posix",
-    "m2w64_c_compiler_stub"
+    "c_stdlib_stub",
+    "make",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "filesystem",
+    "sed",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base"
@@ -131,7 +139,6 @@
    ]
   },
   "source": {
-   "fn": "sROC_0.1-2.tar.gz",
    "sha256": "a3815fbf0c78d9f03ff2c456f0573347d12cbf43173752c872aed9346176e632",
    "url": [
     "https://cran.r-project.org/src/contrib/sROC_0.1-2.tar.gz",
@@ -149,13 +156,13 @@
  "osx_64_meta_yaml": {
   "about": {
    "home": "https://CRAN.R-project.org/package=sROC",
-   "license": "GPL (>= 3)",
+   "license": "GPL-3.0-or-later",
    "license_family": "GPL3",
    "license_file": "/lib/R/share/licenses/GPL-3",
    "summary": "This package contains a collection of functions to perform nonparametric estimation of receiver operating characteristic (ROC) curves for continuous data."
   },
   "build": {
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -172,7 +179,9 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "make"
    ],
    "host": [
     "r-base"
@@ -182,7 +191,6 @@
    ]
   },
   "source": {
-   "fn": "sROC_0.1-2.tar.gz",
    "sha256": "a3815fbf0c78d9f03ff2c456f0573347d12cbf43173752c872aed9346176e632",
    "url": [
     "https://cran.r-project.org/src/contrib/sROC_0.1-2.tar.gz",
@@ -199,7 +207,9 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "make"
    ]
   },
   "host": {
@@ -234,14 +244,20 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-sroc.json"
  },
- "raw_meta_yaml": "{% set version = '0.1-2' %}\n\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-sroc\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: sROC_{{ version }}.tar.gz\n  url:\n    - https://cran.r-project.org/src/contrib/sROC_{{ version }}.tar.gz\n    - https://cran.r-project.org/src/contrib/Archive/sROC/sROC_{{ version }}.tar.gz\n  sha256: a3815fbf0c78d9f03ff2c456f0573347d12cbf43173752c872aed9346176e632\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 1006\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  skip: True  # [win32]\n\nrequirements:\n  build:\n    - posix                # [win]\n    - {{ compiler('c') }}        # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n  host:\n    - r-base\n\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('sROC')\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('sROC')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=sROC\n  license: GPL (>= 3)\n  summary: This package contains a collection of functions to perform nonparametric estimation\n    of receiver operating characteristic (ROC) curves for continuous data.\n  license_family: GPL3\n  license_file: '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = '0.1-2' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-sroc\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/sROC_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/sROC/sROC_{{ version }}.tar.gz\n  sha256: a3815fbf0c78d9f03ff2c456f0573347d12cbf43173752c872aed9346176e632\n\nbuild:\n  number: 1007\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [unix]\n    - {{ stdlib(\"c\") }}          # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ stdlib(\"m2w64_c\") }}    # [win]\n    - {{ posix }}filesystem      # [win]\n    - {{ posix }}make\n    - {{ posix }}sed             # [win]\n    - {{ posix }}coreutils       # [win]\n    - {{ posix }}zip             # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('sROC')\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('sROC')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=sROC\n  license: GPL-3.0-or-later\n  summary: This package contains a collection of functions to perform nonparametric estimation\n    of receiver operating characteristic (ROC) curves for continuous data.\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
+   "coreutils",
+   "filesystem",
    "m2w64_c_compiler_stub",
-   "posix",
-   "r-base"
+   "m2w64_c_stdlib_stub",
+   "make",
+   "r-base",
+   "sed",
+   "zip"
   ]
  },
  "requirements": {
@@ -249,14 +265,21 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
+    "filesystem",
     "m2w64_c_compiler_stub",
-    "posix"
+    "m2w64_c_stdlib_stub",
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -264,6 +287,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -278,8 +302,14 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
+    "filesystem",
     "m2w64_c_compiler_stub",
-    "posix"
+    "m2w64_c_stdlib_stub",
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -314,14 +344,13 @@
  "win_64_meta_yaml": {
   "about": {
    "home": "https://CRAN.R-project.org/package=sROC",
-   "license": "GPL (>= 3)",
+   "license": "GPL-3.0-or-later",
    "license_family": "GPL3",
    "license_file": "/lib/R/share/licenses/GPL-3",
    "summary": "This package contains a collection of functions to perform nonparametric estimation of receiver operating characteristic (ROC) curves for continuous data."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1006",
+   "number": "1007",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -338,8 +367,13 @@
   },
   "requirements": {
    "build": [
-    "posix",
-    "m2w64_c_compiler_stub"
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "filesystem",
+    "make",
+    "sed",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base"
@@ -349,7 +383,6 @@
    ]
   },
   "source": {
-   "fn": "sROC_0.1-2.tar.gz",
    "sha256": "a3815fbf0c78d9f03ff2c456f0573347d12cbf43173752c872aed9346176e632",
    "url": [
     "https://cran.r-project.org/src/contrib/sROC_0.1-2.tar.gz",
@@ -366,8 +399,13 @@
   "build": {
    "__set__": true,
    "elements": [
+    "coreutils",
+    "filesystem",
     "m2w64_c_compiler_stub",
-    "posix"
+    "m2w64_c_stdlib_stub",
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
