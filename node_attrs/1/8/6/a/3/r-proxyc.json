@@ -30,7 +30,7 @@
    "summary": " Computes proximity between rows or columns of large matrices efficiently in C++. Functions are optimised for large sparse matrices using the Armadillo and Intel TBB libraries. Among several built-in similarity/distance measures, computation of correlation, cosine similarity and Euclidean distance is particularly fast. "
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -48,6 +48,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -91,6 +92,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -134,8 +136,7 @@
    "summary": " Computes proximity between rows or columns of large matrices efficiently in C++. Functions are optimised for large sparse matrices using the Armadillo and Intel TBB libraries. Among several built-in similarity/distance measures, computation of correlation, cosine similarity and Euclidean distance is particularly fast. "
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -153,6 +154,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -160,6 +162,7 @@
     "make",
     "tbb-devel",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -181,8 +184,7 @@
     "r-base",
     "r-matrix >=1.2",
     "r-rcpp >=0.12.12",
-    "r-rcpparmadillo >=0.7.600.1.0",
-    "gcc-libs"
+    "r-rcpparmadillo >=0.7.600.1.0"
    ]
   },
   "source": {
@@ -211,7 +213,7 @@
    "summary": " Computes proximity between rows or columns of large matrices efficiently in C++. Functions are optimised for large sparse matrices using the Armadillo and Intel TBB libraries. Among several built-in similarity/distance measures, computation of correlation, cosine similarity and Euclidean distance is particularly fast. "
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -229,6 +231,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -272,6 +275,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -319,7 +323,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-proxyc.json"
  },
- "raw_meta_yaml": "{% set version = \"0.4.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-proxyc\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/proxyC_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/proxyC/proxyC_{{ version }}.tar.gz\n  sha256: e83d8653578b3c245d912dd5d7b03f0b2f875b206fbe3d0f328635dabf2522a8\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - tbb-devel                    # [not win]\n  host:\n    - r-base\n    - r-matrix >=1.2\n    - r-rcpp >=0.12.12\n    - r-rcpparmadillo >=0.7.600.1.0\n    - libblas\n    - liblapack\n    - tbb-devel                    # [not win]\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-matrix >=1.2\n    - r-rcpp >=0.12.12\n    - r-rcpparmadillo >=0.7.600.1.0\n\ntest:\n  commands:\n    - $R -e \"library('proxyC')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('proxyC')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/koheiw/proxyC\n  license: GPL-3.0-only\n  summary: ' Computes proximity between rows or columns of large matrices efficiently in C++. Functions are optimised for large sparse matrices using the Armadillo and Intel TBB libraries. Among several built-in similarity/distance measures, computation of correlation, cosine similarity and Euclidean distance is particularly\n    fast. '\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.4.1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-proxyc\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/proxyC_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/proxyC/proxyC_{{ version }}.tar.gz\n  sha256: e83d8653578b3c245d912dd5d7b03f0b2f875b206fbe3d0f328635dabf2522a8\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - tbb-devel                    # [not win]\n  host:\n    - r-base\n    - r-matrix >=1.2\n    - r-rcpp >=0.12.12\n    - r-rcpparmadillo >=0.7.600.1.0\n    - libblas\n    - liblapack\n    - tbb-devel                    # [not win]\n  run:\n    - r-base\n    - r-matrix >=1.2\n    - r-rcpp >=0.12.12\n    - r-rcpparmadillo >=0.7.600.1.0\n\ntest:\n  commands:\n    - $R -e \"library('proxyC')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('proxyC')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/koheiw/proxyC\n  license: GPL-3.0-only\n  summary: ' Computes proximity between rows or columns of large matrices efficiently in C++. Functions are optimised for large sparse matrices using the Armadillo and Intel TBB libraries. Among several built-in similarity/distance measures, computation of correlation, cosine similarity and Euclidean distance is particularly\n    fast. '\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -327,14 +331,15 @@
    "automake",
    "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "grep",
    "libblas",
    "liblapack",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "pkg-config",
@@ -355,11 +360,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -372,6 +379,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libblas",
     "liblapack",
@@ -386,8 +394,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-matrix",
     "r-rcpp",
@@ -408,11 +416,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -436,7 +446,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-matrix >=1.2",
     "r-rcpp >=0.12.12",
@@ -471,8 +480,7 @@
    "summary": " Computes proximity between rows or columns of large matrices efficiently in C++. Functions are optimised for large sparse matrices using the Armadillo and Intel TBB libraries. Among several built-in similarity/distance measures, computation of correlation, cosine similarity and Euclidean distance is particularly fast. "
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -490,6 +498,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -511,7 +520,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-matrix >=1.2",
     "r-rcpp >=0.12.12",
     "r-rcpparmadillo >=0.7.600.1.0"
@@ -540,6 +548,7 @@
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -561,7 +570,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-matrix",
     "r-rcpp",
