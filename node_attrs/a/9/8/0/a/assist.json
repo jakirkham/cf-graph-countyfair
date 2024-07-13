@@ -3,6 +3,7 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_aarch64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -12,6 +13,9 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
+  },
+  "provider": {
+   "linux_aarch64": "default"
   },
   "test": "native_and_emulated"
  },
@@ -27,7 +31,7 @@
    "summary": "ASSIST solar system integrator"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "SUFFIX=$(PYTHON -c \"import distutils.sysconfig as s; print(s.get_config_var('EXT_SUFFIX'))\")\nLIBDIR=$(PYTHON -c \"import distutils.sysconfig as s; print(s.get_python_lib())\")\nL=\"$LIBDIR/libassist$SUFFIX\"\necho \"BUILDING LIBRARY: $L\"\nPYTHON -m pip install . --no-deps -vv\nif [[ $(uname) == Darwin ]]; then\n  echo \"CHECKING LINKED DEPENDENCIES:\"\n  otool -L \"$L\"\n  if ! otool -L \"$L\" | grep -q \"librebound\"; then\n    echo \"error: librebound not linked\"\n    /bin/false\n  else\n    echo \"librebound found to be linked, OK!\"\n  fi\n  echo \"===\"\nfi\n"
    ]
@@ -44,7 +48,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -72,7 +77,90 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "numpy",
+    "pip",
+    "python",
+    "rebound"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "numpy",
+    "python",
+    "rebound"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "description": "ASSIST is a software package for ephemeris-quality integrations of test\nparticles.  ASSIST is an extension of the REBOUND framework and makes\nuse of its IAS15 integrator to integrate test particle trajectories in\nthe field of the Sun, Moon, planets, and 16 massive asteroids, with the\npositions of the masses coming from the JPL DE441 ephemeris and its\nassociated asteroid perturber file.\n",
+   "home": "https://github.com/matthewholman/assist",
+   "license": "GPL-3.0-only",
+   "license_family": "GPL",
+   "license_file": "LICENSE",
+   "summary": "ASSIST solar system integrator"
+  },
+  "build": {
+   "number": "1",
+   "script": [
+    "SUFFIX=$(PYTHON -c \"import distutils.sysconfig as s; print(s.get_config_var('EXT_SUFFIX'))\")\nLIBDIR=$(PYTHON -c \"import distutils.sysconfig as s; print(s.get_python_lib())\")\nL=\"$LIBDIR/libassist$SUFFIX\"\necho \"BUILDING LIBRARY: $L\"\nPYTHON -m pip install . --no-deps -vv\nif [[ $(uname) == Darwin ]]; then\n  echo \"CHECKING LINKED DEPENDENCIES:\"\n  otool -L \"$L\"\n  if ! otool -L \"$L\" | grep -q \"librebound\"; then\n    echo \"error: librebound not linked\"\n    /bin/false\n  else\n    echo \"librebound found to be linked, OK!\"\n  fi\n  echo \"===\"\nfi\n"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "mjuric",
+    "matthewholman"
+   ]
+  },
+  "package": {
+   "name": "assist",
+   "version": "1.1.9"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "python",
+    "numpy >=1.24",
+    "rebound >=4.4.1",
+    "pip"
+   ],
+   "run": [
+    "python",
+    "rebound >=4.4.1",
+    "numpy"
+   ]
+  },
+  "source": {
+   "sha256": "f5e285e1b17d4c07886e290ba12d9df02780bf7493fbeae743d7d5dfe778c85b",
+   "url": "https://github.com/mjuric/assist/archive/refs/tags/v1.1.9.tar.gz"
+  },
+  "test": {
+   "imports": [
+    "assist"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -107,7 +195,7 @@
    "summary": "ASSIST solar system integrator"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "SUFFIX=$(PYTHON -c \"import distutils.sysconfig as s; print(s.get_config_var('EXT_SUFFIX'))\")\nLIBDIR=$(PYTHON -c \"import distutils.sysconfig as s; print(s.get_python_lib())\")\nL=\"$LIBDIR/libassist$SUFFIX\"\necho \"BUILDING LIBRARY: $L\"\nPYTHON -m pip install . --no-deps -vv\nif [[ $(uname) == Darwin ]]; then\n  echo \"CHECKING LINKED DEPENDENCIES:\"\n  otool -L \"$L\"\n  if ! otool -L \"$L\" | grep -q \"librebound\"; then\n    echo \"error: librebound not linked\"\n    /bin/false\n  else\n    echo \"librebound found to be linked, OK!\"\n  fi\n  echo \"===\"\nfi\n"
    ]
@@ -124,7 +212,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -159,7 +248,7 @@
    "summary": "ASSIST solar system integrator"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "SUFFIX=$(PYTHON -c \"import distutils.sysconfig as s; print(s.get_config_var('EXT_SUFFIX'))\")\nLIBDIR=$(PYTHON -c \"import distutils.sysconfig as s; print(s.get_python_lib())\")\nL=\"$LIBDIR/libassist$SUFFIX\"\necho \"BUILDING LIBRARY: $L\"\nPYTHON -m pip install . --no-deps -vv\nif [[ $(uname) == Darwin ]]; then\n  echo \"CHECKING LINKED DEPENDENCIES:\"\n  otool -L \"$L\"\n  if ! otool -L \"$L\" | grep -q \"librebound\"; then\n    echo \"error: librebound not linked\"\n    /bin/false\n  else\n    echo \"librebound found to be linked, OK!\"\n  fi\n  echo \"===\"\nfi\n"
    ]
@@ -176,7 +265,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -204,7 +294,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -239,7 +330,7 @@
    "summary": "ASSIST solar system integrator"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "SUFFIX=$(PYTHON -c \"import distutils.sysconfig as s; print(s.get_config_var('EXT_SUFFIX'))\")\nLIBDIR=$(PYTHON -c \"import distutils.sysconfig as s; print(s.get_python_lib())\")\nL=\"$LIBDIR/libassist$SUFFIX\"\necho \"BUILDING LIBRARY: $L\"\nPYTHON -m pip install . --no-deps -vv\nif [[ $(uname) == Darwin ]]; then\n  echo \"CHECKING LINKED DEPENDENCIES:\"\n  otool -L \"$L\"\n  if ! otool -L \"$L\" | grep -q \"librebound\"; then\n    echo \"error: librebound not linked\"\n    /bin/false\n  else\n    echo \"librebound found to be linked, OK!\"\n  fi\n  echo \"===\"\nfi\n"
    ]
@@ -256,7 +347,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -284,7 +376,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -318,17 +411,19 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
   "osx_64",
   "osx_arm64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/assist.json"
  },
- "raw_meta_yaml": "{% set name = \"assist\" %}\n{% set version = \"1.1.9\" %}\n{% set sha256 = \"f5e285e1b17d4c07886e290ba12d9df02780bf7493fbeae743d7d5dfe778c85b\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  #path: /Users/mjuric/projects/github.com/mjuric/assist\n  url: https://github.com/mjuric/assist/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n  # curl -L https://github.com/mjuric/assist/archive/refs/tags/v1.1.5.tar.gz | openssl sha256\n\nbuild:\n  number: 0\n  skip: True  # [win]\n  script:\n  - |\n    SUFFIX=$({{ PYTHON }} -c \"import distutils.sysconfig as s; print(s.get_config_var('EXT_SUFFIX'))\")\n    LIBDIR=$({{ PYTHON }} -c \"import distutils.sysconfig as s; print(s.get_python_lib())\")\n    L=\"$LIBDIR/libassist$SUFFIX\"\n    echo \"BUILDING LIBRARY: $L\"\n    {{ PYTHON }} -m pip install . --no-deps -vv\n    if [[ $(uname) == Darwin ]]; then\n      echo \"CHECKING LINKED DEPENDENCIES:\"\n      otool -L \"$L\"\n      if ! otool -L \"$L\" | grep -q \"librebound\"; then\n        echo \"error: librebound not linked\"\n        /bin/false\n      else\n        echo \"librebound found to be linked, OK!\"\n      fi\n      echo \"===\"\n    fi\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy >=1.24                           # [build_platform != target_platform]\n    - rebound >=4.4.1                        # [build_platform != target_platform]\n    - {{ compiler('c') }}\n  host:\n    - python\n    - numpy >=1.24\n    - rebound >=4.4.1\n    - pip\n  run:\n    - python\n    - rebound >=4.4.1\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - assist\n\nabout:\n  home: https://github.com/matthewholman/assist\n  license: \"GPL-3.0-only\"\n  license_family: GPL\n  license_file: LICENSE\n  summary: 'ASSIST solar system integrator'\n  description: |\n    ASSIST is a software package for ephemeris-quality integrations of test\n    particles.  ASSIST is an extension of the REBOUND framework and makes\n    use of its IAS15 integrator to integrate test particle trajectories in\n    the field of the Sun, Moon, planets, and 16 massive asteroids, with the\n    positions of the masses coming from the JPL DE441 ephemeris and its\n    associated asteroid perturber file.\n\nextra:\n  recipe-maintainers:\n    - mjuric\n    - matthewholman\n",
+ "raw_meta_yaml": "{% set name = \"assist\" %}\n{% set version = \"1.1.9\" %}\n{% set sha256 = \"f5e285e1b17d4c07886e290ba12d9df02780bf7493fbeae743d7d5dfe778c85b\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  #path: /Users/mjuric/projects/github.com/mjuric/assist\n  url: https://github.com/mjuric/assist/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n  # curl -L https://github.com/mjuric/assist/archive/refs/tags/v1.1.5.tar.gz | openssl sha256\n\nbuild:\n  number: 1\n  skip: True  # [win]\n  script:\n  - |\n    SUFFIX=$({{ PYTHON }} -c \"import distutils.sysconfig as s; print(s.get_config_var('EXT_SUFFIX'))\")\n    LIBDIR=$({{ PYTHON }} -c \"import distutils.sysconfig as s; print(s.get_python_lib())\")\n    L=\"$LIBDIR/libassist$SUFFIX\"\n    echo \"BUILDING LIBRARY: $L\"\n    {{ PYTHON }} -m pip install . --no-deps -vv\n    if [[ $(uname) == Darwin ]]; then\n      echo \"CHECKING LINKED DEPENDENCIES:\"\n      otool -L \"$L\"\n      if ! otool -L \"$L\" | grep -q \"librebound\"; then\n        echo \"error: librebound not linked\"\n        /bin/false\n      else\n        echo \"librebound found to be linked, OK!\"\n      fi\n      echo \"===\"\n    fi\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy >=1.24                           # [build_platform != target_platform]\n    - rebound >=4.4.1                        # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n  host:\n    - python\n    - numpy >=1.24\n    - rebound >=4.4.1\n    - pip\n  run:\n    - python\n    - rebound >=4.4.1\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - assist\n\nabout:\n  home: https://github.com/matthewholman/assist\n  license: \"GPL-3.0-only\"\n  license_family: GPL\n  license_file: LICENSE\n  summary: 'ASSIST solar system integrator'\n  description: |\n    ASSIST is a software package for ephemeris-quality integrations of test\n    particles.  ASSIST is an extension of the REBOUND framework and makes\n    use of its IAS15 integrator to integrate test particle trajectories in\n    the field of the Sun, Moon, planets, and 16 massive asteroids, with the\n    positions of the masses coming from the JPL DE441 ephemeris and its\n    associated asteroid perturber file.\n\nextra:\n  recipe-maintainers:\n    - mjuric\n    - matthewholman\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "numpy",
    "pip",
    "python",
@@ -339,13 +434,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "numpy",
     "pip",
     "python",
@@ -356,6 +453,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "numpy",
     "python",
     "rebound"
@@ -371,7 +469,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
