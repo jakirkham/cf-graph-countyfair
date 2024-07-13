@@ -30,7 +30,7 @@
    "summary": "Programs for Martinussen and Scheike (2006), `Dynamic Regression Models for Survival Data', Springer Verlag.  Plus more recent developments. Additive survival model, semiparametric proportional odds model, fast cumulative residuals, excess risk models and more. Flexible competing risks regression including GOF-tests. Two-stage frailty modelling. PLS for the additive risk model. Lasso in the 'ahaz' package."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -48,6 +48,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -83,6 +84,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -122,8 +124,7 @@
    "summary": "Programs for Martinussen and Scheike (2006), `Dynamic Regression Models for Survival Data', Springer Verlag.  Plus more recent developments. Additive survival model, semiparametric proportional odds model, fast cumulative residuals, excess risk models and more. Flexible competing risks regression including GOF-tests. Two-stage frailty modelling. PLS for the additive risk model. Lasso in the 'ahaz' package."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -141,8 +142,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -160,8 +163,7 @@
     "r-base",
     "r-lava",
     "r-numderiv",
-    "r-survival",
-    "gcc-libs"
+    "r-survival"
    ]
   },
   "source": {
@@ -190,7 +192,7 @@
    "summary": "Programs for Martinussen and Scheike (2006), `Dynamic Regression Models for Survival Data', Springer Verlag.  Plus more recent developments. Additive survival model, semiparametric proportional odds model, fast cumulative residuals, excess risk models and more. Flexible competing risks regression including GOF-tests. Two-stage frailty modelling. PLS for the additive risk model. Lasso in the 'ahaz' package."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -208,6 +210,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -243,6 +246,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -286,17 +290,18 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-timereg.json"
  },
- "raw_meta_yaml": "{% set version = \"2.0.5\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-timereg\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/timereg_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/timereg/timereg_{{ version }}.tar.gz\n  sha256: a0d1ddeaf6962c7f48e213430ec838cf8e880a6c41571e4c2e864d070f84f7ef\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-lava\n    - r-numderiv\n    - r-survival\n    - libblas\n    - liblapack\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-lava\n    - r-numderiv\n    - r-survival\n\ntest:\n  commands:\n    - $R -e \"library('timereg')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('timereg')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/scheike/timereg\n  license: GPL-2.0-or-later\n  summary: Programs for Martinussen and Scheike (2006), `Dynamic Regression Models for Survival Data', Springer Verlag.  Plus more recent developments. Additive survival model, semiparametric proportional odds model, fast cumulative residuals, excess risk models and more. Flexible competing risks regression including GOF-tests.\n    Two-stage frailty modelling. PLS for the additive risk model. Lasso in the 'ahaz' package.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: timereg\n# Title: Flexible Regression Models for Survival Data\n# Version: 1.9.8\n# Date: 2020-09-21\n# Author: Thomas Scheike with contributions from Torben Martinussen, Jeremy Silver and Klaus Holst\n# Maintainer: Thomas Scheike <ts@biostat.ku.dk>\n# Description: Programs for Martinussen and Scheike (2006), `Dynamic Regression Models for Survival Data', Springer Verlag.  Plus more recent developments. Additive survival model, semiparametric proportional odds model, fast cumulative residuals, excess risk models and more. Flexible competing risks regression including GOF-tests. Two-stage frailty modelling. PLS for the additive risk model. Lasso in the 'ahaz' package.\n# LazyLoad: yes\n# URL: https://github.com/scheike/timereg\n# Depends: R (>= 2.15), survival\n# Imports: lava, numDeriv, stats, graphics, grDevices, utils, methods\n# Suggests: mets,\n# License: GPL (>= 2)\n# Encoding: UTF-8\n# RoxygenNote: 7.1.0\n# NeedsCompilation: yes\n# Packaged: 2020-09-21 06:40:29 UTC; bhd252\n# Repository: CRAN\n# Date/Publication: 2020-10-05 09:50:02 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.0.5\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-timereg\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/timereg_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/timereg/timereg_{{ version }}.tar.gz\n  sha256: a0d1ddeaf6962c7f48e213430ec838cf8e880a6c41571e4c2e864d070f84f7ef\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-lava\n    - r-numderiv\n    - r-survival\n    - libblas\n    - liblapack\n  run:\n    - r-base\n    - r-lava\n    - r-numderiv\n    - r-survival\n\ntest:\n  commands:\n    - $R -e \"library('timereg')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('timereg')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/scheike/timereg\n  license: GPL-2.0-or-later\n  summary: Programs for Martinussen and Scheike (2006), `Dynamic Regression Models for Survival Data', Springer Verlag.  Plus more recent developments. Additive survival model, semiparametric proportional odds model, fast cumulative residuals, excess risk models and more. Flexible competing risks regression including GOF-tests.\n    Two-stage frailty modelling. PLS for the additive risk model. Lasso in the 'ahaz' package.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: timereg\n# Title: Flexible Regression Models for Survival Data\n# Version: 1.9.8\n# Date: 2020-09-21\n# Author: Thomas Scheike with contributions from Torben Martinussen, Jeremy Silver and Klaus Holst\n# Maintainer: Thomas Scheike <ts@biostat.ku.dk>\n# Description: Programs for Martinussen and Scheike (2006), `Dynamic Regression Models for Survival Data', Springer Verlag.  Plus more recent developments. Additive survival model, semiparametric proportional odds model, fast cumulative residuals, excess risk models and more. Flexible competing risks regression including GOF-tests. Two-stage frailty modelling. PLS for the additive risk model. Lasso in the 'ahaz' package.\n# LazyLoad: yes\n# URL: https://github.com/scheike/timereg\n# Depends: R (>= 2.15), survival\n# Imports: lava, numDeriv, stats, graphics, grDevices, utils, methods\n# Suggests: mets,\n# License: GPL (>= 2)\n# Encoding: UTF-8\n# RoxygenNote: 7.1.0\n# NeedsCompilation: yes\n# Packaged: 2020-09-21 06:40:29 UTC; bhd252\n# Repository: CRAN\n# Date/Publication: 2020-10-05 09:50:02 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "libblas",
    "liblapack",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-lava",
@@ -311,9 +316,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -323,6 +330,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "libblas",
     "liblapack",
     "r-base",
@@ -335,7 +343,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-lava",
     "r-numderiv",
@@ -353,9 +361,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -375,7 +385,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-lava",
     "r-numderiv",
@@ -410,8 +419,7 @@
    "summary": "Programs for Martinussen and Scheike (2006), `Dynamic Regression Models for Survival Data', Springer Verlag.  Plus more recent developments. Additive survival model, semiparametric proportional odds model, fast cumulative residuals, excess risk models and more. Flexible competing risks regression including GOF-tests. Two-stage frailty modelling. PLS for the additive risk model. Lasso in the 'ahaz' package."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -429,6 +437,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -445,7 +454,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-lava",
     "r-numderiv",
     "r-survival"
@@ -471,6 +479,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -490,7 +499,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-lava",
     "r-numderiv",
