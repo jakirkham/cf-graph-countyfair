@@ -32,7 +32,7 @@
    "summary": "A C library to handle the Public Suffix List"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "libpsl"
    ]
@@ -49,6 +49,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "ninja",
     "pkg-config",
@@ -79,6 +80,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -109,7 +111,7 @@
    "summary": "A C library to handle the Public Suffix List"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "libpsl"
    ]
@@ -126,6 +128,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "ninja",
     "pkg-config",
@@ -156,6 +159,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -186,7 +190,7 @@
    "summary": "A C library to handle the Public Suffix List"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "libpsl"
    ]
@@ -203,6 +207,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "ninja",
     "pkg-config",
@@ -233,6 +238,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -263,7 +269,7 @@
    "summary": "A C library to handle the Public Suffix List"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "libpsl"
    ]
@@ -280,6 +286,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "ninja",
     "pkg-config",
@@ -320,7 +327,7 @@
    "summary": "A C library to handle the Public Suffix List"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "libpsl"
    ]
@@ -337,6 +344,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "ninja",
     "pkg-config",
@@ -367,6 +375,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -397,7 +406,7 @@
    "summary": "A C library to handle the Public Suffix List"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "libpsl"
    ]
@@ -414,6 +423,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "ninja",
     "pkg-config",
@@ -444,6 +454,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -483,11 +494,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libpsl.json"
  },
- "raw_meta_yaml": "{% set name = \"libpsl\" %}\n{% set version = \"0.21.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/rockdaboot/{{ name }}/releases/download/{{ version }}/{{ name }}-{{ version }}.tar.gz\n  sha256: e35991b6e17001afa2c0ca3b10c357650602b92596209b7492802f3768a6285f\n  patches:\n    # fix compilation on Windows with upstream patches\n    - 50ee8988993a3e3f7224a0c831998957f34e412e.patch\n    - 3dfe19d4578c361f800738c9c974d9c405801209.patch\n\nbuild:\n  number: 2\n  run_exports:\n    # Just a guess\n    - {{ pin_subpackage('libpsl', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - ninja\n    - pkg-config\n    - meson\n  host:\n    - icu\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/libpsl.h                       # [unix]\n    - test -f ${PREFIX}/lib/pkgconfig/libpsl.pc                # [unix]\n    - test -f ${PREFIX}/lib/libpsl.dylib                       # [osx]\n    - test -f ${PREFIX}/lib/libpsl.so                          # [linux]\n    - if not exist %LIBRARY_LIB%\\\\pkgconfig\\\\libpsl.pc exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\psl.lib exit 1               # [win]\n    - if not exist %LIBRARY_INC%\\\\libpsl.h exit 1              # [win]\n    - if not exist %LIBRARY_BIN%\\\\psl-5.dll exit 1             # [win]\n\nabout:\n  home: https://github.com/rockdaboot/libpsl\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: A C library to handle the Public Suffix List\n\nextra:\n  recipe-maintainers:\n    - tschoonj\n",
+ "raw_meta_yaml": "{% set name = \"libpsl\" %}\n{% set version = \"0.21.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/rockdaboot/{{ name }}/releases/download/{{ version }}/{{ name }}-{{ version }}.tar.gz\n  sha256: e35991b6e17001afa2c0ca3b10c357650602b92596209b7492802f3768a6285f\n  patches:\n    # fix compilation on Windows with upstream patches\n    - 50ee8988993a3e3f7224a0c831998957f34e412e.patch\n    - 3dfe19d4578c361f800738c9c974d9c405801209.patch\n\nbuild:\n  number: 3\n  run_exports:\n    # Just a guess\n    - {{ pin_subpackage('libpsl', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - ninja\n    - pkg-config\n    - meson\n  host:\n    - icu\n\ntest:\n  commands:\n    - test -f ${PREFIX}/include/libpsl.h                       # [unix]\n    - test -f ${PREFIX}/lib/pkgconfig/libpsl.pc                # [unix]\n    - test -f ${PREFIX}/lib/libpsl.dylib                       # [osx]\n    - test -f ${PREFIX}/lib/libpsl.so                          # [linux]\n    - if not exist %LIBRARY_LIB%\\\\pkgconfig\\\\libpsl.pc exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\psl.lib exit 1               # [win]\n    - if not exist %LIBRARY_INC%\\\\libpsl.h exit 1              # [win]\n    - if not exist %LIBRARY_BIN%\\\\psl-5.dll exit 1             # [win]\n\nabout:\n  home: https://github.com/rockdaboot/libpsl\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: A C library to handle the Public Suffix List\n\nextra:\n  recipe-maintainers:\n    - tschoonj\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "icu",
    "meson",
@@ -500,6 +512,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -510,6 +523,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "icu"
    ]
@@ -518,6 +532,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -532,6 +547,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
@@ -567,7 +583,7 @@
    "summary": "A C library to handle the Public Suffix List"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "libpsl"
    ]
@@ -584,6 +600,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "ninja",
     "pkg-config",
@@ -615,6 +632,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "meson",
     "ninja",
