@@ -28,7 +28,7 @@
    "summary": "A variety of ordination and community analyses useful in analysis of data sets in community ecology.   Includes many of the common ordination methods, with  graphical routines to facilitate their interpretation,  as well as several novel analyses."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -47,6 +47,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -83,6 +84,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -121,8 +123,7 @@
    "summary": "A variety of ordination and community analyses useful in analysis of data sets in community ecology.   Includes many of the common ordination methods, with  graphical routines to facilitate their interpretation,  as well as several novel analyses."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -141,9 +142,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -162,8 +165,7 @@
     "r-mass",
     "r-rtsne",
     "r-cluster",
-    "r-mgcv",
-    "gcc-libs"
+    "r-mgcv"
    ]
   },
   "source": {
@@ -190,7 +192,7 @@
    "summary": "A variety of ordination and community analyses useful in analysis of data sets in community ecology.   Includes many of the common ordination methods, with  graphical routines to facilitate their interpretation,  as well as several novel analyses."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -209,6 +211,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -245,6 +248,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -289,16 +293,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-labdsv.json"
  },
- "raw_meta_yaml": "{% set version = \"2.1-0\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-labdsv\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/labdsv_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/labdsv/labdsv_{{ version }}.tar.gz\n  sha256: 99da92515e9aa49ea7f3df7e301ef714c57054a3838139cd3fd798531d625cd1\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-mass\n    - r-rtsne\n    - r-cluster\n    - r-mgcv\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-mass\n    - r-rtsne\n    - r-cluster\n    - r-mgcv\n\ntest:\n  commands:\n    - $R -e \"library('labdsv')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('labdsv')\\\"\"  # [win]\n\nabout:\n  home: http://ecology.msu.montana.edu/labdsv/R\n  license: GPL-2.0-or-later\n  summary: A variety of ordination and community analyses useful in analysis of data sets in community ecology.   Includes many of the common ordination methods, with  graphical routines to facilitate their interpretation,  as well as several novel analyses.\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - nsoranzo\n\n# Package: labdsv\n# Version: 2.0-1\n# Title: Ordination and Multivariate Analysis for Ecology\n# Author: David W. Roberts <droberts@montana.edu>\n# Maintainer: David W. Roberts <droberts@montana.edu>\n# Depends: R (>= 2.10), mgcv\n# Imports: cluster, Rtsne, MASS\n# Suggests: optpart\n# Enhances: vegan\n# Description: A variety of ordination and community analyses useful in analysis of data sets in community ecology.   Includes many of the common ordination methods, with  graphical routines to facilitate their interpretation,  as well as several novel analyses.\n# License: GPL (>= 2)\n# URL: http://ecology.msu.montana.edu/labdsv/R\n# Packaged: 2019-08-04 10:08:57 UTC; dvrbts\n# NeedsCompilation: yes\n# Repository: CRAN\n# Date/Publication: 2019-08-04 12:00:02 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.1-0\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-labdsv\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/labdsv_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/labdsv/labdsv_{{ version }}.tar.gz\n  sha256: 99da92515e9aa49ea7f3df7e301ef714c57054a3838139cd3fd798531d625cd1\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-mass\n    - r-rtsne\n    - r-cluster\n    - r-mgcv\n  run:\n    - r-base\n    - r-mass\n    - r-rtsne\n    - r-cluster\n    - r-mgcv\n\ntest:\n  commands:\n    - $R -e \"library('labdsv')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('labdsv')\\\"\"  # [win]\n\nabout:\n  home: http://ecology.msu.montana.edu/labdsv/R\n  license: GPL-2.0-or-later\n  summary: A variety of ordination and community analyses useful in analysis of data sets in community ecology.   Includes many of the common ordination methods, with  graphical routines to facilitate their interpretation,  as well as several novel analyses.\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - nsoranzo\n\n# Package: labdsv\n# Version: 2.0-1\n# Title: Ordination and Multivariate Analysis for Ecology\n# Author: David W. Roberts <droberts@montana.edu>\n# Maintainer: David W. Roberts <droberts@montana.edu>\n# Depends: R (>= 2.10), mgcv\n# Imports: cluster, Rtsne, MASS\n# Suggests: optpart\n# Enhances: vegan\n# Description: A variety of ordination and community analyses useful in analysis of data sets in community ecology.   Includes many of the common ordination methods, with  graphical routines to facilitate their interpretation,  as well as several novel analyses.\n# License: GPL (>= 2)\n# URL: http://ecology.msu.montana.edu/labdsv/R\n# Packaged: 2019-08-04 10:08:57 UTC; dvrbts\n# NeedsCompilation: yes\n# Repository: CRAN\n# Date/Publication: 2019-08-04 12:00:02 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "r-base",
@@ -315,10 +320,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -329,6 +336,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "r-base",
     "r-cluster",
@@ -341,8 +349,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-cluster",
     "r-mass",
@@ -361,10 +369,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -384,7 +394,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-cluster",
     "r-mass",
@@ -418,8 +427,7 @@
    "summary": "A variety of ordination and community analyses useful in analysis of data sets in community ecology.   Includes many of the common ordination methods, with  graphical routines to facilitate their interpretation,  as well as several novel analyses."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -438,6 +446,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "make",
@@ -454,7 +463,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-mass",
     "r-rtsne",
     "r-cluster",
@@ -481,6 +489,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -500,7 +509,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-cluster",
     "r-mass",
