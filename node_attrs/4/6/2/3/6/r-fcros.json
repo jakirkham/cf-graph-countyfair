@@ -30,7 +30,7 @@
    "summary": "A fold change rank based method is presented to search for genes with changing expression and to detect recurrent chromosomal copy number aberrations. This  method may be useful for high-throughput biological data (micro-array, sequencing, ...). Probabilities are associated with genes or probes in the data set and there is no problem of multiple tests when using this method. For array-based comparative genomic hybridization data, segmentation results are obtained by merging the significant probes detected."
   },
   "build": {
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -49,6 +49,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -76,6 +77,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -107,8 +109,7 @@
    "summary": "A fold change rank based method is presented to search for genes with changing expression and to detect recurrent chromosomal copy number aberrations. This  method may be useful for high-throughput biological data (micro-array, sequencing, ...). Probabilities are associated with genes or probes in the data set and there is no problem of multiple tests when using this method. For array-based comparative genomic hybridization data, segmentation results are obtained by merging the significant probes detected."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -127,8 +128,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -138,8 +141,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -168,7 +170,7 @@
    "summary": "A fold change rank based method is presented to search for genes with changing expression and to detect recurrent chromosomal copy number aberrations. This  method may be useful for high-throughput biological data (micro-array, sequencing, ...). Probabilities are associated with genes or probes in the data set and there is no problem of multiple tests when using this method. For array-based comparative genomic hybridization data, segmentation results are obtained by merging the significant probes detected."
   },
   "build": {
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -187,6 +189,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -214,6 +217,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -249,15 +253,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-fcros.json"
  },
- "raw_meta_yaml": "{% set version = '1.6.1' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-fcros\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/fcros_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/fcros/fcros_{{ version }}.tar.gz\n  sha256: 7da0a63543f00d3be080ef6ade8fc466a0612c46a7b6ddaafe8ca2a13135d913\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 4\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('fcros')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('fcros')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=fcros\n  license: GPL-2.0-or-later\n  summary: A fold change rank based method is presented to search for genes with changing expression\n    and to detect recurrent chromosomal copy number aberrations. This  method may be\n    useful for high-throughput biological data (micro-array, sequencing, ...). Probabilities\n    are associated with genes or probes in the data set and there is no problem of multiple\n    tests when using this method. For array-based comparative genomic hybridization\n    data, segmentation results are obtained by merging the significant probes detected.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - bensellak\n\n# Package: fcros\n# Version: 1.6.1\n# Date: 2019-05-28\n# Title: A Method to Search for Differentially Expressed Genes and to Detect Recurrent Chromosomal Copy Number Aberrations\n# Author: Doulaye Dembele\n# Maintainer: Doulaye Dembele <doulaye@igbmc.fr>\n# Depends: R (>= 3.1.0)\n# Description: A fold change rank based method is presented to search for genes with changing expression and to detect recurrent chromosomal copy number aberrations. This  method may be useful for high-throughput biological data (micro-array, sequencing, ...). Probabilities are associated with genes or probes in the data set and there is no problem of multiple tests when using this method. For array-based comparative genomic hybridization data, segmentation results are obtained by merging the significant probes detected.\n# License: GPL (>= 2)\n# NeedsCompilation: yes\n# Packaged: 2019-05-31 12:25:38 UTC; doulaye\n# Repository: CRAN\n# Date/Publication: 2019-05-31 12:40:07 UTC\n",
+ "raw_meta_yaml": "{% set version = '1.6.1' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-fcros\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/fcros_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/fcros/fcros_{{ version }}.tar.gz\n  sha256: 7da0a63543f00d3be080ef6ade8fc466a0612c46a7b6ddaafe8ca2a13135d913\n\nbuild:\n  number: 5\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('fcros')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('fcros')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=fcros\n  license: GPL-2.0-or-later\n  summary: A fold change rank based method is presented to search for genes with changing expression\n    and to detect recurrent chromosomal copy number aberrations. This  method may be\n    useful for high-throughput biological data (micro-array, sequencing, ...). Probabilities\n    are associated with genes or probes in the data set and there is no problem of multiple\n    tests when using this method. For array-based comparative genomic hybridization\n    data, segmentation results are obtained by merging the significant probes detected.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - bensellak\n\n# Package: fcros\n# Version: 1.6.1\n# Date: 2019-05-28\n# Title: A Method to Search for Differentially Expressed Genes and to Detect Recurrent Chromosomal Copy Number Aberrations\n# Author: Doulaye Dembele\n# Maintainer: Doulaye Dembele <doulaye@igbmc.fr>\n# Depends: R (>= 3.1.0)\n# Description: A fold change rank based method is presented to search for genes with changing expression and to detect recurrent chromosomal copy number aberrations. This  method may be useful for high-throughput biological data (micro-array, sequencing, ...). Probabilities are associated with genes or probes in the data set and there is no problem of multiple tests when using this method. For array-based comparative genomic hybridization data, segmentation results are obtained by merging the significant probes detected.\n# License: GPL (>= 2)\n# NeedsCompilation: yes\n# Packaged: 2019-05-31 12:25:38 UTC; doulaye\n# Repository: CRAN\n# Date/Publication: 2019-05-31 12:40:07 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "sed",
@@ -269,9 +274,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -281,6 +288,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -288,7 +296,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -303,9 +311,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -320,7 +330,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -352,8 +361,7 @@
    "summary": "A fold change rank based method is presented to search for genes with changing expression and to detect recurrent chromosomal copy number aberrations. This  method may be useful for high-throughput biological data (micro-array, sequencing, ...). Probabilities are associated with genes or probes in the data set and there is no problem of multiple tests when using this method. For array-based comparative genomic hybridization data, segmentation results are obtained by merging the significant probes detected."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "4",
+   "number": "5",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -372,6 +380,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -382,8 +391,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -406,6 +414,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -420,7 +429,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
