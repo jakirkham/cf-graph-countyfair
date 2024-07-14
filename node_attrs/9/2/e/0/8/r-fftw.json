@@ -27,7 +27,7 @@
    "summary": "Provides a simple and efficient wrapper around the fastest Fourier transform in the west (FFTW) library <http://www.fftw.org/>."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -45,6 +45,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "pkg-config",
@@ -79,6 +80,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "pkg-config"
    ]
@@ -113,8 +115,7 @@
    "summary": "Provides a simple and efficient wrapper around the fastest Fourier transform in the west (FFTW) library <http://www.fftw.org/>."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -132,11 +133,13 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "pkg-config",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "grep",
@@ -150,8 +153,7 @@
    ],
    "run": [
     "r-base",
-    "fftw >=3",
-    "gcc-libs"
+    "fftw >=3"
    ]
   },
   "source": {
@@ -180,7 +182,7 @@
    "summary": "Provides a simple and efficient wrapper around the fastest Fourier transform in the west (FFTW) library <http://www.fftw.org/>."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -198,6 +200,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "pkg-config",
@@ -232,6 +235,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "pkg-config"
    ]
@@ -270,7 +274,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-fftw.json"
  },
- "raw_meta_yaml": "{% set version = \"1.0-8\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-fftw\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/fftw_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/fftw/fftw_{{ version }}.tar.gz\n  sha256: 8c7e011666a0ed76e0554abfa62cf658c055bd6efebe94d16b4462d123d08620\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - fftw >=3\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - fftw >=3\n\ntest:\n  commands:\n    - $R -e \"library('fftw')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('fftw')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=fftw\n  license: GPL-2.0-only\n  summary: Provides a simple and efficient wrapper around the fastest Fourier transform in the west (FFTW) library <http://www.fftw.org/>.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: fftw\n# Version: 1.0-6\n# Title: Fast FFT and DCT Based on the FFTW Library\n# Description: Provides a simple and efficient wrapper around the fastest Fourier transform in the west (FFTW) library <http://www.fftw.org/>.\n# Authors@R: c( person(\"Olaf\", \"Mersmann\", email=\"olafm@p-value.net\", role=c(\"aut\")), person(\"Sebastian\", \"Krey\", email=\"skrey@statistik.tu-dortmund.de\", role=c(\"ctb\")), person(\"Uwe\", \"Ligges\", email=\"ligges@statistik.tu-dortmund.de\", role=c(\"ctb\", \"cre\")) )\n# Depends: R (>= 3.0.0)\n# SystemRequirements: fftw3 (>= 3.1.2)\n# License: GPL-2\n# RoxygenNote: 6.0.1\n# NeedsCompilation: yes\n# Packaged: 2020-02-24 17:00:36 UTC; ligges\n# Author: Olaf Mersmann [aut], Sebastian Krey [ctb], Uwe Ligges [ctb, cre]\n# Maintainer: Uwe Ligges <ligges@statistik.tu-dortmund.de>\n# Repository: CRAN\n# Date/Publication: 2020-02-24 17:30:09 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.0-8\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-fftw\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/fftw_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/fftw/fftw_{{ version }}.tar.gz\n  sha256: 8c7e011666a0ed76e0554abfa62cf658c055bd6efebe94d16b4462d123d08620\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - fftw >=3\n  run:\n    - r-base\n    - fftw >=3\n\ntest:\n  commands:\n    - $R -e \"library('fftw')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('fftw')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=fftw\n  license: GPL-2.0-only\n  summary: Provides a simple and efficient wrapper around the fastest Fourier transform in the west (FFTW) library <http://www.fftw.org/>.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: fftw\n# Version: 1.0-6\n# Title: Fast FFT and DCT Based on the FFTW Library\n# Description: Provides a simple and efficient wrapper around the fastest Fourier transform in the west (FFTW) library <http://www.fftw.org/>.\n# Authors@R: c( person(\"Olaf\", \"Mersmann\", email=\"olafm@p-value.net\", role=c(\"aut\")), person(\"Sebastian\", \"Krey\", email=\"skrey@statistik.tu-dortmund.de\", role=c(\"ctb\")), person(\"Uwe\", \"Ligges\", email=\"ligges@statistik.tu-dortmund.de\", role=c(\"ctb\", \"cre\")) )\n# Depends: R (>= 3.0.0)\n# SystemRequirements: fftw3 (>= 3.1.2)\n# License: GPL-2\n# RoxygenNote: 6.0.1\n# NeedsCompilation: yes\n# Packaged: 2020-02-24 17:00:36 UTC; ligges\n# Author: Olaf Mersmann [aut], Sebastian Krey [ctb], Uwe Ligges [ctb, cre]\n# Maintainer: Uwe Ligges <ligges@statistik.tu-dortmund.de>\n# Repository: CRAN\n# Date/Publication: 2020-02-24 17:30:09 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -278,12 +282,13 @@
    "automake",
    "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "fftw",
    "filesystem",
-   "gcc-libs",
    "grep",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "pkg-config",
    "r-base",
@@ -299,10 +304,12 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "pkg-config",
     "sed",
@@ -313,6 +320,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fftw",
     "r-base"
    ]
@@ -321,8 +329,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fftw",
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -340,10 +348,12 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "pkg-config",
     "sed",
@@ -361,7 +371,6 @@
    "__set__": true,
    "elements": [
     "fftw >=3",
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -393,8 +402,7 @@
    "summary": "Provides a simple and efficient wrapper around the fastest Fourier transform in the west (FFTW) library <http://www.fftw.org/>."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -412,6 +420,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "grep",
@@ -428,7 +437,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "fftw >=3"
    ]
   },
@@ -455,6 +463,7 @@
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "pkg-config",
     "sed",
@@ -472,7 +481,6 @@
    "__set__": true,
    "elements": [
     "fftw",
-    "gcc-libs",
     "r-base"
    ]
   },
