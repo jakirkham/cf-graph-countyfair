@@ -31,7 +31,7 @@
    "summary": "high-quality data compressor"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "bzip2"
    ]
@@ -51,6 +51,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "make"
    ]
@@ -87,6 +88,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -114,7 +116,7 @@
    "summary": "high-quality data compressor"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "bzip2"
    ]
@@ -134,6 +136,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "make"
    ]
@@ -170,6 +173,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -197,7 +201,7 @@
    "summary": "high-quality data compressor"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "bzip2"
    ]
@@ -217,6 +221,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "make"
    ]
@@ -253,6 +258,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -280,7 +286,7 @@
    "summary": "high-quality data compressor"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "bzip2"
    ]
@@ -300,6 +306,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "make",
     "jom"
@@ -352,7 +359,7 @@
    "summary": "high-quality data compressor"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "bzip2"
    ]
@@ -372,6 +379,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "make"
    ]
@@ -408,6 +416,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -435,7 +444,7 @@
    "summary": "high-quality data compressor"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "bzip2"
    ]
@@ -455,6 +464,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "make"
    ]
@@ -491,6 +501,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -526,11 +537,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/bzip2.json"
  },
- "raw_meta_yaml": "{% set version = \"1.0.8\" %}\n\npackage:\n  name: bzip2\n  version: {{ version }}\n\nsource:\n  url: https://sourceware.org/pub/bzip2/bzip2-{{ version }}.tar.gz\n  sha256: ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269\n  patches:\n    - 0001-cross.patch\n\nbuild:\n  number: 5\n  run_exports:\n    - {{ pin_subpackage('bzip2') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - jom   # [win]\n    - make  # [unix]\n\ntest:\n  commands:\n    - bzip2 --help  # [unix]\n    {% set bzip2_executables = [\n      \"bunzip2\",\n      \"bzcat\",\n      \"bzcmp\",\n      \"bzdiff\",\n      \"bzegrep\",\n      \"bzfgrep\",\n      \"bzgrep\",\n      \"bzip2recover\",\n      \"bzip2\",\n      \"bzless\",\n      \"bzmore\"\n    ] %}\n    {% for executable in bzip2_executables %}\n    - test -f ${PREFIX}/bin/{{ executable }}  # [unix]\n    {% endfor %}\n    - test -f ${PREFIX}/include/bzlib.h  # [unix]\n    - test -f ${PREFIX}/lib/libbz2.a  # [unix]\n    - test -f ${PREFIX}/lib/libbz2.so  # [linux]\n    - test -f ${PREFIX}/lib/libbz2.dylib  # [osx]\n    - if not exist %LIBRARY_INC%\\\\bzlib.h exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\bzip2.lib exit 1  # [win]\n    - if not exist %LIBRARY_BIN%\\\\bzip2.dll exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\libbz2.lib exit 1  # [win]\n    - if not exist %LIBRARY_BIN%\\\\libbz2.dll exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\bzip2_static.lib exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\libbz2_static.lib exit 1  # [win]\n\nabout:\n  home: http://www.bzip.org/\n  license_family: BSD\n  license_file: LICENSE\n  license: bzip2-1.0.6\n  summary: high-quality data compressor\n  description: |\n    Bzip2 is a freely available high-quality data compressor. It typically\n    compresses files to within 10% to 15% of the best available techniques,\n    whilst being around twice as fast at compression and six times faster\n    at decompression.\n  doc_url: http://www.bzip.org/docs.html\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - pelson\n    - jlanga\n    - msarahan\n    - isuruf\n",
+ "raw_meta_yaml": "{% set version = \"1.0.8\" %}\n\npackage:\n  name: bzip2\n  version: {{ version }}\n\nsource:\n  url: https://sourceware.org/pub/bzip2/bzip2-{{ version }}.tar.gz\n  sha256: ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269\n  patches:\n    - 0001-cross.patch\n\nbuild:\n  number: 6\n  run_exports:\n    - {{ pin_subpackage('bzip2') }}\n\nrequirements:\n  build:\n    - {{ stdlib('c') }}\n    - {{ compiler('c') }}\n    - jom   # [win]\n    - make  # [unix]\n\ntest:\n  commands:\n    - bzip2 --help  # [unix]\n    {% set bzip2_executables = [\n      \"bunzip2\",\n      \"bzcat\",\n      \"bzcmp\",\n      \"bzdiff\",\n      \"bzegrep\",\n      \"bzfgrep\",\n      \"bzgrep\",\n      \"bzip2recover\",\n      \"bzip2\",\n      \"bzless\",\n      \"bzmore\"\n    ] %}\n    {% for executable in bzip2_executables %}\n    - test -f ${PREFIX}/bin/{{ executable }}  # [unix]\n    {% endfor %}\n    - test -f ${PREFIX}/include/bzlib.h  # [unix]\n    - test -f ${PREFIX}/lib/libbz2.a  # [unix]\n    - test -f ${PREFIX}/lib/libbz2.so  # [linux]\n    - test -f ${PREFIX}/lib/libbz2.dylib  # [osx]\n    - if not exist %LIBRARY_INC%\\\\bzlib.h exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\bzip2.lib exit 1  # [win]\n    - if not exist %LIBRARY_BIN%\\\\bzip2.dll exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\libbz2.lib exit 1  # [win]\n    - if not exist %LIBRARY_BIN%\\\\libbz2.dll exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\bzip2_static.lib exit 1  # [win]\n    - if not exist %LIBRARY_LIB%\\\\libbz2_static.lib exit 1  # [win]\n\nabout:\n  home: http://www.bzip.org/\n  license_family: BSD\n  license_file: LICENSE\n  license: bzip2-1.0.6\n  summary: high-quality data compressor\n  description: |\n    Bzip2 is a freely available high-quality data compressor. It typically\n    compresses files to within 10% to 15% of the best available techniques,\n    whilst being around twice as fast at compression and six times faster\n    at decompression.\n  doc_url: http://www.bzip.org/docs.html\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - pelson\n    - jlanga\n    - msarahan\n    - isuruf\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "jom",
    "make"
   ]
@@ -540,6 +552,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "jom",
     "make"
    ]
@@ -547,13 +560,15 @@
   "host": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "test": {
@@ -567,6 +582,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "jom",
     "make"
    ]
@@ -600,7 +616,7 @@
    "summary": "high-quality data compressor"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "bzip2"
    ]
@@ -620,6 +636,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "jom"
    ]
@@ -648,6 +665,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "jom"
    ]
   },
@@ -675,7 +693,7 @@
    "summary": "high-quality data compressor"
   },
   "build": {
-   "number": "5",
+   "number": "6",
    "run_exports": [
     "bzip2"
    ]
@@ -695,6 +713,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "jom"
    ]
@@ -723,6 +742,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "jom"
    ]
   },
