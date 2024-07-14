@@ -26,7 +26,7 @@
    "summary": "Mozilla's JavaScript engine written in C/C++"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "spidermonkey"
    ],
@@ -59,6 +59,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cxx_compiler_stub",
       "make",
       "python >=3.7"
@@ -87,6 +88,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses",
@@ -116,6 +118,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "m4",
@@ -156,7 +159,7 @@
    "summary": "Mozilla's JavaScript engine written in C/C++"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "spidermonkey"
    ],
@@ -189,6 +192,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cxx_compiler_stub",
       "make",
       "python >=3.7"
@@ -227,6 +231,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cxx_compiler_stub",
       "make",
       "python >=3.7"
@@ -255,6 +260,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses",
@@ -293,7 +299,7 @@
    "summary": "Mozilla's JavaScript engine written in C/C++"
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "run_exports": [
     "spidermonkey"
    ],
@@ -326,6 +332,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cxx_compiler_stub",
       "make",
       "python >=3.7"
@@ -354,6 +361,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses",
@@ -383,6 +391,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "m4",
@@ -425,11 +434,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/spidermonkey.json"
  },
- "raw_meta_yaml": "{% set name = \"spidermonkey\" %}\n{% set version = \"91.13.0\" %}\n{% set majorversion = version.split('.')[0] %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://releases.mozilla.org/pub/firefox/releases/{{ version }}esr/source/firefox-{{ version }}esr.source.tar.xz\n  sha256: 53be2bcde0b5ee3ec106bd8ba06b8ae95e7d489c484e881dfbe5360e4c920762\n  patches:\n    - 0000-fix-config.patch\n    - 0001-va-args.patch\n\nbuild:\n  skip: true  # [win]\n  number: 2\n  run_exports:\n    - {{ pin_subpackage('spidermonkey', max_pin='x') }}\n  script_env:\n    - MAJORVERSION={{ majorversion }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('rust') }}\n    - cargo-bundle-licenses\n    - pkg-config\n    - m4\n    - make\n    - python >=3.7,<3.11\n    - perl >=5\n    - pip\n  host:\n    - icu\n    - zlib\n\noutputs:\n  - name: spidermonkey\n    script: install_lib.sh\n    test:\n      commands:\n        - test ! -f $PREFIX/bin/js{{ majorversion }}\n        - test ! -f $PREFIX/bin/js{{ majorversion }}-config\n        - test -f $PREFIX/lib/libmozjs-{{ majorversion }}${SHLIB_EXT}  # [unix]\n        - test -f $PREFIX/include/mozjs-{{ majorversion }}/js-config.h  # [unix]\n        - test -f $PREFIX/include/mozjs-{{ majorversion }}/jsapi.h  # [unix]\n  - name: spidermonkey-bin\n    script: install_bin.sh\n    requirements:\n      build:\n        - {{ compiler('c') }}\n        - {{ compiler('cxx') }}\n        - make\n        - python >=3.7\n      host:\n        - icu\n        - zlib\n    test:\n      commands:\n        - js{{ majorversion }} -e \"console.log('hello')\"\n        - js{{ majorversion }}-config --version\n        - test ! -f $PREFIX/lib/libmozjs-{{ majorversion }}${SHLIB_EXT}  # [unix]\n        - test ! -f $PREFIX/include/mozjs-{{ majorversion }}/js-config.h  # [unix]\n        - test ! -f $PREFIX/include/mozjs-{{ majorversion }}/jsapi.h  # [unix]\n\nabout:\n  home: https://spidermonkey.dev/\n  summary: Mozilla's JavaScript engine written in C/C++\n  license: MPL-2.0\n  license_family: MOZILLA\n  license_file:\n    - THIRDPARTY.yml\n    - LICENSE\n    - toolkit/content/license.html\n\nextra:\n  recipe-maintainers:\n    - pepijndevos\n    - zklaus\n",
+ "raw_meta_yaml": "{% set name = \"spidermonkey\" %}\n{% set version = \"91.13.0\" %}\n{% set majorversion = version.split('.')[0] %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://releases.mozilla.org/pub/firefox/releases/{{ version }}esr/source/firefox-{{ version }}esr.source.tar.xz\n  sha256: 53be2bcde0b5ee3ec106bd8ba06b8ae95e7d489c484e881dfbe5360e4c920762\n  patches:\n    - 0000-fix-config.patch\n    - 0001-va-args.patch\n\nbuild:\n  skip: true  # [win]\n  number: 3\n  run_exports:\n    - {{ pin_subpackage('spidermonkey', max_pin='x') }}\n  script_env:\n    - MAJORVERSION={{ majorversion }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('rust') }}\n    - cargo-bundle-licenses\n    - pkg-config\n    - m4\n    - make\n    - python >=3.7,<3.11\n    - perl >=5\n    - pip\n  host:\n    - icu\n    - zlib\n\noutputs:\n  - name: spidermonkey\n    script: install_lib.sh\n    test:\n      commands:\n        - test ! -f $PREFIX/bin/js{{ majorversion }}\n        - test ! -f $PREFIX/bin/js{{ majorversion }}-config\n        - test -f $PREFIX/lib/libmozjs-{{ majorversion }}${SHLIB_EXT}  # [unix]\n        - test -f $PREFIX/include/mozjs-{{ majorversion }}/js-config.h  # [unix]\n        - test -f $PREFIX/include/mozjs-{{ majorversion }}/jsapi.h  # [unix]\n  - name: spidermonkey-bin\n    script: install_bin.sh\n    requirements:\n      build:\n        - {{ compiler('c') }}\n        - {{ stdlib(\"c\") }}\n        - {{ compiler('cxx') }}\n        - make\n        - python >=3.7\n      host:\n        - icu\n        - zlib\n    test:\n      commands:\n        - js{{ majorversion }} -e \"console.log('hello')\"\n        - js{{ majorversion }}-config --version\n        - test ! -f $PREFIX/lib/libmozjs-{{ majorversion }}${SHLIB_EXT}  # [unix]\n        - test ! -f $PREFIX/include/mozjs-{{ majorversion }}/js-config.h  # [unix]\n        - test ! -f $PREFIX/include/mozjs-{{ majorversion }}/jsapi.h  # [unix]\n\nabout:\n  home: https://spidermonkey.dev/\n  summary: Mozilla's JavaScript engine written in C/C++\n  license: MPL-2.0\n  license_family: MOZILLA\n  license_file:\n    - THIRDPARTY.yml\n    - LICENSE\n    - toolkit/content/license.html\n\nextra:\n  recipe-maintainers:\n    - pepijndevos\n    - zklaus\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cargo-bundle-licenses",
    "cxx_compiler_stub",
    "icu",
@@ -448,6 +458,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "m4",
@@ -463,6 +474,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "icu",
     "zlib"
@@ -472,6 +484,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -486,6 +499,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "cxx_compiler_stub",
     "m4",
