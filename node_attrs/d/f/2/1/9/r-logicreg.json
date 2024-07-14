@@ -32,7 +32,7 @@
    "summary": "Routines for fitting Logic Regression models. Logic Regression is described in Ruczinski, Kooperberg, and LeBlanc (2003) <DOI:10.1198/1061860032238>. Monte Carlo Logic Regression is described in and Kooperberg and Ruczinski (2005) <DOI:10.1002/gepi.20042>."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -80,6 +81,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -114,7 +116,7 @@
    "summary": "Routines for fitting Logic Regression models. Logic Regression is described in Ruczinski, Kooperberg, and LeBlanc (2003) <DOI:10.1198/1061860032238>. Monte Carlo Logic Regression is described in and Kooperberg and Ruczinski (2005) <DOI:10.1002/gepi.20042>."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -132,6 +134,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -162,6 +165,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -196,7 +200,7 @@
    "summary": "Routines for fitting Logic Regression models. Logic Regression is described in Ruczinski, Kooperberg, and LeBlanc (2003) <DOI:10.1198/1061860032238>. Monte Carlo Logic Regression is described in and Kooperberg and Ruczinski (2005) <DOI:10.1002/gepi.20042>."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -214,6 +218,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -244,6 +249,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -278,8 +284,7 @@
    "summary": "Routines for fitting Logic Regression models. Logic Regression is described in Ruczinski, Kooperberg, and LeBlanc (2003) <DOI:10.1198/1061860032238>. Monte Carlo Logic Regression is described in and Kooperberg and Ruczinski (2005) <DOI:10.1002/gepi.20042>."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -297,9 +302,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -312,8 +319,7 @@
    ],
    "run": [
     "r-base",
-    "r-survival",
-    "gcc-libs"
+    "r-survival"
    ]
   },
   "source": {
@@ -342,7 +348,7 @@
    "summary": "Routines for fitting Logic Regression models. Logic Regression is described in Ruczinski, Kooperberg, and LeBlanc (2003) <DOI:10.1198/1061860032238>. Monte Carlo Logic Regression is described in and Kooperberg and Ruczinski (2005) <DOI:10.1002/gepi.20042>."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -360,6 +366,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -390,6 +397,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -430,16 +438,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-logicreg.json"
  },
- "raw_meta_yaml": "{% set version = \"1.6.6\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-logicreg\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/LogicReg_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/LogicReg/LogicReg_{{ version }}.tar.gz\n  sha256: 94d6aef83e8d1e5f010f29d3f2d1832cb758c152f4715923025d9327f8d7bfa3\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-survival\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-survival\n\ntest:\n  commands:\n    - $R -e \"library('LogicReg')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('LogicReg')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=LogicReg\n  license: GPL-2.0-or-later\n  summary: Routines for fitting Logic Regression models. Logic Regression is described in Ruczinski, Kooperberg, and LeBlanc (2003) <DOI:10.1198/1061860032238>. Monte Carlo Logic Regression is described in and Kooperberg and Ruczinski (2005) <DOI:10.1002/gepi.20042>.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: LogicReg\n# Version: 1.5.12\n# Date: 2019-06-17\n# Title: Logic Regression\n# Author: Charles Kooperberg <clk@fredhutch.org> and Ingo Ruczinski <ingo@jhu.edu>\n# Maintainer: Charles Kooperberg <clk@fredhutch.org>\n# Depends: R (>= 2.10), survival\n# Imports: stats, graphics, utils, grDevices\n# Description: Routines for fitting Logic Regression models. Logic Regression is described in Ruczinski, Kooperberg, and LeBlanc (2003) <DOI:10.1198/1061860032238>. Monte Carlo Logic Regression is described in and Kooperberg and Ruczinski (2005) <DOI:10.1002/gepi.20042>.\n# License: GPL (>= 2)\n# NeedsCompilation: yes\n# Packaged: 2019-06-17 23:30:55 UTC; clk\n# Repository: CRAN\n# Date/Publication: 2019-06-18 21:52:03 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.6.6\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-logicreg\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/LogicReg_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/LogicReg/LogicReg_{{ version }}.tar.gz\n  sha256: 94d6aef83e8d1e5f010f29d3f2d1832cb758c152f4715923025d9327f8d7bfa3\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-survival\n  run:\n    - r-base\n    - r-survival\n\ntest:\n  commands:\n    - $R -e \"library('LogicReg')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('LogicReg')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=LogicReg\n  license: GPL-2.0-or-later\n  summary: Routines for fitting Logic Regression models. Logic Regression is described in Ruczinski, Kooperberg, and LeBlanc (2003) <DOI:10.1198/1061860032238>. Monte Carlo Logic Regression is described in and Kooperberg and Ruczinski (2005) <DOI:10.1002/gepi.20042>.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: LogicReg\n# Version: 1.5.12\n# Date: 2019-06-17\n# Title: Logic Regression\n# Author: Charles Kooperberg <clk@fredhutch.org> and Ingo Ruczinski <ingo@jhu.edu>\n# Maintainer: Charles Kooperberg <clk@fredhutch.org>\n# Depends: R (>= 2.10), survival\n# Imports: stats, graphics, utils, grDevices\n# Description: Routines for fitting Logic Regression models. Logic Regression is described in Ruczinski, Kooperberg, and LeBlanc (2003) <DOI:10.1198/1061860032238>. Monte Carlo Logic Regression is described in and Kooperberg and Ruczinski (2005) <DOI:10.1002/gepi.20042>.\n# License: GPL (>= 2)\n# NeedsCompilation: yes\n# Packaged: 2019-06-17 23:30:55 UTC; clk\n# Repository: CRAN\n# Date/Publication: 2019-06-18 21:52:03 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "r-base",
@@ -453,10 +462,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -467,6 +478,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "r-base",
     "r-survival"
@@ -476,8 +488,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-survival"
    ]
@@ -493,10 +505,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -513,7 +527,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-survival"
    ]
@@ -550,8 +563,7 @@
    "summary": "Routines for fitting Logic Regression models. Logic Regression is described in Ruczinski, Kooperberg, and LeBlanc (2003) <DOI:10.1198/1061860032238>. Monte Carlo Logic Regression is described in and Kooperberg and Ruczinski (2005) <DOI:10.1002/gepi.20042>."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -569,6 +581,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "make",
@@ -582,7 +595,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-survival"
    ]
   },
@@ -606,6 +618,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -622,7 +635,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-survival"
    ]
