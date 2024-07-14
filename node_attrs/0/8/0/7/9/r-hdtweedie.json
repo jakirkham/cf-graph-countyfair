@@ -30,7 +30,7 @@
    "summary": "This package implements a iteratively reweighed least square (IRLS) strategy that incorporates a blockwise majorization decent (BMD) method, for efficiently computing the solution paths of the (grouped) lasso and the (grouped) elastic net for the Tweedie model."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -49,6 +49,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -77,6 +78,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -109,8 +111,7 @@
    "summary": "This package implements a iteratively reweighed least square (IRLS) strategy that incorporates a blockwise majorization decent (BMD) method, for efficiently computing the solution paths of the (grouped) lasso and the (grouped) elastic net for the Tweedie model."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -129,9 +130,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -142,8 +145,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -172,7 +174,7 @@
    "summary": "This package implements a iteratively reweighed least square (IRLS) strategy that incorporates a blockwise majorization decent (BMD) method, for efficiently computing the solution paths of the (grouped) lasso and the (grouped) elastic net for the Tweedie model."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -191,6 +193,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -219,6 +222,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -255,16 +259,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-hdtweedie.json"
  },
- "raw_meta_yaml": "{% set version = \"1.2\" %} \n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-hdtweedie\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/HDtweedie_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/HDtweedie/HDtweedie_{{ version }}.tar.gz\n  sha256: f381a4421bc527de4786270843de57f6f82f96d8b029776d8836203b9d791d55\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('HDtweedie')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('HDtweedie')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=HDtweedie\n  license: GPL-2.0-only\n  summary: This package implements a iteratively reweighed least square (IRLS) strategy that incorporates a blockwise majorization decent (BMD) method, for efficiently computing the solution paths of the (grouped) lasso and the (grouped) elastic net for the Tweedie model.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - xhochy\n\n# Package: HDtweedie\n# Title: The Lasso for the Tweedie's Compound Poisson Model Using an IRLS-BMD Algorithm\n# Version: 1.1\n# Date: 2013-9-25\n# Author: Wei Qian <weiqian@stat.umn.edu>, Yi Yang <yiyang@umn.edu>, Hui Zou <hzou@stat.umn.edu>\n# Maintainer: Wei Qian <weiqian@stat.umn.edu>\n# Description: This package implements a iteratively reweighed least square (IRLS) strategy that incorporates a blockwise majorization decent (BMD) method, for efficiently computing the solution paths of the (grouped) lasso and the (grouped) elastic net for the Tweedie model.\n# License: GPL-2\n# Packaged: 2013-10-22 00:55:04 UTC; weiqian\n# NeedsCompilation: yes\n# Repository: CRAN\n# Date/Publication: 2013-10-22 08:15:32\n",
+ "raw_meta_yaml": "{% set version = \"1.2\" %} \n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-hdtweedie\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/HDtweedie_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/HDtweedie/HDtweedie_{{ version }}.tar.gz\n  sha256: f381a4421bc527de4786270843de57f6f82f96d8b029776d8836203b9d791d55\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('HDtweedie')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('HDtweedie')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=HDtweedie\n  license: GPL-2.0-only\n  summary: This package implements a iteratively reweighed least square (IRLS) strategy that incorporates a blockwise majorization decent (BMD) method, for efficiently computing the solution paths of the (grouped) lasso and the (grouped) elastic net for the Tweedie model.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - xhochy\n\n# Package: HDtweedie\n# Title: The Lasso for the Tweedie's Compound Poisson Model Using an IRLS-BMD Algorithm\n# Version: 1.1\n# Date: 2013-9-25\n# Author: Wei Qian <weiqian@stat.umn.edu>, Yi Yang <yiyang@umn.edu>, Hui Zou <hzou@stat.umn.edu>\n# Maintainer: Wei Qian <weiqian@stat.umn.edu>\n# Description: This package implements a iteratively reweighed least square (IRLS) strategy that incorporates a blockwise majorization decent (BMD) method, for efficiently computing the solution paths of the (grouped) lasso and the (grouped) elastic net for the Tweedie model.\n# License: GPL-2\n# Packaged: 2013-10-22 00:55:04 UTC; weiqian\n# NeedsCompilation: yes\n# Repository: CRAN\n# Date/Publication: 2013-10-22 08:15:32\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "r-base",
@@ -277,10 +282,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -291,6 +298,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "r-base"
    ]
@@ -299,8 +307,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -315,10 +323,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -334,7 +344,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -366,8 +375,7 @@
    "summary": "This package implements a iteratively reweighed least square (IRLS) strategy that incorporates a blockwise majorization decent (BMD) method, for efficiently computing the solution paths of the (grouped) lasso and the (grouped) elastic net for the Tweedie model."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -386,6 +394,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "make",
@@ -397,8 +406,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -421,6 +429,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -436,7 +445,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
