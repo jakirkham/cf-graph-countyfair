@@ -28,7 +28,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -73,6 +74,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -104,11 +106,10 @@
    "summary": "Collection of building blocks for the design and analysis of evolutionary multiobjective optimization algorithms."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -126,8 +127,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -137,8 +140,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -168,7 +170,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -186,6 +188,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -213,6 +216,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -248,15 +252,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-emoa.json"
  },
- "raw_meta_yaml": "{% set version = \"0.5-2\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-emoa\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/emoa_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/emoa/emoa_{{ version }}.tar.gz\n  sha256: e9ef9bf0058b63b43a4bc7aa2f696ef1b4c3a0dc8aa804bc6347f8f650ebe1a8\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'           # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('emoa')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('emoa')\\\"\"  # [win]\n\nabout:\n  home: https://cran.r-project.org/package=emoa\n  license: GPL-2.0-only\n  summary: Collection of building blocks for the design and analysis of evolutionary multiobjective optimization algorithms.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: emoa\n# Title: Evolutionary Multiobjective Optimization Algorithms\n# Description: Collection of building blocks for the design and analysis of evolutionary multiobjective optimization algorithms.\n# Author: Olaf Mersmann <olafm@statistik.tu-dortmund.de>\n# Maintainer: Olaf Mersmann <olafm@statistik.tu-dortmund.de>\n# License: GPL-2\n# URL: http://www.statistik.tu-dortmund.de/~olafm/software/emoa/\n# LazyData: yes\n# Version: 0.5-0.1\n# Suggests: RUnit\n# Collate: 'cec2009.r' 'control.R' 'crowding_distance.r' 'dominance.r' 'emoa.r' 'front_edge.R' 'hypervolume.r' 'indicators.r' 'logger.R' 'poly_mutation.r' 'sb_crossover.r' 'selection.r' 'sympart.r' 'utilities.r'\n# Date:\n# Packaged: 2020-03-06 17:24:20 UTC; hornik\n# Repository: CRAN\n# Date/Publication: 2020-03-06 17:31:53 UTC\n# NeedsCompilation: yes\n",
+ "raw_meta_yaml": "{% set version = \"0.5-2\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-emoa\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/emoa_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/emoa/emoa_{{ version }}.tar.gz\n  sha256: e9ef9bf0058b63b43a4bc7aa2f696ef1b4c3a0dc8aa804bc6347f8f650ebe1a8\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'           # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('emoa')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('emoa')\\\"\"  # [win]\n\nabout:\n  home: https://cran.r-project.org/package=emoa\n  license: GPL-2.0-only\n  summary: Collection of building blocks for the design and analysis of evolutionary multiobjective optimization algorithms.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: emoa\n# Title: Evolutionary Multiobjective Optimization Algorithms\n# Description: Collection of building blocks for the design and analysis of evolutionary multiobjective optimization algorithms.\n# Author: Olaf Mersmann <olafm@statistik.tu-dortmund.de>\n# Maintainer: Olaf Mersmann <olafm@statistik.tu-dortmund.de>\n# License: GPL-2\n# URL: http://www.statistik.tu-dortmund.de/~olafm/software/emoa/\n# LazyData: yes\n# Version: 0.5-0.1\n# Suggests: RUnit\n# Collate: 'cec2009.r' 'control.R' 'crowding_distance.r' 'dominance.r' 'emoa.r' 'front_edge.R' 'hypervolume.r' 'indicators.r' 'logger.R' 'poly_mutation.r' 'sb_crossover.r' 'selection.r' 'sympart.r' 'utilities.r'\n# Date:\n# Packaged: 2020-03-06 17:24:20 UTC; hornik\n# Repository: CRAN\n# Date/Publication: 2020-03-06 17:31:53 UTC\n# NeedsCompilation: yes\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "sed",
@@ -268,9 +273,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -280,6 +287,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -287,7 +295,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -302,9 +310,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -319,7 +329,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -351,11 +360,10 @@
    "summary": "Collection of building blocks for the design and analysis of evolutionary multiobjective optimization algorithms."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -373,6 +381,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -383,8 +392,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -407,6 +415,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -421,7 +430,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
