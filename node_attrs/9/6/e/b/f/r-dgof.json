@@ -27,7 +27,7 @@
    "summary": "This package contains a proposed revision to the stats::ks.test() function and the associated ks.test.Rd help page.  With one minor exception, it does not change the existing behavior of ks.test(), and it adds features necessary for doing one-sample tests with hypothesized discrete distributions.  The package also contains cvm.test(), for doing one-sample Cramer-von Mises goodness-of-fit tests."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -45,6 +45,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -72,6 +73,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -103,8 +105,7 @@
    "summary": "This package contains a proposed revision to the stats::ks.test() function and the associated ks.test.Rd help page.  With one minor exception, it does not change the existing behavior of ks.test(), and it adds features necessary for doing one-sample tests with hypothesized discrete distributions.  The package also contains cvm.test(), for doing one-sample Cramer-von Mises goodness-of-fit tests."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -122,8 +123,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -133,8 +136,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -163,7 +165,7 @@
    "summary": "This package contains a proposed revision to the stats::ks.test() function and the associated ks.test.Rd help page.  With one minor exception, it does not change the existing behavior of ks.test(), and it adds features necessary for doing one-sample tests with hypothesized discrete distributions.  The package also contains cvm.test(), for doing one-sample Cramer-von Mises goodness-of-fit tests."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -181,6 +183,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -208,6 +211,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -243,15 +247,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-dgof.json"
  },
- "raw_meta_yaml": "{% set version = \"1.4\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-dgof\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/dgof_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/dgof/dgof_{{ version }}.tar.gz\n  sha256: d56165658bb97dce2be7a309baada24fce3facef67853b17b663ab23fc7a6f5d\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('dgof')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('dgof')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=dgof\n  license: GPL-2.0-or-later\n  summary: This package contains a proposed revision to the stats::ks.test() function and the associated ks.test.Rd help page.  With one minor exception, it does not change the existing behavior of ks.test(), and it adds features necessary for doing one-sample tests with hypothesized discrete distributions.  The package\n    also contains cvm.test(), for doing one-sample Cramer-von Mises goodness-of-fit tests.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: dgof\n# Version: 1.2\n# Date: 2012-08-03\n# Title: Discrete Goodness-of-Fit Tests\n# Author: Taylor B. Arnold, John W. Emerson, R Core Team and contributors worldwide\n# Maintainer: Taylor B. Arnold <taylor.b.arnold@gmail.com>\n# Description: This package contains a proposed revision to the stats::ks.test() function and the associated ks.test.Rd help page.  With one minor exception, it does not change the existing behavior of ks.test(), and it adds features necessary for doing one-sample tests with hypothesized discrete distributions.  The package also contains cvm.test(), for doing one-sample Cramer-von Mises goodness-of-fit tests.\n# License: GPL (>= 2.0)\n# LazyLoad: yes\n# Packaged: 2013-10-25 02:31:43 UTC; tba3\n# Repository: CRAN\n# Date/Publication: 2013-10-25 14:42:46\n# NeedsCompilation: yes\n",
+ "raw_meta_yaml": "{% set version = \"1.4\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-dgof\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/dgof_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/dgof/dgof_{{ version }}.tar.gz\n  sha256: d56165658bb97dce2be7a309baada24fce3facef67853b17b663ab23fc7a6f5d\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('dgof')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('dgof')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=dgof\n  license: GPL-2.0-or-later\n  summary: This package contains a proposed revision to the stats::ks.test() function and the associated ks.test.Rd help page.  With one minor exception, it does not change the existing behavior of ks.test(), and it adds features necessary for doing one-sample tests with hypothesized discrete distributions.  The package\n    also contains cvm.test(), for doing one-sample Cramer-von Mises goodness-of-fit tests.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: dgof\n# Version: 1.2\n# Date: 2012-08-03\n# Title: Discrete Goodness-of-Fit Tests\n# Author: Taylor B. Arnold, John W. Emerson, R Core Team and contributors worldwide\n# Maintainer: Taylor B. Arnold <taylor.b.arnold@gmail.com>\n# Description: This package contains a proposed revision to the stats::ks.test() function and the associated ks.test.Rd help page.  With one minor exception, it does not change the existing behavior of ks.test(), and it adds features necessary for doing one-sample tests with hypothesized discrete distributions.  The package also contains cvm.test(), for doing one-sample Cramer-von Mises goodness-of-fit tests.\n# License: GPL (>= 2.0)\n# LazyLoad: yes\n# Packaged: 2013-10-25 02:31:43 UTC; tba3\n# Repository: CRAN\n# Date/Publication: 2013-10-25 14:42:46\n# NeedsCompilation: yes\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "sed",
@@ -263,9 +268,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -275,6 +282,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -282,7 +290,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base"
    ]
   },
@@ -297,9 +305,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -314,7 +324,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -346,8 +355,7 @@
    "summary": "This package contains a proposed revision to the stats::ks.test() function and the associated ks.test.Rd help page.  With one minor exception, it does not change the existing behavior of ks.test(), and it adds features necessary for doing one-sample tests with hypothesized discrete distributions.  The package also contains cvm.test(), for doing one-sample Cramer-von Mises goodness-of-fit tests."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -365,6 +373,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -375,8 +384,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -399,6 +407,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -413,7 +422,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
