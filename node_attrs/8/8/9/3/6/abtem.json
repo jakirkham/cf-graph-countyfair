@@ -3,7 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "bot": {
-   "automerge": true
+   "automerge": true,
+   "inspection": "update-grayskull"
   },
   "conda_build": {
    "pkg_format": "2"
@@ -29,8 +30,8 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -45,29 +46,27 @@
   },
   "requirements": {
    "host": [
-    "pip",
-    "python >=3.6"
+    "python >=3.9",
+    "setuptools >=40.6.0",
+    "wheel",
+    "pip"
    ],
    "run": [
-    "ase",
-    "h5py",
-    "imageio",
-    "matplotlib-base",
-    "numba",
+    "python >=3.9",
     "numpy",
-    "psutil",
+    "pandas",
+    "matplotlib-base >=3.6",
     "pyfftw",
-    "python >=3.6",
     "scipy",
-    "tqdm",
-    "dask",
-    "threadpoolctl",
+    "numba",
+    "dask-core >=2022.12.1",
+    "distributed",
     "zarr",
+    "ase",
+    "threadpoolctl",
     "tabulate",
-    "traitlets",
-    "ipympl",
     "ipywidgets",
-    "jupyterlab"
+    "ipympl"
    ]
   },
   "source": {
@@ -96,30 +95,28 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "wheel"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "ase",
-    "dask",
-    "h5py",
-    "imageio",
+    "dask-core",
+    "distributed",
     "ipympl",
     "ipywidgets",
-    "jupyterlab",
     "matplotlib-base",
     "numba",
     "numpy",
-    "psutil",
+    "pandas",
     "pyfftw",
     "python",
     "scipy",
     "tabulate",
     "threadpoolctl",
-    "tqdm",
-    "traitlets",
     "zarr"
    ]
   },
@@ -143,8 +140,8 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -159,29 +156,27 @@
   },
   "requirements": {
    "host": [
-    "pip",
-    "python >=3.6"
+    "python >=3.9",
+    "setuptools >=40.6.0",
+    "wheel",
+    "pip"
    ],
    "run": [
-    "ase",
-    "h5py",
-    "imageio",
-    "matplotlib-base",
-    "numba",
+    "python >=3.9",
     "numpy",
-    "psutil",
+    "pandas",
+    "matplotlib-base >=3.6",
     "pyfftw",
-    "python >=3.6",
     "scipy",
-    "tqdm",
-    "dask",
-    "threadpoolctl",
+    "numba",
+    "dask-core >=2022.12.1",
+    "distributed",
     "zarr",
+    "ase",
+    "threadpoolctl",
     "tabulate",
-    "traitlets",
-    "ipympl",
     "ipywidgets",
-    "jupyterlab"
+    "ipympl"
    ]
   },
   "source": {
@@ -215,29 +210,27 @@
  "pr_info": {
   "__lazy_json__": "pr_info/abtem.json"
  },
- "raw_meta_yaml": "{% set name = \"abtem\" %}\n{% set version = \"1.0.5\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/abtem-{{ version }}.tar.gz\n  sha256: b85124fe90d5a716c5f97d351a8397c36310114dca9f520537f2d46bedde6aa7\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - pip\n    - python >=3.6\n  run:\n    - ase\n    - h5py\n    - imageio\n    - matplotlib-base\n    - numba\n    - numpy\n    - psutil\n    - pyfftw\n    - python >=3.6\n    - scipy\n    - tqdm\n    - dask\n    - threadpoolctl\n    - zarr\n    - tabulate\n    - traitlets\n    - ipympl\n    - ipywidgets\n    - jupyterlab\n\ntest:\n  imports:\n    - abtem\n    - abtem.visualize\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/jacobjma/abtem\n  license: GPL-3.0-only\n  license_family: GPL\n  license_file: LICENSE\n  summary: ab initio Transmission Electron Microscopy\n\n  description: |\n    abTEM provides a Python API for running simulations of Transmission \n    Electron Microscopy images. It is written entirely in Python, which \n    enables easy integration with first-principles codes and analysis tools \n    accessible from Python, and allows for a simple and intuitive user \n    interface. The computationally demanding parts are implemented using \n    jit-compiled Numba code and high-performance libraries, maintaining\n    speed while ensuring portability.\n  doc_url: https://abtem.readthedocs.io\n  dev_url: https://github.com/jacobjma/abtem\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n    - jacobjma\n    - ericpre\n",
+ "raw_meta_yaml": "{% set name = \"abtem\" %}\n{% set version = \"1.0.5\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/abtem-{{ version }}.tar.gz\n  sha256: b85124fe90d5a716c5f97d351a8397c36310114dca9f520537f2d46bedde6aa7\n\nbuild:\n  number: 1\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n\nrequirements:\n  host:\n    - python >=3.9\n    - setuptools >=40.6.0\n    - wheel\n    - pip\n  run:\n    - python >=3.9\n    - numpy\n    - pandas\n    - matplotlib-base >=3.6\n    - pyfftw\n    - scipy\n    - numba\n    - dask-core >=2022.12.1\n    - distributed\n    - zarr\n    - ase\n    - threadpoolctl\n    - tabulate\n    - ipywidgets\n    - ipympl\n\ntest:\n  imports:\n    - abtem\n    - abtem.visualize\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/jacobjma/abtem\n  license: GPL-3.0-only\n  license_family: GPL\n  license_file: LICENSE\n  summary: ab initio Transmission Electron Microscopy\n\n  description: |\n    abTEM provides a Python API for running simulations of Transmission \n    Electron Microscopy images. It is written entirely in Python, which \n    enables easy integration with first-principles codes and analysis tools \n    accessible from Python, and allows for a simple and intuitive user \n    interface. The computationally demanding parts are implemented using \n    jit-compiled Numba code and high-performance libraries, maintaining\n    speed while ensuring portability.\n  doc_url: https://abtem.readthedocs.io\n  dev_url: https://github.com/jacobjma/abtem\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n    - jacobjma\n    - ericpre\n",
  "req": {
   "__set__": true,
   "elements": [
    "ase",
-   "dask",
-   "h5py",
-   "imageio",
+   "dask-core",
+   "distributed",
    "ipympl",
    "ipywidgets",
-   "jupyterlab",
    "matplotlib-base",
    "numba",
    "numpy",
+   "pandas",
    "pip",
-   "psutil",
    "pyfftw",
    "python",
    "scipy",
+   "setuptools",
    "tabulate",
    "threadpoolctl",
-   "tqdm",
-   "traitlets",
+   "wheel",
    "zarr"
   ]
  },
@@ -250,30 +243,28 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "wheel"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "ase",
-    "dask",
-    "h5py",
-    "imageio",
+    "dask-core",
+    "distributed",
     "ipympl",
     "ipywidgets",
-    "jupyterlab",
     "matplotlib-base",
     "numba",
     "numpy",
-    "psutil",
+    "pandas",
     "pyfftw",
     "python",
     "scipy",
     "tabulate",
     "threadpoolctl",
-    "tqdm",
-    "traitlets",
     "zarr"
    ]
   },
@@ -294,30 +285,28 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.6"
+    "python >=3.9",
+    "setuptools >=40.6.0",
+    "wheel"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "ase",
-    "dask",
-    "h5py",
-    "imageio",
+    "dask-core >=2022.12.1",
+    "distributed",
     "ipympl",
     "ipywidgets",
-    "jupyterlab",
-    "matplotlib-base",
+    "matplotlib-base >=3.6",
     "numba",
     "numpy",
-    "psutil",
+    "pandas",
     "pyfftw",
-    "python >=3.6",
+    "python >=3.9",
     "scipy",
     "tabulate",
     "threadpoolctl",
-    "tqdm",
-    "traitlets",
     "zarr"
    ]
   },
