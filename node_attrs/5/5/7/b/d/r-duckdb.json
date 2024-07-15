@@ -26,7 +26,7 @@
    "summary": "The DuckDB project is an embedded analytical data management system with support for the Structured Query Language (SQL). This package includes all of DuckDB and a R Database Interface (DBI) connector."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -110,7 +110,7 @@
    "summary": "The DuckDB project is an embedded analytical data management system with support for the Structured Query Language (SQL). This package includes all of DuckDB and a R Database Interface (DBI) connector."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -131,7 +131,13 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
-    "make"
+    "make",
+    "m2w64_c_compiler_stub",
+    "m2w64_cxx_compiler_stub",
+    "filesystem",
+    "sed",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -151,7 +157,8 @@
   },
   "test": {
    "commands": [
-    "$R -e \"library('duckdb')\""
+    "$R -e \"library('duckdb')\"",
+    "\"%R%\" -e \"library('duckdb')\""
    ]
   }
  },
@@ -166,7 +173,7 @@
    "summary": "The DuckDB project is an embedded analytical data management system with support for the Structured Query Language (SQL). This package includes all of DuckDB and a R Database Interface (DBI) connector."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -249,21 +256,28 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
-  "osx_64"
+  "osx_64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/r-duckdb.json"
  },
- "raw_meta_yaml": "{% set version = \"1.0.0-1\" %}\n\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-duckdb\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/duckdb_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/duckdb/duckdb_{{ version }}.tar.gz\n  sha256: 987edcdcae91dcbc9d554f039425cd23b6e5787e7681f311c9966926744d4ca9\n\nbuild:\n  merge_build_host: true  # [win]\n  skip: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"c\") }}            # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-dbi\n\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-dbi\n\ntest:\n  commands:\n    - $R -e \"library('duckdb')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('duckdb')\\\"\"  # [win]\n\nabout:\n  home: https://duckdb.org\n  dev_url: https://github.com/cwida/duckdb\n  license: MPL-2.0\n  summary: The DuckDB project is an embedded analytical data management system with support for the Structured Query Language (SQL). This package includes all of DuckDB and a R Database Interface (DBI) connector.\n  license_family: MOZILLA\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - izahn\n",
+ "raw_meta_yaml": "{% set version = \"1.0.0-1\" %}\n\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-duckdb\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/duckdb_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/duckdb/duckdb_{{ version }}.tar.gz\n  sha256: 987edcdcae91dcbc9d554f039425cd23b6e5787e7681f311c9966926744d4ca9\n\nbuild:\n  # Checking windows to see if it passes. Uncomment the line if it fails.\n  # skip: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"c\") }}            # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-dbi\n\n  run:\n    - r-base\n    - r-dbi\n\ntest:\n  commands:\n    - $R -e \"library('duckdb')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('duckdb')\\\"\"  # [win]\n\nabout:\n  home: https://duckdb.org\n  dev_url: https://github.com/cwida/duckdb\n  license: MPL-2.0\n  summary: The DuckDB project is an embedded analytical data management system with support for the Structured Query Language (SQL). This package includes all of DuckDB and a R Database Interface (DBI) connector.\n  license_family: MOZILLA\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - izahn\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
    "c_stdlib_stub",
+   "coreutils",
    "cxx_compiler_stub",
+   "filesystem",
+   "m2w64_c_compiler_stub",
+   "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
-   "r-dbi"
+   "r-dbi",
+   "sed",
+   "zip"
   ]
  },
  "requirements": {
@@ -272,8 +286,14 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
-    "make"
+    "filesystem",
+    "m2w64_c_compiler_stub",
+    "m2w64_cxx_compiler_stub",
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -308,8 +328,14 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
-    "make"
+    "filesystem",
+    "m2w64_c_compiler_stub",
+    "m2w64_cxx_compiler_stub",
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -335,10 +361,104 @@
   "https://cran.r-project.org/src/contrib/duckdb_1.0.0-1.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/duckdb/duckdb_1.0.0-1.tar.gz",
   "https://cran.r-project.org/src/contrib/duckdb_1.0.0-1.tar.gz",
+  "https://cran.r-project.org/src/contrib/Archive/duckdb/duckdb_1.0.0-1.tar.gz",
+  "https://cran.r-project.org/src/contrib/duckdb_1.0.0-1.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/duckdb/duckdb_1.0.0-1.tar.gz"
  ],
  "version": "1.0.0_1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/r-duckdb.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/cwida/duckdb",
+   "home": "https://duckdb.org",
+   "license": "MPL-2.0",
+   "license_family": "MOZILLA",
+   "license_file": "LICENSE",
+   "summary": "The DuckDB project is an embedded analytical data management system with support for the Structured Query Language (SQL). This package includes all of DuckDB and a R Database Interface (DBI) connector."
+  },
+  "build": {
+   "number": "1",
+   "rpaths": [
+    "lib/R/lib/",
+    "lib/"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "conda-forge/r",
+    "izahn"
+   ]
+  },
+  "package": {
+   "name": "r-duckdb",
+   "version": "1.0.0_1"
+  },
+  "requirements": {
+   "build": [
+    "m2w64_c_compiler_stub",
+    "c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "filesystem",
+    "make",
+    "sed",
+    "coreutils",
+    "zip"
+   ],
+   "host": [
+    "r-base",
+    "r-dbi"
+   ],
+   "run": [
+    "r-base",
+    "r-dbi"
+   ]
+  },
+  "source": {
+   "sha256": "987edcdcae91dcbc9d554f039425cd23b6e5787e7681f311c9966926744d4ca9",
+   "url": [
+    "https://cran.r-project.org/src/contrib/duckdb_1.0.0-1.tar.gz",
+    "https://cran.r-project.org/src/contrib/Archive/duckdb/duckdb_1.0.0-1.tar.gz"
+   ]
+  },
+  "test": {
+   "commands": [
+    "\"%R%\" -e \"library('duckdb')\""
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_stdlib_stub",
+    "coreutils",
+    "filesystem",
+    "m2w64_c_compiler_stub",
+    "m2w64_cxx_compiler_stub",
+    "make",
+    "sed",
+    "zip"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "r-base",
+    "r-dbi"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "r-base",
+    "r-dbi"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
  }
 }
