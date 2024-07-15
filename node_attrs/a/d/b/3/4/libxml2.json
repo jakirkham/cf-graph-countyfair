@@ -35,7 +35,7 @@
    "summary": "The XML C parser and toolkit of Gnome"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libxml2"
    ]
@@ -139,7 +139,7 @@
    "summary": "The XML C parser and toolkit of Gnome"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libxml2"
    ]
@@ -243,7 +243,7 @@
    "summary": "The XML C parser and toolkit of Gnome"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libxml2"
    ]
@@ -347,7 +347,7 @@
    "summary": "The XML C parser and toolkit of Gnome"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libxml2"
    ]
@@ -421,7 +421,7 @@
    "summary": "The XML C parser and toolkit of Gnome"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libxml2"
    ]
@@ -525,7 +525,7 @@
    "summary": "The XML C parser and toolkit of Gnome"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libxml2"
    ]
@@ -634,7 +634,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libxml2.json"
  },
- "raw_meta_yaml": "{% set version = \"2.12.7\" %}\n\npackage:\n  name: libxml2\n  version: {{ version }}\n\nsource:\n  url: https://gitlab.gnome.org/GNOME/libxml2/-/archive/v{{ version }}/libxml2-v{{ version }}.tar.gz\n  sha256: a7c1277f4e859883ff3aaa09a545561b7515e078a97eb240bb92bf5a03ae03fc\n  patches:\n    - 0002-Make-and-install-a-pkg-config-file-on-Windows.patch\n\nbuild:\n  number: 3\n  run_exports:\n    # remove symbols at minor versions according to\n    #    https://abi-laboratory.pro/tracker/timeline/libxml2/\n    # but the analysis is incorrect. abi-laboratory has a hard\n    # time with shared libraries with versioned objects.\n    - {{ pin_subpackage('libxml2', max_pin='x') }}\n\nrequirements:\n  build:\n    - libtool  # [unix]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - autoconf  # [not win]\n    - automake  # [not win]\n    - libtool  # [not win]\n    - pkg-config  # [not win]\n    - make  # [not win]\n    - m2-patch  # [win]\n    - libiconv  # [not win]\n  host:\n    - icu  # [not win]\n    - libiconv\n    - xz  # [not win]\n    - zlib\n\ntest:\n  requires:\n    - ripgrep\n  files:\n    - test.xml\n  commands:\n    - xmllint test.xml\n    # ensure (de)activation scripts for bash-on-win do not contain crlf line endings;\n    # ripgrep will return exit code 1 if no match is found, which is what we want after\n    # filtering to the carriage-return character that shouldn't be there.\n    {% for task in [\"activate\", \"deactivate\"] %}\n    - rg \\r %CONDA_PREFIX%\\etc\\conda\\{{ task }}.d\\libxml2_{{ task }}.sh & if %ERRORLEVEL% NEQ 1 (exit 0) else (exit 1)  # [win]\n    {% endfor %}\n\nabout:\n  home: http://xmlsoft.org/\n  license: MIT\n  license_family: MIT\n  license_file: Copyright\n  summary: The XML C parser and toolkit of Gnome\n  description: |\n    Though libxml2 is written in C a variety of language\n    bindings make it available in other environments.\n  doc_url: http://xmlsoft.org/html/index.html\n  doc_source_url: https://github.com/GNOME/libxml2/blob/master/doc/index.html\n  dev_url: https://git.gnome.org/browse/libxml2/\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - ocefpaf\n    - jakirkham\n    - gillins\n    - jschueller\n    - msarahan\n    - scopatz\n",
+ "raw_meta_yaml": "{% set version = \"2.12.7\" %}\n\npackage:\n  name: libxml2\n  version: {{ version }}\n\nsource:\n  url: https://gitlab.gnome.org/GNOME/libxml2/-/archive/v{{ version }}/libxml2-v{{ version }}.tar.gz\n  sha256: a7c1277f4e859883ff3aaa09a545561b7515e078a97eb240bb92bf5a03ae03fc\n  patches:\n    - 0002-Make-and-install-a-pkg-config-file-on-Windows.patch\n\nbuild:\n  number: 4\n  run_exports:\n    # remove symbols at minor versions according to\n    #    https://abi-laboratory.pro/tracker/timeline/libxml2/\n    # but the analysis is incorrect. abi-laboratory has a hard\n    # time with shared libraries with versioned objects.\n    - {{ pin_subpackage('libxml2', max_pin='x') }}\n\nrequirements:\n  build:\n    - libtool  # [unix]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - autoconf  # [not win]\n    - automake  # [not win]\n    - libtool  # [not win]\n    - pkg-config  # [not win]\n    - make  # [not win]\n    - m2-patch  # [win]\n    - libiconv  # [not win]\n  host:\n    - icu  # [not win]\n    - libiconv\n    - xz  # [not win]\n    - zlib\n\ntest:\n  requires:\n    - ripgrep\n  files:\n    - test.xml\n  commands:\n    - xmllint test.xml\n    # ensure (de)activation scripts for bash-on-win do not contain crlf line endings;\n    # ripgrep will return exit code 1 if no match is found, which is what we want after\n    # filtering to the carriage-return character that shouldn't be there.\n    {% for task in [\"activate\", \"deactivate\"] %}\n    - rg \\r %CONDA_PREFIX%\\etc\\conda\\{{ task }}.d\\libxml2_{{ task }}.sh & if %ERRORLEVEL% NEQ 1 (exit 0) else (exit 1)  # [win]\n    {% endfor %}\n\nabout:\n  home: http://xmlsoft.org/\n  license: MIT\n  license_family: MIT\n  license_file: Copyright\n  summary: The XML C parser and toolkit of Gnome\n  description: |\n    Though libxml2 is written in C a variety of language\n    bindings make it available in other environments.\n  doc_url: http://xmlsoft.org/html/index.html\n  doc_source_url: https://github.com/GNOME/libxml2/blob/master/doc/index.html\n  dev_url: https://git.gnome.org/browse/libxml2/\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - ocefpaf\n    - jakirkham\n    - gillins\n    - jschueller\n    - msarahan\n    - scopatz\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -746,7 +746,7 @@
    "summary": "The XML C parser and toolkit of Gnome"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libxml2"
    ]
