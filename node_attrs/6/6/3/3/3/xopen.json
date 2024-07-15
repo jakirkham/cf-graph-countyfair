@@ -2,12 +2,6 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
-  "azure": {
-   "store_build_artifacts": true
-  },
-  "build_platform": {
-   "osx_arm64": "osx_64"
-  },
   "conda_build": {
    "error_overlinking": true,
    "pkg_format": "2"
@@ -17,11 +11,10 @@
    "branch_name": "main",
    "tooling_branch_name": "main"
   },
-  "provider": {
-   "linux_aarch64": "default",
-   "linux_ppc64le": "default",
-   "win": "azure"
-  },
+  "noarch_platforms": [
+   "linux_64",
+   "win_64"
+  ],
   "test": "native_and_emulated"
  },
  "feedstock_name": "xopen",
@@ -37,7 +30,8 @@
    "summary": "Open compressed files transparently in Python"
   },
   "build": {
-   "number": "0",
+   "noarch": "python",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -52,20 +46,20 @@
    "version": "2.0.2"
   },
   "requirements": {
-   "build": [],
    "host": [
     "pip",
-    "python",
+    "python >=3.9",
     "setuptools_scm"
    ],
    "run": [
-    "python",
+    "python >=3.9",
     "python-isal >=1.6.1",
     "python-zlib-ng >=0.4.1",
     "pigz",
     "pbzip2",
     "zstandard",
-    "zstd"
+    "zstd",
+    "__unix"
    ]
   },
   "source": {
@@ -94,171 +88,12 @@
   "run": {
    "__set__": true,
    "elements": [
+    "__unix",
     "pbzip2",
     "pigz",
     "python",
     "python-isal",
     "python-zlib-ng",
-    "zstandard",
-    "zstd"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": []
-  }
- },
- "linux_aarch64_meta_yaml": {
-  "about": {
-   "dev_url": "https://github.com/pycompression/xopen/",
-   "doc_url": "https://github.com/pycompression/xopen/",
-   "home": "https://github.com/pycompression/xopen/",
-   "license": "MIT",
-   "license_family": "MIT",
-   "license_file": "LICENSE",
-   "summary": "Open compressed files transparently in Python"
-  },
-  "build": {
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "corneliusroemer",
-    "marcelm",
-    "rhpvorderman"
-   ]
-  },
-  "package": {
-   "name": "xopen",
-   "version": "2.0.2"
-  },
-  "requirements": {
-   "build": [],
-   "host": [
-    "pip",
-    "python",
-    "setuptools_scm"
-   ],
-   "run": [
-    "python",
-    "python-isal >=1.6.1",
-    "pigz",
-    "pbzip2",
-    "zstandard",
-    "zstd"
-   ]
-  },
-  "source": {
-   "sha256": "f19d83de470f5a81725df0140180ec71d198311a1d7dad48f5467b4ad5df6154",
-   "url": "https://pypi.io/packages/source/x/xopen/xopen-2.0.2.tar.gz"
-  },
-  "test": {
-   "imports": [
-    "xopen"
-   ]
-  }
- },
- "linux_aarch64_requirements": {
-  "build": {
-   "__set__": true,
-   "elements": []
-  },
-  "host": {
-   "__set__": true,
-   "elements": [
-    "pip",
-    "python",
-    "setuptools_scm"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "pbzip2",
-    "pigz",
-    "python",
-    "python-isal",
-    "zstandard",
-    "zstd"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": []
-  }
- },
- "linux_ppc64le_meta_yaml": {
-  "about": {
-   "dev_url": "https://github.com/pycompression/xopen/",
-   "doc_url": "https://github.com/pycompression/xopen/",
-   "home": "https://github.com/pycompression/xopen/",
-   "license": "MIT",
-   "license_family": "MIT",
-   "license_file": "LICENSE",
-   "summary": "Open compressed files transparently in Python"
-  },
-  "build": {
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "corneliusroemer",
-    "marcelm",
-    "rhpvorderman"
-   ]
-  },
-  "package": {
-   "name": "xopen",
-   "version": "2.0.2"
-  },
-  "requirements": {
-   "build": [],
-   "host": [
-    "pip",
-    "python",
-    "setuptools_scm"
-   ],
-   "run": [
-    "python",
-    "python-isal >=1.6.1",
-    "pigz",
-    "pbzip2",
-    "zstandard",
-    "zstd"
-   ]
-  },
-  "source": {
-   "sha256": "f19d83de470f5a81725df0140180ec71d198311a1d7dad48f5467b4ad5df6154",
-   "url": "https://pypi.io/packages/source/x/xopen/xopen-2.0.2.tar.gz"
-  },
-  "test": {
-   "imports": [
-    "xopen"
-   ]
-  }
- },
- "linux_ppc64le_requirements": {
-  "build": {
-   "__set__": true,
-   "elements": []
-  },
-  "host": {
-   "__set__": true,
-   "elements": [
-    "pip",
-    "python",
-    "setuptools_scm"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "pbzip2",
-    "pigz",
-    "python",
-    "python-isal",
     "zstandard",
     "zstd"
    ]
@@ -279,7 +114,8 @@
    "summary": "Open compressed files transparently in Python"
   },
   "build": {
-   "number": "0",
+   "noarch": "python",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -294,23 +130,21 @@
    "version": "2.0.2"
   },
   "requirements": {
-   "build": [
-    "python",
-    "cross-python_osx-arm64"
-   ],
    "host": [
     "pip",
-    "python",
+    "python >=3.9",
     "setuptools_scm"
    ],
    "run": [
-    "python",
+    "python >=3.9",
     "python-isal >=1.6.1",
     "python-zlib-ng >=0.4.1",
     "pigz",
     "pbzip2",
     "zstandard",
-    "zstd"
+    "zstd",
+    "__unix",
+    "__win"
    ]
   },
   "source": {
@@ -324,174 +158,6 @@
   }
  },
  "name": "xopen",
- "osx_64_meta_yaml": {
-  "about": {
-   "dev_url": "https://github.com/pycompression/xopen/",
-   "doc_url": "https://github.com/pycompression/xopen/",
-   "home": "https://github.com/pycompression/xopen/",
-   "license": "MIT",
-   "license_family": "MIT",
-   "license_file": "LICENSE",
-   "summary": "Open compressed files transparently in Python"
-  },
-  "build": {
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "corneliusroemer",
-    "marcelm",
-    "rhpvorderman"
-   ]
-  },
-  "package": {
-   "name": "xopen",
-   "version": "2.0.2"
-  },
-  "requirements": {
-   "build": [],
-   "host": [
-    "pip",
-    "python",
-    "setuptools_scm"
-   ],
-   "run": [
-    "python",
-    "python-isal >=1.6.1",
-    "python-zlib-ng >=0.4.1",
-    "pigz",
-    "pbzip2",
-    "zstandard",
-    "zstd"
-   ]
-  },
-  "source": {
-   "sha256": "f19d83de470f5a81725df0140180ec71d198311a1d7dad48f5467b4ad5df6154",
-   "url": "https://pypi.io/packages/source/x/xopen/xopen-2.0.2.tar.gz"
-  },
-  "test": {
-   "imports": [
-    "xopen"
-   ]
-  }
- },
- "osx_64_requirements": {
-  "build": {
-   "__set__": true,
-   "elements": []
-  },
-  "host": {
-   "__set__": true,
-   "elements": [
-    "pip",
-    "python",
-    "setuptools_scm"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "pbzip2",
-    "pigz",
-    "python",
-    "python-isal",
-    "python-zlib-ng",
-    "zstandard",
-    "zstd"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": []
-  }
- },
- "osx_arm64_meta_yaml": {
-  "about": {
-   "dev_url": "https://github.com/pycompression/xopen/",
-   "doc_url": "https://github.com/pycompression/xopen/",
-   "home": "https://github.com/pycompression/xopen/",
-   "license": "MIT",
-   "license_family": "MIT",
-   "license_file": "LICENSE",
-   "summary": "Open compressed files transparently in Python"
-  },
-  "build": {
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "corneliusroemer",
-    "marcelm",
-    "rhpvorderman"
-   ]
-  },
-  "package": {
-   "name": "xopen",
-   "version": "2.0.2"
-  },
-  "requirements": {
-   "build": [
-    "python",
-    "cross-python_osx-arm64"
-   ],
-   "host": [
-    "pip",
-    "python",
-    "setuptools_scm"
-   ],
-   "run": [
-    "python",
-    "python-zlib-ng >=0.4.1",
-    "pigz",
-    "pbzip2",
-    "zstandard",
-    "zstd"
-   ]
-  },
-  "source": {
-   "sha256": "f19d83de470f5a81725df0140180ec71d198311a1d7dad48f5467b4ad5df6154",
-   "url": "https://pypi.io/packages/source/x/xopen/xopen-2.0.2.tar.gz"
-  },
-  "test": {
-   "imports": [
-    "xopen"
-   ]
-  }
- },
- "osx_arm64_requirements": {
-  "build": {
-   "__set__": true,
-   "elements": [
-    "cross-python_osx-arm64",
-    "python"
-   ]
-  },
-  "host": {
-   "__set__": true,
-   "elements": [
-    "pip",
-    "python",
-    "setuptools_scm"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "pbzip2",
-    "pigz",
-    "python",
-    "python-zlib-ng",
-    "zstandard",
-    "zstd"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": []
-  }
- },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -501,20 +167,17 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
-  "linux_aarch64",
-  "linux_ppc64le",
-  "osx_64",
-  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/xopen.json"
  },
- "raw_meta_yaml": "{% set name = \"xopen\" %}\n{% set version = \"2.0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: f19d83de470f5a81725df0140180ec71d198311a1d7dad48f5467b4ad5df6154\n\nbuild:\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python  # [arm64]\n    - cross-python_{{ target_platform }}  # [arm64]\n  host:\n    - pip\n    - python\n    - setuptools_scm\n  run:\n    - python\n    - python-isal >=1.6.1  # [not arm64]\n    - python-zlib-ng >=0.4.1  # [(not linux) or linux64]\n    - pigz\n    - pbzip2  # [not win]\n    - zstandard\n    - zstd\n\ntest:\n  imports:\n    - xopen\n\nabout:\n  home: https://github.com/pycompression/xopen/\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Open compressed files transparently in Python\n  doc_url: https://github.com/pycompression/xopen/\n  dev_url: https://github.com/pycompression/xopen/\n\nextra:\n  recipe-maintainers:\n    - corneliusroemer\n    - marcelm\n    - rhpvorderman\n",
+ "raw_meta_yaml": "{% set name = \"xopen\" %}\n{% set version = \"2.0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: f19d83de470f5a81725df0140180ec71d198311a1d7dad48f5467b4ad5df6154\n\nbuild:\n  number: 1\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - pip\n    - python >=3.9\n    - setuptools_scm\n  run:\n    - python >=3.9\n    - python-isal >=1.6.1\n    - python-zlib-ng >=0.4.1\n    - pigz\n    - pbzip2  # [not win]\n    - zstandard\n    - zstd\n    - __unix   # [unix]\n    - __win    # [win]\n\ntest:\n  imports:\n    - xopen\n\nabout:\n  home: https://github.com/pycompression/xopen/\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Open compressed files transparently in Python\n  doc_url: https://github.com/pycompression/xopen/\n  dev_url: https://github.com/pycompression/xopen/\n\nextra:\n  recipe-maintainers:\n    - corneliusroemer\n    - marcelm\n    - rhpvorderman\n",
  "req": {
   "__set__": true,
   "elements": [
-   "cross-python_osx-arm64",
+   "__unix",
+   "__win",
    "pbzip2",
    "pigz",
    "pip",
@@ -529,10 +192,7 @@
  "requirements": {
   "build": {
    "__set__": true,
-   "elements": [
-    "cross-python_osx-arm64",
-    "python"
-   ]
+   "elements": []
   },
   "host": {
    "__set__": true,
@@ -545,6 +205,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "__unix",
+    "__win",
     "pbzip2",
     "pigz",
     "python",
@@ -563,25 +225,24 @@
  "total_requirements": {
   "build": {
    "__set__": true,
-   "elements": [
-    "cross-python_osx-arm64",
-    "python"
-   ]
+   "elements": []
   },
   "host": {
    "__set__": true,
    "elements": [
     "pip",
-    "python",
+    "python >=3.9",
     "setuptools_scm"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "__unix",
+    "__win",
     "pbzip2",
     "pigz",
-    "python",
+    "python >=3.9",
     "python-isal >=1.6.1",
     "python-zlib-ng >=0.4.1",
     "zstandard",
@@ -609,7 +270,8 @@
    "summary": "Open compressed files transparently in Python"
   },
   "build": {
-   "number": "0",
+   "noarch": "python",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -624,19 +286,19 @@
    "version": "2.0.2"
   },
   "requirements": {
-   "build": [],
    "host": [
     "pip",
-    "python",
+    "python >=3.9",
     "setuptools_scm"
    ],
    "run": [
-    "python",
+    "python >=3.9",
     "python-isal >=1.6.1",
     "python-zlib-ng >=0.4.1",
     "pigz",
     "zstandard",
-    "zstd"
+    "zstd",
+    "__win"
    ]
   },
   "source": {
@@ -665,6 +327,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "__win",
     "pigz",
     "python",
     "python-isal",
