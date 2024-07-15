@@ -30,7 +30,7 @@
    "summary": "We provide a collection of R-functions implementing adaptive smoothing procedures in 1D, 2D and 3D. This includes the Propagation-Separation Approach to adaptive smoothing as described in \"J. Polzehl and V. Spokoiny (2006) <DOI:10.1007/s00440-005-0464-1>\", \"J. Polzehl and V. Spokoiny (2004) <DOI:10.20347/WIAS.PREPRINT.998>\" and \"J. Polzehl, K. Papafitsoros, K. Tabelow (2018) <DOI:10.20347/WIAS.PREPRINT.2520>\", the Intersecting Confidence Intervals (ICI), variational approaches and a non-local means filter."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -48,6 +48,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "autoconf",
     "automake",
@@ -85,6 +86,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "pkg-config"
@@ -122,8 +124,7 @@
    "summary": "We provide a collection of R-functions implementing adaptive smoothing procedures in 1D, 2D and 3D. This includes the Propagation-Separation Approach to adaptive smoothing as described in \"J. Polzehl and V. Spokoiny (2006) <DOI:10.1007/s00440-005-0464-1>\", \"J. Polzehl and V. Spokoiny (2004) <DOI:10.20347/WIAS.PREPRINT.998>\" and \"J. Polzehl, K. Papafitsoros, K. Tabelow (2018) <DOI:10.20347/WIAS.PREPRINT.2520>\", the Intersecting Confidence Intervals (ICI), variational approaches and a non-local means filter."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -141,12 +142,14 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "autoconf",
     "automake",
     "pkg-config",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -165,7 +168,6 @@
     "r-base",
     "r-awsmethods >=1.0_1",
     "r-gsl",
-    "gcc-libs",
     "gsl"
    ]
   },
@@ -195,7 +197,7 @@
    "summary": "We provide a collection of R-functions implementing adaptive smoothing procedures in 1D, 2D and 3D. This includes the Propagation-Separation Approach to adaptive smoothing as described in \"J. Polzehl and V. Spokoiny (2006) <DOI:10.1007/s00440-005-0464-1>\", \"J. Polzehl and V. Spokoiny (2004) <DOI:10.20347/WIAS.PREPRINT.998>\" and \"J. Polzehl, K. Papafitsoros, K. Tabelow (2018) <DOI:10.20347/WIAS.PREPRINT.2520>\", the Intersecting Confidence Intervals (ICI), variational approaches and a non-local means filter."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -213,6 +215,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "autoconf",
     "automake",
@@ -250,6 +253,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "pkg-config"
@@ -291,7 +295,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-aws.json"
  },
- "raw_meta_yaml": "{% set version = \"2.5-5\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-aws\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/aws_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/aws/aws_{{ version }}.tar.gz\n  sha256: b27cb2795cb59592d474cfaf49a21657a8878404da4f01c556f7323e953b4c5b\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-awsmethods >=1.0_1\n    - r-gsl\n    - gsl                        # [win]\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-awsmethods >=1.0_1\n    - r-gsl\n    - gsl                        # [win]\n\ntest:\n  commands:\n    - $R -e \"library('aws')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('aws')\\\"\"  # [win]\n\nabout:\n  home: http://www.wias-berlin.de/people/polzehl/\n  license: GPL-2.0-or-later\n  summary: We provide a collection of R-functions implementing adaptive smoothing procedures in 1D, 2D and 3D. This includes the Propagation-Separation Approach to adaptive smoothing as described in \"J. Polzehl and V. Spokoiny (2006) <DOI:10.1007/s00440-005-0464-1>\", \"J. Polzehl and V. Spokoiny (2004) <DOI:10.20347/WIAS.PREPRINT.998>\"\n    and \"J. Polzehl, K. Papafitsoros, K. Tabelow (2018) <DOI:10.20347/WIAS.PREPRINT.2520>\", the Intersecting Confidence Intervals (ICI), variational approaches and a non-local means filter.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: aws\n# Version: 2.2-1\n# Date: 2019-04-23\n# Title: Adaptive Weights Smoothing\n# Authors@R: c(person(\"Joerg\",\"Polzehl\",role=c(\"aut\",\"cre\"),email=\"joerg.polzehl@wias-berlin.de\"),person(\"Felix\",\"Anker\",role=c(\"ctb\")))\n# Author: Joerg Polzehl [aut, cre], Felix Anker [ctb]\n# Maintainer: Joerg Polzehl <joerg.polzehl@wias-berlin.de>\n# Depends: R (>= 3.4.0), methods, awsMethods (>= 1.0-1), gsl\n# Description: We provide a collection of R-functions implementing adaptive smoothing procedures in 1D, 2D and 3D. This includes the Propagation-Separation Approach to adaptive smoothing as described in \"J. Polzehl and V. Spokoiny (2006) <DOI:10.1007/s00440-005-0464-1>\", \"J. Polzehl and V. Spokoiny (2004) <DOI:10.20347/WIAS.PREPRINT.998>\" and \"J. Polzehl, K. Papafitsoros, K. Tabelow (2018) <DOI:10.20347/WIAS.PREPRINT.2520>\", the Intersecting Confidence Intervals (ICI), variational approaches and a non-local means filter.\n# License: GPL (>= 2)\n# Copyright: This package is Copyright (C) 2005-2018 Weierstrass Institute for Applied Analysis and Stochastics.\n# URL: http://www.wias-berlin.de/people/polzehl/\n# RoxygenNote: 5.0.1\n# NeedsCompilation: yes\n# Packaged: 2019-05-07 08:15:05 UTC; polzehl\n# Repository: CRAN\n# Date/Publication: 2019-05-08 09:20:05 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.5-5\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-aws\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/aws_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/aws/aws_{{ version }}.tar.gz\n  sha256: b27cb2795cb59592d474cfaf49a21657a8878404da4f01c556f7323e953b4c5b\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-awsmethods >=1.0_1\n    - r-gsl\n    - gsl                        # [win]\n  run:\n    - r-base\n    - r-awsmethods >=1.0_1\n    - r-gsl\n    - gsl                        # [win]\n\ntest:\n  commands:\n    - $R -e \"library('aws')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('aws')\\\"\"  # [win]\n\nabout:\n  home: http://www.wias-berlin.de/people/polzehl/\n  license: GPL-2.0-or-later\n  summary: We provide a collection of R-functions implementing adaptive smoothing procedures in 1D, 2D and 3D. This includes the Propagation-Separation Approach to adaptive smoothing as described in \"J. Polzehl and V. Spokoiny (2006) <DOI:10.1007/s00440-005-0464-1>\", \"J. Polzehl and V. Spokoiny (2004) <DOI:10.20347/WIAS.PREPRINT.998>\"\n    and \"J. Polzehl, K. Papafitsoros, K. Tabelow (2018) <DOI:10.20347/WIAS.PREPRINT.2520>\", the Intersecting Confidence Intervals (ICI), variational approaches and a non-local means filter.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: aws\n# Version: 2.2-1\n# Date: 2019-04-23\n# Title: Adaptive Weights Smoothing\n# Authors@R: c(person(\"Joerg\",\"Polzehl\",role=c(\"aut\",\"cre\"),email=\"joerg.polzehl@wias-berlin.de\"),person(\"Felix\",\"Anker\",role=c(\"ctb\")))\n# Author: Joerg Polzehl [aut, cre], Felix Anker [ctb]\n# Maintainer: Joerg Polzehl <joerg.polzehl@wias-berlin.de>\n# Depends: R (>= 3.4.0), methods, awsMethods (>= 1.0-1), gsl\n# Description: We provide a collection of R-functions implementing adaptive smoothing procedures in 1D, 2D and 3D. This includes the Propagation-Separation Approach to adaptive smoothing as described in \"J. Polzehl and V. Spokoiny (2006) <DOI:10.1007/s00440-005-0464-1>\", \"J. Polzehl and V. Spokoiny (2004) <DOI:10.20347/WIAS.PREPRINT.998>\" and \"J. Polzehl, K. Papafitsoros, K. Tabelow (2018) <DOI:10.20347/WIAS.PREPRINT.2520>\", the Intersecting Confidence Intervals (ICI), variational approaches and a non-local means filter.\n# License: GPL (>= 2)\n# Copyright: This package is Copyright (C) 2005-2018 Weierstrass Institute for Applied Analysis and Stochastics.\n# URL: http://www.wias-berlin.de/people/polzehl/\n# RoxygenNote: 5.0.1\n# NeedsCompilation: yes\n# Packaged: 2019-05-07 08:15:05 UTC; polzehl\n# Repository: CRAN\n# Date/Publication: 2019-05-08 09:20:05 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -299,13 +303,14 @@
    "automake",
    "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "grep",
    "gsl",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "pkg-config",
@@ -324,11 +329,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "pkg-config",
@@ -340,6 +347,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "gsl",
     "r-awsmethods",
@@ -351,8 +359,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "gsl",
     "r-awsmethods",
     "r-base",
@@ -373,11 +381,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "pkg-config",
@@ -397,7 +407,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "gsl",
     "r-awsmethods >=1.0_1",
     "r-base",
@@ -432,8 +441,7 @@
    "summary": "We provide a collection of R-functions implementing adaptive smoothing procedures in 1D, 2D and 3D. This includes the Propagation-Separation Approach to adaptive smoothing as described in \"J. Polzehl and V. Spokoiny (2006) <DOI:10.1007/s00440-005-0464-1>\", \"J. Polzehl and V. Spokoiny (2004) <DOI:10.20347/WIAS.PREPRINT.998>\" and \"J. Polzehl, K. Papafitsoros, K. Tabelow (2018) <DOI:10.20347/WIAS.PREPRINT.2520>\", the Intersecting Confidence Intervals (ICI), variational approaches and a non-local means filter."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -451,6 +459,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -470,7 +479,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-awsmethods >=1.0_1",
     "r-gsl",
     "gsl"
@@ -499,6 +507,7 @@
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "pkg-config",
@@ -518,7 +527,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "gsl",
     "r-awsmethods",
     "r-base",
