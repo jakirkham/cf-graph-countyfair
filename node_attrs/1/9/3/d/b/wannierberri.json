@@ -3,7 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "bot": {
-   "automerge": true
+   "automerge": true,
+   "inspection": "update-grayskull"
   },
   "conda_build": {
    "pkg_format": "2"
@@ -29,8 +30,8 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -43,35 +44,18 @@
   },
   "requirements": {
    "host": [
-    "python >=3.6",
-    "pip",
-    "numpy",
-    "scipy",
-    "lazy-property",
-    "pyfftw",
-    "colorama",
-    "termcolor",
-    "pyfiglet"
+    "python >=3.7",
+    "pip"
    ],
    "run": [
-    "python >=3.6",
+    "python >=3.7",
     "numpy <1.25,>=1.24",
-    "scipy",
-    "lazy-property",
+    "scipy >=1.0",
     "colorama",
     "termcolor",
-    "pyfiglet",
-    "pyfftw",
-    "fortio",
-    "packaging",
-    "numba",
-    "matplotlib-base",
-    "ray-core",
-    "spglib <2",
-    "sympy",
-    "untangle",
-    "protobuf =3.20.2",
-    "irrep",
+    "numba >=0.55.2",
+    "packaging >=20.8",
+    "fortio >=0.4",
     "wannier90io"
    ]
   },
@@ -99,15 +83,8 @@
   "host": {
    "__set__": true,
    "elements": [
-    "colorama",
-    "lazy-property",
-    "numpy",
     "pip",
-    "pyfftw",
-    "pyfiglet",
-    "python",
-    "scipy",
-    "termcolor"
+    "python"
    ]
   },
   "run": {
@@ -115,22 +92,12 @@
    "elements": [
     "colorama",
     "fortio",
-    "irrep",
-    "lazy-property",
-    "matplotlib-base",
     "numba",
     "numpy",
     "packaging",
-    "protobuf",
-    "pyfftw",
-    "pyfiglet",
     "python",
-    "ray-core",
     "scipy",
-    "spglib",
-    "sympy",
     "termcolor",
-    "untangle",
     "wannier90io"
    ]
   },
@@ -154,8 +121,8 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -168,35 +135,18 @@
   },
   "requirements": {
    "host": [
-    "python >=3.6",
-    "pip",
-    "numpy",
-    "scipy",
-    "lazy-property",
-    "pyfftw",
-    "colorama",
-    "termcolor",
-    "pyfiglet"
+    "python >=3.7",
+    "pip"
    ],
    "run": [
-    "python >=3.6",
+    "python >=3.7",
     "numpy <1.25,>=1.24",
-    "scipy",
-    "lazy-property",
+    "scipy >=1.0",
     "colorama",
     "termcolor",
-    "pyfiglet",
-    "pyfftw",
-    "fortio",
-    "packaging",
-    "numba",
-    "matplotlib-base",
-    "ray-core",
-    "spglib <2",
-    "sympy",
-    "untangle",
-    "protobuf =3.20.2",
-    "irrep",
+    "numba >=0.55.2",
+    "packaging >=20.8",
+    "fortio >=0.4",
     "wannier90io"
    ]
   },
@@ -230,29 +180,19 @@
  "pr_info": {
   "__lazy_json__": "pr_info/wannierberri.json"
  },
- "raw_meta_yaml": "{% set name = \"wannierberri\" %}\n{% set version = \"0.17.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: f54b34bf59e8c5c4fefd5be8f2623dd6943ec596dc39dbb29d3690e5b1cb920d\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n    - numpy\n    - scipy\n    - lazy-property\n    - pyfftw\n    - colorama\n    - termcolor\n    - pyfiglet\n  run:\n    - python >=3.6\n    - numpy <1.25,>=1.24\n    - scipy\n    - lazy-property\n    - colorama\n    - termcolor\n    - pyfiglet\n    - pyfftw\n    - fortio\n    - packaging\n    - numba\n    - matplotlib-base\n    - ray-core\n    - spglib <2\n    - sympy\n    - untangle\n    - protobuf =3.20.2\n    - irrep\n    - wannier90io\n\ntest:\n  imports:\n    - wannierberri\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: http://wannier-berri.org\n  license: GPL-2.0-only\n  license_family: GPL\n  license_file: LICENSE\n  summary: Advanced tool for Wannier interpolation and integration of k-space integrals\n\n  description: |\n    Evaluation of k-space integrals of Berry curvature, orbital moment and \n    derived quantities by means of MLWFs or tight-binding models. Compared \n    to postw90.x part of Wannier90 code, it has extended functional and \n    improved performance\n  doc_url: http://wannier-berri.org\n  dev_url: https://github.com/stepan-tsirkin/wannier-berri\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n",
+ "raw_meta_yaml": "{% set name = \"wannierberri\" %}\n{% set version = \"0.17.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: f54b34bf59e8c5c4fefd5be8f2623dd6943ec596dc39dbb29d3690e5b1cb920d\n\nbuild:\n  noarch: python\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n  run:\n    - python >=3.7\n    - numpy <1.25,>=1.24\n    - scipy >=1.0\n    - colorama\n    - termcolor\n    - numba >=0.55.2\n    - packaging >=20.8\n    - fortio >=0.4\n    - wannier90io\n\ntest:\n  imports:\n    - wannierberri\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: http://wannier-berri.org\n  license: GPL-2.0-only\n  license_family: GPL\n  license_file: LICENSE\n  summary: Advanced tool for Wannier interpolation and integration of k-space integrals\n\n  description: |\n    Evaluation of k-space integrals of Berry curvature, orbital moment and \n    derived quantities by means of MLWFs or tight-binding models. Compared \n    to postw90.x part of Wannier90 code, it has extended functional and \n    improved performance\n  doc_url: http://wannier-berri.org\n  dev_url: https://github.com/stepan-tsirkin/wannier-berri\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n",
  "req": {
   "__set__": true,
   "elements": [
    "colorama",
    "fortio",
-   "irrep",
-   "lazy-property",
-   "matplotlib-base",
    "numba",
    "numpy",
    "packaging",
    "pip",
-   "protobuf",
-   "pyfftw",
-   "pyfiglet",
    "python",
-   "ray-core",
    "scipy",
-   "spglib",
-   "sympy",
    "termcolor",
-   "untangle",
    "wannier90io"
   ]
  },
@@ -264,15 +204,8 @@
   "host": {
    "__set__": true,
    "elements": [
-    "colorama",
-    "lazy-property",
-    "numpy",
     "pip",
-    "pyfftw",
-    "pyfiglet",
-    "python",
-    "scipy",
-    "termcolor"
+    "python"
    ]
   },
   "run": {
@@ -280,22 +213,12 @@
    "elements": [
     "colorama",
     "fortio",
-    "irrep",
-    "lazy-property",
-    "matplotlib-base",
     "numba",
     "numpy",
     "packaging",
-    "protobuf",
-    "pyfftw",
-    "pyfiglet",
     "python",
-    "ray-core",
     "scipy",
-    "spglib",
-    "sympy",
     "termcolor",
-    "untangle",
     "wannier90io"
    ]
   },
@@ -315,38 +238,21 @@
   "host": {
    "__set__": true,
    "elements": [
-    "colorama",
-    "lazy-property",
-    "numpy",
     "pip",
-    "pyfftw",
-    "pyfiglet",
-    "python >=3.6",
-    "scipy",
-    "termcolor"
+    "python >=3.7"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "colorama",
-    "fortio",
-    "irrep",
-    "lazy-property",
-    "matplotlib-base",
-    "numba",
+    "fortio >=0.4",
+    "numba >=0.55.2",
     "numpy <1.25,>=1.24",
-    "packaging",
-    "protobuf =3.20.2",
-    "pyfftw",
-    "pyfiglet",
-    "python >=3.6",
-    "ray-core",
-    "scipy",
-    "spglib <2",
-    "sympy",
+    "packaging >=20.8",
+    "python >=3.7",
+    "scipy >=1.0",
     "termcolor",
-    "untangle",
     "wannier90io"
    ]
   },
