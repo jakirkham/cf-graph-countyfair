@@ -33,7 +33,7 @@
    "summary": "Bindings to 'FFmpeg' <http://www.ffmpeg.org/> AV library for working with audio and video in R. Generates high quality video from images or R graphics with custom audio. Also offers high performance tools for reading raw audio, creating 'spectrograms', and converting between countless audio / video formats. This package interfaces directly to the C API and does not require any command line utilities."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -121,7 +121,7 @@
    "summary": "Bindings to 'FFmpeg' <http://www.ffmpeg.org/> AV library for working with audio and video in R. Generates high quality video from images or R graphics with custom audio. Also offers high performance tools for reading raw audio, creating 'spectrograms', and converting between countless audio / video formats. This package interfaces directly to the C API and does not require any command line utilities."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -209,7 +209,7 @@
    "summary": "Bindings to 'FFmpeg' <http://www.ffmpeg.org/> AV library for working with audio and video in R. Generates high quality video from images or R graphics with custom audio. Also offers high performance tools for reading raw audio, creating 'spectrograms', and converting between countless audio / video formats. This package interfaces directly to the C API and does not require any command line utilities."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -297,7 +297,7 @@
    "summary": "Bindings to 'FFmpeg' <http://www.ffmpeg.org/> AV library for working with audio and video in R. Generates high quality video from images or R graphics with custom audio. Also offers high performance tools for reading raw audio, creating 'spectrograms', and converting between countless audio / video formats. This package interfaces directly to the C API and does not require any command line utilities."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -319,7 +319,15 @@
     "autoconf",
     "automake",
     "pkg-config",
-    "make"
+    "make",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "filesystem",
+    "sed",
+    "grep",
+    "automake-wrapper",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -338,7 +346,8 @@
   },
   "test": {
    "commands": [
-    "$R -e \"library('av')\""
+    "$R -e \"library('av')\"",
+    "\"%R%\" -e \"library('av')\""
    ]
   }
  },
@@ -356,7 +365,7 @@
    "summary": "Bindings to 'FFmpeg' <http://www.ffmpeg.org/> AV library for working with audio and video in R. Generates high quality video from images or R graphics with custom audio. Also offers high performance tools for reading raw audio, creating 'spectrograms', and converting between countless audio / video formats. This package interfaces directly to the C API and does not require any command line utilities."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -442,23 +451,32 @@
   "linux_64",
   "linux_aarch64",
   "linux_ppc64le",
-  "osx_64"
+  "osx_64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/r-av.json"
  },
- "raw_meta_yaml": "{% set version = \"0.9.0\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-av\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/av_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/av/av_{{ version }}.tar.gz\n  sha256: 37c7d55b62877484228c21509c098183c8a2bc5f2790880c3fe1d0496033d77f\n\nbuild:\n  merge_build_host: true  # [win]\n  skip: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - ffmpeg\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('av')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('av')\\\"\"  # [win]\n\nabout:\n  home: https://docs.ropensci.org/av/\n  dev_url: https://github.com/ropensci/av\n  license: MIT\n  summary: Bindings to 'FFmpeg' <http://www.ffmpeg.org/> AV library for working with audio and video in R. Generates high quality video from images or R graphics with custom audio. Also offers high performance tools for reading raw audio, creating 'spectrograms', and converting between countless audio / video formats. This\n    package interfaces directly to the C API and does not require any command line utilities.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.9.0\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-av\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/av_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/av/av_{{ version }}.tar.gz\n  sha256: 37c7d55b62877484228c21509c098183c8a2bc5f2790880c3fe1d0496033d77f\n\nbuild:\n  # Checking windows to see if it passes. Uncomment the line if it fails.\n  # skip: true  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - ffmpeg\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('av')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('av')\\\"\"  # [win]\n\nabout:\n  home: https://docs.ropensci.org/av/\n  dev_url: https://github.com/ropensci/av\n  license: MIT\n  summary: Bindings to 'FFmpeg' <http://www.ffmpeg.org/> AV library for working with audio and video in R. Generates high quality video from images or R graphics with custom audio. Also offers high performance tools for reading raw audio, creating 'spectrograms', and converting between countless audio / video formats. This\n    package interfaces directly to the C API and does not require any command line utilities.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "autoconf",
    "automake",
+   "automake-wrapper",
    "c_compiler_stub",
    "c_stdlib_stub",
+   "coreutils",
    "ffmpeg",
+   "filesystem",
+   "grep",
+   "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "pkg-config",
-   "r-base"
+   "r-base",
+   "sed",
+   "zip"
   ]
  },
  "requirements": {
@@ -467,10 +485,18 @@
    "elements": [
     "autoconf",
     "automake",
+    "automake-wrapper",
     "c_compiler_stub",
     "c_stdlib_stub",
+    "coreutils",
+    "filesystem",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
-    "pkg-config"
+    "pkg-config",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -502,10 +528,18 @@
    "elements": [
     "autoconf",
     "automake",
+    "automake-wrapper",
     "c_compiler_stub",
     "c_stdlib_stub",
+    "coreutils",
+    "filesystem",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
-    "pkg-config"
+    "pkg-config",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -534,10 +568,110 @@
   "https://cran.r-project.org/src/contrib/av_0.9.0.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/av/av_0.9.0.tar.gz",
   "https://cran.r-project.org/src/contrib/av_0.9.0.tar.gz",
+  "https://cran.r-project.org/src/contrib/Archive/av/av_0.9.0.tar.gz",
+  "https://cran.r-project.org/src/contrib/av_0.9.0.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/av/av_0.9.0.tar.gz"
  ],
  "version": "0.9.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/r-av.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/ropensci/av",
+   "home": "https://docs.ropensci.org/av/",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": [
+    "/lib/R/share/licenses/MIT",
+    "LICENSE"
+   ],
+   "summary": "Bindings to 'FFmpeg' <http://www.ffmpeg.org/> AV library for working with audio and video in R. Generates high quality video from images or R graphics with custom audio. Also offers high performance tools for reading raw audio, creating 'spectrograms', and converting between countless audio / video formats. This package interfaces directly to the C API and does not require any command line utilities."
+  },
+  "build": {
+   "number": "2",
+   "rpaths": [
+    "lib/R/lib/",
+    "lib/"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "conda-forge/r"
+   ]
+  },
+  "package": {
+   "name": "r-av",
+   "version": "0.9.0"
+  },
+  "requirements": {
+   "build": [
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "filesystem",
+    "sed",
+    "grep",
+    "autoconf",
+    "automake-wrapper",
+    "pkg-config",
+    "make",
+    "coreutils",
+    "zip"
+   ],
+   "host": [
+    "r-base",
+    "ffmpeg"
+   ],
+   "run": [
+    "r-base"
+   ]
+  },
+  "source": {
+   "sha256": "37c7d55b62877484228c21509c098183c8a2bc5f2790880c3fe1d0496033d77f",
+   "url": [
+    "https://cran.r-project.org/src/contrib/av_0.9.0.tar.gz",
+    "https://cran.r-project.org/src/contrib/Archive/av/av_0.9.0.tar.gz"
+   ]
+  },
+  "test": {
+   "commands": [
+    "\"%R%\" -e \"library('av')\""
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "autoconf",
+    "automake-wrapper",
+    "coreutils",
+    "filesystem",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "make",
+    "pkg-config",
+    "sed",
+    "zip"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "ffmpeg",
+    "r-base"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "r-base"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
  }
 }
