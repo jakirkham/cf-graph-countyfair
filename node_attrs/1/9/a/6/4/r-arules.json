@@ -32,7 +32,7 @@
    "summary": "Provides the infrastructure for representing, manipulating and analyzing transaction data and patterns (frequent itemsets and association rules). Also provides C implementations of the association mining algorithms Apriori and Eclat.  See Christian Borgelt (2012) <doi:10.1002/widm.1074>."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -81,6 +82,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -116,7 +118,7 @@
    "summary": "Provides the infrastructure for representing, manipulating and analyzing transaction data and patterns (frequent itemsets and association rules). Also provides C implementations of the association mining algorithms Apriori and Eclat.  See Christian Borgelt (2012) <doi:10.1002/widm.1074>."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -134,6 +136,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -165,6 +168,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -200,7 +204,7 @@
    "summary": "Provides the infrastructure for representing, manipulating and analyzing transaction data and patterns (frequent itemsets and association rules). Also provides C implementations of the association mining algorithms Apriori and Eclat.  See Christian Borgelt (2012) <doi:10.1002/widm.1074>."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -218,6 +222,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -249,6 +254,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -284,8 +290,7 @@
    "summary": "Provides the infrastructure for representing, manipulating and analyzing transaction data and patterns (frequent itemsets and association rules). Also provides C implementations of the association mining algorithms Apriori and Eclat.  See Christian Borgelt (2012) <doi:10.1002/widm.1074>."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -303,8 +308,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -318,8 +325,7 @@
    "run": [
     "r-base",
     "r-matrix >=1.2_0",
-    "r-generics",
-    "gcc-libs"
+    "r-generics"
    ]
   },
   "source": {
@@ -348,7 +354,7 @@
    "summary": "Provides the infrastructure for representing, manipulating and analyzing transaction data and patterns (frequent itemsets and association rules). Also provides C implementations of the association mining algorithms Apriori and Eclat.  See Christian Borgelt (2012) <doi:10.1002/widm.1074>."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -366,6 +372,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -397,6 +404,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -438,15 +446,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-arules.json"
  },
- "raw_meta_yaml": "{% set version = \"1.7-7\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-arules\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/arules_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/arules/arules_{{ version }}.tar.gz\n  sha256: 42d9f462163c5b4175d40812e5dc0dcdd9714bbdc447a9ba2bfb15af09d771a0\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-matrix >=1.2_0\n    - r-generics\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-matrix >=1.2_0\n    - r-generics\n\ntest:\n  commands:\n    - $R -e \"library('arules')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('arules')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/mhahsler/arules\n  license: GPL-3.0-only\n  summary: Provides the infrastructure for representing, manipulating and analyzing transaction data and patterns (frequent itemsets and association rules). Also provides C implementations of the association mining algorithms Apriori and Eclat.  See Christian Borgelt (2012) <doi:10.1002/widm.1074>.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: arules\n# Version: 1.6-4\n# Date: 2019-08-27\n# Title: Mining Association Rules and Frequent Itemsets\n# Authors@R: c(person(\"Michael\", \"Hahsler\", role = c(\"aut\", \"cre\", \"cph\"), email = \"mhahsler@lyle.smu.edu\"), person(\"Christian\", \"Buchta\", role = c(\"aut\", \"cph\")), person(\"Bettina\", \"Gruen\", role = c(\"aut\", \"cph\")), person(\"Kurt\", \"Hornik\", role = c(\"aut\", \"cph\")), person(\"Ian\", \"Johnson\", role = c(\"ctb\", \"cph\")), person(\"Christian\", \"Borgelt\", role = c(\"ctb\", \"cph\")))\n# Description: Provides the infrastructure for representing, manipulating and analyzing transaction data and patterns (frequent itemsets and association rules). Also provides C implementations of the association mining algorithms Apriori and Eclat.  See Christian Borgelt (2012) <doi:10.1002/widm.1074>.\n# Classification/ACM: G.4, H.2.8, I.5.1\n# URL: https://github.com/mhahsler/arules\n# BugReports: https://github.com/mhahsler/arules/issues\n# Depends: R (>= 3.4.0), Matrix (>= 1.2-0)\n# Imports: stats, methods, graphics, utils\n# Suggests: pmml, XML, arulesViz, testthat\n# License: GPL-3\n# Copyright: The source code for Apriori and Eclat was obtained from http://www.borgelt.net/ and is Copyright (C) 1996-2003 Christian Borgelt. All other code is Copyright (C) Michael Hahsler, Christian Buchta, Bettina Gruen and Kurt Hornik.\n# NeedsCompilation: yes\n# Packaged: 2019-08-28 17:01:41 UTC; hahsler\n# Author: Michael Hahsler [aut, cre, cph], Christian Buchta [aut, cph], Bettina Gruen [aut, cph], Kurt Hornik [aut, cph], Ian Johnson [ctb, cph], Christian Borgelt [ctb, cph]\n# Maintainer: Michael Hahsler <mhahsler@lyle.smu.edu>\n# Repository: CRAN\n# Date/Publication: 2019-08-29 04:40:06 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.7-7\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-arules\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/arules_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/arules/arules_{{ version }}.tar.gz\n  sha256: 42d9f462163c5b4175d40812e5dc0dcdd9714bbdc447a9ba2bfb15af09d771a0\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-matrix >=1.2_0\n    - r-generics\n  run:\n    - r-base\n    - r-matrix >=1.2_0\n    - r-generics\n\ntest:\n  commands:\n    - $R -e \"library('arules')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('arules')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/mhahsler/arules\n  license: GPL-3.0-only\n  summary: Provides the infrastructure for representing, manipulating and analyzing transaction data and patterns (frequent itemsets and association rules). Also provides C implementations of the association mining algorithms Apriori and Eclat.  See Christian Borgelt (2012) <doi:10.1002/widm.1074>.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: arules\n# Version: 1.6-4\n# Date: 2019-08-27\n# Title: Mining Association Rules and Frequent Itemsets\n# Authors@R: c(person(\"Michael\", \"Hahsler\", role = c(\"aut\", \"cre\", \"cph\"), email = \"mhahsler@lyle.smu.edu\"), person(\"Christian\", \"Buchta\", role = c(\"aut\", \"cph\")), person(\"Bettina\", \"Gruen\", role = c(\"aut\", \"cph\")), person(\"Kurt\", \"Hornik\", role = c(\"aut\", \"cph\")), person(\"Ian\", \"Johnson\", role = c(\"ctb\", \"cph\")), person(\"Christian\", \"Borgelt\", role = c(\"ctb\", \"cph\")))\n# Description: Provides the infrastructure for representing, manipulating and analyzing transaction data and patterns (frequent itemsets and association rules). Also provides C implementations of the association mining algorithms Apriori and Eclat.  See Christian Borgelt (2012) <doi:10.1002/widm.1074>.\n# Classification/ACM: G.4, H.2.8, I.5.1\n# URL: https://github.com/mhahsler/arules\n# BugReports: https://github.com/mhahsler/arules/issues\n# Depends: R (>= 3.4.0), Matrix (>= 1.2-0)\n# Imports: stats, methods, graphics, utils\n# Suggests: pmml, XML, arulesViz, testthat\n# License: GPL-3\n# Copyright: The source code for Apriori and Eclat was obtained from http://www.borgelt.net/ and is Copyright (C) 1996-2003 Christian Borgelt. All other code is Copyright (C) Michael Hahsler, Christian Buchta, Bettina Gruen and Kurt Hornik.\n# NeedsCompilation: yes\n# Packaged: 2019-08-28 17:01:41 UTC; hahsler\n# Author: Michael Hahsler [aut, cre, cph], Christian Buchta [aut, cph], Bettina Gruen [aut, cph], Kurt Hornik [aut, cph], Ian Johnson [ctb, cph], Christian Borgelt [ctb, cph]\n# Maintainer: Michael Hahsler <mhahsler@lyle.smu.edu>\n# Repository: CRAN\n# Date/Publication: 2019-08-29 04:40:06 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-generics",
@@ -460,9 +469,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -472,6 +483,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-generics",
     "r-matrix"
@@ -481,7 +493,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-generics",
     "r-matrix"
@@ -498,9 +510,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -517,7 +531,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-generics",
     "r-matrix >=1.2_0"
@@ -555,8 +568,7 @@
    "summary": "Provides the infrastructure for representing, manipulating and analyzing transaction data and patterns (frequent itemsets and association rules). Also provides C implementations of the association mining algorithms Apriori and Eclat.  See Christian Borgelt (2012) <doi:10.1002/widm.1074>."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -574,6 +586,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -587,7 +600,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-matrix >=1.2_0",
     "r-generics"
    ]
@@ -612,6 +624,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -628,7 +641,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-generics",
     "r-matrix"

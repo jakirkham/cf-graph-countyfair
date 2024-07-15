@@ -25,7 +25,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -43,6 +43,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -71,6 +72,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -103,11 +105,10 @@
    "summary": "An integrated set of tools for thermodynamic calculations in aqueous geochemistry and geobiochemistry. Functions are provided for writing balanced reactions to form species from user-selected basis species and for calculating the standard molal properties of species and reactions, including the standard Gibbs energy and equilibrium constant. Calculations of the non-equilibrium chemical affinity and equilibrium chemical activity of species can be portrayed on diagrams as a function of temperature, pressure, or activity of basis species; in two dimensions, this gives a maximum affinity or predominance diagram. The diagrams have formatted chemical formulas and axis labels, and water stability limits can be added to Eh-pH, oxygen fugacity- temperature, and other diagrams with a redox variable. The package has been developed to handle common calculations in aqueous geochemistry, such as solubility due to complexation of metal ions, mineral buffers of redox or pH, and changing the basis species across a diagram (\"mosaic diagrams\"). CHNOSZ also implements a group additivity algorithm for the standard thermodynamic properties of proteins."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -125,9 +126,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -138,8 +141,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -169,7 +171,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -187,6 +189,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -215,6 +218,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -251,16 +255,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-chnosz.json"
  },
- "raw_meta_yaml": "{% set version = '2.1.0' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-chnosz\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/CHNOSZ_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/CHNOSZ/CHNOSZ_{{ version }}.tar.gz\n  sha256: 3b75a3e19a6f15a3f6e4a2bffae4de537967ba6b8a693b2eb8aae069dd358fc7\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'                        # [win]\n\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('CHNOSZ')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('CHNOSZ')\\\"\"  # [win]\n\nabout:\n  home: https://www.chnosz.net/, https://r-forge.r-project.org/projects/chnosz/\n  license: AGPL-3.0-only\n  summary: An integrated set of tools for thermodynamic calculations in aqueous geochemistry\n    and geobiochemistry. Functions are provided for writing balanced reactions to form\n    species from user-selected basis species and for calculating the standard molal\n    properties of species and reactions, including the standard Gibbs energy and equilibrium\n    constant. Calculations of the non-equilibrium chemical affinity and equilibrium\n    chemical activity of species can be portrayed on diagrams as a function of temperature,\n    pressure, or activity of basis species; in two dimensions, this gives a maximum\n    affinity or predominance diagram. The diagrams have formatted chemical formulas\n    and axis labels, and water stability limits can be added to Eh-pH, oxygen fugacity-\n    temperature, and other diagrams with a redox variable. The package has been developed\n    to handle common calculations in aqueous geochemistry, such as solubility due to\n    complexation of metal ions, mineral buffers of redox or pH, and changing the basis\n    species across a diagram (\"mosaic diagrams\"). CHNOSZ also implements a group additivity\n    algorithm for the standard thermodynamic properties of proteins.\n  license_family: GPL3\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3'\n# Date: 2024-02-11\n\nextra:\n  recipe-maintainers:\n    - cmkobel\n\n# Package: CHNOSZ\n# Version: 2.1.0\n# Title: Thermodynamic Calculations and Diagrams for Geochemistry\n# Authors@R: c( person(\"Jeffrey\", \"Dick\", , \"j3ffdick@gmail.com\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-0687-5890\")) )\n# Author: Jeffrey Dick [aut, cre] (<https://orcid.org/0000-0002-0687-5890>)\n# Maintainer: Jeffrey Dick <j3ffdick@gmail.com>\n# Depends: R (>= 3.1.0)\n# Suggests: tinytest, knitr, rmarkdown, tufte\n# Imports: grDevices, graphics, stats, utils\n# Description: An integrated set of tools for thermodynamic calculations in aqueous geochemistry and geobiochemistry. Functions are provided for writing balanced reactions to form species from user-selected basis species and for calculating the standard molal properties of species and reactions, including the standard Gibbs energy and equilibrium constant. Calculations of the non-equilibrium chemical affinity and equilibrium chemical activity of species can be portrayed on diagrams as a function of temperature, pressure, or activity of basis species; in two dimensions, this gives a maximum affinity or predominance diagram. The diagrams have formatted chemical formulas and axis labels, and water stability limits can be added to Eh-pH, oxygen fugacity- temperature, and other diagrams with a redox variable. The package has been developed to handle common calculations in aqueous geochemistry, such as solubility due to complexation of metal ions, mineral buffers of redox or pH, and changing the basis species across a diagram (\"mosaic diagrams\"). CHNOSZ also implements a group additivity algorithm for the standard thermodynamic properties of proteins.\n# Encoding: UTF-8\n# License: GPL-3\n# VignetteBuilder: knitr\n# URL: https://www.chnosz.net/, https://r-forge.r-project.org/projects/chnosz/\n# NeedsCompilation: yes\n# Packaged: 2024-02-11 13:02:38 UTC; jedick\n# Repository: CRAN\n# Date/Publication: 2024-02-11 13:40:02 UTC\n",
+ "raw_meta_yaml": "{% set version = '2.1.0' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-chnosz\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/CHNOSZ_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/CHNOSZ/CHNOSZ_{{ version }}.tar.gz\n  sha256: 3b75a3e19a6f15a3f6e4a2bffae4de537967ba6b8a693b2eb8aae069dd358fc7\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'                        # [win]\n\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('CHNOSZ')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('CHNOSZ')\\\"\"  # [win]\n\nabout:\n  home: https://www.chnosz.net/, https://r-forge.r-project.org/projects/chnosz/\n  license: AGPL-3.0-only\n  summary: An integrated set of tools for thermodynamic calculations in aqueous geochemistry\n    and geobiochemistry. Functions are provided for writing balanced reactions to form\n    species from user-selected basis species and for calculating the standard molal\n    properties of species and reactions, including the standard Gibbs energy and equilibrium\n    constant. Calculations of the non-equilibrium chemical affinity and equilibrium\n    chemical activity of species can be portrayed on diagrams as a function of temperature,\n    pressure, or activity of basis species; in two dimensions, this gives a maximum\n    affinity or predominance diagram. The diagrams have formatted chemical formulas\n    and axis labels, and water stability limits can be added to Eh-pH, oxygen fugacity-\n    temperature, and other diagrams with a redox variable. The package has been developed\n    to handle common calculations in aqueous geochemistry, such as solubility due to\n    complexation of metal ions, mineral buffers of redox or pH, and changing the basis\n    species across a diagram (\"mosaic diagrams\"). CHNOSZ also implements a group additivity\n    algorithm for the standard thermodynamic properties of proteins.\n  license_family: GPL3\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3'\n# Date: 2024-02-11\n\nextra:\n  recipe-maintainers:\n    - cmkobel\n\n# Package: CHNOSZ\n# Version: 2.1.0\n# Title: Thermodynamic Calculations and Diagrams for Geochemistry\n# Authors@R: c( person(\"Jeffrey\", \"Dick\", , \"j3ffdick@gmail.com\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-0687-5890\")) )\n# Author: Jeffrey Dick [aut, cre] (<https://orcid.org/0000-0002-0687-5890>)\n# Maintainer: Jeffrey Dick <j3ffdick@gmail.com>\n# Depends: R (>= 3.1.0)\n# Suggests: tinytest, knitr, rmarkdown, tufte\n# Imports: grDevices, graphics, stats, utils\n# Description: An integrated set of tools for thermodynamic calculations in aqueous geochemistry and geobiochemistry. Functions are provided for writing balanced reactions to form species from user-selected basis species and for calculating the standard molal properties of species and reactions, including the standard Gibbs energy and equilibrium constant. Calculations of the non-equilibrium chemical affinity and equilibrium chemical activity of species can be portrayed on diagrams as a function of temperature, pressure, or activity of basis species; in two dimensions, this gives a maximum affinity or predominance diagram. The diagrams have formatted chemical formulas and axis labels, and water stability limits can be added to Eh-pH, oxygen fugacity- temperature, and other diagrams with a redox variable. The package has been developed to handle common calculations in aqueous geochemistry, such as solubility due to complexation of metal ions, mineral buffers of redox or pH, and changing the basis species across a diagram (\"mosaic diagrams\"). CHNOSZ also implements a group additivity algorithm for the standard thermodynamic properties of proteins.\n# Encoding: UTF-8\n# License: GPL-3\n# VignetteBuilder: knitr\n# URL: https://www.chnosz.net/, https://r-forge.r-project.org/projects/chnosz/\n# NeedsCompilation: yes\n# Packaged: 2024-02-11 13:02:38 UTC; jedick\n# Repository: CRAN\n# Date/Publication: 2024-02-11 13:40:02 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "r-base",
@@ -273,10 +278,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -287,6 +294,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "r-base"
    ]
@@ -295,8 +303,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -311,10 +319,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -330,7 +340,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
@@ -362,11 +371,10 @@
    "summary": "An integrated set of tools for thermodynamic calculations in aqueous geochemistry and geobiochemistry. Functions are provided for writing balanced reactions to form species from user-selected basis species and for calculating the standard molal properties of species and reactions, including the standard Gibbs energy and equilibrium constant. Calculations of the non-equilibrium chemical affinity and equilibrium chemical activity of species can be portrayed on diagrams as a function of temperature, pressure, or activity of basis species; in two dimensions, this gives a maximum affinity or predominance diagram. The diagrams have formatted chemical formulas and axis labels, and water stability limits can be added to Eh-pH, oxygen fugacity- temperature, and other diagrams with a redox variable. The package has been developed to handle common calculations in aqueous geochemistry, such as solubility due to complexation of metal ions, mineral buffers of redox or pH, and changing the basis species across a diagram (\"mosaic diagrams\"). CHNOSZ also implements a group additivity algorithm for the standard thermodynamic properties of proteins."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -384,6 +392,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "make",
@@ -395,8 +404,7 @@
     "r-base"
    ],
    "run": [
-    "r-base",
-    "gcc-libs"
+    "r-base"
    ]
   },
   "source": {
@@ -419,6 +427,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -434,7 +443,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base"
    ]
   },
