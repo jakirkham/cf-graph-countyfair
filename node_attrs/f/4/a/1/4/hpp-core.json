@@ -24,7 +24,7 @@
    "summary": "hpp-core subpackage of Humanoid Path Planner suite"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "hpp-core"
    ]
@@ -49,6 +49,8 @@
     "doxygen"
    ],
    "host": [
+    "qhull",
+    "qhull-static",
     "libboost-devel",
     "tinyxml",
     "urdfdom",
@@ -62,6 +64,8 @@
     "hpp-constraints  5.1.0"
    ],
    "run": [
+    "qhull",
+    "qhull-static",
     "tinyxml"
    ]
   },
@@ -103,6 +107,8 @@
     "libboost-devel",
     "octomap",
     "proxsuite",
+    "qhull",
+    "qhull-static",
     "tinyxml",
     "urdfdom"
    ]
@@ -110,6 +116,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "qhull",
+    "qhull-static",
     "tinyxml"
    ]
   },
@@ -131,7 +139,7 @@
    "summary": "hpp-core subpackage of Humanoid Path Planner suite"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "hpp-core"
    ]
@@ -156,6 +164,8 @@
     "doxygen"
    ],
    "host": [
+    "qhull",
+    "qhull-static",
     "libboost-devel",
     "tinyxml",
     "urdfdom",
@@ -169,6 +179,8 @@
     "hpp-constraints  5.1.0"
    ],
    "run": [
+    "qhull",
+    "qhull-static",
     "tinyxml"
    ]
   },
@@ -198,7 +210,7 @@
    "summary": "hpp-core subpackage of Humanoid Path Planner suite"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "hpp-core"
    ]
@@ -223,6 +235,8 @@
     "doxygen"
    ],
    "host": [
+    "qhull",
+    "qhull-static",
     "libboost-devel",
     "tinyxml",
     "urdfdom",
@@ -236,6 +250,8 @@
     "hpp-constraints  5.1.0"
    ],
    "run": [
+    "qhull",
+    "qhull-static",
     "tinyxml"
    ]
   },
@@ -277,6 +293,8 @@
     "libboost-devel",
     "octomap",
     "proxsuite",
+    "qhull",
+    "qhull-static",
     "tinyxml",
     "urdfdom"
    ]
@@ -284,6 +302,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "qhull",
+    "qhull-static",
     "tinyxml"
    ]
   },
@@ -308,7 +328,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/hpp-core.json"
  },
- "raw_meta_yaml": "{% set name = \"hpp-core\" %}\n{% set version = \"5.1.0\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 245e23583044ba66ff80671a0630a509acb6a6e88d7a630e115709f8bb08da84\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  run_exports:\n    - {{ pin_subpackage(name|lower, max_pin='x.x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - make\n    - pkg-config\n    - doxygen\n  host:\n    - libboost-devel\n    - tinyxml\n    - urdfdom\n    - assimp\n    - octomap\n    - proxsuite\n    - hpp-fcl\n    - hpp-util  {{ version }}\n    - hpp-statistics  {{ version }}\n    - hpp-pinocchio  {{ version }}\n    - hpp-constraints  {{ version }}\n  run:\n    - tinyxml\n\ntest:\n  requires:\n    - pkg-config\n  commands:\n    - pkg-config --modversion {{ name }}\n    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}  # [unix]\n\nabout:\n  home: https://github.com/humanoid-path-planner/{{ name }}\n  license: BSD-2-Clause\n  license_file: LICENSE\n  summary: {{ name }} subpackage of Humanoid Path Planner suite\n  description: |\n    HPP (Humanoid Path Planner) is a collection of software packages implementing\n    path planning functionalities for a humanoid robot. The core functionalities are well\n    suited to solve classical path planning problems. It can be extended to path planning\n    for other types of robots like digital actors for instance.\n  doc_url: https://gepettoweb.laas.fr/hpp/hpp-doc/doxygen-html/index.html\n  dev_url: https://github.com/humanoid-path-planner/{{ name }}\n\nextra:\n  recipe-maintainers:\n    - ymontmarin\n    - jcarpent\n",
+ "raw_meta_yaml": "{% set name = \"hpp-core\" %}\n{% set version = \"5.1.0\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/humanoid-path-planner/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 245e23583044ba66ff80671a0630a509acb6a6e88d7a630e115709f8bb08da84\n\nbuild:\n  number: 1\n  skip: true  # [win]\n  run_exports:\n    - {{ pin_subpackage(name|lower, max_pin='x.x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - make\n    - pkg-config\n    - doxygen\n  host:\n    - qhull\n    - qhull-static\n    - libboost-devel\n    - tinyxml\n    - urdfdom\n    - assimp\n    - octomap\n    - proxsuite\n    - hpp-fcl\n    - hpp-util  {{ version }}\n    - hpp-statistics  {{ version }}\n    - hpp-pinocchio  {{ version }}\n    - hpp-constraints  {{ version }}\n  run:\n    - qhull\n    - qhull-static\n    - tinyxml\n\ntest:\n  requires:\n    - pkg-config\n  commands:\n    - pkg-config --modversion {{ name }}\n    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}  # [unix]\n\nabout:\n  home: https://github.com/humanoid-path-planner/{{ name }}\n  license: BSD-2-Clause\n  license_file: LICENSE\n  summary: {{ name }} subpackage of Humanoid Path Planner suite\n  description: |\n    HPP (Humanoid Path Planner) is a collection of software packages implementing\n    path planning functionalities for a humanoid robot. The core functionalities are well\n    suited to solve classical path planning problems. It can be extended to path planning\n    for other types of robots like digital actors for instance.\n  doc_url: https://gepettoweb.laas.fr/hpp/hpp-doc/doxygen-html/index.html\n  dev_url: https://github.com/humanoid-path-planner/{{ name }}\n\nextra:\n  recipe-maintainers:\n    - ymontmarin\n    - jcarpent\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -327,6 +347,8 @@
    "octomap",
    "pkg-config",
    "proxsuite",
+   "qhull",
+   "qhull-static",
    "tinyxml",
    "urdfdom"
   ]
@@ -357,6 +379,8 @@
     "libboost-devel",
     "octomap",
     "proxsuite",
+    "qhull",
+    "qhull-static",
     "tinyxml",
     "urdfdom"
    ]
@@ -366,6 +390,8 @@
    "elements": [
     "c_stdlib_stub",
     "cxx_compiler_stub",
+    "qhull",
+    "qhull-static",
     "tinyxml"
    ]
   },
@@ -401,6 +427,8 @@
     "libboost-devel",
     "octomap",
     "proxsuite",
+    "qhull",
+    "qhull-static",
     "tinyxml",
     "urdfdom"
    ]
@@ -408,6 +436,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "qhull",
+    "qhull-static",
     "tinyxml"
    ]
   },
