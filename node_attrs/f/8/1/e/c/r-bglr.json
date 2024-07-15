@@ -30,7 +30,7 @@
    "summary": "Bayesian Generalized Linear Regression."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -48,6 +48,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -79,6 +80,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -114,8 +116,7 @@
    "summary": "Bayesian Generalized Linear Regression."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -133,8 +134,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -148,8 +151,7 @@
    "run": [
     "r-base",
     "r-mass",
-    "r-truncnorm",
-    "gcc-libs"
+    "r-truncnorm"
    ]
   },
   "source": {
@@ -178,7 +180,7 @@
    "summary": "Bayesian Generalized Linear Regression."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -196,6 +198,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -227,6 +230,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -266,15 +270,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-bglr.json"
  },
- "raw_meta_yaml": "{% set version = \"1.1.2\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-bglr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/BGLR_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/BGLR/BGLR_{{ version }}.tar.gz\n  sha256: 39476f3739bd86905a379e2d5de86ef1f8b0e10c311e350d95ce7aadb7b28224\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-mass\n    - r-truncnorm\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-mass\n    - r-truncnorm\n\ntest:\n  commands:\n    - $R -e \"library('BGLR')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('BGLR')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=BGLR\n  license: GPL-3.0-only\n  summary: Bayesian Generalized Linear Regression.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: BGLR\n# Version: 1.0.8\n# Date: 2018-11-24\n# Title: Bayesian Generalized Linear Regression\n# Author: Gustavo de los Campos, Paulino Perez Rodriguez,\n# Maintainer: Paulino Perez Rodriguez <perpdgo@colpos.mx>\n# Depends: R (>= 3.5.0)\n# Imports: truncnorm\n# Description: Bayesian Generalized Linear Regression.\n# LazyLoad: true\n# License: GPL-3\n# NeedsCompilation: yes\n# Packaged: 2018-11-07 04:39:20 UTC; pperez\n# Repository: CRAN\n# Date/Publication: 2018-11-11 07:20:03 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.1.2\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-bglr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/BGLR_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/BGLR/BGLR_{{ version }}.tar.gz\n  sha256: 39476f3739bd86905a379e2d5de86ef1f8b0e10c311e350d95ce7aadb7b28224\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-mass\n    - r-truncnorm\n  run:\n    - r-base\n    - r-mass\n    - r-truncnorm\n\ntest:\n  commands:\n    - $R -e \"library('BGLR')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('BGLR')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=BGLR\n  license: GPL-3.0-only\n  summary: Bayesian Generalized Linear Regression.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: BGLR\n# Version: 1.0.8\n# Date: 2018-11-24\n# Title: Bayesian Generalized Linear Regression\n# Author: Gustavo de los Campos, Paulino Perez Rodriguez,\n# Maintainer: Paulino Perez Rodriguez <perpdgo@colpos.mx>\n# Depends: R (>= 3.5.0)\n# Imports: truncnorm\n# Description: Bayesian Generalized Linear Regression.\n# LazyLoad: true\n# License: GPL-3\n# NeedsCompilation: yes\n# Packaged: 2018-11-07 04:39:20 UTC; pperez\n# Repository: CRAN\n# Date/Publication: 2018-11-11 07:20:03 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-mass",
@@ -288,9 +293,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -300,6 +307,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-mass",
     "r-truncnorm"
@@ -309,7 +317,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-mass",
     "r-truncnorm"
@@ -326,9 +334,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -345,7 +355,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-mass",
     "r-truncnorm"
@@ -379,8 +388,7 @@
    "summary": "Bayesian Generalized Linear Regression."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -398,6 +406,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -411,7 +420,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-mass",
     "r-truncnorm"
    ]
@@ -436,6 +444,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -452,7 +461,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-mass",
     "r-truncnorm"

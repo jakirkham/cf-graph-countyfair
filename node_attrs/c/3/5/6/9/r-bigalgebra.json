@@ -27,7 +27,7 @@
    "summary": "Provides arithmetic functions for R matrix and 'big.matrix' objects as well as functions for QR factorization, Cholesky factorization, General eigenvalue, and Singular value decomposition (SVD). A method matrix multiplication and an arithmetic method -for matrix addition, matrix difference- allows for mixed type operation -a matrix class object and a big.matrix class object- and pure type operation for two big.matrix class objects."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make"
@@ -81,6 +82,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make"
@@ -120,8 +122,7 @@
    "summary": "Provides arithmetic functions for R matrix and 'big.matrix' objects as well as functions for QR factorization, Cholesky factorization, General eigenvalue, and Singular value decomposition (SVD). A method matrix multiplication and an arithmetic method -for matrix addition, matrix difference- allows for mixed type operation -a matrix class object and a big.matrix class object- and pure type operation for two big.matrix class objects."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -140,10 +141,12 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
@@ -161,8 +164,7 @@
     "r-base",
     "r-bh",
     "r-bigmemory >=4.0.0",
-    "r-rcpp",
-    "gcc-libs"
+    "r-rcpp"
    ]
   },
   "source": {
@@ -191,7 +193,7 @@
    "summary": "Provides arithmetic functions for R matrix and 'big.matrix' objects as well as functions for QR factorization, Cholesky factorization, General eigenvalue, and Singular value decomposition (SVD). A method matrix multiplication and an arithmetic method -for matrix addition, matrix difference- allows for mixed type operation -a matrix class object and a big.matrix class object- and pure type operation for two big.matrix class objects."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -210,6 +212,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make"
@@ -245,6 +248,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make"
@@ -288,17 +292,18 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-bigalgebra.json"
  },
- "raw_meta_yaml": "{% set version = \"1.1.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-bigalgebra\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/bigalgebra_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/bigalgebra/bigalgebra_{{ version }}.tar.gz\n  sha256: fc6a48b940cca86caf8372648a1b1e4066f2f6d618a77303a1c8766c5b7bbf1f\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}        # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem            # [win]\n    - {{ posix }}make\n    - {{ posix }}sed                   # [win]\n    - {{ posix }}coreutils             # [win]\n    - {{ posix }}zip                   # [win]\n  host:\n    - r-base\n    - r-bh\n    - r-bigmemory >=4.0.0\n    - r-rcpp\n  run:\n    - r-base\n    - {{ native }}gcc-libs             # [win]\n    - r-bh\n    - r-bigmemory >=4.0.0\n    - r-rcpp\n\ntest:\n  commands:\n    - $R -e \"library('bigalgebra')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('bigalgebra')\\\"\"  # [win]\n\nabout:\n  home: http://www.bigmemory.org\n  license: LGPL-3.0-only\n  summary: Provides arithmetic functions for R matrix and 'big.matrix' objects as well as functions for QR factorization, Cholesky factorization, General eigenvalue, and Singular value decomposition (SVD). A method matrix multiplication and an arithmetic method -for matrix addition, matrix difference- allows for mixed type\n    operation -a matrix class object and a big.matrix class object- and pure type operation for two big.matrix class objects.\n  license_family: LGPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/LGPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - FernandezMathieu\n",
+ "raw_meta_yaml": "{% set version = \"1.1.1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-bigalgebra\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/bigalgebra_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/bigalgebra/bigalgebra_{{ version }}.tar.gz\n  sha256: fc6a48b940cca86caf8372648a1b1e4066f2f6d618a77303a1c8766c5b7bbf1f\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}        # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem            # [win]\n    - {{ posix }}make\n    - {{ posix }}sed                   # [win]\n    - {{ posix }}coreutils             # [win]\n    - {{ posix }}zip                   # [win]\n  host:\n    - r-base\n    - r-bh\n    - r-bigmemory >=4.0.0\n    - r-rcpp\n  run:\n    - r-base\n    - r-bh\n    - r-bigmemory >=4.0.0\n    - r-rcpp\n\ntest:\n  commands:\n    - $R -e \"library('bigalgebra')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('bigalgebra')\\\"\"  # [win]\n\nabout:\n  home: http://www.bigmemory.org\n  license: LGPL-3.0-only\n  summary: Provides arithmetic functions for R matrix and 'big.matrix' objects as well as functions for QR factorization, Cholesky factorization, General eigenvalue, and Singular value decomposition (SVD). A method matrix multiplication and an arithmetic method -for matrix addition, matrix difference- allows for mixed type\n    operation -a matrix class object and a big.matrix class object- and pure type operation for two big.matrix class objects.\n  license_family: LGPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/LGPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - FernandezMathieu\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "m2w64_fortran_compiler_stub",
    "make",
@@ -315,11 +320,13 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "m2w64_fortran_compiler_stub",
     "make",
@@ -331,6 +338,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "r-base",
@@ -343,9 +351,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-bh",
     "r-bigmemory",
@@ -363,11 +371,13 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "m2w64_fortran_compiler_stub",
     "make",
@@ -387,7 +397,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-bh",
     "r-bigmemory >=4.0.0",
@@ -422,8 +431,7 @@
    "summary": "Provides arithmetic functions for R matrix and 'big.matrix' objects as well as functions for QR factorization, Cholesky factorization, General eigenvalue, and Singular value decomposition (SVD). A method matrix multiplication and an arithmetic method -for matrix addition, matrix difference- allows for mixed type operation -a matrix class object and a big.matrix class object- and pure type operation for two big.matrix class objects."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -442,6 +450,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
@@ -458,7 +467,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-bh",
     "r-bigmemory >=4.0.0",
     "r-rcpp"
@@ -484,6 +492,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "m2w64_fortran_compiler_stub",
     "make",
@@ -503,7 +512,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-bh",
     "r-bigmemory",

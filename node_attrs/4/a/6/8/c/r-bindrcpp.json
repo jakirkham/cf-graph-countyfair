@@ -32,7 +32,7 @@
    "summary": "Provides an easy way to fill an environment with active bindings that call a C++ function."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -85,6 +86,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -123,7 +125,7 @@
    "summary": "Provides an easy way to fill an environment with active bindings that call a C++ function."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -141,6 +143,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -176,6 +179,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -214,7 +218,7 @@
    "summary": "Provides an easy way to fill an environment with active bindings that call a C++ function."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -232,6 +236,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -267,6 +272,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -305,8 +311,7 @@
    "summary": "Provides an easy way to fill an environment with active bindings that call a C++ function."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -324,9 +329,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -343,8 +350,7 @@
     "r-base",
     "r-rcpp >=0.12.16",
     "r-bindr >=0.1.1",
-    "r-plogr",
-    "gcc-libs"
+    "r-plogr"
    ]
   },
   "source": {
@@ -374,7 +380,7 @@
    "summary": "Provides an easy way to fill an environment with active bindings that call a C++ function."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -392,6 +398,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -427,6 +434,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -471,16 +479,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-bindrcpp.json"
  },
- "raw_meta_yaml": "{% set version = \"0.2.3\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-bindrcpp\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: bindrcpp_{{ version }}.tar.gz\n  url:\n    - {{ cran_mirror }}/src/contrib/bindrcpp_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/bindrcpp/bindrcpp_{{ version }}.tar.gz\n  sha256: 662dae785aee715855415f4e743281ccbf0832e426084dc2f0ca9c9c908ec9fa\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  skip: true  # [win32]\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('m2w64_cxx') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp >=0.12.16\n    - r-bindr >=0.1.1\n    - r-plogr\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp >=0.12.16\n    - r-bindr >=0.1.1\n    - r-plogr\n\ntest:\n  commands:\n    - $R -e \"library('bindrcpp')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('bindrcpp')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/krlmlr/bindrcpp, https://krlmlr.github.io/bindrcpp\n  license: MIT\n  summary: Provides an easy way to fill an environment with active bindings that call a C++ function.\n  license_family: MIT\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.2.3\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-bindrcpp\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: bindrcpp_{{ version }}.tar.gz\n  url:\n    - {{ cran_mirror }}/src/contrib/bindrcpp_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/bindrcpp/bindrcpp_{{ version }}.tar.gz\n  sha256: 662dae785aee715855415f4e743281ccbf0832e426084dc2f0ca9c9c908ec9fa\n\nbuild:\n  number: 1\n  skip: true  # [win32]\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('m2w64_cxx') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp >=0.12.16\n    - r-bindr >=0.1.1\n    - r-plogr\n  run:\n    - r-base\n    - r-rcpp >=0.12.16\n    - r-bindr >=0.1.1\n    - r-plogr\n\ntest:\n  commands:\n    - $R -e \"library('bindrcpp')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('bindrcpp')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/krlmlr/bindrcpp, https://krlmlr.github.io/bindrcpp\n  license: MIT\n  summary: Provides an easy way to fill an environment with active bindings that call a C++ function.\n  license_family: MIT\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -496,10 +505,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -510,6 +521,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-bindr",
@@ -521,8 +533,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-bindr",
     "r-plogr",
@@ -540,10 +552,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -562,7 +576,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-bindr >=0.1.1",
     "r-plogr",
@@ -601,8 +614,7 @@
    "summary": "Provides an easy way to fill an environment with active bindings that call a C++ function."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -620,6 +632,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -635,7 +648,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp >=0.12.16",
     "r-bindr >=0.1.1",
     "r-plogr"
@@ -662,6 +674,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -680,7 +693,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-bindr",
     "r-plogr",
