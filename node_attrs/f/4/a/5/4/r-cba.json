@@ -28,7 +28,7 @@
    "summary": "Implements clustering techniques such as Proximus and Rock, utility functions for efficient computation of cross distances and data manipulation. "
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -108,8 +108,7 @@
    "summary": "Implements clustering techniques such as Proximus and Rock, utility functions for efficient computation of cross distances and data manipulation. "
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -142,8 +141,7 @@
    ],
    "run": [
     "r-base",
-    "r-proxy",
-    "gcc-libs"
+    "r-proxy"
    ]
   },
   "source": {
@@ -170,7 +168,7 @@
    "summary": "Implements clustering techniques such as Proximus and Rock, utility functions for efficient computation of cross distances and data manipulation. "
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -256,7 +254,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-cba.json"
  },
- "raw_meta_yaml": "{% set version = \"0.2-24\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-cba\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/cba_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/cba/cba_{{ version }}.tar.gz\n  sha256: 50e705c064c7dd063cedd377030d51b3a4ee2a4c48aaa9d225a4accb47401d52\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-proxy\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-proxy\n\ntest:\n  commands:\n    - $R -e \"library('cba')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('cba')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=cba\n  license: GPL-2.0-only\n  summary: 'Implements clustering techniques such as Proximus and Rock, utility functions for efficient computation of cross distances and data manipulation. '\n  license_family: GPL2\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: cba\n# Type: Package\n# Title: Clustering for Business Analytics\n# Version: 0.2-21\n# Author: Christian Buchta and Michael Hahsler\n# Maintainer: Christian Buchta <christian.buchta@wu.ac.at>\n# Description: Implements clustering techniques such as Proximus and Rock, utility functions for efficient computation of cross distances and data manipulation.\n# Depends: R (>= 2.10), grid, proxy\n# Imports: stats, graphics, grDevices, methods\n# Suggests: gclus, colorspace\n# Encoding: latin1\n# License: GPL-2\n# NeedsCompilation: yes\n# Packaged: 2019-04-18 15:33:05 UTC; hornik\n# Repository: CRAN\n# Date/Publication: 2019-04-18 15:46:59 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.2-24\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-cba\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/cba_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/cba/cba_{{ version }}.tar.gz\n  sha256: 50e705c064c7dd063cedd377030d51b3a4ee2a4c48aaa9d225a4accb47401d52\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-proxy\n  run:\n    - r-base\n    - r-proxy\n\ntest:\n  commands:\n    - $R -e \"library('cba')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('cba')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=cba\n  license: GPL-2.0-only\n  summary: 'Implements clustering techniques such as Proximus and Rock, utility functions for efficient computation of cross distances and data manipulation. '\n  license_family: GPL2\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: cba\n# Type: Package\n# Title: Clustering for Business Analytics\n# Version: 0.2-21\n# Author: Christian Buchta and Michael Hahsler\n# Maintainer: Christian Buchta <christian.buchta@wu.ac.at>\n# Description: Implements clustering techniques such as Proximus and Rock, utility functions for efficient computation of cross distances and data manipulation.\n# Depends: R (>= 2.10), grid, proxy\n# Imports: stats, graphics, grDevices, methods\n# Suggests: gclus, colorspace\n# Encoding: latin1\n# License: GPL-2\n# NeedsCompilation: yes\n# Packaged: 2019-04-18 15:33:05 UTC; hornik\n# Repository: CRAN\n# Date/Publication: 2019-04-18 15:46:59 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -264,7 +262,6 @@
    "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
    "m2w64_c_stdlib_stub",
    "make",
@@ -303,7 +300,6 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "gcc-libs",
     "r-base",
     "r-proxy"
    ]
@@ -339,7 +335,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-proxy"
    ]
@@ -370,8 +365,7 @@
    "summary": "Implements clustering techniques such as Proximus and Rock, utility functions for efficient computation of cross distances and data manipulation. "
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -402,7 +396,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-proxy"
    ]
   },
@@ -442,7 +435,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-proxy"
    ]

@@ -3,7 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "bot": {
-   "automerge": true
+   "automerge": true,
+   "inspection": "update-grayskull"
   },
   "conda_build": {
    "pkg_format": "2"
@@ -29,8 +30,8 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -109,8 +110,8 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . --no-deps -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -163,7 +164,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/hickle.json"
  },
- "raw_meta_yaml": "{% set version = \"5.0.3\" %}\n\npackage:\n  name: hickle\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/h/hickle/hickle-{{ version }}.tar.gz\n  sha256: 027e51ccad279d168123a244525e6c84bac0db64605b311b0bd349891be0c53e\n\nbuild:\n  number: 0\n  noarch: python\n  script: \"{{ PYTHON }} -m pip install . --no-deps -vv\"\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n  run:\n    - python >=3.7\n    - numpy >=1.8,!=1.20\n    - h5py >=2.10.0\n\ntest:\n  requires:\n    - pip\n  imports:\n    - hickle\n  commands:\n    - pip check\n\nabout:\n  home: http://github.com/telegraphic/hickle\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: 'A HDF5-based python pickle replacement for dumping and loading python variables to file.'\n\n  description: |\n    hickle is a neat, quick way of dumping python variables to HDF5 files that can be read \n    in most programming languages. Hickle is fast, and allows for transparent \n    compression of your data (LZF / GZIP). Hickle is built upon h5py, and can be used as a\n    drop-in replacement for pickle/cPickle.\n  doc_url: http://github.com/telegraphic/hickle/README.md\n  dev_url: https://github.com/telegraphic/hickle\n\nextra:\n  recipe-maintainers:\n    - telegraphic\n    - jan-janssen\n",
+ "raw_meta_yaml": "{% set version = \"5.0.3\" %}\n\npackage:\n  name: hickle\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/h/hickle/hickle-{{ version }}.tar.gz\n  sha256: 027e51ccad279d168123a244525e6c84bac0db64605b311b0bd349891be0c53e\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 1\n\nrequirements:\n  host:\n    - python >=3.7\n    - pip\n  run:\n    - python >=3.7\n    - numpy >=1.8,!=1.20\n    - h5py >=2.10.0\n\ntest:\n  requires:\n    - pip\n  imports:\n    - hickle\n  commands:\n    - pip check\n\nabout:\n  home: http://github.com/telegraphic/hickle\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: 'A HDF5-based python pickle replacement for dumping and loading python variables to file.'\n\n  description: |\n    hickle is a neat, quick way of dumping python variables to HDF5 files that can be read \n    in most programming languages. Hickle is fast, and allows for transparent \n    compression of your data (LZF / GZIP). Hickle is built upon h5py, and can be used as a\n    drop-in replacement for pickle/cPickle.\n  doc_url: http://github.com/telegraphic/hickle/README.md\n  dev_url: https://github.com/telegraphic/hickle\n\nextra:\n  recipe-maintainers:\n    - telegraphic\n    - jan-janssen\n",
  "req": {
   "__set__": true,
   "elements": [
