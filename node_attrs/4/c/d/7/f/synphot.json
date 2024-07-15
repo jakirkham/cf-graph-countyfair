@@ -3,6 +3,7 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -14,6 +15,7 @@
    "tooling_branch_name": "main"
   },
   "provider": {
+   "linux_aarch64": "default",
    "win": "azure"
   },
   "test": "native_and_emulated"
@@ -32,7 +34,7 @@
    "summary": "Synthetic photometry"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -104,6 +106,90 @@
    "elements": []
   }
  },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "description": "This is a replacement for IRAF STSDAS SYNPHOT and ASTROLIB PYSYNPHOT,\nutilizing Astropy and covering the non-instrument specific portions of\nthe old packages.\n",
+   "dev_url": "https://www.github.com/spacetelescope/synphot_refactor",
+   "doc_url": "https://synphot.readthedocs.io/en/latest/",
+   "home": "https://www.github.com/spacetelescope/synphot_refactor",
+   "license": "BSD-3-Clause",
+   "license_family": "BSD",
+   "license_file": "LICENSE.rst",
+   "summary": "Synthetic photometry"
+  },
+  "build": {
+   "number": "2",
+   "script": "PYTHON -m pip install . -vv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "mwcraig",
+    "pllim"
+   ]
+  },
+  "package": {
+   "name": "synphot",
+   "version": "1.4.0"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "pip",
+    "python",
+    "setuptools_scm",
+    "numpy",
+    "extension-helpers"
+   ],
+   "run": [
+    "astropy",
+    "python",
+    "scipy"
+   ]
+  },
+  "source": {
+   "sha256": "262e1dcfc09d819cf67e55a8cc40f1e0b805f7a278de1270ae6a61d51730683a",
+   "url": "https://pypi.io/packages/source/s/synphot/synphot-1.4.0.tar.gz"
+  },
+  "test": {
+   "imports": [
+    "synphot"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "extension-helpers",
+    "numpy",
+    "pip",
+    "python",
+    "setuptools_scm"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "astropy",
+    "python",
+    "scipy"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "meta_yaml": {
   "about": {
    "description": "This is a replacement for IRAF STSDAS SYNPHOT and ASTROLIB PYSYNPHOT,\nutilizing Astropy and covering the non-instrument specific portions of\nthe old packages.\n",
@@ -116,7 +202,7 @@
    "summary": "Synthetic photometry"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -170,7 +256,7 @@
    "summary": "Synthetic photometry"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -254,7 +340,7 @@
    "summary": "Synthetic photometry"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -335,6 +421,7 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -342,7 +429,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/synphot.json"
  },
- "raw_meta_yaml": "{% set name = \"synphot\" %}\n{% set version = \"1.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 262e1dcfc09d819cf67e55a8cc40f1e0b805f7a278de1270ae6a61d51730683a\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [py<310]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - pip\n    - python\n    - setuptools_scm\n    - numpy\n    - extension-helpers\n  run:\n    - astropy\n    - python\n    - scipy\n\ntest:\n  imports:\n    - synphot\n\nabout:\n  home: https://www.github.com/spacetelescope/synphot_refactor\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE.rst\n  summary: Synthetic photometry\n  description: |\n    This is a replacement for IRAF STSDAS SYNPHOT and ASTROLIB PYSYNPHOT,\n    utilizing Astropy and covering the non-instrument specific portions of\n    the old packages.\n  doc_url: https://synphot.readthedocs.io/en/latest/\n  dev_url: https://www.github.com/spacetelescope/synphot_refactor\n\nextra:\n  recipe-maintainers:\n    - mwcraig\n    - pllim\n",
+ "raw_meta_yaml": "{% set name = \"synphot\" %}\n{% set version = \"1.4.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 262e1dcfc09d819cf67e55a8cc40f1e0b805f7a278de1270ae6a61d51730683a\n\nbuild:\n  number: 2\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [py<310]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - pip\n    - python\n    - setuptools_scm\n    - numpy\n    - extension-helpers\n  run:\n    - astropy\n    - python\n    - scipy\n\ntest:\n  imports:\n    - synphot\n\nabout:\n  home: https://www.github.com/spacetelescope/synphot_refactor\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE.rst\n  summary: Synthetic photometry\n  description: |\n    This is a replacement for IRAF STSDAS SYNPHOT and ASTROLIB PYSYNPHOT,\n    utilizing Astropy and covering the non-instrument specific portions of\n    the old packages.\n  doc_url: https://synphot.readthedocs.io/en/latest/\n  dev_url: https://www.github.com/spacetelescope/synphot_refactor\n\nextra:\n  recipe-maintainers:\n    - mwcraig\n    - pllim\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -441,7 +528,7 @@
    "summary": "Synthetic photometry"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
