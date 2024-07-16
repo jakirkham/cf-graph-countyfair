@@ -40,29 +40,32 @@
   },
   "package": {
    "name": "h5io",
-   "version": "0.2.3"
+   "version": "0.2.4"
   },
   "requirements": {
    "host": [
-    "python >=3.6",
+    "python >=3.8",
     "pip",
-    "numpy"
+    "numpy",
+    "setuptools >=64",
+    "setuptools_scm >=8"
    ],
    "run": [
-    "python >=3.6",
+    "python >=3.8",
     "pip",
     "numpy",
     "h5py"
    ]
   },
   "source": {
-   "fn": "h5io-0.2.3.tar.gz",
-   "sha256": "b536a1cd3b02e82d9ab568618fdb1d1e08642b7327f52e3521167e369e05f509",
-   "url": "https://pypi.io/packages/source/h/h5io/h5io-0.2.3.tar.gz"
+   "fn": "h5io-0.2.4.tar.gz",
+   "sha256": "473efdf172f3fc9cddf19131ad281a5ff085c18579b3adce287ba873bbb12603",
+   "url": "https://pypi.io/packages/source/h/h5io/h5io-0.2.4.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "python -c \"import h5io; assert h5io.__version__ == '0.2.4', h5io.__version__\""
    ],
    "imports": [
     "h5io"
@@ -79,7 +82,9 @@
    "elements": [
     "numpy",
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "setuptools_scm"
    ]
   },
   "run": {
@@ -120,29 +125,32 @@
   },
   "package": {
    "name": "h5io",
-   "version": "0.2.3"
+   "version": "0.2.4"
   },
   "requirements": {
    "host": [
-    "python >=3.6",
+    "python >=3.8",
     "pip",
-    "numpy"
+    "numpy",
+    "setuptools >=64",
+    "setuptools_scm >=8"
    ],
    "run": [
-    "python >=3.6",
+    "python >=3.8",
     "pip",
     "numpy",
     "h5py"
    ]
   },
   "source": {
-   "fn": "h5io-0.2.3.tar.gz",
-   "sha256": "b536a1cd3b02e82d9ab568618fdb1d1e08642b7327f52e3521167e369e05f509",
-   "url": "https://pypi.io/packages/source/h/h5io/h5io-0.2.3.tar.gz"
+   "fn": "h5io-0.2.4.tar.gz",
+   "sha256": "473efdf172f3fc9cddf19131ad281a5ff085c18579b3adce287ba873bbb12603",
+   "url": "https://pypi.io/packages/source/h/h5io/h5io-0.2.4.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "python -c \"import h5io; assert h5io.__version__ == '0.2.4', h5io.__version__\""
    ],
    "imports": [
     "h5io"
@@ -163,14 +171,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/h5io.json"
  },
- "raw_meta_yaml": "{% set name = \"h5io\" %}\n{% set version = \"0.2.3\" %}\n{% set sha256 = \"b536a1cd3b02e82d9ab568618fdb1d1e08642b7327f52e3521167e369e05f509\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n    - numpy\n  run:\n    - python >=3.6\n    - pip\n    - numpy\n    - h5py\n\ntest:\n  imports:\n    - h5io\n  commands:\n    - pip check\n\nabout:\n  home: http://github.com/h5io/h5io\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: {{ environ[\"RECIPE_DIR\"] }}/LICENSE.txt\n  summary: Python Objects Onto HDF5\n  description: |\n    h5io is a package designed to facilitate saving some standard Python objects into the \n    forward-compatible HDF5 format. It is a higher-level package than h5py.\n  doc_url: https://github.com/h5io/h5io\n  dev_url: https://github.com/h5io/h5io\n\nextra:\n  recipe-maintainers:\n    - larsoner\n    - jan-janssen\n",
+ "raw_meta_yaml": "{% set name = \"h5io\" %}\n{% set version = \"0.2.4\" %}\n{% set sha256 = \"473efdf172f3fc9cddf19131ad281a5ff085c18579b3adce287ba873bbb12603\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . --no-deps -vv\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n    - numpy\n    - setuptools >=64\n    - setuptools_scm >=8\n  run:\n    - python >=3.8\n    - pip\n    - numpy\n    - h5py\n\ntest:\n  imports:\n    - h5io\n  commands:\n    - pip check\n    - python -c \"import h5io; assert h5io.__version__ == '{{ version }}', h5io.__version__\"\n\nabout:\n  home: http://github.com/h5io/h5io\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: {{ environ[\"RECIPE_DIR\"] }}/LICENSE.txt\n  summary: Python Objects Onto HDF5\n  description: |\n    h5io is a package designed to facilitate saving some standard Python objects into the\n    forward-compatible HDF5 format. It is a higher-level package than h5py.\n  doc_url: https://github.com/h5io/h5io\n  dev_url: https://github.com/h5io/h5io\n\nextra:\n  recipe-maintainers:\n    - larsoner\n    - jan-janssen\n",
  "req": {
   "__set__": true,
   "elements": [
    "h5py",
    "numpy",
    "pip",
-   "python"
+   "python",
+   "setuptools",
+   "setuptools_scm"
   ]
  },
  "requirements": {
@@ -183,7 +193,9 @@
    "elements": [
     "numpy",
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "setuptools_scm"
    ]
   },
   "run": {
@@ -211,7 +223,9 @@
    "elements": [
     "numpy",
     "pip",
-    "python >=3.6"
+    "python >=3.8",
+    "setuptools >=64",
+    "setuptools_scm >=8"
    ]
   },
   "run": {
@@ -220,7 +234,7 @@
     "h5py",
     "numpy",
     "pip",
-    "python >=3.6"
+    "python >=3.8"
    ]
   },
   "test": {
@@ -228,8 +242,8 @@
    "elements": []
   }
  },
- "url": "https://pypi.io/packages/source/h/h5io/h5io-0.2.3.tar.gz",
- "version": "0.2.3",
+ "url": "https://pypi.io/packages/source/h/h5io/h5io-0.2.4.tar.gz",
+ "version": "0.2.4",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/h5io.json"
  }
