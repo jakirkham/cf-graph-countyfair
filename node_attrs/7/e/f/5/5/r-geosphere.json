@@ -6,6 +6,8 @@
    "automerge": true
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -36,7 +38,7 @@
    "summary": "Spherical trigonometry for geographic applications. That is, compute distances and related measures for angular (longitude/latitude) locations. "
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -55,6 +57,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -87,6 +90,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -123,7 +127,7 @@
    "summary": "Spherical trigonometry for geographic applications. That is, compute distances and related measures for angular (longitude/latitude) locations. "
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -142,6 +146,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -174,6 +179,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -210,7 +216,7 @@
    "summary": "Spherical trigonometry for geographic applications. That is, compute distances and related measures for angular (longitude/latitude) locations. "
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -229,6 +235,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -261,6 +268,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -297,8 +305,7 @@
    "summary": "Spherical trigonometry for geographic applications. That is, compute distances and related measures for angular (longitude/latitude) locations. "
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -317,9 +324,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -334,8 +343,7 @@
    "run": [
     "r-base",
     "r-rcpp",
-    "r-sp",
-    "gcc-libs"
+    "r-sp"
    ]
   },
   "source": {
@@ -364,7 +372,7 @@
    "summary": "Spherical trigonometry for geographic applications. That is, compute distances and related measures for angular (longitude/latitude) locations. "
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -383,6 +391,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -415,6 +424,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -451,7 +461,7 @@
    "summary": "Spherical trigonometry for geographic applications. That is, compute distances and related measures for angular (longitude/latitude) locations. "
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -470,6 +480,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -502,6 +513,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -545,16 +557,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-geosphere.json"
  },
- "raw_meta_yaml": "{% set version = \"1.5-18\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-geosphere\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/geosphere_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/geosphere/geosphere_{{ version }}.tar.gz\n  sha256: 99ff6ff050cc8c2d565b6bb1488607fc7950a6d448930f8d9642eccefbc6dac0\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-sp                       # [build_platform != target_platform]\n    - r-rcpp                     # [build_platform != target_platform]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-sp\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp\n    - r-sp\n\ntest:\n  commands:\n    - $R -e \"library('geosphere')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('geosphere')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=geosphere\n  dev_url: https://github.com/rspatial/geosphere\n  doc_url: https://rspatial.org/raster/sphere/index.html\n  license: GPL-3.0-or-later\n  summary: 'Spherical trigonometry for geographic applications. That is, compute distances and related measures for angular (longitude/latitude) locations. '\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - ConorIA\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"1.5-18\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-geosphere\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/geosphere_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/geosphere/geosphere_{{ version }}.tar.gz\n  sha256: 99ff6ff050cc8c2d565b6bb1488607fc7950a6d448930f8d9642eccefbc6dac0\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-sp                       # [build_platform != target_platform]\n    - r-rcpp                     # [build_platform != target_platform]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-sp\n  run:\n    - r-base\n    - r-rcpp\n    - r-sp\n\ntest:\n  commands:\n    - $R -e \"library('geosphere')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('geosphere')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=geosphere\n  dev_url: https://github.com/rspatial/geosphere\n  doc_url: https://rspatial.org/raster/sphere/index.html\n  license: GPL-3.0-or-later\n  summary: 'Spherical trigonometry for geographic applications. That is, compute distances and related measures for angular (longitude/latitude) locations. '\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - ConorIA\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -569,10 +582,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -583,6 +598,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-rcpp",
@@ -593,8 +609,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-rcpp",
     "r-sp"
@@ -611,10 +627,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -632,7 +650,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp",
     "r-sp"
@@ -672,8 +689,7 @@
    "summary": "Spherical trigonometry for geographic applications. That is, compute distances and related measures for angular (longitude/latitude) locations. "
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -692,6 +708,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -706,7 +723,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp",
     "r-sp"
    ]
@@ -731,6 +747,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -748,7 +765,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp",
     "r-sp"

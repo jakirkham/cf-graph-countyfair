@@ -37,7 +37,7 @@
    "summary": "Set of tools for manipulating geographic data. It includes binary access to 'GSHHG' shoreline files. The package also provides interface wrappers for exchanging spatial objects with packages such as 'PBSmapping', 'spatstat', 'maps', 'RArcInfo', and others."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -55,6 +55,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -88,6 +89,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -125,7 +127,7 @@
    "summary": "Set of tools for manipulating geographic data. It includes binary access to 'GSHHG' shoreline files. The package also provides interface wrappers for exchanging spatial objects with packages such as 'PBSmapping', 'spatstat', 'maps', 'RArcInfo', and others."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -143,6 +145,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -176,6 +179,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -213,7 +217,7 @@
    "summary": "Set of tools for manipulating geographic data. It includes binary access to 'GSHHG' shoreline files. The package also provides interface wrappers for exchanging spatial objects with packages such as 'PBSmapping', 'spatstat', 'maps', 'RArcInfo', and others."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -231,6 +235,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -264,6 +269,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -301,8 +307,7 @@
    "summary": "Set of tools for manipulating geographic data. It includes binary access to 'GSHHG' shoreline files. The package also provides interface wrappers for exchanging spatial objects with packages such as 'PBSmapping', 'spatstat', 'maps', 'RArcInfo', and others."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -320,8 +325,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -337,8 +344,7 @@
     "r-base",
     "r-foreign >=0.8",
     "r-lattice",
-    "r-sp >=1.0_11",
-    "gcc-libs"
+    "r-sp >=1.0_11"
    ]
   },
   "source": {
@@ -367,7 +373,7 @@
    "summary": "Set of tools for manipulating geographic data. It includes binary access to 'GSHHG' shoreline files. The package also provides interface wrappers for exchanging spatial objects with packages such as 'PBSmapping', 'spatstat', 'maps', 'RArcInfo', and others."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -385,6 +391,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -418,6 +425,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -455,7 +463,7 @@
    "summary": "Set of tools for manipulating geographic data. It includes binary access to 'GSHHG' shoreline files. The package also provides interface wrappers for exchanging spatial objects with packages such as 'PBSmapping', 'spatstat', 'maps', 'RArcInfo', and others."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -473,6 +481,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -506,6 +515,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -550,15 +560,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-maptools.json"
  },
- "raw_meta_yaml": "{% set version = \"1.1-8\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-maptools\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/maptools_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/maptools/maptools_{{ version }}.tar.gz\n  sha256: 5e8579e3f559161935f1dde622ece703eefa2a28a677ce553d7f27611e66e0f7\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-foreign                  # [build_platform != target_platform]\n    - r-sp                       # [build_platform != target_platform]\n    - r-lattice                  # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-foreign >=0.8\n    - r-lattice\n    - r-sp >=1.0_11\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-foreign >=0.8\n    - r-lattice\n    - r-sp >=1.0_11\n\ntest:\n  commands:\n    - $R -e \"library('maptools')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('maptools')\\\"\"  # [win]\n\nabout:\n  home: http://r-forge.r-project.org/projects/maptools/\n  license: GPL-2.0-or-later\n  summary: Set of tools for manipulating geographic data. It includes binary access to 'GSHHG' shoreline files. The package also provides interface wrappers for exchanging spatial objects with packages such as 'PBSmapping', 'spatstat', 'maps', 'RArcInfo', and others.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: maptools\n# Version: 0.9-5\n# Date: 2019-02-18\n# Title: Tools for Handling Spatial Objects\n# Authors@R: c( person(\"Roger\", \"Bivand\", role = c(\"cre\", \"aut\"), email = \"Roger.Bivand@nhh.no\", comment=c(ORCID=\"0000-0003-2392-6140\")), person(\"Nicholas\", \"Lewin-Koh\", role = \"aut\"), person(\"Edzer\", \"Pebesma\", role = \"ctb\"), person(\"Eric\", \"Archer\", role = \"ctb\"), person(\"Adrian\", \"Baddeley\", role = \"ctb\"), person(\"Nick\", \"Bearman\", role = \"ctb\"), person(\"Hans-Jorg\", \"Bibiko\", role = \"ctb\"), person(\"Steven\", \"Brey\", role = \"ctb\"), person(\"Jonathan\", \"Callahan\", role = \"ctb\"), person(\"German\", \"Carrillo\", role = \"ctb\"), person(\"Stephane\", \"Dray\", role = \"ctb\"), person(\"David\", \"Forrest\", role = \"ctb\"), person(\"Michael\", \"Friendly\", role = \"ctb\"), person(\"Patrick\", \"Giraudoux\", role = \"ctb\"), person(\"Duncan\", \"Golicher\", role = \"ctb\"), person(\"Virgilio\", \"Gomez Rubio\", role = \"ctb\"), person(\"Patrick\", \"Hausmann\", role = \"ctb\"), person(\"Karl Ove\", \"Hufthammer\", role = \"ctb\"), person(\"Thomas\", \"Jagger\", role = \"ctb\"), person(\"Kent\", \"Johnson\", role = \"ctb\"), person(\"Sebastian\", \"Luque\", role = \"ctb\"), person(\"Don\", \"MacQueen\", role = \"ctb\"), person(\"Andrew\", \"Niccolai\", role = \"ctb\"), person(\"Edzer\", \"Pebesma\", role = \"ctb\"), person(\"Oscar\", \"Perpinan Lamigueiro\", role = \"ctb\"), person(\"Ethan\", \"Plunkett\", role = \"ctb\"), person(\"Tom\", \"Short\", role = \"ctb\"), person(\"Greg\", \"Snow\", role = \"ctb\"), person(\"Ben\", \"Stabler\", role = \"ctb\"), person(\"Murray\", \"Stokely\", role = \"ctb\"), person(\"Rolf\", \"Turner\", role = \"ctb\"))\n# Encoding: UTF-8\n# Depends: R (>= 2.10), sp (>= 1.0-11)\n# Imports: foreign (>= 0.8), methods, grid, lattice, stats, utils, grDevices\n# Suggests: rgeos (>= 0.1-8), spatstat (>= 1.50), PBSmapping, maps, RColorBrewer, raster, polyclip, spatstat.utils\n# Enhances: gpclib, RArcInfo\n# Description: Set of tools for manipulating geographic data. It includes binary access to 'GSHHG' shoreline files. The package also provides interface wrappers for exchanging spatial objects with packages such as 'PBSmapping', 'spatstat', 'maps', 'RArcInfo', and others.\n# License: GPL (>= 2)\n# URL: http://r-forge.r-project.org/projects/maptools/\n# RoxygenNote: 6.1.1\n# NeedsCompilation: yes\n# Packaged: 2019-02-18 08:37:28 UTC; rsb\n# Author: Roger Bivand [cre, aut] (<https://orcid.org/0000-0003-2392-6140>), Nicholas Lewin-Koh [aut], Edzer Pebesma [ctb], Eric Archer [ctb], Adrian Baddeley [ctb], Nick Bearman [ctb], Hans-Jorg Bibiko [ctb], Steven Brey [ctb], Jonathan Callahan [ctb], German Carrillo [ctb], Stephane Dray [ctb], David Forrest [ctb], Michael Friendly [ctb], Patrick Giraudoux [ctb], Duncan Golicher [ctb], Virgilio Gomez Rubio [ctb], Patrick Hausmann [ctb], Karl Ove Hufthammer [ctb], Thomas Jagger [ctb], Kent Johnson [ctb], Sebastian Luque [ctb], Don MacQueen [ctb], Andrew Niccolai [ctb], Edzer Pebesma [ctb], Oscar Perpinan Lamigueiro [ctb], Ethan Plunkett [ctb], Tom Short [ctb], Greg Snow [ctb], Ben Stabler [ctb], Murray Stokely [ctb], Rolf Turner [ctb]\n# Maintainer: Roger Bivand <Roger.Bivand@nhh.no>\n# Repository: CRAN\n# Date/Publication: 2019-02-18 10:50:07 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.1-8\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-maptools\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/maptools_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/maptools/maptools_{{ version }}.tar.gz\n  sha256: 5e8579e3f559161935f1dde622ece703eefa2a28a677ce553d7f27611e66e0f7\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-foreign                  # [build_platform != target_platform]\n    - r-sp                       # [build_platform != target_platform]\n    - r-lattice                  # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-foreign >=0.8\n    - r-lattice\n    - r-sp >=1.0_11\n  run:\n    - r-base\n    - r-foreign >=0.8\n    - r-lattice\n    - r-sp >=1.0_11\n\ntest:\n  commands:\n    - $R -e \"library('maptools')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('maptools')\\\"\"  # [win]\n\nabout:\n  home: http://r-forge.r-project.org/projects/maptools/\n  license: GPL-2.0-or-later\n  summary: Set of tools for manipulating geographic data. It includes binary access to 'GSHHG' shoreline files. The package also provides interface wrappers for exchanging spatial objects with packages such as 'PBSmapping', 'spatstat', 'maps', 'RArcInfo', and others.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: maptools\n# Version: 0.9-5\n# Date: 2019-02-18\n# Title: Tools for Handling Spatial Objects\n# Authors@R: c( person(\"Roger\", \"Bivand\", role = c(\"cre\", \"aut\"), email = \"Roger.Bivand@nhh.no\", comment=c(ORCID=\"0000-0003-2392-6140\")), person(\"Nicholas\", \"Lewin-Koh\", role = \"aut\"), person(\"Edzer\", \"Pebesma\", role = \"ctb\"), person(\"Eric\", \"Archer\", role = \"ctb\"), person(\"Adrian\", \"Baddeley\", role = \"ctb\"), person(\"Nick\", \"Bearman\", role = \"ctb\"), person(\"Hans-Jorg\", \"Bibiko\", role = \"ctb\"), person(\"Steven\", \"Brey\", role = \"ctb\"), person(\"Jonathan\", \"Callahan\", role = \"ctb\"), person(\"German\", \"Carrillo\", role = \"ctb\"), person(\"Stephane\", \"Dray\", role = \"ctb\"), person(\"David\", \"Forrest\", role = \"ctb\"), person(\"Michael\", \"Friendly\", role = \"ctb\"), person(\"Patrick\", \"Giraudoux\", role = \"ctb\"), person(\"Duncan\", \"Golicher\", role = \"ctb\"), person(\"Virgilio\", \"Gomez Rubio\", role = \"ctb\"), person(\"Patrick\", \"Hausmann\", role = \"ctb\"), person(\"Karl Ove\", \"Hufthammer\", role = \"ctb\"), person(\"Thomas\", \"Jagger\", role = \"ctb\"), person(\"Kent\", \"Johnson\", role = \"ctb\"), person(\"Sebastian\", \"Luque\", role = \"ctb\"), person(\"Don\", \"MacQueen\", role = \"ctb\"), person(\"Andrew\", \"Niccolai\", role = \"ctb\"), person(\"Edzer\", \"Pebesma\", role = \"ctb\"), person(\"Oscar\", \"Perpinan Lamigueiro\", role = \"ctb\"), person(\"Ethan\", \"Plunkett\", role = \"ctb\"), person(\"Tom\", \"Short\", role = \"ctb\"), person(\"Greg\", \"Snow\", role = \"ctb\"), person(\"Ben\", \"Stabler\", role = \"ctb\"), person(\"Murray\", \"Stokely\", role = \"ctb\"), person(\"Rolf\", \"Turner\", role = \"ctb\"))\n# Encoding: UTF-8\n# Depends: R (>= 2.10), sp (>= 1.0-11)\n# Imports: foreign (>= 0.8), methods, grid, lattice, stats, utils, grDevices\n# Suggests: rgeos (>= 0.1-8), spatstat (>= 1.50), PBSmapping, maps, RColorBrewer, raster, polyclip, spatstat.utils\n# Enhances: gpclib, RArcInfo\n# Description: Set of tools for manipulating geographic data. It includes binary access to 'GSHHG' shoreline files. The package also provides interface wrappers for exchanging spatial objects with packages such as 'PBSmapping', 'spatstat', 'maps', 'RArcInfo', and others.\n# License: GPL (>= 2)\n# URL: http://r-forge.r-project.org/projects/maptools/\n# RoxygenNote: 6.1.1\n# NeedsCompilation: yes\n# Packaged: 2019-02-18 08:37:28 UTC; rsb\n# Author: Roger Bivand [cre, aut] (<https://orcid.org/0000-0003-2392-6140>), Nicholas Lewin-Koh [aut], Edzer Pebesma [ctb], Eric Archer [ctb], Adrian Baddeley [ctb], Nick Bearman [ctb], Hans-Jorg Bibiko [ctb], Steven Brey [ctb], Jonathan Callahan [ctb], German Carrillo [ctb], Stephane Dray [ctb], David Forrest [ctb], Michael Friendly [ctb], Patrick Giraudoux [ctb], Duncan Golicher [ctb], Virgilio Gomez Rubio [ctb], Patrick Hausmann [ctb], Karl Ove Hufthammer [ctb], Thomas Jagger [ctb], Kent Johnson [ctb], Sebastian Luque [ctb], Don MacQueen [ctb], Andrew Niccolai [ctb], Edzer Pebesma [ctb], Oscar Perpinan Lamigueiro [ctb], Ethan Plunkett [ctb], Tom Short [ctb], Greg Snow [ctb], Ben Stabler [ctb], Murray Stokely [ctb], Rolf Turner [ctb]\n# Maintainer: Roger Bivand <Roger.Bivand@nhh.no>\n# Repository: CRAN\n# Date/Publication: 2019-02-18 10:50:07 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-foreign",
@@ -573,9 +584,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -585,6 +598,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-foreign",
     "r-lattice",
@@ -595,7 +609,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-foreign",
     "r-lattice",
@@ -613,9 +627,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -633,7 +649,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-foreign >=0.8",
     "r-lattice",
@@ -674,8 +689,7 @@
    "summary": "Set of tools for manipulating geographic data. It includes binary access to 'GSHHG' shoreline files. The package also provides interface wrappers for exchanging spatial objects with packages such as 'PBSmapping', 'spatstat', 'maps', 'RArcInfo', and others."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -693,6 +707,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -707,7 +722,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-foreign >=0.8",
     "r-lattice",
     "r-sp >=1.0_11"
@@ -733,6 +747,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -750,7 +765,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-foreign",
     "r-lattice",
