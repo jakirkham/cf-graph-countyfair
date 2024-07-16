@@ -32,7 +32,7 @@
    "summary": "Provides tools for determining estimability of linear functions  of regression coefficients, and 'epredict' methods that handle  non-estimable cases correctly. Estimability theory is discussed in many linear-models textbooks including Chapter 3 of Monahan, JF (2008),  \"A Primer on Linear Models\", Chapman and Hall (ISBN 978-1-4200-6201-4)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -102,7 +102,7 @@
    "summary": "Provides tools for determining estimability of linear functions  of regression coefficients, and 'epredict' methods that handle  non-estimable cases correctly. Estimability theory is discussed in many linear-models textbooks including Chapter 3 of Monahan, JF (2008),  \"A Primer on Linear Models\", Chapman and Hall (ISBN 978-1-4200-6201-4)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -172,7 +172,7 @@
    "summary": "Provides tools for determining estimability of linear functions  of regression coefficients, and 'epredict' methods that handle  non-estimable cases correctly. Estimability theory is discussed in many linear-models textbooks including Chapter 3 of Monahan, JF (2008),  \"A Primer on Linear Models\", Chapman and Hall (ISBN 978-1-4200-6201-4)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -242,7 +242,7 @@
    "summary": "Provides tools for determining estimability of linear functions  of regression coefficients, and 'epredict' methods that handle  non-estimable cases correctly. Estimability theory is discussed in many linear-models textbooks including Chapter 3 of Monahan, JF (2008),  \"A Primer on Linear Models\", Chapman and Hall (ISBN 978-1-4200-6201-4)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -258,7 +258,9 @@
    "version": "1.5"
   },
   "requirements": {
-   "build": [],
+   "build": [
+    "zip"
+   ],
    "host": [
     "r-base"
    ],
@@ -275,7 +277,8 @@
   },
   "test": {
    "commands": [
-    "$R -e \"library('estimability')\""
+    "$R -e \"library('estimability')\"",
+    "\"%R%\" -e \"library('estimability')\""
    ]
   }
  },
@@ -291,7 +294,7 @@
    "summary": "Provides tools for determining estimability of linear functions  of regression coefficients, and 'epredict' methods that handle  non-estimable cases correctly. Estimability theory is discussed in many linear-models textbooks including Chapter 3 of Monahan, JF (2008),  \"A Primer on Linear Models\", Chapman and Hall (ISBN 978-1-4200-6201-4)."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -361,22 +364,26 @@
   "linux_64",
   "linux_aarch64",
   "linux_ppc64le",
-  "osx_64"
+  "osx_64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/r-estimability.json"
  },
- "raw_meta_yaml": "{% set version = \"1.5\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-estimability\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/estimability_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/estimability/estimability_{{ version }}.tar.gz\n  sha256: b32c5f6157cbeaf96e42be3d4d33637de542debbc6dd2a9a19814980ed46dc68\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  skip: true  # [r_base == \"4.2\" or win]\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('estimability')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('estimability')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=estimability\n  license: GPL-3.0-or-later\n  summary: Provides tools for determining estimability of linear functions  of regression coefficients, and 'epredict' methods that handle  non-estimable cases correctly. Estimability theory is discussed in many linear-models textbooks including Chapter 3 of Monahan, JF (2008),  \"A Primer on Linear Models\", Chapman and Hall\n    (ISBN 978-1-4200-6201-4).\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"1.5\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-estimability\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/estimability_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/estimability/estimability_{{ version }}.tar.gz\n  sha256: b32c5f6157cbeaf96e42be3d4d33637de542debbc6dd2a9a19814980ed46dc68\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n  run:\n    - r-base\n\ntest:\n  commands:\n    - $R -e \"library('estimability')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('estimability')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=estimability\n  license: GPL-3.0-or-later\n  summary: Provides tools for determining estimability of linear functions  of regression coefficients, and 'epredict' methods that handle  non-estimable cases correctly. Estimability theory is discussed in many linear-models textbooks including Chapter 3 of Monahan, JF (2008),  \"A Primer on Linear Models\", Chapman and Hall\n    (ISBN 978-1-4200-6201-4).\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
-   "r-base"
+   "r-base",
+   "zip"
   ]
  },
  "requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "zip"
+   ]
   },
   "host": {
    "__set__": true,
@@ -399,7 +406,9 @@
  "total_requirements": {
   "build": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "zip"
+   ]
   },
   "host": {
    "__set__": true,
@@ -426,10 +435,86 @@
   "https://cran.r-project.org/src/contrib/estimability_1.5.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/estimability/estimability_1.5.tar.gz",
   "https://cran.r-project.org/src/contrib/estimability_1.5.tar.gz",
+  "https://cran.r-project.org/src/contrib/Archive/estimability/estimability_1.5.tar.gz",
+  "https://cran.r-project.org/src/contrib/estimability_1.5.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/estimability/estimability_1.5.tar.gz"
  ],
  "version": "1.5",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/r-estimability.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "home": "https://CRAN.R-project.org/package=estimability",
+   "license": "GPL-3.0-or-later",
+   "license_family": "GPL3",
+   "license_file": [
+    "/lib/R/share/licenses/GPL-3"
+   ],
+   "summary": "Provides tools for determining estimability of linear functions  of regression coefficients, and 'epredict' methods that handle  non-estimable cases correctly. Estimability theory is discussed in many linear-models textbooks including Chapter 3 of Monahan, JF (2008),  \"A Primer on Linear Models\", Chapman and Hall (ISBN 978-1-4200-6201-4)."
+  },
+  "build": {
+   "number": "1",
+   "rpaths": [
+    "lib/R/lib/",
+    "lib/"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "conda-forge/r"
+   ]
+  },
+  "package": {
+   "name": "r-estimability",
+   "version": "1.5"
+  },
+  "requirements": {
+   "build": [
+    "zip"
+   ],
+   "host": [
+    "r-base"
+   ],
+   "run": [
+    "r-base"
+   ]
+  },
+  "source": {
+   "sha256": "b32c5f6157cbeaf96e42be3d4d33637de542debbc6dd2a9a19814980ed46dc68",
+   "url": [
+    "https://cran.r-project.org/src/contrib/estimability_1.5.tar.gz",
+    "https://cran.r-project.org/src/contrib/Archive/estimability/estimability_1.5.tar.gz"
+   ]
+  },
+  "test": {
+   "commands": [
+    "\"%R%\" -e \"library('estimability')\""
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "zip"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "r-base"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "r-base"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
  }
 }
