@@ -65,9 +65,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -79,6 +81,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -89,7 +92,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -158,9 +162,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -172,6 +178,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -182,7 +189,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -251,9 +259,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -265,6 +275,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -275,7 +286,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -344,9 +356,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -358,6 +372,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -368,7 +383,105 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
+     ]
+    },
+    "script": "build_base.sh",
+    "test": {
+     "commands": [
+      "pip check",
+      "raider.py -h",
+      "calcDelays.py -h",
+      "calcDelaysGUNW.py -h",
+      "raiderDownloadGNSS.py -h",
+      "downloadGNSS.py -h",
+      "generateGACOSVRT.py"
+     ],
+     "imports": [
+      "RAiDER",
+      "RAiDER.delay",
+      "RAiDER.interpolator"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "raider",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "isce3 >=0.15.0",
+      "raider-base"
+     ]
+    },
+    "test": {
+     "imports": [
+      "RAiDER"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "raider-base",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "cmake"
+     ],
+     "host": [
+      "python",
+      "pip",
+      "pybind11 >=2.5.0",
+      "setuptools >61.0",
+      "setuptools_scm >6.2",
+      "python-build",
+      "numpy",
+      "cython"
+     ],
+     "run": [
+      "python",
+      "asf_search",
+      "boto3",
+      "cdsapi",
+      "cfgrib",
+      "cython",
+      "dask",
+      "dem_stitcher >=2.3.1",
+      "ecmwf-api-client",
+      "geopandas",
+      "h5py",
+      "herbie-data",
+      "h5netcdf",
+      "hyp3lib",
+      "jsonschema==3.2.0",
+      "lxml",
+      "matplotlib-base",
+      "netcdf4",
+      "numpy",
+      "pandas",
+      "progressbar",
+      "pybind11>=2.5.0",
+      "pydap >3.2.2",
+      "pyproj >=2.2.0",
+      "pyyaml",
+      "rasterio >=1.3.0",
+      "requests",
+      "rioxarray",
+      "s3fs",
+      "scipy>1.10.0",
+      "sentineleof",
+      "shapely",
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -414,11 +527,11 @@
   ],
   "package": {
    "name": "raider-suite",
-   "version": "0.5.1"
+   "version": "0.5.2"
   },
   "source": {
-   "sha256": "f23e13b5e7d17c02e0248d6c14b0bc025310b8f70168237199c83c85c42c5685",
-   "url": "https://github.com/dbekaert/RAiDER/archive/v0.5.1.tar.gz"
+   "sha256": "cca36a11816c0a2460011de8b07ac9cd67763438755177ffab989c1c28332b1c",
+   "url": "https://github.com/dbekaert/RAiDER/archive/v0.5.2.tar.gz"
   }
  },
  "linux_64_requirements": {
@@ -451,9 +564,11 @@
     "boto3",
     "cdsapi",
     "cfgrib",
+    "cython",
     "dask",
     "dem_stitcher",
     "ecmwf-api-client",
+    "geopandas",
     "h5netcdf",
     "h5py",
     "herbie-data",
@@ -466,6 +581,7 @@
     "numpy",
     "pandas",
     "progressbar",
+    "pybind11",
     "pydap",
     "pyproj",
     "python",
@@ -478,7 +594,8 @@
     "scipy",
     "sentineleof",
     "shapely",
-    "tqdm"
+    "tqdm",
+    "xarray"
    ]
   },
   "test": {
@@ -536,9 +653,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -550,6 +669,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -560,7 +680,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -629,9 +750,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -643,6 +766,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -653,7 +777,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -722,9 +847,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -736,6 +863,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -746,7 +874,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -815,9 +944,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -829,6 +960,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -839,7 +971,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -908,9 +1041,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -922,6 +1057,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -932,7 +1068,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -1001,9 +1138,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -1015,6 +1154,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -1025,7 +1165,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -1094,9 +1235,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -1108,6 +1251,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -1118,7 +1262,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -1187,9 +1332,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -1201,6 +1348,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -1211,7 +1359,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -1280,9 +1429,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -1294,6 +1445,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -1304,7 +1456,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -1373,9 +1526,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -1387,6 +1542,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -1397,7 +1553,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -1466,9 +1623,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -1480,6 +1639,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -1490,7 +1650,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -1559,9 +1720,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -1573,6 +1736,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -1583,7 +1747,299 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
+     ]
+    },
+    "script": "build_base.sh",
+    "test": {
+     "commands": [
+      "pip check",
+      "raider.py -h",
+      "calcDelays.py -h",
+      "calcDelaysGUNW.py -h",
+      "raiderDownloadGNSS.py -h",
+      "downloadGNSS.py -h",
+      "generateGACOSVRT.py"
+     ],
+     "imports": [
+      "RAiDER",
+      "RAiDER.delay",
+      "RAiDER.interpolator"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "raider",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "isce3 >=0.15.0",
+      "raider-base"
+     ]
+    },
+    "test": {
+     "imports": [
+      "RAiDER"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "raider-base",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "cmake"
+     ],
+     "host": [
+      "python",
+      "pip",
+      "pybind11 >=2.5.0",
+      "setuptools >61.0",
+      "setuptools_scm >6.2",
+      "python-build",
+      "numpy",
+      "cython"
+     ],
+     "run": [
+      "python",
+      "asf_search",
+      "boto3",
+      "cdsapi",
+      "cfgrib",
+      "cython",
+      "dask",
+      "dem_stitcher >=2.3.1",
+      "ecmwf-api-client",
+      "geopandas",
+      "h5py",
+      "herbie-data",
+      "h5netcdf",
+      "hyp3lib",
+      "jsonschema==3.2.0",
+      "lxml",
+      "matplotlib-base",
+      "netcdf4",
+      "numpy",
+      "pandas",
+      "progressbar",
+      "pybind11>=2.5.0",
+      "pydap >3.2.2",
+      "pyproj >=2.2.0",
+      "pyyaml",
+      "rasterio >=1.3.0",
+      "requests",
+      "rioxarray",
+      "s3fs",
+      "scipy>1.10.0",
+      "sentineleof",
+      "shapely",
+      "tqdm",
+      "xarray"
+     ]
+    },
+    "script": "build_base.sh",
+    "test": {
+     "commands": [
+      "pip check",
+      "raider.py -h",
+      "calcDelays.py -h",
+      "calcDelaysGUNW.py -h",
+      "raiderDownloadGNSS.py -h",
+      "downloadGNSS.py -h",
+      "generateGACOSVRT.py"
+     ],
+     "imports": [
+      "RAiDER",
+      "RAiDER.delay",
+      "RAiDER.interpolator"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "raider",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "isce3 >=0.15.0",
+      "raider-base"
+     ]
+    },
+    "test": {
+     "imports": [
+      "RAiDER"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "raider-base",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "cmake"
+     ],
+     "host": [
+      "python",
+      "pip",
+      "pybind11 >=2.5.0",
+      "setuptools >61.0",
+      "setuptools_scm >6.2",
+      "python-build",
+      "numpy",
+      "cython"
+     ],
+     "run": [
+      "python",
+      "asf_search",
+      "boto3",
+      "cdsapi",
+      "cfgrib",
+      "cython",
+      "dask",
+      "dem_stitcher >=2.3.1",
+      "ecmwf-api-client",
+      "geopandas",
+      "h5py",
+      "herbie-data",
+      "h5netcdf",
+      "hyp3lib",
+      "jsonschema==3.2.0",
+      "lxml",
+      "matplotlib-base",
+      "netcdf4",
+      "numpy",
+      "pandas",
+      "progressbar",
+      "pybind11>=2.5.0",
+      "pydap >3.2.2",
+      "pyproj >=2.2.0",
+      "pyyaml",
+      "rasterio >=1.3.0",
+      "requests",
+      "rioxarray",
+      "s3fs",
+      "scipy>1.10.0",
+      "sentineleof",
+      "shapely",
+      "tqdm",
+      "xarray"
+     ]
+    },
+    "script": "build_base.sh",
+    "test": {
+     "commands": [
+      "pip check",
+      "raider.py -h",
+      "calcDelays.py -h",
+      "calcDelaysGUNW.py -h",
+      "raiderDownloadGNSS.py -h",
+      "downloadGNSS.py -h",
+      "generateGACOSVRT.py"
+     ],
+     "imports": [
+      "RAiDER",
+      "RAiDER.delay",
+      "RAiDER.interpolator"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "raider",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "isce3 >=0.15.0",
+      "raider-base"
+     ]
+    },
+    "test": {
+     "imports": [
+      "RAiDER"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "raider-base",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "cmake"
+     ],
+     "host": [
+      "python",
+      "pip",
+      "pybind11 >=2.5.0",
+      "setuptools >61.0",
+      "setuptools_scm >6.2",
+      "python-build",
+      "numpy",
+      "cython"
+     ],
+     "run": [
+      "python",
+      "asf_search",
+      "boto3",
+      "cdsapi",
+      "cfgrib",
+      "cython",
+      "dask",
+      "dem_stitcher >=2.3.1",
+      "ecmwf-api-client",
+      "geopandas",
+      "h5py",
+      "herbie-data",
+      "h5netcdf",
+      "hyp3lib",
+      "jsonschema==3.2.0",
+      "lxml",
+      "matplotlib-base",
+      "netcdf4",
+      "numpy",
+      "pandas",
+      "progressbar",
+      "pybind11>=2.5.0",
+      "pydap >3.2.2",
+      "pyproj >=2.2.0",
+      "pyyaml",
+      "rasterio >=1.3.0",
+      "requests",
+      "rioxarray",
+      "s3fs",
+      "scipy>1.10.0",
+      "sentineleof",
+      "shapely",
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -1629,11 +2085,11 @@
   ],
   "package": {
    "name": "raider-suite",
-   "version": "0.5.1"
+   "version": "0.5.2"
   },
   "source": {
-   "sha256": "f23e13b5e7d17c02e0248d6c14b0bc025310b8f70168237199c83c85c42c5685",
-   "url": "https://github.com/dbekaert/RAiDER/archive/v0.5.1.tar.gz"
+   "sha256": "cca36a11816c0a2460011de8b07ac9cd67763438755177ffab989c1c28332b1c",
+   "url": "https://github.com/dbekaert/RAiDER/archive/v0.5.2.tar.gz"
   }
  },
  "name": "raider-suite",
@@ -1685,9 +2141,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -1699,6 +2157,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -1709,7 +2168,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -1778,9 +2238,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -1792,6 +2254,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -1802,7 +2265,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -1871,9 +2335,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -1885,6 +2351,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -1895,7 +2362,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -1964,9 +2432,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -1978,6 +2448,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -1988,7 +2459,105 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
+     ]
+    },
+    "script": "build_base.sh",
+    "test": {
+     "commands": [
+      "pip check",
+      "raider.py -h",
+      "calcDelays.py -h",
+      "calcDelaysGUNW.py -h",
+      "raiderDownloadGNSS.py -h",
+      "downloadGNSS.py -h",
+      "generateGACOSVRT.py"
+     ],
+     "imports": [
+      "RAiDER",
+      "RAiDER.delay",
+      "RAiDER.interpolator"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "raider",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "isce3 >=0.15.0",
+      "raider-base"
+     ]
+    },
+    "test": {
+     "imports": [
+      "RAiDER"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "raider-base",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "cmake"
+     ],
+     "host": [
+      "python",
+      "pip",
+      "pybind11 >=2.5.0",
+      "setuptools >61.0",
+      "setuptools_scm >6.2",
+      "python-build",
+      "numpy",
+      "cython"
+     ],
+     "run": [
+      "python",
+      "asf_search",
+      "boto3",
+      "cdsapi",
+      "cfgrib",
+      "cython",
+      "dask",
+      "dem_stitcher >=2.3.1",
+      "ecmwf-api-client",
+      "geopandas",
+      "h5py",
+      "herbie-data",
+      "h5netcdf",
+      "hyp3lib",
+      "jsonschema==3.2.0",
+      "lxml",
+      "matplotlib-base",
+      "netcdf4",
+      "numpy",
+      "pandas",
+      "progressbar",
+      "pybind11>=2.5.0",
+      "pydap >3.2.2",
+      "pyproj >=2.2.0",
+      "pyyaml",
+      "rasterio >=1.3.0",
+      "requests",
+      "rioxarray",
+      "s3fs",
+      "scipy>1.10.0",
+      "sentineleof",
+      "shapely",
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -2034,11 +2603,11 @@
   ],
   "package": {
    "name": "raider-suite",
-   "version": "0.5.1"
+   "version": "0.5.2"
   },
   "source": {
-   "sha256": "f23e13b5e7d17c02e0248d6c14b0bc025310b8f70168237199c83c85c42c5685",
-   "url": "https://github.com/dbekaert/RAiDER/archive/v0.5.1.tar.gz"
+   "sha256": "cca36a11816c0a2460011de8b07ac9cd67763438755177ffab989c1c28332b1c",
+   "url": "https://github.com/dbekaert/RAiDER/archive/v0.5.2.tar.gz"
   }
  },
  "osx_64_requirements": {
@@ -2071,9 +2640,11 @@
     "boto3",
     "cdsapi",
     "cfgrib",
+    "cython",
     "dask",
     "dem_stitcher",
     "ecmwf-api-client",
+    "geopandas",
     "h5netcdf",
     "h5py",
     "herbie-data",
@@ -2086,6 +2657,7 @@
     "numpy",
     "pandas",
     "progressbar",
+    "pybind11",
     "pydap",
     "pyproj",
     "python",
@@ -2098,7 +2670,8 @@
     "scipy",
     "sentineleof",
     "shapely",
-    "tqdm"
+    "tqdm",
+    "xarray"
    ]
   },
   "test": {
@@ -2156,9 +2729,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -2170,6 +2745,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -2180,7 +2756,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -2249,9 +2826,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -2263,6 +2842,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -2273,7 +2853,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -2342,9 +2923,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -2356,6 +2939,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -2366,7 +2950,8 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -2435,9 +3020,11 @@
       "boto3",
       "cdsapi",
       "cfgrib",
+      "cython",
       "dask",
       "dem_stitcher >=2.3.1",
       "ecmwf-api-client",
+      "geopandas",
       "h5py",
       "herbie-data",
       "h5netcdf",
@@ -2449,6 +3036,7 @@
       "numpy",
       "pandas",
       "progressbar",
+      "pybind11>=2.5.0",
       "pydap >3.2.2",
       "pyproj >=2.2.0",
       "pyyaml",
@@ -2459,7 +3047,105 @@
       "scipy>1.10.0",
       "sentineleof",
       "shapely",
-      "tqdm"
+      "tqdm",
+      "xarray"
+     ]
+    },
+    "script": "build_base.sh",
+    "test": {
+     "commands": [
+      "pip check",
+      "raider.py -h",
+      "calcDelays.py -h",
+      "calcDelaysGUNW.py -h",
+      "raiderDownloadGNSS.py -h",
+      "downloadGNSS.py -h",
+      "generateGACOSVRT.py"
+     ],
+     "imports": [
+      "RAiDER",
+      "RAiDER.delay",
+      "RAiDER.interpolator"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "raider",
+    "requirements": {
+     "host": [
+      "python"
+     ],
+     "run": [
+      "python",
+      "isce3 >=0.15.0",
+      "raider-base"
+     ]
+    },
+    "test": {
+     "imports": [
+      "RAiDER"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "raider-base",
+    "requirements": {
+     "build": [
+      "c_compiler_stub",
+      "c_stdlib_stub",
+      "cxx_compiler_stub",
+      "cmake"
+     ],
+     "host": [
+      "python",
+      "pip",
+      "pybind11 >=2.5.0",
+      "setuptools >61.0",
+      "setuptools_scm >6.2",
+      "python-build",
+      "numpy",
+      "cython"
+     ],
+     "run": [
+      "python",
+      "asf_search",
+      "boto3",
+      "cdsapi",
+      "cfgrib",
+      "cython",
+      "dask",
+      "dem_stitcher >=2.3.1",
+      "ecmwf-api-client",
+      "geopandas",
+      "h5py",
+      "herbie-data",
+      "h5netcdf",
+      "hyp3lib",
+      "jsonschema==3.2.0",
+      "lxml",
+      "matplotlib-base",
+      "netcdf4",
+      "numpy",
+      "pandas",
+      "progressbar",
+      "pybind11>=2.5.0",
+      "pydap >3.2.2",
+      "pyproj >=2.2.0",
+      "pyyaml",
+      "rasterio >=1.3.0",
+      "requests",
+      "rioxarray",
+      "s3fs",
+      "scipy>1.10.0",
+      "sentineleof",
+      "shapely",
+      "tqdm",
+      "xarray"
      ]
     },
     "script": "build_base.sh",
@@ -2505,11 +3191,11 @@
   ],
   "package": {
    "name": "raider-suite",
-   "version": "0.5.1"
+   "version": "0.5.2"
   },
   "source": {
-   "sha256": "f23e13b5e7d17c02e0248d6c14b0bc025310b8f70168237199c83c85c42c5685",
-   "url": "https://github.com/dbekaert/RAiDER/archive/v0.5.1.tar.gz"
+   "sha256": "cca36a11816c0a2460011de8b07ac9cd67763438755177ffab989c1c28332b1c",
+   "url": "https://github.com/dbekaert/RAiDER/archive/v0.5.2.tar.gz"
   }
  },
  "osx_arm64_requirements": {
@@ -2542,9 +3228,11 @@
     "boto3",
     "cdsapi",
     "cfgrib",
+    "cython",
     "dask",
     "dem_stitcher",
     "ecmwf-api-client",
+    "geopandas",
     "h5netcdf",
     "h5py",
     "herbie-data",
@@ -2557,6 +3245,7 @@
     "numpy",
     "pandas",
     "progressbar",
+    "pybind11",
     "pydap",
     "pyproj",
     "python",
@@ -2569,7 +3258,8 @@
     "scipy",
     "sentineleof",
     "shapely",
-    "tqdm"
+    "tqdm",
+    "xarray"
    ]
   },
   "test": {
@@ -2595,7 +3285,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/raider.json"
  },
- "raw_meta_yaml": "{% set name = \"RAiDER\" %}\n{% set version = \"0.5.1\" %}\n\npackage:\n  # For multiple outputs, I'm mimicking: https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml\n  name: raider-suite\n  version: {{ version }}\n\nsource:\n  url: https://github.com/dbekaert/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: f23e13b5e7d17c02e0248d6c14b0bc025310b8f70168237199c83c85c42c5685\n\nbuild:\n  number: 0\n\noutputs:\n  - name: raider-base\n    script: build_base.sh\n    build:\n      skip: true  # [py<39 or win]\n    requirements:\n      build:\n        - python                                 # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n        - cython                                 # [build_platform != target_platform]\n        - numpy                                  # [build_platform != target_platform]\n        - pybind11                               # [build_platform != target_platform]\n        - {{ compiler('c') }}\n        - {{ stdlib(\"c\") }}\n        - {{ compiler('cxx') }}\n        - cmake\n      host:\n        - python\n        - pip\n        - pybind11 >=2.5.0\n        - setuptools >61.0\n        - setuptools_scm >6.2\n        - python-build\n        - numpy\n        - cython\n      run:\n        - python\n        - asf_search\n        - boto3\n        - cdsapi\n        - cfgrib\n        - dask\n        - dem_stitcher >=2.3.1\n        - ecmwf-api-client\n        - h5py\n        - herbie-data\n        - h5netcdf\n        - hyp3lib\n        - jsonschema==3.2.0\n        - lxml\n        - matplotlib-base\n        - netcdf4\n        - {{ pin_compatible('numpy') }}\n        - pandas\n        - progressbar\n        - pydap >3.2.2\n        - pyproj >=2.2.0\n        - pyyaml\n        - rasterio >=1.3.0\n        - requests\n        - rioxarray\n        - s3fs\n        - scipy>1.10.0\n        - sentineleof\n        - shapely\n        - tqdm\n    test:\n      imports:\n        - RAiDER\n        - RAiDER.delay\n        - RAiDER.interpolator\n      requires:\n        - pip\n      commands:\n        - pip check\n        - raider.py -h\n        - calcDelays.py -h\n        - calcDelaysGUNW.py -h\n        - raiderDownloadGNSS.py -h\n        - downloadGNSS.py -h\n        - generateGACOSVRT.py\n        # - raiderStats.py -h\n\n  - name: raider\n    build:\n      skip: true  # [py<39 or win]\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - isce3 >=0.15.0\n        - {{ pin_subpackage('raider-base', max_pin=\"x.x.x\") }}\n    test:\n      imports:\n        - RAiDER\n\nabout:\n  home: https://github.com/dbekaert/RAiDER\n  summary: Raytracing Atmospheric Delay Estimation for RADAR\n  description: |\n    RAiDER-tools is a package in Python which contains tools to calculate\n    tropospheric corrections for Radar using a raytracing implementation.\n    Its development was funded under the NASA Sea-level Change Team (NSLCT)\n    program, the Earth Surface and Interior (ESI) program, and the NISAR\n    Science Team (NISAR-ST) (NTR-51433). U.S. Government sponsorship acknowledged.\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  doc_url: https://github.com/dbekaert/RAiDER-docs\n  dev_url: https://github.com/dbekaert/RAiDER\n\nextra:\n  recipe-maintainers:\n    - jlmaurer\n    - cmarshak\n    - jhkennedy\n",
+ "raw_meta_yaml": "{% set name = \"RAiDER\" %}\n{% set version = \"0.5.2\" %}\n\npackage:\n  # For multiple outputs, I'm mimicking: https://github.com/conda-forge/matplotlib-feedstock/blob/main/recipe/meta.yaml\n  name: raider-suite\n  version: {{ version }}\n\nsource:\n  url: https://github.com/dbekaert/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: cca36a11816c0a2460011de8b07ac9cd67763438755177ffab989c1c28332b1c\n\nbuild:\n  number: 0\n\noutputs:\n  - name: raider-base\n    script: build_base.sh\n    build:\n      skip: true  # [py<39 or win]\n    requirements:\n      build:\n        - python                                 # [build_platform != target_platform]\n        - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n        - cython                                 # [build_platform != target_platform]\n        - numpy                                  # [build_platform != target_platform]\n        - pybind11                               # [build_platform != target_platform]\n        - {{ compiler('c') }}\n        - {{ stdlib(\"c\") }}\n        - {{ compiler('cxx') }}\n        - cmake\n      host:\n        - python\n        - pip\n        - pybind11 >=2.5.0\n        - setuptools >61.0\n        - setuptools_scm >6.2\n        - python-build\n        - numpy\n        - cython\n      run:\n        - python\n        - asf_search\n        - boto3\n        - cdsapi\n        - cfgrib\n        - cython\n        - dask\n        - dem_stitcher >=2.3.1\n        - ecmwf-api-client\n        - geopandas\n        - h5py\n        - herbie-data\n        - h5netcdf\n        - hyp3lib\n        - jsonschema==3.2.0\n        - lxml\n        - matplotlib-base\n        - netcdf4\n        - {{ pin_compatible('numpy') }}\n        - pandas\n        - progressbar\n        - pybind11>=2.5.0\n        - pydap >3.2.2\n        - pyproj >=2.2.0\n        - pyyaml\n        - rasterio >=1.3.0\n        - requests\n        - rioxarray\n        - s3fs\n        - scipy>1.10.0\n        - sentineleof\n        - shapely\n        - tqdm\n        - xarray\n    test:\n      imports:\n        - RAiDER\n        - RAiDER.delay\n        - RAiDER.interpolator\n      requires:\n        - pip\n      commands:\n        - pip check\n        - raider.py -h\n        - calcDelays.py -h\n        - calcDelaysGUNW.py -h\n        - raiderDownloadGNSS.py -h\n        - downloadGNSS.py -h\n        - generateGACOSVRT.py\n        # - raiderStats.py -h\n\n  - name: raider\n    build:\n      skip: true  # [py<39 or win]\n    requirements:\n      host:\n        - python\n      run:\n        - python\n        - isce3 >=0.15.0\n        - {{ pin_subpackage('raider-base', max_pin=\"x.x.x\") }}\n    test:\n      imports:\n        - RAiDER\n\nabout:\n  home: https://github.com/dbekaert/RAiDER\n  summary: Raytracing Atmospheric Delay Estimation for RADAR\n  description: |\n    RAiDER-tools is a package in Python which contains tools to calculate\n    tropospheric corrections for Radar using a raytracing implementation.\n    Its development was funded under the NASA Sea-level Change Team (NSLCT)\n    program, the Earth Surface and Interior (ESI) program, and the NISAR\n    Science Team (NISAR-ST) (NTR-51433). U.S. Government sponsorship acknowledged.\n  license: Apache-2.0\n  license_family: Apache\n  license_file: LICENSE\n  doc_url: https://github.com/dbekaert/RAiDER-docs\n  dev_url: https://github.com/dbekaert/RAiDER\n\nextra:\n  recipe-maintainers:\n    - jlmaurer\n    - cmarshak\n    - jhkennedy\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -2611,6 +3301,7 @@
    "dask",
    "dem_stitcher",
    "ecmwf-api-client",
+   "geopandas",
    "h5netcdf",
    "h5py",
    "herbie-data",
@@ -2640,7 +3331,8 @@
    "setuptools",
    "setuptools_scm",
    "shapely",
-   "tqdm"
+   "tqdm",
+   "xarray"
   ]
  },
  "requirements": {
@@ -2679,9 +3371,11 @@
     "cdsapi",
     "cfgrib",
     "cxx_compiler_stub",
+    "cython",
     "dask",
     "dem_stitcher",
     "ecmwf-api-client",
+    "geopandas",
     "h5netcdf",
     "h5py",
     "herbie-data",
@@ -2694,6 +3388,7 @@
     "numpy",
     "pandas",
     "progressbar",
+    "pybind11",
     "pydap",
     "pyproj",
     "python",
@@ -2706,7 +3401,8 @@
     "scipy",
     "sentineleof",
     "shapely",
-    "tqdm"
+    "tqdm",
+    "xarray"
    ]
   },
   "test": {
@@ -2747,9 +3443,11 @@
     "boto3",
     "cdsapi",
     "cfgrib",
+    "cython",
     "dask",
     "dem_stitcher >=2.3.1",
     "ecmwf-api-client",
+    "geopandas",
     "h5netcdf",
     "h5py",
     "herbie-data",
@@ -2762,6 +3460,7 @@
     "numpy",
     "pandas",
     "progressbar",
+    "pybind11>=2.5.0",
     "pydap >3.2.2",
     "pyproj >=2.2.0",
     "python",
@@ -2774,7 +3473,8 @@
     "scipy>1.10.0",
     "sentineleof",
     "shapely",
-    "tqdm"
+    "tqdm",
+    "xarray"
    ]
   },
   "test": {
@@ -2784,8 +3484,8 @@
    ]
   }
  },
- "url": "https://github.com/dbekaert/RAiDER/archive/v0.5.1.tar.gz",
- "version": "0.5.1",
+ "url": "https://github.com/dbekaert/RAiDER/archive/v0.5.2.tar.gz",
+ "version": "0.5.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/raider.json"
  }
