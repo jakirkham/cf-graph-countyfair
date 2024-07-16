@@ -35,7 +35,7 @@
    "summary": "provides tools to minimize disk space use and maximize storage throughput, security, and resilience."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "isa-l"
    ]
@@ -122,7 +122,7 @@
    "summary": "provides tools to minimize disk space use and maximize storage throughput, security, and resilience."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "isa-l"
    ]
@@ -209,7 +209,7 @@
    "summary": "provides tools to minimize disk space use and maximize storage throughput, security, and resilience."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "isa-l"
    ]
@@ -296,7 +296,7 @@
    "summary": "provides tools to minimize disk space use and maximize storage throughput, security, and resilience."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "isa-l"
    ]
@@ -353,7 +353,7 @@
    "summary": "provides tools to minimize disk space use and maximize storage throughput, security, and resilience."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "isa-l"
    ]
@@ -440,7 +440,7 @@
    "summary": "provides tools to minimize disk space use and maximize storage throughput, security, and resilience."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "isa-l"
    ]
@@ -533,7 +533,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/isa-l.json"
  },
- "raw_meta_yaml": "{% set version = \"2.31.0\" %}\n\npackage:\n  name: isa-l\n  version: {{ version }}\n\nsource:\n  url: https://github.com/intel/isa-l/archive/v{{ version }}.tar.gz\n  sha256: e218b7b2e241cfb8e8b68f54a6e5eed80968cc387c4b1af03708b54e9fb236f1\n  patches:\n    # https://github.com/intel/isa-l/commit/1b1ee1e18f5bb4d91e3839405a8557a64a3b2581\n    - patches/fix_erasure_code_wrong_dtype_ppc64le.patch\n    # https://github.com/intel/isa-l/commit/4be96e2437d1aa010978fba54a1b76dfac520961\n    - patches/fix_isal_dflate_icf_finish_for_aarch.patch\n    # https://github.com/intel/isa-l/commit/f1b144bbab7cd1f603565b3b7f92bfb47b86e646\n    - patches/fold_constants_correctly_for_aarch.patch\n    # https://github.com/intel/isa-l/commit/38279f5e9e6455d16b3e97c387f209db56fa994c\n    - patches/avoid_using_X18_register_on_aarch.patch\n    # https://github.com/intel/isa-l/commit/dbaf284e112bea1b90983772a3164e794b923aaf\n    - patches/fix_wasm_spport_on_aarch.patch\n    # Conda adds some CFLAGS to the environment which are not properly\n    # filtered by the original nasm-filter.sh\n    # This patch also makes sure the nasm executable from the BUILD_PREFIX is used.\n    - nasm-filter.patch\n\nbuild:\n  number: 1\n  run_exports:\n    # Just a guess feel free to adjust\n    - {{ pin_subpackage('isa-l', max_pin='x') }}\n\nrequirements:\n  build:\n    # igzip needs to be compiled with 7.5.0 to prevent an issue:\n    # https://github.com/conda-forge/isa-l-feedstock/issues/7\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    # Osx needs some flags that are available from 2.14 on\n    - nasm >=2.14\n    - autoconf  # [unix]\n    - automake  # [unix]\n    - libtool   # [unix]\n    - make      # [unix]\n\ntest:\n  files:\n    - LICENSE\n  commands:\n    - igzip --help  # [unix]\n        # Test compression and decompression.\n    - igzip -k LICENSE  # [unix]\n        # Original file should be larger than compressed file.\n    - bash -c '[ $(stat -c %s LICENSE) -gt $(stat -c %s LICENSE.gz) ]'  # [unix]\n    - bash -c '[ \"$(igzip -cd LICENSE.gz)\" == \"$(cat LICENSE)\" ]'  # [unix]\n\nabout:\n  home: https://software.intel.com/content/www/us/en/develop/tools/isa-l.html\n  license: BSD-3-Clause\n  summary: provides tools to minimize disk space use and maximize storage throughput, security, and resilience.\n  license_family: BSD\n  license_file: LICENSE\n\n  description: |\n    ISA-L is a collection of optimized low-level functions targeting storage applications. ISA-L includes:\n    Erasure codes - Fast block Reed-Solomon type erasure codes for any encode/decode matrix in GF(2^8).\n    CRC - Fast implementations of cyclic redundancy check. Six different polynomials supported.\n        iscsi32, ieee32, t10dif, ecma64, iso64, jones64.\n    Raid - calculate and operate on XOR and P+Q parity found in common RAID implementations.\n    Compression - Fast deflate-compatible data compression.\n    De-compression - Fast inflate-compatible data compression.\n    This package includes the igzip program on Linux and MacOS.\n\n  doc_url: https://github.com/intel/isa-l/wiki/\n  dev_url: https://github.com/intel/isa-l\n\nextra:\n  recipe-maintainers:\n    - rhpvorderman\n",
+ "raw_meta_yaml": "{% set version = \"2.31.0\" %}\n\npackage:\n  name: isa-l\n  version: {{ version }}\n\nsource:\n  url: https://github.com/intel/isa-l/archive/v{{ version }}.tar.gz\n  sha256: e218b7b2e241cfb8e8b68f54a6e5eed80968cc387c4b1af03708b54e9fb236f1\n  patches:\n    # https://github.com/intel/isa-l/commit/1b1ee1e18f5bb4d91e3839405a8557a64a3b2581\n    - patches/fix_erasure_code_wrong_dtype_ppc64le.patch\n    # https://github.com/intel/isa-l/commit/4be96e2437d1aa010978fba54a1b76dfac520961\n    - patches/fix_isal_dflate_icf_finish_for_aarch.patch\n    # https://github.com/intel/isa-l/commit/f1b144bbab7cd1f603565b3b7f92bfb47b86e646\n    - patches/fold_constants_correctly_for_aarch.patch\n    # https://github.com/intel/isa-l/commit/38279f5e9e6455d16b3e97c387f209db56fa994c\n    - patches/avoid_using_X18_register_on_aarch.patch\n    # https://github.com/intel/isa-l/commit/dbaf284e112bea1b90983772a3164e794b923aaf\n    - patches/fix_wasm_spport_on_aarch.patch\n    # Conda adds some CFLAGS to the environment which are not properly\n    # filtered by the original nasm-filter.sh\n    # This patch also makes sure the nasm executable from the BUILD_PREFIX is used.\n    - nasm-filter.patch\n\nbuild:\n  number: 2\n  run_exports:\n    - {{ pin_subpackage('isa-l', max_pin='x') }}\n\nrequirements:\n  build:\n    # igzip needs to be compiled with 7.5.0 to prevent an issue:\n    # https://github.com/conda-forge/isa-l-feedstock/issues/7\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    # Osx needs some flags that are available from 2.14 on\n    - nasm >=2.14\n    - autoconf  # [unix]\n    - automake  # [unix]\n    - libtool   # [unix]\n    - make      # [unix]\n\ntest:\n  files:\n    - LICENSE\n  commands:\n    - igzip --help  # [unix]\n        # Test compression and decompression.\n    - igzip -k LICENSE  # [unix]\n        # Original file should be larger than compressed file.\n    - bash -c '[ $(stat -c %s LICENSE) -gt $(stat -c %s LICENSE.gz) ]'  # [unix]\n    - bash -c '[ \"$(igzip -cd LICENSE.gz)\" == \"$(cat LICENSE)\" ]'  # [unix]\n\nabout:\n  home: https://software.intel.com/content/www/us/en/develop/tools/isa-l.html\n  license: BSD-3-Clause\n  summary: provides tools to minimize disk space use and maximize storage throughput, security, and resilience.\n  license_family: BSD\n  license_file: LICENSE\n\n  description: |\n    ISA-L is a collection of optimized low-level functions targeting storage applications. ISA-L includes:\n    Erasure codes - Fast block Reed-Solomon type erasure codes for any encode/decode matrix in GF(2^8).\n    CRC - Fast implementations of cyclic redundancy check. Six different polynomials supported.\n        iscsi32, ieee32, t10dif, ecma64, iso64, jones64.\n    Raid - calculate and operate on XOR and P+Q parity found in common RAID implementations.\n    Compression - Fast deflate-compatible data compression.\n    De-compression - Fast inflate-compatible data compression.\n    This package includes the igzip program on Linux and MacOS.\n\n  doc_url: https://github.com/intel/isa-l/wiki/\n  dev_url: https://github.com/intel/isa-l\n\nextra:\n  recipe-maintainers:\n    - rhpvorderman\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -622,7 +622,7 @@
    "summary": "provides tools to minimize disk space use and maximize storage throughput, security, and resilience."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "run_exports": [
     "isa-l"
    ]
