@@ -34,7 +34,7 @@
    "summary": "gRPC Java Codegen Plugin for Protobuf Compiler"
   },
   "build": {
-   "number": "7"
+   "number": "8"
   },
   "extra": {
    "recipe-maintainers": [
@@ -49,6 +49,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "openjdk",
@@ -89,6 +90,7 @@
    "elements": [
     "bazel-toolchain",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libprotobuf",
     "openjdk"
@@ -119,7 +121,7 @@
    "summary": "gRPC Java Codegen Plugin for Protobuf Compiler"
   },
   "build": {
-   "number": "7"
+   "number": "8"
   },
   "extra": {
    "recipe-maintainers": [
@@ -134,6 +136,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "openjdk",
@@ -174,6 +177,7 @@
    "elements": [
     "bazel-toolchain",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libprotobuf",
     "openjdk"
@@ -204,7 +208,7 @@
    "summary": "gRPC Java Codegen Plugin for Protobuf Compiler"
   },
   "build": {
-   "number": "7"
+   "number": "8"
   },
   "extra": {
    "recipe-maintainers": [
@@ -219,6 +223,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "openjdk",
@@ -259,6 +264,7 @@
    "elements": [
     "bazel-toolchain",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libprotobuf",
     "openjdk"
@@ -289,7 +295,7 @@
    "summary": "gRPC Java Codegen Plugin for Protobuf Compiler"
   },
   "build": {
-   "number": "7"
+   "number": "8"
   },
   "extra": {
    "recipe-maintainers": [
@@ -304,6 +310,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "openjdk",
@@ -405,7 +412,7 @@
    "summary": "gRPC Java Codegen Plugin for Protobuf Compiler"
   },
   "build": {
-   "number": "7"
+   "number": "8"
   },
   "extra": {
    "recipe-maintainers": [
@@ -420,6 +427,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "openjdk",
@@ -460,6 +468,7 @@
    "elements": [
     "bazel-toolchain",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libprotobuf",
     "openjdk",
@@ -491,7 +500,7 @@
    "summary": "gRPC Java Codegen Plugin for Protobuf Compiler"
   },
   "build": {
-   "number": "7"
+   "number": "8"
   },
   "extra": {
    "recipe-maintainers": [
@@ -506,6 +515,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "openjdk",
@@ -546,6 +556,7 @@
    "elements": [
     "bazel-toolchain",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libprotobuf",
     "openjdk",
@@ -585,12 +596,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/grpc_java_plugin.json"
  },
- "raw_meta_yaml": "{% set version = \"1.55.1\" %}\n\npackage:\n  name: grpc_java_plugin\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/grpc/grpc-java/archive/refs/tags/v{{ version }}.tar.gz\n    sha256: be779db38a72a0c693706c433133189538b04979eba1b728eaa21f4fd0f967d8\n    patches:\n      - patches/0001-Build-against-system-libprotobuf.patch\n      - patches/0002-use-C-17.patch\n      - patches/0003-Add-abseil-libs-for-newer-protobuf-versions.patch\n  - url: https://github.com/bazelbuild/bazel/releases/download/{{ bazel_version }}/bazel_nojdk-{{ bazel_version }}-{{ bazel_arch }}\n    sha256: {{ bazel_sha }}\n    fn: bazel\n\nbuild:\n  number: 7\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - openjdk\n    - openjdk 17  # [linux]\n    - bazel-toolchain\n    - libprotobuf\n    - sed  # [osx]\n  host:\n    - libabseil  # [libprotobuf != \"3.21\"]\n    - libprotobuf\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/grpc_java_plugin\n\nabout:\n  home: https://github.com/grpc/grpc-java/tree/master/compiler\n  license: Apache-2.0\n  license_family: MIT\n  license_file: LICENSE\n  summary: gRPC Java Codegen Plugin for Protobuf Compiler\n\nextra:\n  recipe-maintainers:\n    - xhochy\n    - conda-forge/bazel\n    - conda-forge/grpc-cpp\n",
+ "raw_meta_yaml": "{% set version = \"1.55.1\" %}\n\npackage:\n  name: grpc_java_plugin\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/grpc/grpc-java/archive/refs/tags/v{{ version }}.tar.gz\n    sha256: be779db38a72a0c693706c433133189538b04979eba1b728eaa21f4fd0f967d8\n    patches:\n      - patches/0001-Build-against-system-libprotobuf.patch\n      - patches/0002-use-C-17.patch\n      - patches/0003-Add-abseil-libs-for-newer-protobuf-versions.patch\n  - url: https://github.com/bazelbuild/bazel/releases/download/{{ bazel_version }}/bazel_nojdk-{{ bazel_version }}-{{ bazel_arch }}\n    sha256: {{ bazel_sha }}\n    fn: bazel\n\nbuild:\n  number: 8\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ stdlib('c') }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - openjdk\n    - openjdk 17  # [linux]\n    - bazel-toolchain\n    - libprotobuf\n    - sed  # [osx]\n  host:\n    - libabseil\n    - libprotobuf\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/grpc_java_plugin\n\nabout:\n  home: https://github.com/grpc/grpc-java/tree/master/compiler\n  license: Apache-2.0\n  license_family: MIT\n  license_file: LICENSE\n  summary: gRPC Java Codegen Plugin for Protobuf Compiler\n\nextra:\n  recipe-maintainers:\n    - xhochy\n    - conda-forge/bazel\n    - conda-forge/grpc-cpp\n",
  "req": {
   "__set__": true,
   "elements": [
    "bazel-toolchain",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "libabseil",
    "libprotobuf",
@@ -604,6 +616,7 @@
    "elements": [
     "bazel-toolchain",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libprotobuf",
     "openjdk",
@@ -614,6 +627,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libabseil",
     "libprotobuf"
@@ -623,6 +637,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -638,6 +653,7 @@
    "elements": [
     "bazel-toolchain",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libprotobuf",
     "openjdk",
