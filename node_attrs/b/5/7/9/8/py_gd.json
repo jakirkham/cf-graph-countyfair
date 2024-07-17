@@ -24,7 +24,7 @@
    "summary": "Pythonic wrappers for the libgd graphics rendering library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -40,7 +40,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -52,8 +53,7 @@
    ],
    "run": [
     "python",
-    "libgd",
-    "numpy"
+    "libgd"
    ]
   },
   "source": {
@@ -77,7 +77,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -95,7 +96,6 @@
    "__set__": true,
    "elements": [
     "libgd",
-    "numpy",
     "python"
    ]
   },
@@ -113,7 +113,7 @@
    "summary": "Pythonic wrappers for the libgd graphics rendering library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -129,7 +129,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -141,8 +142,7 @@
    ],
    "run": [
     "python",
-    "libgd",
-    "numpy"
+    "libgd"
    ]
   },
   "source": {
@@ -170,7 +170,7 @@
    "summary": "Pythonic wrappers for the libgd graphics rendering library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -186,7 +186,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -198,8 +199,7 @@
    ],
    "run": [
     "python",
-    "libgd",
-    "numpy"
+    "libgd"
    ]
   },
   "source": {
@@ -223,7 +223,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -241,7 +242,6 @@
    "__set__": true,
    "elements": [
     "libgd",
-    "numpy",
     "python"
    ]
   },
@@ -259,7 +259,7 @@
    "summary": "Pythonic wrappers for the libgd graphics rendering library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -275,7 +275,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -287,8 +288,7 @@
    ],
    "run": [
     "python",
-    "libgd",
-    "numpy"
+    "libgd"
    ]
   },
   "source": {
@@ -312,7 +312,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -330,7 +331,6 @@
    "__set__": true,
    "elements": [
     "libgd",
-    "numpy",
     "python"
    ]
   },
@@ -357,11 +357,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/py_gd.json"
  },
- "raw_meta_yaml": "{% set version = \"2.2.1\" %}\n{% set sha256 = \"c21d0c7eaaeaafca02aec72d5cda5324ba397a2eaf609ec7613a9f9e7145a5e8\" %}\n{% set libgd_version = \"2.3.*\" %}\n\npackage:\n  name: py_gd\n  version: {{ version }}\n\nsource:\n  fn: py_gd-{{ version }}.tar.gz\n  url: https://github.com/NOAA-ORR-ERD/py_gd/archive/v{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [py<39 or py>311 or python_impl == 'pypy']\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - libgd {{ libgd_version }}              # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - setuptools\n    - libgd {{ libgd_version }}\n    - cython\n    - numpy\n\n  run:\n    - python\n    - {{ pin_compatible('libgd') }}\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  requires:\n    - pytest\n  imports:\n    - py_gd\n  commands:\n    - py.test --pyargs py_gd\n\nabout:\n  home: https://github.com/NOAA-ORR-ERD/py_gd\n  license: CC0-1.0\n  summary: Pythonic wrappers for the libgd graphics rendering library\n\nextra:\n  recipe-maintainers:\n    - ChrisBarker-NOAA\n    - jay-hennen\n    - JamesMakela-NOAA\n",
+ "raw_meta_yaml": "{% set version = \"2.2.1\" %}\n{% set sha256 = \"c21d0c7eaaeaafca02aec72d5cda5324ba397a2eaf609ec7613a9f9e7145a5e8\" %}\n{% set libgd_version = \"2.3.*\" %}\n\npackage:\n  name: py_gd\n  version: {{ version }}\n\nsource:\n  fn: py_gd-{{ version }}.tar.gz\n  url: https://github.com/NOAA-ORR-ERD/py_gd/archive/v{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [py<39 or py>311 or python_impl == 'pypy']\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - libgd {{ libgd_version }}              # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - setuptools\n    - libgd {{ libgd_version }}\n    - cython\n    - numpy\n\n  run:\n    - python\n    - {{ pin_compatible('libgd') }}\n\ntest:\n  requires:\n    - pytest\n  imports:\n    - py_gd\n  commands:\n    - py.test --pyargs py_gd\n\nabout:\n  home: https://github.com/NOAA-ORR-ERD/py_gd\n  license: CC0-1.0\n  summary: Pythonic wrappers for the libgd graphics rendering library\n\nextra:\n  recipe-maintainers:\n    - ChrisBarker-NOAA\n    - jay-hennen\n    - JamesMakela-NOAA\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cython",
    "libgd",
    "numpy",
@@ -374,13 +375,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "libgd",
     "numpy",
@@ -393,8 +396,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "libgd",
-    "numpy",
     "python"
    ]
   },
@@ -410,7 +413,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -428,7 +432,6 @@
    "__set__": true,
    "elements": [
     "libgd",
-    "numpy",
     "python"
    ]
   },
@@ -451,7 +454,7 @@
    "summary": "Pythonic wrappers for the libgd graphics rendering library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -467,7 +470,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -479,8 +483,7 @@
    ],
    "run": [
     "python",
-    "libgd",
-    "numpy"
+    "libgd"
    ]
   },
   "source": {
@@ -504,7 +507,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -522,7 +526,6 @@
    "__set__": true,
    "elements": [
     "libgd",
-    "numpy",
     "python"
    ]
   },
