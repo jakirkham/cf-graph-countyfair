@@ -3,6 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -12,6 +14,10 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
+  },
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "default"
   },
   "test": "native_and_emulated"
  },
@@ -28,7 +34,7 @@
    "summary": "Drop-in replacement for zlib and gzip modules using zlib-ng"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv",
    "script_env": [
     "PYTHON_ZLIB_NG_LINK_DYNAMIC=true"
@@ -51,11 +57,10 @@
    "host": [
     "pip",
     "python",
-    "zlib-ng >=2.0.7"
+    "zlib-ng"
    ],
    "run": [
-    "python",
-    "zlib-ng >=2.0.7"
+    "python"
    ]
   },
   "source": {
@@ -91,8 +96,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "python",
-    "zlib-ng"
+    "python"
    ]
   },
   "test": {
@@ -100,7 +104,7 @@
    "elements": []
   }
  },
- "meta_yaml": {
+ "linux_aarch64_meta_yaml": {
   "about": {
    "dev_url": "https://github.com/pycompression/python-zlib-ng",
    "doc_url": "https://python-zlib-ng.readthedocs.io",
@@ -111,7 +115,7 @@
    "summary": "Drop-in replacement for zlib and gzip modules using zlib-ng"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv",
    "script_env": [
     "PYTHON_ZLIB_NG_LINK_DYNAMIC=true"
@@ -134,11 +138,172 @@
    "host": [
     "pip",
     "python",
-    "zlib-ng >=2.0.7"
+    "zlib-ng"
    ],
    "run": [
+    "python"
+   ]
+  },
+  "source": {
+   "sha256": "eb371b1095258106ab34023df38a1555dc599baf4ad3e991deebb858b1a0c6a3",
+   "url": "https://pypi.io/packages/source/z/zlib-ng/zlib_ng-0.4.3.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "python -c \"from zlib_ng import gzip_ng\"",
+    "python -c \"from zlib_ng import zlib_ng; zlib_ng.adler32(b'test')\""
+   ],
+   "imports": [
+    "zlib_ng"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "pip",
     "python",
-    "zlib-ng >=2.0.7"
+    "zlib-ng"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/pycompression/python-zlib-ng",
+   "doc_url": "https://python-zlib-ng.readthedocs.io",
+   "home": "https://github.com/pycompression/python-zlib-ng",
+   "license": "PSF-2.0",
+   "license_family": "OTHER",
+   "license_file": "LICENSE",
+   "summary": "Drop-in replacement for zlib and gzip modules using zlib-ng"
+  },
+  "build": {
+   "number": "2",
+   "script": "PYTHON -m pip install . -vv",
+   "script_env": [
+    "PYTHON_ZLIB_NG_LINK_DYNAMIC=true"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "rhpvorderman"
+   ]
+  },
+  "package": {
+   "name": "python-zlib-ng",
+   "version": "0.4.3"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "pip",
+    "python",
+    "zlib-ng"
+   ],
+   "run": [
+    "python"
+   ]
+  },
+  "source": {
+   "sha256": "eb371b1095258106ab34023df38a1555dc599baf4ad3e991deebb858b1a0c6a3",
+   "url": "https://pypi.io/packages/source/z/zlib-ng/zlib_ng-0.4.3.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "python -c \"from zlib_ng import gzip_ng\"",
+    "python -c \"from zlib_ng import zlib_ng; zlib_ng.adler32(b'test')\""
+   ],
+   "imports": [
+    "zlib_ng"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "pip",
+    "python",
+    "zlib-ng"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/pycompression/python-zlib-ng",
+   "doc_url": "https://python-zlib-ng.readthedocs.io",
+   "home": "https://github.com/pycompression/python-zlib-ng",
+   "license": "PSF-2.0",
+   "license_family": "OTHER",
+   "license_file": "LICENSE",
+   "summary": "Drop-in replacement for zlib and gzip modules using zlib-ng"
+  },
+  "build": {
+   "number": "2",
+   "script": "PYTHON -m pip install . -vv",
+   "script_env": [
+    "PYTHON_ZLIB_NG_LINK_DYNAMIC=true"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "rhpvorderman"
+   ]
+  },
+  "package": {
+   "name": "python-zlib-ng",
+   "version": "0.4.3"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "pip",
+    "python",
+    "zlib-ng"
+   ],
+   "run": [
+    "python"
    ]
   },
   "source": {
@@ -167,7 +332,7 @@
    "summary": "Drop-in replacement for zlib and gzip modules using zlib-ng"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv",
    "script_env": [
     "PYTHON_ZLIB_NG_LINK_DYNAMIC=true"
@@ -190,11 +355,10 @@
    "host": [
     "pip",
     "python",
-    "zlib-ng >=2.0.7"
+    "zlib-ng"
    ],
    "run": [
-    "python",
-    "zlib-ng >=2.0.7"
+    "python"
    ]
   },
   "source": {
@@ -230,8 +394,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "python",
-    "zlib-ng"
+    "python"
    ]
   },
   "test": {
@@ -250,7 +413,7 @@
    "summary": "Drop-in replacement for zlib and gzip modules using zlib-ng"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv",
    "script_env": [
     "PYTHON_ZLIB_NG_LINK_DYNAMIC=true"
@@ -273,11 +436,10 @@
    "host": [
     "pip",
     "python",
-    "zlib-ng >=2.0.7"
+    "zlib-ng"
    ],
    "run": [
-    "python",
-    "zlib-ng >=2.0.7"
+    "python"
    ]
   },
   "source": {
@@ -313,8 +475,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "python",
-    "zlib-ng"
+    "python"
    ]
   },
   "test": {
@@ -331,6 +492,8 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
+  "linux_ppc64le",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -338,7 +501,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/python-zlib-ng.json"
  },
- "raw_meta_yaml": "{% set name = \"zlib-ng\" %}\n{% set version = \"0.4.3\" %}\n\npackage:\n  name: python-zlib-ng    # To avoid confusion with zlib-ng proper\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz\n  sha256: eb371b1095258106ab34023df38a1555dc599baf4ad3e991deebb858b1a0c6a3\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv\n  script_env:\n    - PYTHON_ZLIB_NG_LINK_DYNAMIC=true  # Forces a dynamic link against zlib-ng in conda-forge\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - pip\n    - python\n    - zlib-ng >=2.0.7\n  run:\n    - python\n    - zlib-ng >=2.0.7\ntest:\n  imports:\n    - zlib_ng\n  commands:\n    - python -c \"from zlib_ng import gzip_ng\"\n    - python -c \"from zlib_ng import zlib_ng; zlib_ng.adler32(b'test')\"\nabout:\n  home: https://github.com/pycompression/python-zlib-ng\n  license: PSF-2.0\n  license_family: OTHER\n  license_file: LICENSE\n  summary: Drop-in replacement for zlib and gzip modules using zlib-ng\n  doc_url: https://python-zlib-ng.readthedocs.io\n  dev_url: https://github.com/pycompression/python-zlib-ng\n\nextra:\n  recipe-maintainers:\n    - rhpvorderman\n",
+ "raw_meta_yaml": "{% set name = \"zlib-ng\" %}\n{% set version = \"0.4.3\" %}\n\npackage:\n  name: python-zlib-ng    # To avoid confusion with zlib-ng proper\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz\n  sha256: eb371b1095258106ab34023df38a1555dc599baf4ad3e991deebb858b1a0c6a3\n\nbuild:\n  number: 2\n  script: {{ PYTHON }} -m pip install . -vv\n  script_env:\n    - PYTHON_ZLIB_NG_LINK_DYNAMIC=true  # Forces a dynamic link against zlib-ng in conda-forge\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - pip\n    - python\n    - zlib-ng\n  run:\n    - python\n\ntest:\n  imports:\n    - zlib_ng\n  commands:\n    - python -c \"from zlib_ng import gzip_ng\"\n    - python -c \"from zlib_ng import zlib_ng; zlib_ng.adler32(b'test')\"\nabout:\n  home: https://github.com/pycompression/python-zlib-ng\n  license: PSF-2.0\n  license_family: OTHER\n  license_file: LICENSE\n  summary: Drop-in replacement for zlib and gzip modules using zlib-ng\n  doc_url: https://python-zlib-ng.readthedocs.io\n  dev_url: https://github.com/pycompression/python-zlib-ng\n\nextra:\n  recipe-maintainers:\n    - rhpvorderman\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -372,8 +535,7 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "python",
-    "zlib-ng"
+    "python"
    ]
   },
   "test": {
@@ -395,14 +557,13 @@
    "elements": [
     "pip",
     "python",
-    "zlib-ng >=2.0.7"
+    "zlib-ng"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "python",
-    "zlib-ng >=2.0.7"
+    "python"
    ]
   },
   "test": {
@@ -426,7 +587,7 @@
    "summary": "Drop-in replacement for zlib and gzip modules using zlib-ng"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv",
    "script_env": [
     "PYTHON_ZLIB_NG_LINK_DYNAMIC=true"
@@ -449,11 +610,10 @@
    "host": [
     "pip",
     "python",
-    "zlib-ng >=2.0.7"
+    "zlib-ng"
    ],
    "run": [
-    "python",
-    "zlib-ng >=2.0.7"
+    "python"
    ]
   },
   "source": {
@@ -489,8 +649,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "python",
-    "zlib-ng"
+    "python"
    ]
   },
   "test": {
