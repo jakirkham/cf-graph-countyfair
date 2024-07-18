@@ -6,6 +6,8 @@
    "automerge": true
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -36,7 +38,7 @@
    "summary": "Provides type-stable rolling window functions over any R data type. Cumulative and expanding windows are also supported. For more advanced usage, an index can be used as a secondary vector that defines how sliding windows are to be created."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -57,6 +59,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -93,6 +96,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -134,7 +138,7 @@
    "summary": "Provides type-stable rolling window functions over any R data type. Cumulative and expanding windows are also supported. For more advanced usage, an index can be used as a secondary vector that defines how sliding windows are to be created."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -155,6 +159,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -191,6 +196,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -232,7 +238,7 @@
    "summary": "Provides type-stable rolling window functions over any R data type. Cumulative and expanding windows are also supported. For more advanced usage, an index can be used as a secondary vector that defines how sliding windows are to be created."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -253,6 +259,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -289,6 +296,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -330,8 +338,7 @@
    "summary": "Provides type-stable rolling window functions over any R data type. Cumulative and expanding windows are also supported. For more advanced usage, an index can be used as a secondary vector that defines how sliding windows are to be created."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -352,9 +359,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -373,8 +382,7 @@
     "r-cli >=3.4.1",
     "r-rlang >=1.0.6",
     "r-vctrs >=0.5.0",
-    "r-warp",
-    "gcc-libs"
+    "r-warp"
    ]
   },
   "source": {
@@ -404,7 +412,7 @@
    "summary": "Provides type-stable rolling window functions over any R data type. Cumulative and expanding windows are also supported. For more advanced usage, an index can be used as a secondary vector that defines how sliding windows are to be created."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -425,6 +433,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -461,6 +470,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -502,7 +512,7 @@
    "summary": "Provides type-stable rolling window functions over any R data type. Cumulative and expanding windows are also supported. For more advanced usage, an index can be used as a secondary vector that defines how sliding windows are to be created."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -523,6 +533,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -559,6 +570,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -606,16 +618,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-slider.json"
  },
- "raw_meta_yaml": "{% set version = \"0.3.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-slider\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/slider_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/slider/slider_{{ version }}.tar.gz\n  sha256: 200a26795fadb2058e3976af7a697dde7f120645279cfe2580b8c0d6c0a429b0\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-cli                        # [build_platform != target_platform]\n    - r-rlang                      # [build_platform != target_platform]\n    - r-vctrs                      # [build_platform != target_platform]\n    - r-warp                       # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-cli >=3.4.1\n    - r-rlang >=1.0.6\n    - r-vctrs >=0.5.0\n    - r-warp\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-cli >=3.4.1\n    - r-rlang >=1.0.6\n    - r-vctrs >=0.5.0\n    - r-warp\n\ntest:\n  commands:\n    - $R -e \"library('slider')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('slider')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/DavisVaughan/slider\n  license: MIT\n  summary: Provides type-stable rolling window functions over any R data type. Cumulative and expanding windows are also supported. For more advanced usage, an index can be used as a secondary vector that defines how sliding windows are to be created.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - mxr-conda\n    - conda-forge/r\n    - oblute\n    - rluria14\n",
+ "raw_meta_yaml": "{% set version = \"0.3.1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-slider\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/slider_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/slider/slider_{{ version }}.tar.gz\n  sha256: 200a26795fadb2058e3976af7a697dde7f120645279cfe2580b8c0d6c0a429b0\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-cli                        # [build_platform != target_platform]\n    - r-rlang                      # [build_platform != target_platform]\n    - r-vctrs                      # [build_platform != target_platform]\n    - r-warp                       # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-cli >=3.4.1\n    - r-rlang >=1.0.6\n    - r-vctrs >=0.5.0\n    - r-warp\n  run:\n    - r-base\n    - r-cli >=3.4.1\n    - r-rlang >=1.0.6\n    - r-vctrs >=0.5.0\n    - r-warp\n\ntest:\n  commands:\n    - $R -e \"library('slider')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('slider')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/DavisVaughan/slider\n  license: MIT\n  summary: Provides type-stable rolling window functions over any R data type. Cumulative and expanding windows are also supported. For more advanced usage, an index can be used as a secondary vector that defines how sliding windows are to be created.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - mxr-conda\n    - conda-forge/r\n    - oblute\n    - rluria14\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -632,10 +645,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -646,6 +661,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-cli",
@@ -658,8 +674,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-cli",
     "r-rlang",
@@ -678,10 +694,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -701,7 +719,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-cli >=3.4.1",
     "r-rlang >=1.0.6",
@@ -744,8 +761,7 @@
    "summary": "Provides type-stable rolling window functions over any R data type. Cumulative and expanding windows are also supported. For more advanced usage, an index can be used as a secondary vector that defines how sliding windows are to be created."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -766,6 +782,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -782,7 +799,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-cli >=3.4.1",
     "r-rlang >=1.0.6",
     "r-vctrs >=0.5.0",
@@ -809,6 +825,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -828,7 +845,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-cli",
     "r-rlang",
