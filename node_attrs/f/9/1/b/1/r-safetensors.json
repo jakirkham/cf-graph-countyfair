@@ -30,7 +30,7 @@
   },
   "build": {
    "noarch": "generic",
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -119,7 +119,7 @@
   },
   "build": {
    "noarch": "generic",
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -178,7 +178,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-safetensors.json"
  },
- "raw_meta_yaml": "{% set version = '0.1.2' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-safetensors\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/safetensors_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/safetensors/safetensors_{{ version }}.tar.gz\n  sha256: 776e7f71f19e0f1e51964a48502528be6eb6515ffd610ca862ff9da6852f6f77\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 0\n  noarch: generic\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-r6\n    - r-cli\n    - r-jsonlite\n    - r-rlang\n  run:\n    - r-base\n    - r-r6\n    - r-cli\n    - r-jsonlite\n    - r-rlang\n\ntest:\n  commands:\n    - $R -e \"library('safetensors')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('safetensors')\\\"\"  # [win]\n\nabout:\n  home: https://mlverse.github.io/safetensors/\n  dev_url: https://github.com/mlverse/safetensors\n  license: MIT\n  summary: A file format for storing tensors that is secure (doesn't allow for code execution),\n    fast and simple to implement. 'safetensors' also enables cross language and cross\n    frameworks compatibility making it an ideal format for storing machine learning\n    model weights.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = '0.1.2' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-safetensors\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/safetensors_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/safetensors/safetensors_{{ version }}.tar.gz\n  sha256: 776e7f71f19e0f1e51964a48502528be6eb6515ffd610ca862ff9da6852f6f77\n\nbuild:\n  number: 1\n  noarch: generic\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-r6\n    - r-cli\n    - r-jsonlite\n    - r-rlang\n  run:\n    - r-base\n    - r-r6\n    - r-cli\n    - r-jsonlite\n    - r-rlang\n\ntest:\n  commands:\n    - $R -e \"library('safetensors')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('safetensors')\\\"\"  # [win]\n\nabout:\n  home: https://mlverse.github.io/safetensors/\n  dev_url: https://github.com/mlverse/safetensors\n  license: MIT\n  summary: A file format for storing tensors that is secure (doesn't allow for code execution),\n    fast and simple to implement. 'safetensors' also enables cross language and cross\n    frameworks compatibility making it an ideal format for storing machine learning\n    model weights.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
