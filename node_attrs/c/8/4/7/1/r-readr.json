@@ -37,7 +37,7 @@
    "summary": "The goal of 'readr' is to provide a fast and friendly way to read rectangular data (like 'csv', 'tsv', and 'fwf'). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -55,6 +55,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -105,6 +106,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -159,7 +161,7 @@
    "summary": "The goal of 'readr' is to provide a fast and friendly way to read rectangular data (like 'csv', 'tsv', and 'fwf'). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -177,6 +179,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -227,6 +230,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -281,7 +285,7 @@
    "summary": "The goal of 'readr' is to provide a fast and friendly way to read rectangular data (like 'csv', 'tsv', and 'fwf'). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -299,6 +303,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -349,6 +354,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -403,8 +409,7 @@
    "summary": "The goal of 'readr' is to provide a fast and friendly way to read rectangular data (like 'csv', 'tsv', and 'fwf'). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -422,9 +427,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -457,8 +464,7 @@
     "r-rlang",
     "r-tibble",
     "r-tzdb >=0.1.1",
-    "r-vroom >=1.5.4",
-    "gcc-libs"
+    "r-vroom >=1.5.4"
    ]
   },
   "source": {
@@ -487,7 +493,7 @@
    "summary": "The goal of 'readr' is to provide a fast and friendly way to read rectangular data (like 'csv', 'tsv', and 'fwf'). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -505,6 +511,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -555,6 +562,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -609,7 +617,7 @@
    "summary": "The goal of 'readr' is to provide a fast and friendly way to read rectangular data (like 'csv', 'tsv', and 'fwf'). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -627,6 +635,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -677,6 +686,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -738,16 +748,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-readr.json"
  },
- "raw_meta_yaml": "{% set version = \"2.1.5\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-readr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/readr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/readr/readr_{{ version }}.tar.gz\n  sha256: 0fa65a5fe0a46cffe221b7696b52adb82dd4d7a692a895484e438e439594e10a\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-tibble                   # [build_platform != target_platform]\n    - r-cpp11                    # [build_platform != target_platform]\n    - r-lifecycle                # [build_platform != target_platform]\n    - r-r6                       # [build_platform != target_platform]\n    - r-rlang                    # [build_platform != target_platform]\n    - r-tzdb                     # [build_platform != target_platform]\n    - r-clipr                    # [build_platform != target_platform]\n    - r-crayon                   # [build_platform != target_platform]\n    - r-hms                      # [build_platform != target_platform]\n    - r-cli                      # [build_platform != target_platform]\n    - r-vroom                    # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-r6\n    - r-cli\n    - r-clipr\n    - r-cpp11\n    - r-crayon\n    - r-hms >=0.4.1\n    - r-lifecycle >=0.2.0\n    - r-rlang\n    - r-tibble\n    - r-tzdb >=0.1.1\n    - r-vroom >=1.5.4\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-r6\n    - r-cli\n    - r-clipr\n    - r-cpp11\n    - r-crayon\n    - r-hms >=0.4.1\n    - r-lifecycle >=0.2.0\n    - r-rlang\n    - r-tibble\n    - r-tzdb >=0.1.1\n    - r-vroom >=1.5.4\n\ntest:\n  commands:\n    - $R -e \"library('readr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('readr')\\\"\"  # [win]\n\nabout:\n  home: http://readr.tidyverse.org, https://github.com/tidyverse/readr\n  license: MIT\n  summary: The goal of 'readr' is to provide a fast and friendly way to read rectangular data (like 'csv', 'tsv', and 'fwf'). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"2.1.5\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-readr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/readr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/readr/readr_{{ version }}.tar.gz\n  sha256: 0fa65a5fe0a46cffe221b7696b52adb82dd4d7a692a895484e438e439594e10a\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-tibble                   # [build_platform != target_platform]\n    - r-cpp11                    # [build_platform != target_platform]\n    - r-lifecycle                # [build_platform != target_platform]\n    - r-r6                       # [build_platform != target_platform]\n    - r-rlang                    # [build_platform != target_platform]\n    - r-tzdb                     # [build_platform != target_platform]\n    - r-clipr                    # [build_platform != target_platform]\n    - r-crayon                   # [build_platform != target_platform]\n    - r-hms                      # [build_platform != target_platform]\n    - r-cli                      # [build_platform != target_platform]\n    - r-vroom                    # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-r6\n    - r-cli\n    - r-clipr\n    - r-cpp11\n    - r-crayon\n    - r-hms >=0.4.1\n    - r-lifecycle >=0.2.0\n    - r-rlang\n    - r-tibble\n    - r-tzdb >=0.1.1\n    - r-vroom >=1.5.4\n  run:\n    - r-base\n    - r-r6\n    - r-cli\n    - r-clipr\n    - r-cpp11\n    - r-crayon\n    - r-hms >=0.4.1\n    - r-lifecycle >=0.2.0\n    - r-rlang\n    - r-tibble\n    - r-tzdb >=0.1.1\n    - r-vroom >=1.5.4\n\ntest:\n  commands:\n    - $R -e \"library('readr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('readr')\\\"\"  # [win]\n\nabout:\n  home: http://readr.tidyverse.org, https://github.com/tidyverse/readr\n  license: MIT\n  summary: The goal of 'readr' is to provide a fast and friendly way to read rectangular data (like 'csv', 'tsv', and 'fwf'). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -771,10 +782,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -785,6 +798,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-cli",
@@ -804,8 +818,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-cli",
     "r-clipr",
@@ -831,10 +845,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -861,7 +877,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-cli",
     "r-clipr",
@@ -910,8 +925,7 @@
    "summary": "The goal of 'readr' is to provide a fast and friendly way to read rectangular data (like 'csv', 'tsv', and 'fwf'). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -929,6 +943,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -952,7 +967,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-r6",
     "r-cli",
     "r-clipr",
@@ -986,6 +1000,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -1012,7 +1027,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-cli",
     "r-clipr",
