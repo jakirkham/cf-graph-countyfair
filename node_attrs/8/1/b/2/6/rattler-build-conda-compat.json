@@ -28,30 +28,33 @@
   },
   "extra": {
    "recipe-maintainers": [
+    "baszalmstra",
     "tdejager",
     "nichmor"
    ]
   },
   "package": {
    "name": "rattler-build-conda-compat",
-   "version": "0.1.2"
+   "version": "0.2.0"
   },
   "requirements": {
    "host": [
-    "python >=3.8",
+    "python >=3.10",
     "pip",
     "hatchling >=1.25.0"
    ],
    "run": [
-    "python >=3.8",
+    "python >=3.10",
     "rattler-build",
     "conda-build",
-    "pytest"
+    "typing-extensions >=4.12.2,<5",
+    "tomli",
+    "ruamel.yaml"
    ]
   },
   "source": {
-   "sha256": "476b836fd8e003ad91fb8c1304a1789a07afd9478ba37c599689f2354b6d47b6",
-   "url": "https://github.com/nichmor/rattler-build-conda-compat/releases/download/v0.1.2/rattler_build_conda_compat-0.1.2.tar.gz"
+   "sha256": "aa25553ec3b72ad7252b7bcdb1d6896fef2c8d821020aae03c99356ce774b7b6",
+   "url": "https://github.com/nichmor/rattler-build-conda-compat/releases/download/v0.2.0/rattler_build_conda_compat-0.2.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -59,7 +62,9 @@
    ],
    "imports": [
     "rattler_build_conda_compat.loader",
-    "rattler_build_conda_compat.render"
+    "rattler_build_conda_compat.render",
+    "rattler_build_conda_compat.conditional_list",
+    "rattler_build_conda_compat.recipe_sources"
    ],
    "requires": [
     "pip"
@@ -83,9 +88,11 @@
    "__set__": true,
    "elements": [
     "conda-build",
-    "pytest",
     "python",
-    "rattler-build"
+    "rattler-build",
+    "ruamel.yaml",
+    "tomli",
+    "typing-extensions"
    ]
   },
   "test": {
@@ -110,30 +117,33 @@
   },
   "extra": {
    "recipe-maintainers": [
+    "baszalmstra",
     "tdejager",
     "nichmor"
    ]
   },
   "package": {
    "name": "rattler-build-conda-compat",
-   "version": "0.1.2"
+   "version": "0.2.0"
   },
   "requirements": {
    "host": [
-    "python >=3.8",
+    "python >=3.10",
     "pip",
     "hatchling >=1.25.0"
    ],
    "run": [
-    "python >=3.8",
+    "python >=3.10",
     "rattler-build",
     "conda-build",
-    "pytest"
+    "typing-extensions >=4.12.2,<5",
+    "tomli",
+    "ruamel.yaml"
    ]
   },
   "source": {
-   "sha256": "476b836fd8e003ad91fb8c1304a1789a07afd9478ba37c599689f2354b6d47b6",
-   "url": "https://github.com/nichmor/rattler-build-conda-compat/releases/download/v0.1.2/rattler_build_conda_compat-0.1.2.tar.gz"
+   "sha256": "aa25553ec3b72ad7252b7bcdb1d6896fef2c8d821020aae03c99356ce774b7b6",
+   "url": "https://github.com/nichmor/rattler-build-conda-compat/releases/download/v0.2.0/rattler_build_conda_compat-0.2.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -141,7 +151,9 @@
    ],
    "imports": [
     "rattler_build_conda_compat.loader",
-    "rattler_build_conda_compat.render"
+    "rattler_build_conda_compat.render",
+    "rattler_build_conda_compat.conditional_list",
+    "rattler_build_conda_compat.recipe_sources"
    ],
    "requires": [
     "pip"
@@ -162,16 +174,18 @@
  "pr_info": {
   "__lazy_json__": "pr_info/rattler-build-conda-compat.json"
  },
- "raw_meta_yaml": "{% set name = \"rattler-build-conda-compat\" %}\n{% set version = \"0.1.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/nichmor/rattler-build-conda-compat/releases/download/v{{ version }}/rattler_build_conda_compat-{{ version }}.tar.gz\n  sha256: 476b836fd8e003ad91fb8c1304a1789a07afd9478ba37c599689f2354b6d47b6\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n    - hatchling >=1.25.0\n  run:\n    - python >=3.8\n    - rattler-build\n    - conda-build\n    - pytest\n\n\ntest:\n  imports:\n    - rattler_build_conda_compat.loader\n    - rattler_build_conda_compat.render\n  requires:\n    - pip\n  commands:\n    - pip check\n\nabout:\n  home: https://github.com/nichmor/rattler-build-conda-compat\n  summary: 'rattler-build module which offer compatibility with conda-smithy'\n  description: |\n    rattler-build module which offer compatibility with conda-smithy\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - tdejager\n    - nichmor\n",
+ "raw_meta_yaml": "{% set name = \"rattler-build-conda-compat\" %}\n{% set version = \"0.2.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/nichmor/rattler-build-conda-compat/releases/download/v{{ version }}/rattler_build_conda_compat-{{ version }}.tar.gz\n  sha256: aa25553ec3b72ad7252b7bcdb1d6896fef2c8d821020aae03c99356ce774b7b6\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.10\n    - pip\n    - hatchling >=1.25.0\n  run:\n    - python >=3.10\n    - rattler-build\n    - conda-build\n    - typing-extensions >=4.12.2,<5\n    - tomli\n    - ruamel.yaml\n\ntest:\n  imports:\n    - rattler_build_conda_compat.loader\n    - rattler_build_conda_compat.render\n    - rattler_build_conda_compat.conditional_list\n    - rattler_build_conda_compat.recipe_sources\n  requires:\n    - pip\n  commands:\n    - pip check\n\nabout:\n  home: https://github.com/nichmor/rattler-build-conda-compat\n  summary: 'rattler-build module which offer compatibility with conda-smithy'\n  description: |\n    rattler-build module which offer compatibility with conda-smithy\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - baszalmstra\n    - tdejager\n    - nichmor\n    - baszalmstra\n",
  "req": {
   "__set__": true,
   "elements": [
    "conda-build",
    "hatchling",
    "pip",
-   "pytest",
    "python",
-   "rattler-build"
+   "rattler-build",
+   "ruamel.yaml",
+   "tomli",
+   "typing-extensions"
   ]
  },
  "requirements": {
@@ -191,9 +205,11 @@
    "__set__": true,
    "elements": [
     "conda-build",
-    "pytest",
     "python",
-    "rattler-build"
+    "rattler-build",
+    "ruamel.yaml",
+    "tomli",
+    "typing-extensions"
    ]
   },
   "test": {
@@ -214,16 +230,18 @@
    "elements": [
     "hatchling >=1.25.0",
     "pip",
-    "python >=3.8"
+    "python >=3.10"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
     "conda-build",
-    "pytest",
-    "python >=3.8",
-    "rattler-build"
+    "python >=3.10",
+    "rattler-build",
+    "ruamel.yaml",
+    "tomli",
+    "typing-extensions >=4.12.2,<5"
    ]
   },
   "test": {
@@ -233,8 +251,8 @@
    ]
   }
  },
- "url": "https://github.com/nichmor/rattler-build-conda-compat/releases/download/v0.1.2/rattler_build_conda_compat-0.1.2.tar.gz",
- "version": "0.1.2",
+ "url": "https://github.com/nichmor/rattler-build-conda-compat/releases/download/v0.2.0/rattler_build_conda_compat-0.2.0.tar.gz",
+ "version": "0.2.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/rattler-build-conda-compat.json"
  }
