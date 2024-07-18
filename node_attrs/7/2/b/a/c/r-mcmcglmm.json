@@ -30,7 +30,7 @@
    "summary": "MCMC Generalised Linear Mixed Models. "
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -135,8 +135,7 @@
    "summary": "MCMC Generalised Linear Mixed Models. "
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -181,8 +180,7 @@
     "r-coda",
     "r-corpcor",
     "r-cubature",
-    "r-tensora",
-    "gcc-libs"
+    "r-tensora"
    ]
   },
   "source": {
@@ -211,7 +209,7 @@
    "summary": "MCMC Generalised Linear Mixed Models. "
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -320,7 +318,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-mcmcglmm.json"
  },
- "raw_meta_yaml": "{% set version = \"2.36\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-mcmcglmm\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/MCMCglmm_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/MCMCglmm/MCMCglmm_{{ version }}.tar.gz\n  sha256: 66ffd9aaf8035c7abe7208c8514c60cb56c8c6a170de207d6608f5c44a4f8af1\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"c\") }}                # [win]\n    - {{ compiler('m2w64_cxx') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-matrix\n    - r-ape\n    - r-coda\n    - r-corpcor\n    - r-cubature\n    - r-tensora\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-matrix\n    - r-ape\n    - r-coda\n    - r-corpcor\n    - r-cubature\n    - r-tensora\n\ntest:\n  commands:\n    - $R -e \"library('MCMCglmm')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('MCMCglmm')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=MCMCglmm\n  license: GPL-2.0-or-later\n  summary: 'MCMC Generalised Linear Mixed Models. '\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - nick-youngblut\n    - conda-forge/r\n\n# Package: MCMCglmm\n# Version: 2.29\n# Date: 2019-04-16\n# Title: MCMC Generalised Linear Mixed Models\n# Depends: Matrix, coda, ape\n# Imports: corpcor, tensorA, cubature, methods\n# Suggests: rgl, combinat, mvtnorm, orthopolynom\n# Author: Jarrod Hadfield\n# Maintainer: Jarrod Hadfield <j.hadfield@ed.ac.uk>\n# Description: MCMC Generalised Linear Mixed Models.\n# License: GPL (>= 2)\n# SystemRequirements: C++11\n# NeedsCompilation: yes\n# Packaged: 2019-04-17 15:03:49 UTC; jhadfiel\n# Repository: CRAN\n# Date/Publication: 2019-04-24 10:50:07 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.36\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-mcmcglmm\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/MCMCglmm_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/MCMCglmm/MCMCglmm_{{ version }}.tar.gz\n  sha256: 66ffd9aaf8035c7abe7208c8514c60cb56c8c6a170de207d6608f5c44a4f8af1\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"c\") }}                # [win]\n    - {{ compiler('m2w64_cxx') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-matrix\n    - r-ape\n    - r-coda\n    - r-corpcor\n    - r-cubature\n    - r-tensora\n  run:\n    - r-base\n    - r-matrix\n    - r-ape\n    - r-coda\n    - r-corpcor\n    - r-cubature\n    - r-tensora\n\ntest:\n  commands:\n    - $R -e \"library('MCMCglmm')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('MCMCglmm')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=MCMCglmm\n  license: GPL-2.0-or-later\n  summary: 'MCMC Generalised Linear Mixed Models. '\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - nick-youngblut\n    - conda-forge/r\n\n# Package: MCMCglmm\n# Version: 2.29\n# Date: 2019-04-16\n# Title: MCMC Generalised Linear Mixed Models\n# Depends: Matrix, coda, ape\n# Imports: corpcor, tensorA, cubature, methods\n# Suggests: rgl, combinat, mvtnorm, orthopolynom\n# Author: Jarrod Hadfield\n# Maintainer: Jarrod Hadfield <j.hadfield@ed.ac.uk>\n# Description: MCMC Generalised Linear Mixed Models.\n# License: GPL (>= 2)\n# SystemRequirements: C++11\n# NeedsCompilation: yes\n# Packaged: 2019-04-17 15:03:49 UTC; jhadfiel\n# Repository: CRAN\n# Date/Publication: 2019-04-24 10:50:07 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -329,7 +327,6 @@
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
    "m2w64_cxx_compiler_stub",
    "make",
@@ -381,7 +378,6 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-ape",
     "r-base",
     "r-coda",
@@ -428,7 +424,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-ape",
     "r-base",
     "r-coda",
@@ -466,8 +461,7 @@
    "summary": "MCMC Generalised Linear Mixed Models. "
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -505,7 +499,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-matrix",
     "r-ape",
     "r-coda",
@@ -556,7 +549,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-ape",
     "r-base",
     "r-coda",
