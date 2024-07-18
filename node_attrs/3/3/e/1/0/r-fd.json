@@ -32,7 +32,7 @@
    "summary": "FD is a package to compute different multidimensional FD indices. It implements a distance-based framework to measure FD that allows any number and type of functional traits, and can also consider species relative abundances. It also contains other useful tools for functional ecology."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -86,6 +87,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -126,7 +128,7 @@
    "summary": "FD is a package to compute different multidimensional FD indices. It implements a distance-based framework to measure FD that allows any number and type of functional traits, and can also consider species relative abundances. It also contains other useful tools for functional ecology."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -144,6 +146,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -180,6 +183,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -220,7 +224,7 @@
    "summary": "FD is a package to compute different multidimensional FD indices. It implements a distance-based framework to measure FD that allows any number and type of functional traits, and can also consider species relative abundances. It also contains other useful tools for functional ecology."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -238,6 +242,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -274,6 +279,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -314,8 +320,7 @@
    "summary": "FD is a package to compute different multidimensional FD indices. It implements a distance-based framework to measure FD that allows any number and type of functional traits, and can also consider species relative abundances. It also contains other useful tools for functional ecology."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -333,9 +338,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -354,8 +361,7 @@
     "r-ade4",
     "r-ape",
     "r-geometry",
-    "r-vegan",
-    "gcc-libs"
+    "r-vegan"
    ]
   },
   "source": {
@@ -384,7 +390,7 @@
    "summary": "FD is a package to compute different multidimensional FD indices. It implements a distance-based framework to measure FD that allows any number and type of functional traits, and can also consider species relative abundances. It also contains other useful tools for functional ecology."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -402,6 +408,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -438,6 +445,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -484,16 +492,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-fd.json"
  },
- "raw_meta_yaml": "{% set version = \"1.0-12.3\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-fd\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/FD_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/FD/FD_{{ version }}.tar.gz\n  sha256: 6e3091f99e510260cc338b9808201bd753556b5bdc2ff79116750d1e6b237eee\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ compiler('fortran') }}  # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('m2w64_fortran') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-ade4\n    - r-ape\n    - r-geometry\n    - r-vegan\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-ade4\n    - r-ape\n    - r-geometry\n    - r-vegan\n\ntest:\n  commands:\n    - $R -e \"library('FD')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('FD')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=FD\n  license: GPL-2.0-or-later\n  summary: FD is a package to compute different multidimensional FD indices. It implements a distance-based framework to measure FD that allows any number and type of functional traits, and can also consider species relative abundances. It also contains other useful tools for functional ecology.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: FD\n# Type: Package\n# Title: Measuring functional diversity (FD) from multiple traits, and other tools for functional ecology\n# Version: 1.0-12\n# Date: 2014-19-08\n# Author: Etienne Laliberte, Pierre Legendre, Bill Shipley\n# Maintainer: Etienne Laliberte <etiennelaliberte@gmail.com>\n# Description: FD is a package to compute different multidimensional FD indices. It implements a distance-based framework to measure FD that allows any number and type of functional traits, and can also consider species relative abundances. It also contains other useful tools for functional ecology.\n# License: GPL-2\n# LazyLoad: yes\n# LazyData: yes\n# Depends: ade4, ape, geometry, vegan\n# Encoding: latin1\n# Packaged: 2014-08-19 09:49:14 UTC; 00073639\n# NeedsCompilation: yes\n# Repository: CRAN\n# Date/Publication: 2014-08-19 13:42:17\n",
+ "raw_meta_yaml": "{% set version = \"1.0-12.3\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-fd\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/FD_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/FD/FD_{{ version }}.tar.gz\n  sha256: 6e3091f99e510260cc338b9808201bd753556b5bdc2ff79116750d1e6b237eee\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('fortran') }}  # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('m2w64_fortran') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-ade4\n    - r-ape\n    - r-geometry\n    - r-vegan\n  run:\n    - r-base\n    - r-ade4\n    - r-ape\n    - r-geometry\n    - r-vegan\n\ntest:\n  commands:\n    - $R -e \"library('FD')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('FD')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=FD\n  license: GPL-2.0-or-later\n  summary: FD is a package to compute different multidimensional FD indices. It implements a distance-based framework to measure FD that allows any number and type of functional traits, and can also consider species relative abundances. It also contains other useful tools for functional ecology.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: FD\n# Type: Package\n# Title: Measuring functional diversity (FD) from multiple traits, and other tools for functional ecology\n# Version: 1.0-12\n# Date: 2014-19-08\n# Author: Etienne Laliberte, Pierre Legendre, Bill Shipley\n# Maintainer: Etienne Laliberte <etiennelaliberte@gmail.com>\n# Description: FD is a package to compute different multidimensional FD indices. It implements a distance-based framework to measure FD that allows any number and type of functional traits, and can also consider species relative abundances. It also contains other useful tools for functional ecology.\n# License: GPL-2\n# LazyLoad: yes\n# LazyData: yes\n# Depends: ade4, ape, geometry, vegan\n# Encoding: latin1\n# Packaged: 2014-08-19 09:49:14 UTC; 00073639\n# NeedsCompilation: yes\n# Repository: CRAN\n# Date/Publication: 2014-08-19 13:42:17\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "r-ade4",
@@ -510,10 +519,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -524,6 +535,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "r-ade4",
     "r-ape",
@@ -536,8 +548,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-ade4",
     "r-ape",
     "r-base",
@@ -556,10 +568,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -579,7 +593,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-ade4",
     "r-ape",
     "r-base",
@@ -619,8 +632,7 @@
    "summary": "FD is a package to compute different multidimensional FD indices. It implements a distance-based framework to measure FD that allows any number and type of functional traits, and can also consider species relative abundances. It also contains other useful tools for functional ecology."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -638,6 +650,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "make",
@@ -654,7 +667,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-ade4",
     "r-ape",
     "r-geometry",
@@ -681,6 +693,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -700,7 +713,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-ade4",
     "r-ape",
     "r-base",
