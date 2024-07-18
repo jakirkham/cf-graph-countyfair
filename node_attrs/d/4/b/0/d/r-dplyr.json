@@ -38,7 +38,7 @@
    "summary": "A fast, consistent tool for working with data frame like objects, both in memory and out of memory."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -57,6 +57,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -106,6 +107,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -160,7 +162,7 @@
    "summary": "A fast, consistent tool for working with data frame like objects, both in memory and out of memory."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -179,6 +181,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -228,6 +231,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -282,7 +286,7 @@
    "summary": "A fast, consistent tool for working with data frame like objects, both in memory and out of memory."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -301,6 +305,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -350,6 +355,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -404,8 +410,7 @@
    "summary": "A fast, consistent tool for working with data frame like objects, both in memory and out of memory."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -424,9 +429,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -458,8 +465,7 @@
     "r-rlang >=0.4.10",
     "r-tibble >=2.1.3",
     "r-tidyselect >=1.1.0",
-    "r-vctrs >=0.3.5",
-    "gcc-libs"
+    "r-vctrs >=0.3.5"
    ]
   },
   "source": {
@@ -489,7 +495,7 @@
    "summary": "A fast, consistent tool for working with data frame like objects, both in memory and out of memory."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -508,6 +514,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -557,6 +564,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -611,7 +619,7 @@
    "summary": "A fast, consistent tool for working with data frame like objects, both in memory and out of memory."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -630,6 +638,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -679,6 +688,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -739,16 +749,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-dplyr.json"
  },
- "raw_meta_yaml": "{% set version = \"1.1.4\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-dplyr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/dplyr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/dplyr/dplyr_{{ version }}.tar.gz\n  sha256: cf730414d5d4ab387b4e9890a4b1df9d17a3903488e8da8df1cf2e11e44558cb\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-pillar                   # [build_platform != target_platform]\n    - r-r6                       # [build_platform != target_platform]\n    - r-tibble                   # [build_platform != target_platform]\n    - r-lifecycle                # [build_platform != target_platform]\n    - r-ellipsis                 # [build_platform != target_platform]\n    - r-glue                     # [build_platform != target_platform]\n    - r-rlang                    # [build_platform != target_platform]\n    - r-tidyselect               # [build_platform != target_platform]\n    - r-magrittr                 # [build_platform != target_platform]\n    - r-generics                 # [build_platform != target_platform]\n    - r-vctrs                    # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-r6                         # [build_platform != target_platform]\n    - r-generics                   # [build_platform != target_platform]\n    - r-glue >=1.3.2               # [build_platform != target_platform]\n    - r-lifecycle >=1.0.1          # [build_platform != target_platform]\n    - r-magrittr >=1.5             # [build_platform != target_platform]\n    - r-pillar >=1.5.1             # [build_platform != target_platform]\n    - r-rlang >=1.0.0              # [build_platform != target_platform]\n    - r-tibble >=2.1.3             # [build_platform != target_platform]\n    - r-tidyselect >=1.1.1         # [build_platform != target_platform]\n    - r-vctrs >=0.3.5              # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-r6\n    - r-generics\n    - r-glue >=1.3.2\n    - r-lifecycle >=1.0.1\n    - r-magrittr >=1.5\n    - r-pillar >=1.5.1\n    - r-rlang >=1.0.0\n    - r-tibble >=2.1.3\n    - r-tidyselect >=1.1.1\n    - r-vctrs >=0.3.5\n\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-r6\n    - r-ellipsis\n    - r-generics\n    - r-glue >=1.3.2\n    - r-lifecycle >=1.0.0\n    - r-magrittr >=1.5\n    - r-pillar >=1.5.1\n    - r-rlang >=0.4.10\n    - r-tibble >=2.1.3\n    - r-tidyselect >=1.1.0\n    - r-vctrs >=0.3.5\n\ntest:\n  commands:\n    - $R -e \"library('dplyr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('dplyr')\\\"\"  # [win]\n\nabout:\n  home: https://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr\n\n  license: MIT\n  summary: A fast, consistent tool for working with data frame like objects, both in memory and out of memory.\n\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - philip-khor\n\n# Type: Package\n# Package: dplyr\n# Title: A Grammar of Data Manipulation\n# Version: 1.0.6\n# Authors@R: c(person(given = \"Hadley\", family = \"Wickham\", role = c(\"aut\", \"cre\"), email = \"hadley@rstudio.com\", comment = c(ORCID = \"0000-0003-4757-117X\")), person(given = \"Romain\", family = \"Francois\", role = \"aut\", comment = c(ORCID = \"0000-0002-2444-4226\")), person(given = \"Lionel\", family = \"Henry\", role = \"aut\"), person(given = \"Kirill\", family = \"Muller\", role = \"aut\", comment = c(ORCID = \"0000-0002-1416-3412\")), person(given = \"RStudio\", role = c(\"cph\", \"fnd\")))\n# Description: A fast, consistent tool for working with data frame like objects, both in memory and out of memory.\n# License: MIT + file LICENSE\n# URL: https://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr\n# BugReports: https://github.com/tidyverse/dplyr/issues\n# Depends: R (>= 3.3.0)\n# Imports: ellipsis, generics, glue (>= 1.3.2), lifecycle (>= 1.0.0), magrittr (>= 1.5), methods, R6, rlang (>= 0.4.10), tibble (>= 2.1.3), tidyselect (>= 1.1.0), utils, vctrs (>= 0.3.5), pillar (>= 1.5.1)\n# Suggests: bench, broom, callr, covr, DBI, dbplyr (>= 1.4.3), knitr, Lahman, lobstr, microbenchmark, nycflights13, purrr, rmarkdown, RMySQL, RPostgreSQL, RSQLite, testthat (>= 3.0.2), tidyr, withr\n# VignetteBuilder: knitr\n# Encoding: UTF-8\n# LazyData: true\n# RoxygenNote: 7.1.1\n# Config/testthat/edition: 3\n# NeedsCompilation: yes\n# Packaged: 2021-04-30 08:59:12 UTC; romainfrancois\n# Author: Hadley Wickham [aut, cre] (<https://orcid.org/0000-0003-4757-117X>), Romain Francois [aut] (<https://orcid.org/0000-0002-2444-4226>), Lionel Henry [aut], Kirill Muller [aut] (<https://orcid.org/0000-0002-1416-3412>), RStudio [cph, fnd]\n# Maintainer: Hadley Wickham <hadley@rstudio.com>\n# Repository: CRAN\n# Date/Publication: 2021-05-05 15:40:05 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.1.4\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-dplyr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/dplyr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/dplyr/dplyr_{{ version }}.tar.gz\n  sha256: cf730414d5d4ab387b4e9890a4b1df9d17a3903488e8da8df1cf2e11e44558cb\n\nbuild:\n  number: 1\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-pillar                   # [build_platform != target_platform]\n    - r-r6                       # [build_platform != target_platform]\n    - r-tibble                   # [build_platform != target_platform]\n    - r-lifecycle                # [build_platform != target_platform]\n    - r-ellipsis                 # [build_platform != target_platform]\n    - r-glue                     # [build_platform != target_platform]\n    - r-rlang                    # [build_platform != target_platform]\n    - r-tidyselect               # [build_platform != target_platform]\n    - r-magrittr                 # [build_platform != target_platform]\n    - r-generics                 # [build_platform != target_platform]\n    - r-vctrs                    # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-r6                         # [build_platform != target_platform]\n    - r-generics                   # [build_platform != target_platform]\n    - r-glue >=1.3.2               # [build_platform != target_platform]\n    - r-lifecycle >=1.0.1          # [build_platform != target_platform]\n    - r-magrittr >=1.5             # [build_platform != target_platform]\n    - r-pillar >=1.5.1             # [build_platform != target_platform]\n    - r-rlang >=1.0.0              # [build_platform != target_platform]\n    - r-tibble >=2.1.3             # [build_platform != target_platform]\n    - r-tidyselect >=1.1.1         # [build_platform != target_platform]\n    - r-vctrs >=0.3.5              # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-r6\n    - r-generics\n    - r-glue >=1.3.2\n    - r-lifecycle >=1.0.1\n    - r-magrittr >=1.5\n    - r-pillar >=1.5.1\n    - r-rlang >=1.0.0\n    - r-tibble >=2.1.3\n    - r-tidyselect >=1.1.1\n    - r-vctrs >=0.3.5\n\n  run:\n    - r-base\n    - r-r6\n    - r-ellipsis\n    - r-generics\n    - r-glue >=1.3.2\n    - r-lifecycle >=1.0.0\n    - r-magrittr >=1.5\n    - r-pillar >=1.5.1\n    - r-rlang >=0.4.10\n    - r-tibble >=2.1.3\n    - r-tidyselect >=1.1.0\n    - r-vctrs >=0.3.5\n\ntest:\n  commands:\n    - $R -e \"library('dplyr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('dplyr')\\\"\"  # [win]\n\nabout:\n  home: https://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr\n\n  license: MIT\n  summary: A fast, consistent tool for working with data frame like objects, both in memory and out of memory.\n\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - philip-khor\n\n# Type: Package\n# Package: dplyr\n# Title: A Grammar of Data Manipulation\n# Version: 1.0.6\n# Authors@R: c(person(given = \"Hadley\", family = \"Wickham\", role = c(\"aut\", \"cre\"), email = \"hadley@rstudio.com\", comment = c(ORCID = \"0000-0003-4757-117X\")), person(given = \"Romain\", family = \"Francois\", role = \"aut\", comment = c(ORCID = \"0000-0002-2444-4226\")), person(given = \"Lionel\", family = \"Henry\", role = \"aut\"), person(given = \"Kirill\", family = \"Muller\", role = \"aut\", comment = c(ORCID = \"0000-0002-1416-3412\")), person(given = \"RStudio\", role = c(\"cph\", \"fnd\")))\n# Description: A fast, consistent tool for working with data frame like objects, both in memory and out of memory.\n# License: MIT + file LICENSE\n# URL: https://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr\n# BugReports: https://github.com/tidyverse/dplyr/issues\n# Depends: R (>= 3.3.0)\n# Imports: ellipsis, generics, glue (>= 1.3.2), lifecycle (>= 1.0.0), magrittr (>= 1.5), methods, R6, rlang (>= 0.4.10), tibble (>= 2.1.3), tidyselect (>= 1.1.0), utils, vctrs (>= 0.3.5), pillar (>= 1.5.1)\n# Suggests: bench, broom, callr, covr, DBI, dbplyr (>= 1.4.3), knitr, Lahman, lobstr, microbenchmark, nycflights13, purrr, rmarkdown, RMySQL, RPostgreSQL, RSQLite, testthat (>= 3.0.2), tidyr, withr\n# VignetteBuilder: knitr\n# Encoding: UTF-8\n# LazyData: true\n# RoxygenNote: 7.1.1\n# Config/testthat/edition: 3\n# NeedsCompilation: yes\n# Packaged: 2021-04-30 08:59:12 UTC; romainfrancois\n# Author: Hadley Wickham [aut, cre] (<https://orcid.org/0000-0003-4757-117X>), Romain Francois [aut] (<https://orcid.org/0000-0002-2444-4226>), Lionel Henry [aut], Kirill Muller [aut] (<https://orcid.org/0000-0002-1416-3412>), RStudio [cph, fnd]\n# Maintainer: Hadley Wickham <hadley@rstudio.com>\n# Repository: CRAN\n# Date/Publication: 2021-05-05 15:40:05 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -772,10 +783,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -786,6 +799,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-generics",
@@ -804,8 +818,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-ellipsis",
     "r-generics",
@@ -831,10 +845,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -860,7 +876,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-ellipsis",
     "r-generics",
@@ -910,8 +925,7 @@
    "summary": "A fast, consistent tool for working with data frame like objects, both in memory and out of memory."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -930,6 +944,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -952,7 +967,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-r6",
     "r-ellipsis",
     "r-generics",
@@ -986,6 +1000,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -1011,7 +1026,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-ellipsis",
     "r-generics",
