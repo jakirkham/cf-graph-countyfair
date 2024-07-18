@@ -32,7 +32,7 @@
    "summary": "Content-preserving transformations transformations of PDF files such  as split, combine, and compress. This package interfaces directly to the 'qpdf'  C++ API and does not require any command line utilities. Note that 'qpdf' does not read actual content from PDF files: to extract text and data you need the 'pdftools' package."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -91,6 +92,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -130,8 +132,7 @@
    "summary": "Content-preserving transformations transformations of PDF files such  as split, combine, and compress. This package interfaces directly to the 'qpdf'  C++ API and does not require any command line utilities. Note that 'qpdf' does not read actual content from PDF files: to extract text and data you need the 'pdftools' package."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -149,12 +150,14 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
     "pkg-config",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -176,7 +179,6 @@
     "r-rcpp",
     "r-askpass",
     "r-curl",
-    "gcc-libs",
     "libjpeg-turbo",
     "zlib"
    ]
@@ -205,7 +207,7 @@
    "summary": "Content-preserving transformations transformations of PDF files such  as split, combine, and compress. This package interfaces directly to the 'qpdf'  C++ API and does not require any command line utilities. Note that 'qpdf' does not read actual content from PDF files: to extract text and data you need the 'pdftools' package."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -223,6 +225,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -264,6 +267,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -303,7 +307,7 @@
    "summary": "Content-preserving transformations transformations of PDF files such  as split, combine, and compress. This package interfaces directly to the 'qpdf'  C++ API and does not require any command line utilities. Note that 'qpdf' does not read actual content from PDF files: to extract text and data you need the 'pdftools' package."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -321,6 +325,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -362,6 +367,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -408,7 +414,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-qpdf.json"
  },
- "raw_meta_yaml": "{% set version = \"1.3.3\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-qpdf\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/qpdf_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/qpdf/qpdf_{{ version }}.tar.gz\n  sha256: 415610be6fa73f60a31872b81fea089288b07f9cb6d078088009207c5e60fe53\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-askpass                  # [build_platform != target_platform]\n    - r-rcpp                     # [build_platform != target_platform]\n    - r-curl                     # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('m2w64_cxx') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-askpass\n    - r-curl\n    - libjpeg-turbo                          # [not win]\n    - zlib                         # [not win]\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - {{ native }}libjpeg-turbo    # [win]\n    - {{ native }}zlib             # [win]\n    - r-rcpp\n    - r-askpass\n    - r-curl\n\ntest:\n  commands:\n    - $R -e \"library('qpdf')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('qpdf')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/ropensci/qpdf (devel), http://qpdf.sourceforge.net/ (upstream)\n  license: Apache-2.0\n  summary: \"Content-preserving transformations transformations of PDF files such  as split, combine, and compress. This package interfaces directly to the 'qpdf'  C++ API and does not require any command line utilities. Note that 'qpdf' does not read actual content from PDF files: to extract text and data you need the 'pdftools'\n    package.\"\n  license_family: Apache\n  license_file: LICENSE.md\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: qpdf\n# Type: Package\n# Title: Split, Combine and Compress PDF Files\n# Version: 1.1\n# Authors@R: c(person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"),  email = \"jeroen@berkeley.edu\", comment = c(ORCID = \"0000-0002-4035-0289\")), person(\"Jay Berkenbilt\", role = \"cph\", comment = \"Author of libqpdf\"))\n# Description: Content-preserving transformations transformations of PDF files such  as split, combine, and compress. This package interfaces directly to the 'qpdf'  C++ API and does not require any command line utilities. Note that 'qpdf' does not read actual content from PDF files: to extract text and data you need the 'pdftools' package.\n# License: Apache License 2.0\n# URL: https://github.com/ropensci/qpdf (devel), http://qpdf.sourceforge.net/ (upstream)\n# BugReports: https://github.com/ropensci/qpdf/issues\n# Encoding: UTF-8\n# LazyData: true\n# Imports: Rcpp, askpass, curl\n# LinkingTo: Rcpp\n# RoxygenNote: 6.1.1\n# Suggests: testthat\n# NeedsCompilation: yes\n# Packaged: 2019-03-06 15:53:35 UTC; jeroen\n# Author: Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>), Jay Berkenbilt [cph] (Author of libqpdf)\n# Maintainer: Jeroen Ooms <jeroen@berkeley.edu>\n# Repository: CRAN\n# Date/Publication: 2019-03-07 10:50:04 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.3.3\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-qpdf\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/qpdf_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/qpdf/qpdf_{{ version }}.tar.gz\n  sha256: 415610be6fa73f60a31872b81fea089288b07f9cb6d078088009207c5e60fe53\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-askpass                  # [build_platform != target_platform]\n    - r-rcpp                     # [build_platform != target_platform]\n    - r-curl                     # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('m2w64_cxx') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-askpass\n    - r-curl\n    - libjpeg-turbo                          # [not win]\n    - zlib                         # [not win]\n  run:\n    - r-base\n    - libjpeg-turbo    # [win]\n    - zlib             # [win]\n    - r-rcpp\n    - r-askpass\n    - r-curl\n\ntest:\n  commands:\n    - $R -e \"library('qpdf')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('qpdf')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/ropensci/qpdf (devel), http://qpdf.sourceforge.net/ (upstream)\n  license: Apache-2.0\n  summary: \"Content-preserving transformations transformations of PDF files such  as split, combine, and compress. This package interfaces directly to the 'qpdf'  C++ API and does not require any command line utilities. Note that 'qpdf' does not read actual content from PDF files: to extract text and data you need the 'pdftools'\n    package.\"\n  license_family: Apache\n  license_file: LICENSE.md\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: qpdf\n# Type: Package\n# Title: Split, Combine and Compress PDF Files\n# Version: 1.1\n# Authors@R: c(person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"),  email = \"jeroen@berkeley.edu\", comment = c(ORCID = \"0000-0002-4035-0289\")), person(\"Jay Berkenbilt\", role = \"cph\", comment = \"Author of libqpdf\"))\n# Description: Content-preserving transformations transformations of PDF files such  as split, combine, and compress. This package interfaces directly to the 'qpdf'  C++ API and does not require any command line utilities. Note that 'qpdf' does not read actual content from PDF files: to extract text and data you need the 'pdftools' package.\n# License: Apache License 2.0\n# URL: https://github.com/ropensci/qpdf (devel), http://qpdf.sourceforge.net/ (upstream)\n# BugReports: https://github.com/ropensci/qpdf/issues\n# Encoding: UTF-8\n# LazyData: true\n# Imports: Rcpp, askpass, curl\n# LinkingTo: Rcpp\n# RoxygenNote: 6.1.1\n# Suggests: testthat\n# NeedsCompilation: yes\n# Packaged: 2019-03-06 15:53:35 UTC; jeroen\n# Author: Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>), Jay Berkenbilt [cph] (Author of libqpdf)\n# Maintainer: Jeroen Ooms <jeroen@berkeley.edu>\n# Repository: CRAN\n# Date/Publication: 2019-03-07 10:50:04 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -416,13 +422,14 @@
    "automake",
    "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "grep",
    "libjpeg-turbo",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "pkg-config",
@@ -443,11 +450,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -459,6 +468,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libjpeg-turbo",
     "r-askpass",
@@ -472,8 +482,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "libjpeg-turbo",
     "r-askpass",
     "r-base",
@@ -496,11 +506,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -522,7 +534,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "libjpeg-turbo",
     "r-askpass",
     "r-base",
@@ -559,8 +570,7 @@
    "summary": "Content-preserving transformations transformations of PDF files such  as split, combine, and compress. This package interfaces directly to the 'qpdf'  C++ API and does not require any command line utilities. Note that 'qpdf' does not read actual content from PDF files: to extract text and data you need the 'pdftools' package."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -578,6 +588,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -597,7 +608,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "libjpeg-turbo",
     "zlib",
     "r-rcpp",
@@ -628,6 +638,7 @@
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -647,7 +658,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "libjpeg-turbo",
     "r-askpass",
     "r-base",
