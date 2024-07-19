@@ -42,7 +42,7 @@
    "ignore_run_exports_from": [
     "glib *"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -60,6 +60,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -112,6 +113,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -169,7 +171,7 @@
    "ignore_run_exports_from": [
     "glib *"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -187,6 +189,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -239,6 +242,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -296,7 +300,7 @@
    "ignore_run_exports_from": [
     "glib *"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -314,6 +318,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -366,6 +371,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -423,8 +429,7 @@
    "ignore_run_exports_from": [
     "glib *"
    ],
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -442,12 +447,14 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
     "pkg-config",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -479,8 +486,7 @@
     "r-memoise",
     "r-rcpp >=0.12.12",
     "r-systemfonts >=0.1.1",
-    "cairo",
-    "gcc-libs"
+    "cairo"
    ]
   },
   "source": {
@@ -514,7 +520,7 @@
    "ignore_run_exports_from": [
     "glib *"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -532,6 +538,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -584,6 +591,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -641,7 +649,7 @@
    "ignore_run_exports_from": [
     "glib *"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -659,6 +667,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -711,6 +720,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -770,7 +780,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-gdtools.json"
  },
- "raw_meta_yaml": "{% set version = \"0.3.7\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-gdtools\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/gdtools_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/gdtools/gdtools_{{ version }}.tar.gz\n  sha256: d292c3b8574adc38007662085c3d1cf5d17e8019f085295d594380d85cf2b394\n\nbuild:\n  merge_build_host: true  # [win]\n  ignore_run_exports_from:\n    # Only used as a transitive dep from cairo but not linked directly.\n    - glib *\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-curl                       # [build_platform != target_platform]\n    - r-fontquiver                 # [build_platform != target_platform]\n    - r-gfonts                     # [build_platform != target_platform]\n    - r-htmltools                  # [build_platform != target_platform]\n    - r-memoise                    # [build_platform != target_platform]\n    - r-rcpp                       # [build_platform != target_platform]\n    - r-systemfonts                # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-curl\n    - r-fontquiver >=0.2.0\n    - r-gfonts\n    - r-htmltools\n    - r-memoise\n    - r-rcpp >=0.12.12\n    - r-systemfonts >=0.1.1\n    - cairo\n    - fontconfig\n    - freetype\n    # cairo pulls in \"libglib\" but only \"glib\" carries GLib's pkg-config files needed here\n    - glib *\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-curl\n    - r-fontquiver >=0.2.0\n    - r-gfonts\n    - r-htmltools\n    - r-memoise\n    - r-rcpp >=0.12.12\n    - r-systemfonts >=0.1.1\n    - cairo\n\ntest:\n  commands:\n    - $R -e \"library('gdtools')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('gdtools')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=gdtools\n  dev_url: https://github.com/davidgohel/gdtools\n  license: GPL-3.0-only\n  summary: Useful tools for writing vector graphics devices.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.3.7\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-gdtools\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/gdtools_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/gdtools/gdtools_{{ version }}.tar.gz\n  sha256: d292c3b8574adc38007662085c3d1cf5d17e8019f085295d594380d85cf2b394\n\nbuild:\n  ignore_run_exports_from:\n    # Only used as a transitive dep from cairo but not linked directly.\n    - glib *\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-curl                       # [build_platform != target_platform]\n    - r-fontquiver                 # [build_platform != target_platform]\n    - r-gfonts                     # [build_platform != target_platform]\n    - r-htmltools                  # [build_platform != target_platform]\n    - r-memoise                    # [build_platform != target_platform]\n    - r-rcpp                       # [build_platform != target_platform]\n    - r-systemfonts                # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-curl\n    - r-fontquiver >=0.2.0\n    - r-gfonts\n    - r-htmltools\n    - r-memoise\n    - r-rcpp >=0.12.12\n    - r-systemfonts >=0.1.1\n    - cairo\n    - fontconfig\n    - freetype\n    # cairo pulls in \"libglib\" but only \"glib\" carries GLib's pkg-config files needed here\n    - glib *\n  run:\n    - r-base\n    - r-curl\n    - r-fontquiver >=0.2.0\n    - r-gfonts\n    - r-htmltools\n    - r-memoise\n    - r-rcpp >=0.12.12\n    - r-systemfonts >=0.1.1\n    - cairo\n\ntest:\n  commands:\n    - $R -e \"library('gdtools')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('gdtools')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=gdtools\n  dev_url: https://github.com/davidgohel/gdtools\n  license: GPL-3.0-only\n  summary: Useful tools for writing vector graphics devices.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -778,16 +788,17 @@
    "automake",
    "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cairo",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
    "fontconfig",
    "freetype",
-   "gcc-libs",
    "glib",
    "grep",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "pkg-config",
@@ -811,11 +822,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -827,6 +840,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cairo",
     "cxx_compiler_stub",
     "fontconfig",
@@ -846,9 +860,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cairo",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-curl",
     "r-fontquiver",
@@ -873,11 +887,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -906,7 +922,6 @@
    "__set__": true,
    "elements": [
     "cairo",
-    "gcc-libs",
     "r-base",
     "r-curl",
     "r-fontquiver >=0.2.0",
@@ -956,8 +971,7 @@
    "ignore_run_exports_from": [
     "glib *"
    ],
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -975,6 +989,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -1002,7 +1017,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-curl",
     "r-fontquiver >=0.2.0",
     "r-gfonts",
@@ -1036,6 +1050,7 @@
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -1064,7 +1079,6 @@
    "__set__": true,
    "elements": [
     "cairo",
-    "gcc-libs",
     "r-base",
     "r-curl",
     "r-fontquiver",
