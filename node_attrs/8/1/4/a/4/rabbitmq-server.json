@@ -6,6 +6,7 @@
    "store_build_artifacts": true
   },
   "build_platform": {
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -15,6 +16,10 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
+  },
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "default"
   },
   "test": "native_and_emulated"
  },
@@ -35,7 +40,7 @@
     "etc/rabbitmq",
     "var/*/rabbitmq"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -104,7 +109,7 @@
    "elements": []
   }
  },
- "meta_yaml": {
+ "linux_aarch64_meta_yaml": {
   "about": {
    "description": "RabbitMQ is lightweight and easy to deploy on premise and in the cloud.\nIt supports multiple messaging protocols. RabbitMQ can be deployed in\ndistributed and federated configurations to meet high-scale,\nhigh-availability requirements.\n",
    "dev_url": "https://github.com/rabbitmq/rabbitmq-server",
@@ -119,7 +124,7 @@
     "etc/rabbitmq",
     "var/*/rabbitmq"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -144,6 +149,196 @@
    ]
   },
   "source": [
+   {
+    "folder": "src",
+    "patches": [
+     "f52bca4.patch"
+    ],
+    "sha256": "86c7a8ef040aead86165b22749433e8a2d91de78d781cc568cffc3f331238514",
+    "url": "https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.13.2/rabbitmq-server-generic-unix-3.13.2.tar.xz"
+   },
+   {
+    "path": "rabbitmq-script-wrapper"
+   }
+  ],
+  "test": {
+   "commands": [
+    "./test-rabbitmq.sh"
+   ],
+   "files": [
+    "test-rabbitmq.sh"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "gettext"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "erlang",
+    "socat"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "description": "RabbitMQ is lightweight and easy to deploy on premise and in the cloud.\nIt supports multiple messaging protocols. RabbitMQ can be deployed in\ndistributed and federated configurations to meet high-scale,\nhigh-availability requirements.\n",
+   "dev_url": "https://github.com/rabbitmq/rabbitmq-server",
+   "doc_url": "https://www.rabbitmq.com/documentation.html",
+   "home": "https://www.rabbitmq.com",
+   "license": "MPL-2.0",
+   "license_file": "LICENSE",
+   "summary": "Open source multi-protocol messaging broker"
+  },
+  "build": {
+   "no_link": [
+    "etc/rabbitmq",
+    "var/*/rabbitmq"
+   ],
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "danielhollas",
+    "ndevenish",
+    "rjgildea",
+    "anthchirp",
+    "sodre"
+   ]
+  },
+  "package": {
+   "name": "rabbitmq-server",
+   "version": "3.13.2"
+  },
+  "requirements": {
+   "build": [
+    "gettext"
+   ],
+   "run": [
+    "erlang >=26.0,<27",
+    "socat"
+   ]
+  },
+  "source": [
+   {
+    "folder": "src",
+    "patches": [
+     "f52bca4.patch"
+    ],
+    "sha256": "86c7a8ef040aead86165b22749433e8a2d91de78d781cc568cffc3f331238514",
+    "url": "https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.13.2/rabbitmq-server-generic-unix-3.13.2.tar.xz"
+   },
+   {
+    "path": "rabbitmq-script-wrapper"
+   }
+  ],
+  "test": {
+   "commands": [
+    "./test-rabbitmq.sh"
+   ],
+   "files": [
+    "test-rabbitmq.sh"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "gettext"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "erlang",
+    "socat"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "meta_yaml": {
+  "about": {
+   "description": "RabbitMQ is lightweight and easy to deploy on premise and in the cloud.\nIt supports multiple messaging protocols. RabbitMQ can be deployed in\ndistributed and federated configurations to meet high-scale,\nhigh-availability requirements.\n",
+   "dev_url": "https://github.com/rabbitmq/rabbitmq-server",
+   "doc_url": "https://www.rabbitmq.com/documentation.html",
+   "home": "https://www.rabbitmq.com",
+   "license": "MPL-2.0",
+   "license_file": "LICENSE",
+   "summary": "Open source multi-protocol messaging broker"
+  },
+  "build": {
+   "no_link": [
+    "etc/rabbitmq",
+    "var/*/rabbitmq"
+   ],
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "danielhollas",
+    "ndevenish",
+    "rjgildea",
+    "anthchirp",
+    "sodre"
+   ]
+  },
+  "package": {
+   "name": "rabbitmq-server",
+   "version": "3.13.2"
+  },
+  "requirements": {
+   "build": [
+    "gettext"
+   ],
+   "run": [
+    "erlang >=26.0,<27",
+    "socat"
+   ]
+  },
+  "source": [
+   {
+    "folder": "src",
+    "patches": [
+     "f52bca4.patch"
+    ],
+    "sha256": "86c7a8ef040aead86165b22749433e8a2d91de78d781cc568cffc3f331238514",
+    "url": "https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.13.2/rabbitmq-server-generic-unix-3.13.2.tar.xz"
+   },
+   {
+    "path": "rabbitmq-script-wrapper"
+   },
+   {
+    "folder": "src",
+    "patches": [
+     "f52bca4.patch"
+    ],
+    "sha256": "86c7a8ef040aead86165b22749433e8a2d91de78d781cc568cffc3f331238514",
+    "url": "https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.13.2/rabbitmq-server-generic-unix-3.13.2.tar.xz"
+   },
+   {
+    "path": "rabbitmq-script-wrapper"
+   },
    {
     "folder": "src",
     "patches": [
@@ -203,7 +398,7 @@
     "etc/rabbitmq",
     "var/*/rabbitmq"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -287,7 +482,7 @@
     "etc/rabbitmq",
     "var/*/rabbitmq"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -365,13 +560,15 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
+  "linux_ppc64le",
   "osx_64",
   "osx_arm64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/rabbitmq-server.json"
  },
- "raw_meta_yaml": "{% set name = \"rabbitmq-server\" %}\n{% set version = \"3.13.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/rabbitmq/{{ name }}/releases/download/v{{ version }}/{{ name }}-generic-unix-{{ version }}.tar.xz\n    sha256: 86c7a8ef040aead86165b22749433e8a2d91de78d781cc568cffc3f331238514\n    patches:\n      - f52bca4.patch  # SYS_PREFIX is set to Conda's PREFIX\n    folder: src\n  - path: rabbitmq-script-wrapper  # wrapper to fake RABBITMQ_HOME location\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  no_link:\n    - etc/rabbitmq\n    - var/*/rabbitmq\n\nrequirements:\n  build:\n    - gettext\n  run:\n    - erlang >=26.0,<27\n    - socat\n\ntest:\n  files:\n    - test-rabbitmq.sh\n  commands:\n    - ./test-rabbitmq.sh\n\nabout:\n  home: https://www.rabbitmq.com\n  license: MPL-2.0\n  license_file: LICENSE\n  summary: Open source multi-protocol messaging broker\n  description: |\n    RabbitMQ is lightweight and easy to deploy on premise and in the cloud.\n    It supports multiple messaging protocols. RabbitMQ can be deployed in\n    distributed and federated configurations to meet high-scale,\n    high-availability requirements.\n  doc_url: https://www.rabbitmq.com/documentation.html\n  dev_url: https://github.com/rabbitmq/rabbitmq-server\n\nextra:\n  recipe-maintainers:\n    - danielhollas\n    - ndevenish\n    - rjgildea\n    - anthchirp\n    - sodre\n",
+ "raw_meta_yaml": "{% set name = \"rabbitmq-server\" %}\n{% set version = \"3.13.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/rabbitmq/{{ name }}/releases/download/v{{ version }}/{{ name }}-generic-unix-{{ version }}.tar.xz\n    sha256: 86c7a8ef040aead86165b22749433e8a2d91de78d781cc568cffc3f331238514\n    patches:\n      - f52bca4.patch  # SYS_PREFIX is set to Conda's PREFIX\n    folder: src\n  - path: rabbitmq-script-wrapper  # wrapper to fake RABBITMQ_HOME location\n\nbuild:\n  number: 1\n  skip: true  # [win]\n  no_link:\n    - etc/rabbitmq\n    - var/*/rabbitmq\n\nrequirements:\n  build:\n    - gettext\n  run:\n    - erlang >=26.0,<27\n    - socat\n\ntest:\n  files:\n    - test-rabbitmq.sh\n  commands:\n    - ./test-rabbitmq.sh\n\nabout:\n  home: https://www.rabbitmq.com\n  license: MPL-2.0\n  license_file: LICENSE\n  summary: Open source multi-protocol messaging broker\n  description: |\n    RabbitMQ is lightweight and easy to deploy on premise and in the cloud.\n    It supports multiple messaging protocols. RabbitMQ can be deployed in\n    distributed and federated configurations to meet high-scale,\n    high-availability requirements.\n  doc_url: https://www.rabbitmq.com/documentation.html\n  dev_url: https://github.com/rabbitmq/rabbitmq-server\n\nextra:\n  recipe-maintainers:\n    - danielhollas\n    - ndevenish\n    - rjgildea\n    - anthchirp\n    - sodre\n",
  "req": {
   "__set__": true,
   "elements": [
