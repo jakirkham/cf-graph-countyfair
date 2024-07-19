@@ -16,8 +16,7 @@
   "conda_forge_output_validation": true,
   "github": {
    "branch_name": "main",
-   "tooling_branch_name": "main",
-   "win": "azure"
+   "tooling_branch_name": "main"
   },
   "test": "native"
  },
@@ -36,7 +35,7 @@
    "summary": "An R interface to V8, Google's open source JavaScript and WebAssembly engine. This package can be compiled either with V8 version 6 and up, a NodeJS shared library, or the legacy 3.14/3.15 branch of V8."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -55,6 +54,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -96,6 +96,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -139,7 +140,7 @@
    "summary": "An R interface to V8, Google's open source JavaScript and WebAssembly engine. This package can be compiled either with V8 version 6 and up, a NodeJS shared library, or the legacy 3.14/3.15 branch of V8."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -158,6 +159,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -199,6 +201,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -242,7 +245,7 @@
    "summary": "An R interface to V8, Google's open source JavaScript and WebAssembly engine. This package can be compiled either with V8 version 6 and up, a NodeJS shared library, or the legacy 3.14/3.15 branch of V8."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -261,6 +264,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -302,6 +306,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -345,7 +350,7 @@
    "summary": "An R interface to V8, Google's open source JavaScript and WebAssembly engine. This package can be compiled either with V8 version 6 and up, a NodeJS shared library, or the legacy 3.14/3.15 branch of V8."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -364,11 +369,21 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
     "pkg-config",
-    "make"
+    "make",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "filesystem",
+    "sed",
+    "grep",
+    "automake-wrapper",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -394,7 +409,8 @@
   },
   "test": {
    "commands": [
-    "$R -e \"library('V8')\""
+    "$R -e \"library('V8')\"",
+    "\"%R%\" -e \"library('V8')\""
    ]
   }
  },
@@ -412,7 +428,7 @@
    "summary": "An R interface to V8, Google's open source JavaScript and WebAssembly engine. This package can be compiled either with V8 version 6 and up, a NodeJS shared library, or the legacy 3.14/3.15 branch of V8."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -431,6 +447,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -472,6 +489,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -515,7 +533,7 @@
    "summary": "An R interface to V8, Google's open source JavaScript and WebAssembly engine. This package can be compiled either with V8 version 6 and up, a NodeJS shared library, or the legacy 3.14/3.15 branch of V8."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -534,6 +552,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -575,6 +594,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -617,27 +637,38 @@
   "linux_aarch64",
   "linux_ppc64le",
   "osx_64",
-  "osx_arm64"
+  "osx_arm64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/r-v8.json"
  },
- "raw_meta_yaml": "{% set version = \"4.4.2\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-v8\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/V8_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/V8/V8_{{ version }}.tar.gz\n  sha256: e7bc35f3420f5f537121d681a90c16a74b36dc17210c9425e7f03842493a9670\n\nbuild:\n  skip: true  # [win]\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-rcpp                       # [build_platform != target_platform]\n    - r-curl                       # [build_platform != target_platform]\n    - r-jsonlite                   # [build_platform != target_platform]    \n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp >=0.12.12\n    - r-curl >=1.0\n    - r-jsonlite >=1.0\n    - libv8  # [not win]\n    - icu\n  run:\n    - r-base\n    - {{ native }}gcc-libs  # [win]\n    - r-rcpp >=0.12.12\n    - r-curl >=1.0\n    - r-jsonlite >=1.0\n\ntest:\n  commands:\n    - $R -e \"library('V8')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('V8')\\\"\"  # [win]\n\nabout:\n  home: https://v8.dev\n  dev_url: https://github.com/jeroen/v8\n  license: MIT\n  summary: An R interface to V8, Google's open source JavaScript and WebAssembly engine. This package can be compiled either with V8 version 6 and up, a NodeJS shared library, or the legacy 3.14/3.15 branch of V8.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - xhochy\n",
+ "raw_meta_yaml": "{% set version = \"4.4.2\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-v8\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/V8_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/V8/V8_{{ version }}.tar.gz\n  sha256: e7bc35f3420f5f537121d681a90c16a74b36dc17210c9425e7f03842493a9670\n\nbuild:\n  # Checking windows to see if it passes. Uncomment the line if it fails.\n  # skip: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-rcpp                       # [build_platform != target_platform]\n    - r-curl                       # [build_platform != target_platform]\n    - r-jsonlite                   # [build_platform != target_platform]    \n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp >=0.12.12\n    - r-curl >=1.0\n    - r-jsonlite >=1.0\n    - libv8  # [not win]\n    - icu\n  run:\n    - r-base\n    - r-rcpp >=0.12.12\n    - r-curl >=1.0\n    - r-jsonlite >=1.0\n\ntest:\n  commands:\n    - $R -e \"library('V8')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('V8')\\\"\"  # [win]\n\nabout:\n  home: https://v8.dev\n  dev_url: https://github.com/jeroen/v8\n  license: MIT\n  summary: An R interface to V8, Google's open source JavaScript and WebAssembly engine. This package can be compiled either with V8 version 6 and up, a NodeJS shared library, or the legacy 3.14/3.15 branch of V8.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - xhochy\n",
  "req": {
   "__set__": true,
   "elements": [
    "autoconf",
    "automake",
+   "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
+   "coreutils",
    "cxx_compiler_stub",
+   "filesystem",
+   "grep",
    "icu",
    "libv8",
+   "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
+   "m2w64_cxx_compiler_stub",
    "make",
    "pkg-config",
    "r-base",
    "r-curl",
    "r-jsonlite",
-   "r-rcpp"
+   "r-rcpp",
+   "sed",
+   "zip"
   ]
  },
  "requirements": {
@@ -646,16 +677,27 @@
    "elements": [
     "autoconf",
     "automake",
+    "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
+    "filesystem",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
     "make",
-    "pkg-config"
+    "pkg-config",
+    "sed",
+    "zip"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "icu",
     "libv8",
@@ -669,6 +711,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-curl",
@@ -688,10 +731,20 @@
    "elements": [
     "autoconf",
     "automake",
+    "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
+    "filesystem",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
     "make",
-    "pkg-config"
+    "pkg-config",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -729,10 +782,125 @@
   "https://cran.r-project.org/src/contrib/V8_4.4.2.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/V8/V8_4.4.2.tar.gz",
   "https://cran.r-project.org/src/contrib/V8_4.4.2.tar.gz",
+  "https://cran.r-project.org/src/contrib/Archive/V8/V8_4.4.2.tar.gz",
+  "https://cran.r-project.org/src/contrib/V8_4.4.2.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/V8/V8_4.4.2.tar.gz"
  ],
  "version": "4.4.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/r-v8.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/jeroen/v8",
+   "home": "https://v8.dev",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": [
+    "/lib/R/share/licenses/MIT",
+    "LICENSE"
+   ],
+   "summary": "An R interface to V8, Google's open source JavaScript and WebAssembly engine. This package can be compiled either with V8 version 6 and up, a NodeJS shared library, or the legacy 3.14/3.15 branch of V8."
+  },
+  "build": {
+   "number": "1",
+   "rpaths": [
+    "lib/R/lib/",
+    "lib/"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "conda-forge/r",
+    "xhochy"
+   ]
+  },
+  "package": {
+   "name": "r-v8",
+   "version": "4.4.2"
+  },
+  "requirements": {
+   "build": [
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "filesystem",
+    "sed",
+    "grep",
+    "autoconf",
+    "automake-wrapper",
+    "pkg-config",
+    "make",
+    "coreutils",
+    "zip"
+   ],
+   "host": [
+    "r-base",
+    "r-rcpp >=0.12.12",
+    "r-curl >=1.0",
+    "r-jsonlite >=1.0",
+    "icu"
+   ],
+   "run": [
+    "r-base",
+    "r-rcpp >=0.12.12",
+    "r-curl >=1.0",
+    "r-jsonlite >=1.0"
+   ]
+  },
+  "source": {
+   "sha256": "e7bc35f3420f5f537121d681a90c16a74b36dc17210c9425e7f03842493a9670",
+   "url": [
+    "https://cran.r-project.org/src/contrib/V8_4.4.2.tar.gz",
+    "https://cran.r-project.org/src/contrib/Archive/V8/V8_4.4.2.tar.gz"
+   ]
+  },
+  "test": {
+   "commands": [
+    "\"%R%\" -e \"library('V8')\""
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "autoconf",
+    "automake-wrapper",
+    "coreutils",
+    "filesystem",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "make",
+    "pkg-config",
+    "sed",
+    "zip"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "icu",
+    "r-base",
+    "r-curl",
+    "r-jsonlite",
+    "r-rcpp"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "r-base",
+    "r-curl",
+    "r-jsonlite",
+    "r-rcpp"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
  }
 }
