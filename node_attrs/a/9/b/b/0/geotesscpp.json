@@ -25,7 +25,7 @@
    "summary": "3D Earth model parameterization, storage, and interrogation software"
   },
   "build": {
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -50,7 +50,12 @@
   "test": {
    "commands": [
     "test -f $PREFIX/lib/libgeotesscpp$SHLIB_EXT",
-    "test -f $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT"
+    "test -f $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT",
+    "readelf -d -r $PREFIX/lib/libgeotesscpp$SHLIB_EXT",
+    "readelf -d -r $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT"
+   ],
+   "requires": [
+    "binutils"
    ]
   }
  },
@@ -73,7 +78,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "binutils"
+   ]
   }
  },
  "meta_yaml": {
@@ -88,7 +95,7 @@
    "summary": "3D Earth model parameterization, storage, and interrogation software"
   },
   "build": {
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -113,7 +120,14 @@
   "test": {
    "commands": [
     "test -f $PREFIX/lib/libgeotesscpp$SHLIB_EXT",
-    "test -f $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT"
+    "test -f $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT",
+    "readelf -d -r $PREFIX/lib/libgeotesscpp$SHLIB_EXT",
+    "readelf -d -r $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT",
+    "objdump -p $PREFIX/lib/libgeotesscpp$SHLIB_EXT",
+    "objdump -p $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT"
+   ],
+   "requires": [
+    "binutils"
    ]
   }
  },
@@ -130,7 +144,7 @@
    "summary": "3D Earth model parameterization, storage, and interrogation software"
   },
   "build": {
-   "number": "2"
+   "number": "3"
   },
   "extra": {
    "recipe-maintainers": [
@@ -155,7 +169,12 @@
   "test": {
    "commands": [
     "test -f $PREFIX/lib/libgeotesscpp$SHLIB_EXT",
-    "test -f $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT"
+    "test -f $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT",
+    "objdump -p $PREFIX/lib/libgeotesscpp$SHLIB_EXT",
+    "objdump -p $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT"
+   ],
+   "requires": [
+    "binutils"
    ]
   }
  },
@@ -178,7 +197,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "binutils"
+   ]
   }
  },
  "outputs_names": {
@@ -195,7 +216,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/geotesscpp.json"
  },
- "raw_meta_yaml": "{% set name = \"GeoTessCPP\" %}\n{% set version = \"2.7.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/sandialabs/GeoTessCPP/archive/v{{ version }}.tar.gz\n  sha256: 64a50ea5c40609a7e965a2c33a4aacfff03ffa5de5b94d81bf9c6fab13ef7c59\n\nbuild:\n  number: 2\n  skip: True  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - make\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/libgeotesscpp$SHLIB_EXT  # [unix]\n    - test -f $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT  # [unix]\n\nabout:\n  home: https://www.sandia.gov/geotess/ \n  summary: '3D Earth model parameterization, storage, and interrogation software'\n  description: |\n    A model parameterization and software support system that implements the\n    construction, population, storage and interrogation of data stored in 3D Earth\n    models. This version is in C++ and intended for Linux systems.\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  doc_url: https://sandialabs.github.io/GeoTessCPP\n  dev_url: https://github.com/sandialabs/GeoTessCPP\n\nextra:\n  recipe-maintainers:\n    - jkmacc-LANL\n",
+ "raw_meta_yaml": "{% set name = \"GeoTessCPP\" %}\n{% set version = \"2.7.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/sandialabs/GeoTessCPP/archive/v{{ version }}.tar.gz\n  sha256: 64a50ea5c40609a7e965a2c33a4aacfff03ffa5de5b94d81bf9c6fab13ef7c59\n\nbuild:\n  number: 3\n  skip: True  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - make\n\ntest:\n  requires:\n    - binutils\n  commands:\n    - test -f $PREFIX/lib/libgeotesscpp$SHLIB_EXT  # [unix]\n    - test -f $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT  # [unix]\n    - objdump -p $PREFIX/lib/libgeotesscpp$SHLIB_EXT  # [osx]\n    - objdump -p $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT  # [osx]\n    - readelf -d -r $PREFIX/lib/libgeotesscpp$SHLIB_EXT  # [linux]\n    - readelf -d -r $PREFIX/lib/libgeotessamplitudecpp$SHLIB_EXT  # [linux]\n\nabout:\n  home: https://www.sandia.gov/geotess/ \n  summary: '3D Earth model parameterization, storage, and interrogation software'\n  description: |\n    A model parameterization and software support system that implements the\n    construction, population, storage and interrogation of data stored in 3D Earth\n    models. This version is in C++ and intended for Linux systems.\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  doc_url: https://sandialabs.github.io/GeoTessCPP\n  dev_url: https://github.com/sandialabs/GeoTessCPP\n\nextra:\n  recipe-maintainers:\n    - jkmacc-LANL\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -229,7 +250,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "binutils"
+   ]
   }
  },
  "strong_exports": false,
@@ -252,7 +275,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "binutils"
+   ]
   }
  },
  "url": "https://github.com/sandialabs/GeoTessCPP/archive/v2.7.2.tar.gz",
