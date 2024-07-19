@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "dedalus",
  "hash_type": "sha256",
@@ -47,7 +51,7 @@
     "setuptools",
     "cython >=3.0.5",
     "mpi4py >=2.0.0",
-    "numpy >=1.20.0",
+    "numpy",
     "mpich",
     "fftw",
     "fftw * mpi_mpich_*",
@@ -65,7 +69,7 @@
     "mpich",
     "mpi4py >=2.0.0",
     "numexpr",
-    "numpy >=1.20.0",
+    "numpy",
     "scipy >=1.9.1, <1.14",
     "py",
     "pytest",
@@ -176,7 +180,7 @@
     "setuptools",
     "cython >=3.0.5",
     "mpi4py >=2.0.0",
-    "numpy >=1.20.0",
+    "numpy",
     "mpich",
     "fftw",
     "fftw * mpi_mpich_*",
@@ -194,7 +198,7 @@
     "mpich",
     "mpi4py >=2.0.0",
     "numexpr",
-    "numpy >=1.20.0",
+    "numpy",
     "scipy >=1.9.1, <1.14",
     "py",
     "pytest",
@@ -255,7 +259,7 @@
     "setuptools",
     "cython >=3.0.5",
     "mpi4py >=2.0.0",
-    "numpy >=1.20.0",
+    "numpy",
     "mpich",
     "fftw",
     "fftw * mpi_mpich_*",
@@ -273,7 +277,7 @@
     "mpich",
     "mpi4py >=2.0.0",
     "numexpr",
-    "numpy >=1.20.0",
+    "numpy",
     "scipy >=1.9.1, <1.14",
     "py",
     "pytest",
@@ -348,6 +352,133 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "home": "https://pypi.org/project/dedalus/",
+   "license": "GPL-3.0-or-later",
+   "license_file": "LICENSE.txt",
+   "summary": "A flexible framework for solving PDEs with modern spectral methods."
+  },
+  "build": {
+   "number": "2"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "mxr-conda",
+    "rluria14",
+    "oblute",
+    "ndmaxar",
+    "kburns"
+   ]
+  },
+  "package": {
+   "name": "dedalus",
+   "version": "3.0.2"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "pip",
+    "python",
+    "setuptools",
+    "cython >=3.0.5",
+    "mpi4py >=2.0.0",
+    "numpy",
+    "mpich",
+    "fftw",
+    "fftw * mpi_mpich_*",
+    "openmpi",
+    "fftw * mpi_openmpi_*"
+   ],
+   "run": [
+    "python",
+    "docopt",
+    "hdf5 * mpi_mpich_*",
+    "h5py >=3.0 mpi_mpich_*",
+    "fftw",
+    "fftw * mpi_mpich_*",
+    "matplotlib-base",
+    "mpich",
+    "mpi4py >=2.0.0",
+    "numexpr",
+    "numpy",
+    "scipy >=1.9.1, <1.14",
+    "py",
+    "pytest",
+    "pytest-benchmark",
+    "pytest-cov",
+    "pytest-parallel",
+    "xarray",
+    "hdf5 * mpi_openmpi_*",
+    "h5py >=3.0 mpi_openmpi_*",
+    "fftw * mpi_openmpi_*",
+    "openmpi"
+   ]
+  },
+  "source": {
+   "sha256": "fb8db776d2bf0c9112082d0d6d88b841fffb8b3e979067ba9f708042da1437f3",
+   "url": "https://pypi.io/packages/source/d/dedalus/dedalus-3.0.2.tar.gz"
+  },
+  "test": {
+   "commands": "python3 -m dedalus test",
+   "imports": [
+    "dedalus"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "cython",
+    "fftw",
+    "mpi4py",
+    "mpich",
+    "numpy",
+    "openmpi",
+    "pip",
+    "python",
+    "setuptools"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "docopt",
+    "fftw",
+    "h5py",
+    "hdf5",
+    "matplotlib-base",
+    "mpi4py",
+    "mpich",
+    "numexpr",
+    "numpy",
+    "openmpi",
+    "py",
+    "pytest",
+    "pytest-benchmark",
+    "pytest-cov",
+    "pytest-parallel",
+    "python",
+    "scipy",
+    "xarray"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -357,12 +488,13 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
-  "osx_64"
+  "osx_64",
+  "osx_arm64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/dedalus.json"
  },
- "raw_meta_yaml": "{% set name = \"dedalus\" %}\n{% set version = \"3.0.2\" %}\n{% set mpi_prefix = \"mpi_\" + mpi %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: fb8db776d2bf0c9112082d0d6d88b841fffb8b3e979067ba9f708042da1437f3\n\nbuild:\n  number: 2\n  skip: true  # [win or py<39]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - pip\n    - python\n    - setuptools\n    - cython >=3.0.5\n    - mpi4py >=2.0.0\n    - numpy >=1.20.0\n    - {{ mpi }}\n    - fftw\n    - fftw * {{ mpi_prefix }}_*\n  run:\n    - python\n    - docopt\n    - hdf5 * {{ mpi_prefix }}_*\n    - h5py >=3.0 {{ mpi_prefix }}_*\n    - fftw\n    - fftw * {{ mpi_prefix }}_*\n    - matplotlib-base\n    - {{ mpi }}\n    - mpi4py >=2.0.0\n    - numexpr\n    - numpy >=1.20.0\n    - scipy >=1.9.1, <1.14\n    - py\n    - pytest\n    - pytest-benchmark\n    - pytest-cov\n    - pytest-parallel\n    - openssh  # [linux]\n    - xarray\n\ntest:\n  imports:\n    - dedalus\n  commands: python3 -m dedalus test\n\nabout:\n  home: https://pypi.org/project/dedalus/\n  summary: A flexible framework for solving PDEs with modern spectral methods.\n  license: GPL-3.0-or-later\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - mxr-conda\n    - rluria14\n    - oblute\n    - ndmaxar\n    - kburns\n",
+ "raw_meta_yaml": "{% set name = \"dedalus\" %}\n{% set version = \"3.0.2\" %}\n{% set mpi_prefix = \"mpi_\" + mpi %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: fb8db776d2bf0c9112082d0d6d88b841fffb8b3e979067ba9f708042da1437f3\n\nbuild:\n  number: 2\n  skip: true  # [win or py<39]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ mpi }}                              # [build_platform != target_platform and mpi == \"openmpi\"]\n  host:\n    - pip\n    - python\n    - setuptools\n    - cython >=3.0.5\n    - mpi4py >=2.0.0\n    - numpy\n    - {{ mpi }}\n    - fftw\n    - fftw * {{ mpi_prefix }}_*\n  run:\n    - python\n    - docopt\n    - hdf5 * {{ mpi_prefix }}_*\n    - h5py >=3.0 {{ mpi_prefix }}_*\n    - fftw\n    - fftw * {{ mpi_prefix }}_*\n    - matplotlib-base\n    - {{ mpi }}\n    - mpi4py >=2.0.0\n    - numexpr\n    - numpy\n    - scipy >=1.9.1, <1.14\n    - py\n    - pytest\n    - pytest-benchmark\n    - pytest-cov\n    - pytest-parallel\n    - openssh  # [linux]\n    - xarray\n\ntest:\n  imports:\n    - dedalus\n  commands: python3 -m dedalus test\n\nabout:\n  home: https://pypi.org/project/dedalus/\n  summary: A flexible framework for solving PDEs with modern spectral methods.\n  license: GPL-3.0-or-later\n  license_file: LICENSE.txt\n\nextra:\n  recipe-maintainers:\n    - mxr-conda\n    - rluria14\n    - oblute\n    - ndmaxar\n    - kburns\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -465,7 +597,7 @@
     "fftw * mpi_openmpi_*",
     "mpi4py >=2.0.0",
     "mpich",
-    "numpy >=1.20.0",
+    "numpy",
     "openmpi",
     "pip",
     "python",
@@ -487,7 +619,7 @@
     "mpi4py >=2.0.0",
     "mpich",
     "numexpr",
-    "numpy >=1.20.0",
+    "numpy",
     "openmpi",
     "openssh",
     "py",
