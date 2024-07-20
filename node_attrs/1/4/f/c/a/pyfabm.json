@@ -36,7 +36,7 @@
     "fabm_evaluate = pyfabm.utils.fabm_evaluate:main",
     "fabm_stress_test = pyfabm.utils.fabm_stress_test:main"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -50,8 +50,9 @@
   "requirements": {
    "build": [
     "cmake",
+    "make",
     "fortran_compiler_stub",
-    "make"
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -96,6 +97,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -143,7 +145,7 @@
     "fabm_evaluate = pyfabm.utils.fabm_evaluate:main",
     "fabm_stress_test = pyfabm.utils.fabm_stress_test:main"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -157,10 +159,11 @@
   "requirements": {
    "build": [
     "cmake",
-    "fortran_compiler_stub",
     "make",
+    "fortran_compiler_stub",
+    "c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
-    "c_stdlib_stub"
+    "m2w64_c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -222,7 +225,7 @@
     "fabm_evaluate = pyfabm.utils.fabm_evaluate:main",
     "fabm_stress_test = pyfabm.utils.fabm_stress_test:main"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -236,8 +239,9 @@
   "requirements": {
    "build": [
     "cmake",
+    "make",
     "fortran_compiler_stub",
-    "make"
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -282,6 +286,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -329,7 +334,7 @@
     "fabm_evaluate = pyfabm.utils.fabm_evaluate:main",
     "fabm_stress_test = pyfabm.utils.fabm_stress_test:main"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -343,8 +348,9 @@
   "requirements": {
    "build": [
     "cmake",
+    "make",
     "fortran_compiler_stub",
-    "make"
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -389,6 +395,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "make"
@@ -433,7 +440,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyfabm.json"
  },
- "raw_meta_yaml": "{% set version = \"2.1.2\" %}\n{% set build = 0 %}\n\npackage:\n  name: pyfabm\n  version: {{ version }}\n\nsource:\n  url: https://github.com/fabm-model/fabm/releases/download/v{{ version }}/code.tar.gz\n  sha256: 16ca4cfe6247a2a45e040a68939995002dcc007a37dcb44d0f2484075d95e868\n  patches:\n    #- fabm.patch\n    - ersem.patch\n    - ogs.patch\n\nbuild:\n  number: {{ build }}\n  entry_points:\n    - fabm_complete_yaml = pyfabm.utils.fabm_complete_yaml:main\n    - fabm_configuration_gui = pyfabm.utils.fabm_configuration_gui:main\n    - fabm_describe_model = pyfabm.utils.fabm_describe_model:main\n    - fabm_evaluate = pyfabm.utils.fabm_evaluate:main\n    - fabm_stress_test = pyfabm.utils.fabm_stress_test:main\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cmake\n    - {{ compiler('fortran') }}  # [unix]\n    - make  # [unix]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ stdlib(\"c\") }}    # [win]\n  host:\n    - python\n    - pip\n  run:\n    - python\n    - numpy\n    - pyyaml\n    - m2w64-gcc-libgfortran  # [win]\n\ntest:\n  source_files:\n    - testcases/fabm-gotm-npzd.yaml\n  imports:\n    - pyfabm\n  requires:\n    - netcdf4\n    - pyqt\n  commands:\n    - fabm_complete_yaml -h\n    - fabm_configuration_gui -h\n    - fabm_describe_model -h\n    - fabm_evaluate -h\n    - fabm_stress_test -h\n    - fabm_describe_model testcases/fabm-gotm-npzd.yaml\n\nabout:\n  home: https://fabm.net/python\n  summary: 'Python interface to the Framework for Aquatic Biogeochemical Models'\n  description: |\n    The Framework for Aquatic Biogeochemical Models (FABM) is a Fortran 2003\n    programming framework for biogeochemical models of marine and freshwater\n    systems.\n  license: GPL-2.0-only\n  license_family: GPL\n  license_file: COPYING\n  doc_url: https://fabm.net/wiki\n  dev_url: https://fabm.net/code\n\nextra:\n  recipe-maintainers:\n    - jornbr\n",
+ "raw_meta_yaml": "{% set version = \"2.1.2\" %}\n{% set build = 1 %}\n\npackage:\n  name: pyfabm\n  version: {{ version }}\n\nsource:\n  url: https://github.com/fabm-model/fabm/releases/download/v{{ version }}/code.tar.gz\n  sha256: 16ca4cfe6247a2a45e040a68939995002dcc007a37dcb44d0f2484075d95e868\n  patches:\n    #- fabm.patch\n    - ersem.patch\n    - ogs.patch\n\nbuild:\n  number: {{ build }}\n  entry_points:\n    - fabm_complete_yaml = pyfabm.utils.fabm_complete_yaml:main\n    - fabm_configuration_gui = pyfabm.utils.fabm_configuration_gui:main\n    - fabm_describe_model = pyfabm.utils.fabm_describe_model:main\n    - fabm_evaluate = pyfabm.utils.fabm_evaluate:main\n    - fabm_stress_test = pyfabm.utils.fabm_stress_test:main\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cmake\n    - make                                   # [unix]\n    - {{ compiler('fortran') }}              # [unix]\n    - {{ stdlib(\"c\") }}                      # [unix]\n    - {{ compiler('m2w64_fortran') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}                # [win]\n  host:\n    - python\n    - pip\n  run:\n    - python\n    - numpy\n    - pyyaml\n    - m2w64-gcc-libgfortran                  # [win]\n\ntest:\n  source_files:\n    - testcases/fabm-gotm-npzd.yaml\n  imports:\n    - pyfabm\n  requires:\n    - netcdf4\n    - pyqt\n  commands:\n    - fabm_complete_yaml -h\n    - fabm_configuration_gui -h\n    - fabm_describe_model -h\n    - fabm_evaluate -h\n    - fabm_stress_test -h\n    - fabm_describe_model testcases/fabm-gotm-npzd.yaml\n\nabout:\n  home: https://fabm.net/python\n  summary: 'Python interface to the Framework for Aquatic Biogeochemical Models'\n  description: |\n    The Framework for Aquatic Biogeochemical Models (FABM) is a Fortran 2003\n    programming framework for biogeochemical models of marine and freshwater\n    systems.\n  license: GPL-2.0-only\n  license_family: GPL\n  license_file: COPYING\n  doc_url: https://fabm.net/wiki\n  dev_url: https://fabm.net/code\n\nextra:\n  recipe-maintainers:\n    - jornbr\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -441,6 +448,7 @@
    "cmake",
    "fortran_compiler_stub",
    "m2w64-gcc-libgfortran",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "numpy",
@@ -456,6 +464,7 @@
     "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make"
    ]
@@ -496,6 +505,7 @@
     "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make"
    ]
@@ -548,7 +558,7 @@
     "fabm_evaluate = pyfabm.utils.fabm_evaluate:main",
     "fabm_stress_test = pyfabm.utils.fabm_stress_test:main"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -563,7 +573,7 @@
    "build": [
     "cmake",
     "m2w64_fortran_compiler_stub",
-    "c_stdlib_stub"
+    "m2w64_c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -609,8 +619,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_stdlib_stub",
     "cmake",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub"
    ]
   },
