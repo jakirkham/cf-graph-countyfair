@@ -32,7 +32,7 @@
    "summary": "Canonical correlation analysis and maximum correlation via projection pursuit, as well as fast implementations of correlation estimators, with a focus on robust and nonparametric methods."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -53,6 +53,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -89,6 +90,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -129,7 +131,7 @@
    "summary": "Canonical correlation analysis and maximum correlation via projection pursuit, as well as fast implementations of correlation estimators, with a focus on robust and nonparametric methods."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -150,6 +152,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -186,6 +189,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -226,7 +230,7 @@
    "summary": "Canonical correlation analysis and maximum correlation via projection pursuit, as well as fast implementations of correlation estimators, with a focus on robust and nonparametric methods."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -247,6 +251,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -283,6 +288,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -323,8 +329,7 @@
    "summary": "Canonical correlation analysis and maximum correlation via projection pursuit, as well as fast implementations of correlation estimators, with a focus on robust and nonparametric methods."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -345,9 +350,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -366,8 +373,7 @@
     "r-rcpp >=0.11.0",
     "r-rcpparmadillo >=0.4.100.0",
     "r-pcapp >=1.8_1",
-    "r-robustbase",
-    "gcc-libs"
+    "r-robustbase"
    ]
   },
   "source": {
@@ -396,7 +402,7 @@
    "summary": "Canonical correlation analysis and maximum correlation via projection pursuit, as well as fast implementations of correlation estimators, with a focus on robust and nonparametric methods."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -417,6 +423,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -453,6 +460,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -499,16 +507,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-ccapp.json"
  },
- "raw_meta_yaml": "{% set version = \"0.3.3\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-ccapp\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/ccaPP_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/ccaPP/ccaPP_{{ version }}.tar.gz\n  sha256: 134246c12bec9b7da5be2a46ec6baec9098e91d233c23f1d9ca0a463607c08dc\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp >=0.11.0\n    - r-rcpparmadillo >=0.4.100.0\n    - r-pcapp >=1.8_1\n    - r-robustbase\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp >=0.11.0\n    - r-rcpparmadillo >=0.4.100.0\n    - r-pcapp >=1.8_1\n    - r-robustbase\n\ntest:\n  commands:\n    - $R -e \"library('ccaPP')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('ccaPP')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=ccaPP\n  license: GPL-2.0-or-later\n  summary: Canonical correlation analysis and maximum correlation via projection pursuit, as\n    well as fast implementations of correlation estimators, with a focus on robust and\n    nonparametric methods.\n  license_family: GPL2\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - MathiasHaudgaard\n    - FrodePedersen\n    - ArneKr\n\n# Package: ccaPP\n# Type: Package\n# Title: (Robust) Canonical Correlation Analysis via Projection Pursuit\n# Version: 0.3.3\n# Date: 2019-12-09\n# Depends: R (>= 3.2.0), parallel, pcaPP (>= 1.8-1), robustbase\n# Imports: Rcpp (>= 0.11.0)\n# LinkingTo: Rcpp (>= 0.11.0), RcppArmadillo (>= 0.4.100.0)\n# Suggests: knitr, mvtnorm\n# VignetteBuilder: knitr\n# Description: Canonical correlation analysis and maximum correlation via projection pursuit, as well as fast implementations of correlation estimators, with a focus on robust and nonparametric methods.\n# License: GPL (>= 2)\n# LazyLoad: yes\n# Authors@R: c(person(\"Andreas\", \"Alfons\", email = \"alfons@ese.eur.nl\", role = c(\"aut\", \"cre\")), person(\"David\", \"Simcha\", role = \"ctb\"))\n# Author: Andreas Alfons [aut, cre], David Simcha [ctb]\n# Maintainer: Andreas Alfons <alfons@ese.eur.nl>\n# Encoding: UTF-8\n# RoxygenNote: 6.1.1\n# NeedsCompilation: yes\n# Packaged: 2019-12-09 10:52:53 UTC; andreas\n# Repository: CRAN\n# Date/Publication: 2019-12-09 12:40:02 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.3.3\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-ccapp\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/ccaPP_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/ccaPP/ccaPP_{{ version }}.tar.gz\n  sha256: 134246c12bec9b7da5be2a46ec6baec9098e91d233c23f1d9ca0a463607c08dc\n\nbuild:\n  number: 4\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp >=0.11.0\n    - r-rcpparmadillo >=0.4.100.0\n    - r-pcapp >=1.8_1\n    - r-robustbase\n  run:\n    - r-base\n    - r-rcpp >=0.11.0\n    - r-rcpparmadillo >=0.4.100.0\n    - r-pcapp >=1.8_1\n    - r-robustbase\n\ntest:\n  commands:\n    - $R -e \"library('ccaPP')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('ccaPP')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=ccaPP\n  license: GPL-2.0-or-later\n  summary: Canonical correlation analysis and maximum correlation via projection pursuit, as\n    well as fast implementations of correlation estimators, with a focus on robust and\n    nonparametric methods.\n  license_family: GPL2\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - MathiasHaudgaard\n    - FrodePedersen\n    - ArneKr\n\n# Package: ccaPP\n# Type: Package\n# Title: (Robust) Canonical Correlation Analysis via Projection Pursuit\n# Version: 0.3.3\n# Date: 2019-12-09\n# Depends: R (>= 3.2.0), parallel, pcaPP (>= 1.8-1), robustbase\n# Imports: Rcpp (>= 0.11.0)\n# LinkingTo: Rcpp (>= 0.11.0), RcppArmadillo (>= 0.4.100.0)\n# Suggests: knitr, mvtnorm\n# VignetteBuilder: knitr\n# Description: Canonical correlation analysis and maximum correlation via projection pursuit, as well as fast implementations of correlation estimators, with a focus on robust and nonparametric methods.\n# License: GPL (>= 2)\n# LazyLoad: yes\n# Authors@R: c(person(\"Andreas\", \"Alfons\", email = \"alfons@ese.eur.nl\", role = c(\"aut\", \"cre\")), person(\"David\", \"Simcha\", role = \"ctb\"))\n# Author: Andreas Alfons [aut, cre], David Simcha [ctb]\n# Maintainer: Andreas Alfons <alfons@ese.eur.nl>\n# Encoding: UTF-8\n# RoxygenNote: 6.1.1\n# NeedsCompilation: yes\n# Packaged: 2019-12-09 10:52:53 UTC; andreas\n# Repository: CRAN\n# Date/Publication: 2019-12-09 12:40:02 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -525,10 +534,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -539,6 +550,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-pcapp",
@@ -551,8 +563,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-pcapp",
     "r-rcpp",
@@ -571,10 +583,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -594,7 +608,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-pcapp >=1.8_1",
     "r-rcpp >=0.11.0",
@@ -634,8 +647,7 @@
    "summary": "Canonical correlation analysis and maximum correlation via projection pursuit, as well as fast implementations of correlation estimators, with a focus on robust and nonparametric methods."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -656,6 +668,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -672,7 +685,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp >=0.11.0",
     "r-rcpparmadillo >=0.4.100.0",
     "r-pcapp >=1.8_1",
@@ -699,6 +711,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -718,7 +731,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-pcapp",
     "r-rcpp",
