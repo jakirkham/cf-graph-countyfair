@@ -28,7 +28,7 @@
    "summary": "This R package applies the probabilistic model of species co-occurrence (Veech 2013) to a set of species distributed among a set of survey or sampling sites. The algorithm calculates the observed and expected frequencies of co-occurrence between each pair of species. The expected frequency is based on the distribution of each species being random and independent of the other species. The analysis returns the probabilities that a more extreme (either low or high) value of co-occurrence could have been obtained by chance. The package also includes functions for visualizing species co-occurrence results and preparing data for downstream analyses."
   },
   "build": {
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,7 +46,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "r-base",
@@ -79,7 +80,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -114,8 +116,7 @@
    "summary": "This R package applies the probabilistic model of species co-occurrence (Veech 2013) to a set of species distributed among a set of survey or sampling sites. The algorithm calculates the observed and expected frequencies of co-occurrence between each pair of species. The expected frequency is based on the distribution of each species being random and independent of the other species. The analysis returns the probabilities that a more extreme (either low or high) value of co-occurrence could have been obtained by chance. The package also includes functions for visualizing species co-occurrence results and preparing data for downstream analyses."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -134,7 +135,9 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem"
    ],
    "host": [
@@ -147,8 +150,7 @@
     "r-base",
     "r-ggplot2",
     "r-gmp",
-    "r-reshape2",
-    "gcc-libs"
+    "r-reshape2"
    ]
   },
   "source": {
@@ -176,7 +178,7 @@
    "summary": "This R package applies the probabilistic model of species co-occurrence (Veech 2013) to a set of species distributed among a set of survey or sampling sites. The algorithm calculates the observed and expected frequencies of co-occurrence between each pair of species. The expected frequency is based on the distribution of each species being random and independent of the other species. The analysis returns the probabilities that a more extreme (either low or high) value of co-occurrence could have been obtained by chance. The package also includes functions for visualizing species co-occurrence results and preparing data for downstream analyses."
   },
   "build": {
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -194,7 +196,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "r-base",
@@ -227,7 +230,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -268,14 +272,15 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-cooccur.json"
  },
- "raw_meta_yaml": "{% set version = '1.3' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n{% set cran_mirror = 'https://cran.r-project.org' %}\n\npackage:\n  name: r-cooccur\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: cooccur_{{ version }}.tar.gz\n  url:\n    - {{ cran_mirror }}/src/contrib/cooccur_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/cooccur/cooccur_{{ version }}.tar.gz\n  sha256: 7ba202803bb9aaf0b11862c13f2ffd631fad0c1bf831c8ff447b3812217c8af2\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 1005\n  skip: true  # [win32]\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}    # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ posix }}filesystem    # [win]\n  host:\n    - r-base\n    - r-ggplot2\n    - r-gmp\n    - r-reshape2\n  run:\n    - r-base\n    - {{ native }}gcc-libs   # [win]\n    - r-ggplot2\n    - r-gmp\n    - r-reshape2\n\ntest:\n  commands:\n    - $R -e \"library('cooccur')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('cooccur')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=cooccur\n  license: GPL-2\n  summary: This R package applies the probabilistic model of species co-occurrence (Veech 2013)\n    to a set of species distributed among a set of survey or sampling sites. The algorithm\n    calculates the observed and expected frequencies of co-occurrence between each pair\n    of species. The expected frequency is based on the distribution of each species\n    being random and independent of the other species. The analysis returns the probabilities\n    that a more extreme (either low or high) value of co-occurrence could have been\n    obtained by chance. The package also includes functions for visualizing species\n    co-occurrence results and preparing data for downstream analyses.\n  license_family: GPL2\n  license_file: '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - nick-youngblut\n",
+ "raw_meta_yaml": "{% set version = '1.3' %}\n{% set posix = 'm2-' if win else '' %}\n{% set cran_mirror = 'https://cran.r-project.org' %}\n\npackage:\n  name: r-cooccur\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: cooccur_{{ version }}.tar.gz\n  url:\n    - {{ cran_mirror }}/src/contrib/cooccur_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/cooccur/cooccur_{{ version }}.tar.gz\n  sha256: 7ba202803bb9aaf0b11862c13f2ffd631fad0c1bf831c8ff447b3812217c8af2\n\nbuild:\n  number: 1006\n  skip: true  # [win32]\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}    # [not win]\n    - {{ stdlib(\"c\") }}      # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ posix }}filesystem    # [win]\n  host:\n    - r-base\n    - r-ggplot2\n    - r-gmp\n    - r-reshape2\n  run:\n    - r-base\n    - r-ggplot2\n    - r-gmp\n    - r-reshape2\n\ntest:\n  commands:\n    - $R -e \"library('cooccur')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('cooccur')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=cooccur\n  license: GPL-2\n  summary: This R package applies the probabilistic model of species co-occurrence (Veech 2013)\n    to a set of species distributed among a set of survey or sampling sites. The algorithm\n    calculates the observed and expected frequencies of co-occurrence between each pair\n    of species. The expected frequency is based on the distribution of each species\n    being random and independent of the other species. The analysis returns the probabilities\n    that a more extreme (either low or high) value of co-occurrence could have been\n    obtained by chance. The package also includes functions for visualizing species\n    co-occurrence results and preparing data for downstream analyses.\n  license_family: GPL2\n  license_file: '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - nick-youngblut\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "r-base",
    "r-ggplot2",
    "r-gmp",
@@ -287,14 +292,17 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "filesystem",
-    "m2w64_c_compiler_stub"
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-ggplot2",
     "r-gmp",
@@ -305,7 +313,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-ggplot2",
     "r-gmp",
@@ -323,8 +331,10 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "filesystem",
-    "m2w64_c_compiler_stub"
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub"
    ]
   },
   "host": {
@@ -339,7 +349,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-ggplot2",
     "r-gmp",
@@ -372,8 +381,7 @@
    "summary": "This R package applies the probabilistic model of species co-occurrence (Veech 2013) to a set of species distributed among a set of survey or sampling sites. The algorithm calculates the observed and expected frequencies of co-occurrence between each pair of species. The expected frequency is based on the distribution of each species being random and independent of the other species. The analysis returns the probabilities that a more extreme (either low or high) value of co-occurrence could have been obtained by chance. The package also includes functions for visualizing species co-occurrence results and preparing data for downstream analyses."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -392,6 +400,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem"
    ],
    "host": [
@@ -402,7 +411,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-ggplot2",
     "r-gmp",
     "r-reshape2"
@@ -427,7 +435,8 @@
    "__set__": true,
    "elements": [
     "filesystem",
-    "m2w64_c_compiler_stub"
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub"
    ]
   },
   "host": {
@@ -442,7 +451,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-ggplot2",
     "r-gmp",
