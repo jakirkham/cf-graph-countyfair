@@ -29,7 +29,7 @@
    "summary": "Tools to analyse, interpret and understand air pollution data. Data are typically hourly time series and both monitoring data and dispersion model output can be analysed.  Many functions can also be applied to other data, including meteorological and traffic data."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -47,6 +47,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -103,6 +104,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -165,8 +167,7 @@
    "summary": "Tools to analyse, interpret and understand air pollution data. Data are typically hourly time series and both monitoring data and dispersion model output can be analysed.  Many functions can also be applied to other data, including meteorological and traffic data."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -184,9 +185,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -225,8 +228,7 @@
     "r-purrr",
     "r-readr",
     "r-rlang",
-    "r-tidyr",
-    "gcc-libs"
+    "r-tidyr"
    ]
   },
   "source": {
@@ -257,7 +259,7 @@
    "summary": "Tools to analyse, interpret and understand air pollution data. Data are typically hourly time series and both monitoring data and dispersion model output can be analysed.  Many functions can also be applied to other data, including meteorological and traffic data."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -275,6 +277,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -331,6 +334,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -395,16 +399,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-openair.json"
  },
- "raw_meta_yaml": "{% set version = \"2.18-2\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-openair\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/openair_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/openair/openair_{{ version }}.tar.gz\n  sha256: 8b20580bc6ab4c4bbe8a8ffb5f55e75e5d6855955b49d6dcb1259436715b84df\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-mass\n    - r-rcpp\n    - r-cluster\n    - r-dplyr >=1.0\n    - r-hexbin\n    - r-lattice\n    - r-latticeextra\n    - r-lubridate\n    - r-mapproj\n    - r-mgcv\n    - r-purrr\n    - r-readr\n    - r-rlang\n    - r-tidyr\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-mass\n    - r-rcpp\n    - r-cluster\n    - r-dplyr >=1.0\n    - r-hexbin\n    - r-lattice\n    - r-latticeextra\n    - r-lubridate\n    - r-mapproj\n    - r-mgcv\n    - r-purrr\n    - r-readr\n    - r-rlang\n    - r-tidyr\n\ntest:\n  commands:\n    - $R -e \"library('openair')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('openair')\\\"\"  # [win]\n\nabout:\n  home: https://davidcarslaw.github.io/openair/\n  dev_url: https://github.com/davidcarslaw/openair\n  license: GPL-2.0-or-later\n  summary: Tools to analyse, interpret and understand air pollution data. Data are typically hourly time series and both monitoring data and dispersion model output can be analysed.  Many functions can also be applied to other data, including meteorological and traffic data.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"2.18-2\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-openair\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/openair_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/openair/openair_{{ version }}.tar.gz\n  sha256: 8b20580bc6ab4c4bbe8a8ffb5f55e75e5d6855955b49d6dcb1259436715b84df\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-mass\n    - r-rcpp\n    - r-cluster\n    - r-dplyr >=1.0\n    - r-hexbin\n    - r-lattice\n    - r-latticeextra\n    - r-lubridate\n    - r-mapproj\n    - r-mgcv\n    - r-purrr\n    - r-readr\n    - r-rlang\n    - r-tidyr\n  run:\n    - r-base\n    - r-mass\n    - r-rcpp\n    - r-cluster\n    - r-dplyr >=1.0\n    - r-hexbin\n    - r-lattice\n    - r-latticeextra\n    - r-lubridate\n    - r-mapproj\n    - r-mgcv\n    - r-purrr\n    - r-readr\n    - r-rlang\n    - r-tidyr\n\ntest:\n  commands:\n    - $R -e \"library('openair')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('openair')\\\"\"  # [win]\n\nabout:\n  home: https://davidcarslaw.github.io/openair/\n  dev_url: https://github.com/davidcarslaw/openair\n  license: GPL-2.0-or-later\n  summary: Tools to analyse, interpret and understand air pollution data. Data are typically hourly time series and both monitoring data and dispersion model output can be analysed.  Many functions can also be applied to other data, including meteorological and traffic data.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -431,10 +436,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -445,6 +452,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-cluster",
@@ -467,8 +475,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-cluster",
     "r-dplyr",
@@ -497,10 +505,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -530,7 +540,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-cluster",
     "r-dplyr >=1.0",
@@ -578,8 +587,7 @@
    "summary": "Tools to analyse, interpret and understand air pollution data. Data are typically hourly time series and both monitoring data and dispersion model output can be analysed.  Many functions can also be applied to other data, including meteorological and traffic data."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -597,6 +605,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -623,7 +632,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-mass",
     "r-rcpp",
     "r-cluster",
@@ -660,6 +668,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -689,7 +698,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-cluster",
     "r-dplyr",
