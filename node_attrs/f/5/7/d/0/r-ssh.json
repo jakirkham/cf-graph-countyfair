@@ -30,7 +30,7 @@
    "summary": "Connect to a remote server over SSH to transfer files via SCP, setup a secure tunnel, or run a command or script on the host while streaming stdout and stderr directly to the client."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -49,6 +49,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "pkg-config",
@@ -87,6 +88,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "pkg-config"
    ]
@@ -127,7 +129,7 @@
    "summary": "Connect to a remote server over SSH to transfer files via SCP, setup a secure tunnel, or run a command or script on the host while streaming stdout and stderr directly to the client."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -146,10 +148,19 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "pkg-config",
-    "make"
+    "make",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "filesystem",
+    "sed",
+    "grep",
+    "automake-wrapper",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -172,9 +183,12 @@
   },
   "test": {
    "commands": [
-    "$R -e \"library('ssh')\""
+    "$R -e \"library('ssh')\"",
+    "\"%R%\" -e \"library('ssh')\""
    ],
-   "requires": null
+   "requires": [
+    "git"
+   ]
   }
  },
  "name": "r-ssh",
@@ -192,7 +206,7 @@
    "summary": "Connect to a remote server over SSH to transfer files via SCP, setup a secure tunnel, or run a command or script on the host while streaming stdout and stderr directly to the client."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -211,6 +225,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "autoconf",
     "automake",
     "pkg-config",
@@ -249,6 +264,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "pkg-config"
    ]
@@ -284,24 +300,34 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
-  "osx_64"
+  "osx_64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/r-ssh.json"
  },
- "raw_meta_yaml": "{% set version = \"0.9.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-ssh\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/ssh_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/ssh/ssh_{{ version }}.tar.gz\n  sha256: d0582ee9fda107ef51b5539c61bf1145efe69d0c92ac608579477e13fcae69c9\n\nbuild:\n  merge_build_host: true  # [win]\n  skip: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-askpass\n    - r-credentials\n    - libssh                       # [not win]\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-askpass\n    - r-credentials\n\ntest:\n  requires:\n    - git                           # [win]\n  commands:\n    - $R -e \"library('ssh')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('ssh')\\\"\"  # [win]\n\nabout:\n  home: https://ropensci.r-universe.dev/ssh\n  dev_url: https://github.com/ropensci/ssh\n  doc_url: https://docs.ropensci.org/ssh\n  license: MIT\n  summary: Connect to a remote server over SSH to transfer files via SCP, setup a secure tunnel, or run a command or script on the host while streaming stdout and stderr directly to the client.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - lc5415\n",
+ "raw_meta_yaml": "{% set version = \"0.9.1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-ssh\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/ssh_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/ssh/ssh_{{ version }}.tar.gz\n  sha256: d0582ee9fda107ef51b5539c61bf1145efe69d0c92ac608579477e13fcae69c9\n\nbuild:\n  # Checking windows to see if it passes. Uncomment the line if it fails.\n  # skip: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-askpass\n    - r-credentials\n    - libssh                       # [not win]\n  run:\n    - r-base\n    - r-askpass\n    - r-credentials\n\ntest:\n  requires:\n    - git                           # [win]\n  commands:\n    - $R -e \"library('ssh')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('ssh')\\\"\"  # [win]\n\nabout:\n  home: https://ropensci.r-universe.dev/ssh\n  dev_url: https://github.com/ropensci/ssh\n  doc_url: https://docs.ropensci.org/ssh\n  license: MIT\n  summary: Connect to a remote server over SSH to transfer files via SCP, setup a secure tunnel, or run a command or script on the host while streaming stdout and stderr directly to the client.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - lc5415\n",
  "req": {
   "__set__": true,
   "elements": [
    "autoconf",
    "automake",
+   "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
+   "coreutils",
+   "filesystem",
+   "grep",
    "libssh",
+   "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "pkg-config",
    "r-askpass",
    "r-base",
-   "r-credentials"
+   "r-credentials",
+   "sed",
+   "zip"
   ]
  },
  "requirements": {
@@ -310,15 +336,25 @@
    "elements": [
     "autoconf",
     "automake",
+    "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
+    "filesystem",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
-    "pkg-config"
+    "pkg-config",
+    "sed",
+    "zip"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "libssh",
     "r-askpass",
     "r-base",
@@ -329,6 +365,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-askpass",
     "r-base",
     "r-credentials"
@@ -336,7 +373,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "git"
+   ]
   }
  },
  "strong_exports": false,
@@ -346,9 +385,18 @@
    "elements": [
     "autoconf",
     "automake",
+    "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
+    "filesystem",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
-    "pkg-config"
+    "pkg-config",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -370,10 +418,14 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "git"
+   ]
   }
  },
  "url": [
+  "https://cran.r-project.org/src/contrib/ssh_0.9.1.tar.gz",
+  "https://cran.r-project.org/src/contrib/Archive/ssh/ssh_0.9.1.tar.gz",
   "https://cran.r-project.org/src/contrib/ssh_0.9.1.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/ssh/ssh_0.9.1.tar.gz",
   "https://cran.r-project.org/src/contrib/ssh_0.9.1.tar.gz",
@@ -382,5 +434,116 @@
  "version": "0.9.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/r-ssh.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/ropensci/ssh",
+   "doc_url": "https://docs.ropensci.org/ssh",
+   "home": "https://ropensci.r-universe.dev/ssh",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": [
+    "/lib/R/share/licenses/MIT",
+    "LICENSE"
+   ],
+   "summary": "Connect to a remote server over SSH to transfer files via SCP, setup a secure tunnel, or run a command or script on the host while streaming stdout and stderr directly to the client."
+  },
+  "build": {
+   "number": "1",
+   "rpaths": [
+    "lib/R/lib/",
+    "lib/"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "conda-forge/r",
+    "lc5415"
+   ]
+  },
+  "package": {
+   "name": "r-ssh",
+   "version": "0.9.1"
+  },
+  "requirements": {
+   "build": [
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "filesystem",
+    "sed",
+    "grep",
+    "autoconf",
+    "automake-wrapper",
+    "pkg-config",
+    "make",
+    "coreutils",
+    "zip"
+   ],
+   "host": [
+    "r-base",
+    "r-askpass",
+    "r-credentials"
+   ],
+   "run": [
+    "r-base",
+    "r-askpass",
+    "r-credentials"
+   ]
+  },
+  "source": {
+   "sha256": "d0582ee9fda107ef51b5539c61bf1145efe69d0c92ac608579477e13fcae69c9",
+   "url": [
+    "https://cran.r-project.org/src/contrib/ssh_0.9.1.tar.gz",
+    "https://cran.r-project.org/src/contrib/Archive/ssh/ssh_0.9.1.tar.gz"
+   ]
+  },
+  "test": {
+   "commands": [
+    "\"%R%\" -e \"library('ssh')\""
+   ],
+   "requires": [
+    "git"
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "autoconf",
+    "automake-wrapper",
+    "coreutils",
+    "filesystem",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "make",
+    "pkg-config",
+    "sed",
+    "zip"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "r-askpass",
+    "r-base",
+    "r-credentials"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "r-askpass",
+    "r-base",
+    "r-credentials"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "git"
+   ]
+  }
  }
 }
