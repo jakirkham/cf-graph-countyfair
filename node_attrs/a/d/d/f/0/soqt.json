@@ -27,7 +27,11 @@
    "summary": "SoQt library needed by Coin3d."
   },
   "build": {
-   "number": "1"
+   "number": "2",
+   "run_exports": [
+    "soqt",
+    "soqt6"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -47,11 +51,6 @@
     "cmake"
    ],
    "host": [
-    "qt-main",
-    "coin3d",
-    "qt6-main"
-   ],
-   "run": [
     "qt-main",
     "coin3d",
     "qt6-main"
@@ -113,11 +112,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "coin3d",
-    "qt-main",
-    "qt6-main"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -141,7 +136,11 @@
    "summary": "SoQt library needed by Coin3d."
   },
   "build": {
-   "number": "1"
+   "number": "2",
+   "run_exports": [
+    "soqt",
+    "soqt6"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -161,11 +160,6 @@
     "cmake"
    ],
    "host": [
-    "qt-main",
-    "coin3d",
-    "qt6-main"
-   ],
-   "run": [
     "qt-main",
     "coin3d",
     "qt6-main"
@@ -227,11 +221,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "coin3d",
-    "qt-main",
-    "qt6-main"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -255,7 +245,11 @@
    "summary": "SoQt library needed by Coin3d."
   },
   "build": {
-   "number": "1"
+   "number": "2",
+   "run_exports": [
+    "soqt",
+    "soqt6"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -275,11 +269,6 @@
     "cmake"
    ],
    "host": [
-    "qt-main",
-    "coin3d",
-    "qt6-main"
-   ],
-   "run": [
     "qt-main",
     "coin3d",
     "qt6-main"
@@ -377,7 +366,11 @@
    "summary": "SoQt library needed by Coin3d."
   },
   "build": {
-   "number": "1"
+   "number": "2",
+   "run_exports": [
+    "soqt",
+    "soqt6"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -396,11 +389,6 @@
     "cmake"
    ],
    "host": [
-    "qt-main",
-    "coin3d",
-    "qt6-main"
-   ],
-   "run": [
     "qt-main",
     "coin3d",
     "qt6-main"
@@ -456,11 +444,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "coin3d",
-    "qt-main",
-    "qt6-main"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -483,7 +467,11 @@
    "summary": "SoQt library needed by Coin3d."
   },
   "build": {
-   "number": "1"
+   "number": "2",
+   "run_exports": [
+    "soqt",
+    "soqt6"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -502,11 +490,6 @@
     "cmake"
    ],
    "host": [
-    "qt-main",
-    "coin3d",
-    "qt6-main"
-   ],
-   "run": [
     "qt-main",
     "coin3d",
     "qt6-main"
@@ -562,11 +545,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "coin3d",
-    "qt-main",
-    "qt6-main"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -594,7 +573,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/soqt.json"
  },
- "raw_meta_yaml": "{% set name = \"soqt\" %}\n{% set version = \"1.6.2\" %}\n\n{% if build_variant == \"qt6\" %}\n{% set name_suffix = \"6\" %}\n{% else %}\n{% set name_suffix = \"\" %}\n{% endif %}\n\npackage:\n  name: {{ name }}{{ name_suffix }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/coin3d/{{ name }}/releases/download/v{{ version }}/soqt-{{ version }}-src.tar.gz\n    sha256: \"fb483b20015ab827ba46eb090bd7be5bc2f3d0349c2f947c3089af2b7003869c\"\n    patches:\n      - patches/gl_private_linking.patch    # [linux]\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - {{ compiler(\"cxx\") }}\n    - {{ cdt('mesa-libgl-devel') }}      # [linux]\n    - {{ cdt('mesa-dri-drivers') }}      # [linux]\n    - {{ stdlib(\"c\") }}\n    - qt6-main      # [build_platform != target_platform and build_variant == \"qt6\"]\n    - qt-main      # [build_platform != target_platform and build_variant == \"qt5\"]\n    - ninja\n    - cmake\n  host:\n    - qt6-main      # [build_variant == \"qt6\"]\n    - qt-main      # [build_variant == \"qt5\"]\n    - coin3d\n  run:\n    - qt6-main      # [build_variant == \"qt6\"]\n    - qt-main      # [build_variant == \"qt5\"]\n    - coin3d\n  run_constrained:\n    - soqt <0         # [build_variant == \"qt6\"]\n    - soqt6 <0        # [build_variant == \"qt5\"]\n\ntest:\n  requires:\n    - cmake\n    - ninja\n    - {{ compiler(\"cxx\") }}\n    - {{ cdt('mesa-libgl-devel') }}      # [linux]\n    - {{ cdt('mesa-dri-drivers') }}      # [linux]\n\n  files:\n    - CMakeLists.txt\n\n  commands:\n    - cmake -G \"Ninja\" -D QT_HOST_PATH=${PREFIX} .\n\nabout:\n  home: https://github.com/coin3d/soqt\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: COPYING\n  summary: SoQt library needed by Coin3d.\n  description: >\n    SoQt is a Qt GUI component toolkit library for Coin. It is also compatible with SGI and TGS Open Inventor, and the API is based on the API of the InventorXt GUI component toolkit.\n  doc_url: https://github.com/coin3d/soqt\n  dev_url: https://github.com/coin3d/soqt\n\nextra:\n  recipe-maintainers:\n    - looooo\n",
+ "raw_meta_yaml": "{% set version = \"1.6.2\" %}\n\n{% if build_variant == \"qt6\" %}\n{% set name = \"soqt6\" %}\n{% else %}\n{% set name = \"soqt\" %}\n{% endif %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/coin3d/soqt/releases/download/v{{ version }}/soqt-{{ version }}-src.tar.gz\n    sha256: \"fb483b20015ab827ba46eb090bd7be5bc2f3d0349c2f947c3089af2b7003869c\"\n    patches:\n      - patches/gl_private_linking.patch    # [linux]\n\nbuild:\n  number: 2\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ cdt('mesa-libgl-devel') }}      # [linux]\n    - {{ cdt('mesa-dri-drivers') }}      # [linux]\n    - {{ stdlib('c') }}\n    - qt6-main      # [build_platform != target_platform and build_variant == \"qt6\"]\n    - qt-main      # [build_platform != target_platform and build_variant == \"qt5\"]\n    - ninja\n    - cmake\n  host:\n    - qt6-main      # [build_variant == \"qt6\"]\n    - qt-main      # [build_variant == \"qt5\"]\n    - coin3d\n  run_constrained:\n    - soqt <0         # [build_variant == \"qt6\"]\n    - soqt6 <0        # [build_variant == \"qt5\"]\n\ntest:\n  requires:\n    - cmake\n    - ninja\n    - {{ compiler(\"cxx\") }}\n    - {{ cdt('mesa-libgl-devel') }}      # [linux]\n    - {{ cdt('mesa-dri-drivers') }}      # [linux]\n\n  files:\n    - CMakeLists.txt\n\n  commands:\n    - cmake -G \"Ninja\" -D QT_HOST_PATH=${PREFIX} .\n\nabout:\n  home: https://github.com/coin3d/soqt\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: COPYING\n  summary: SoQt library needed by Coin3d.\n  description: >\n    SoQt is a Qt GUI component toolkit library for Coin. It is also compatible with SGI and TGS Open Inventor, and the API is based on the API of the InventorXt GUI component toolkit.\n  doc_url: https://github.com/coin3d/soqt\n  dev_url: https://github.com/coin3d/soqt\n\nextra:\n  recipe-maintainers:\n    - looooo\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -633,10 +612,7 @@
    "__set__": true,
    "elements": [
     "c_stdlib_stub",
-    "coin3d",
-    "cxx_compiler_stub",
-    "qt-main",
-    "qt6-main"
+    "cxx_compiler_stub"
    ]
   },
   "test": {
@@ -671,11 +647,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "coin3d",
-    "qt-main",
-    "qt6-main"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -704,7 +676,11 @@
    "summary": "SoQt library needed by Coin3d."
   },
   "build": {
-   "number": "1"
+   "number": "2",
+   "run_exports": [
+    "soqt",
+    "soqt6"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -723,11 +699,6 @@
     "cmake"
    ],
    "host": [
-    "qt-main",
-    "coin3d",
-    "qt6-main"
-   ],
-   "run": [
     "qt-main",
     "coin3d",
     "qt6-main"
@@ -783,11 +754,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "coin3d",
-    "qt-main",
-    "qt6-main"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
