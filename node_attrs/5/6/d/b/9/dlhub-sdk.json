@@ -3,7 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "bot": {
-   "automerge": true
+   "automerge": true,
+   "inspection": "update-grayskull"
   },
   "conda_build": {
    "pkg_format": "2"
@@ -36,7 +37,7 @@
   },
   "package": {
    "name": "dlhub-sdk",
-   "version": "2.0.3"
+   "version": "2.1.0"
   },
   "requirements": {
    "host": [
@@ -44,24 +45,20 @@
     "python >=3.4"
    ],
    "run": [
-    "funcx >=0.3.6",
-    "globus-sdk <4,>=3",
-    "jsonschema >=3.2.0",
-    "mdf_toolbox >=0.5.4",
-    "pydantic",
     "python >=3.4",
+    "globus-sdk <4,>=3",
     "requests >=2.24.0",
+    "mdf_toolbox >=0.5.4",
+    "jsonschema >=3.2.0",
+    "globus-compute-sdk >=2.0.0",
+    "pydantic",
     "numpy",
-    "aws-xray-sdk <0.96,>=0.93",
-    "pytorch",
-    "tensorflow",
-    "scikit-learn",
     "pygithub"
    ]
   },
   "source": {
-   "sha256": "081999ae23aaf84df9a231ca954b4b01cb54ba450308d66cbbb44a84e8daf632",
-   "url": "https://github.com/DLHub-Argonne/dlhub_sdk/archive/refs/tags/v2.0.3.tar.gz"
+   "sha256": "d20d2f653f543ee7b344e5c64c78835ef496faa41ef71975e388babef0ad9cf3",
+   "url": "https://github.com/DLHub-Argonne/dlhub_sdk/archive/refs/tags/v2.1.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -90,8 +87,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "aws-xray-sdk",
-    "funcx",
+    "globus-compute-sdk",
     "globus-sdk",
     "jsonschema",
     "mdf_toolbox",
@@ -99,10 +95,7 @@
     "pydantic",
     "pygithub",
     "python",
-    "pytorch",
-    "requests",
-    "scikit-learn",
-    "tensorflow"
+    "requests"
    ]
   },
   "test": {
@@ -132,7 +125,7 @@
   },
   "package": {
    "name": "dlhub-sdk",
-   "version": "2.0.3"
+   "version": "2.1.0"
   },
   "requirements": {
    "host": [
@@ -140,24 +133,20 @@
     "python >=3.4"
    ],
    "run": [
-    "funcx >=0.3.6",
-    "globus-sdk <4,>=3",
-    "jsonschema >=3.2.0",
-    "mdf_toolbox >=0.5.4",
-    "pydantic",
     "python >=3.4",
+    "globus-sdk <4,>=3",
     "requests >=2.24.0",
+    "mdf_toolbox >=0.5.4",
+    "jsonschema >=3.2.0",
+    "globus-compute-sdk >=2.0.0",
+    "pydantic",
     "numpy",
-    "aws-xray-sdk <0.96,>=0.93",
-    "pytorch",
-    "tensorflow",
-    "scikit-learn",
     "pygithub"
    ]
   },
   "source": {
-   "sha256": "081999ae23aaf84df9a231ca954b4b01cb54ba450308d66cbbb44a84e8daf632",
-   "url": "https://github.com/DLHub-Argonne/dlhub_sdk/archive/refs/tags/v2.0.3.tar.gz"
+   "sha256": "d20d2f653f543ee7b344e5c64c78835ef496faa41ef71975e388babef0ad9cf3",
+   "url": "https://github.com/DLHub-Argonne/dlhub_sdk/archive/refs/tags/v2.1.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -185,12 +174,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/dlhub-sdk.json"
  },
- "raw_meta_yaml": "{% set name = \"dlhub-sdk\" %}\n{% set version = \"2.0.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/DLHub-Argonne/dlhub_sdk/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 081999ae23aaf84df9a231ca954b4b01cb54ba450308d66cbbb44a84e8daf632\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - pip\n    - python >=3.4\n  run:\n    - funcx >=0.3.6\n    - globus-sdk <4,>=3\n    - jsonschema >=3.2.0\n    - mdf_toolbox >=0.5.4\n    - pydantic\n    - python >=3.4\n    - requests >=2.24.0\n    - numpy\n    - aws-xray-sdk <0.96,>=0.93  # for moto backwards-compatibility\n    - pytorch\n    - tensorflow\n    - scikit-learn\n    - pygithub\n\ntest:\n  imports:\n    - dlhub_sdk\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/DLHub-Argonne/dlhub_sdk\n  summary: Python interface and utilities for DLHub\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - WardLT\n    - jan-janssen\n",
+ "raw_meta_yaml": "{% set name = \"dlhub-sdk\" %}\n{% set version = \"2.1.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/DLHub-Argonne/dlhub_sdk/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: d20d2f653f543ee7b344e5c64c78835ef496faa41ef71975e388babef0ad9cf3\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - pip\n    - python >=3.4\n  run:\n    - python >=3.4\n    - globus-sdk <4,>=3\n    - requests >=2.24.0\n    - mdf_toolbox >=0.5.4\n    - jsonschema >=3.2.0\n    - globus-compute-sdk >=2.0.0\n    - pydantic\n    - numpy\n    - pygithub\n\ntest:\n  imports:\n    - dlhub_sdk\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/DLHub-Argonne/dlhub_sdk\n  summary: Python interface and utilities for DLHub\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - WardLT\n    - jan-janssen\n",
  "req": {
   "__set__": true,
   "elements": [
-   "aws-xray-sdk",
-   "funcx",
+   "globus-compute-sdk",
    "globus-sdk",
    "jsonschema",
    "mdf_toolbox",
@@ -199,10 +187,7 @@
    "pydantic",
    "pygithub",
    "python",
-   "pytorch",
-   "requests",
-   "scikit-learn",
-   "tensorflow"
+   "requests"
   ]
  },
  "requirements": {
@@ -220,8 +205,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "aws-xray-sdk",
-    "funcx",
+    "globus-compute-sdk",
     "globus-sdk",
     "jsonschema",
     "mdf_toolbox",
@@ -229,10 +213,7 @@
     "pydantic",
     "pygithub",
     "python",
-    "pytorch",
-    "requests",
-    "scikit-learn",
-    "tensorflow"
+    "requests"
    ]
   },
   "test": {
@@ -258,8 +239,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "aws-xray-sdk <0.96,>=0.93",
-    "funcx >=0.3.6",
+    "globus-compute-sdk >=2.0.0",
     "globus-sdk <4,>=3",
     "jsonschema >=3.2.0",
     "mdf_toolbox >=0.5.4",
@@ -267,10 +247,7 @@
     "pydantic",
     "pygithub",
     "python >=3.4",
-    "pytorch",
-    "requests >=2.24.0",
-    "scikit-learn",
-    "tensorflow"
+    "requests >=2.24.0"
    ]
   },
   "test": {
@@ -280,8 +257,8 @@
    ]
   }
  },
- "url": "https://github.com/DLHub-Argonne/dlhub_sdk/archive/refs/tags/v2.0.3.tar.gz",
- "version": "2.0.3",
+ "url": "https://github.com/DLHub-Argonne/dlhub_sdk/archive/refs/tags/v2.1.0.tar.gz",
+ "version": "2.1.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/dlhub-sdk.json"
  }
