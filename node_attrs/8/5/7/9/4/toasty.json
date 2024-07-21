@@ -38,11 +38,12 @@
   },
   "package": {
    "name": "toasty",
-   "version": "0.19.0"
+   "version": "0.19.1"
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cython",
@@ -63,8 +64,8 @@
    ]
   },
   "source": {
-   "sha256": "7948ab06a5858822b4cd82405b1f16cf30354c486c13240550d5d5931d44dafc",
-   "url": "https://pypi.io/packages/source/t/toasty/toasty-0.19.0.tar.gz"
+   "sha256": "3953f0d0b37aded8288651d1a950fc6f1523a31b99f4a98dc9b84e987e4ea930",
+   "url": "https://pypi.io/packages/source/t/toasty/toasty-0.19.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -88,7 +89,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -146,11 +148,12 @@
   },
   "package": {
    "name": "toasty",
-   "version": "0.19.0"
+   "version": "0.19.1"
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cython",
@@ -171,8 +174,8 @@
    ]
   },
   "source": {
-   "sha256": "7948ab06a5858822b4cd82405b1f16cf30354c486c13240550d5d5931d44dafc",
-   "url": "https://pypi.io/packages/source/t/toasty/toasty-0.19.0.tar.gz"
+   "sha256": "3953f0d0b37aded8288651d1a950fc6f1523a31b99f4a98dc9b84e987e4ea930",
+   "url": "https://pypi.io/packages/source/t/toasty/toasty-0.19.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -214,11 +217,12 @@
   },
   "package": {
    "name": "toasty",
-   "version": "0.19.0"
+   "version": "0.19.1"
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cython",
@@ -239,8 +243,8 @@
    ]
   },
   "source": {
-   "sha256": "7948ab06a5858822b4cd82405b1f16cf30354c486c13240550d5d5931d44dafc",
-   "url": "https://pypi.io/packages/source/t/toasty/toasty-0.19.0.tar.gz"
+   "sha256": "3953f0d0b37aded8288651d1a950fc6f1523a31b99f4a98dc9b84e987e4ea930",
+   "url": "https://pypi.io/packages/source/t/toasty/toasty-0.19.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -264,7 +268,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -322,11 +327,12 @@
   },
   "package": {
    "name": "toasty",
-   "version": "0.19.0"
+   "version": "0.19.1"
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cython",
@@ -347,8 +353,8 @@
    ]
   },
   "source": {
-   "sha256": "7948ab06a5858822b4cd82405b1f16cf30354c486c13240550d5d5931d44dafc",
-   "url": "https://pypi.io/packages/source/t/toasty/toasty-0.19.0.tar.gz"
+   "sha256": "3953f0d0b37aded8288651d1a950fc6f1523a31b99f4a98dc9b84e987e4ea930",
+   "url": "https://pypi.io/packages/source/t/toasty/toasty-0.19.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -372,7 +378,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -425,11 +432,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/toasty.json"
  },
- "raw_meta_yaml": "# notes:\n# - python >= 3.7 required for datetime.fromisoformat\n# - we have chosen to make the following dependencies optional:\n#   - astropy\n#   - requests\n# - the conda-forge deps analyzer reports cython as missing, but it's appropriately\n#   marked as build-time-only\n\n{% set name = \"toasty\" %}\n{% set version = \"0.19.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/toasty-{{ version }}.tar.gz\n  sha256: 7948ab06a5858822b4cd82405b1f16cf30354c486c13240550d5d5931d44dafc\n\nbuild:\n  number: 0\n  entry_points:\n    - toasty=toasty.cli:entrypoint\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [py<37]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - python                              # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - cython                              # [build_platform != target_platform]\n    - numpy                               # [build_platform != target_platform]\n  host:\n    - cython\n    - numpy\n    - pip\n    - python\n  run:\n    - filelock >=3\n    - {{ pin_compatible('numpy') }}\n    - pillow >=7.0\n    - python\n    - pyyaml >=5.0\n    - reproject >=0.8\n    - shapely\n    - tqdm >=4.0\n    - wwt_data_formats >=0.12\n\ntest:\n  imports:\n    - toasty\n  commands:\n    - pip check\n    - toasty --help\n    - pytest --pyargs toasty\n  requires:\n    - astropy\n    - healpy  # [not win]\n    - openexr-python\n    - pip\n    - pytest\n\nabout:\n  home: https://toasty.readthedocs.io/\n  summary: Generate TOAST image tile pyramids from existing image data\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - pkgw\n",
+ "raw_meta_yaml": "# notes:\n# - python >= 3.7 required for datetime.fromisoformat\n# - we have chosen to make the following dependencies optional:\n#   - astropy\n#   - requests\n# - the conda-forge deps analyzer reports cython as missing, but it's appropriately\n#   marked as build-time-only\n\n{% set name = \"toasty\" %}\n{% set version = \"0.19.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/toasty-{{ version }}.tar.gz\n  sha256: 3953f0d0b37aded8288651d1a950fc6f1523a31b99f4a98dc9b84e987e4ea930\n\nbuild:\n  number: 0\n  entry_points:\n    - toasty=toasty.cli:entrypoint\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [py<37]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - python                              # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - cython                              # [build_platform != target_platform]\n    - numpy                               # [build_platform != target_platform]\n  host:\n    - cython\n    - numpy\n    - pip\n    - python\n  run:\n    - filelock >=3\n    - {{ pin_compatible('numpy') }}\n    - pillow >=7.0\n    - python\n    - pyyaml >=5.0\n    - reproject >=0.8\n    - shapely\n    - tqdm >=4.0\n    - wwt_data_formats >=0.12\n\ntest:\n  imports:\n    - toasty\n  commands:\n    - pip check\n    - toasty --help\n    - pytest --pyargs toasty\n  requires:\n    - astropy\n    - healpy  # [not win]\n    - openexr-python\n    - pip\n    - pytest\n\nabout:\n  home: https://toasty.readthedocs.io/\n  summary: Generate TOAST image tile pyramids from existing image data\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - pkgw\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cython",
    "filelock",
    "numpy",
@@ -447,13 +455,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cython",
     "numpy",
     "pip",
@@ -464,6 +474,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "filelock",
     "numpy",
     "pillow",
@@ -491,7 +502,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -528,8 +540,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/t/toasty/toasty-0.19.0.tar.gz",
- "version": "0.19.0",
+ "url": "https://pypi.io/packages/source/t/toasty/toasty-0.19.1.tar.gz",
+ "version": "0.19.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/toasty.json"
  },
@@ -554,11 +566,12 @@
   },
   "package": {
    "name": "toasty",
-   "version": "0.19.0"
+   "version": "0.19.1"
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "cython",
@@ -579,8 +592,8 @@
    ]
   },
   "source": {
-   "sha256": "7948ab06a5858822b4cd82405b1f16cf30354c486c13240550d5d5931d44dafc",
-   "url": "https://pypi.io/packages/source/t/toasty/toasty-0.19.0.tar.gz"
+   "sha256": "3953f0d0b37aded8288651d1a950fc6f1523a31b99f4a98dc9b84e987e4ea930",
+   "url": "https://pypi.io/packages/source/t/toasty/toasty-0.19.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -603,7 +616,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
