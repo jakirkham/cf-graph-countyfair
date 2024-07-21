@@ -34,7 +34,7 @@
    "summary": "Easily talk to Google's 'BigQuery' database from R."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -53,6 +53,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -111,6 +112,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -175,7 +177,7 @@
    "summary": "Easily talk to Google's 'BigQuery' database from R."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -194,6 +196,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -252,6 +255,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -316,7 +320,7 @@
    "summary": "Easily talk to Google's 'BigQuery' database from R."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -335,6 +339,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -393,6 +398,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -457,7 +463,7 @@
    "summary": "Easily talk to Google's 'BigQuery' database from R."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -476,8 +482,16 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "make"
+    "make",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "filesystem",
+    "sed",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -525,7 +539,8 @@
   },
   "test": {
    "commands": [
-    "$R -e \"library('bigrquery')\""
+    "$R -e \"library('bigrquery')\"",
+    "\"%R%\" -e \"library('bigrquery')\""
    ]
   }
  },
@@ -543,7 +558,7 @@
    "summary": "Easily talk to Google's 'BigQuery' database from R."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -562,6 +577,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -620,6 +636,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -682,17 +699,24 @@
   "linux_64",
   "linux_aarch64",
   "linux_ppc64le",
-  "osx_64"
+  "osx_64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/r-bigrquery.json"
  },
- "raw_meta_yaml": "{% set version = \"1.5.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-bigrquery\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/bigrquery_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/bigrquery/bigrquery_{{ version }}.tar.gz\n  sha256: ca56da71f1028a642c9255685b6946956f6c25c160a06d59c0530fa4664f7572\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-dbi\n    - r-bit64\n    - r-brio\n    - r-cli\n    - r-clock\n    - r-cpp11\n    - r-curl\n    - r-gargle >=1.5.0\n    - r-httr\n    - r-jsonlite\n    - r-lifecycle\n    - r-prettyunits\n    - r-rapidjsonr\n    - r-rlang >=1.1.0\n    - r-tibble\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-dbi\n    - r-bit64\n    - r-brio\n    - r-cli\n    - r-clock\n    - r-cpp11\n    - r-curl\n    - r-gargle >=1.5.0\n    - r-httr\n    - r-jsonlite\n    - r-lifecycle\n    - r-prettyunits\n    - r-rapidjsonr\n    - r-rlang >=1.1.0\n    - r-tibble\n\ntest:\n  commands:\n    - $R -e \"library('bigrquery')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('bigrquery')\\\"\"  # [win]\n\nabout:\n  home: https://bigrquery.r-dbi.org/\n  dev_url: https://github.com/r-dbi/bigrquery\n  license: MIT\n  summary: Easily talk to Google's 'BigQuery' database from R.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - adrianzo\n",
+ "raw_meta_yaml": "{% set version = \"1.5.1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-bigrquery\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/bigrquery_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/bigrquery/bigrquery_{{ version }}.tar.gz\n  sha256: ca56da71f1028a642c9255685b6946956f6c25c160a06d59c0530fa4664f7572\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  # Checking windows to see if it passes. Uncomment the line if it fails.\n  # skip: true  # [win]\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-dbi\n    - r-bit64\n    - r-brio\n    - r-cli\n    - r-clock\n    - r-cpp11\n    - r-curl\n    - r-gargle >=1.5.0\n    - r-httr\n    - r-jsonlite\n    - r-lifecycle\n    - r-prettyunits\n    - r-rapidjsonr\n    - r-rlang >=1.1.0\n    - r-tibble\n  run:\n    - r-base\n    - r-dbi\n    - r-bit64\n    - r-brio\n    - r-cli\n    - r-clock\n    - r-cpp11\n    - r-curl\n    - r-gargle >=1.5.0\n    - r-httr\n    - r-jsonlite\n    - r-lifecycle\n    - r-prettyunits\n    - r-rapidjsonr\n    - r-rlang >=1.1.0\n    - r-tibble\n\ntest:\n  commands:\n    - $R -e \"library('bigrquery')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('bigrquery')\\\"\"  # [win]\n\nabout:\n  home: https://bigrquery.r-dbi.org/\n  dev_url: https://github.com/r-dbi/bigrquery\n  license: MIT\n  summary: Easily talk to Google's 'BigQuery' database from R.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - adrianzo\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
+   "coreutils",
    "cxx_compiler_stub",
+   "filesystem",
+   "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
+   "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
    "r-bit64",
@@ -709,7 +733,9 @@
    "r-prettyunits",
    "r-rapidjsonr",
    "r-rlang",
-   "r-tibble"
+   "r-tibble",
+   "sed",
+   "zip"
   ]
  },
  "requirements": {
@@ -717,14 +743,23 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
-    "make"
+    "filesystem",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-bit64",
@@ -748,6 +783,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-bit64",
@@ -778,8 +814,16 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
-    "make"
+    "filesystem",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -837,10 +881,163 @@
   "https://cran.r-project.org/src/contrib/bigrquery_1.5.1.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/bigrquery/bigrquery_1.5.1.tar.gz",
   "https://cran.r-project.org/src/contrib/bigrquery_1.5.1.tar.gz",
+  "https://cran.r-project.org/src/contrib/Archive/bigrquery/bigrquery_1.5.1.tar.gz",
+  "https://cran.r-project.org/src/contrib/bigrquery_1.5.1.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/bigrquery/bigrquery_1.5.1.tar.gz"
  ],
  "version": "1.5.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/r-bigrquery.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/r-dbi/bigrquery",
+   "home": "https://bigrquery.r-dbi.org/",
+   "license": "MIT",
+   "license_family": "GPL3",
+   "license_file": [
+    "/lib/R/share/licenses/MIT",
+    "LICENSE"
+   ],
+   "summary": "Easily talk to Google's 'BigQuery' database from R."
+  },
+  "build": {
+   "number": "1",
+   "rpaths": [
+    "lib/R/lib/",
+    "lib/"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "conda-forge/r",
+    "adrianzo"
+   ]
+  },
+  "package": {
+   "name": "r-bigrquery",
+   "version": "1.5.1"
+  },
+  "requirements": {
+   "build": [
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "filesystem",
+    "make",
+    "sed",
+    "coreutils",
+    "zip"
+   ],
+   "host": [
+    "r-base",
+    "r-dbi",
+    "r-bit64",
+    "r-brio",
+    "r-cli",
+    "r-clock",
+    "r-cpp11",
+    "r-curl",
+    "r-gargle >=1.5.0",
+    "r-httr",
+    "r-jsonlite",
+    "r-lifecycle",
+    "r-prettyunits",
+    "r-rapidjsonr",
+    "r-rlang >=1.1.0",
+    "r-tibble"
+   ],
+   "run": [
+    "r-base",
+    "r-dbi",
+    "r-bit64",
+    "r-brio",
+    "r-cli",
+    "r-clock",
+    "r-cpp11",
+    "r-curl",
+    "r-gargle >=1.5.0",
+    "r-httr",
+    "r-jsonlite",
+    "r-lifecycle",
+    "r-prettyunits",
+    "r-rapidjsonr",
+    "r-rlang >=1.1.0",
+    "r-tibble"
+   ]
+  },
+  "source": {
+   "sha256": "ca56da71f1028a642c9255685b6946956f6c25c160a06d59c0530fa4664f7572",
+   "url": [
+    "https://cran.r-project.org/src/contrib/bigrquery_1.5.1.tar.gz",
+    "https://cran.r-project.org/src/contrib/Archive/bigrquery/bigrquery_1.5.1.tar.gz"
+   ]
+  },
+  "test": {
+   "commands": [
+    "\"%R%\" -e \"library('bigrquery')\""
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "coreutils",
+    "filesystem",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "make",
+    "sed",
+    "zip"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "r-base",
+    "r-bit64",
+    "r-brio",
+    "r-cli",
+    "r-clock",
+    "r-cpp11",
+    "r-curl",
+    "r-dbi",
+    "r-gargle",
+    "r-httr",
+    "r-jsonlite",
+    "r-lifecycle",
+    "r-prettyunits",
+    "r-rapidjsonr",
+    "r-rlang",
+    "r-tibble"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "r-base",
+    "r-bit64",
+    "r-brio",
+    "r-cli",
+    "r-clock",
+    "r-cpp11",
+    "r-curl",
+    "r-dbi",
+    "r-gargle",
+    "r-httr",
+    "r-jsonlite",
+    "r-lifecycle",
+    "r-prettyunits",
+    "r-rapidjsonr",
+    "r-rlang",
+    "r-tibble"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
  }
 }
