@@ -33,82 +33,408 @@
    "summary": "A library for human kinematic motion and numerical optimization solvers to apply human motion"
   },
   "build": {
-   "ignore_run_exports": [
-    "ceres-solver",
-    "drjit-cpp",
-    "gflags",
-    "librerun-sdk <0.17",
-    "openfbx",
-    "python",
-    "re2"
-   ],
-   "number": "0",
-   "run_exports": [
-    "momentum"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "jeongseok-meta"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   }
+  ],
   "package": {
    "name": "momentum",
    "version": "0.1.2"
   },
-  "requirements": {
-   "build": [
-    "cxx_compiler_stub",
-    "c_stdlib_stub",
-    "libboost-devel",
-    "cmake",
-    "ninja",
-    "python"
-   ],
-   "host": [
-    "ceres-solver",
-    "cli11",
-    "dispenso",
-    "drjit-cpp",
-    "eigen",
-    "ezc3d",
-    "fmt",
-    "fx-gltf",
-    "librerun-sdk <0.17",
-    "ms-gsl",
-    "nlohmann_json",
-    "openfbx",
-    "python",
-    "re2",
-    "sophus",
-    "spdlog"
-   ],
-   "run": [
-    "dispenso",
-    "gflags",
-    "libdeflate",
-    "python"
-   ]
-  },
   "source": [
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    }
-  ],
-  "test": {
-   "commands": [
-    "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
-   ]
-  }
+  ]
  },
  "linux_64_requirements": {
   "build": {
@@ -119,6 +445,7 @@
     "cxx_compiler_stub",
     "libboost-devel",
     "ninja",
+    "pip",
     "python"
    ]
   },
@@ -134,10 +461,14 @@
     "fmt",
     "fx-gltf",
     "librerun-sdk",
+    "momentum-cpp",
     "ms-gsl",
     "nlohmann_json",
+    "numpy",
     "openfbx",
+    "pip",
     "python",
+    "pytorch",
     "re2",
     "sophus",
     "spdlog"
@@ -149,6 +480,8 @@
     "dispenso",
     "gflags",
     "libdeflate",
+    "momentum-cpp",
+    "numpy",
     "python"
    ]
   },
@@ -167,82 +500,408 @@
    "summary": "A library for human kinematic motion and numerical optimization solvers to apply human motion"
   },
   "build": {
-   "ignore_run_exports": [
-    "ceres-solver",
-    "drjit-cpp",
-    "gflags",
-    "librerun-sdk <0.17",
-    "openfbx",
-    "python",
-    "re2"
-   ],
-   "number": "0",
-   "run_exports": [
-    "momentum"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "jeongseok-meta"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   }
+  ],
   "package": {
    "name": "momentum",
    "version": "0.1.2"
   },
-  "requirements": {
-   "build": [
-    "cxx_compiler_stub",
-    "c_stdlib_stub",
-    "libboost-devel",
-    "cmake",
-    "ninja",
-    "python"
-   ],
-   "host": [
-    "ceres-solver",
-    "cli11",
-    "dispenso",
-    "drjit-cpp",
-    "eigen",
-    "ezc3d",
-    "fmt",
-    "fx-gltf",
-    "librerun-sdk <0.17",
-    "ms-gsl",
-    "nlohmann_json",
-    "openfbx",
-    "python",
-    "re2",
-    "sophus",
-    "spdlog"
-   ],
-   "run": [
-    "dispenso",
-    "gflags",
-    "libdeflate",
-    "python"
-   ]
-  },
   "source": [
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    }
-  ],
-  "test": {
-   "commands": [
-    "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
-   ]
-  }
+  ]
  },
  "linux_aarch64_requirements": {
   "build": {
@@ -253,6 +912,7 @@
     "cxx_compiler_stub",
     "libboost-devel",
     "ninja",
+    "pip",
     "python"
    ]
   },
@@ -268,10 +928,14 @@
     "fmt",
     "fx-gltf",
     "librerun-sdk",
+    "momentum-cpp",
     "ms-gsl",
     "nlohmann_json",
+    "numpy",
     "openfbx",
+    "pip",
     "python",
+    "pytorch",
     "re2",
     "sophus",
     "spdlog"
@@ -283,6 +947,8 @@
     "dispenso",
     "gflags",
     "libdeflate",
+    "momentum-cpp",
+    "numpy",
     "python"
    ]
   },
@@ -301,82 +967,408 @@
    "summary": "A library for human kinematic motion and numerical optimization solvers to apply human motion"
   },
   "build": {
-   "ignore_run_exports": [
-    "ceres-solver",
-    "drjit-cpp",
-    "gflags",
-    "librerun-sdk <0.17",
-    "openfbx",
-    "python",
-    "re2"
-   ],
-   "number": "0",
-   "run_exports": [
-    "momentum"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "jeongseok-meta"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   }
+  ],
   "package": {
    "name": "momentum",
    "version": "0.1.2"
   },
-  "requirements": {
-   "build": [
-    "cxx_compiler_stub",
-    "c_stdlib_stub",
-    "libboost-devel",
-    "cmake",
-    "ninja",
-    "python"
-   ],
-   "host": [
-    "ceres-solver",
-    "cli11",
-    "dispenso",
-    "drjit-cpp",
-    "eigen",
-    "ezc3d",
-    "fmt",
-    "fx-gltf",
-    "librerun-sdk <0.17",
-    "ms-gsl",
-    "nlohmann_json",
-    "openfbx",
-    "python",
-    "re2",
-    "sophus",
-    "spdlog"
-   ],
-   "run": [
-    "dispenso",
-    "gflags",
-    "libdeflate",
-    "python"
-   ]
-  },
   "source": [
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    }
-  ],
-  "test": {
-   "commands": [
-    "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
-   ]
-  }
+  ]
  },
  "linux_ppc64le_requirements": {
   "build": {
@@ -387,6 +1379,7 @@
     "cxx_compiler_stub",
     "libboost-devel",
     "ninja",
+    "pip",
     "python"
    ]
   },
@@ -402,10 +1395,14 @@
     "fmt",
     "fx-gltf",
     "librerun-sdk",
+    "momentum-cpp",
     "ms-gsl",
     "nlohmann_json",
+    "numpy",
     "openfbx",
+    "pip",
     "python",
+    "pytorch",
     "re2",
     "sophus",
     "spdlog"
@@ -417,6 +1414,8 @@
     "dispenso",
     "gflags",
     "libdeflate",
+    "momentum-cpp",
+    "numpy",
     "python"
    ]
   },
@@ -435,119 +1434,1560 @@
    "summary": "A library for human kinematic motion and numerical optimization solvers to apply human motion"
   },
   "build": {
-   "ignore_run_exports": [
-    "ceres-solver",
-    "drjit-cpp",
-    "gflags",
-    "librerun-sdk <0.17",
-    "openfbx",
-    "python",
-    "re2"
-   ],
-   "number": "0",
-   "run_exports": [
-    "momentum"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "jeongseok-meta"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate",
+      "python"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "python",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "python",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "pymomentum",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "python",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate"
+     ]
+    },
+    "script": "bld_cpp.bat",
+    "test": {
+     "commands": [
+      "if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\momentum\\\\momentum-config.cmake exit 1"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "python",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "bld_py.bat",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\momentum\\\\momentum-config.cmake exit 1"
+     ]
+    }
+   }
+  ],
   "package": {
    "name": "momentum",
    "version": "0.1.2"
   },
-  "requirements": {
-   "build": [
-    "cxx_compiler_stub",
-    "c_stdlib_stub",
-    "libboost-devel",
-    "cmake",
-    "ninja",
-    "python"
-   ],
-   "host": [
-    "ceres-solver",
-    "cli11",
-    "dispenso",
-    "drjit-cpp",
-    "eigen",
-    "ezc3d",
-    "fmt",
-    "fx-gltf",
-    "librerun-sdk <0.17",
-    "ms-gsl",
-    "nlohmann_json",
-    "openfbx",
-    "python",
-    "re2",
-    "sophus",
-    "spdlog"
-   ],
-   "run": [
-    "dispenso",
-    "gflags",
-    "libdeflate",
-    "python"
-   ]
-  },
   "source": [
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    },
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    }
-  ],
-  "test": {
-   "commands": [
-    "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake",
-    "if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\momentum\\\\momentum-config.cmake exit 1"
-   ]
-  }
+  ]
  },
  "name": "momentum",
  "osx_64_meta_yaml": {
@@ -560,72 +3000,147 @@
    "summary": "A library for human kinematic motion and numerical optimization solvers to apply human motion"
   },
   "build": {
-   "ignore_run_exports": [
-    "ceres-solver",
-    "drjit-cpp",
-    "gflags",
-    "librerun-sdk <0.17",
-    "openfbx",
-    "python",
-    "re2"
-   ],
-   "number": "0",
-   "run_exports": [
-    "momentum"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "jeongseok-meta"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": null,
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "python",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "pymomentum",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   }
+  ],
   "package": {
    "name": "momentum",
    "version": "0.1.2"
   },
-  "requirements": {
-   "build": [
-    "cxx_compiler_stub",
-    "c_stdlib_stub",
-    "libboost-devel",
-    "cmake",
-    "ninja",
-    "python"
-   ],
-   "host": [
-    "ceres-solver",
-    "cli11",
-    "dispenso",
-    "drjit-cpp",
-    "eigen",
-    "ezc3d",
-    "fmt",
-    "fx-gltf",
-    "librerun-sdk <0.17",
-    "ms-gsl",
-    "nlohmann_json",
-    "openfbx",
-    "re2",
-    "sophus",
-    "spdlog"
-   ],
-   "run": [
-    "dispenso",
-    "gflags",
-    "libdeflate"
-   ]
-  },
   "source": [
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    }
-  ],
-  "test": {
-   "commands": [
-    "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
-   ]
-  }
+  ]
  },
  "osx_64_requirements": {
   "build": {
@@ -636,6 +3151,7 @@
     "cxx_compiler_stub",
     "libboost-devel",
     "ninja",
+    "pip",
     "python"
    ]
   },
@@ -651,9 +3167,14 @@
     "fmt",
     "fx-gltf",
     "librerun-sdk",
+    "momentum-cpp",
     "ms-gsl",
     "nlohmann_json",
+    "numpy",
     "openfbx",
+    "pip",
+    "python",
+    "pytorch",
     "re2",
     "sophus",
     "spdlog"
@@ -664,7 +3185,11 @@
    "elements": [
     "dispenso",
     "gflags",
-    "libdeflate"
+    "libdeflate",
+    "momentum-cpp",
+    "numpy",
+    "pymomentum",
+    "python"
    ]
   },
   "test": {
@@ -682,72 +3207,148 @@
    "summary": "A library for human kinematic motion and numerical optimization solvers to apply human motion"
   },
   "build": {
-   "ignore_run_exports": [
-    "ceres-solver",
-    "drjit-cpp",
-    "gflags",
-    "librerun-sdk <0.17",
-    "openfbx",
-    "python",
-    "re2"
-   ],
-   "number": "0",
-   "run_exports": [
-    "momentum"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "jeongseok-meta"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate"
+     ]
+    },
+    "script": "build_cpp.sh",
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "ninja",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "python",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "build_py.sh",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
+     ]
+    }
+   }
+  ],
   "package": {
    "name": "momentum",
    "version": "0.1.2"
   },
-  "requirements": {
-   "build": [
-    "cxx_compiler_stub",
-    "c_stdlib_stub",
-    "libboost-devel",
-    "cmake",
-    "ninja",
-    "python"
-   ],
-   "host": [
-    "ceres-solver",
-    "cli11",
-    "dispenso",
-    "drjit-cpp",
-    "eigen",
-    "ezc3d",
-    "fmt",
-    "fx-gltf",
-    "librerun-sdk <0.17",
-    "ms-gsl",
-    "nlohmann_json",
-    "openfbx",
-    "re2",
-    "sophus",
-    "spdlog"
-   ],
-   "run": [
-    "dispenso",
-    "gflags",
-    "libdeflate"
-   ]
-  },
   "source": [
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    }
-  ],
-  "test": {
-   "commands": [
-    "test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake"
-   ]
-  }
+  ]
  },
  "osx_arm64_requirements": {
   "build": {
@@ -758,6 +3359,7 @@
     "cxx_compiler_stub",
     "libboost-devel",
     "ninja",
+    "pip",
     "python"
    ]
   },
@@ -773,9 +3375,14 @@
     "fmt",
     "fx-gltf",
     "librerun-sdk",
+    "momentum-cpp",
     "ms-gsl",
     "nlohmann_json",
+    "numpy",
     "openfbx",
+    "pip",
+    "python",
+    "pytorch",
     "re2",
     "sophus",
     "spdlog"
@@ -786,7 +3393,10 @@
    "elements": [
     "dispenso",
     "gflags",
-    "libdeflate"
+    "libdeflate",
+    "momentum-cpp",
+    "numpy",
+    "python"
    ]
   },
   "test": {
@@ -797,7 +3407,9 @@
  "outputs_names": {
   "__set__": true,
   "elements": [
-   "momentum"
+   "momentum",
+   "momentum-cpp",
+   "pymomentum"
   ]
  },
  "parsing_error": false,
@@ -812,7 +3424,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/momentum.json"
  },
- "raw_meta_yaml": "{% set name = \"momentum\" %}\n{% set version = \"0.1.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/facebookincubator/momentum/archive/v{{ version }}.tar.gz\n    sha256: 499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544\n\nbuild:\n  number: 0\n  skip: true  # [py<310]\n  run_exports:\n    - {{ pin_subpackage(name, max_pin='x.x') }}\n  ignore_run_exports:\n    - ceres-solver\n    - drjit-cpp\n    - gflags\n    - librerun-sdk <0.17\n    - openfbx\n    - python\n    - re2\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - libboost-devel\n    - cmake\n    - ninja  # [not win]\n    - python\n  host:\n    - ceres-solver\n    - cli11\n    - dispenso\n    - drjit-cpp\n    - eigen\n    - ezc3d\n    - fmt\n    - fx-gltf\n    - librerun-sdk <0.17\n    - ms-gsl\n    - nlohmann_json\n    - openfbx\n    - python  # [linux]\n    - re2\n    - sophus\n    - spdlog\n  run:\n    - dispenso\n    - gflags\n    - libdeflate\n    - python  # [linux]\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake  # [not win]\n    - if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\momentum\\\\momentum-config.cmake exit 1  # [win]\n\nabout:\n  home: https://facebookincubator.github.io/momentum/\n  summary: 'A library for human kinematic motion and numerical optimization solvers to apply human motion'\n  description: |\n    A library for human kinematic motion and numerical optimization solvers to apply human motion\n  license: MIT\n  license_file: LICENSE\n  dev_url: https://github.com/facebookincubator/momentum\n\nextra:\n  recipe-maintainers:\n    - jeongseok-meta\n",
+ "raw_meta_yaml": "{% set name = \"momentum\" %}\n{% set version = \"0.1.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://github.com/facebookincubator/momentum/archive/v{{ version }}.tar.gz\n    sha256: 499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544\n    patches:\n      - disable-torch-python.patch\n\nbuild:\n  number: 1\n  skip: true  # [py<310]\n\noutputs:\n  - name: momentum-cpp\n    script: build_cpp.sh  # [unix]\n    script: bld_cpp.bat   # [win]\n    build:\n      run_exports:\n        - {{ pin_subpackage('momentum-cpp', max_pin='x.x') }}\n      ignore_run_exports:\n        - ceres-solver\n        - drjit-cpp\n        - gflags\n        - librerun-sdk <0.17\n        - openfbx\n        - python\n        - re2\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ stdlib('c') }}\n        - libboost-devel\n        - cmake\n        - ninja  # [not win]\n        - python\n      host:\n        - ceres-solver\n        - cli11\n        - dispenso\n        - drjit-cpp\n        - eigen\n        - ezc3d\n        - fmt\n        - fx-gltf\n        - librerun-sdk <0.17\n        - ms-gsl\n        - nlohmann_json\n        - openfbx\n        - python  # [linux]\n        - re2\n        - sophus\n        - spdlog\n      run:\n        - dispenso\n        - gflags\n        - libdeflate\n        - python  # [linux]\n    test:\n      commands:\n        - test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake  # [not win]\n        - if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\momentum\\\\momentum-config.cmake exit 1  # [win]\n\n  - name: pymomentum\n    script: build_py.sh  # [unix]\n    script: bld_py.bat   # [win]\n    build:\n      skip: true  # [linux or win or arm64]\n    requirements:\n      build:\n        - {{ compiler('cxx') }}\n        - {{ stdlib('c') }}\n        - libboost-devel\n        - cmake\n        - ninja  # [not win]\n        - pip\n        - python\n      host:\n        - {{ pin_subpackage('momentum-cpp', exact=True) }}\n        - ceres-solver\n        - cli11\n        - dispenso\n        - drjit-cpp\n        - eigen\n        - ezc3d\n        - fmt\n        - fx-gltf\n        - librerun-sdk <0.17\n        - ms-gsl\n        - nlohmann_json\n        - openfbx\n        - python  # [linux]\n        - re2\n        - sophus\n        - spdlog\n        - pip\n        - python\n        - pytorch\n        - numpy\n      run:\n        - {{ pin_subpackage('momentum-cpp', exact=True) }}\n        - python\n        - numpy\n    test:\n      imports:\n        - numpy  # TODO\n\n  - name: momentum\n    requirements:\n      run:\n        - {{ pin_subpackage('momentum-cpp', exact=True) }}\n        - {{ pin_subpackage('pymomentum', exact=True) }}  # [not linux and not win and not arm64]\n        - python\n        - numpy\n    test:\n      commands:\n        - test -f $PREFIX/lib/cmake/momentum/momentum-config.cmake  # [not win]\n        - if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\momentum\\\\momentum-config.cmake exit 1  # [win]\n\nabout:\n  home: https://facebookincubator.github.io/momentum/\n  summary: 'A library for human kinematic motion and numerical optimization solvers to apply human motion'\n  description: |\n    A library for human kinematic motion and numerical optimization solvers to apply human motion\n  license: MIT\n  license_file: LICENSE\n  dev_url: https://github.com/facebookincubator/momentum\n\nextra:\n  recipe-maintainers:\n    - jeongseok-meta\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -831,11 +3443,16 @@
    "libboost-devel",
    "libdeflate",
    "librerun-sdk",
+   "momentum-cpp",
    "ms-gsl",
    "ninja",
    "nlohmann_json",
+   "numpy",
    "openfbx",
+   "pip",
+   "pymomentum",
    "python",
+   "pytorch",
    "re2",
    "sophus",
    "spdlog"
@@ -850,6 +3467,7 @@
     "cxx_compiler_stub",
     "libboost-devel",
     "ninja",
+    "pip",
     "python"
    ]
   },
@@ -867,10 +3485,14 @@
     "fmt",
     "fx-gltf",
     "librerun-sdk",
+    "momentum-cpp",
     "ms-gsl",
     "nlohmann_json",
+    "numpy",
     "openfbx",
+    "pip",
     "python",
+    "pytorch",
     "re2",
     "sophus",
     "spdlog"
@@ -884,6 +3506,9 @@
     "dispenso",
     "gflags",
     "libdeflate",
+    "momentum-cpp",
+    "numpy",
+    "pymomentum",
     "python"
    ]
   },
@@ -902,6 +3527,7 @@
     "cxx_compiler_stub",
     "libboost-devel",
     "ninja",
+    "pip",
     "python"
    ]
   },
@@ -917,10 +3543,14 @@
     "fmt",
     "fx-gltf",
     "librerun-sdk <0.17",
+    "momentum-cpp",
     "ms-gsl",
     "nlohmann_json",
+    "numpy",
     "openfbx",
+    "pip",
     "python",
+    "pytorch",
     "re2",
     "sophus",
     "spdlog"
@@ -932,6 +3562,9 @@
     "dispenso",
     "gflags",
     "libdeflate",
+    "momentum-cpp",
+    "numpy",
+    "pymomentum",
     "python"
    ]
   },
@@ -955,71 +3588,146 @@
    "summary": "A library for human kinematic motion and numerical optimization solvers to apply human motion"
   },
   "build": {
-   "ignore_run_exports": [
-    "ceres-solver",
-    "drjit-cpp",
-    "gflags",
-    "librerun-sdk <0.17",
-    "openfbx",
-    "python",
-    "re2"
-   ],
-   "number": "0",
-   "run_exports": [
-    "momentum"
-   ]
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "jeongseok-meta"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "ignore_run_exports": [
+      "ceres-solver",
+      "drjit-cpp",
+      "gflags",
+      "librerun-sdk <0.17",
+      "openfbx",
+      "python",
+      "re2"
+     ],
+     "run_exports": [
+      "momentum-cpp"
+     ]
+    },
+    "name": "momentum-cpp",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "python"
+     ],
+     "host": [
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "re2",
+      "sophus",
+      "spdlog"
+     ],
+     "run": [
+      "dispenso",
+      "gflags",
+      "libdeflate"
+     ]
+    },
+    "script": "bld_cpp.bat",
+    "test": {
+     "commands": [
+      "if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\momentum\\\\momentum-config.cmake exit 1"
+     ]
+    }
+   },
+   {
+    "build": {
+     "skip": true
+    },
+    "name": "pymomentum",
+    "requirements": {
+     "build": [
+      "cxx_compiler_stub",
+      "c_stdlib_stub",
+      "libboost-devel",
+      "cmake",
+      "pip",
+      "python"
+     ],
+     "host": [
+      "momentum-cpp",
+      "ceres-solver",
+      "cli11",
+      "dispenso",
+      "drjit-cpp",
+      "eigen",
+      "ezc3d",
+      "fmt",
+      "fx-gltf",
+      "librerun-sdk <0.17",
+      "ms-gsl",
+      "nlohmann_json",
+      "openfbx",
+      "re2",
+      "sophus",
+      "spdlog",
+      "pip",
+      "python",
+      "pytorch",
+      "numpy"
+     ],
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "script": "bld_py.bat",
+    "test": {
+     "imports": [
+      "numpy"
+     ]
+    }
+   },
+   {
+    "name": "momentum",
+    "requirements": {
+     "run": [
+      "momentum-cpp",
+      "python",
+      "numpy"
+     ]
+    },
+    "test": {
+     "commands": [
+      "if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\momentum\\\\momentum-config.cmake exit 1"
+     ]
+    }
+   }
+  ],
   "package": {
    "name": "momentum",
    "version": "0.1.2"
   },
-  "requirements": {
-   "build": [
-    "cxx_compiler_stub",
-    "c_stdlib_stub",
-    "libboost-devel",
-    "cmake",
-    "python"
-   ],
-   "host": [
-    "ceres-solver",
-    "cli11",
-    "dispenso",
-    "drjit-cpp",
-    "eigen",
-    "ezc3d",
-    "fmt",
-    "fx-gltf",
-    "librerun-sdk <0.17",
-    "ms-gsl",
-    "nlohmann_json",
-    "openfbx",
-    "re2",
-    "sophus",
-    "spdlog"
-   ],
-   "run": [
-    "dispenso",
-    "gflags",
-    "libdeflate"
-   ]
-  },
   "source": [
    {
+    "patches": [
+     "disable-torch-python.patch"
+    ],
     "sha256": "499a995927e5146c5d425c5687ff4ec548a710483bbf1fc2884fcc47907cc544",
     "url": "https://github.com/facebookincubator/momentum/archive/v0.1.2.tar.gz"
    }
-  ],
-  "test": {
-   "commands": [
-    "if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\momentum\\\\momentum-config.cmake exit 1"
-   ]
-  }
+  ]
  },
  "win_64_requirements": {
   "build": {
@@ -1029,6 +3737,7 @@
     "cmake",
     "cxx_compiler_stub",
     "libboost-devel",
+    "pip",
     "python"
    ]
   },
@@ -1044,9 +3753,14 @@
     "fmt",
     "fx-gltf",
     "librerun-sdk",
+    "momentum-cpp",
     "ms-gsl",
     "nlohmann_json",
+    "numpy",
     "openfbx",
+    "pip",
+    "python",
+    "pytorch",
     "re2",
     "sophus",
     "spdlog"
@@ -1057,7 +3771,10 @@
    "elements": [
     "dispenso",
     "gflags",
-    "libdeflate"
+    "libdeflate",
+    "momentum-cpp",
+    "numpy",
+    "python"
    ]
   },
   "test": {
