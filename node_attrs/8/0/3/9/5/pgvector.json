@@ -39,7 +39,7 @@
   },
   "package": {
    "name": "pgvector",
-   "version": "0.7.2"
+   "version": "0.7.3"
   },
   "requirements": {
    "build": [
@@ -57,13 +57,13 @@
    ]
   },
   "source": {
-   "sha256": "617fba855c9bcb41a2a9bc78a78567fd2e147c72afd5bf9d37b31b9591632b30",
-   "url": "https://github.com/pgvector/pgvector/archive/refs/tags/v0.7.2.tar.gz"
+   "sha256": "48d8faa326188bb59e9054f5f77a2a40937e26b8f9a20da4bee54a12bff1e72e",
+   "url": "https://github.com/pgvector/pgvector/archive/refs/tags/v0.7.3.tar.gz"
   },
   "test": {
    "commands": [
     "test -f $PREFIX/lib/vector.so",
-    "test -f $PREFIX/share/extension/vector--0.7.2.sql",
+    "test -f $PREFIX/share/extension/vector--0.7.3.sql",
     "test -f $PREFIX/share/extension/vector.control"
    ]
   }
@@ -116,7 +116,7 @@
   },
   "package": {
    "name": "pgvector",
-   "version": "0.7.2"
+   "version": "0.7.3"
   },
   "requirements": {
    "build": [
@@ -137,17 +137,17 @@
    ]
   },
   "source": {
-   "sha256": "617fba855c9bcb41a2a9bc78a78567fd2e147c72afd5bf9d37b31b9591632b30",
-   "url": "https://github.com/pgvector/pgvector/archive/refs/tags/v0.7.2.tar.gz"
+   "sha256": "48d8faa326188bb59e9054f5f77a2a40937e26b8f9a20da4bee54a12bff1e72e",
+   "url": "https://github.com/pgvector/pgvector/archive/refs/tags/v0.7.3.tar.gz"
   },
   "test": {
    "commands": [
     "test -f $PREFIX/lib/vector.so",
-    "test -f $PREFIX/share/extension/vector--0.7.2.sql",
+    "test -f $PREFIX/share/extension/vector--0.7.3.sql",
     "test -f $PREFIX/share/extension/vector.control",
     "test -f $PREFIX/lib/vector.dylib",
     "if not exist %LIBRARY_LIB%\\vector.dll exit 1",
-    "if not exist %LIBRARY_PREFIX%\\share\\extension\\vector--0.7.2.sql exit 1",
+    "if not exist %LIBRARY_PREFIX%\\share\\extension\\vector--0.7.3.sql exit 1",
     "if not exist %LIBRARY_PREFIX%\\share\\extension\\vector.control exit 1"
    ]
   }
@@ -173,7 +173,7 @@
   },
   "package": {
    "name": "pgvector",
-   "version": "0.7.2"
+   "version": "0.7.3"
   },
   "requirements": {
    "build": [
@@ -191,13 +191,13 @@
    ]
   },
   "source": {
-   "sha256": "617fba855c9bcb41a2a9bc78a78567fd2e147c72afd5bf9d37b31b9591632b30",
-   "url": "https://github.com/pgvector/pgvector/archive/refs/tags/v0.7.2.tar.gz"
+   "sha256": "48d8faa326188bb59e9054f5f77a2a40937e26b8f9a20da4bee54a12bff1e72e",
+   "url": "https://github.com/pgvector/pgvector/archive/refs/tags/v0.7.3.tar.gz"
   },
   "test": {
    "commands": [
     "test -f $PREFIX/lib/vector.dylib",
-    "test -f $PREFIX/share/extension/vector--0.7.2.sql",
+    "test -f $PREFIX/share/extension/vector--0.7.3.sql",
     "test -f $PREFIX/share/extension/vector.control"
    ]
   }
@@ -250,7 +250,7 @@
   },
   "package": {
    "name": "pgvector",
-   "version": "0.7.2"
+   "version": "0.7.3"
   },
   "requirements": {
    "build": [
@@ -268,13 +268,13 @@
    ]
   },
   "source": {
-   "sha256": "617fba855c9bcb41a2a9bc78a78567fd2e147c72afd5bf9d37b31b9591632b30",
-   "url": "https://github.com/pgvector/pgvector/archive/refs/tags/v0.7.2.tar.gz"
+   "sha256": "48d8faa326188bb59e9054f5f77a2a40937e26b8f9a20da4bee54a12bff1e72e",
+   "url": "https://github.com/pgvector/pgvector/archive/refs/tags/v0.7.3.tar.gz"
   },
   "test": {
    "commands": [
     "test -f $PREFIX/lib/vector.dylib",
-    "test -f $PREFIX/share/extension/vector--0.7.2.sql",
+    "test -f $PREFIX/share/extension/vector--0.7.3.sql",
     "test -f $PREFIX/share/extension/vector.control"
    ]
   }
@@ -323,7 +323,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pgvector.json"
  },
- "raw_meta_yaml": "{% set name = \"pgvector\" %}\n{% set version = \"0.7.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/{{ name }}/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 617fba855c9bcb41a2a9bc78a78567fd2e147c72afd5bf9d37b31b9591632b30\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - perl            # [build_platform == target_platform]\n    - gnuconfig       # [unix]\n    - postgresql      # [build_platform != target_platform]\n    - make            # [unix]\n    - m2-patch        # [win]\n    - m2-diffutils    # [win]\n    - posix           # [win]\n  host:\n    - postgresql\n  run:\n    - libpq\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/vector.so                                                     # [linux]\n    - test -f $PREFIX/lib/vector.dylib                                                  # [osx]\n    - test -f $PREFIX/share/extension/vector--{{ version }}.sql                         # [unix]\n    - test -f $PREFIX/share/extension/vector.control                                    # [unix]\n    - if not exist %LIBRARY_LIB%\\vector.dll exit 1                                      # [win]\n    - if not exist %LIBRARY_PREFIX%\\share\\extension\\vector--{{ version }}.sql exit 1    # [win]\n    - if not exist %LIBRARY_PREFIX%\\share\\extension\\vector.control exit 1               # [win]\n\n\nabout:\n  home: https://github.com/pgvector/pgvector\n  summary: Open-source vector similarity search for Postgres.\n  description: Open-source vector similarity search for Postgres.\n  license: PostgreSQL\n  license_file: LICENSE\n  doc_url: https://github.com/pgvector/pgvector\n  dev_url: https://github.com/pgvector/pgvector\n\nextra:\n  recipe-maintainers:\n    - mmcauliffe\n",
+ "raw_meta_yaml": "{% set name = \"pgvector\" %}\n{% set version = \"0.7.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/{{ name }}/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 48d8faa326188bb59e9054f5f77a2a40937e26b8f9a20da4bee54a12bff1e72e\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - perl            # [build_platform == target_platform]\n    - gnuconfig       # [unix]\n    - postgresql      # [build_platform != target_platform]\n    - make            # [unix]\n    - m2-patch        # [win]\n    - m2-diffutils    # [win]\n    - posix           # [win]\n  host:\n    - postgresql\n  run:\n    - libpq\n\ntest:\n  commands:\n    - test -f $PREFIX/lib/vector.so                                                     # [linux]\n    - test -f $PREFIX/lib/vector.dylib                                                  # [osx]\n    - test -f $PREFIX/share/extension/vector--{{ version }}.sql                         # [unix]\n    - test -f $PREFIX/share/extension/vector.control                                    # [unix]\n    - if not exist %LIBRARY_LIB%\\vector.dll exit 1                                      # [win]\n    - if not exist %LIBRARY_PREFIX%\\share\\extension\\vector--{{ version }}.sql exit 1    # [win]\n    - if not exist %LIBRARY_PREFIX%\\share\\extension\\vector.control exit 1               # [win]\n\n\nabout:\n  home: https://github.com/pgvector/pgvector\n  summary: Open-source vector similarity search for Postgres.\n  description: Open-source vector similarity search for Postgres.\n  license: PostgreSQL\n  license_file: LICENSE\n  doc_url: https://github.com/pgvector/pgvector\n  dev_url: https://github.com/pgvector/pgvector\n\nextra:\n  recipe-maintainers:\n    - mmcauliffe\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -406,8 +406,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/pgvector/pgvector/archive/refs/tags/v0.7.2.tar.gz",
- "version": "0.7.2",
+ "url": "https://github.com/pgvector/pgvector/archive/refs/tags/v0.7.3.tar.gz",
+ "version": "0.7.3",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pgvector.json"
  },
@@ -431,7 +431,7 @@
   },
   "package": {
    "name": "pgvector",
-   "version": "0.7.2"
+   "version": "0.7.3"
   },
   "requirements": {
    "build": [
@@ -450,13 +450,13 @@
    ]
   },
   "source": {
-   "sha256": "617fba855c9bcb41a2a9bc78a78567fd2e147c72afd5bf9d37b31b9591632b30",
-   "url": "https://github.com/pgvector/pgvector/archive/refs/tags/v0.7.2.tar.gz"
+   "sha256": "48d8faa326188bb59e9054f5f77a2a40937e26b8f9a20da4bee54a12bff1e72e",
+   "url": "https://github.com/pgvector/pgvector/archive/refs/tags/v0.7.3.tar.gz"
   },
   "test": {
    "commands": [
     "if not exist %LIBRARY_LIB%\\vector.dll exit 1",
-    "if not exist %LIBRARY_PREFIX%\\share\\extension\\vector--0.7.2.sql exit 1",
+    "if not exist %LIBRARY_PREFIX%\\share\\extension\\vector--0.7.3.sql exit 1",
     "if not exist %LIBRARY_PREFIX%\\share\\extension\\vector.control exit 1"
    ]
   }
