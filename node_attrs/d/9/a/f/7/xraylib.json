@@ -15,6 +15,7 @@
   },
   "provider": {
    "linux_aarch64": "azure",
+   "linux_ppc64le": "default",
    "win": "azure"
   },
   "test": "native_and_emulated"
@@ -197,6 +198,111 @@
   }
  },
  "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "cython",
+    "fortran_compiler_stub",
+    "meson",
+    "ninja",
+    "numpy",
+    "pkg-config",
+    "swig"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "numpy",
+    "python",
+    "setuptools"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "home": "https://github.com/tschoonj/xraylib/wiki",
+   "license": "BSD-3-Clause",
+   "license_family": "BSD",
+   "license_file": "license_all.txt",
+   "summary": "A library for X-ray matter interaction cross sections for X-ray fluorescence applications"
+  },
+  "build": {
+   "ignore_run_exports_from": [
+    "cxx_compiler_stub"
+   ],
+   "number": "1",
+   "run_exports": [
+    "xraylib"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "ericdill",
+    "tacaswell",
+    "licode",
+    "tschoonj",
+    "CJ-Wright",
+    "mrakitin"
+   ]
+  },
+  "package": {
+   "name": "xraylib",
+   "version": "4.1.4"
+  },
+  "requirements": {
+   "build": [
+    "numpy",
+    "pkg-config",
+    "cython",
+    "meson",
+    "ninja",
+    "swig",
+    "fortran_compiler_stub",
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ],
+   "host": [
+    "python",
+    "setuptools",
+    "numpy"
+   ],
+   "run": [
+    "python"
+   ]
+  },
+  "source": {
+   "patches": [
+    "numpy-2.patch"
+   ],
+   "sha256": "b0d77b186e3bf83cc5be29d687cf6225f94276233f257d4f855e9ef61a9c14d5",
+   "url": "https://github.com/tschoonj/xraylib/releases/download/xraylib-4.1.4/xraylib-4.1.4.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "test -f $PREFIX/include/xraylib/xraylib.mod"
+   ],
+   "imports": [
+    "xraylib",
+    "xraylib_np"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
   "build": {
    "__set__": true,
    "elements": [
@@ -529,6 +635,7 @@
  "platforms": [
   "linux_64",
   "linux_aarch64",
+  "linux_ppc64le",
   "osx_64",
   "osx_arm64",
   "win_64"
