@@ -3,7 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "bot": {
-   "automerge": true
+   "automerge": true,
+   "inspection": "update-grayskull"
   },
   "conda_build": {
    "pkg_format": "2"
@@ -29,8 +30,8 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -48,7 +49,7 @@
    ],
    "run": [
     "python >=3.6",
-    "numpy",
+    "numpy <2.0",
     "typish >=1.5.2"
    ]
   },
@@ -108,8 +109,8 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -127,7 +128,7 @@
    ],
    "run": [
     "python >=3.6",
-    "numpy",
+    "numpy <2.0",
     "typish >=1.5.2"
    ]
   },
@@ -161,7 +162,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/nptyping.json"
  },
- "raw_meta_yaml": "{% set name = \"nptyping\" %}\n{% set version = \"2.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ramonhagenaars/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 7f061750bcbda8ce3926fc22c22c372c9cebfdb9b889376c71cb5d911173660d\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n  run:\n    - python >=3.6\n    - numpy\n    - typish >=1.5.2\n\ntest:\n  imports:\n    - nptyping\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/ramonhagenaars/nptyping\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Type hints for Numpy\n\n  description: |\n    nptyping.NDArray lets you define the shape and type of your numpy.ndarray.\n  doc_url: https://github.com/ramonhagenaars/nptyping\n  dev_url: https://github.com/ramonhagenaars/nptyping\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n",
+ "raw_meta_yaml": "{% set name = \"nptyping\" %}\n{% set version = \"2.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/ramonhagenaars/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 7f061750bcbda8ce3926fc22c22c372c9cebfdb9b889376c71cb5d911173660d\n\nbuild:\n  noarch: python\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n\nrequirements:\n  host:\n    - python >=3.6\n    - pip\n  run:\n    - python >=3.6\n    - numpy <2.0\n    - typish >=1.5.2\n\ntest:\n  imports:\n    - nptyping\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/ramonhagenaars/nptyping\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Type hints for Numpy\n\n  description: |\n    nptyping.NDArray lets you define the shape and type of your numpy.ndarray.\n  doc_url: https://github.com/ramonhagenaars/nptyping\n  dev_url: https://github.com/ramonhagenaars/nptyping\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -214,7 +215,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
+    "numpy <2.0",
     "python >=3.6",
     "typish >=1.5.2"
    ]
