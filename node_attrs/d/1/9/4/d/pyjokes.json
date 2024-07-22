@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "update-grayskull"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -22,9 +25,13 @@
    "summary": "One line jokes for programmers (jokes as a service)"
   },
   "build": {
+   "entry_points": [
+    "pyjoke = pyjokes:cli.main",
+    "pyjokes = pyjokes:cli.main"
+   ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -33,27 +40,33 @@
   },
   "package": {
    "name": "pyjokes",
-   "version": "0.6.0"
+   "version": "0.7.2"
   },
   "requirements": {
    "host": [
-    "python",
+    "python >=3.9,<4.0",
+    "poetry-core",
     "pip"
    ],
    "run": [
-    "python"
+    "python >=3.9.0,<4.0.0"
    ]
   },
   "source": {
-   "sha256": "08860eedb78cbfa4618243c8db088f21c39823ece1fdaf0133e52d9c56e981a5",
-   "url": "https://pypi.io/packages/source/p/pyjokes/pyjokes-0.6.0.tar.gz"
+   "sha256": "1a0dab5bfd30deee547055ebf26b2073b4dd10b708311b4c9bdf6ccb743d5821",
+   "url": "https://pypi.io/packages/source/p/pyjokes/pyjokes-0.7.2.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check",
+    "pyjoke --help",
+    "pyjokes --help"
+   ],
    "imports": [
     "pyjokes"
    ],
    "requires": [
-    "pytest"
+    "pip"
    ]
   }
  },
@@ -66,6 +79,7 @@
    "__set__": true,
    "elements": [
     "pip",
+    "poetry-core",
     "python"
    ]
   },
@@ -78,7 +92,7 @@
   "test": {
    "__set__": true,
    "elements": [
-    "pytest"
+    "pip"
    ]
   }
  },
@@ -91,9 +105,13 @@
    "summary": "One line jokes for programmers (jokes as a service)"
   },
   "build": {
+   "entry_points": [
+    "pyjoke = pyjokes:cli.main",
+    "pyjokes = pyjokes:cli.main"
+   ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -102,27 +120,33 @@
   },
   "package": {
    "name": "pyjokes",
-   "version": "0.6.0"
+   "version": "0.7.2"
   },
   "requirements": {
    "host": [
-    "python",
+    "python >=3.9,<4.0",
+    "poetry-core",
     "pip"
    ],
    "run": [
-    "python"
+    "python >=3.9.0,<4.0.0"
    ]
   },
   "source": {
-   "sha256": "08860eedb78cbfa4618243c8db088f21c39823ece1fdaf0133e52d9c56e981a5",
-   "url": "https://pypi.io/packages/source/p/pyjokes/pyjokes-0.6.0.tar.gz"
+   "sha256": "1a0dab5bfd30deee547055ebf26b2073b4dd10b708311b4c9bdf6ccb743d5821",
+   "url": "https://pypi.io/packages/source/p/pyjokes/pyjokes-0.7.2.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check",
+    "pyjoke --help",
+    "pyjokes --help"
+   ],
    "imports": [
     "pyjokes"
    ],
    "requires": [
-    "pytest"
+    "pip"
    ]
   }
  },
@@ -140,11 +164,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyjokes.json"
  },
- "raw_meta_yaml": "{% set version = \"0.6.0\" %}\n\npackage:\n  name: pyjokes\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/p/pyjokes/pyjokes-{{ version }}.tar.gz\n  sha256: 08860eedb78cbfa4618243c8db088f21c39823ece1fdaf0133e52d9c56e981a5\n\nbuild:\n  number: 0\n  noarch: python\n  script: \"{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv\"\n\nrequirements:\n  host:\n    - python\n    - pip\n  run:\n    - python\n\ntest:\n  imports:\n    - pyjokes\n  requires:\n    - pytest\n\nabout:\n  home: https://github.com/pyjokes/pyjokes\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: '{{ environ[\"RECIPE_DIR\"] }}/LICENCE.txt'\n  summary: One line jokes for programmers (jokes as a service)\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n",
+ "raw_meta_yaml": "{% set name = \"pyjokes\" %}\n{% set version = \"0.7.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyjokes-{{ version }}.tar.gz\n  sha256: 1a0dab5bfd30deee547055ebf26b2073b4dd10b708311b4c9bdf6ccb743d5821\n\nbuild:\n  entry_points:\n    - pyjoke = pyjokes:cli.main\n    - pyjokes = pyjokes:cli.main\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.9,<4.0\n    - poetry-core\n    - pip\n  run:\n    - python >=3.9.0,<4.0.0\n\ntest:\n  imports:\n    - pyjokes\n  commands:\n    - pip check\n    - pyjoke --help\n    - pyjokes --help\n  requires:\n    - pip\n\n\nabout:\n  home: https://github.com/pyjokes/pyjokes\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: '{{ environ[\"RECIPE_DIR\"] }}/LICENCE.txt'\n  summary: One line jokes for programmers (jokes as a service)\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n",
  "req": {
   "__set__": true,
   "elements": [
    "pip",
+   "poetry-core",
    "python"
   ]
  },
@@ -157,6 +182,7 @@
    "__set__": true,
    "elements": [
     "pip",
+    "poetry-core",
     "python"
    ]
   },
@@ -169,7 +195,7 @@
   "test": {
    "__set__": true,
    "elements": [
-    "pytest"
+    "pip"
    ]
   }
  },
@@ -183,24 +209,25 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "poetry-core",
+    "python >=3.9,<4.0"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "python"
+    "python >=3.9.0,<4.0.0"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "pytest"
+    "pip"
    ]
   }
  },
- "url": "https://pypi.io/packages/source/p/pyjokes/pyjokes-0.6.0.tar.gz",
- "version": "0.6.0",
+ "url": "https://pypi.io/packages/source/p/pyjokes/pyjokes-0.7.2.tar.gz",
+ "version": "0.7.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pyjokes.json"
  }
