@@ -35,7 +35,7 @@
    "summary": "Speedy Cosmic Ray Annihilation Package in Python"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -57,7 +57,7 @@
     "pip !=22.1",
     "astropy",
     "cython >=3.0,<4.0a0",
-    "numpy",
+    "numpy >=2.0",
     "extension-helpers",
     "setuptools_scm"
    ],
@@ -124,7 +124,7 @@
    "summary": "Speedy Cosmic Ray Annihilation Package in Python"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -146,7 +146,7 @@
     "pip !=22.1",
     "astropy",
     "cython >=3.0,<4.0a0",
-    "numpy",
+    "numpy >=2.0",
     "extension-helpers",
     "setuptools_scm"
    ],
@@ -213,7 +213,7 @@
    "summary": "Speedy Cosmic Ray Annihilation Package in Python"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -235,7 +235,7 @@
     "pip !=22.1",
     "astropy",
     "cython >=3.0,<4.0a0",
-    "numpy",
+    "numpy >=2.0",
     "extension-helpers",
     "setuptools_scm"
    ],
@@ -302,7 +302,7 @@
    "summary": "Speedy Cosmic Ray Annihilation Package in Python"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -324,7 +324,7 @@
     "pip !=22.1",
     "astropy",
     "cython >=3.0,<4.0a0",
-    "numpy",
+    "numpy >=2.0",
     "extension-helpers",
     "setuptools_scm"
    ],
@@ -359,7 +359,7 @@
    "summary": "Speedy Cosmic Ray Annihilation Package in Python"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -381,7 +381,7 @@
     "pip !=22.1",
     "astropy",
     "cython >=3.0,<4.0a0",
-    "numpy",
+    "numpy >=2.0",
     "extension-helpers",
     "setuptools_scm"
    ],
@@ -448,7 +448,7 @@
    "summary": "Speedy Cosmic Ray Annihilation Package in Python"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -470,7 +470,7 @@
     "pip !=22.1",
     "astropy",
     "cython >=3.0,<4.0a0",
-    "numpy",
+    "numpy >=2.0",
     "extension-helpers",
     "setuptools_scm"
    ],
@@ -544,7 +544,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/astroscrappy.json"
  },
- "raw_meta_yaml": "{% set name = \"astroscrappy\" %}\n{% set version = \"1.1.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 7e196c7ce839b4b2fa8ddba8f75c1a1ee45ff1247d01e8c8e7b4debf6974156a\n\nbuild:\n  number: 3\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    # numpy 1.25 introduced the backwards compatible ABI\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip !=22.1\n    - astropy\n    - cython >=3.0,<4.0a0\n    # numpy 1.25 introduced the backwards compatible ABI\n    - numpy\n    - extension-helpers\n    - setuptools_scm\n  run:\n    - python\n    - astropy\n    - numpy >=1.23\n\ntest:\n  # Python imports\n  imports:\n    - astroscrappy\n    - astroscrappy.tests\n    - astroscrappy.utils\n\nabout:\n  home: https://github.com/astropy/astroscrappy\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: licenses/LICENSE.rst\n  summary: Speedy Cosmic Ray Annihilation Package in Python\n  description: |\n    Astro-SCRAPPY is designed to detect cosmic rays in images\n    (numpy arrays), originally based on Pieter van Dokkum\u2019s L.A.Cosmic\n    algorithm.\n  dev_url: https://github.com/astropy/astroscrappy\n\nextra:\n  recipe-maintainers:\n    - mwcraig\n",
+ "raw_meta_yaml": "{% set name = \"astroscrappy\" %}\n{% set version = \"1.1.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 7e196c7ce839b4b2fa8ddba8f75c1a1ee45ff1247d01e8c8e7b4debf6974156a\n\nbuild:\n  number: 4\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  skip: true  # [py<39]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    # numpy 1.25 introduced the backwards compatible ABI\n    - numpy >=1.25 ,<2                        # [build_platform != target_platform and py<310]\n    - numpy >=2.0                            # [build_platform != target_platform and py>=310]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip !=22.1\n    - astropy\n    - cython >=3.0,<4.0a0\n    # numpy 1.25 introduced the backwards compatible ABI\n    - numpy >=1.25,<2                           # [py<310]\n    - numpy >=2.0                            # [py>=310]\n    - extension-helpers\n    - setuptools_scm\n  run:\n    - python\n    - astropy\n    - numpy >=1.23\n\ntest:\n  # Python imports\n  imports:\n    - astroscrappy\n    - astroscrappy.tests\n    - astroscrappy.utils\n\nabout:\n  home: https://github.com/astropy/astroscrappy\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: licenses/LICENSE.rst\n  summary: Speedy Cosmic Ray Annihilation Package in Python\n  description: |\n    Astro-SCRAPPY is designed to detect cosmic rays in images\n    (numpy arrays), originally based on Pieter van Dokkum\u2019s L.A.Cosmic\n    algorithm.\n  dev_url: https://github.com/astropy/astroscrappy\n\nextra:\n  recipe-maintainers:\n    - mwcraig\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -611,7 +611,7 @@
     "astropy",
     "cython >=3.0,<4.0a0",
     "extension-helpers",
-    "numpy",
+    "numpy >=2.0",
     "pip !=22.1",
     "python",
     "setuptools_scm"
@@ -646,7 +646,7 @@
    "summary": "Speedy Cosmic Ray Annihilation Package in Python"
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
@@ -668,7 +668,7 @@
     "pip !=22.1",
     "astropy",
     "cython >=3.0,<4.0a0",
-    "numpy",
+    "numpy >=2.0",
     "extension-helpers",
     "setuptools_scm"
    ],
