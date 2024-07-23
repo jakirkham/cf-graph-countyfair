@@ -41,7 +41,7 @@
    "missing_dso_whitelist": [
     "$RPATH/libInterceptorInjectionTarget.so"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -75,8 +75,15 @@
    "commands": [
     "test -f $PREFIX/bin/compute-sanitizer",
     "test -f $PREFIX/compute-sanitizer/compute-sanitizer",
+    "bash test-rpath.sh",
     "where compute-sanitizer",
     "compute-sanitizer --version"
+   ],
+   "files": [
+    "test-rpath.sh"
+   ],
+   "requires": [
+    "patchelf"
    ]
   }
  },
@@ -104,7 +111,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "patchelf"
+   ]
   }
  },
  "linux_aarch64_meta_yaml": {
@@ -122,7 +131,7 @@
    "missing_dso_whitelist": [
     "$RPATH/libInterceptorInjectionTarget.so"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -159,8 +168,15 @@
    "commands": [
     "test -f $PREFIX/bin/compute-sanitizer",
     "test -f $PREFIX/compute-sanitizer/compute-sanitizer",
+    "bash test-rpath.sh",
     "where compute-sanitizer",
     "compute-sanitizer --version"
+   ],
+   "files": [
+    "test-rpath.sh"
+   ],
+   "requires": [
+    "patchelf"
    ]
   }
  },
@@ -189,7 +205,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "patchelf"
+   ]
   }
  },
  "meta_yaml": {
@@ -208,7 +226,7 @@
     "$RPATH/libInterceptorInjectionTarget.so",
     "$RPATH/InterceptorInjectionTarget.dll"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -243,11 +261,14 @@
    "commands": [
     "test -f $PREFIX/bin/compute-sanitizer",
     "test -f $PREFIX/compute-sanitizer/compute-sanitizer",
+    "bash test-rpath.sh",
     "where compute-sanitizer",
     "compute-sanitizer --version",
     "if not exist %LIBRARY_PREFIX%\\compute-sanitizer\\compute-sanitizer.exe exit 1",
     "if not exist %PREFIX%\\Scripts\\compute-sanitizer.bat exit 1"
-   ]
+   ],
+   "files": null,
+   "requires": null
   }
  },
  "name": "cuda-sanitizer-api",
@@ -266,7 +287,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cuda-sanitizer-api.json"
  },
- "raw_meta_yaml": "{% set name = \"cuda-sanitizer-api\" %}\n{% set version = \"12.5.81\" %}\n{% set cuda_version = \"12.5\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"linux-sbsa\" %}  # [aarch64]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n{% set exists = \"which\" %}  # [not win]\n{% set exists = \"where\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_sanitizer_api/{{ platform }}/cuda_sanitizer_api-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: 2c86bd1b37bc9b085914076e0db0122c667da32aa62463edd8bdcfc047eb10e3  # [linux64]\n  sha256: f76b88164b0642ddf6ff80031ed35bd3b851512b8af405cf6838351c518a8000  # [aarch64]\n  sha256: 09a8e3438cae3a2f391f3befe7d092bfd2c2157ec4383e5494a2904a2d708ca3  # [win]\n\nbuild:\n  number: 0\n  binary_relocation: false\n  skip: true  # [osx or ppc64le]\n  missing_dso_whitelist:\n    - '$RPATH/libInterceptorInjectionTarget.so'  # [linux]\n    - '$RPATH/InterceptorInjectionTarget.dll'    # [win]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - {{ stdlib(\"c\") }}\n    - arm-variant * {{ arm_variant_type }}  # [aarch64]\n    - patchelf <0.18.0                      # [linux]\n  host:\n    - cuda-version {{ cuda_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n  run_constrained:\n    - arm-variant * {{ arm_variant_type }}  # [aarch64]\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/compute-sanitizer                                         # [linux]\n    - test -f $PREFIX/compute-sanitizer/compute-sanitizer                           # [linux]\n    - if not exist %LIBRARY_PREFIX%\\compute-sanitizer\\compute-sanitizer.exe exit 1  # [win]\n    - if not exist %PREFIX%\\Scripts\\compute-sanitizer.bat exit 1                    # [win]\n    - {{ exists }} compute-sanitizer\n    - compute-sanitizer --version                                                   # [build_platform == target_platform]\n\nabout:\n  home: https://docs.nvidia.com/compute-sanitizer/SanitizerApiGuide/index.html\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: Provides a set of APIs to enable third party tools to write GPU sanitizing tools\n  description: |\n    Provides a set of APIs to enable third-party tools to write GPU sanitizing\n    tools, such as memory and race checkers.\n  doc_url: https://docs.nvidia.com/compute-sanitizer/SanitizerApiGuide/index.html\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
+ "raw_meta_yaml": "{% set name = \"cuda-sanitizer-api\" %}\n{% set version = \"12.5.81\" %}\n{% set cuda_version = \"12.5\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"linux-sbsa\" %}  # [aarch64]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n{% set exists = \"which\" %}  # [not win]\n{% set exists = \"where\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_sanitizer_api/{{ platform }}/cuda_sanitizer_api-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: 2c86bd1b37bc9b085914076e0db0122c667da32aa62463edd8bdcfc047eb10e3  # [linux64]\n  sha256: f76b88164b0642ddf6ff80031ed35bd3b851512b8af405cf6838351c518a8000  # [aarch64]\n  sha256: 09a8e3438cae3a2f391f3befe7d092bfd2c2157ec4383e5494a2904a2d708ca3  # [win]\n\nbuild:\n  number: 1\n  binary_relocation: false\n  skip: true  # [osx or ppc64le]\n  missing_dso_whitelist:\n    - '$RPATH/libInterceptorInjectionTarget.so'  # [linux]\n    - '$RPATH/InterceptorInjectionTarget.dll'    # [win]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - {{ stdlib(\"c\") }}\n    - arm-variant * {{ arm_variant_type }}  # [aarch64]\n    - patchelf <0.18.0                      # [linux]\n  host:\n    - cuda-version {{ cuda_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n  run_constrained:\n    - arm-variant * {{ arm_variant_type }}  # [aarch64]\n\ntest:\n  requires:\n    - patchelf       # [linux]\n  files:\n    - test-rpath.sh  # [linux]\n  commands:\n    - test -f $PREFIX/bin/compute-sanitizer                                         # [linux]\n    - test -f $PREFIX/compute-sanitizer/compute-sanitizer                           # [linux]\n    - if not exist %LIBRARY_PREFIX%\\compute-sanitizer\\compute-sanitizer.exe exit 1  # [win]\n    - if not exist %PREFIX%\\Scripts\\compute-sanitizer.bat exit 1                    # [win]\n    - bash test-rpath.sh                                                            # [linux]\n    - {{ exists }} compute-sanitizer\n    - compute-sanitizer --version                                                   # [build_platform == target_platform]\n\nabout:\n  home: https://docs.nvidia.com/compute-sanitizer/SanitizerApiGuide/index.html\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: Provides a set of APIs to enable third party tools to write GPU sanitizing tools\n  description: |\n    Provides a set of APIs to enable third-party tools to write GPU sanitizing\n    tools, such as memory and race checkers.\n  doc_url: https://docs.nvidia.com/compute-sanitizer/SanitizerApiGuide/index.html\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -361,7 +382,7 @@
    "missing_dso_whitelist": [
     "$RPATH/InterceptorInjectionTarget.dll"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -396,7 +417,9 @@
     "if not exist %PREFIX%\\Scripts\\compute-sanitizer.bat exit 1",
     "where compute-sanitizer",
     "compute-sanitizer --version"
-   ]
+   ],
+   "files": null,
+   "requires": null
   }
  },
  "win_64_requirements": {
