@@ -71,7 +71,6 @@
     "rich >=9.2.0",
     "cloudpickle >=1.5.0",
     "nvidia-ml-py >=12.555.43",
-    "nvidia-ml-py3",
     "psutil >=5.9.2",
     "jinja2",
     "cython"
@@ -125,7 +124,6 @@
     "cython",
     "jinja2",
     "nvidia-ml-py",
-    "nvidia-ml-py3",
     "psutil",
     "python",
     "rich"
@@ -184,7 +182,6 @@
     "rich >=9.2.0",
     "cloudpickle >=1.5.0",
     "nvidia-ml-py >=12.555.43",
-    "nvidia-ml-py3",
     "psutil >=5.9.2",
     "jinja2",
     "cython"
@@ -238,7 +235,6 @@
     "cython",
     "jinja2",
     "nvidia-ml-py",
-    "nvidia-ml-py3",
     "psutil",
     "python",
     "rich"
@@ -297,7 +293,6 @@
     "rich >=9.2.0",
     "cloudpickle >=1.5.0",
     "nvidia-ml-py >=12.555.43",
-    "nvidia-ml-py3",
     "psutil >=5.9.2",
     "jinja2",
     "cython"
@@ -351,7 +346,6 @@
     "cython",
     "jinja2",
     "nvidia-ml-py",
-    "nvidia-ml-py3",
     "psutil",
     "python",
     "rich"
@@ -410,7 +404,6 @@
     "rich >=9.2.0",
     "cloudpickle >=1.5.0",
     "nvidia-ml-py >=12.555.43",
-    "nvidia-ml-py3",
     "psutil >=5.9.2",
     "jinja2",
     "cython"
@@ -483,7 +476,6 @@
     "rich >=9.2.0",
     "cloudpickle >=1.5.0",
     "nvidia-ml-py >=12.555.43",
-    "nvidia-ml-py3",
     "psutil >=5.9.2",
     "jinja2",
     "cython"
@@ -537,7 +529,6 @@
     "cython",
     "jinja2",
     "nvidia-ml-py",
-    "nvidia-ml-py3",
     "psutil",
     "python",
     "rich"
@@ -596,7 +587,6 @@
     "rich >=9.2.0",
     "cloudpickle >=1.5.0",
     "nvidia-ml-py >=12.555.43",
-    "nvidia-ml-py3",
     "psutil >=5.9.2",
     "jinja2",
     "cython"
@@ -650,7 +640,6 @@
     "cython",
     "jinja2",
     "nvidia-ml-py",
-    "nvidia-ml-py3",
     "psutil",
     "python",
     "rich"
@@ -682,7 +671,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/scalene.json"
  },
- "raw_meta_yaml": "{% set name = \"scalene\" %}\n{% set version = \"1.5.41\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  # See https://pypi.org/project/scalene/#files\n  sha256: 6a48f1bfd428b769469ed6719317c5ab3eb955ba0bd6a76eca47e3c8483522f8\n\nbuild:\n  skip: true  # [py<=38]\n  number: 0\n  entry_points:\n    - scalene = scalene.__main__:main\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - make\n    - cython                                 # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - setuptools_scm\n    - cython\n    - wheel\n  run:\n    - python\n    - astunparse >=1.6.3  # [py<39]\n    - rich >=9.2.0\n    - cloudpickle >=1.5.0\n    - nvidia-ml-py >=12.555.43\n    - nvidia-ml-py3 # >=7.352.0\n    - psutil >=5.9.2\n    - jinja2\n    - cython\n\ntest:\n  imports:\n    - {{ name }}\n  source_files:\n    - test/original/bm_mdp.py\n  requires:\n    - pyperf\n    - pip\n  commands:\n    - pip check\n    - scalene --cli test/original/bm_mdp.py\nabout:\n  home: https://github.com/plasma-umass/scalene\n  license: Apache-2.0\n  license_family: APACHE\n  license_file: LICENSE\n  summary: A high-performance, high-precision CPU, GPU, and memory profiler for Python\n\nextra:\n  recipe-maintainers:\n    - emeryberger\n    - jaltmayerpizzorno\n    - sternj\n",
+ "raw_meta_yaml": "{% set name = \"scalene\" %}\n{% set version = \"1.5.41\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  # See https://pypi.org/project/scalene/#files\n  sha256: 6a48f1bfd428b769469ed6719317c5ab3eb955ba0bd6a76eca47e3c8483522f8\n\nbuild:\n  skip: true  # [py<=38]\n  number: 0\n  entry_points:\n    - scalene = scalene.__main__:main\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - make\n    - cython                                 # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - setuptools_scm\n    - cython\n    - wheel\n  run:\n    - python\n    - astunparse >=1.6.3  # [py<39]\n    - rich >=9.2.0\n    - cloudpickle >=1.5.0\n    - nvidia-ml-py >=12.555.43\n    - psutil >=5.9.2\n    - jinja2\n    - cython\n\ntest:\n  imports:\n    - {{ name }}\n  source_files:\n    - test/original/bm_mdp.py\n  requires:\n    - pyperf\n    - pip\n  commands:\n    - pip check\n    - scalene --cli test/original/bm_mdp.py\nabout:\n  home: https://github.com/plasma-umass/scalene\n  license: Apache-2.0\n  license_family: APACHE\n  license_file: LICENSE\n  summary: A high-performance, high-precision CPU, GPU, and memory profiler for Python\n\nextra:\n  recipe-maintainers:\n    - emeryberger\n    - jaltmayerpizzorno\n    - sternj\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -694,7 +683,6 @@
    "jinja2",
    "make",
    "nvidia-ml-py",
-   "nvidia-ml-py3",
    "pip",
    "psutil",
    "python",
@@ -736,7 +724,6 @@
     "cython",
     "jinja2",
     "nvidia-ml-py",
-    "nvidia-ml-py3",
     "psutil",
     "python",
     "rich"
@@ -778,7 +765,6 @@
     "cython",
     "jinja2",
     "nvidia-ml-py >=12.555.43",
-    "nvidia-ml-py3",
     "psutil >=5.9.2",
     "python",
     "rich >=9.2.0"
@@ -842,7 +828,6 @@
     "rich >=9.2.0",
     "cloudpickle >=1.5.0",
     "nvidia-ml-py >=12.555.43",
-    "nvidia-ml-py3",
     "psutil >=5.9.2",
     "jinja2",
     "cython"
@@ -896,7 +881,6 @@
     "cython",
     "jinja2",
     "nvidia-ml-py",
-    "nvidia-ml-py3",
     "psutil",
     "python",
     "rich"
