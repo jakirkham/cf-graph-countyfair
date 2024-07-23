@@ -40,16 +40,18 @@
   },
   "package": {
    "name": "mne-nirs",
-   "version": "0.6.0"
+   "version": "0.7.0"
   },
   "requirements": {
    "host": [
-    "python >=3.8",
-    "pip"
+    "python >=3.9",
+    "pip",
+    "hatchling",
+    "hatch-vcs"
    ],
    "run": [
-    "python >=3.8",
-    "mne-base >=0.24",
+    "python >=3.9",
+    "mne-base >=1.0",
     "ipyvtklink",
     "seaborn",
     "statsmodels",
@@ -58,12 +60,13 @@
    ]
   },
   "source": {
-   "sha256": "cacda4022505781bca61b3a8dcefc82b20d54ccbbf08de44c083a79b64fbfeb1",
-   "url": "https://pypi.io/packages/source/m/mne-nirs/mne-nirs-0.6.0.tar.gz"
+   "sha256": "9a9586945af92f798e25d92891caeda1c7fc70b1b917b0b3784cc127b2c865bb",
+   "url": "https://pypi.io/packages/source/m/mne-nirs/mne_nirs-0.7.0.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "python -c \"import mne_nirs; assert mne_nirs.__version__ == '0.7.0', mne_nirs.__version__\""
    ],
    "imports": [
     "mne_nirs"
@@ -81,6 +84,8 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch-vcs",
+    "hatchling",
     "pip",
     "python"
    ]
@@ -128,16 +133,18 @@
   },
   "package": {
    "name": "mne-nirs",
-   "version": "0.6.0"
+   "version": "0.7.0"
   },
   "requirements": {
    "host": [
-    "python >=3.8",
-    "pip"
+    "python >=3.9",
+    "pip",
+    "hatchling",
+    "hatch-vcs"
    ],
    "run": [
-    "python >=3.8",
-    "mne-base >=0.24",
+    "python >=3.9",
+    "mne-base >=1.0",
     "ipyvtklink",
     "seaborn",
     "statsmodels",
@@ -146,12 +153,13 @@
    ]
   },
   "source": {
-   "sha256": "cacda4022505781bca61b3a8dcefc82b20d54ccbbf08de44c083a79b64fbfeb1",
-   "url": "https://pypi.io/packages/source/m/mne-nirs/mne-nirs-0.6.0.tar.gz"
+   "sha256": "9a9586945af92f798e25d92891caeda1c7fc70b1b917b0b3784cc127b2c865bb",
+   "url": "https://pypi.io/packages/source/m/mne-nirs/mne_nirs-0.7.0.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check"
+    "pip check",
+    "python -c \"import mne_nirs; assert mne_nirs.__version__ == '0.7.0', mne_nirs.__version__\""
    ],
    "imports": [
     "mne_nirs"
@@ -175,11 +183,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/mne-nirs.json"
  },
- "raw_meta_yaml": "{% set name = \"mne-nirs\" %}\n{% set version = \"0.6.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: cacda4022505781bca61b3a8dcefc82b20d54ccbbf08de44c083a79b64fbfeb1\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n  run:\n    - python >=3.8\n    - mne-base >=0.24\n    - ipyvtklink\n    - seaborn\n    - statsmodels\n    - nilearn\n    - h5io >=0.1.7\n\ntest:\n  imports:\n    - mne_nirs\n  requires:\n    - pip\n  commands:\n    - pip check\n\nabout:\n  home: https://mne.tools/mne-nirs\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Process Near-Infrared Spectroscopy Data in MNE.\n  doc_url: https://mne.tools/mne-nirs\n  dev_url: https://github.com/mne-tools/mne-nirs\n\nextra:\n  recipe-maintainers:\n    - larsoner\n    - rob-luke\n    - hoechenberger\n",
+ "raw_meta_yaml": "{% set name = \"mne-nirs\" %}\n{% set version = \"0.7.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz\n  sha256: 9a9586945af92f798e25d92891caeda1c7fc70b1b917b0b3784cc127b2c865bb\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  host:\n    - python >=3.9\n    - pip\n    - hatchling\n    - hatch-vcs\n  run:\n    - python >=3.9\n    - mne-base >=1.0\n    - ipyvtklink\n    - seaborn\n    - statsmodels\n    - nilearn\n    - h5io >=0.1.7\n\ntest:\n  imports:\n    - mne_nirs\n  requires:\n    - pip\n  commands:\n    - pip check\n    - python -c \"import mne_nirs; assert mne_nirs.__version__ == '{{ version }}', mne_nirs.__version__\"\n\nabout:\n  home: https://mne.tools/mne-nirs\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n  summary: Process Near-Infrared Spectroscopy Data in MNE.\n  doc_url: https://mne.tools/mne-nirs\n  dev_url: https://github.com/mne-tools/mne-nirs\n\nextra:\n  recipe-maintainers:\n    - larsoner\n    - rob-luke\n    - hoechenberger\n",
  "req": {
   "__set__": true,
   "elements": [
    "h5io",
+   "hatch-vcs",
+   "hatchling",
    "ipyvtklink",
    "mne-base",
    "nilearn",
@@ -197,6 +207,8 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch-vcs",
+    "hatchling",
     "pip",
     "python"
    ]
@@ -229,8 +241,10 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch-vcs",
+    "hatchling",
     "pip",
-    "python >=3.8"
+    "python >=3.9"
    ]
   },
   "run": {
@@ -238,9 +252,9 @@
    "elements": [
     "h5io >=0.1.7",
     "ipyvtklink",
-    "mne-base >=0.24",
+    "mne-base >=1.0",
     "nilearn",
-    "python >=3.8",
+    "python >=3.9",
     "seaborn",
     "statsmodels"
    ]
@@ -252,8 +266,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/m/mne-nirs/mne-nirs-0.6.0.tar.gz",
- "version": "0.6.0",
+ "url": "https://pypi.io/packages/source/m/mne-nirs/mne_nirs-0.7.0.tar.gz",
+ "version": "0.7.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/mne-nirs.json"
  }
