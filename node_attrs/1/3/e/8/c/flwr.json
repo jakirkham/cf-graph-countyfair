@@ -28,9 +28,9 @@
   "build": {
    "entry_points": [
     "flwr = flwr.cli.app:app",
-    "flower-driver-api = flwr.server:run_driver_api",
-    "flower-fleet-api = flwr.server:run_fleet_api",
-    "flower-superlink-api = flwr.server:run_superlink",
+    "flower-superlink = flwr.server:run_superlink",
+    "flower-superexec = flwr.superexec:run_superexec",
+    "flower-supernode = flwr.client:run_supernode",
     "flower-client-app = flwr.client:run_client_app",
     "flower-server-app = flwr.server:run_server_app",
     "flower-simulation = flwr.simulation.run_simulation:run_simulation_from_cli"
@@ -49,7 +49,7 @@
   },
   "package": {
    "name": "flwr",
-   "version": "1.9.0"
+   "version": "1.10.0"
   },
   "requirements": {
    "host": [
@@ -60,26 +60,27 @@
    "run": [
     "python >=3.8,<4.0",
     "numpy >=1.21.0,<2.0.0",
-    "grpcio >=1.60.0,<2.0.0",
+    "grpcio >=1.60.0,<2.0.0,!=1.64.2,!=1.65.1",
     "protobuf",
     "cryptography >=42.0.4,<43.0.0",
     "pycryptodome >=3.18.0,<4.0.0",
     "iterators >=0.0.2,<0.0.3",
     "typer >=0.9.0,<0.10.0",
     "tomli >=2.0.1,<3.0.0",
+    "tomli-w >=1.0.0,<2.0.0",
     "pathspec >=0.12.1,<1.0.0"
    ]
   },
   "source": {
-   "sha256": "99e869d29bcebe2fa585920cff4f059fb22585be59e3ffc2f017da4df82879a9",
-   "url": "https://pypi.io/packages/source/f/flwr/flwr-1.9.0.tar.gz"
+   "sha256": "106ac779c276d589ed87c6607bde49bfdc6925a8c19c8f8f58ab94e91bfd7020",
+   "url": "https://pypi.io/packages/source/f/flwr/flwr-1.10.0.tar.gz"
   },
   "test": {
    "commands": [
     "flwr --help",
-    "flower-driver-api --help",
-    "flower-fleet-api --help",
     "flower-superlink --help",
+    "flower-superexec --help",
+    "flower-supernode --help",
     "flower-client-app --help",
     "flower-server-app --help",
     "flower-simulation --help"
@@ -118,6 +119,7 @@
     "pycryptodome",
     "python",
     "tomli",
+    "tomli-w",
     "typer"
    ]
   },
@@ -141,9 +143,9 @@
   "build": {
    "entry_points": [
     "flwr = flwr.cli.app:app",
-    "flower-driver-api = flwr.server:run_driver_api",
-    "flower-fleet-api = flwr.server:run_fleet_api",
-    "flower-superlink-api = flwr.server:run_superlink",
+    "flower-superlink = flwr.server:run_superlink",
+    "flower-superexec = flwr.superexec:run_superexec",
+    "flower-supernode = flwr.client:run_supernode",
     "flower-client-app = flwr.client:run_client_app",
     "flower-server-app = flwr.server:run_server_app",
     "flower-simulation = flwr.simulation.run_simulation:run_simulation_from_cli"
@@ -162,7 +164,7 @@
   },
   "package": {
    "name": "flwr",
-   "version": "1.9.0"
+   "version": "1.10.0"
   },
   "requirements": {
    "host": [
@@ -173,26 +175,27 @@
    "run": [
     "python >=3.8,<4.0",
     "numpy >=1.21.0,<2.0.0",
-    "grpcio >=1.60.0,<2.0.0",
+    "grpcio >=1.60.0,<2.0.0,!=1.64.2,!=1.65.1",
     "protobuf",
     "cryptography >=42.0.4,<43.0.0",
     "pycryptodome >=3.18.0,<4.0.0",
     "iterators >=0.0.2,<0.0.3",
     "typer >=0.9.0,<0.10.0",
     "tomli >=2.0.1,<3.0.0",
+    "tomli-w >=1.0.0,<2.0.0",
     "pathspec >=0.12.1,<1.0.0"
    ]
   },
   "source": {
-   "sha256": "99e869d29bcebe2fa585920cff4f059fb22585be59e3ffc2f017da4df82879a9",
-   "url": "https://pypi.io/packages/source/f/flwr/flwr-1.9.0.tar.gz"
+   "sha256": "106ac779c276d589ed87c6607bde49bfdc6925a8c19c8f8f58ab94e91bfd7020",
+   "url": "https://pypi.io/packages/source/f/flwr/flwr-1.10.0.tar.gz"
   },
   "test": {
    "commands": [
     "flwr --help",
-    "flower-driver-api --help",
-    "flower-fleet-api --help",
     "flower-superlink --help",
+    "flower-superexec --help",
+    "flower-supernode --help",
     "flower-client-app --help",
     "flower-server-app --help",
     "flower-simulation --help"
@@ -220,7 +223,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/flwr.json"
  },
- "raw_meta_yaml": "{% set name = \"flwr\" %}\n{% set version = \"1.9.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/flwr-{{ version }}.tar.gz\n  sha256: 99e869d29bcebe2fa585920cff4f059fb22585be59e3ffc2f017da4df82879a9\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n  entry_points:\n    - flwr = flwr.cli.app:app\n    - flower-driver-api = flwr.server:run_driver_api\n    - flower-fleet-api = flwr.server:run_fleet_api\n    - flower-superlink-api = flwr.server:run_superlink\n    - flower-client-app = flwr.client:run_client_app\n    - flower-server-app = flwr.server:run_server_app\n    - flower-simulation = flwr.simulation.run_simulation:run_simulation_from_cli\n\nrequirements:\n  host:\n    - pip\n    - poetry-core >=1.4.0\n    - python >=3.8,<4.0\n  run:\n    # There is some snafu with grpcio version availability on Conda, removing some pinning and hoping for the best...\n    # Upstream also using some unconventional Protobuf version numbers...\n    - python >=3.8,<4.0\n    - numpy >=1.21.0,<2.0.0\n    - grpcio >=1.60.0,<2.0.0\n    - protobuf # >=4.25.2,<5.0.0\n    - cryptography >=42.0.4,<43.0.0\n    - pycryptodome >=3.18.0,<4.0.0\n    - iterators >=0.0.2,<0.0.3\n    - typer >=0.9.0,<0.10.0\n    - tomli >=2.0.1,<3.0.0\n    - pathspec >=0.12.1,<1.0.0\n\ntest:\n  imports:\n    - flwr\n  commands:\n    # Remove pip check see above\n    # - pip check\n    - flwr --help\n    - flower-driver-api --help\n    - flower-fleet-api --help\n    - flower-superlink --help\n    - flower-client-app --help\n    - flower-server-app --help\n    - flower-simulation --help\n  requires:\n    - pip\n    - ray-core\n\nabout:\n  home: https://flower.ai\n  doc_url: https://flower.ai/docs/\n  dev_url: https://github.com/adap/flower\n  summary: Flower - A Friendly Federated Learning Framework\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - tanertopal\n    - danieljanes\n    - flwrmachine\n    - thewchan\n",
+ "raw_meta_yaml": "{% set name = \"flwr\" %}\n{% set version = \"1.10.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/flwr-{{ version }}.tar.gz\n  sha256: 106ac779c276d589ed87c6607bde49bfdc6925a8c19c8f8f58ab94e91bfd7020\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n  entry_points:\n    - flwr = flwr.cli.app:app\n    - flower-superlink = flwr.server:run_superlink\n    - flower-superexec = flwr.superexec:run_superexec\n    - flower-supernode = flwr.client:run_supernode\n    - flower-client-app = flwr.client:run_client_app\n    - flower-server-app = flwr.server:run_server_app\n    - flower-simulation = flwr.simulation.run_simulation:run_simulation_from_cli\n\nrequirements:\n  host:\n    - pip\n    - poetry-core >=1.4.0\n    - python >=3.8,<4.0\n  run:\n    # There is some snafu with grpcio version availability on Conda, removing some pinning and hoping for the best...\n    # Upstream also using some unconventional Protobuf version numbers...\n    - python >=3.8,<4.0\n    - numpy >=1.21.0,<2.0.0\n    - grpcio >=1.60.0,<2.0.0,!=1.64.2,!=1.65.1\n    - protobuf # >=4.25.2,<5.0.0\n    - cryptography >=42.0.4,<43.0.0\n    - pycryptodome >=3.18.0,<4.0.0\n    - iterators >=0.0.2,<0.0.3\n    - typer >=0.9.0,<0.10.0\n    - tomli >=2.0.1,<3.0.0\n    - tomli-w >=1.0.0,<2.0.0\n    - pathspec >=0.12.1,<1.0.0\n\ntest:\n  imports:\n    - flwr\n  commands:\n    # Remove pip check see above\n    # - pip check\n    - flwr --help\n    - flower-superlink --help\n    - flower-superexec --help\n    - flower-supernode --help\n    - flower-client-app --help\n    - flower-server-app --help\n    - flower-simulation --help\n  requires:\n    - pip\n    - ray-core\n\nabout:\n  home: https://flower.ai\n  doc_url: https://flower.ai/docs/\n  dev_url: https://github.com/adap/flower\n  summary: Flower - A Friendly Federated Learning Framework\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - tanertopal\n    - danieljanes\n    - flwrmachine\n    - thewchan\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -235,6 +238,7 @@
    "pycryptodome",
    "python",
    "tomli",
+   "tomli-w",
    "typer"
   ]
  },
@@ -263,6 +267,7 @@
     "pycryptodome",
     "python",
     "tomli",
+    "tomli-w",
     "typer"
    ]
   },
@@ -292,7 +297,7 @@
    "__set__": true,
    "elements": [
     "cryptography >=42.0.4,<43.0.0",
-    "grpcio >=1.60.0,<2.0.0",
+    "grpcio >=1.60.0,<2.0.0,!=1.64.2,!=1.65.1",
     "iterators >=0.0.2,<0.0.3",
     "numpy >=1.21.0,<2.0.0",
     "pathspec >=0.12.1,<1.0.0",
@@ -300,6 +305,7 @@
     "pycryptodome >=3.18.0,<4.0.0",
     "python >=3.8,<4.0",
     "tomli >=2.0.1,<3.0.0",
+    "tomli-w >=1.0.0,<2.0.0",
     "typer >=0.9.0,<0.10.0"
    ]
   },
@@ -311,8 +317,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/f/flwr/flwr-1.9.0.tar.gz",
- "version": "1.9.0",
+ "url": "https://pypi.io/packages/source/f/flwr/flwr-1.10.0.tar.gz",
+ "version": "1.10.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/flwr.json"
  }
