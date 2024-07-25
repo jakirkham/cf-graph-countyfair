@@ -33,7 +33,7 @@
    "ignore_run_exports_from": [
     "libclang"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -66,7 +66,7 @@
    ],
    "run": [
     "python",
-    "pyarrow >=12.0.0",
+    "pyarrow-core >=12.0.0",
     "pandas >=2.0",
     "xarray >=2023.06.0",
     "arviz >=0.15.0",
@@ -130,7 +130,7 @@
     "arviz",
     "numpy",
     "pandas",
-    "pyarrow",
+    "pyarrow-core",
     "python",
     "xarray"
    ]
@@ -162,7 +162,7 @@
    "ignore_run_exports_from": [
     "libclang"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -195,7 +195,7 @@
    ],
    "run": [
     "python",
-    "pyarrow >=12.0.0",
+    "pyarrow-core >=12.0.0",
     "pandas >=2.0",
     "xarray >=2023.06.0",
     "arviz >=0.15.0",
@@ -249,7 +249,7 @@
    "ignore_run_exports_from": [
     "libclang"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -282,7 +282,7 @@
    ],
    "run": [
     "python",
-    "pyarrow >=12.0.0",
+    "pyarrow-core >=12.0.0",
     "pandas >=2.0",
     "xarray >=2023.06.0",
     "arviz >=0.15.0",
@@ -346,7 +346,7 @@
     "arviz",
     "numpy",
     "pandas",
-    "pyarrow",
+    "pyarrow-core",
     "python",
     "xarray"
    ]
@@ -378,7 +378,7 @@
    "ignore_run_exports_from": [
     "libclang"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -411,7 +411,7 @@
    ],
    "run": [
     "python",
-    "pyarrow >=12.0.0",
+    "pyarrow-core >=12.0.0",
     "pandas >=2.0",
     "xarray >=2023.06.0",
     "arviz >=0.15.0",
@@ -475,7 +475,7 @@
     "arviz",
     "numpy",
     "pandas",
-    "pyarrow",
+    "pyarrow-core",
     "python",
     "xarray"
    ]
@@ -507,7 +507,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/nutpie.json"
  },
- "raw_meta_yaml": "{% set name = \"nutpie\" %}\n{% set version = \"0.13.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/nutpie-{{ version }}.tar.gz\n  sha256: 225354701958c0fcf020e87a96335600f157777bbd5c6e64994ff5f12c3dec54\n\nbuild:\n  number: 0\n  skip: true  # [py<310]\n  ignore_run_exports_from:\n    - libclang\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - maturin >=1.1,<2.0                     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('rust') }}\n    - libclang\n    - clang\n    - cargo-bundle-licenses\n  host:\n    - python\n    - setuptools\n    - pip\n    - numpy\n    - maturin >=1.1,<2.0\n  run:\n    - python\n    - pyarrow >=12.0.0\n    - pandas >=2.0\n    - xarray >=2023.06.0\n    - arviz >=0.15.0\n    - {{ pin_compatible('numpy') }}\n  run_constrained:\n    - pymc-base >=5.5.0\n    - pytensor-base >=2.8.11\n    - numba >=0.57\n\ntest:\n  imports:\n    - nutpie\n  requires:\n    - pip\n    - pytest\n    - pymc-base\n    - numba\n    - jax  # [not win]\n  commands:\n    - pip check\n    - pytest tests/test_pymc.py  # [not win]\n    - pytest tests/test_pymc.py -k \"not jax\"  # [win]\n  source_files:\n    - tests\n\nabout:\n  home: https://github.com/pymc-devs/nutpie\n  summary: Sample Stan or PyMC models\n  description: |\n    nutpie implements NUTS, an advanced gradient based sampler\n    for posterior distributions, with an easy to use interface.\n  license: MIT\n  license_family: MIT\n  license_file:\n    - LICENSE\n    - THIRDPARTY.yml\n\nextra:\n  recipe-maintainers:\n    - twiecki\n    - aseyboldt\n    - maresb\n    - lucianopaz\n    - ferrine\n",
+ "raw_meta_yaml": "{% set name = \"nutpie\" %}\n{% set version = \"0.13.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/nutpie-{{ version }}.tar.gz\n  sha256: 225354701958c0fcf020e87a96335600f157777bbd5c6e64994ff5f12c3dec54\n\nbuild:\n  number: 1\n  skip: true  # [py<310]\n  ignore_run_exports_from:\n    - libclang\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - maturin >=1.1,<2.0                     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('rust') }}\n    - libclang\n    - clang\n    - cargo-bundle-licenses\n  host:\n    - python\n    - setuptools\n    - pip\n    - numpy\n    - maturin >=1.1,<2.0\n  run:\n    - python\n    - pyarrow-core >=12.0.0\n    - pandas >=2.0\n    - xarray >=2023.06.0\n    - arviz >=0.15.0\n    - {{ pin_compatible('numpy') }}\n  run_constrained:\n    - pymc-base >=5.5.0\n    - pytensor-base >=2.8.11\n    - numba >=0.57\n\ntest:\n  imports:\n    - nutpie\n  requires:\n    - pip\n    - pytest\n    - pymc-base\n    - numba\n    - jax  # [not win]\n  commands:\n    - pip check\n    - pytest tests/test_pymc.py  # [not win]\n    - pytest tests/test_pymc.py -k \"not jax\"  # [win]\n  source_files:\n    - tests\n\nabout:\n  home: https://github.com/pymc-devs/nutpie\n  summary: Sample Stan or PyMC models\n  description: |\n    nutpie implements NUTS, an advanced gradient based sampler\n    for posterior distributions, with an easy to use interface.\n  license: MIT\n  license_family: MIT\n  license_file:\n    - LICENSE\n    - THIRDPARTY.yml\n\nextra:\n  recipe-maintainers:\n    - twiecki\n    - aseyboldt\n    - maresb\n    - lucianopaz\n    - ferrine\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -521,7 +521,7 @@
    "numpy",
    "pandas",
    "pip",
-   "pyarrow",
+   "pyarrow-core",
    "python",
    "rust_compiler_stub",
    "setuptools",
@@ -560,7 +560,7 @@
     "c_stdlib_stub",
     "numpy",
     "pandas",
-    "pyarrow",
+    "pyarrow-core",
     "python",
     "xarray"
    ]
@@ -605,7 +605,7 @@
     "arviz >=0.15.0",
     "numpy",
     "pandas >=2.0",
-    "pyarrow >=12.0.0",
+    "pyarrow-core >=12.0.0",
     "python",
     "xarray >=2023.06.0"
    ]
@@ -642,7 +642,7 @@
    "ignore_run_exports_from": [
     "libclang"
    ],
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -675,7 +675,7 @@
    ],
    "run": [
     "python",
-    "pyarrow >=12.0.0",
+    "pyarrow-core >=12.0.0",
     "pandas >=2.0",
     "xarray >=2023.06.0",
     "arviz >=0.15.0",
@@ -738,7 +738,7 @@
     "arviz",
     "numpy",
     "pandas",
-    "pyarrow",
+    "pyarrow-core",
     "python",
     "xarray"
    ]
