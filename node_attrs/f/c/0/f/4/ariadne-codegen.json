@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "hint-all"
+  },
   "conda_build": {
    "error_overlinking": true
   },
@@ -17,60 +20,184 @@
   "about": {
    "home": "https://github.com/mirumee/ariadne-codegen",
    "license": "BSD-3-Clause",
-   "license_file": "LICENSE",
+   "license_file": "dist/LICENSE",
    "summary": "Generate fully typed GraphQL client from schema, queries and mutations!"
   },
   "build": {
-   "entry_points": [
-    "ariadne-codegen = ariadne_codegen.main:main"
-   ],
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   "number": "0"
   },
   "extra": {
+   "feedstock-name": "ariadne-codegen",
    "recipe-maintainers": [
-    "ytausch"
+    "ytausch",
+    "bollwyvl"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "entry_points": [
+      "ariadne-codegen = ariadne_codegen.main:main"
+     ],
+     "noarch": "python",
+     "script": "cd dist && PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+    },
+    "name": "ariadne-codegen",
+    "requirements": {
+     "host": [
+      "python >=3.9",
+      "hatchling",
+      "pip"
+     ],
+     "run": [
+      "python >=3.9",
+      "autoflake",
+      "black",
+      "click >=8.1,<9.0",
+      "graphql-core >=3.2.0,<3.3",
+      "httpx >=0.23,<1.0",
+      "isort",
+      "pydantic >=2.0.0,<3.0.0",
+      "toml >=0.10,<1.0"
+     ],
+     "run_constrained": [
+      "websockets >=11.0,<12.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "ariadne-codegen --help"
+     ],
+     "imports": [
+      "ariadne_codegen"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "ariadne-codegen-with-websockets",
+    "requirements": {
+     "host": [
+      "python >=3.9"
+     ],
+     "run": [
+      "ariadne-codegen",
+      "python >=3.9",
+      "websockets"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "ariadne-codegen --help"
+     ],
+     "imports": [
+      "ariadne_codegen"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "ariadne-codegen-with-opentelemetry",
+    "requirements": {
+     "host": [
+      "python >=3.9"
+     ],
+     "run": [
+      "ariadne-codegen",
+      "python >=3.9",
+      "opentelemetry-api"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "ariadne-codegen --help"
+     ],
+     "imports": [
+      "ariadne_codegen"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "ariadne-codegen-with-all",
+    "requirements": {
+     "host": [
+      "python >=3.9"
+     ],
+     "run": [
+      "ariadne-codegen-with-opentelemetry",
+      "ariadne-codegen-with-websockets",
+      "python >=3.9"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "ariadne-codegen --help",
+      "cd src && pytest -vv --tb=long --color=yes"
+     ],
+     "imports": [
+      "ariadne_codegen"
+     ],
+     "requires": [
+      "ariadne",
+      "freezegun",
+      "pip",
+      "pytest",
+      "pytest-asyncio",
+      "pytest-httpx",
+      "pytest-mock",
+      "requests-toolbelt"
+     ],
+     "source_files": [
+      "src/tests"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "ariadne-codegen",
-   "version": "0.13.0"
+   "name": "ariadne-codegen-split",
+   "version": "0.14.0"
   },
   "requirements": {
    "host": [
-    "python >=3.7",
-    "hatchling",
-    "pip"
+    "python >=3.9"
    ],
    "run": [
-    "python >=3.7",
-    "click >=8.1,<9.dev0",
-    "graphql-core >=3.2.0,<3.3",
-    "toml >=0.10,<1.dev0",
-    "httpx >=0.23,<1.dev0",
-    "pydantic >=2.0.0,<3.0.0",
-    "black",
-    "isort",
-    "autoflake"
+    "python >=3.9"
    ]
   },
-  "source": {
-   "sha256": "52aa67037dcd88a2f6013118e69ba0ed35a49f37312668a1969907f0e9c9bf8b",
-   "url": "https://pypi.io/packages/source/a/ariadne-codegen/ariadne_codegen-0.13.0.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "pip check",
-    "ariadne-codegen --help"
-   ],
-   "imports": [
-    "ariadne_codegen"
-   ],
-   "requires": [
-    "pip"
-   ]
-  }
+  "source": [
+   {
+    "folder": "dist",
+    "sha256": "d5b15470195c3858b88a2bae855b5c04602ffae40228077b6cfb26a57d3f14f6",
+    "url": "https://pypi.io/packages/source/a/ariadne-codegen/ariadne_codegen-0.14.0.tar.gz"
+   },
+   {
+    "folder": "src",
+    "sha256": "86d79970c8260fa8292e40ada695babcf47560d6ac599611d039daedaae8543c",
+    "url": "https://github.com/mirumee/ariadne-codegen/archive/refs/tags/0.14.0.tar.gz"
+   }
+  ]
  },
  "linux_64_requirements": {
   "build": {
@@ -88,21 +215,33 @@
   "run": {
    "__set__": true,
    "elements": [
+    "ariadne-codegen",
+    "ariadne-codegen-with-opentelemetry",
+    "ariadne-codegen-with-websockets",
     "autoflake",
     "black",
     "click",
     "graphql-core",
     "httpx",
     "isort",
+    "opentelemetry-api",
     "pydantic",
     "python",
-    "toml"
+    "toml",
+    "websockets"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "ariadne",
+    "freezegun",
+    "pip",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-httpx",
+    "pytest-mock",
+    "requests-toolbelt"
    ]
   }
  },
@@ -110,66 +249,194 @@
   "about": {
    "home": "https://github.com/mirumee/ariadne-codegen",
    "license": "BSD-3-Clause",
-   "license_file": "LICENSE",
+   "license_file": "dist/LICENSE",
    "summary": "Generate fully typed GraphQL client from schema, queries and mutations!"
   },
   "build": {
-   "entry_points": [
-    "ariadne-codegen = ariadne_codegen.main:main"
-   ],
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   "number": "0"
   },
   "extra": {
+   "feedstock-name": "ariadne-codegen",
    "recipe-maintainers": [
-    "ytausch"
+    "ytausch",
+    "bollwyvl"
    ]
   },
+  "outputs": [
+   {
+    "build": {
+     "entry_points": [
+      "ariadne-codegen = ariadne_codegen.main:main"
+     ],
+     "noarch": "python",
+     "script": "cd dist && PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+    },
+    "name": "ariadne-codegen",
+    "requirements": {
+     "host": [
+      "python >=3.9",
+      "hatchling",
+      "pip"
+     ],
+     "run": [
+      "python >=3.9",
+      "autoflake",
+      "black",
+      "click >=8.1,<9.0",
+      "graphql-core >=3.2.0,<3.3",
+      "httpx >=0.23,<1.0",
+      "isort",
+      "pydantic >=2.0.0,<3.0.0",
+      "toml >=0.10,<1.0"
+     ],
+     "run_constrained": [
+      "websockets >=11.0,<12.0"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "ariadne-codegen --help"
+     ],
+     "imports": [
+      "ariadne_codegen"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "ariadne-codegen-with-websockets",
+    "requirements": {
+     "host": [
+      "python >=3.9"
+     ],
+     "run": [
+      "ariadne-codegen",
+      "python >=3.9",
+      "websockets"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "ariadne-codegen --help"
+     ],
+     "imports": [
+      "ariadne_codegen"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "ariadne-codegen-with-opentelemetry",
+    "requirements": {
+     "host": [
+      "python >=3.9"
+     ],
+     "run": [
+      "ariadne-codegen",
+      "python >=3.9",
+      "opentelemetry-api"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "ariadne-codegen --help"
+     ],
+     "imports": [
+      "ariadne_codegen"
+     ],
+     "requires": [
+      "pip"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "python"
+    },
+    "name": "ariadne-codegen-with-all",
+    "requirements": {
+     "host": [
+      "python >=3.9"
+     ],
+     "run": [
+      "ariadne-codegen-with-opentelemetry",
+      "ariadne-codegen-with-websockets",
+      "python >=3.9"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "ariadne-codegen --help",
+      "cd src && pytest -vv --tb=long --color=yes"
+     ],
+     "imports": [
+      "ariadne_codegen"
+     ],
+     "requires": [
+      "ariadne",
+      "freezegun",
+      "pip",
+      "pytest",
+      "pytest-asyncio",
+      "pytest-httpx",
+      "pytest-mock",
+      "requests-toolbelt"
+     ],
+     "source_files": [
+      "src/tests"
+     ]
+    }
+   }
+  ],
   "package": {
-   "name": "ariadne-codegen",
-   "version": "0.13.0"
+   "name": "ariadne-codegen-split",
+   "version": "0.14.0"
   },
   "requirements": {
    "host": [
-    "python >=3.7",
-    "hatchling",
-    "pip"
+    "python >=3.9"
    ],
    "run": [
-    "python >=3.7",
-    "click >=8.1,<9.dev0",
-    "graphql-core >=3.2.0,<3.3",
-    "toml >=0.10,<1.dev0",
-    "httpx >=0.23,<1.dev0",
-    "pydantic >=2.0.0,<3.0.0",
-    "black",
-    "isort",
-    "autoflake"
+    "python >=3.9"
    ]
   },
-  "source": {
-   "sha256": "52aa67037dcd88a2f6013118e69ba0ed35a49f37312668a1969907f0e9c9bf8b",
-   "url": "https://pypi.io/packages/source/a/ariadne-codegen/ariadne_codegen-0.13.0.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "pip check",
-    "ariadne-codegen --help"
-   ],
-   "imports": [
-    "ariadne_codegen"
-   ],
-   "requires": [
-    "pip"
-   ]
-  }
+  "source": [
+   {
+    "folder": "dist",
+    "sha256": "d5b15470195c3858b88a2bae855b5c04602ffae40228077b6cfb26a57d3f14f6",
+    "url": "https://pypi.io/packages/source/a/ariadne-codegen/ariadne_codegen-0.14.0.tar.gz"
+   },
+   {
+    "folder": "src",
+    "sha256": "86d79970c8260fa8292e40ada695babcf47560d6ac599611d039daedaae8543c",
+    "url": "https://github.com/mirumee/ariadne-codegen/archive/refs/tags/0.14.0.tar.gz"
+   }
+  ]
  },
- "name": "ariadne-codegen",
+ "name": "ariadne-codegen-split",
  "outputs_names": {
   "__set__": true,
   "elements": [
-   "ariadne-codegen"
+   "ariadne-codegen",
+   "ariadne-codegen-split",
+   "ariadne-codegen-with-all",
+   "ariadne-codegen-with-opentelemetry",
+   "ariadne-codegen-with-websockets"
   ]
  },
  "parsing_error": false,
@@ -179,10 +446,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/ariadne-codegen.json"
  },
- "raw_meta_yaml": "{% set name = \"ariadne-codegen\" %}\n{% set version = \"0.13.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ariadne_codegen-{{ version }}.tar.gz\n  sha256: 52aa67037dcd88a2f6013118e69ba0ed35a49f37312668a1969907f0e9c9bf8b\n\nbuild:\n  entry_points:\n    - ariadne-codegen = ariadne_codegen.main:main\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.7\n    - hatchling\n    - pip\n  run:\n    - python >=3.7\n    - click >=8.1,<9.dev0\n    - graphql-core >=3.2.0,<3.3\n    - toml >=0.10,<1.dev0\n    - httpx >=0.23,<1.dev0\n    - pydantic >=2.0.0,<3.0.0\n    - black\n    - isort\n    - autoflake\n\ntest:\n  imports:\n    - ariadne_codegen\n  commands:\n    - pip check\n    - ariadne-codegen --help\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/mirumee/ariadne-codegen\n  summary: Generate fully typed GraphQL client from schema, queries and mutations!\n  license: BSD-3-Clause\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - ytausch\n",
+ "raw_meta_yaml": "{% set version = \"0.14.0\" %}\n{% set min_python = \"python >=3.9\" %}\n\npackage:\n  name: ariadne-codegen-split\n  version: {{ version }}\n\nsource:\n  - folder: dist\n    url: https://pypi.io/packages/source/a/ariadne-codegen/ariadne_codegen-{{ version }}.tar.gz\n    sha256: d5b15470195c3858b88a2bae855b5c04602ffae40228077b6cfb26a57d3f14f6\n  - folder: src\n    url: https://github.com/mirumee/ariadne-codegen/archive/refs/tags/{{ version }}.tar.gz\n    sha256: 86d79970c8260fa8292e40ada695babcf47560d6ac599611d039daedaae8543c\n\nbuild:\n  noarch: python\n  number: 0\n\nrequirements:\n  host:\n    - {{ min_python }}\n  run:\n    - {{ min_python }}\n\noutputs:\n  - name: ariadne-codegen\n    build:\n      noarch: python\n      script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n      entry_points:\n        - ariadne-codegen = ariadne_codegen.main:main\n    requirements:\n      host:\n        - {{ min_python }}\n        - hatchling\n        - pip\n      run:\n        - {{ min_python }}\n        - autoflake\n        - black\n        - click >=8.1,<9.0\n        - graphql-core >=3.2.0,<3.3\n        - httpx >=0.23,<1.0\n        - isort\n        - pydantic >=2.0.0,<3.0.0\n        - toml >=0.10,<1.0\n      run_constrained:\n        - websockets >=11.0,<12.0\n    test:\n      requires:\n        - pip\n      imports:\n        - ariadne_codegen\n      commands:\n        - pip check\n        - ariadne-codegen --help\n\n  - name: ariadne-codegen-with-websockets\n    build:\n      noarch: python\n    requirements:\n      host:\n        - {{ min_python }}\n      run:\n        - {{ pin_subpackage(\"ariadne-codegen\", exact=True) }}\n        - {{ min_python }}\n        - websockets\n    test:\n      requires:\n        - pip\n      imports:\n        - ariadne_codegen\n      commands:\n        - pip check\n        - ariadne-codegen --help\n  - name: ariadne-codegen-with-opentelemetry\n    build:\n      noarch: python\n    requirements:\n      host:\n        - {{ min_python }}\n      run:\n        - {{ pin_subpackage(\"ariadne-codegen\", exact=True) }}\n        - {{ min_python }}\n        - opentelemetry-api\n    test:\n      requires:\n        - pip\n      imports:\n        - ariadne_codegen\n      commands:\n        - pip check\n        - ariadne-codegen --help\n  - name: ariadne-codegen-with-all\n    build:\n      noarch: python\n    requirements:\n      host:\n        - {{ min_python }}\n      run:\n        - {{ pin_subpackage(\"ariadne-codegen-with-opentelemetry\", exact=True) }}\n        - {{ pin_subpackage(\"ariadne-codegen-with-websockets\", exact=True) }}\n        - {{ min_python }}\n    test:\n      source_files:\n        - src/tests\n      requires:\n        - ariadne\n        - freezegun\n        - pip\n        - pytest\n        - pytest-asyncio\n        - pytest-httpx\n        - pytest-mock\n        - requests-toolbelt\n      imports:\n        - ariadne_codegen\n      commands:\n        - pip check\n        - ariadne-codegen --help\n        # doesn't handle windows slashes\n        {% set skips = '-k \"not invalid_file\"' %}  # [win]\n        {% set skips = '' %}                       # [unix]\n        - cd src && pytest -vv --tb=long --color=yes {{ skips }}\n\nabout:\n  home: https://github.com/mirumee/ariadne-codegen\n  summary: Generate fully typed GraphQL client from schema, queries and mutations!\n  license: BSD-3-Clause\n  license_file: dist/LICENSE\n\nextra:\n  feedstock-name: ariadne-codegen\n  recipe-maintainers:\n    - ytausch\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
+   "ariadne-codegen",
+   "ariadne-codegen-with-opentelemetry",
+   "ariadne-codegen-with-websockets",
    "autoflake",
    "black",
    "click",
@@ -190,10 +460,12 @@
    "hatchling",
    "httpx",
    "isort",
+   "opentelemetry-api",
    "pip",
    "pydantic",
    "python",
-   "toml"
+   "toml",
+   "websockets"
   ]
  },
  "requirements": {
@@ -212,21 +484,33 @@
   "run": {
    "__set__": true,
    "elements": [
+    "ariadne-codegen",
+    "ariadne-codegen-with-opentelemetry",
+    "ariadne-codegen-with-websockets",
     "autoflake",
     "black",
     "click",
     "graphql-core",
     "httpx",
     "isort",
+    "opentelemetry-api",
     "pydantic",
     "python",
-    "toml"
+    "toml",
+    "websockets"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "ariadne",
+    "freezegun",
+    "pip",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-httpx",
+    "pytest-mock",
+    "requests-toolbelt"
    ]
   }
  },
@@ -241,32 +525,44 @@
    "elements": [
     "hatchling",
     "pip",
-    "python >=3.7"
+    "python >=3.9"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "ariadne-codegen",
+    "ariadne-codegen-with-opentelemetry",
+    "ariadne-codegen-with-websockets",
     "autoflake",
     "black",
-    "click >=8.1,<9.dev0",
+    "click >=8.1,<9.0",
     "graphql-core >=3.2.0,<3.3",
-    "httpx >=0.23,<1.dev0",
+    "httpx >=0.23,<1.0",
     "isort",
+    "opentelemetry-api",
     "pydantic >=2.0.0,<3.0.0",
-    "python >=3.7",
-    "toml >=0.10,<1.dev0"
+    "python >=3.9",
+    "toml >=0.10,<1.0",
+    "websockets"
    ]
   },
   "test": {
    "__set__": true,
    "elements": [
-    "pip"
+    "ariadne",
+    "freezegun",
+    "pip",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-httpx",
+    "pytest-mock",
+    "requests-toolbelt"
    ]
   }
  },
- "url": "https://pypi.io/packages/source/a/ariadne-codegen/ariadne_codegen-0.13.0.tar.gz",
- "version": "0.13.0",
+ "url": "https://pypi.io/packages/source/a/ariadne-codegen/ariadne_codegen-0.14.0.tar.gz",
+ "version": "0.14.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/ariadne-codegen.json"
  }
