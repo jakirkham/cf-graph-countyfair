@@ -29,7 +29,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
    "recipe-maintainers": [
@@ -43,7 +43,10 @@
   "requirements": {
    "host": [
     "python >=3.8",
-    "pip",
+    "pip"
+   ],
+   "run": [
+    "python >=3.8",
     "h5py",
     "tqdm",
     "numpy",
@@ -53,16 +56,14 @@
     "pandas",
     "pyarrow",
     "requests",
+    "seaborn",
     "matplotlib",
     "tensorboard",
     "scikit-learn",
     "pytorch >=1.10.0",
-    "tsdb >=0.4",
+    "tsdb >=0.6",
     "pygrinder >=0.6",
-    "benchpots >=0.1"
-   ],
-   "run": [
-    "python >=3.8"
+    "benchpots >=0.2"
    ]
   },
   "source": {
@@ -70,30 +71,9 @@
    "url": "https://pypi.io/packages/source/p/pypots/pypots-0.7.tar.gz"
   },
   "test": {
-   "commands": [
-    "pip check"
-   ],
    "imports": [
-    "pypots"
-   ],
-   "requires": [
-    "pip",
-    "h5py",
-    "tqdm",
-    "numpy",
-    "scipy",
-    "sympy",
-    "einops",
-    "pandas",
-    "pyarrow",
-    "requests",
-    "matplotlib",
-    "tensorboard",
-    "scikit-learn",
-    "pytorch >=1.10.0",
-    "tsdb >=0.4",
-    "pygrinder >=0.6",
-    "benchpots >=0.1"
+    "pypots",
+    "pypots.nn.modules"
    ]
   }
  },
@@ -105,13 +85,19 @@
   "host": {
    "__set__": true,
    "elements": [
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
     "benchpots",
     "einops",
     "h5py",
     "matplotlib",
     "numpy",
     "pandas",
-    "pip",
     "pyarrow",
     "pygrinder",
     "python",
@@ -119,39 +105,16 @@
     "requests",
     "scikit-learn",
     "scipy",
+    "seaborn",
     "sympy",
     "tensorboard",
     "tqdm",
     "tsdb"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "python"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "benchpots",
-    "einops",
-    "h5py",
-    "matplotlib",
-    "numpy",
-    "pandas",
-    "pip",
-    "pyarrow",
-    "pygrinder",
-    "pytorch",
-    "requests",
-    "scikit-learn",
-    "scipy",
-    "sympy",
-    "tensorboard",
-    "tqdm",
-    "tsdb"
-   ]
+   "elements": []
   }
  },
  "meta_yaml": {
@@ -167,7 +130,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
    "recipe-maintainers": [
@@ -181,7 +144,10 @@
   "requirements": {
    "host": [
     "python >=3.8",
-    "pip",
+    "pip"
+   ],
+   "run": [
+    "python >=3.8",
     "h5py",
     "tqdm",
     "numpy",
@@ -191,16 +157,14 @@
     "pandas",
     "pyarrow",
     "requests",
+    "seaborn",
     "matplotlib",
     "tensorboard",
     "scikit-learn",
     "pytorch >=1.10.0",
-    "tsdb >=0.4",
+    "tsdb >=0.6",
     "pygrinder >=0.6",
-    "benchpots >=0.1"
-   ],
-   "run": [
-    "python >=3.8"
+    "benchpots >=0.2"
    ]
   },
   "source": {
@@ -208,30 +172,9 @@
    "url": "https://pypi.io/packages/source/p/pypots/pypots-0.7.tar.gz"
   },
   "test": {
-   "commands": [
-    "pip check"
-   ],
    "imports": [
-    "pypots"
-   ],
-   "requires": [
-    "pip",
-    "h5py",
-    "tqdm",
-    "numpy",
-    "scipy",
-    "sympy",
-    "einops",
-    "pandas",
-    "pyarrow",
-    "requests",
-    "matplotlib",
-    "tensorboard",
-    "scikit-learn",
-    "pytorch >=1.10.0",
-    "tsdb >=0.4",
-    "pygrinder >=0.6",
-    "benchpots >=0.1"
+    "pypots",
+    "pypots.nn.modules"
    ]
   }
  },
@@ -249,7 +192,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pypots.json"
  },
- "raw_meta_yaml": "{% set name = \"pypots\" %}\n{% set version = \"0.7\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 4a91c3479a54d218bc951c1f2a27861889ad11119c40151e150d6dad774e2834\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n    - h5py\n    - tqdm\n    - numpy\n    - scipy\n    - sympy\n    - einops\n    - pandas\n    - pyarrow\n    - requests\n    - matplotlib\n    - tensorboard\n    - scikit-learn\n    - pytorch >=1.10.0\n    - tsdb >=0.4\n    - pygrinder >=0.6\n    - benchpots >=0.1\n  run:\n    - python >=3.8\n\ntest:\n  imports:\n    - pypots\n  requires:\n    - pip\n    - h5py\n    - tqdm\n    - numpy\n    - scipy\n    - sympy\n    - einops\n    - pandas\n    - pyarrow\n    - requests\n    - matplotlib\n    - tensorboard\n    - scikit-learn\n    - pytorch >=1.10.0\n    - tsdb >=0.4\n    - pygrinder >=0.6\n    - benchpots >=0.1\n  commands:\n    - pip check\n\nabout:\n  home: https://github.com/WenjieDu/PyPOTS\n  summary: a Python toolbox for machine learning on Partially-Observed Time Series\n  description: |\n    PyPOTS is born to become a handy toolbox that is going to make data mining on POTS easy rather than tedious, \n    to help engineers and researchers focus more on the core problems in their hands rather than on how to deal \n    with the missing parts in their data. PyPOTS will keep integrating classical and the latest state-of-the-art \n    data mining algorithms for partially-observed multivariate time series. For sure, besides various algorithms, \n    PyPOTS is going to have unified APIs together with detailed documentation and interactive examples across \n    algorithms as tutorials.\n  license: BSD-3-Clause\n  license_file: LICENSE\n  doc_url: https://docs.pypots.com\n  dev_url: https://github.com/WenjieDu/PyPOTS\n\nextra:\n  recipe-maintainers:\n    - WenjieDu\n",
+ "raw_meta_yaml": "{% set name = \"pypots\" %}\n{% set version = \"0.7\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 4a91c3479a54d218bc951c1f2a27861889ad11119c40151e150d6dad774e2834\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n  run:\n    - python >=3.8\n    - h5py\n    - tqdm\n    - numpy\n    - scipy\n    - sympy\n    - einops\n    - pandas\n    - pyarrow\n    - requests\n    - seaborn\n    - matplotlib\n    - tensorboard\n    - scikit-learn\n    - pytorch >=1.10.0\n    - tsdb >=0.6\n    - pygrinder >=0.6\n    - benchpots >=0.2\n\ntest:\n  imports:\n    - pypots\n    - pypots.nn.modules\n\nabout:\n  home: https://github.com/WenjieDu/PyPOTS\n  summary: a Python toolbox for machine learning on Partially-Observed Time Series\n  description: |\n    PyPOTS is born to become a handy toolbox that is going to make data mining on POTS easy rather than tedious, \n    to help engineers and researchers focus more on the core problems in their hands rather than on how to deal \n    with the missing parts in their data. PyPOTS will keep integrating classical and the latest state-of-the-art \n    data mining algorithms for partially-observed multivariate time series. For sure, besides various algorithms, \n    PyPOTS is going to have unified APIs together with detailed documentation and interactive examples across \n    algorithms as tutorials.\n  license: BSD-3-Clause\n  license_file: LICENSE\n  doc_url: https://docs.pypots.com\n  dev_url: https://github.com/WenjieDu/PyPOTS\n\nextra:\n  recipe-maintainers:\n    - WenjieDu\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -267,6 +210,7 @@
    "requests",
    "scikit-learn",
    "scipy",
+   "seaborn",
    "sympy",
    "tensorboard",
    "tqdm",
@@ -281,13 +225,19 @@
   "host": {
    "__set__": true,
    "elements": [
+    "pip",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
     "benchpots",
     "einops",
     "h5py",
     "matplotlib",
     "numpy",
     "pandas",
-    "pip",
     "pyarrow",
     "pygrinder",
     "python",
@@ -295,39 +245,16 @@
     "requests",
     "scikit-learn",
     "scipy",
+    "seaborn",
     "sympy",
     "tensorboard",
     "tqdm",
     "tsdb"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "python"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "benchpots",
-    "einops",
-    "h5py",
-    "matplotlib",
-    "numpy",
-    "pandas",
-    "pip",
-    "pyarrow",
-    "pygrinder",
-    "pytorch",
-    "requests",
-    "scikit-learn",
-    "scipy",
-    "sympy",
-    "tensorboard",
-    "tqdm",
-    "tsdb"
-   ]
+   "elements": []
   }
  },
  "strong_exports": false,
@@ -339,13 +266,19 @@
   "host": {
    "__set__": true,
    "elements": [
-    "benchpots >=0.1",
+    "pip",
+    "python >=3.8"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "benchpots >=0.2",
     "einops",
     "h5py",
     "matplotlib",
     "numpy",
     "pandas",
-    "pip",
     "pyarrow",
     "pygrinder >=0.6",
     "python >=3.8",
@@ -353,39 +286,16 @@
     "requests",
     "scikit-learn",
     "scipy",
+    "seaborn",
     "sympy",
     "tensorboard",
     "tqdm",
-    "tsdb >=0.4"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "python >=3.8"
+    "tsdb >=0.6"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": [
-    "benchpots >=0.1",
-    "einops",
-    "h5py",
-    "matplotlib",
-    "numpy",
-    "pandas",
-    "pip",
-    "pyarrow",
-    "pygrinder >=0.6",
-    "pytorch >=1.10.0",
-    "requests",
-    "scikit-learn",
-    "scipy",
-    "sympy",
-    "tensorboard",
-    "tqdm",
-    "tsdb >=0.4"
-   ]
+   "elements": []
   }
  },
  "url": "https://pypi.io/packages/source/p/pypots/pypots-0.7.tar.gz",
