@@ -100,11 +100,11 @@
   ],
   "package": {
    "name": "pulumi-sdks",
-   "version": "3.122.0"
+   "version": "3.125.0"
   },
   "source": {
-   "sha256": "29e88b6e666fb1b7aa4784a97d60305b1765c66f90660cc2f9cb0dd11a4fa614",
-   "url": "https://github.com/pulumi/pulumi/archive/refs/tags/v3.122.0.tar.gz"
+   "sha256": "16b32404e56520de20b681b870edb4dda355c406ba663d0fa168ef86f80b35d0",
+   "url": "https://github.com/pulumi/pulumi/archive/refs/tags/v3.125.0.tar.gz"
   }
  },
  "linux_64_requirements": {
@@ -219,11 +219,11 @@
   ],
   "package": {
    "name": "pulumi-sdks",
-   "version": "3.122.0"
+   "version": "3.125.0"
   },
   "source": {
-   "sha256": "29e88b6e666fb1b7aa4784a97d60305b1765c66f90660cc2f9cb0dd11a4fa614",
-   "url": "https://github.com/pulumi/pulumi/archive/refs/tags/v3.122.0.tar.gz"
+   "sha256": "16b32404e56520de20b681b870edb4dda355c406ba663d0fa168ef86f80b35d0",
+   "url": "https://github.com/pulumi/pulumi/archive/refs/tags/v3.125.0.tar.gz"
   }
  },
  "name": "pulumi-sdks",
@@ -242,7 +242,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pulumi-sdks.json"
  },
- "raw_meta_yaml": "{% set name = \"pulumi-sdks\" %}\n{% set version = \"3.122.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pulumi/pulumi/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 29e88b6e666fb1b7aa4784a97d60305b1765c66f90660cc2f9cb0dd11a4fa614\n\nbuild:\n  number: 0\n  skip: true  # [not linux]\n\noutputs:\n  - name: pulumi-core\n    script: build_pulumi_core.sh\n    requirements:\n      build:\n        - {{ compiler('go') }}\n        - make\n        - go-licenses\n      run:\n        - {{ pin_subpackage(\"pulumi-core\") }}\n    test:\n      commands:\n        - pulumi version\n\n  - name: pulumi-sdk-go\n    script: build_pulumi_go.sh\n    requirements:\n      build:\n        - {{ compiler('go') }}\n        - make\n        - go-licenses\n      run:\n        - {{ pin_subpackage(\"pulumi-core\") }}\n    test:\n      commands:\n        - test -f $PREFIX/bin/pulumi-language-go\n\n  - name: pulumi-sdk-python\n    script: build_pulumi_python.sh\n    requirements:\n      build:\n        - {{ compiler('go') }}\n        - make\n        - go-licenses\n      run:\n        - {{ pin_subpackage(\"pulumi-core\") }}\n        - python\n    test:\n      commands:\n        - test -f $PREFIX/bin/pulumi-analyzer-policy-python\n        - test -f $PREFIX/bin/pulumi-language-python\n        - test -f $PREFIX/bin/pulumi-language-python-exec\n        - test -f $PREFIX/bin/pulumi-resource-pulumi-python\n\n  # The nodejs sdk needs more work; let's leave it for the feedstock\n  # - name: pulumi-sdk-nodejs\n  #   script: build_pulumi_nodejs.sh\n  #   requirements:\n  #     build:\n  #       - {{ compiler('go') }}\n  #       - make\n  #       - go-licenses\n  #       - yarn\n  #     run:\n  #       - {{ pin_subpackage(\"pulumi-core\") }}\n  #   test:\n  #     commands:\n  #       - pulumi new nodejs\n\nabout:\n  home: https://www.pulumi.com/\n  summary: Infrastructure as Code in any Programming Language\n  description: |\n    Pulumi is an infrastructure as code platform that allows you to use familiar\n    programming languages and tools to build, deploy, and manage cloud infrastructure.\n    Pulumi is free, open source, and optionally pairs with the Pulumi Cloud to\n    make managing infrastructure secure, reliable, and hassle-free.\n  license: Apache-2.0\n  license_family: Apache\n  license_file:\n    - LICENSE\n    - license-files/\n  doc_url: https://www.pulumi.com/docs/\n  dev_url: https://github.com/pulumi/pulumi\n\nextra:\n  recipe-maintainers:\n    - zklaus\n",
+ "raw_meta_yaml": "{% set name = \"pulumi-sdks\" %}\n{% set version = \"3.125.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pulumi/pulumi/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 16b32404e56520de20b681b870edb4dda355c406ba663d0fa168ef86f80b35d0\n\nbuild:\n  number: 0\n  skip: true  # [not linux]\n\noutputs:\n  - name: pulumi-core\n    script: build_pulumi_core.sh\n    requirements:\n      build:\n        - {{ compiler('go') }}\n        - make\n        - go-licenses\n      run:\n        - {{ pin_subpackage(\"pulumi-core\") }}\n    test:\n      commands:\n        - pulumi version\n\n  - name: pulumi-sdk-go\n    script: build_pulumi_go.sh\n    requirements:\n      build:\n        - {{ compiler('go') }}\n        - make\n        - go-licenses\n      run:\n        - {{ pin_subpackage(\"pulumi-core\") }}\n    test:\n      commands:\n        - test -f $PREFIX/bin/pulumi-language-go\n\n  - name: pulumi-sdk-python\n    script: build_pulumi_python.sh\n    requirements:\n      build:\n        - {{ compiler('go') }}\n        - make\n        - go-licenses\n      run:\n        - {{ pin_subpackage(\"pulumi-core\") }}\n        - python\n    test:\n      commands:\n        - test -f $PREFIX/bin/pulumi-analyzer-policy-python\n        - test -f $PREFIX/bin/pulumi-language-python\n        - test -f $PREFIX/bin/pulumi-language-python-exec\n        - test -f $PREFIX/bin/pulumi-resource-pulumi-python\n\n  # The nodejs sdk needs more work; let's leave it for the feedstock\n  # - name: pulumi-sdk-nodejs\n  #   script: build_pulumi_nodejs.sh\n  #   requirements:\n  #     build:\n  #       - {{ compiler('go') }}\n  #       - make\n  #       - go-licenses\n  #       - yarn\n  #     run:\n  #       - {{ pin_subpackage(\"pulumi-core\") }}\n  #   test:\n  #     commands:\n  #       - pulumi new nodejs\n\nabout:\n  home: https://www.pulumi.com/\n  summary: Infrastructure as Code in any Programming Language\n  description: |\n    Pulumi is an infrastructure as code platform that allows you to use familiar\n    programming languages and tools to build, deploy, and manage cloud infrastructure.\n    Pulumi is free, open source, and optionally pairs with the Pulumi Cloud to\n    make managing infrastructure secure, reliable, and hassle-free.\n  license: Apache-2.0\n  license_family: Apache\n  license_file:\n    - LICENSE\n    - license-files/\n  doc_url: https://www.pulumi.com/docs/\n  dev_url: https://github.com/pulumi/pulumi\n\nextra:\n  recipe-maintainers:\n    - zklaus\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -304,8 +304,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/pulumi/pulumi/archive/refs/tags/v3.122.0.tar.gz",
- "version": "3.122.0",
+ "url": "https://github.com/pulumi/pulumi/archive/refs/tags/v3.125.0.tar.gz",
+ "version": "3.125.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pulumi-sdks.json"
  }
