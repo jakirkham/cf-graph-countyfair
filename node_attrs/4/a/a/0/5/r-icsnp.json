@@ -28,7 +28,7 @@
    "summary": "Tools for multivariate nonparametrics, as location tests based on marginal ranks, spatial median and spatial signs computation, Hotelling's T-test, estimates of shape are implemented."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -49,6 +49,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -81,6 +82,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -115,8 +117,7 @@
    "summary": "Tools for multivariate nonparametrics, as location tests based on marginal ranks, spatial median and spatial signs computation, Hotelling's T-test, estimates of shape are implemented."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -137,9 +138,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -154,8 +157,7 @@
    "run": [
     "r-base",
     "r-ics",
-    "r-mvtnorm",
-    "gcc-libs"
+    "r-mvtnorm"
    ]
   },
   "source": {
@@ -182,7 +184,7 @@
    "summary": "Tools for multivariate nonparametrics, as location tests based on marginal ranks, spatial median and spatial signs computation, Hotelling's T-test, estimates of shape are implemented."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -203,6 +205,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -235,6 +238,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -275,16 +279,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-icsnp.json"
  },
- "raw_meta_yaml": "{% set version = \"1.1-2\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-icsnp\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/ICSNP_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/ICSNP/ICSNP_{{ version }}.tar.gz\n  sha256: 7a4b11d9bd74099fd31f802e438605ab5d181a47754018e5eb6deeebec6ad6c3\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-ics\n    - r-mvtnorm\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-ics\n    - r-mvtnorm\n\ntest:\n  commands:\n    - $R -e \"library('ICSNP')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('ICSNP')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=ICSNP\n  license: GPL (>= 2)\n  summary: Tools for multivariate nonparametrics, as location tests based on marginal ranks, spatial median and spatial signs computation, Hotelling's T-test, estimates of shape are implemented.\n  license_family: GPL3\n  license_file: '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - MathiasHaudgaard\n    - FrodePedersen\n    - ArneKr\n\n# Package: ICSNP\n# Type: Package\n# Title: Tools for Multivariate Nonparametrics\n# Version: 1.1-1\n# Date: 2018-03-10\n# Author: Klaus Nordhausen, Seija Sirkia, Hannu Oja, David E. Tyler\n# Maintainer: Klaus Nordhausen <klaus.nordhausen@tuwien.ac.at>\n# Depends: R (>= 2.4.0), mvtnorm, ICS\n# Description: Tools for multivariate nonparametrics, as location tests based on marginal ranks, spatial median and spatial signs computation, Hotelling's T-test, estimates of shape are implemented.\n# License: GPL (>= 2)\n# Encoding: latin1\n# NeedsCompilation: yes\n# Packaged: 2018-03-10 22:25:09 UTC; klanor\n# Repository: CRAN\n# Date/Publication: 2018-03-10 23:03:38 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.1-2\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-icsnp\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/ICSNP_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/ICSNP/ICSNP_{{ version }}.tar.gz\n  sha256: 7a4b11d9bd74099fd31f802e438605ab5d181a47754018e5eb6deeebec6ad6c3\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-ics\n    - r-mvtnorm\n  run:\n    - r-base\n    - r-ics\n    - r-mvtnorm\n\ntest:\n  commands:\n    - $R -e \"library('ICSNP')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('ICSNP')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=ICSNP\n  license: GPL (>= 2)\n  summary: Tools for multivariate nonparametrics, as location tests based on marginal ranks, spatial median and spatial signs computation, Hotelling's T-test, estimates of shape are implemented.\n  license_family: GPL3\n  license_file: '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - MathiasHaudgaard\n    - FrodePedersen\n    - ArneKr\n\n# Package: ICSNP\n# Type: Package\n# Title: Tools for Multivariate Nonparametrics\n# Version: 1.1-1\n# Date: 2018-03-10\n# Author: Klaus Nordhausen, Seija Sirkia, Hannu Oja, David E. Tyler\n# Maintainer: Klaus Nordhausen <klaus.nordhausen@tuwien.ac.at>\n# Depends: R (>= 2.4.0), mvtnorm, ICS\n# Description: Tools for multivariate nonparametrics, as location tests based on marginal ranks, spatial median and spatial signs computation, Hotelling's T-test, estimates of shape are implemented.\n# License: GPL (>= 2)\n# Encoding: latin1\n# NeedsCompilation: yes\n# Packaged: 2018-03-10 22:25:09 UTC; klanor\n# Repository: CRAN\n# Date/Publication: 2018-03-10 23:03:38 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -299,10 +304,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -313,6 +320,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-ics",
@@ -323,8 +331,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-ics",
     "r-mvtnorm"
@@ -341,10 +349,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -362,7 +372,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-ics",
     "r-mvtnorm"
@@ -394,8 +403,7 @@
    "summary": "Tools for multivariate nonparametrics, as location tests based on marginal ranks, spatial median and spatial signs computation, Hotelling's T-test, estimates of shape are implemented."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -416,6 +424,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -430,7 +439,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-ics",
     "r-mvtnorm"
    ]
@@ -455,6 +463,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -472,7 +481,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-ics",
     "r-mvtnorm"
