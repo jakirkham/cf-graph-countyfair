@@ -33,7 +33,7 @@
    "summary": "Accurate calculations and visualization of precision-recall and ROC (Receiver Operator Characteristics) curves."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -54,6 +54,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -94,6 +95,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -139,7 +141,7 @@
    "summary": "Accurate calculations and visualization of precision-recall and ROC (Receiver Operator Characteristics) curves."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -160,6 +162,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -200,6 +203,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -245,7 +249,7 @@
    "summary": "Accurate calculations and visualization of precision-recall and ROC (Receiver Operator Characteristics) curves."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -266,6 +270,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -306,6 +311,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -351,8 +357,7 @@
    "summary": "Accurate calculations and visualization of precision-recall and ROC (Receiver Operator Characteristics) curves."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -373,9 +378,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -398,8 +405,7 @@
     "r-data.table >=1.10.4",
     "r-ggplot2 >=2.1.0",
     "r-gridextra >=2.0.0",
-    "r-withr >=2.3.0",
-    "gcc-libs"
+    "r-withr >=2.3.0"
    ]
   },
   "source": {
@@ -429,7 +435,7 @@
    "summary": "Accurate calculations and visualization of precision-recall and ROC (Receiver Operator Characteristics) curves."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -450,6 +456,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -490,6 +497,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -540,16 +548,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-precrec.json"
  },
- "raw_meta_yaml": "{% set version = \"0.14.4\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-precrec\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/precrec_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/precrec/precrec_{{ version }}.tar.gz\n  sha256: e81f530dcfecce608208e2e35ea685b9e5241faea0c6ceb5129b7c7760b91b0e\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp >=0.12.2\n    - r-assertthat >=0.1\n    - r-data.table >=1.10.4\n    - r-ggplot2 >=2.1.0\n    - r-gridextra >=2.0.0\n    - r-withr >=2.3.0\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp >=0.12.2\n    - r-assertthat >=0.1\n    - r-data.table >=1.10.4\n    - r-ggplot2 >=2.1.0\n    - r-gridextra >=2.0.0\n    - r-withr >=2.3.0\n\ntest:\n  commands:\n    - $R -e \"library('precrec')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('precrec')\\\"\"  # [win]\n\nabout:\n  home: http://takayasaito.github.io/precrec\n  dev_url: https://github.com/takayasaito/precrec\n  license: GPL-3.0-only\n  summary: Accurate calculations and visualization of precision-recall and ROC (Receiver Operator Characteristics) curves.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - MathiasHaudgaard\n    - FrodePedersen\n    - ArneKr\n",
+ "raw_meta_yaml": "{% set version = \"0.14.4\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-precrec\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/precrec_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/precrec/precrec_{{ version }}.tar.gz\n  sha256: e81f530dcfecce608208e2e35ea685b9e5241faea0c6ceb5129b7c7760b91b0e\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp >=0.12.2\n    - r-assertthat >=0.1\n    - r-data.table >=1.10.4\n    - r-ggplot2 >=2.1.0\n    - r-gridextra >=2.0.0\n    - r-withr >=2.3.0\n  run:\n    - r-base\n    - r-rcpp >=0.12.2\n    - r-assertthat >=0.1\n    - r-data.table >=1.10.4\n    - r-ggplot2 >=2.1.0\n    - r-gridextra >=2.0.0\n    - r-withr >=2.3.0\n\ntest:\n  commands:\n    - $R -e \"library('precrec')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('precrec')\\\"\"  # [win]\n\nabout:\n  home: http://takayasaito.github.io/precrec\n  dev_url: https://github.com/takayasaito/precrec\n  license: GPL-3.0-only\n  summary: Accurate calculations and visualization of precision-recall and ROC (Receiver Operator Characteristics) curves.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - MathiasHaudgaard\n    - FrodePedersen\n    - ArneKr\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-assertthat",
@@ -568,10 +577,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -582,6 +593,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-assertthat",
     "r-base",
@@ -596,8 +608,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-assertthat",
     "r-base",
     "r-data.table",
@@ -618,10 +630,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -643,7 +657,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-assertthat >=0.1",
     "r-base",
     "r-data.table >=1.10.4",
@@ -686,8 +699,7 @@
    "summary": "Accurate calculations and visualization of precision-recall and ROC (Receiver Operator Characteristics) curves."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -708,6 +720,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -726,7 +739,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp >=0.12.2",
     "r-assertthat >=0.1",
     "r-data.table >=1.10.4",
@@ -755,6 +767,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -776,7 +789,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-assertthat",
     "r-base",
     "r-data.table",

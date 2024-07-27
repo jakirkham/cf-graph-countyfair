@@ -6,6 +6,8 @@
    "automerge": true
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -41,7 +43,7 @@
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -139,7 +141,7 @@
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -237,7 +239,7 @@
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -332,11 +334,10 @@
    "summary": "An 'R' interface to the 'QuickJS' portable 'JavaScript' engine. The engine is bundled entirely within the package, requiring no external system dependencies beyond a 'C' compiler."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -356,14 +357,7 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
-    "make",
-    "m2w64_c_compiler_stub",
-    "m2w64_c_stdlib_stub",
-    "m2w64_cxx_compiler_stub",
-    "filesystem",
-    "sed",
-    "coreutils",
-    "zip"
+    "make"
    ],
    "host": [
     "r-base",
@@ -375,9 +369,7 @@
     "r-base",
     "r-r6",
     "r-rcpp",
-    "r-jsonlite",
-    "gcc-libs",
-    "libwinpthread-git"
+    "r-jsonlite"
    ]
   },
   "source": {
@@ -389,8 +381,7 @@
   },
   "test": {
    "commands": [
-    "$R -e \"library('QuickJSR')\"",
-    "\"%R%\" -e \"library('QuickJSR')\""
+    "$R -e \"library('QuickJSR')\""
    ]
   }
  },
@@ -412,7 +403,7 @@
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -510,7 +501,7 @@
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -603,33 +594,23 @@
   "linux_aarch64",
   "linux_ppc64le",
   "osx_64",
-  "osx_arm64",
-  "win_64"
+  "osx_arm64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/r-quickjsr.json"
  },
- "raw_meta_yaml": "{% set version = \"1.3.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-quickjsr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/QuickJSR_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/QuickJSR/QuickJSR_{{ version }}.tar.gz\n  sha256: 10559d6e84a838ec97acdbc6028a59e2121811d4a20e83c95cdb8fb4ce208fd1\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-r6                       # [build_platform != target_platform]\n    - r-jsonlite                 # [build_platform != target_platform]\n    - r-rcpp                     # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-r6\n    - r-rcpp\n    - r-jsonlite\n  run:\n    - r-base\n    - {{ native }}gcc-libs           # [win]\n    - {{ native }}libwinpthread-git  # [win]\n    - r-r6\n    - r-rcpp\n    - r-jsonlite\n\ntest:\n  commands:\n    - $R -e \"library('QuickJSR')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('QuickJSR')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/andrjohns/QuickJSR\n  doc_url: https://bellard.org/quickjs/\n  license: MIT\n  summary: An 'R' interface to the 'QuickJS' portable 'JavaScript' engine. The engine is bundled entirely within the package, requiring no external system dependencies beyond a 'C' compiler.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n    - LICENSE-quickjs\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"1.3.1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-quickjsr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/QuickJSR_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/QuickJSR/QuickJSR_{{ version }}.tar.gz\n  sha256: 10559d6e84a838ec97acdbc6028a59e2121811d4a20e83c95cdb8fb4ce208fd1\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-r6                         # [build_platform != target_platform]\n    - r-jsonlite                   # [build_platform != target_platform]\n    - r-rcpp                       # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-r6\n    - r-rcpp\n    - r-jsonlite\n  run:\n    - r-base\n    - r-r6\n    - r-rcpp\n    - r-jsonlite\n\ntest:\n  commands:\n    - $R -e \"library('QuickJSR')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('QuickJSR')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/andrjohns/QuickJSR\n  doc_url: https://bellard.org/quickjs/\n  license: MIT\n  summary: An 'R' interface to the 'QuickJS' portable 'JavaScript' engine. The engine is bundled entirely within the package, requiring no external system dependencies beyond a 'C' compiler.\n  license_family: MIT\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\n    - LICENSE-quickjs\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
    "c_stdlib_stub",
-   "coreutils",
    "cxx_compiler_stub",
-   "filesystem",
-   "gcc-libs",
-   "libwinpthread-git",
-   "m2w64_c_compiler_stub",
-   "m2w64_c_stdlib_stub",
-   "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
    "r-jsonlite",
    "r-r6",
-   "r-rcpp",
-   "sed",
-   "zip"
+   "r-rcpp"
   ]
  },
  "requirements": {
@@ -638,15 +619,8 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "coreutils",
     "cxx_compiler_stub",
-    "filesystem",
-    "m2w64_c_compiler_stub",
-    "m2w64_c_stdlib_stub",
-    "m2w64_cxx_compiler_stub",
-    "make",
-    "sed",
-    "zip"
+    "make"
    ]
   },
   "host": {
@@ -667,8 +641,6 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
-    "libwinpthread-git",
     "r-base",
     "r-jsonlite",
     "r-r6",
@@ -687,15 +659,8 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "coreutils",
     "cxx_compiler_stub",
-    "filesystem",
-    "m2w64_c_compiler_stub",
-    "m2w64_c_stdlib_stub",
-    "m2w64_cxx_compiler_stub",
-    "make",
-    "sed",
-    "zip"
+    "make"
    ]
   },
   "host": {
@@ -710,8 +675,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
-    "libwinpthread-git",
     "r-base",
     "r-jsonlite",
     "r-r6",
@@ -733,123 +696,10 @@
   "https://cran.r-project.org/src/contrib/QuickJSR_1.3.1.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/QuickJSR/QuickJSR_1.3.1.tar.gz",
   "https://cran.r-project.org/src/contrib/QuickJSR_1.3.1.tar.gz",
-  "https://cran.r-project.org/src/contrib/Archive/QuickJSR/QuickJSR_1.3.1.tar.gz",
-  "https://cran.r-project.org/src/contrib/QuickJSR_1.3.1.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/QuickJSR/QuickJSR_1.3.1.tar.gz"
  ],
  "version": "1.3.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/r-quickjsr.json"
- },
- "win_64_meta_yaml": {
-  "about": {
-   "doc_url": "https://bellard.org/quickjs/",
-   "home": "https://github.com/andrjohns/QuickJSR",
-   "license": "MIT",
-   "license_family": "MIT",
-   "license_file": [
-    "/lib/R/share/licenses/MIT",
-    "LICENSE",
-    "LICENSE-quickjs"
-   ],
-   "summary": "An 'R' interface to the 'QuickJS' portable 'JavaScript' engine. The engine is bundled entirely within the package, requiring no external system dependencies beyond a 'C' compiler."
-  },
-  "build": {
-   "merge_build_host": true,
-   "missing_dso_whitelist": [
-    "*/R.dll"
-   ],
-   "number": "0",
-   "rpaths": [
-    "lib/R/lib/",
-    "lib/"
-   ]
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "conda-forge/r"
-   ]
-  },
-  "package": {
-   "name": "r-quickjsr",
-   "version": "1.3.1"
-  },
-  "requirements": {
-   "build": [
-    "m2w64_c_compiler_stub",
-    "m2w64_c_stdlib_stub",
-    "m2w64_cxx_compiler_stub",
-    "filesystem",
-    "make",
-    "sed",
-    "coreutils",
-    "zip"
-   ],
-   "host": [
-    "r-base",
-    "r-r6",
-    "r-rcpp",
-    "r-jsonlite"
-   ],
-   "run": [
-    "r-base",
-    "gcc-libs",
-    "libwinpthread-git",
-    "r-r6",
-    "r-rcpp",
-    "r-jsonlite"
-   ]
-  },
-  "source": {
-   "sha256": "10559d6e84a838ec97acdbc6028a59e2121811d4a20e83c95cdb8fb4ce208fd1",
-   "url": [
-    "https://cran.r-project.org/src/contrib/QuickJSR_1.3.1.tar.gz",
-    "https://cran.r-project.org/src/contrib/Archive/QuickJSR/QuickJSR_1.3.1.tar.gz"
-   ]
-  },
-  "test": {
-   "commands": [
-    "\"%R%\" -e \"library('QuickJSR')\""
-   ]
-  }
- },
- "win_64_requirements": {
-  "build": {
-   "__set__": true,
-   "elements": [
-    "coreutils",
-    "filesystem",
-    "m2w64_c_compiler_stub",
-    "m2w64_c_stdlib_stub",
-    "m2w64_cxx_compiler_stub",
-    "make",
-    "sed",
-    "zip"
-   ]
-  },
-  "host": {
-   "__set__": true,
-   "elements": [
-    "r-base",
-    "r-jsonlite",
-    "r-r6",
-    "r-rcpp"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "gcc-libs",
-    "libwinpthread-git",
-    "r-base",
-    "r-jsonlite",
-    "r-r6",
-    "r-rcpp"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": []
-  }
  }
 }
