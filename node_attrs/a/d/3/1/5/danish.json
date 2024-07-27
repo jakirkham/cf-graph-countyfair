@@ -3,6 +3,7 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -12,6 +13,9 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
+  },
+  "provider": {
+   "linux_aarch64": "azure"
   },
   "test": "native_and_emulated"
  },
@@ -25,7 +29,7 @@
    "summary": "Geometric donut engine"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -41,7 +45,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -80,6 +85,103 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "pip",
+    "pybind11",
+    "python",
+    "setuptools",
+    "wheel"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "batoid",
+    "galsim",
+    "numpy",
+    "python",
+    "pyyaml",
+    "scipy"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "pip"
+   ]
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "home": "https://github.com/jmeyers314/danish",
+   "license": "BSD-3-Clause",
+   "license_file": "LICENSE",
+   "summary": "Geometric donut engine"
+  },
+  "build": {
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "beckermr",
+    "jmeyers314"
+   ]
+  },
+  "package": {
+   "name": "danish",
+   "version": "0.5.0"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "python",
+    "setuptools >=42",
+    "wheel",
+    "pybind11 >2.10",
+    "pip"
+   ],
+   "run": [
+    "python",
+    "numpy",
+    "pyyaml",
+    "galsim",
+    "batoid",
+    "scipy"
+   ]
+  },
+  "source": {
+   "sha256": "209fd76a50bbac4cbaff1716ef1cd10a1532456ecbfcb26ec40df1acac1e0e1d",
+   "url": "https://pypi.io/packages/source/d/danish/danish-0.5.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "danish"
+   ],
+   "requires": [
+    "pip"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -119,7 +221,7 @@
    "summary": "Geometric donut engine"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -135,7 +237,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -178,7 +281,7 @@
    "summary": "Geometric donut engine"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -194,7 +297,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -233,6 +337,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -272,7 +377,7 @@
    "summary": "Geometric donut engine"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -288,7 +393,8 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -327,6 +433,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -367,18 +474,20 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
   "osx_64",
   "osx_arm64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/danish.json"
  },
- "raw_meta_yaml": "{% set name = \"danish\" %}\n{% set version = \"0.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/danish-{{ version }}.tar.gz\n  sha256: 209fd76a50bbac4cbaff1716ef1cd10a1532456ecbfcb26ec40df1acac1e0e1d\n\nbuild:\n  skip: true  # [py<38 or win]\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - setuptools >=42\n    - wheel\n    - pybind11 >2.10\n    - pip\n  run:\n    - python\n    - numpy\n    - pyyaml\n    - galsim\n    - batoid\n    - scipy\n\ntest:\n  imports:\n    - danish\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/jmeyers314/danish\n  summary: Geometric donut engine\n  license: BSD-3-Clause\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - beckermr\n    - jmeyers314\n",
+ "raw_meta_yaml": "{% set name = \"danish\" %}\n{% set version = \"0.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/danish-{{ version }}.tar.gz\n  sha256: 209fd76a50bbac4cbaff1716ef1cd10a1532456ecbfcb26ec40df1acac1e0e1d\n\nbuild:\n  skip: true  # [py<38 or win]\n  script: {{ PYTHON }} -m pip install . -vv\n  skip: true  # [win]\n  skip: true  # [py==38]\n  number: 1\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n  host:\n    - python\n    - setuptools >=42\n    - wheel\n    - pybind11 >2.10\n    - pip\n  run:\n    - python\n    - numpy\n    - pyyaml\n    - galsim\n    - batoid\n    - scipy\n\ntest:\n  imports:\n    - danish\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/jmeyers314/danish\n  summary: Geometric donut engine\n  license: BSD-3-Clause\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - beckermr\n    - jmeyers314\n",
  "req": {
   "__set__": true,
   "elements": [
    "batoid",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "galsim",
    "numpy",
@@ -396,6 +505,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -403,6 +513,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pip",
     "pybind11",
@@ -416,6 +527,7 @@
    "elements": [
     "batoid",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "galsim",
     "numpy",
@@ -437,6 +549,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
