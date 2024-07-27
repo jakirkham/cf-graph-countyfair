@@ -28,7 +28,7 @@
    "summary": "The etm (empirical transition matrix) package permits to estimate the matrix of transition probabilities for any time-inhomogeneous multistate model with finite state space using the Aalen-Johansen estimator. Functions for data preparation and for displaying are also included (Allignol et al., 2011 <doi:10.18637/jss.v038.i04>). Functionals of the Aalen-Johansen estimator, e.g., excess length-of-stay in an intermediate state, can also be computed (Allignol et al. 2011 <doi:10.1007/s00180-010-0200-x>). "
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -85,6 +86,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -126,8 +128,7 @@
    "summary": "The etm (empirical transition matrix) package permits to estimate the matrix of transition probabilities for any time-inhomogeneous multistate model with finite state space using the Aalen-Johansen estimator. Functions for data preparation and for displaying are also included (Allignol et al., 2011 <doi:10.18637/jss.v038.i04>). Functionals of the Aalen-Johansen estimator, e.g., excess length-of-stay in an intermediate state, can also be computed (Allignol et al. 2011 <doi:10.1007/s00180-010-0200-x>). "
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -145,9 +146,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -169,8 +172,7 @@
     "r-rcpparmadillo",
     "r-data.table",
     "r-lattice",
-    "r-survival",
-    "gcc-libs"
+    "r-survival"
    ]
   },
   "source": {
@@ -197,7 +199,7 @@
    "summary": "The etm (empirical transition matrix) package permits to estimate the matrix of transition probabilities for any time-inhomogeneous multistate model with finite state space using the Aalen-Johansen estimator. Functions for data preparation and for displaying are also included (Allignol et al., 2011 <doi:10.18637/jss.v038.i04>). Functionals of the Aalen-Johansen estimator, e.g., excess length-of-stay in an intermediate state, can also be computed (Allignol et al. 2011 <doi:10.1007/s00180-010-0200-x>). "
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -215,6 +217,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -254,6 +257,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -301,17 +305,18 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-etm.json"
  },
- "raw_meta_yaml": "{% set version = \"1.1.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-etm\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/etm_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/etm/etm_{{ version }}.tar.gz\n  sha256: fe75df23b986b885d8b4a11190b715f2e7b5e4063c0f63a29457cadb2abd79c3\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('m2w64_cxx') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - libblas\n    - r-base\n    - r-rcpp >=0.11.4\n    - r-rcpparmadillo\n    - r-data.table\n    - r-lattice\n    - r-survival\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp >=0.11.4\n    - r-rcpparmadillo\n    - r-data.table\n    - r-lattice\n    - r-survival\n\ntest:\n  commands:\n    - $R -e \"library('etm')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('etm')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=etm\n  license: MIT\n  license_file: LICENSE\n  summary: 'The etm (empirical transition matrix) package permits to estimate the matrix of transition probabilities for any time-inhomogeneous multistate model with finite state space using the Aalen-Johansen estimator. Functions for data preparation and for displaying are also included (Allignol et al., 2011 <doi:10.18637/jss.v038.i04>).\n    Functionals of the Aalen-Johansen estimator, e.g., excess length-of-stay in an intermediate state, can also be computed (Allignol et al. 2011 <doi:10.1007/s00180-010-0200-x>). '\n  license_family: MIT\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: etm\n# Type: Package\n# Title: Empirical Transition Matrix\n# Version: 1.0.4\n# Author: Arthur Allignol\n# Description: The etm (empirical transition matrix) package permits to estimate the matrix of transition probabilities for any time-inhomogeneous multistate model with finite state space using the Aalen-Johansen estimator. Functions for data preparation and for displaying are also included (Allignol et al., 2011 <doi:10.18637/jss.v038.i04>). Functionals of the Aalen-Johansen estimator, e.g., excess length-of-stay in an intermediate state, can also be computed (Allignol et al. 2011 <doi:10.1007/s00180-010-0200-x>).\n# Maintainer: Arthur Allignol <arthur.allignol@gmail.com>\n# License: MIT + file LICENSE\n# Depends: R (>= 3.0.0)\n# Imports: survival, lattice, data.table, Rcpp (>= 0.11.4)\n# Suggests: ggplot2, kmi, geepack\n# LinkingTo: Rcpp, RcppArmadillo\n# NeedsCompilation: yes\n# Packaged: 2018-07-11 19:24:14 UTC; arthur\n# Repository: CRAN\n# Date/Publication: 2018-07-11 20:10:04 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.1.1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-etm\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/etm_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/etm/etm_{{ version }}.tar.gz\n  sha256: fe75df23b986b885d8b4a11190b715f2e7b5e4063c0f63a29457cadb2abd79c3\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('m2w64_cxx') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - libblas\n    - r-base\n    - r-rcpp >=0.11.4\n    - r-rcpparmadillo\n    - r-data.table\n    - r-lattice\n    - r-survival\n  run:\n    - r-base\n    - r-rcpp >=0.11.4\n    - r-rcpparmadillo\n    - r-data.table\n    - r-lattice\n    - r-survival\n\ntest:\n  commands:\n    - $R -e \"library('etm')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('etm')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=etm\n  license: MIT\n  license_file: LICENSE\n  summary: 'The etm (empirical transition matrix) package permits to estimate the matrix of transition probabilities for any time-inhomogeneous multistate model with finite state space using the Aalen-Johansen estimator. Functions for data preparation and for displaying are also included (Allignol et al., 2011 <doi:10.18637/jss.v038.i04>).\n    Functionals of the Aalen-Johansen estimator, e.g., excess length-of-stay in an intermediate state, can also be computed (Allignol et al. 2011 <doi:10.1007/s00180-010-0200-x>). '\n  license_family: MIT\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: etm\n# Type: Package\n# Title: Empirical Transition Matrix\n# Version: 1.0.4\n# Author: Arthur Allignol\n# Description: The etm (empirical transition matrix) package permits to estimate the matrix of transition probabilities for any time-inhomogeneous multistate model with finite state space using the Aalen-Johansen estimator. Functions for data preparation and for displaying are also included (Allignol et al., 2011 <doi:10.18637/jss.v038.i04>). Functionals of the Aalen-Johansen estimator, e.g., excess length-of-stay in an intermediate state, can also be computed (Allignol et al. 2011 <doi:10.1007/s00180-010-0200-x>).\n# Maintainer: Arthur Allignol <arthur.allignol@gmail.com>\n# License: MIT + file LICENSE\n# Depends: R (>= 3.0.0)\n# Imports: survival, lattice, data.table, Rcpp (>= 0.11.4)\n# Suggests: ggplot2, kmi, geepack\n# LinkingTo: Rcpp, RcppArmadillo\n# NeedsCompilation: yes\n# Packaged: 2018-07-11 19:24:14 UTC; arthur\n# Repository: CRAN\n# Date/Publication: 2018-07-11 20:10:04 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "libblas",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -329,10 +334,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -343,6 +350,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libblas",
     "r-base",
@@ -357,8 +365,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-data.table",
     "r-lattice",
@@ -378,10 +386,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -403,7 +413,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-data.table",
     "r-lattice",
@@ -438,8 +447,7 @@
    "summary": "The etm (empirical transition matrix) package permits to estimate the matrix of transition probabilities for any time-inhomogeneous multistate model with finite state space using the Aalen-Johansen estimator. Functions for data preparation and for displaying are also included (Allignol et al., 2011 <doi:10.18637/jss.v038.i04>). Functionals of the Aalen-Johansen estimator, e.g., excess length-of-stay in an intermediate state, can also be computed (Allignol et al. 2011 <doi:10.1007/s00180-010-0200-x>). "
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -457,6 +465,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -475,7 +484,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp >=0.11.4",
     "r-rcpparmadillo",
     "r-data.table",
@@ -503,6 +511,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -524,7 +533,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-data.table",
     "r-lattice",
