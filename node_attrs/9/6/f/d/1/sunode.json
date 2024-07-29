@@ -3,6 +3,7 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -28,7 +29,7 @@
    "summary": "Python interface to sundials with support for derivatives and PyMC"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -127,6 +128,116 @@
    ]
   }
  },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/pymc-devs/sunode",
+   "doc_url": "https://sunode.readthedocs.io/",
+   "home": "https://github.com/pymc-devs/sunode",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": "LICENSE",
+   "summary": "Python interface to sundials with support for derivatives and PyMC"
+  },
+  "build": {
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "aseyboldt",
+    "michaelosthege"
+   ]
+  },
+  "package": {
+   "name": "sunode",
+   "version": "0.6.0"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "liblapack",
+    "cffi",
+    "sundials >=5.3,<6.0"
+   ],
+   "run": [
+    "python",
+    "cffi",
+    "xarray",
+    "scipy",
+    "sundials >=5.3,<6.0",
+    "numba >=0.57",
+    "typing_extensions",
+    "sympy >=1.8"
+   ]
+  },
+  "source": {
+   "sha256": "72eebe5a5ab41371ac075174c791ab198b74dfeaa4342721b9ee6ecbfef7719b",
+   "url": "https://github.com/pymc-devs/sunode/archive/v0.6.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check",
+    "pytest --pyargs sunode"
+   ],
+   "imports": [
+    "sunode"
+   ],
+   "requires": [
+    "pytest",
+    "hypothesis",
+    "statsmodels",
+    "pip",
+    "pytensor"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "cffi",
+    "liblapack",
+    "pip",
+    "python",
+    "sundials"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "cffi",
+    "numba",
+    "python",
+    "scipy",
+    "sundials",
+    "sympy",
+    "typing_extensions",
+    "xarray"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "hypothesis",
+    "pip",
+    "pytensor",
+    "pytest",
+    "statsmodels"
+   ]
+  }
+ },
  "meta_yaml": {
   "about": {
    "dev_url": "https://github.com/pymc-devs/sunode",
@@ -138,7 +249,7 @@
    "summary": "Python interface to sundials with support for derivatives and PyMC"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -196,116 +307,6 @@
   }
  },
  "name": "sunode",
- "osx_64_meta_yaml": {
-  "about": {
-   "dev_url": "https://github.com/pymc-devs/sunode",
-   "doc_url": "https://sunode.readthedocs.io/",
-   "home": "https://github.com/pymc-devs/sunode",
-   "license": "MIT",
-   "license_family": "MIT",
-   "license_file": "LICENSE",
-   "summary": "Python interface to sundials with support for derivatives and PyMC"
-  },
-  "build": {
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "aseyboldt",
-    "michaelosthege"
-   ]
-  },
-  "package": {
-   "name": "sunode",
-   "version": "0.6.0"
-  },
-  "requirements": {
-   "build": [
-    "c_compiler_stub",
-    "c_stdlib_stub"
-   ],
-   "host": [
-    "python",
-    "pip",
-    "liblapack",
-    "cffi",
-    "sundials >=5.3,<6.0"
-   ],
-   "run": [
-    "python",
-    "cffi",
-    "xarray",
-    "scipy",
-    "sundials >=5.3,<6.0",
-    "numba >=0.57",
-    "typing_extensions",
-    "sympy >=1.8"
-   ]
-  },
-  "source": {
-   "sha256": "72eebe5a5ab41371ac075174c791ab198b74dfeaa4342721b9ee6ecbfef7719b",
-   "url": "https://github.com/pymc-devs/sunode/archive/v0.6.0.tar.gz"
-  },
-  "test": {
-   "commands": [
-    "pip check",
-    "pytest --pyargs sunode"
-   ],
-   "imports": [
-    "sunode"
-   ],
-   "requires": [
-    "pytest",
-    "hypothesis",
-    "statsmodels",
-    "pip",
-    "pytensor"
-   ]
-  }
- },
- "osx_64_requirements": {
-  "build": {
-   "__set__": true,
-   "elements": [
-    "c_compiler_stub",
-    "c_stdlib_stub"
-   ]
-  },
-  "host": {
-   "__set__": true,
-   "elements": [
-    "cffi",
-    "liblapack",
-    "pip",
-    "python",
-    "sundials"
-   ]
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "cffi",
-    "numba",
-    "python",
-    "scipy",
-    "sundials",
-    "sympy",
-    "typing_extensions",
-    "xarray"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": [
-    "hypothesis",
-    "pip",
-    "pytensor",
-    "pytest",
-    "statsmodels"
-   ]
-  }
- },
  "osx_arm64_meta_yaml": {
   "about": {
    "dev_url": "https://github.com/pymc-devs/sunode",
@@ -317,7 +318,7 @@
    "summary": "Python interface to sundials with support for derivatives and PyMC"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -425,14 +426,14 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
-  "osx_64",
+  "linux_aarch64",
   "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/sunode.json"
  },
- "raw_meta_yaml": "{% set name = \"sunode\" %}\n{% set version = \"0.6.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pymc-devs/sunode/archive/v{{ version }}.tar.gz\n  sha256: 72eebe5a5ab41371ac075174c791ab198b74dfeaa4342721b9ee6ecbfef7719b\n\n\nbuild:\n  number: 0\n  script: \"{{ PYTHON }} -m pip install . -vv\"\n  skip: true  # [py<=37]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cffi                                   # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip\n    - liblapack\n    - cffi\n    - sundials >=5.3,<6.0\n  run:\n    - python\n    - cffi\n    - xarray\n    - scipy\n    - sundials >=5.3,<6.0\n    - numba >=0.57\n    - typing_extensions\n    - sympy >=1.8\n\ntest:\n  imports:\n    - sunode\n  requires:\n    - pytest\n    - hypothesis\n    - statsmodels\n    - pip\n    - pytensor\n  commands:\n    - pip check\n    - pytest --pyargs sunode\n\nabout:\n  home: https://github.com/pymc-devs/sunode\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: 'Python interface to sundials with support for derivatives and PyMC'\n\n  doc_url: https://sunode.readthedocs.io/\n  dev_url: https://github.com/pymc-devs/sunode\n\nextra:\n  recipe-maintainers:\n    - aseyboldt\n    - michaelosthege\n",
+ "raw_meta_yaml": "{% set name = \"sunode\" %}\n{% set version = \"0.6.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/pymc-devs/sunode/archive/v{{ version }}.tar.gz\n  sha256: 72eebe5a5ab41371ac075174c791ab198b74dfeaa4342721b9ee6ecbfef7719b\n\n\nbuild:\n  number: 1\n  script: \"{{ PYTHON }} -m pip install . -vv\"\n  # osx_64 builds fail, see:\n  #   <https://github.com/conda-forge/sunode-feedstock/pull/35>\n  #   <https://github.com/pymc-devs/pytensor/pull/725>\n  # also python 3.8 fails on linux with:\n  #   <https://github.com/conda-forge/sunode-feedstock/pull/27#issuecomment-1991217351>\n  skip: true  # [(py<=37) or (linux and py<=38) or (osx and x86_64)]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cffi                                   # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip\n    - liblapack\n    - cffi\n    - sundials >=5.3,<6.0\n  run:\n    - python\n    - cffi\n    - xarray\n    - scipy\n    - sundials >=5.3,<6.0\n    - numba >=0.57\n    - typing_extensions\n    - sympy >=1.8\n\ntest:\n  imports:\n    - sunode\n  requires:\n    - pytest\n    - hypothesis\n    - statsmodels\n    - pip\n    - pytensor\n  commands:\n    - pip check\n    - pytest --pyargs sunode\n\nabout:\n  home: https://github.com/pymc-devs/sunode\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: 'Python interface to sundials with support for derivatives and PyMC'\n\n  doc_url: https://sunode.readthedocs.io/\n  dev_url: https://github.com/pymc-devs/sunode\n\nextra:\n  recipe-maintainers:\n    - aseyboldt\n    - michaelosthege\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -555,7 +556,7 @@
    "summary": "Python interface to sundials with support for derivatives and PyMC"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
