@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -12,7 +15,8 @@
   },
   "provider": {
    "win": "azure"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "apsw",
  "hash_type": "sha256",
@@ -27,7 +31,7 @@
    "summary": "APSW stands for Another Python SQLite Wrapper."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -106,7 +110,7 @@
    "summary": "APSW stands for Another Python SQLite Wrapper."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -156,7 +160,7 @@
    "summary": "APSW stands for Another Python SQLite Wrapper."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -224,6 +228,85 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "APSW is a Python wrapper for the SQLite embedded relational database\nengine. It focuses translating between the complete SQLite C API and\nPython's C API. It is recommended to use the builtin sqlite3 module, unless\nyou want SQLite specific functionality. The documentation has a section on\nthe differences between APSW and sqlite3. APSW supports CPython 3.6\nonwards:\n",
+   "dev_url": "https://github.com/rogerbinns/apsw",
+   "doc_url": "https://rogerbinns.github.io/apsw/pysqlite.html",
+   "home": "https://github.com/rogerbinns/apsw/",
+   "license": "OSI",
+   "license_file": "LICENSE",
+   "summary": "APSW stands for Another Python SQLite Wrapper."
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "stuertz"
+   ]
+  },
+  "package": {
+   "name": "apsw",
+   "version": "3.46.0.0"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "sqlite ==3.46.0",
+    "pycalverter"
+   ],
+   "run": [
+    "python",
+    "sqlite ==3.46.0",
+    "pycalverter"
+   ]
+  },
+  "source": {
+   "sha256": "26e3b14130875660fa31e88d6b58a8aeae8e1acd59ead8dacf0e48b54f250a2e",
+   "url": "https://github.com/rogerbinns/apsw/archive/3.46.0.0.tar.gz"
+  },
+  "test": {
+   "imports": [
+    "apsw"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "pip",
+    "pycalverter",
+    "python",
+    "sqlite"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "pycalverter",
+    "python",
+    "sqlite"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -234,12 +317,13 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/apsw.json"
  },
- "raw_meta_yaml": "{% set version = \"3.46.0.0\" %}\n{% set sqlite_version = \"3.46.0\" %}\n\npackage:\n  name: apsw\n  version: {{ version|replace(\"-\", \".\") }}\n\nsource:\n  url: https://github.com/rogerbinns/apsw/archive/{{ version }}.tar.gz\n  sha256: 26e3b14130875660fa31e88d6b58a8aeae8e1acd59ead8dacf0e48b54f250a2e\n\nbuild:\n  number: 0\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip\n    - sqlite =={{ sqlite_version }}\n    - pycalverter\n\n  run:\n    - python\n    - sqlite =={{ sqlite_version }}\n    - pycalverter\n\ntest:\n  imports:\n    - apsw\n\nabout:\n  home: https://github.com/rogerbinns/apsw/\n  license: OSI\n  license_file: LICENSE\n  summary: APSW stands for Another Python SQLite Wrapper.\n  description: |\n    APSW is a Python wrapper for the SQLite embedded relational database\n    engine. It focuses translating between the complete SQLite C API and\n    Python's C API. It is recommended to use the builtin sqlite3 module, unless\n    you want SQLite specific functionality. The documentation has a section on\n    the differences between APSW and sqlite3. APSW supports CPython 3.6\n    onwards:\n  doc_url: https://rogerbinns.github.io/apsw/pysqlite.html\n  dev_url: https://github.com/rogerbinns/apsw\n\nextra:\n  recipe-maintainers:\n    - stuertz\n",
+ "raw_meta_yaml": "{% set version = \"3.46.0.0\" %}\n{% set sqlite_version = \"3.46.0\" %}\n\npackage:\n  name: apsw\n  version: {{ version|replace(\"-\", \".\") }}\n\nsource:\n  url: https://github.com/rogerbinns/apsw/archive/{{ version }}.tar.gz\n  sha256: 26e3b14130875660fa31e88d6b58a8aeae8e1acd59ead8dacf0e48b54f250a2e\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - python\n    - pip\n    - sqlite =={{ sqlite_version }}\n    - pycalverter\n\n  run:\n    - python\n    - sqlite =={{ sqlite_version }}\n    - pycalverter\n\ntest:\n  imports:\n    - apsw\n\nabout:\n  home: https://github.com/rogerbinns/apsw/\n  license: OSI\n  license_file: LICENSE\n  summary: APSW stands for Another Python SQLite Wrapper.\n  description: |\n    APSW is a Python wrapper for the SQLite embedded relational database\n    engine. It focuses translating between the complete SQLite C API and\n    Python's C API. It is recommended to use the builtin sqlite3 module, unless\n    you want SQLite specific functionality. The documentation has a section on\n    the differences between APSW and sqlite3. APSW supports CPython 3.6\n    onwards:\n  doc_url: https://rogerbinns.github.io/apsw/pysqlite.html\n  dev_url: https://github.com/rogerbinns/apsw\n\nextra:\n  recipe-maintainers:\n    - stuertz\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -332,7 +416,7 @@
    "summary": "APSW stands for Another Python SQLite Wrapper."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
