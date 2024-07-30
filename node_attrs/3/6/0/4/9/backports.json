@@ -16,23 +16,22 @@
   "about": {
    "home": "http://github.com/conda-forge/backports-feedstock",
    "license": "BSD-3-Clause",
-   "license_file": "RECIPE_DIR/LICENSE.txt",
+   "license_file": "LICENSE.txt",
    "summary": "A package to ensure the `backports` namespace is available."
   },
   "build": {
    "noarch": "python",
-   "number": "3",
+   "number": "4",
    "script": [
     "cd SP_DIR",
-    "mkdir backports && cd backports",
-    "python -c \"open('__init__.py', 'w').close()\"",
-    "cd SRC_DIR",
-    "python -c \"import backports\""
+    "mkdir -p backports",
+    "cp RECIPE_DIR/init.py backports/__init__.py"
    ]
   },
   "extra": {
    "recipe-maintainers": [
-    "jakirkham"
+    "jakirkham",
+    "isuruf"
    ]
   },
   "package": {
@@ -41,15 +40,21 @@
   },
   "requirements": {
    "build": [
-    "python >=2.7"
+    "python >=3"
    ],
    "run": [
-    "python >=2.7"
+    "python >=3"
    ]
   },
   "test": {
-   "imports": [
-    "backports"
+   "commands": [
+    "unset PIP_NO_INDEX",
+    "python -m pip install --target alt-site backports.tarfile",
+    "export PYTHONPATH=\"${SP_DIR}:alt-site\"",
+    "python -c \"import backports.tarfile\""
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -72,30 +77,31 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
   "about": {
    "home": "http://github.com/conda-forge/backports-feedstock",
    "license": "BSD-3-Clause",
-   "license_file": "RECIPE_DIR/LICENSE.txt",
+   "license_file": "LICENSE.txt",
    "summary": "A package to ensure the `backports` namespace is available."
   },
   "build": {
    "noarch": "python",
-   "number": "3",
+   "number": "4",
    "script": [
     "cd SP_DIR",
-    "mkdir backports && cd backports",
-    "python -c \"open('__init__.py', 'w').close()\"",
-    "cd SRC_DIR",
-    "python -c \"import backports\""
+    "mkdir -p backports",
+    "cp RECIPE_DIR/init.py backports/__init__.py"
    ]
   },
   "extra": {
    "recipe-maintainers": [
-    "jakirkham"
+    "jakirkham",
+    "isuruf"
    ]
   },
   "package": {
@@ -104,15 +110,21 @@
   },
   "requirements": {
    "build": [
-    "python >=2.7"
+    "python >=3"
    ],
    "run": [
-    "python >=2.7"
+    "python >=3"
    ]
   },
   "test": {
-   "imports": [
-    "backports"
+   "commands": [
+    "unset PIP_NO_INDEX",
+    "python -m pip install --target alt-site backports.tarfile",
+    "export PYTHONPATH=\"${SP_DIR}:alt-site\"",
+    "python -c \"import backports.tarfile\""
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -130,7 +142,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/backports.json"
  },
- "raw_meta_yaml": "package:\n  name: backports\n  version: 1.0\n\nbuild:\n  number: 3\n  noarch: python\n  script:\n    - cd {{ SP_DIR if SP_DIR is defined else '' }}\n    - mkdir backports && cd backports\n    - python -c \"open('__init__.py', 'w').close()\"\n    - cd {{ SRC_DIR if SRC_DIR is defined else '' }}\n    - python -c \"import backports\"\n\nrequirements:\n  build:\n    - python >=2.7\n  run:\n    - python >=2.7\n\ntest:\n  imports:\n    - backports\n\nabout:\n  home: http://github.com/conda-forge/backports-feedstock\n  license: BSD-3-Clause\n  license_file: {{ RECIPE_DIR if RECIPE_DIR is defined else '' }}/LICENSE.txt\n  summary: A package to ensure the `backports` namespace is available.\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n",
+ "raw_meta_yaml": "package:\n  name: backports\n  version: 1.0\n\nbuild:\n  number: 4\n  noarch: python\n  script:\n    - cd {{ SP_DIR if SP_DIR is defined else '' }}\n    - mkdir -p backports\n    - cp {{ RECIPE_DIR }}/init.py backports/__init__.py\n\nrequirements:\n  build:\n    - python >=3\n  run:\n    - python >=3\n\ntest:\n  requires:\n    - pip\n  commands:\n    - unset PIP_NO_INDEX                      # [unix]\n    - set \"PIP_NO_INDEX=\"                     # [win]\n    - python -m pip install --target alt-site backports.tarfile\n    - export PYTHONPATH=\"${SP_DIR}:alt-site\"  # [unix]\n    - set \"PYTHONPATH=%SP_DIR%;alt-site\"      # [win]\n    - python -c \"import backports.tarfile\"\n\nabout:\n  home: http://github.com/conda-forge/backports-feedstock\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: A package to ensure the `backports` namespace is available.\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - isuruf\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -156,7 +168,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
@@ -165,7 +179,7 @@
   "build": {
    "__set__": true,
    "elements": [
-    "python >=2.7"
+    "python >=3"
    ]
   },
   "host": {
@@ -175,12 +189,14 @@
   "run": {
    "__set__": true,
    "elements": [
-    "python >=2.7"
+    "python >=3"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "version": "1.0",
