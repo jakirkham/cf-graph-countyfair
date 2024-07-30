@@ -32,7 +32,7 @@
    "summary": "Cartographic Projections and Coordinate Transformations Library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "proj"
    ]
@@ -128,7 +128,7 @@
    "summary": "Cartographic Projections and Coordinate Transformations Library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "proj"
    ]
@@ -216,6 +216,102 @@
    "elements": []
   }
  },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "home": "https://proj.org/",
+   "license": "MIT",
+   "license_file": "COPYING",
+   "summary": "Cartographic Projections and Coordinate Transformations Library"
+  },
+  "build": {
+   "number": "1",
+   "run_exports": [
+    "proj"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "hobu",
+    "msarahan",
+    "mwtoews",
+    "ocefpaf",
+    "pelson",
+    "snowman2",
+    "xylar"
+   ]
+  },
+  "package": {
+   "name": "proj",
+   "version": "9.4.1"
+  },
+  "requirements": {
+   "build": [
+    "cmake",
+    "make",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "c_stdlib_stub"
+   ],
+   "host": [
+    "sqlite",
+    "libtiff",
+    "libcurl"
+   ],
+   "run": [
+    "sqlite",
+    "libtiff",
+    "libcurl"
+   ],
+   "run_constrained": [
+    "proj4 ==999999999999"
+   ]
+  },
+  "source": {
+   "patches": [
+    "define_OLD_BUGGY_REMQUO.patch"
+   ],
+   "sha256": "ffe20170ee2b952207adf8a195e2141eab12cda181e49fdeb54425d98c7171d7",
+   "url": "https://download.osgeo.org/proj/proj-9.4.1.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "test -f ${PREFIX}/lib/libproj${SHLIB_EXT}",
+    "test ! -f ${PREFIX}/lib/libproj.a"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "make"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "libcurl",
+    "libtiff",
+    "sqlite"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "libcurl",
+    "libtiff",
+    "sqlite"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "meta_yaml": {
   "about": {
    "home": "https://proj.org/",
@@ -224,7 +320,7 @@
    "summary": "Cartographic Projections and Coordinate Transformations Library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "proj"
    ]
@@ -290,7 +386,7 @@
    "summary": "Cartographic Projections and Coordinate Transformations Library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "proj"
    ]
@@ -386,7 +482,7 @@
    "summary": "Cartographic Projections and Coordinate Transformations Library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "proj"
    ]
@@ -484,6 +580,7 @@
  "platforms": [
   "linux_64",
   "linux_aarch64",
+  "linux_ppc64le",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -491,7 +588,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/proj.4.json"
  },
- "raw_meta_yaml": "{% set version = \"9.4.1\" %}\n\npackage:\n  name: proj\n  version: {{ version }}\n\nsource:\n  url: https://download.osgeo.org/proj/proj-{{ version }}.tar.gz\n  sha256: ffe20170ee2b952207adf8a195e2141eab12cda181e49fdeb54425d98c7171d7\n  patches:\n    - define_OLD_BUGGY_REMQUO.patch\n\nbuild:\n  number: 0\n  run_exports:\n    # ABI has been stable across minor versions since 8.0.0\n    #    https://abi-laboratory.pro/tracker/timeline/proj/\n    - {{ pin_subpackage('proj', max_pin='x.x') }}\n  skip: true  # [ppc64le]\n\nrequirements:\n  build:\n    - cmake\n    - make  # [not win]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - sqlite     # [build_platform != target_platform]\n  host:\n    - sqlite\n    - libtiff\n    - libcurl\n  run:\n    - sqlite\n    - libtiff\n    - libcurl\n  run_constrained:\n    - proj4 ==999999999999\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/libproj${SHLIB_EXT}  # [unix]\n    - test ! -f ${PREFIX}/lib/libproj.a          # [unix]\n    - if not exist %LIBRARY_LIB%\\\\proj.lib exit 1  # [win]\n    # See other tests with run_test.py\n\nabout:\n  home: https://proj.org/\n  license: MIT\n  license_file: COPYING\n  summary: Cartographic Projections and Coordinate Transformations Library\n\nextra:\n  recipe-maintainers:\n    - hobu\n    - msarahan\n    - mwtoews\n    - ocefpaf\n    - pelson\n    - snowman2\n    - xylar\n",
+ "raw_meta_yaml": "{% set version = \"9.4.1\" %}\n\npackage:\n  name: proj\n  version: {{ version }}\n\nsource:\n  url: https://download.osgeo.org/proj/proj-{{ version }}.tar.gz\n  sha256: ffe20170ee2b952207adf8a195e2141eab12cda181e49fdeb54425d98c7171d7\n  patches:\n    - define_OLD_BUGGY_REMQUO.patch\n\nbuild:\n  number: 1\n  run_exports:\n    # ABI has been stable across minor versions since 8.0.0\n    #    https://abi-laboratory.pro/tracker/timeline/proj/\n    - {{ pin_subpackage('proj', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - cmake\n    - make  # [not win]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - sqlite     # [build_platform != target_platform]\n  host:\n    - sqlite\n    - libtiff\n    - libcurl\n  run:\n    - sqlite\n    - libtiff\n    - libcurl\n  run_constrained:\n    - proj4 ==999999999999\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/libproj${SHLIB_EXT}  # [unix]\n    - test ! -f ${PREFIX}/lib/libproj.a          # [unix]\n    - if not exist %LIBRARY_LIB%\\\\proj.lib exit 1  # [win]\n    # See other tests with run_test.py\n\nabout:\n  home: https://proj.org/\n  license: MIT\n  license_file: COPYING\n  summary: Cartographic Projections and Coordinate Transformations Library\n\nextra:\n  recipe-maintainers:\n    - hobu\n    - msarahan\n    - mwtoews\n    - ocefpaf\n    - pelson\n    - snowman2\n    - xylar\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -589,7 +686,7 @@
    "summary": "Cartographic Projections and Coordinate Transformations Library"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "proj"
    ]
