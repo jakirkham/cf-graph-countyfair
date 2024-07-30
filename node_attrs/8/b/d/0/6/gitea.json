@@ -2,6 +2,10 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "linux_aarch64": "linux_64",
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,45 +13,58 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "gitea",
+ "hash_type": "sha256",
  "linux_64_meta_yaml": {
   "about": {
    "description": "The goal of this project is to make the easiest, fastest, and most\npainless way of setting up a self-hosted Git service.\n",
    "dev_url": "https://github.com/go-gitea/gitea",
-   "doc_url": "https://docs.gitea.io",
-   "home": "https://gitea.io",
+   "doc_url": "https://docs.gitea.com",
+   "home": "https://about.gitea.com",
    "license": "MIT",
+   "license_file": [
+    "LICENSE",
+    "license-files/"
+   ],
    "summary": "Git with a cup of tea"
   },
   "build": {
-   "binary_relocation": false,
-   "number": "0",
-   "script": [
-    "curl -Lo $PREFIX/bin/gitea https://dl.gitea.io/gitea/1.2/gitea-1.2-linux-amd64",
-    "chmod +x $PREFIX/bin/gitea"
-   ]
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
-    "nehaljwani"
+    "manics",
+    "nehaljwani",
+    "techknowlogick"
    ]
   },
   "package": {
    "name": "gitea",
-   "version": "1.2"
+   "version": "1.22.1"
   },
   "requirements": {
    "build": [
-    "curl"
+    "cgo_compiler_stub 1.22",
+    "c_compiler_stub",
+    "file",
+    "go-licenses >=1.6.0",
+    "make",
+    "nodejs >=20"
    ],
    "run": [
     "git"
    ]
   },
+  "source": {
+   "sha256": "9fb3a68d906f6333a7c2207e93dcb4249b1b9f3617da1961b28a9d6ac76cd3de",
+   "url": "https://github.com/go-gitea/gitea/archive/v1.22.1.tar.gz"
+  },
   "test": {
    "commands": [
+    "gitea --version",
     "gitea --help"
    ]
   }
@@ -56,7 +73,90 @@
   "build": {
    "__set__": true,
    "elements": [
-    "curl"
+    "c_compiler_stub",
+    "cgo_compiler_stub",
+    "file",
+    "go-licenses",
+    "make",
+    "nodejs"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "git"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "description": "The goal of this project is to make the easiest, fastest, and most\npainless way of setting up a self-hosted Git service.\n",
+   "dev_url": "https://github.com/go-gitea/gitea",
+   "doc_url": "https://docs.gitea.com",
+   "home": "https://about.gitea.com",
+   "license": "MIT",
+   "license_file": [
+    "LICENSE",
+    "license-files/"
+   ],
+   "summary": "Git with a cup of tea"
+  },
+  "build": {
+   "number": "0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "manics",
+    "nehaljwani",
+    "techknowlogick"
+   ]
+  },
+  "package": {
+   "name": "gitea",
+   "version": "1.22.1"
+  },
+  "requirements": {
+   "build": [
+    "cgo_compiler_stub 1.22",
+    "c_compiler_stub",
+    "file",
+    "go-licenses >=1.6.0",
+    "make",
+    "nodejs >=20"
+   ],
+   "run": [
+    "git"
+   ]
+  },
+  "source": {
+   "sha256": "9fb3a68d906f6333a7c2207e93dcb4249b1b9f3617da1961b28a9d6ac76cd3de",
+   "url": "https://github.com/go-gitea/gitea/archive/v1.22.1.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "gitea --version",
+    "gitea --help"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cgo_compiler_stub",
+    "file",
+    "go-licenses",
+    "make",
+    "nodejs"
    ]
   },
   "host": {
@@ -78,40 +178,49 @@
   "about": {
    "description": "The goal of this project is to make the easiest, fastest, and most\npainless way of setting up a self-hosted Git service.\n",
    "dev_url": "https://github.com/go-gitea/gitea",
-   "doc_url": "https://docs.gitea.io",
-   "home": "https://gitea.io",
+   "doc_url": "https://docs.gitea.com",
+   "home": "https://about.gitea.com",
    "license": "MIT",
+   "license_file": [
+    "LICENSE",
+    "license-files/"
+   ],
    "summary": "Git with a cup of tea"
   },
   "build": {
-   "binary_relocation": false,
-   "number": "0",
-   "script": [
-    "curl -Lo $PREFIX/bin/gitea https://dl.gitea.io/gitea/1.2/gitea-1.2-linux-amd64",
-    "chmod +x $PREFIX/bin/gitea",
-    "curl -Lo $PREFIX/bin/gitea https://dl.gitea.io/gitea/1.2/gitea-1.2-darwin-10.6-amd64",
-    "curl -Lo %LIBRARY_BIN%\\gitea.exe https://dl.gitea.io/gitea/1.2/gitea-1.2-windows-4.0-amd64.exe"
-   ]
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
-    "nehaljwani"
+    "manics",
+    "nehaljwani",
+    "techknowlogick"
    ]
   },
   "package": {
    "name": "gitea",
-   "version": "1.2"
+   "version": "1.22.1"
   },
   "requirements": {
    "build": [
-    "curl"
+    "cgo_compiler_stub 1.22",
+    "c_compiler_stub",
+    "file",
+    "go-licenses >=1.6.0",
+    "make",
+    "nodejs >=20"
    ],
    "run": [
     "git"
    ]
   },
+  "source": {
+   "sha256": "9fb3a68d906f6333a7c2207e93dcb4249b1b9f3617da1961b28a9d6ac76cd3de",
+   "url": "https://github.com/go-gitea/gitea/archive/v1.22.1.tar.gz"
+  },
   "test": {
    "commands": [
+    "gitea --version",
     "gitea --help"
    ]
   }
@@ -121,38 +230,49 @@
   "about": {
    "description": "The goal of this project is to make the easiest, fastest, and most\npainless way of setting up a self-hosted Git service.\n",
    "dev_url": "https://github.com/go-gitea/gitea",
-   "doc_url": "https://docs.gitea.io",
-   "home": "https://gitea.io",
+   "doc_url": "https://docs.gitea.com",
+   "home": "https://about.gitea.com",
    "license": "MIT",
+   "license_file": [
+    "LICENSE",
+    "license-files/"
+   ],
    "summary": "Git with a cup of tea"
   },
   "build": {
-   "binary_relocation": false,
-   "number": "0",
-   "script": [
-    "curl -Lo $PREFIX/bin/gitea https://dl.gitea.io/gitea/1.2/gitea-1.2-darwin-10.6-amd64",
-    "chmod +x $PREFIX/bin/gitea"
-   ]
+   "number": "0"
   },
   "extra": {
    "recipe-maintainers": [
-    "nehaljwani"
+    "manics",
+    "nehaljwani",
+    "techknowlogick"
    ]
   },
   "package": {
    "name": "gitea",
-   "version": "1.2"
+   "version": "1.22.1"
   },
   "requirements": {
    "build": [
-    "curl"
+    "cgo_compiler_stub 1.22",
+    "c_compiler_stub",
+    "file",
+    "go-licenses >=1.6.0",
+    "make",
+    "nodejs >=20"
    ],
    "run": [
     "git"
    ]
   },
+  "source": {
+   "sha256": "9fb3a68d906f6333a7c2207e93dcb4249b1b9f3617da1961b28a9d6ac76cd3de",
+   "url": "https://github.com/go-gitea/gitea/archive/v1.22.1.tar.gz"
+  },
   "test": {
    "commands": [
+    "gitea --version",
     "gitea --help"
    ]
   }
@@ -161,7 +281,90 @@
   "build": {
    "__set__": true,
    "elements": [
-    "curl"
+    "c_compiler_stub",
+    "cgo_compiler_stub",
+    "file",
+    "go-licenses",
+    "make",
+    "nodejs"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": []
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "git"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "description": "The goal of this project is to make the easiest, fastest, and most\npainless way of setting up a self-hosted Git service.\n",
+   "dev_url": "https://github.com/go-gitea/gitea",
+   "doc_url": "https://docs.gitea.com",
+   "home": "https://about.gitea.com",
+   "license": "MIT",
+   "license_file": [
+    "LICENSE",
+    "license-files/"
+   ],
+   "summary": "Git with a cup of tea"
+  },
+  "build": {
+   "number": "0"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "manics",
+    "nehaljwani",
+    "techknowlogick"
+   ]
+  },
+  "package": {
+   "name": "gitea",
+   "version": "1.22.1"
+  },
+  "requirements": {
+   "build": [
+    "cgo_compiler_stub 1.22",
+    "c_compiler_stub",
+    "file",
+    "go-licenses >=1.6.0",
+    "make",
+    "nodejs >=20"
+   ],
+   "run": [
+    "git"
+   ]
+  },
+  "source": {
+   "sha256": "9fb3a68d906f6333a7c2207e93dcb4249b1b9f3617da1961b28a9d6ac76cd3de",
+   "url": "https://github.com/go-gitea/gitea/archive/v1.22.1.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "gitea --version",
+    "gitea --help"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "cgo_compiler_stub",
+    "file",
+    "go-licenses",
+    "make",
+    "nodejs"
    ]
   },
   "host": {
@@ -187,35 +390,49 @@
  },
  "parsing_error": false,
  "platforms": [
-  "win_64",
+  "linux_64",
+  "linux_aarch64",
   "osx_64",
-  "linux_64"
+  "osx_arm64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/gitea.json"
  },
- "raw_meta_yaml": "{% set name = \"gitea\" %}\n{% set version = \"1.2\" %}\n\npackage:\n  name: gitea\n  version: {{ version }}\n\nbuild:\n  number: 0\n  binary_relocation: False\n  script:\n    - curl -Lo $PREFIX/bin/gitea https://dl.gitea.io/gitea/{{ version }}/gitea-{{ version }}-linux-amd64  # [linux64]\n    - curl -Lo $PREFIX/bin/gitea https://dl.gitea.io/gitea/{{ version }}/gitea-{{ version }}-linux-386  # [linux32]\n    - curl -Lo $PREFIX/bin/gitea https://dl.gitea.io/gitea/{{ version }}/gitea-{{ version }}-darwin-10.6-amd64  # [osx]\n    - curl -Lo %LIBRARY_BIN%\\gitea.exe https://dl.gitea.io/gitea/{{ version }}/gitea-{{ version }}-windows-4.0-amd64.exe  # [win64]\n    - curl -Lo %LIBRARY_BIN%\\gitea.exe https://dl.gitea.io/gitea/{{ version }}/gitea-{{ version }}-windows-4.0-386.exe  # [win32]\n    - chmod +x $PREFIX/bin/gitea  # [unix]\n\nrequirements:\n  build:\n    - curl\n  run:\n    - git\n\ntest:\n  commands:\n    - gitea --help\n\nabout:\n  home: https://gitea.io\n  license: MIT\n  summary: Git with a cup of tea\n  description: |\n      The goal of this project is to make the easiest, fastest, and most\n      painless way of setting up a self-hosted Git service.\n  dev_url: https://github.com/go-gitea/gitea\n  doc_url: https://docs.gitea.io\n\nextra:\n  recipe-maintainers:\n    - nehaljwani\n",
+ "raw_meta_yaml": "{% set name = \"gitea\" %}\n{% set version = \"1.22.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/go-gitea/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: 9fb3a68d906f6333a7c2207e93dcb4249b1b9f3617da1961b28a9d6ac76cd3de\n\nbuild:\n  number: 0\n  # Can't currently build on Windows, but config is kept so we can try again in future\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('cgo') }} 1.22\n    - {{ compiler('c') }}\n    - file  # [not win]\n    - go-licenses >=1.6.0\n    - make\n    - nodejs >=20\n    # Makefile uses some unix bash commands\n    - m2-filesystem  # [win]\n    - m2-bash  # [win]\n    - m2-base  # [win]\n    - m2-grep  # [win]\n    - m2-sed  # [win]\n  run:\n    - git\n\ntest:\n  commands:\n    - gitea --version\n    - gitea --help\n\nabout:\n  home: https://about.gitea.com\n  license: MIT\n  license_file:\n    - LICENSE\n    - license-files/\n  summary: Git with a cup of tea\n  description: |\n      The goal of this project is to make the easiest, fastest, and most\n      painless way of setting up a self-hosted Git service.\n  dev_url: https://github.com/go-gitea/gitea\n  doc_url: https://docs.gitea.com\n\nextra:\n  recipe-maintainers:\n    - manics\n    - nehaljwani\n    - techknowlogick\n",
  "req": {
   "__set__": true,
   "elements": [
-   "curl",
-   "git"
+   "c_compiler_stub",
+   "cgo_compiler_stub",
+   "file",
+   "git",
+   "go-licenses",
+   "make",
+   "nodejs"
   ]
  },
  "requirements": {
   "build": {
    "__set__": true,
    "elements": [
-    "curl"
+    "c_compiler_stub",
+    "cgo_compiler_stub",
+    "file",
+    "go-licenses",
+    "make",
+    "nodejs"
    ]
   },
   "host": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "c_compiler_stub"
+   ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "c_compiler_stub",
     "git"
    ]
   },
@@ -230,7 +447,12 @@
   "build": {
    "__set__": true,
    "elements": [
-    "curl"
+    "c_compiler_stub",
+    "cgo_compiler_stub 1.22",
+    "file",
+    "go-licenses >=1.6.0",
+    "make",
+    "nodejs >=20"
    ]
   },
   "host": {
@@ -248,69 +470,9 @@
    "elements": []
   }
  },
- "version": "1.2",
+ "url": "https://github.com/go-gitea/gitea/archive/v1.22.1.tar.gz",
+ "version": "1.22.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/gitea.json"
- },
- "win_64_meta_yaml": {
-  "about": {
-   "description": "The goal of this project is to make the easiest, fastest, and most\npainless way of setting up a self-hosted Git service.\n",
-   "dev_url": "https://github.com/go-gitea/gitea",
-   "doc_url": "https://docs.gitea.io",
-   "home": "https://gitea.io",
-   "license": "MIT",
-   "summary": "Git with a cup of tea"
-  },
-  "build": {
-   "binary_relocation": false,
-   "number": "0",
-   "script": [
-    "curl -Lo %LIBRARY_BIN%\\gitea.exe https://dl.gitea.io/gitea/1.2/gitea-1.2-windows-4.0-amd64.exe"
-   ]
-  },
-  "extra": {
-   "recipe-maintainers": [
-    "nehaljwani"
-   ]
-  },
-  "package": {
-   "name": "gitea",
-   "version": "1.2"
-  },
-  "requirements": {
-   "build": [
-    "curl"
-   ],
-   "run": [
-    "git"
-   ]
-  },
-  "test": {
-   "commands": [
-    "gitea --help"
-   ]
-  }
- },
- "win_64_requirements": {
-  "build": {
-   "__set__": true,
-   "elements": [
-    "curl"
-   ]
-  },
-  "host": {
-   "__set__": true,
-   "elements": []
-  },
-  "run": {
-   "__set__": true,
-   "elements": [
-    "git"
-   ]
-  },
-  "test": {
-   "__set__": true,
-   "elements": []
-  }
  }
 }
