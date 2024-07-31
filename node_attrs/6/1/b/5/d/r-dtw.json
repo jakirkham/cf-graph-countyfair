@@ -21,14 +21,15 @@
  "hash_type": "sha256",
  "linux_64_meta_yaml": {
   "about": {
+   "doc_url": "https://dynamictimewarping.github.io",
    "home": "http://dtw.r-forge.r-project.org/",
-   "license": "GPL-2",
+   "license": "GPL-2.0-only",
    "license_family": "GPL",
    "license_file": "/lib/R/share/licenses/GPL-2",
    "summary": "A comprehensive implementation of dynamic time warping (DTW) algorithms in R.  DTW computes the optimal (least cumulative distance) alignment between points of two time series.  Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions, normalizations, minimum variance matching, and so on.  Provides cumulative distances, alignments, specialized plot styles, etc."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,7 +47,9 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "make"
    ],
    "host": [
     "r-base",
@@ -58,7 +61,6 @@
    ]
   },
   "source": {
-   "fn": "dtw_1.23-1.tar.gz",
    "sha256": "6ed6a3b52be673ce2617b8d48723c7c488c95aab88fe2912d7e00507838e826d",
    "url": [
     "https://cran.r-project.org/src/contrib/dtw_1.23-1.tar.gz",
@@ -75,7 +77,9 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "make"
    ]
   },
   "host": {
@@ -99,15 +103,15 @@
  },
  "meta_yaml": {
   "about": {
+   "doc_url": "https://dynamictimewarping.github.io",
    "home": "http://dtw.r-forge.r-project.org/",
-   "license": "GPL-2",
+   "license": "GPL-2.0-only",
    "license_family": "GPL",
    "license_file": "/lib/R/share/licenses/GPL-2",
    "summary": "A comprehensive implementation of dynamic time warping (DTW) algorithms in R.  DTW computes the optimal (least cumulative distance) alignment between points of two time series.  Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions, normalizations, minimum variance matching, and so on.  Provides cumulative distances, alignments, specialized plot styles, etc."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -126,8 +130,14 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "posix",
-    "m2w64_c_compiler_stub"
+    "c_stdlib_stub",
+    "make",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "filesystem",
+    "sed",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -139,7 +149,6 @@
    ]
   },
   "source": {
-   "fn": "dtw_1.23-1.tar.gz",
    "sha256": "6ed6a3b52be673ce2617b8d48723c7c488c95aab88fe2912d7e00507838e826d",
    "url": [
     "https://cran.r-project.org/src/contrib/dtw_1.23-1.tar.gz",
@@ -156,14 +165,15 @@
  "name": "r-dtw",
  "osx_64_meta_yaml": {
   "about": {
+   "doc_url": "https://dynamictimewarping.github.io",
    "home": "http://dtw.r-forge.r-project.org/",
-   "license": "GPL-2",
+   "license": "GPL-2.0-only",
    "license_family": "GPL",
    "license_file": "/lib/R/share/licenses/GPL-2",
    "summary": "A comprehensive implementation of dynamic time warping (DTW) algorithms in R.  DTW computes the optimal (least cumulative distance) alignment between points of two time series.  Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions, normalizations, minimum variance matching, and so on.  Provides cumulative distances, alignments, specialized plot styles, etc."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -181,7 +191,9 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "make"
    ],
    "host": [
     "r-base",
@@ -193,7 +205,6 @@
    ]
   },
   "source": {
-   "fn": "dtw_1.23-1.tar.gz",
    "sha256": "6ed6a3b52be673ce2617b8d48723c7c488c95aab88fe2912d7e00507838e826d",
    "url": [
     "https://cran.r-project.org/src/contrib/dtw_1.23-1.tar.gz",
@@ -210,7 +221,9 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "make"
    ]
   },
   "host": {
@@ -247,15 +260,21 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-dtw.json"
  },
- "raw_meta_yaml": "{% set version = \"1.23-1\" %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-dtw\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: dtw_{{ version }}.tar.gz\n  url:\n    - https://cran.r-project.org/src/contrib/dtw_{{ version }}.tar.gz\n    - https://cran.r-project.org/src/contrib/Archive/dtw/dtw_{{ version }}.tar.gz\n  sha256: 6ed6a3b52be673ce2617b8d48723c7c488c95aab88fe2912d7e00507838e826d\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n  skip: true  # [win32]\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - posix                # [win]\n    - {{ compiler('c') }}        # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n  host:\n    - r-base\n    - r-proxy\n\n  run:\n    - r-base\n    - r-proxy\n\ntest:\n  commands:\n    - $R -e \"library('dtw')\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('dtw')\\\"\"  # [win]\n\nabout:\n  home: http://dtw.r-forge.r-project.org/\n  license: GPL-2\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n  summary: A comprehensive implementation of dynamic time warping (DTW) algorithms in R.  DTW computes the optimal (least cumulative distance) alignment between points of two time series.  Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions,\n    normalizations, minimum variance matching, and so on.  Provides cumulative distances, alignments, specialized plot styles, etc.\n  license_family: GPL\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - rvalieris\n",
+ "raw_meta_yaml": "{% set version = \"1.23-1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-dtw\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/dtw_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/dtw/dtw_{{ version }}.tar.gz\n  sha256: 6ed6a3b52be673ce2617b8d48723c7c488c95aab88fe2912d7e00507838e826d\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [unix]\n    - {{ stdlib(\"c\") }}          # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ stdlib(\"m2w64_c\") }}    # [win]\n    - {{ posix }}filesystem      # [win]\n    - {{ posix }}make\n    - {{ posix }}sed             # [win]\n    - {{ posix }}coreutils       # [win]\n    - {{ posix }}zip             # [win]\n  host:\n    - r-base\n    - r-proxy\n\n  run:\n    - r-base\n    - r-proxy\n\ntest:\n  commands:\n    - $R -e \"library('dtw')\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('dtw')\\\"\"  # [win]\n\nabout:\n  home: http://dtw.r-forge.r-project.org/\n  doc_url: https://dynamictimewarping.github.io\n  license: GPL-2.0-only\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n  summary: A comprehensive implementation of dynamic time warping (DTW) algorithms in R.  DTW computes the optimal (least cumulative distance) alignment between points of two time series.  Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions,\n    normalizations, minimum variance matching, and so on.  Provides cumulative distances, alignments, specialized plot styles, etc.\n  license_family: GPL\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - rvalieris\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
+   "coreutils",
+   "filesystem",
    "m2w64_c_compiler_stub",
-   "posix",
+   "m2w64_c_stdlib_stub",
+   "make",
    "r-base",
-   "r-proxy"
+   "r-proxy",
+   "sed",
+   "zip"
   ]
  },
  "requirements": {
@@ -263,14 +282,21 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
+    "filesystem",
     "m2w64_c_compiler_stub",
-    "posix"
+    "m2w64_c_stdlib_stub",
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-proxy"
    ]
@@ -279,6 +305,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-proxy"
    ]
@@ -294,8 +321,14 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
+    "filesystem",
     "m2w64_c_compiler_stub",
-    "posix"
+    "m2w64_c_stdlib_stub",
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -331,15 +364,15 @@
  },
  "win_64_meta_yaml": {
   "about": {
+   "doc_url": "https://dynamictimewarping.github.io",
    "home": "http://dtw.r-forge.r-project.org/",
-   "license": "GPL-2",
+   "license": "GPL-2.0-only",
    "license_family": "GPL",
    "license_file": "/lib/R/share/licenses/GPL-2",
    "summary": "A comprehensive implementation of dynamic time warping (DTW) algorithms in R.  DTW computes the optimal (least cumulative distance) alignment between points of two time series.  Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions, normalizations, minimum variance matching, and so on.  Provides cumulative distances, alignments, specialized plot styles, etc."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -357,8 +390,13 @@
   },
   "requirements": {
    "build": [
-    "posix",
-    "m2w64_c_compiler_stub"
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "filesystem",
+    "make",
+    "sed",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -370,7 +408,6 @@
    ]
   },
   "source": {
-   "fn": "dtw_1.23-1.tar.gz",
    "sha256": "6ed6a3b52be673ce2617b8d48723c7c488c95aab88fe2912d7e00507838e826d",
    "url": [
     "https://cran.r-project.org/src/contrib/dtw_1.23-1.tar.gz",
@@ -387,8 +424,13 @@
   "build": {
    "__set__": true,
    "elements": [
+    "coreutils",
+    "filesystem",
     "m2w64_c_compiler_stub",
-    "posix"
+    "m2w64_c_stdlib_stub",
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
