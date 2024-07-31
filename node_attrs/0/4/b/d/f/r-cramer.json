@@ -6,6 +6,8 @@
    "automerge": true
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -37,7 +39,7 @@
    "summary": "Provides R routine for the so called two-sample Cramer-Test.  This nonparametric two-sample-test on equality of the underlying distributions can be applied to  multivariate data as well as univariate data. It offers two  possibilities to approximate the critical value both of which  are included in this package."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -55,6 +57,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -87,6 +90,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -124,7 +128,7 @@
    "summary": "Provides R routine for the so called two-sample Cramer-Test.  This nonparametric two-sample-test on equality of the underlying distributions can be applied to  multivariate data as well as univariate data. It offers two  possibilities to approximate the critical value both of which  are included in this package."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -142,6 +146,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -174,6 +179,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -211,7 +217,7 @@
    "summary": "Provides R routine for the so called two-sample Cramer-Test.  This nonparametric two-sample-test on equality of the underlying distributions can be applied to  multivariate data as well as univariate data. It offers two  possibilities to approximate the critical value both of which  are included in this package."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -229,6 +235,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -261,6 +268,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -298,8 +306,7 @@
    "summary": "Provides R routine for the so called two-sample Cramer-Test.  This nonparametric two-sample-test on equality of the underlying distributions can be applied to  multivariate data as well as univariate data. It offers two  possibilities to approximate the critical value both of which  are included in this package."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -317,9 +324,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -334,8 +343,7 @@
    "run": [
     "r-base",
     "r-boot",
-    "r-rcpp >=1.0.12",
-    "gcc-libs"
+    "r-rcpp >=1.0.12"
    ]
   },
   "source": {
@@ -365,7 +373,7 @@
    "summary": "Provides R routine for the so called two-sample Cramer-Test.  This nonparametric two-sample-test on equality of the underlying distributions can be applied to  multivariate data as well as univariate data. It offers two  possibilities to approximate the critical value both of which  are included in this package."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -383,6 +391,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -415,6 +424,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -452,7 +462,7 @@
    "summary": "Provides R routine for the so called two-sample Cramer-Test.  This nonparametric two-sample-test on equality of the underlying distributions can be applied to  multivariate data as well as univariate data. It offers two  possibilities to approximate the critical value both of which  are included in this package."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -470,6 +480,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -502,6 +513,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -545,16 +557,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-cramer.json"
  },
- "raw_meta_yaml": "{% set version = \"0.9-4\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-cramer\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/cramer_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/cramer/cramer_{{ version }}.tar.gz\n  sha256: 834d3fd5cfd87bb9b8f0b507217fcd3eece05b8ca34d00f20a15dd2c427ab844\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-boot                       # [build_platform != target_platform]\n    - r-rcpp                       # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-boot\n    - r-rcpp >=1.0.12\n  run:\n    - r-base\n    - r-boot\n    - r-rcpp >=1.0.12\n    - {{ native }}gcc-libs         # [win]\n\ntest:\n  commands:\n    - $R -e \"library('cramer')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('cramer')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=cramer\n  license: GPL-2.0-or-later\n  summary: Provides R routine for the so called two-sample Cramer-Test.  This nonparametric two-sample-test on equality of the underlying distributions can be applied to  multivariate data as well as univariate data. It offers two  possibilities to approximate the critical value both of which  are included in this package.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.9-4\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-cramer\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/cramer_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/cramer/cramer_{{ version }}.tar.gz\n  sha256: 834d3fd5cfd87bb9b8f0b507217fcd3eece05b8ca34d00f20a15dd2c427ab844\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-boot                       # [build_platform != target_platform]\n    - r-rcpp                       # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-boot\n    - r-rcpp >=1.0.12\n  run:\n    - r-base\n    - r-boot\n    - r-rcpp >=1.0.12\n\ntest:\n  commands:\n    - $R -e \"library('cramer')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('cramer')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=cramer\n  license: GPL-2.0-or-later\n  summary: Provides R routine for the so called two-sample Cramer-Test.  This nonparametric two-sample-test on equality of the underlying distributions can be applied to  multivariate data as well as univariate data. It offers two  possibilities to approximate the critical value both of which  are included in this package.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -569,10 +582,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -583,6 +598,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-boot",
@@ -593,8 +609,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-boot",
     "r-rcpp"
@@ -611,10 +627,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -632,7 +650,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-boot",
     "r-rcpp >=1.0.12"
@@ -673,8 +690,7 @@
    "summary": "Provides R routine for the so called two-sample Cramer-Test.  This nonparametric two-sample-test on equality of the underlying distributions can be applied to  multivariate data as well as univariate data. It offers two  possibilities to approximate the critical value both of which  are included in this package."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -692,6 +708,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -707,8 +724,7 @@
    "run": [
     "r-base",
     "r-boot",
-    "r-rcpp >=1.0.12",
-    "gcc-libs"
+    "r-rcpp >=1.0.12"
    ]
   },
   "source": {
@@ -731,6 +747,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -748,7 +765,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-boot",
     "r-rcpp"
