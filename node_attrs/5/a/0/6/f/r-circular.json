@@ -30,7 +30,7 @@
    "summary": "Circular Statistics, from \"Topics in circular Statistics\" (2001) S. Rao Jammalamadaka and A. SenGupta, World Scientific."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -48,6 +48,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -80,6 +81,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -116,8 +118,7 @@
    "summary": "Circular Statistics, from \"Topics in circular Statistics\" (2001) S. Rao Jammalamadaka and A. SenGupta, World Scientific."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -135,9 +136,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "sed",
@@ -152,8 +155,7 @@
    "run": [
     "r-base",
     "r-boot",
-    "r-mvtnorm",
-    "gcc-libs"
+    "r-mvtnorm"
    ]
   },
   "source": {
@@ -182,7 +184,7 @@
    "summary": "Circular Statistics, from \"Topics in circular Statistics\" (2001) S. Rao Jammalamadaka and A. SenGupta, World Scientific."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -200,6 +202,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ],
@@ -232,6 +235,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "make"
    ]
@@ -272,16 +276,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-circular.json"
  },
- "raw_meta_yaml": "{% set version = \"0.5-0\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-circular\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - https://cran.r-project.org/src/contrib/circular_{{ version }}.tar.gz\n    - https://cran.r-project.org/src/contrib/Archive/circular/circular_{{ version }}.tar.gz\n  sha256: 4bf4da5de29e555d1a7ae7ea64f8a5dda037e5c423f1078944f0bbb6eb9a7b92\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-boot\n    - r-mvtnorm\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-boot\n    - r-mvtnorm\n\ntest:\n  commands:\n    - $R -e \"library('circular')\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('circular')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=circular\n  license: GPL-2.0-only\n  summary: Circular Statistics, from \"Topics in circular Statistics\" (2001) S. Rao Jammalamadaka and A. SenGupta, World Scientific.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.5-0\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-circular\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - https://cran.r-project.org/src/contrib/circular_{{ version }}.tar.gz\n    - https://cran.r-project.org/src/contrib/Archive/circular/circular_{{ version }}.tar.gz\n  sha256: 4bf4da5de29e555d1a7ae7ea64f8a5dda037e5c423f1078944f0bbb6eb9a7b92\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-boot\n    - r-mvtnorm\n  run:\n    - r-base\n    - r-boot\n    - r-mvtnorm\n\ntest:\n  commands:\n    - $R -e \"library('circular')\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('circular')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=circular\n  license: GPL-2.0-only\n  summary: Circular Statistics, from \"Topics in circular Statistics\" (2001) S. Rao Jammalamadaka and A. SenGupta, World Scientific.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_fortran_compiler_stub",
    "make",
    "r-base",
@@ -296,10 +301,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -310,6 +317,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "r-base",
     "r-boot",
@@ -320,8 +328,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-boot",
     "r-mvtnorm"
@@ -338,10 +346,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -359,7 +369,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-boot",
     "r-mvtnorm"
@@ -393,8 +402,7 @@
    "summary": "Circular Statistics, from \"Topics in circular Statistics\" (2001) S. Rao Jammalamadaka and A. SenGupta, World Scientific."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -412,6 +420,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "filesystem",
     "make",
@@ -426,7 +435,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-boot",
     "r-mvtnorm"
    ]
@@ -451,6 +459,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_fortran_compiler_stub",
     "make",
     "sed",
@@ -468,7 +477,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-boot",
     "r-mvtnorm"
