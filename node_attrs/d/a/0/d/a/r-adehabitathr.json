@@ -27,7 +27,7 @@
    "summary": "A collection of tools for the estimation of animals home range."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -83,6 +84,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -124,8 +126,7 @@
    "summary": "A collection of tools for the estimation of animals home range."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -144,8 +145,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -165,8 +168,7 @@
     "r-adehabitatlt",
     "r-adehabitatma",
     "r-deldir",
-    "r-sp",
-    "gcc-libs"
+    "r-sp"
    ]
   },
   "source": {
@@ -195,7 +197,7 @@
    "summary": "A collection of tools for the estimation of animals home range."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -214,6 +216,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -251,6 +254,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -296,15 +300,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-adehabitathr.json"
  },
- "raw_meta_yaml": "{% set version = \"0.4.21\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-adehabitathr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/adehabitatHR_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/adehabitatHR/adehabitatHR_{{ version }}.tar.gz\n  sha256: 16bc1b5be8c16a1bf5fd7ccd6ad60a68a60753453f75fa6f4751e3f28f50244a\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-ade4\n    - r-adehabitatlt\n    - r-adehabitatma\n    - r-deldir\n    - r-sp\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-ade4\n    - r-adehabitatlt\n    - r-adehabitatma\n    - r-deldir\n    - r-sp\n\ntest:\n  commands:\n    - $R -e \"library('adehabitatHR')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('adehabitatHR')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=adehabitatHR\n  license: GPL-2.0-or-later\n  summary: A collection of tools for the estimation of animals home range.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - colineroyaux\n\n# Package: adehabitatHR\n# Version: 0.4.19\n# Date: 2021-01-09\n# Depends: R (>= 3.0.1), sp, methods, deldir, ade4, adehabitatMA, adehabitatLT\n# Suggests: maptools, tkrplot, MASS, rgeos\n# Imports: graphics, grDevices, stats\n# Title: Home Range Estimation\n# Author: Clement Calenge, contributions from Scott Fortmann-Roe\n# Maintainer: Clement Calenge <clement.calenge@ofb.gouv.fr>\n# Description: A collection of tools for the estimation of animals home range.\n# License: GPL (>= 2)\n# NeedsCompilation: yes\n# Packaged: 2021-01-09 14:42:34 UTC; calenge\n# Repository: CRAN\n# Date/Publication: 2021-01-10 05:10:13 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.4.21\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-adehabitathr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/adehabitatHR_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/adehabitatHR/adehabitatHR_{{ version }}.tar.gz\n  sha256: 16bc1b5be8c16a1bf5fd7ccd6ad60a68a60753453f75fa6f4751e3f28f50244a\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-ade4\n    - r-adehabitatlt\n    - r-adehabitatma\n    - r-deldir\n    - r-sp\n  run:\n    - r-base\n    - r-ade4\n    - r-adehabitatlt\n    - r-adehabitatma\n    - r-deldir\n    - r-sp\n\ntest:\n  commands:\n    - $R -e \"library('adehabitatHR')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('adehabitatHR')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=adehabitatHR\n  license: GPL-2.0-or-later\n  summary: A collection of tools for the estimation of animals home range.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - colineroyaux\n\n# Package: adehabitatHR\n# Version: 0.4.19\n# Date: 2021-01-09\n# Depends: R (>= 3.0.1), sp, methods, deldir, ade4, adehabitatMA, adehabitatLT\n# Suggests: maptools, tkrplot, MASS, rgeos\n# Imports: graphics, grDevices, stats\n# Title: Home Range Estimation\n# Author: Clement Calenge, contributions from Scott Fortmann-Roe\n# Maintainer: Clement Calenge <clement.calenge@ofb.gouv.fr>\n# Description: A collection of tools for the estimation of animals home range.\n# License: GPL (>= 2)\n# NeedsCompilation: yes\n# Packaged: 2021-01-09 14:42:34 UTC; calenge\n# Repository: CRAN\n# Date/Publication: 2021-01-10 05:10:13 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-ade4",
    "r-adehabitatlt",
@@ -321,9 +326,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -333,6 +340,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-ade4",
     "r-adehabitatlt",
     "r-adehabitatma",
@@ -345,7 +353,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-ade4",
     "r-adehabitatlt",
     "r-adehabitatma",
@@ -365,9 +373,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -387,7 +397,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-ade4",
     "r-adehabitatlt",
     "r-adehabitatma",
@@ -424,8 +433,7 @@
    "summary": "A collection of tools for the estimation of animals home range."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -444,6 +452,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -460,7 +469,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-ade4",
     "r-adehabitatlt",
     "r-adehabitatma",
@@ -488,6 +496,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -507,7 +516,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-ade4",
     "r-adehabitatlt",
     "r-adehabitatma",
