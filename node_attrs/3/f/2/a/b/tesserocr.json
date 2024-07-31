@@ -3,9 +3,15 @@
  "branch": "main",
  "conda-forge.yml": {
   "azure": {
-   "store_build_artifacts": true
+   "settings_win": {
+    "pool": {
+     "vmImage": "windows-2019"
+    }
+   }
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -15,6 +21,11 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
+  },
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "default",
+   "win": "azure"
   },
   "test": "native_and_emulated"
  },
@@ -31,12 +42,13 @@
    "summary": "A simple, Pillow-friendly, Python wrapper around tesseract-ocr API using Cython"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "Chilipp",
-    "sirfz"
+    "sirfz",
+    "jonashaag"
    ]
   },
   "package": {
@@ -46,6 +58,7 @@
   "requirements": {
    "build": [
     "pkg-config",
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ],
@@ -78,6 +91,183 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "pkg-config"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "cython",
+    "pip",
+    "python",
+    "tesseract"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "leptonica",
+    "pillow",
+    "python",
+    "tesseract"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/sirfz/tesserocr",
+   "doc_url": "https://github.com/sirfz/tesserocr",
+   "home": "https://github.com/sirfz/tesserocr",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": "LICENSE",
+   "summary": "A simple, Pillow-friendly, Python wrapper around tesseract-ocr API using Cython"
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "Chilipp",
+    "sirfz",
+    "jonashaag"
+   ]
+  },
+  "package": {
+   "name": "tesserocr",
+   "version": "2.7.0"
+  },
+  "requirements": {
+   "build": [
+    "pkg-config",
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub"
+   ],
+   "host": [
+    "tesseract",
+    "cython",
+    "python",
+    "pip"
+   ],
+   "run": [
+    "python",
+    "tesseract",
+    "leptonica",
+    "pillow"
+   ]
+  },
+  "source": {
+   "fn": "tesserocr-2.7.0.tar.gz",
+   "sha256": "45c093630337d01a6a8f977a246ad6d732eb11f2e072bb226d59ad3d24781c99",
+   "url": "https://pypi.io/packages/source/t/tesserocr/tesserocr-2.7.0.tar.gz"
+  },
+  "test": {
+   "imports": [
+    "tesserocr"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "pkg-config"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "cython",
+    "pip",
+    "python",
+    "tesseract"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "leptonica",
+    "pillow",
+    "python",
+    "tesseract"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/sirfz/tesserocr",
+   "doc_url": "https://github.com/sirfz/tesserocr",
+   "home": "https://github.com/sirfz/tesserocr",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": "LICENSE",
+   "summary": "A simple, Pillow-friendly, Python wrapper around tesseract-ocr API using Cython"
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "Chilipp",
+    "sirfz",
+    "jonashaag"
+   ]
+  },
+  "package": {
+   "name": "tesserocr",
+   "version": "2.7.0"
+  },
+  "requirements": {
+   "build": [
+    "pkg-config",
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub"
+   ],
+   "host": [
+    "tesseract",
+    "cython",
+    "python",
+    "pip"
+   ],
+   "run": [
+    "python",
+    "tesseract",
+    "leptonica",
+    "pillow"
+   ]
+  },
+  "source": {
+   "fn": "tesserocr-2.7.0.tar.gz",
+   "sha256": "45c093630337d01a6a8f977a246ad6d732eb11f2e072bb226d59ad3d24781c99",
+   "url": "https://pypi.io/packages/source/t/tesserocr/tesserocr-2.7.0.tar.gz"
+  },
+  "test": {
+   "imports": [
+    "tesserocr"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pkg-config"
    ]
@@ -116,12 +306,13 @@
    "summary": "A simple, Pillow-friendly, Python wrapper around tesseract-ocr API using Cython"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "Chilipp",
-    "sirfz"
+    "sirfz",
+    "jonashaag"
    ]
   },
   "package": {
@@ -131,6 +322,7 @@
   "requirements": {
    "build": [
     "pkg-config",
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ],
@@ -170,12 +362,13 @@
    "summary": "A simple, Pillow-friendly, Python wrapper around tesseract-ocr API using Cython"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "Chilipp",
-    "sirfz"
+    "sirfz",
+    "jonashaag"
    ]
   },
   "package": {
@@ -185,6 +378,7 @@
   "requirements": {
    "build": [
     "pkg-config",
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ],
@@ -217,6 +411,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pkg-config"
    ]
@@ -255,12 +450,13 @@
    "summary": "A simple, Pillow-friendly, Python wrapper around tesseract-ocr API using Cython"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "Chilipp",
-    "sirfz"
+    "sirfz",
+    "jonashaag"
    ]
   },
   "package": {
@@ -270,6 +466,7 @@
   "requirements": {
    "build": [
     "pkg-config",
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ],
@@ -302,6 +499,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pkg-config"
    ]
@@ -338,6 +536,8 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
+  "linux_ppc64le",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -345,11 +545,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/tesserocr.json"
  },
- "raw_meta_yaml": "{% set name = \"tesserocr\" %}\n{% set version = \"2.7.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 45c093630337d01a6a8f977a246ad6d732eb11f2e072bb226d59ad3d24781c99\n\nbuild:\n  number: 0\n  skip: true  # [win and py==27]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - pkg-config\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - tesseract\n    - cython\n    - python\n    - pip\n  run:\n    - python\n    - {{ pin_compatible('tesseract', max_pin='x.x') }}\n    - leptonica  # [not win]\n    - pillow\n\ntest:\n  imports:\n    - tesserocr\n\nabout:\n  home: https://github.com/sirfz/tesserocr\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: A simple, Pillow-friendly, Python wrapper around tesseract-ocr API using Cython\n  doc_url: https://github.com/sirfz/tesserocr\n  dev_url: https://github.com/sirfz/tesserocr\n\nextra:\n  recipe-maintainers:\n    - Chilipp\n    - sirfz\n",
+ "raw_meta_yaml": "{% set name = \"tesserocr\" %}\n{% set version = \"2.7.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 45c093630337d01a6a8f977a246ad6d732eb11f2e072bb226d59ad3d24781c99\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - pkg-config\n    - {{ stdlib('c') }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n  host:\n    - tesseract\n    - cython\n    - python\n    - pip\n  run:\n    - python\n    - {{ pin_compatible('tesseract', max_pin='x.x') }}\n    - leptonica  # [not win]\n    - pillow\n\ntest:\n  imports:\n    - tesserocr\n\nabout:\n  home: https://github.com/sirfz/tesserocr\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: A simple, Pillow-friendly, Python wrapper around tesseract-ocr API using Cython\n  doc_url: https://github.com/sirfz/tesserocr\n  dev_url: https://github.com/sirfz/tesserocr\n\nextra:\n  recipe-maintainers:\n    - Chilipp\n    - sirfz\n    - jonashaag\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "cython",
    "leptonica",
@@ -365,6 +566,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pkg-config"
    ]
@@ -373,6 +575,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cython",
     "pip",
@@ -384,6 +587,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "leptonica",
     "pillow",
@@ -402,6 +606,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pkg-config"
    ]
@@ -445,12 +650,13 @@
    "summary": "A simple, Pillow-friendly, Python wrapper around tesseract-ocr API using Cython"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
     "Chilipp",
-    "sirfz"
+    "sirfz",
+    "jonashaag"
    ]
   },
   "package": {
@@ -460,6 +666,7 @@
   "requirements": {
    "build": [
     "pkg-config",
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub"
    ],
@@ -491,6 +698,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pkg-config"
    ]
