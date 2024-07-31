@@ -22,7 +22,7 @@
   },
   "build": {
    "entry_points": [
-    "graphium = graphium.cli:main_cli"
+    "graphium = graphium.cli:app"
    ],
    "noarch": "python",
    "number": "0",
@@ -36,7 +36,7 @@
   },
   "package": {
    "name": "graphium",
-   "version": "2.2.0"
+   "version": "2.4.7"
   },
   "requirements": {
    "host": [
@@ -47,12 +47,13 @@
    ],
    "run": [
     "python >=3.8",
-    "click",
+    "hydra-core",
+    "typer",
     "loguru",
     "omegaconf >=2.0.0",
     "tqdm",
     "platformdirs",
-    "numpy",
+    "numpy ==1.26.4",
     "scipy >=1.4",
     "pandas >=1.0",
     "scikit-learn",
@@ -77,13 +78,12 @@
    ]
   },
   "source": {
-   "sha256": "1b2641753ef0935ee98337969c9db66ca6524385649d7623f0e6cc601aace3af",
-   "url": "https://pypi.io/packages/source/g/graphium/graphium-2.2.0.tar.gz"
+   "sha256": "805fd9d4643df515036a63f75e13da48d055840bc04eab3277004c93379303c0",
+   "url": "https://pypi.io/packages/source/g/graphium/graphium-2.4.7.tar.gz"
   },
   "test": {
    "commands": [
-    "graphium --help",
-    "graphium --version | grep 2.2.0"
+    "graphium --help"
    ],
    "imports": [
     "graphium"
@@ -110,11 +110,11 @@
   "run": {
    "__set__": true,
    "elements": [
-    "click",
     "datamol",
     "fastparquet",
     "fsspec",
     "gcsfs",
+    "hydra-core",
     "lightning",
     "loguru",
     "matplotlib-base",
@@ -137,6 +137,7 @@
     "seaborn",
     "torchmetrics",
     "tqdm",
+    "typer",
     "wandb"
    ]
   },
@@ -156,7 +157,7 @@
   },
   "build": {
    "entry_points": [
-    "graphium = graphium.cli:main_cli"
+    "graphium = graphium.cli:app"
    ],
    "noarch": "python",
    "number": "0",
@@ -170,7 +171,7 @@
   },
   "package": {
    "name": "graphium",
-   "version": "2.2.0"
+   "version": "2.4.7"
   },
   "requirements": {
    "host": [
@@ -181,12 +182,13 @@
    ],
    "run": [
     "python >=3.8",
-    "click",
+    "hydra-core",
+    "typer",
     "loguru",
     "omegaconf >=2.0.0",
     "tqdm",
     "platformdirs",
-    "numpy",
+    "numpy ==1.26.4",
     "scipy >=1.4",
     "pandas >=1.0",
     "scikit-learn",
@@ -211,13 +213,12 @@
    ]
   },
   "source": {
-   "sha256": "1b2641753ef0935ee98337969c9db66ca6524385649d7623f0e6cc601aace3af",
-   "url": "https://pypi.io/packages/source/g/graphium/graphium-2.2.0.tar.gz"
+   "sha256": "805fd9d4643df515036a63f75e13da48d055840bc04eab3277004c93379303c0",
+   "url": "https://pypi.io/packages/source/g/graphium/graphium-2.4.7.tar.gz"
   },
   "test": {
    "commands": [
-    "graphium --help",
-    "graphium --version | grep 2.2.0"
+    "graphium --help"
    ],
    "imports": [
     "graphium"
@@ -241,15 +242,15 @@
  "pr_info": {
   "__lazy_json__": "pr_info/graphium.json"
  },
- "raw_meta_yaml": "{% set name = \"graphium\" %}\n{% set version = \"2.2.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/graphium-{{ version }}.tar.gz\n  sha256: 1b2641753ef0935ee98337969c9db66ca6524385649d7623f0e6cc601aace3af\n\nbuild:\n  entry_points:\n    - graphium = graphium.cli:main_cli\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools\n    - setuptools-scm\n    - pip\n  run:\n    - python >=3.8\n\n    - click\n    - loguru\n    - omegaconf >=2.0.0\n    - tqdm\n    - platformdirs\n\n    # scientific\n    - numpy\n    - scipy >=1.4\n    - pandas >=1.0\n    - scikit-learn\n    - fastparquet\n\n    # viz\n    - matplotlib-base >=3.0.1\n    - seaborn\n\n    # cloud IO\n    - fsspec >=2021.6\n    - s3fs >=2021.6\n    - gcsfs >=2021.6\n\n    # ML packages\n    - pytorch >=1.12\n    - lightning >=2.0\n    - torchmetrics >=0.7.0,<0.11\n    - ogb\n    - pytorch_geometric >=2.0\n    - wandb\n    - mup\n    - pytorch_sparse >=0.6\n    - pytorch_cluster >=1.5\n    - pytorch_scatter >=2.0\n\n    # chemistry\n    - rdkit\n    - datamol >=0.10\n\ntest:\n  requires:\n    - pydantic <2\n  imports:\n    - graphium\n  commands:\n    - graphium --help\n    - graphium --version | grep {{ version }}\n\nabout:\n  summary: 'Graphium: Scaling molecular GNNs to infinity.'\n  license: Apache-2.0\n  license_file: LICENSE\n  home: https://github.com/datamol-io/graphium\n\nextra:\n  recipe-maintainers:\n    - Andrewq11\n    - DomInvivo\n",
+ "raw_meta_yaml": "{% set name = \"graphium\" %}\n{% set version = \"2.4.7\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/graphium-{{ version }}.tar.gz\n  sha256: 805fd9d4643df515036a63f75e13da48d055840bc04eab3277004c93379303c0\n\nbuild:\n  entry_points:\n    - graphium = graphium.cli:app\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - python >=3.8\n    - setuptools\n    - setuptools-scm\n    - pip\n  run:\n    - python >=3.8\n    - hydra-core\n    - typer\n    - loguru\n    - omegaconf >=2.0.0\n    - tqdm\n    - platformdirs\n\n    # scientific\n    - numpy ==1.26.4\n    - scipy >=1.4\n    - pandas >=1.0\n    - scikit-learn\n    - fastparquet\n\n    # viz\n    - matplotlib-base >=3.0.1\n    - seaborn\n\n    # cloud IO\n    - fsspec >=2021.6\n    - s3fs >=2021.6\n    - gcsfs >=2021.6\n\n    # ML packages\n    - pytorch >=1.12\n    - lightning >=2.0\n    - torchmetrics >=0.7.0,<0.11\n    - ogb\n    - pytorch_geometric >=2.0\n    - wandb\n    - mup\n    - pytorch_sparse >=0.6\n    - pytorch_cluster >=1.5\n    - pytorch_scatter >=2.0\n\n    # chemistry\n    - rdkit\n    - datamol >=0.10\n\ntest:\n  requires:\n    - pydantic <2\n  imports:\n    - graphium\n  commands:\n    - graphium --help\n\nabout:\n  summary: 'Graphium: Scaling molecular GNNs to infinity.'\n  license: Apache-2.0\n  license_file: LICENSE\n  home: https://github.com/datamol-io/graphium\n\nextra:\n  recipe-maintainers:\n    - Andrewq11\n    - DomInvivo\n",
  "req": {
   "__set__": true,
   "elements": [
-   "click",
    "datamol",
    "fastparquet",
    "fsspec",
    "gcsfs",
+   "hydra-core",
    "lightning",
    "loguru",
    "matplotlib-base",
@@ -275,6 +276,7 @@
    "setuptools-scm",
    "torchmetrics",
    "tqdm",
+   "typer",
    "wandb"
   ]
  },
@@ -295,11 +297,11 @@
   "run": {
    "__set__": true,
    "elements": [
-    "click",
     "datamol",
     "fastparquet",
     "fsspec",
     "gcsfs",
+    "hydra-core",
     "lightning",
     "loguru",
     "matplotlib-base",
@@ -322,6 +324,7 @@
     "seaborn",
     "torchmetrics",
     "tqdm",
+    "typer",
     "wandb"
    ]
   },
@@ -350,16 +353,16 @@
   "run": {
    "__set__": true,
    "elements": [
-    "click",
     "datamol >=0.10",
     "fastparquet",
     "fsspec >=2021.6",
     "gcsfs >=2021.6",
+    "hydra-core",
     "lightning >=2.0",
     "loguru",
     "matplotlib-base >=3.0.1",
     "mup",
-    "numpy",
+    "numpy ==1.26.4",
     "ogb",
     "omegaconf >=2.0.0",
     "pandas >=1.0",
@@ -377,6 +380,7 @@
     "seaborn",
     "torchmetrics >=0.7.0,<0.11",
     "tqdm",
+    "typer",
     "wandb"
    ]
   },
@@ -387,8 +391,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/g/graphium/graphium-2.2.0.tar.gz",
- "version": "2.2.0",
+ "url": "https://pypi.io/packages/source/g/graphium/graphium-2.4.7.tar.gz",
+ "version": "2.4.7",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/graphium.json"
  }
