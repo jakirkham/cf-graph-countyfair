@@ -38,7 +38,7 @@
    "entry_points": [
     "fio = fiona.fio.main:main_group"
    ],
-   "number": "3",
+   "number": "4",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation",
    "script_env": [
     "GDAL_ENABLE_DEPRECATED_DRIVER_GTM=YES"
@@ -173,7 +173,7 @@
    "entry_points": [
     "fio = fiona.fio.main:main_group"
    ],
-   "number": "3",
+   "number": "4",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation",
    "script_env": [
     "GDAL_ENABLE_DEPRECATED_DRIVER_GTM=YES"
@@ -297,6 +297,141 @@
    ]
   }
  },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "home": "http://github.com/Toblerity/Fiona",
+   "license": "BSD-3-Clause",
+   "license_file": "LICENSE.txt",
+   "summary": "Fiona reads and writes spatial data files"
+  },
+  "build": {
+   "entry_points": [
+    "fio = fiona.fio.main:main_group"
+   ],
+   "number": "4",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation",
+   "script_env": [
+    "GDAL_ENABLE_DEPRECATED_DRIVER_GTM=YES"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "zklaus",
+    "akrherz",
+    "ocefpaf",
+    "jorisvandenbossche",
+    "xylar"
+   ]
+  },
+  "package": {
+   "name": "fiona",
+   "version": "1.9.6"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "cython >=3.0.2,<3.1.dev0",
+    "numpy",
+    "setuptools >=67.8",
+    "libgdal"
+   ],
+   "run": [
+    "certifi",
+    "python",
+    "gdal",
+    "attrs >=19.2.0",
+    "click >=8.0,<9.dev0",
+    "cligj >=0.5",
+    "click-plugins >=1.0",
+    "six",
+    "shapely"
+   ]
+  },
+  "source": {
+   "patches": [
+    "0001-remove-certifi-dependency.patch",
+    "0001_listdir_order.patch"
+   ],
+   "sha256": "791b3494f8b218c06ea56f892bd6ba893dfa23525347761d066fb7738acda3b1",
+   "url": "https://pypi.io/packages/source/f/fiona/fiona-1.9.6.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check",
+    "fio --help",
+    "fio ls test_data/test.shp",
+    "fio info test_data/test.shp"
+   ],
+   "files": [
+    "test_data"
+   ],
+   "imports": [
+    "fiona",
+    "fiona.fio"
+   ],
+   "requires": [
+    "pytest >=3",
+    "boto3 >=1.2.4",
+    "packaging",
+    "pip",
+    "pytz"
+   ],
+   "source_files": [
+    "tests"
+   ]
+  }
+ },
+ "linux_ppc64le_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "cython",
+    "libgdal",
+    "numpy",
+    "pip",
+    "python",
+    "setuptools"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "attrs",
+    "certifi",
+    "click",
+    "click-plugins",
+    "cligj",
+    "gdal",
+    "python",
+    "shapely",
+    "six"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "boto3",
+    "packaging",
+    "pip",
+    "pytest",
+    "pytz"
+   ]
+  }
+ },
  "meta_yaml": {
   "about": {
    "home": "http://github.com/Toblerity/Fiona",
@@ -308,7 +443,7 @@
    "entry_points": [
     "fio = fiona.fio.main:main_group"
    ],
-   "number": "3",
+   "number": "4",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation",
    "script_env": [
     "GDAL_ENABLE_DEPRECATED_DRIVER_GTM=YES"
@@ -399,7 +534,7 @@
    "entry_points": [
     "fio = fiona.fio.main:main_group"
    ],
-   "number": "3",
+   "number": "4",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation",
    "script_env": [
     "GDAL_ENABLE_DEPRECATED_DRIVER_GTM=YES"
@@ -534,7 +669,7 @@
    "entry_points": [
     "fio = fiona.fio.main:main_group"
    ],
-   "number": "3",
+   "number": "4",
    "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation",
    "script_env": [
     "GDAL_ENABLE_DEPRECATED_DRIVER_GTM=YES"
@@ -668,6 +803,7 @@
  "platforms": [
   "linux_64",
   "linux_aarch64",
+  "linux_ppc64le",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -675,7 +811,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/fiona.json"
  },
- "raw_meta_yaml": "{% set name = \"fiona\" %}\n{% set version = \"1.9.6\" %}\n\npackage:\n  name: fiona\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/fiona-{{ version }}.tar.gz\n  sha256: 791b3494f8b218c06ea56f892bd6ba893dfa23525347761d066fb7738acda3b1\n  patches:\n    - 0001-remove-certifi-dependency.patch\n    - 0001_listdir_order.patch\n\nbuild:\n  number: 3\n  skip: true  # [(win and vc<14) or ppc64le]\n  script_env:\n    - GDAL_ENABLE_DEPRECATED_DRIVER_GTM=YES\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation  # [unix]\n  entry_points:\n    - fio = fiona.fio.main:main_group\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip\n    - cython >=3.0.2,<3.1.dev0\n    - numpy\n    - setuptools >=67.8\n    - libgdal\n  run:\n    - certifi\n    - python\n    - gdal\n    - attrs >=19.2.0\n    - click >=8.0,<9.dev0\n    - cligj >=0.5\n    - click-plugins >=1.0\n    - importlib-metadata  # [py<310]\n    - six\n    - shapely  # only option calc we include by default\n\ntest:\n  source_files:\n    - tests\n  imports:\n    - fiona\n    - fiona.fio\n  requires:\n    - pytest >=3\n    - boto3 >=1.2.4\n    - packaging\n    - pip\n    - pytz\n  files:\n    - test_data\n  commands:\n    - pip check\n    - fio --help\n    - fio ls test_data/test.shp\n    - fio info test_data/test.shp\n\nabout:\n  home: http://github.com/Toblerity/Fiona\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: Fiona reads and writes spatial data files\n\nextra:\n  recipe-maintainers:\n    - zklaus\n    - akrherz\n    - ocefpaf\n    - jorisvandenbossche\n    - xylar\n",
+ "raw_meta_yaml": "{% set name = \"fiona\" %}\n{% set version = \"1.9.6\" %}\n\npackage:\n  name: fiona\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/fiona-{{ version }}.tar.gz\n  sha256: 791b3494f8b218c06ea56f892bd6ba893dfa23525347761d066fb7738acda3b1\n  patches:\n    - 0001-remove-certifi-dependency.patch\n    - 0001_listdir_order.patch\n\nbuild:\n  number: 4\n  script_env:\n    - GDAL_ENABLE_DEPRECATED_DRIVER_GTM=YES\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation  # [unix]\n  entry_points:\n    - fio = fiona.fio.main:main_group\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n  host:\n    - python\n    - pip\n    - cython >=3.0.2,<3.1.dev0\n    - numpy\n    - setuptools >=67.8\n    - libgdal\n  run:\n    - certifi\n    - python\n    - gdal\n    - attrs >=19.2.0\n    - click >=8.0,<9.dev0\n    - cligj >=0.5\n    - click-plugins >=1.0\n    - importlib-metadata  # [py<310]\n    - six\n    - shapely  # only option calc we include by default\n\ntest:\n  source_files:\n    - tests\n  imports:\n    - fiona\n    - fiona.fio\n  requires:\n    - pytest >=3\n    - boto3 >=1.2.4\n    - packaging\n    - pip\n    - pytz\n  files:\n    - test_data\n  commands:\n    - pip check\n    - fio --help\n    - fio ls test_data/test.shp\n    - fio info test_data/test.shp\n\nabout:\n  home: http://github.com/Toblerity/Fiona\n  license: BSD-3-Clause\n  license_file: LICENSE.txt\n  summary: Fiona reads and writes spatial data files\n\nextra:\n  recipe-maintainers:\n    - zklaus\n    - akrherz\n    - ocefpaf\n    - jorisvandenbossche\n    - xylar\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -811,7 +947,7 @@
    "entry_points": [
     "fio = fiona.fio.main:main_group"
    ],
-   "number": "3",
+   "number": "4",
    "script_env": [
     "GDAL_ENABLE_DEPRECATED_DRIVER_GTM=YES"
    ]
