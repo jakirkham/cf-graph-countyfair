@@ -28,7 +28,7 @@
    "summary": "A collection of tools for the analysis of animal movements."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -81,6 +82,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -118,8 +120,7 @@
    "summary": "A collection of tools for the analysis of animal movements."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -137,8 +138,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -156,8 +159,7 @@
     "r-circstats",
     "r-ade4",
     "r-adehabitatma",
-    "r-sp",
-    "gcc-libs"
+    "r-sp"
    ]
   },
   "source": {
@@ -184,7 +186,7 @@
    "summary": "A collection of tools for the analysis of animal movements."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -202,6 +204,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -237,6 +240,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -280,15 +284,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-adehabitatlt.json"
  },
- "raw_meta_yaml": "{% set version = \"0.3.27\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-adehabitatlt\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/adehabitatLT_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/adehabitatLT/adehabitatLT_{{ version }}.tar.gz\n  sha256: fd0bf996f7deacf62f40520e3a3ddccc5d46cf2477a56deb3559f99760922a6a\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-circstats\n    - r-ade4\n    - r-adehabitatma\n    - r-sp\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-circstats\n    - r-ade4\n    - r-adehabitatma\n    - r-sp\n\ntest:\n  commands:\n    - $R -e \"library('adehabitatLT')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('adehabitatLT')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=adehabitatLT\n  license: GPL-2.0-or-later\n  summary: A collection of tools for the analysis of animal movements.\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: adehabitatLT\n# Version: 0.3.24\n# Date: 2019-04-07\n# Depends: R (>= 2.10.0), sp, methods, ade4, adehabitatMA, CircStats, stats\n# Suggests: maptools, tkrplot, MASS\n# Imports: graphics, grDevices, utils\n# Title: Analysis of Animal Movements\n# Author: Clement Calenge, contributions from Stephane Dray and Manuela Royer\n# Maintainer: Clement Calenge <clement.calenge@oncfs.gouv.fr>\n# Description: A collection of tools for the analysis of animal movements.\n# License: GPL (>= 2)\n# NeedsCompilation: yes\n# Packaged: 2019-04-07 15:55:30 UTC; calenge\n# Repository: CRAN\n# Date/Publication: 2019-04-07 16:52:54 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.3.27\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-adehabitatlt\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/adehabitatLT_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/adehabitatLT/adehabitatLT_{{ version }}.tar.gz\n  sha256: fd0bf996f7deacf62f40520e3a3ddccc5d46cf2477a56deb3559f99760922a6a\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-circstats\n    - r-ade4\n    - r-adehabitatma\n    - r-sp\n  run:\n    - r-base\n    - r-circstats\n    - r-ade4\n    - r-adehabitatma\n    - r-sp\n\ntest:\n  commands:\n    - $R -e \"library('adehabitatLT')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('adehabitatLT')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=adehabitatLT\n  license: GPL-2.0-or-later\n  summary: A collection of tools for the analysis of animal movements.\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: adehabitatLT\n# Version: 0.3.24\n# Date: 2019-04-07\n# Depends: R (>= 2.10.0), sp, methods, ade4, adehabitatMA, CircStats, stats\n# Suggests: maptools, tkrplot, MASS\n# Imports: graphics, grDevices, utils\n# Title: Analysis of Animal Movements\n# Author: Clement Calenge, contributions from Stephane Dray and Manuela Royer\n# Maintainer: Clement Calenge <clement.calenge@oncfs.gouv.fr>\n# Description: A collection of tools for the analysis of animal movements.\n# License: GPL (>= 2)\n# NeedsCompilation: yes\n# Packaged: 2019-04-07 15:55:30 UTC; calenge\n# Repository: CRAN\n# Date/Publication: 2019-04-07 16:52:54 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-ade4",
    "r-adehabitatma",
@@ -304,9 +309,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -316,6 +323,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-ade4",
     "r-adehabitatma",
     "r-base",
@@ -327,7 +335,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-ade4",
     "r-adehabitatma",
     "r-base",
@@ -346,9 +354,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -367,7 +377,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-ade4",
     "r-adehabitatma",
     "r-base",
@@ -401,8 +410,7 @@
    "summary": "A collection of tools for the analysis of animal movements."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -420,6 +428,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -435,7 +444,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-circstats",
     "r-ade4",
     "r-adehabitatma",
@@ -462,6 +470,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -480,7 +489,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-ade4",
     "r-adehabitatma",
     "r-base",
