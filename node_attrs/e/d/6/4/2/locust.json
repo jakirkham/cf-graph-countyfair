@@ -34,7 +34,18 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   "script": [
+    "rm package.json || del package.json",
+    "cd locust/webui",
+    "yarn",
+    "yarn build",
+    "cd ../..",
+    "PYTHON -m pip install . -vvv --no-deps --no-build-isolation"
+   ],
+   "script_env": [
+    "POETRY_DYNAMIC_VERSIONING_BYPASS=2.30.0",
+    "SKIP_PRE_BUILD=true"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -44,14 +55,15 @@
   },
   "package": {
    "name": "locust",
-   "version": "2.29.1"
+   "version": "2.30.0"
   },
   "requirements": {
    "host": [
-    "python >=3.9",
     "pip",
-    "setuptools_scm >=6.2",
-    "wheel"
+    "poetry-core >=1.0.0",
+    "poetry-dynamic-versioning >=1.0.0,<2.0.0",
+    "python >=3.9",
+    "yarn <2"
    ],
    "run": [
     "configargparse >=1.5.5",
@@ -72,18 +84,17 @@
    ]
   },
   "source": {
-   "sha256": "2e0628a59e2689a50cb4735a9a43709e30f2da7ed276c15d877c5325507f44b1",
-   "url": "https://pypi.io/packages/source/l/locust/locust-2.29.1.tar.gz"
+   "sha256": "66ab5aed5a7bfa81af64d96f857a137c866ce46a8ec862a72262f63f29ea11bd",
+   "url": "https://github.com/locustio/locust/archive/refs/tags/2.30.0.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
     "locust --version",
     "locust --help",
-    "python -c \"import locust; assert locust.__version__ == '2.29.1'\"",
-    "pip list | grep -iE \"^locust\\s*2\\.29\\.1$\"",
-    "python -c '__import__(\"pathlib\").Path(\"locust/test\").mkdir(parents=True)'",
-    "pytest -vv --color=yes --tb=long --pyargs locust -k \"not (autostart_w_load_shape or custom_arguments or custom_exit_code or default_headless_spawn_options_with_shape or from_relative_path or headless_spawn_options_wo_run_time or no_content_length_streaming or skip_logging or web_options or webserver or autostart_mutliple_locustfiles_with_shape or graceful_exit_when_keyboard_interrupt or percentile_parameter or run_autostart_with_multiple_locustfiles or run_with_userclass_picker or worker_indexes or autostart_w_run_time or autostart_wo_run_time or run_headless_with_multiple_locustfiles or workers_shut_down_if_master_is_gone or processes_ctrl_c or processes_workers_quit_unexpected or client_recv or client_send or locustfile_from_url or (ZMQRPC_tests and constructor))\" --timeout=300"
+    "python -c \"import locust; assert locust.__version__ == '2.30.0'\"",
+    "pip list | grep -iE \"^locust\\s*2\\.30\\.0$\"",
+    "locust --version | grep -iE \"2\\.30\\.0\""
    ],
    "imports": [
     "locust"
@@ -95,6 +106,9 @@
     "pyquery",
     "retry",
     "pytest-timeout"
+   ],
+   "source_files": [
+    "locust/test"
    ]
   }
  },
@@ -107,9 +121,10 @@
    "__set__": true,
    "elements": [
     "pip",
+    "poetry-core",
+    "poetry-dynamic-versioning",
     "python",
-    "setuptools_scm",
-    "wheel"
+    "yarn"
    ]
   },
   "run": {
@@ -162,7 +177,18 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+   "script": [
+    "rm package.json || del package.json",
+    "cd locust/webui",
+    "yarn",
+    "yarn build",
+    "cd ../..",
+    "PYTHON -m pip install . -vvv --no-deps --no-build-isolation"
+   ],
+   "script_env": [
+    "POETRY_DYNAMIC_VERSIONING_BYPASS=2.30.0",
+    "SKIP_PRE_BUILD=true"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -172,14 +198,15 @@
   },
   "package": {
    "name": "locust",
-   "version": "2.29.1"
+   "version": "2.30.0"
   },
   "requirements": {
    "host": [
-    "python >=3.9",
     "pip",
-    "setuptools_scm >=6.2",
-    "wheel"
+    "poetry-core >=1.0.0",
+    "poetry-dynamic-versioning >=1.0.0,<2.0.0",
+    "python >=3.9",
+    "yarn <2"
    ],
    "run": [
     "configargparse >=1.5.5",
@@ -200,18 +227,17 @@
    ]
   },
   "source": {
-   "sha256": "2e0628a59e2689a50cb4735a9a43709e30f2da7ed276c15d877c5325507f44b1",
-   "url": "https://pypi.io/packages/source/l/locust/locust-2.29.1.tar.gz"
+   "sha256": "66ab5aed5a7bfa81af64d96f857a137c866ce46a8ec862a72262f63f29ea11bd",
+   "url": "https://github.com/locustio/locust/archive/refs/tags/2.30.0.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
     "locust --version",
     "locust --help",
-    "python -c \"import locust; assert locust.__version__ == '2.29.1'\"",
-    "pip list | grep -iE \"^locust\\s*2\\.29\\.1$\"",
-    "python -c '__import__(\"pathlib\").Path(\"locust/test\").mkdir(parents=True)'",
-    "pytest -vv --color=yes --tb=long --pyargs locust -k \"not (autostart_w_load_shape or custom_arguments or custom_exit_code or default_headless_spawn_options_with_shape or from_relative_path or headless_spawn_options_wo_run_time or no_content_length_streaming or skip_logging or web_options or webserver or autostart_mutliple_locustfiles_with_shape or graceful_exit_when_keyboard_interrupt or percentile_parameter or run_autostart_with_multiple_locustfiles or run_with_userclass_picker or worker_indexes or autostart_w_run_time or autostart_wo_run_time or run_headless_with_multiple_locustfiles or workers_shut_down_if_master_is_gone or processes_ctrl_c or processes_workers_quit_unexpected or client_recv or client_send or locustfile_from_url or (ZMQRPC_tests and constructor))\" --timeout=300"
+    "python -c \"import locust; assert locust.__version__ == '2.30.0'\"",
+    "pip list | grep -iE \"^locust\\s*2\\.30\\.0$\"",
+    "locust --version | grep -iE \"2\\.30\\.0\""
    ],
    "imports": [
     "locust"
@@ -223,6 +249,9 @@
     "pyquery",
     "retry",
     "pytest-timeout"
+   ],
+   "source_files": [
+    "locust/test"
    ]
   }
  },
@@ -240,7 +269,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/locust.json"
  },
- "raw_meta_yaml": "{% set version = \"2.29.1\" %}\n\npackage:\n  name: locust\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/l/locust/locust-{{ version }}.tar.gz\n  sha256: 2e0628a59e2689a50cb4735a9a43709e30f2da7ed276c15d877c5325507f44b1\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  entry_points:\n    - locust = locust.main:main\n\nrequirements:\n  host:\n    - python >=3.9\n    - pip\n    - setuptools_scm >=6.2\n    - wheel\n  run:\n    - configargparse >=1.5.5\n    - flask >=2.0.0\n    - flask-cors >=3.0.10\n    - flask-login >=0.6.3\n    - gevent >=22.10.2\n    - geventhttpclient >=2.3.1\n    - msgpack-python >=1.0.0\n    - psutil >=5.9.1\n    - python >=3.9\n    - pywin32-on-windows\n    - pyzmq >=25.0.0\n    # - requests >=2.26.0\n    # upstream tightens this only for py>3.11... not worth breaking noarch\n    - requests >=2.32.2\n    - tomli >=1.1.0\n    - typing_extensions >=4.6.0\n    - werkzeug >=2.0.0\n\ntest:\n  {% set skips = [\n    \"autostart_w_load_shape\",\n    \"custom_arguments\",\n    \"custom_exit_code\",\n    \"default_headless_spawn_options_with_shape\",\n    \"from_relative_path\",\n    \"headless_spawn_options_wo_run_time\",\n    \"no_content_length_streaming\",\n    \"skip_logging\",\n    \"web_options\",\n    \"webserver\",\n  ] %}\n\n  # added on https://github.com/conda-forge/locust-feedstock/pull/82\n  {% set skips = skips + [\n    \"autostart_mutliple_locustfiles_with_shape\",\n    \"graceful_exit_when_keyboard_interrupt\",\n    \"percentile_parameter\",\n    \"run_autostart_with_multiple_locustfiles\",\n    \"run_with_userclass_picker\",\n    \"worker_indexes\",\n  ] %}\n\n  # added on https://github.com/conda-forge/locust-feedstock/pull/83\n  {% set skips = skips + [\n    \"autostart_w_run_time\",\n    \"autostart_wo_run_time\",\n    \"run_headless_with_multiple_locustfiles\",\n  ] %}\n\n  # added on https://github.com/conda-forge/locust-feedstock/pull/87\n  {% set skips = skips + [\n    \"workers_shut_down_if_master_is_gone\",\n  ] %}\n\n  # added on https://github.com/conda-forge/locust-feedstock/pull/88\n  {% set skips = skips + [\n    \"processes_ctrl_c\",\n    \"processes_workers_quit_unexpected\"\n  ] %}\n  # added on https://github.com/conda-forge/locust-feedstock/pull/90\n  {% set skips = skips + [\n    \"client_recv\",\n    \"client_send\",\n  ] %}\n  # added on https://github.com/conda-forge/locust-feedstock/pull/94\n  {% set skips = skips + [\n    \"locustfile_from_url\",\n  ] %}\n  # added on https://github.com/conda-forge/locust-feedstock/pull/103\n  {% set skips = skips + [\n    \"(ZMQRPC_tests and constructor)\"\n  ] %}\n\n  requires:\n    - pip\n    # https://github.com/locustio/locust/blob/master/tox.ini\n    - cryptography\n    - mock\n    - pyquery\n    - retry\n    # extras\n    - pytest-timeout\n    - m2-grep  # [win]\n  imports:\n    - locust\n  commands:\n    - pip check\n    - locust --version\n    - locust --help\n    - python -c \"import locust; assert locust.__version__ == '{{ PKG_VERSION }}'\"\n    - pip list | grep -iE \"^locust\\s*{{ PKG_VERSION | replace('.', '\\.') }}$\"\n    # make empty test fixture folder\n    - python -c '__import__(\"pathlib\").Path(\"locust/test\").mkdir(parents=True)'\n    - pytest -vv --color=yes --tb=long --pyargs locust -k \"not ({{ \" or \".join(skips) }})\" --timeout=300\nabout:\n  home: https://locust.io\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Website load testing framework\n  description: |\n    Locust is an easy-to-use, distributed, user load testing tool. It is\n    intended for load-testing web sites (or other systems) and figuring out how\n    many concurrent users a system can handle.\n  doc_url: https://docs.locust.io\n  dev_url: https://github.com/locustio/locust\n  doc_source_url: https://github.com/locustio/locust/blob/master/docs/index.rst\n\nextra:\n  recipe-maintainers:\n    - carlodri\n    - bollwyvl\n",
+ "raw_meta_yaml": "{% set version = \"2.30.0\" %}\n\npackage:\n  name: locust\n  version: {{ version }}\n\nsource:\n  url: https://github.com/locustio/locust/archive/refs/tags/{{ version }}.tar.gz\n  sha256: 66ab5aed5a7bfa81af64d96f857a137c866ce46a8ec862a72262f63f29ea11bd\n\nbuild:\n  noarch: python\n  number: 0\n  script_env:\n    - POETRY_DYNAMIC_VERSIONING_BYPASS={{ version }}\n    - SKIP_PRE_BUILD=true\n  script:\n    - rm package.json || del package.json\n    - cd locust/webui\n    - yarn\n    - yarn build\n    - cd ../..\n    - {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation\n  entry_points:\n    - locust = locust.main:main\n\nrequirements:\n  host:\n    - pip\n    - poetry-core >=1.0.0\n    - poetry-dynamic-versioning >=1.0.0,<2.0.0\n    - python >=3.9\n    - yarn <2\n  run:\n    - configargparse >=1.5.5\n    - flask >=2.0.0\n    - flask-cors >=3.0.10\n    - flask-login >=0.6.3\n    - gevent >=22.10.2\n    - geventhttpclient >=2.3.1\n    - msgpack-python >=1.0.0\n    - psutil >=5.9.1\n    - python >=3.9\n    - pywin32-on-windows\n    - pyzmq >=25.0.0\n    # - requests >=2.26.0\n    # upstream tightens this only for py>3.11... not worth breaking noarch\n    - requests >=2.32.2\n    - tomli >=1.1.0\n    - typing_extensions >=4.6.0\n    - werkzeug >=2.0.0\n\ntest:\n  requires:\n    - pip\n    # https://github.com/locustio/locust/blob/master/tox.ini\n    - cryptography\n    - mock\n    - pyquery\n    - retry\n    # extras\n    - pytest-timeout\n    - m2-grep  # [win]\n  source_files:\n    - locust/test\n  imports:\n    - locust\n  commands:\n    - pip check\n    - locust --version\n    - locust --help\n    - python -c \"import locust; assert locust.__version__ == '{{ PKG_VERSION }}'\"\n    - pip list | grep -iE \"^locust\\s*{{ PKG_VERSION | replace('.', '\\.') }}$\"\n    - locust --version | grep -iE \"{{ version.replace('.', '\\.') }}\"\nabout:\n  home: https://locust.io\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Website load testing framework\n  description: |\n    Locust is an easy-to-use, distributed, user load testing tool. It is\n    intended for load-testing web sites (or other systems) and figuring out how\n    many concurrent users a system can handle.\n  doc_url: https://docs.locust.io\n  dev_url: https://github.com/locustio/locust\n  doc_source_url: https://github.com/locustio/locust/blob/master/docs/index.rst\n\nextra:\n  recipe-maintainers:\n    - carlodri\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -252,16 +281,17 @@
    "geventhttpclient",
    "msgpack-python",
    "pip",
+   "poetry-core",
+   "poetry-dynamic-versioning",
    "psutil",
    "python",
    "pywin32-on-windows",
    "pyzmq",
    "requests",
-   "setuptools_scm",
    "tomli",
    "typing_extensions",
    "werkzeug",
-   "wheel"
+   "yarn"
   ]
  },
  "requirements": {
@@ -273,9 +303,10 @@
    "__set__": true,
    "elements": [
     "pip",
+    "poetry-core",
+    "poetry-dynamic-versioning",
     "python",
-    "setuptools_scm",
-    "wheel"
+    "yarn"
    ]
   },
   "run": {
@@ -320,9 +351,10 @@
    "__set__": true,
    "elements": [
     "pip",
+    "poetry-core >=1.0.0",
+    "poetry-dynamic-versioning >=1.0.0,<2.0.0",
     "python >=3.9",
-    "setuptools_scm >=6.2",
-    "wheel"
+    "yarn <2"
    ]
   },
   "run": {
@@ -357,8 +389,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/l/locust/locust-2.29.1.tar.gz",
- "version": "2.29.1",
+ "url": "https://github.com/locustio/locust/archive/refs/tags/2.30.0.tar.gz",
+ "version": "2.30.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/locust.json"
  }
