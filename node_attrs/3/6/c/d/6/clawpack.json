@@ -28,7 +28,7 @@
    "summary": "Package for solving hyperbolic systems of partial differential equations"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -43,6 +43,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ],
    "host": [
@@ -93,6 +94,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -136,7 +138,7 @@
    "summary": "Package for solving hyperbolic systems of partial differential equations"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -151,6 +153,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ],
    "host": [
@@ -205,7 +208,7 @@
    "summary": "Package for solving hyperbolic systems of partial differential equations"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -220,6 +223,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ],
    "host": [
@@ -270,6 +274,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -313,7 +318,7 @@
    "summary": "Package for solving hyperbolic systems of partial differential equations"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -328,6 +333,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ],
    "host": [
@@ -378,6 +384,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -428,11 +435,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/clawpack.json"
  },
- "raw_meta_yaml": "{% set name = \"clawpack\" %}\n{% set version = \"5.9.0\" %}\n\n{% set mpi = mpi %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/{{ name }}/{{ name }}/releases/download/v{{ version }}/{{ name }}-v{{ version }}.tar.gz\n  sha256: 23a03713b23ec4253361c24ca3c7ab009188c53ce81f013fd8a3678cb0b9ada2\n  patches:\n    - patches/64.patch\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 1\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ mpi }}                              # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('fortran') }}\n  host:\n    - pip\n    - python\n    - setuptools <61\n    - numpy\n    - six\n    - {{ mpi }}\n  run:\n    - {{ mpi }}\n    - h5py * mpi_{{ mpi }}_*\n    - python\n    - six\n    - numpy\n    - scipy\n    - matplotlib-base\n    - mpi4py\n    - petsc4py\n\ntest:\n  imports:\n    - clawpack.pyclaw\n    - clawpack.petclaw\n    - clawpack.pyclaw.fileio.hdf5\n    - clawpack.riemann.euler_4wave_2D\n  requires:\n    - pip\n  commands:\n    - pip check\n    - python -c \"from clawpack.pyclaw import examples; claw = examples.shock_bubble_interaction.setup(); claw.run()\"\n\n\nabout:\n  home: https://github.com/clawpack/clawpack\n  summary: Package for solving hyperbolic systems of partial differential equations\n  license: BSD-3-Clause\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - ngam\n",
+ "raw_meta_yaml": "{% set name = \"clawpack\" %}\n{% set version = \"5.9.0\" %}\n\n{% set mpi = mpi %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/{{ name }}/{{ name }}/releases/download/v{{ version }}/{{ name }}-v{{ version }}.tar.gz\n  sha256: 23a03713b23ec4253361c24ca3c7ab009188c53ce81f013fd8a3678cb0b9ada2\n  patches:\n    - patches/64.patch\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 2\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ mpi }}                              # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('fortran') }}\n  host:\n    - pip\n    - python\n    - setuptools <61\n    - numpy\n    - six\n    - {{ mpi }}\n  run:\n    - {{ mpi }}\n    - h5py * mpi_{{ mpi }}_*\n    - python\n    - six\n    - numpy\n    - scipy\n    - matplotlib-base\n    - mpi4py\n    - petsc4py\n\ntest:\n  imports:\n    - clawpack.pyclaw\n    - clawpack.petclaw\n    - clawpack.pyclaw.fileio.hdf5\n    - clawpack.riemann.euler_4wave_2D\n  requires:\n    - pip\n  commands:\n    - pip check\n    - python -c \"from clawpack.pyclaw import examples; claw = examples.shock_bubble_interaction.setup(); claw.run()\"\n\n\nabout:\n  home: https://github.com/clawpack/clawpack\n  summary: Package for solving hyperbolic systems of partial differential equations\n  license: BSD-3-Clause\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - ngam\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "fortran_compiler_stub",
    "h5py",
    "matplotlib-base",
@@ -452,6 +460,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -459,6 +468,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "mpich",
     "numpy",
@@ -472,6 +482,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "h5py",
     "matplotlib-base",
@@ -497,6 +508,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
