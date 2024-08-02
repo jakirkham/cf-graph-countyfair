@@ -28,7 +28,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -78,6 +79,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -114,11 +116,10 @@
    "summary": "Uses memory-mapping to enable the random access of elements of a text file of characters separated by characters as if it were a simple R(cpp) matrix."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -136,9 +137,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -153,8 +156,7 @@
    "run": [
     "r-base",
     "r-rcpp",
-    "r-rmio",
-    "gcc-libs"
+    "r-rmio"
    ]
   },
   "source": {
@@ -184,7 +186,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -202,6 +204,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -234,6 +237,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -274,16 +278,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-mmapcharr.json"
  },
- "raw_meta_yaml": "{% set version = '0.3.0' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-mmapcharr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/mmapcharr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/mmapcharr/mmapcharr_{{ version }}.tar.gz\n  sha256: 19143a055dd6488045dc0cad1091444c7ed71aadd420f63b6b8c7ee39559b89c\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'           # [win]\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-rmio\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp\n    - r-rmio\n\ntest:\n  commands:\n    - $R -e \"library('mmapcharr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('mmapcharr')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/privefl/mmapcharr\n  license: GPL-3.0-only\n  summary: Uses memory-mapping to enable the random access of elements of a text file of characters\n    separated by characters as if it were a simple R(cpp) matrix.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: mmapcharr\n# Title: Memory-Map Character Files\n# Version: 0.3.0\n# Date: 2019-02-26\n# Authors@R: person(\"Florian\", \"Prive\", email = \"florian.prive.21@gmail.com\", role = c(\"aut\", \"cre\"))\n# Description: Uses memory-mapping to enable the random access of elements of a text file of characters separated by characters as if it were a simple R(cpp) matrix.\n# Encoding: UTF-8\n# License: GPL-3\n# LazyData: TRUE\n# ByteCompile: TRUE\n# Depends: R (>= 3.3.0)\n# Imports: methods, Rcpp\n# LinkingTo: Rcpp, rmio\n# Suggests: covr, testthat\n# RoxygenNote: 6.1.0.9000\n# URL: https://github.com/privefl/mmapcharr\n# BugReports: https://github.com/privefl/mmapcharr/issues\n# Collate: 'RcppExports.R' 'extract.R' 'file-dim.R' 'mmapchar.R' 'mmapcharr-package.r' 'utils.R'\n# NeedsCompilation: yes\n# Packaged: 2019-02-26 09:09:38 UTC; privef\n# Author: Florian Prive [aut, cre]\n# Maintainer: Florian Prive <florian.prive.21@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2019-02-26 12:20:02 UTC\n",
+ "raw_meta_yaml": "{% set version = '0.3.0' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-mmapcharr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/mmapcharr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/mmapcharr/mmapcharr_{{ version }}.tar.gz\n  sha256: 19143a055dd6488045dc0cad1091444c7ed71aadd420f63b6b8c7ee39559b89c\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'           # [win]\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-rmio\n  run:\n    - r-base\n    - r-rcpp\n    - r-rmio\n\ntest:\n  commands:\n    - $R -e \"library('mmapcharr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('mmapcharr')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/privefl/mmapcharr\n  license: GPL-3.0-only\n  summary: Uses memory-mapping to enable the random access of elements of a text file of characters\n    separated by characters as if it were a simple R(cpp) matrix.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: mmapcharr\n# Title: Memory-Map Character Files\n# Version: 0.3.0\n# Date: 2019-02-26\n# Authors@R: person(\"Florian\", \"Prive\", email = \"florian.prive.21@gmail.com\", role = c(\"aut\", \"cre\"))\n# Description: Uses memory-mapping to enable the random access of elements of a text file of characters separated by characters as if it were a simple R(cpp) matrix.\n# Encoding: UTF-8\n# License: GPL-3\n# LazyData: TRUE\n# ByteCompile: TRUE\n# Depends: R (>= 3.3.0)\n# Imports: methods, Rcpp\n# LinkingTo: Rcpp, rmio\n# Suggests: covr, testthat\n# RoxygenNote: 6.1.0.9000\n# URL: https://github.com/privefl/mmapcharr\n# BugReports: https://github.com/privefl/mmapcharr/issues\n# Collate: 'RcppExports.R' 'extract.R' 'file-dim.R' 'mmapchar.R' 'mmapcharr-package.r' 'utils.R'\n# NeedsCompilation: yes\n# Packaged: 2019-02-26 09:09:38 UTC; privef\n# Author: Florian Prive [aut, cre]\n# Maintainer: Florian Prive <florian.prive.21@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2019-02-26 12:20:02 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -298,10 +303,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -312,6 +319,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-rcpp",
@@ -322,8 +330,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-rcpp",
     "r-rmio"
@@ -340,10 +348,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -361,7 +371,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp",
     "r-rmio"
@@ -395,11 +404,10 @@
    "summary": "Uses memory-mapping to enable the random access of elements of a text file of characters separated by characters as if it were a simple R(cpp) matrix."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -417,6 +425,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -431,7 +440,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp",
     "r-rmio"
    ]
@@ -456,6 +464,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -473,7 +482,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp",
     "r-rmio"
