@@ -46,7 +46,7 @@
   },
   "package": {
    "name": "cuda-nvvp",
-   "version": "12.5.82"
+   "version": "12.6.37"
   },
   "requirements": {
    "build": [
@@ -55,7 +55,7 @@
     "c_stdlib_stub"
    ],
    "host": [
-    "cuda-version 12.5"
+    "cuda-version 12.6"
    ],
    "run": [
     "cuda-version",
@@ -64,8 +64,8 @@
    ]
   },
   "source": {
-   "sha256": "2031d1a86ba91f2deaa2cea115e2c49c65766fb93bbadd780257789a0924207c",
-   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvvp/windows-x86_64/cuda_nvvp-windows-x86_64-12.5.82-archive.zip"
+   "sha256": "a81bb02d101e32317c055fd836f3cc4a2450beb69f379ed7802c82ccf4b728a8",
+   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvvp/windows-x86_64/cuda_nvvp-windows-x86_64-12.6.37-archive.zip"
   },
   "test": {
    "commands": [
@@ -122,7 +122,7 @@
   },
   "package": {
    "name": "cuda-nvvp",
-   "version": "12.5.82"
+   "version": "12.6.37"
   },
   "requirements": {
    "build": [
@@ -131,7 +131,7 @@
     "c_stdlib_stub"
    ],
    "host": [
-    "cuda-version 12.5"
+    "cuda-version 12.6"
    ],
    "run": [
     "cuda-version",
@@ -140,8 +140,8 @@
    ]
   },
   "source": {
-   "sha256": "d82f6452cbd9194690e054feb6ae1c00e4c110fe6b8419221cc92efa6ceebdd5",
-   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvvp/windows-x86_64/cuda_nvvp-windows-x86_64-12.5.82-archive.zip"
+   "sha256": "62504d9dbe2eaa61a2cb22d55b66e666e4a16498e4e2477ed0994010ebb13c74",
+   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvvp/windows-x86_64/cuda_nvvp-windows-x86_64-12.6.37-archive.zip"
   },
   "test": {
    "commands": [
@@ -167,7 +167,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cuda-nvvp.json"
  },
- "raw_meta_yaml": "{% set name = \"cuda-nvvp\" %}\n{% set version = \"12.5.82\" %}\n{% set cuda_version = \"12.5\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvvp/{{ platform }}/cuda_nvvp-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: 2031d1a86ba91f2deaa2cea115e2c49c65766fb93bbadd780257789a0924207c  # [linux64]\n  sha256: d82f6452cbd9194690e054feb6ae1c00e4c110fe6b8419221cc92efa6ceebdd5  # [win]\n\nbuild:\n  number: 0\n  skip: true  # [osx or aarch64 or ppc64le]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - cuda-version {{ cuda_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n    - cuda-nvdisasm\n    - cuda-nvprof\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/nvvp      # [linux]\n    - test -f $PREFIX/libnvvp/nvvp  # [linux]\n    - if not exist %LIBRARY_BIN%\\nvvp.bat exit 1     # [win]\n    - if not exist %PREFIX%\\libnvvp\\nvvp.exe exit 1  # [win]\n\nabout:\n  home: https://developer.nvidia.com/nvidia-visual-profiler\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: NVIDIA Visual Profiler to visualize and optimize the performance of your application.\n  description: |\n    NVIDIA Visual Profiler to visualize and optimize the performance of your\n    application.\n  doc_url: https://docs.nvidia.com/cuda/profiler-users-guide/index.html\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
+ "raw_meta_yaml": "{% set name = \"cuda-nvvp\" %}\n{% set version = \"12.6.37\" %}\n{% set cuda_version = \"12.6\" %}\n{% set platform = \"linux-x86_64\" %}  # [linux64]\n{% set platform = \"linux-ppc64le\" %}  # [ppc64le]\n{% set platform = \"windows-x86_64\" %}  # [win]\n{% set extension = \"tar.xz\" %}  # [not win]\n{% set extension = \"zip\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvvp/{{ platform }}/cuda_nvvp-{{ platform }}-{{ version }}-archive.{{ extension }}\n  sha256: a81bb02d101e32317c055fd836f3cc4a2450beb69f379ed7802c82ccf4b728a8  # [linux64]\n  sha256: 62504d9dbe2eaa61a2cb22d55b66e666e4a16498e4e2477ed0994010ebb13c74  # [win]\n\nbuild:\n  number: 0\n  skip: true  # [osx or aarch64 or ppc64le]\n\nrequirements:\n  build:\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - cuda-version {{ cuda_version }}\n  run:\n    - {{ pin_compatible(\"cuda-version\", max_pin=\"x.x\") }}\n    - cuda-nvdisasm\n    - cuda-nvprof\n\ntest:\n  commands:\n    - test -f $PREFIX/bin/nvvp      # [linux]\n    - test -f $PREFIX/libnvvp/nvvp  # [linux]\n    - if not exist %LIBRARY_BIN%\\nvvp.bat exit 1     # [win]\n    - if not exist %PREFIX%\\libnvvp\\nvvp.exe exit 1  # [win]\n\nabout:\n  home: https://developer.nvidia.com/nvidia-visual-profiler\n  license_file: LICENSE\n  license: LicenseRef-NVIDIA-End-User-License-Agreement\n  license_url: https://docs.nvidia.com/cuda/eula/index.html\n  summary: NVIDIA Visual Profiler to visualize and optimize the performance of your application.\n  description: |\n    NVIDIA Visual Profiler to visualize and optimize the performance of your\n    application.\n  doc_url: https://docs.nvidia.com/cuda/profiler-users-guide/index.html\n\nextra:\n  recipe-maintainers:\n    - conda-forge/cuda\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -226,7 +226,7 @@
   "host": {
    "__set__": true,
    "elements": [
-    "cuda-version 12.5"
+    "cuda-version 12.6"
    ]
   },
   "run": {
@@ -242,8 +242,8 @@
    "elements": []
   }
  },
- "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvvp/windows-x86_64/cuda_nvvp-windows-x86_64-12.5.82-archive.zip",
- "version": "12.5.82",
+ "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvvp/windows-x86_64/cuda_nvvp-windows-x86_64-12.6.37-archive.zip",
+ "version": "12.6.37",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/cuda-nvvp.json"
  },
@@ -267,7 +267,7 @@
   },
   "package": {
    "name": "cuda-nvvp",
-   "version": "12.5.82"
+   "version": "12.6.37"
   },
   "requirements": {
    "build": [
@@ -276,7 +276,7 @@
     "c_stdlib_stub"
    ],
    "host": [
-    "cuda-version 12.5"
+    "cuda-version 12.6"
    ],
    "run": [
     "cuda-version",
@@ -285,8 +285,8 @@
    ]
   },
   "source": {
-   "sha256": "d82f6452cbd9194690e054feb6ae1c00e4c110fe6b8419221cc92efa6ceebdd5",
-   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvvp/windows-x86_64/cuda_nvvp-windows-x86_64-12.5.82-archive.zip"
+   "sha256": "62504d9dbe2eaa61a2cb22d55b66e666e4a16498e4e2477ed0994010ebb13c74",
+   "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvvp/windows-x86_64/cuda_nvvp-windows-x86_64-12.6.37-archive.zip"
   },
   "test": {
    "commands": [
