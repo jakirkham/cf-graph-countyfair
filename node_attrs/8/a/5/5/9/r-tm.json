@@ -5,6 +5,11 @@
   "bot": {
    "automerge": true
   },
+  "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -14,10 +19,11 @@
    "tooling_branch_name": "main"
   },
   "provider": {
-   "linux_aarch64": "default",
-   "linux_ppc64le": "default",
+   "linux_aarch64": "azure",
+   "linux_ppc64le": "azure",
    "win": "azure"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "r-tm",
  "hash_type": "sha256",
@@ -30,7 +36,7 @@
    "summary": "A framework for text mining applications within R."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -62,7 +68,6 @@
    ],
    "run": [
     "r-base",
-    "r-bh",
     "r-nlp >=0.2_0",
     "r-rcpp",
     "r-slam >=0.1_37",
@@ -107,7 +112,6 @@
    "__set__": true,
    "elements": [
     "r-base",
-    "r-bh",
     "r-nlp",
     "r-rcpp",
     "r-slam",
@@ -128,7 +132,7 @@
    "summary": "A framework for text mining applications within R."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -160,7 +164,6 @@
    ],
    "run": [
     "r-base",
-    "r-bh",
     "r-nlp >=0.2_0",
     "r-rcpp",
     "r-slam >=0.1_37",
@@ -205,7 +208,6 @@
    "__set__": true,
    "elements": [
     "r-base",
-    "r-bh",
     "r-nlp",
     "r-rcpp",
     "r-slam",
@@ -226,7 +228,7 @@
    "summary": "A framework for text mining applications within R."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -258,7 +260,6 @@
    ],
    "run": [
     "r-base",
-    "r-bh",
     "r-nlp >=0.2_0",
     "r-rcpp",
     "r-slam >=0.1_37",
@@ -303,7 +304,6 @@
    "__set__": true,
    "elements": [
     "r-base",
-    "r-bh",
     "r-nlp",
     "r-rcpp",
     "r-slam",
@@ -324,8 +324,7 @@
    "summary": "A framework for text mining applications within R."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -364,12 +363,10 @@
    ],
    "run": [
     "r-base",
-    "r-bh",
     "r-nlp >=0.2_0",
     "r-rcpp",
     "r-slam >=0.1_37",
-    "r-xml2",
-    "gcc-libs"
+    "r-xml2"
    ]
   },
   "source": {
@@ -396,7 +393,7 @@
    "summary": "A framework for text mining applications within R."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -428,7 +425,6 @@
    ],
    "run": [
     "r-base",
-    "r-bh",
     "r-nlp >=0.2_0",
     "r-rcpp",
     "r-slam >=0.1_37",
@@ -473,7 +469,102 @@
    "__set__": true,
    "elements": [
     "r-base",
+    "r-nlp",
+    "r-rcpp",
+    "r-slam",
+    "r-xml2"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "home": "http://tm.r-forge.r-project.org/",
+   "license": "GPL-3.0-only",
+   "license_family": "GPL3",
+   "license_file": "/lib/R/share/licenses/GPL-3",
+   "summary": "A framework for text mining applications within R."
+  },
+  "build": {
+   "number": "1",
+   "rpaths": [
+    "lib/R/lib/",
+    "lib/"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "conda-forge/r"
+   ]
+  },
+  "package": {
+   "name": "r-tm",
+   "version": "0.7_13"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "make"
+   ],
+   "host": [
+    "r-base",
     "r-bh",
+    "r-nlp >=0.2_0",
+    "r-rcpp",
+    "r-slam >=0.1_37",
+    "r-xml2"
+   ],
+   "run": [
+    "r-base",
+    "r-nlp >=0.2_0",
+    "r-rcpp",
+    "r-slam >=0.1_37",
+    "r-xml2"
+   ]
+  },
+  "source": {
+   "sha256": "e5266ce245da9ad53f95630d737ef30b07981c59fb793b5010486a57eb671db4",
+   "url": [
+    "https://cran.r-project.org/src/contrib/tm_0.7-13.tar.gz",
+    "https://cran.r-project.org/src/contrib/Archive/tm/tm_0.7-13.tar.gz"
+   ]
+  },
+  "test": {
+   "commands": [
+    "$R -e \"library('tm')\""
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "make"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "r-base",
+    "r-bh",
+    "r-nlp",
+    "r-rcpp",
+    "r-slam",
+    "r-xml2"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "r-base",
     "r-nlp",
     "r-rcpp",
     "r-slam",
@@ -497,12 +588,13 @@
   "linux_aarch64",
   "linux_ppc64le",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/r-tm.json"
  },
- "raw_meta_yaml": "{% set version = \"0.7-13\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-tm\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/tm_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/tm/tm_{{ version }}.tar.gz\n  sha256: e5266ce245da9ad53f95630d737ef30b07981c59fb793b5010486a57eb671db4\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-bh\n    - r-nlp >=0.2_0\n    - r-rcpp\n    - r-slam >=0.1_37\n    - r-xml2\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-bh\n    - r-nlp >=0.2_0\n    - r-rcpp\n    - r-slam >=0.1_37\n    - r-xml2\n\ntest:\n  commands:\n    - $R -e \"library('tm')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('tm')\\\"\"  # [win]\n\nabout:\n  home: http://tm.r-forge.r-project.org/\n  license: GPL-3.0-only\n  summary: A framework for text mining applications within R.\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: tm\n# Title: Text Mining Package\n# Version: 0.7-6\n# Date: 2018-12-21\n# Authors@R: c(person(\"Ingo\", \"Feinerer\", role = c(\"aut\", \"cre\"), email = \"feinerer@logic.at\", comment = c(ORCID = \"0000-0001-7656-8338\")), person(\"Kurt\", \"Hornik\", role = \"aut\", comment = c(ORCID = \"0000-0003-4198-9911\")), person(\"Artifex Software, Inc.\", role = c(\"ctb\", \"cph\"), comment = \"pdf_info.ps taken from GPL Ghostscript\"))\n# Depends: R (>= 3.2.0), NLP (>= 0.2-0)\n# Imports: Rcpp, parallel, slam (>= 0.1-37), stats, tools, utils, graphics, xml2\n# LinkingTo: BH, Rcpp\n# Suggests: antiword, filehash, methods, pdftools, Rcampdf, Rgraphviz, Rpoppler, SnowballC, testthat, tm.lexicon.GeneralInquirer\n# SystemRequirements: C++11\n# Description: A framework for text mining applications within R.\n# License: GPL-3\n# URL: http://tm.r-forge.r-project.org/\n# Additional_repositories: https://datacube.wu.ac.at\n# NeedsCompilation: yes\n# Packaged: 2018-12-21 13:10:14 UTC; hornik\n# Author: Ingo Feinerer [aut, cre] (<https://orcid.org/0000-0001-7656-8338>), Kurt Hornik [aut] (<https://orcid.org/0000-0003-4198-9911>), Artifex Software, Inc. [ctb, cph] (pdf_info.ps taken from GPL Ghostscript)\n# Maintainer: Ingo Feinerer <feinerer@logic.at>\n# Repository: CRAN\n# Date/Publication: 2018-12-21 13:55:26 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.7-13\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-tm\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/tm_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/tm/tm_{{ version }}.tar.gz\n  sha256: e5266ce245da9ad53f95630d737ef30b07981c59fb793b5010486a57eb671db4\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-bh                         # [build_platform != target_platform]\n    - r-nlp                        # [build_platform != target_platform]\n    - r-rcpp                       # [build_platform != target_platform]\n    - r-slam                       # [build_platform != target_platform]\n    - r-xml2                       # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-bh\n    - r-nlp >=0.2_0\n    - r-rcpp\n    - r-slam >=0.1_37\n    - r-xml2\n  run:\n    - r-base\n    - r-nlp >=0.2_0\n    - r-rcpp\n    - r-slam >=0.1_37\n    - r-xml2\n\ntest:\n  commands:\n    - $R -e \"library('tm')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('tm')\\\"\"  # [win]\n\nabout:\n  home: http://tm.r-forge.r-project.org/\n  license: GPL-3.0-only\n  summary: A framework for text mining applications within R.\n  license_family: GPL3\n  license_file: {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -511,7 +603,6 @@
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
    "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
@@ -563,9 +654,7 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
-    "r-bh",
     "r-nlp",
     "r-rcpp",
     "r-slam",
@@ -609,9 +698,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
-    "r-bh",
     "r-nlp >=0.2_0",
     "r-rcpp",
     "r-slam >=0.1_37",
@@ -624,6 +711,8 @@
   }
  },
  "url": [
+  "https://cran.r-project.org/src/contrib/tm_0.7-13.tar.gz",
+  "https://cran.r-project.org/src/contrib/Archive/tm/tm_0.7-13.tar.gz",
   "https://cran.r-project.org/src/contrib/tm_0.7-13.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/tm/tm_0.7-13.tar.gz",
   "https://cran.r-project.org/src/contrib/tm_0.7-13.tar.gz",
@@ -648,8 +737,7 @@
    "summary": "A framework for text mining applications within R."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -685,8 +773,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
-    "r-bh",
     "r-nlp >=0.2_0",
     "r-rcpp",
     "r-slam >=0.1_37",
@@ -734,9 +820,7 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
-    "r-bh",
     "r-nlp",
     "r-rcpp",
     "r-slam",
