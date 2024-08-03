@@ -54,7 +54,7 @@
     "cuda-cudart-dev",
     "cuda-nvrtc-dev"
    ],
-   "number": "1",
+   "number": "0",
    "run_exports": [
     "cuda-python"
    ],
@@ -78,7 +78,7 @@
   },
   "package": {
    "name": "cuda-python",
-   "version": "12.5.0"
+   "version": "12.6.0"
   },
   "requirements": {
    "build": [
@@ -86,7 +86,7 @@
     "cxx_compiler_stub",
     "cuda_compiler_stub",
     "c_stdlib_stub",
-    "cuda-version 12.5"
+    "cuda-version 12.6"
    ],
    "host": [
     "cuda-cudart-dev",
@@ -100,7 +100,7 @@
     "python",
     "setuptools",
     "versioneer",
-    "cuda-version 12.5"
+    "cuda-version 12.6"
    ],
    "run": [
     "python",
@@ -112,8 +112,8 @@
    ]
   },
   "source": {
-   "sha256": "eb6d1b2cd881de0c14963ddb9cb7f3ec5df1b31370133267678265e31fb743b2",
-   "url": "https://github.com/NVIDIA/cuda-python/archive/refs/tags/v12.5.0.tar.gz"
+   "sha256": "4b7f81ca48e91c3af58857641115da294885126f00f0b72e3c87db5ed8549ff3",
+   "url": "https://github.com/NVIDIA/cuda-python/archive/refs/tags/v12.6.0.tar.gz"
   },
   "test": {
    "imports": [
@@ -181,7 +181,7 @@
     "cuda-cudart-dev",
     "cuda-nvrtc-dev"
    ],
-   "number": "1",
+   "number": "0",
    "run_exports": [
     "cuda-python"
    ],
@@ -205,7 +205,7 @@
   },
   "package": {
    "name": "cuda-python",
-   "version": "12.5.0"
+   "version": "12.6.0"
   },
   "requirements": {
    "build": [
@@ -213,7 +213,7 @@
     "cxx_compiler_stub",
     "cuda_compiler_stub",
     "c_stdlib_stub",
-    "cuda-version 12.5"
+    "cuda-version 12.6"
    ],
    "host": [
     "cuda-cudart-dev",
@@ -227,7 +227,7 @@
     "python",
     "setuptools",
     "versioneer",
-    "cuda-version 12.5"
+    "cuda-version 12.6"
    ],
    "run": [
     "python",
@@ -239,8 +239,8 @@
    ]
   },
   "source": {
-   "sha256": "eb6d1b2cd881de0c14963ddb9cb7f3ec5df1b31370133267678265e31fb743b2",
-   "url": "https://github.com/NVIDIA/cuda-python/archive/refs/tags/v12.5.0.tar.gz"
+   "sha256": "4b7f81ca48e91c3af58857641115da294885126f00f0b72e3c87db5ed8549ff3",
+   "url": "https://github.com/NVIDIA/cuda-python/archive/refs/tags/v12.6.0.tar.gz"
   },
   "test": {
    "imports": [
@@ -308,7 +308,7 @@
     "cuda-cudart-dev",
     "cuda-nvrtc-dev"
    ],
-   "number": "1",
+   "number": "0",
    "run_exports": [
     "cuda-python"
    ],
@@ -332,7 +332,7 @@
   },
   "package": {
    "name": "cuda-python",
-   "version": "12.5.0"
+   "version": "12.6.0"
   },
   "requirements": {
    "build": [
@@ -340,7 +340,7 @@
     "cxx_compiler_stub",
     "cuda_compiler_stub",
     "c_stdlib_stub",
-    "cuda-version 12.5"
+    "cuda-version 12.6"
    ],
    "host": [
     "cuda-cudart-dev",
@@ -354,7 +354,7 @@
     "python",
     "setuptools",
     "versioneer",
-    "cuda-version 12.5"
+    "cuda-version 12.6"
    ],
    "run": [
     "python",
@@ -367,8 +367,8 @@
    ]
   },
   "source": {
-   "sha256": "eb6d1b2cd881de0c14963ddb9cb7f3ec5df1b31370133267678265e31fb743b2",
-   "url": "https://github.com/NVIDIA/cuda-python/archive/refs/tags/v12.5.0.tar.gz"
+   "sha256": "4b7f81ca48e91c3af58857641115da294885126f00f0b72e3c87db5ed8549ff3",
+   "url": "https://github.com/NVIDIA/cuda-python/archive/refs/tags/v12.6.0.tar.gz"
   },
   "test": {
    "imports": [
@@ -394,7 +394,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/cuda-python.json"
  },
- "raw_meta_yaml": "{% set name = \"cuda-python\" %}\n{% set version = \"12.5.0\" %}\n{% set major_version = version.split(\".\")[0]|int %}\n{% set minor_version = version.split(\".\")[1]|int %}\n{% set patch_version = version.split(\".\")[2]|int %}\n{% set target_name = \"x86_64-linux\" %}  # [linux64]\n{% set target_name = \"sbsa-linux\" %}  # [aarch64]\n{% set target_name = \"x64\" %}  # [win64]\n{% set subdir = os.sep.join([\"\", \"targets\", target_name]) %}  # [linux]\n{% set subdir = os.sep.join([\"\", \"Library\"]) %}               # [win64]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/NVIDIA/cuda-python/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: eb6d1b2cd881de0c14963ddb9cb7f3ec5df1b31370133267678265e31fb743b2\n\nbuild:\n  number: 1\n  {% if not (environ.get(\"cuda_compiler_version\")|string()).startswith(major_version|string()) %}\n  skip: true\n  {% endif %}\n  # `linux_ppc64le` is unsupported by the CUDA Toolkit as of 12.5.0.\n  # So skip building `cuda-python` on `linux_ppc64le`\n  # xref: https://github.com/conda-forge/cuda-feedstock/issues/27\n  skip: true  # [ppc64le]\n  script:\n    - {{ PYTHON }} -m pip install . --no-deps -vv\n  script_env:\n    # Ensure that CUDA includes can be found by the host compiler\n    - CUDA_HOME={{ PREFIX ~ subdir ~ os.pathsep ~ BUILD_PREFIX ~ subdir }}\n  run_exports:\n    - {{ pin_subpackage('cuda-python', min_pin='x', max_pin='x') }}\n  ignore_run_exports_from:\n    - {{ compiler('cuda') }}\n    # The run-exports from these dev packages are too tight, so we ignore them.\n    # The cuda-python package supports CUDA Enhanced Compatibility through its\n    # use of dlopen, so it is compatible with other CUDA minor versions.\n    - cuda-cudart-dev\n    - cuda-nvrtc-dev\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - {{ stdlib('c') }}\n    - cuda-version {{ major_version }}.{{ minor_version }}\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - python                              # [build_platform != target_platform]\n    - cython                              # [build_platform != target_platform]\n  host:\n    - cuda-cudart-dev\n    - cuda-cudart\n    - cuda-nvrtc-dev\n    - cuda-nvrtc\n    - cuda-profiler-api\n    - cython\n    - pip\n    - pyclibrary\n    - python\n    - setuptools\n    - tomli  # [py<311]\n    - versioneer\n    - cuda-version {{ major_version }}.{{ minor_version }}\n  run:\n    - python\n    # cuda-python requires cuda-nvrtc from the same major version. We ignored\n    # run-exports of cuda-nvrtc-dev and instead allow a looser pinning here.\n    - {{ pin_compatible('cuda-nvrtc', min_pin='x', max_pin='x') }}\n    - {{ pin_compatible('cuda-version', min_pin='x', max_pin='x') }}\n    - pywin32  # [win64]\n  run_constrained:\n    # cuda-cudart is not a hard dependency because cuda-python re-implements\n    # cudart. This package is optionally dlopen'd for getting the local cudart\n    # version with cuda.cudart.getLocalRuntimeVersion(). We ignored run-exports\n    # of cuda-cudart-dev and instead allow a looser pinning here.\n    - {{ pin_compatible('cuda-cudart', min_pin='x', max_pin='x') }}\n\ntest:\n  imports:\n    - cuda\n    - cuda.cuda\n    - cuda.cudart\n\nabout:\n  home: https://github.com/NVIDIA/cuda-python\n  license: LicenseRef-NVIDIA-SOFTWARE-LICENSE\n  license_file: LICENSE\n  license_url: https://github.com/NVIDIA/cuda-python/blob/main/LICENSE\n  summary: CUDA Python Low-level Bindings\n  description: |\n    CUDA Python provides a standard set of low-level interfaces,\n    providing full coverage of and access to the CUDA host APIs from Python.\n  doc_url: https://nvidia.github.io/cuda-python/\n  dev_url: https://github.com/NVIDIA/cuda-python\n\nextra:\n  recipe-maintainers:\n    - bdice\n    - jakirkham\n    - leofang\n    - m3vaz\n    - mmccarty\n    - vyasr\n",
+ "raw_meta_yaml": "{% set name = \"cuda-python\" %}\n{% set version = \"12.6.0\" %}\n{% set major_version = version.split(\".\")[0]|int %}\n{% set minor_version = version.split(\".\")[1]|int %}\n{% set patch_version = version.split(\".\")[2]|int %}\n{% set target_name = \"x86_64-linux\" %}  # [linux64]\n{% set target_name = \"sbsa-linux\" %}  # [aarch64]\n{% set target_name = \"x64\" %}  # [win64]\n{% set subdir = os.sep.join([\"\", \"targets\", target_name]) %}  # [linux64 or aarch64]\n{% set subdir = os.sep.join([\"\", \"Library\"]) %}               # [win64]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/NVIDIA/cuda-python/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 4b7f81ca48e91c3af58857641115da294885126f00f0b72e3c87db5ed8549ff3\n\nbuild:\n  number: 0\n  {% if not (environ.get(\"cuda_compiler_version\")|string()).startswith(major_version|string()) %}\n  skip: true\n  {% endif %}\n  # `linux_ppc64le` is unsupported by the CUDA Toolkit as of 12.5.0.\n  # So skip building `cuda-python` on `linux_ppc64le`\n  # xref: https://github.com/conda-forge/cuda-feedstock/issues/27\n  skip: true  # [ppc64le]\n  script:\n    - {{ PYTHON }} -m pip install . --no-deps -vv\n  script_env:\n    # Ensure that CUDA includes can be found by the host compiler\n    - CUDA_HOME={{ PREFIX ~ subdir ~ os.pathsep ~ BUILD_PREFIX ~ subdir }}\n  run_exports:\n    - {{ pin_subpackage('cuda-python', min_pin='x', max_pin='x') }}\n  ignore_run_exports_from:\n    - {{ compiler('cuda') }}\n    # The run-exports from these dev packages are too tight, so we ignore them.\n    # The cuda-python package supports CUDA Enhanced Compatibility through its\n    # use of dlopen, so it is compatible with other CUDA minor versions.\n    - cuda-cudart-dev\n    - cuda-nvrtc-dev\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}\n    - {{ stdlib('c') }}\n    - cuda-version {{ major_version }}.{{ minor_version }}\n    - cross-python_{{ target_platform }}  # [build_platform != target_platform]\n    - python                              # [build_platform != target_platform]\n    - cython                              # [build_platform != target_platform]\n  host:\n    - cuda-cudart-dev\n    - cuda-cudart\n    - cuda-nvrtc-dev\n    - cuda-nvrtc\n    - cuda-profiler-api\n    - cython\n    - pip\n    - pyclibrary\n    - python\n    - setuptools\n    - tomli  # [py<311]\n    - versioneer\n    - cuda-version {{ major_version }}.{{ minor_version }}\n  run:\n    - python\n    # cuda-python requires cuda-nvrtc from the same major version. We ignored\n    # run-exports of cuda-nvrtc-dev and instead allow a looser pinning here.\n    - {{ pin_compatible('cuda-nvrtc', min_pin='x', max_pin='x') }}\n    - {{ pin_compatible('cuda-version', min_pin='x', max_pin='x') }}\n    - pywin32  # [win64]\n  run_constrained:\n    # cuda-cudart is not a hard dependency because cuda-python re-implements\n    # cudart. This package is optionally dlopen'd for getting the local cudart\n    # version with cuda.cudart.getLocalRuntimeVersion(). We ignored run-exports\n    # of cuda-cudart-dev and instead allow a looser pinning here.\n    - {{ pin_compatible('cuda-cudart', min_pin='x', max_pin='x') }}\n\ntest:\n  imports:\n    - cuda\n    - cuda.cuda\n    - cuda.cudart\n\nabout:\n  home: https://github.com/NVIDIA/cuda-python\n  license: LicenseRef-NVIDIA-SOFTWARE-LICENSE\n  license_file: LICENSE\n  license_url: https://github.com/NVIDIA/cuda-python/blob/main/LICENSE\n  summary: CUDA Python Low-level Bindings\n  description: |\n    CUDA Python provides a standard set of low-level interfaces,\n    providing full coverage of and access to the CUDA host APIs from Python.\n  doc_url: https://nvidia.github.io/cuda-python/\n  dev_url: https://github.com/NVIDIA/cuda-python\n\nextra:\n  recipe-maintainers:\n    - bdice\n    - jakirkham\n    - leofang\n    - m3vaz\n    - mmccarty\n    - vyasr\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -474,7 +474,7 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "cuda-version 12.5",
+    "cuda-version 12.6",
     "cuda_compiler_stub",
     "cxx_compiler_stub"
    ]
@@ -487,7 +487,7 @@
     "cuda-nvrtc",
     "cuda-nvrtc-dev",
     "cuda-profiler-api",
-    "cuda-version 12.5",
+    "cuda-version 12.6",
     "cython",
     "pip",
     "pyclibrary",
@@ -510,8 +510,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/NVIDIA/cuda-python/archive/refs/tags/v12.5.0.tar.gz",
- "version": "12.5.0",
+ "url": "https://github.com/NVIDIA/cuda-python/archive/refs/tags/v12.6.0.tar.gz",
+ "version": "12.6.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/cuda-python.json"
  },
@@ -532,7 +532,7 @@
     "cuda-cudart-dev",
     "cuda-nvrtc-dev"
    ],
-   "number": "1",
+   "number": "0",
    "run_exports": [
     "cuda-python"
    ],
@@ -556,7 +556,7 @@
   },
   "package": {
    "name": "cuda-python",
-   "version": "12.5.0"
+   "version": "12.6.0"
   },
   "requirements": {
    "build": [
@@ -564,7 +564,7 @@
     "cxx_compiler_stub",
     "cuda_compiler_stub",
     "c_stdlib_stub",
-    "cuda-version 12.5"
+    "cuda-version 12.6"
    ],
    "host": [
     "cuda-cudart-dev",
@@ -578,7 +578,7 @@
     "python",
     "setuptools",
     "versioneer",
-    "cuda-version 12.5"
+    "cuda-version 12.6"
    ],
    "run": [
     "python",
@@ -591,8 +591,8 @@
    ]
   },
   "source": {
-   "sha256": "eb6d1b2cd881de0c14963ddb9cb7f3ec5df1b31370133267678265e31fb743b2",
-   "url": "https://github.com/NVIDIA/cuda-python/archive/refs/tags/v12.5.0.tar.gz"
+   "sha256": "4b7f81ca48e91c3af58857641115da294885126f00f0b72e3c87db5ed8549ff3",
+   "url": "https://github.com/NVIDIA/cuda-python/archive/refs/tags/v12.6.0.tar.gz"
   },
   "test": {
    "imports": [
