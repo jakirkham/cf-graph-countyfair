@@ -40,7 +40,7 @@
    "summary": "Routines for simple graphs and network analysis. It can handle large graphs very well and provides functions for generating random and regular graphs, graph visualization, centrality methods and much more."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -59,6 +59,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "autoconf",
@@ -127,6 +128,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make",
@@ -189,7 +191,7 @@
    "summary": "Routines for simple graphs and network analysis. It can handle large graphs very well and provides functions for generating random and regular graphs, graph visualization, centrality methods and much more."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -208,6 +210,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "autoconf",
@@ -276,6 +279,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make",
@@ -338,7 +342,7 @@
    "summary": "Routines for simple graphs and network analysis. It can handle large graphs very well and provides functions for generating random and regular graphs, graph visualization, centrality methods and much more."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -357,6 +361,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "autoconf",
@@ -424,6 +429,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make",
@@ -485,7 +491,7 @@
    "summary": "Routines for simple graphs and network analysis. It can handle large graphs very well and provides functions for generating random and regular graphs, graph visualization, centrality methods and much more."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -504,12 +510,23 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "autoconf",
     "automake",
     "pkg-config",
-    "make"
+    "make",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "m2w64_fortran_compiler_stub",
+    "filesystem",
+    "sed",
+    "grep",
+    "automake-wrapper",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -552,7 +569,9 @@
   "test": {
    "commands": [
     "$R -e \"library('igraph')\"",
-    "$R -e \"testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)\""
+    "$R -e \"testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)\"",
+    "\"%R%\" -e \"library('igraph')\"",
+    "\"%R%\" -e \"testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)\""
    ],
    "requires": [
     "r-testthat",
@@ -579,7 +598,7 @@
    "summary": "Routines for simple graphs and network analysis. It can handle large graphs very well and provides functions for generating random and regular graphs, graph visualization, centrality methods and much more."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -598,6 +617,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "autoconf",
@@ -666,6 +686,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make",
@@ -728,7 +749,7 @@
    "summary": "Routines for simple graphs and network analysis. It can handle large graphs very well and provides functions for generating random and regular graphs, graph visualization, centrality methods and much more."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -747,6 +768,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "autoconf",
@@ -815,6 +837,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "make",
@@ -876,25 +899,35 @@
   "linux_aarch64",
   "linux_ppc64le",
   "osx_64",
-  "osx_arm64"
+  "osx_arm64",
+  "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/r-igraph.json"
  },
- "raw_meta_yaml": "{% set version = \"2.0.3\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-igraph\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/igraph_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/igraph/igraph_{{ version }}.tar.gz\n  sha256: 8e8a172d4567219474562cfb1085496be3ab356483c4e88011aca1fc3b2d8f76\n  patches:\n    - patches/0001-conditional-rgl-tests.patch\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem            # [win]\n    - {{ posix }}sed                   # [win]\n    - {{ posix }}grep                  # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake              # [not win]\n    - {{ posix }}automake-wrapper      # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils             # [win]\n    - {{ posix }}zip                   # [win]\n    - cross-r-base {{ r_base }}        # [build_platform != target_platform]\n    - r-cli                            # [build_platform != target_platform]\n    - r-cpp11 >=0.4.7                  # [build_platform != target_platform]\n    - r-lifecycle                      # [build_platform != target_platform]\n    - r-magrittr                       # [build_platform != target_platform]\n    - r-matrix                         # [build_platform != target_platform]\n    - r-pkgconfig >=2.0.0              # [build_platform != target_platform]\n    - r-rlang                          # [build_platform != target_platform]\n    - r-vctrs                          # [build_platform != target_platform]\n  host:\n    - r-base\n    - libblas\n    - liblapack\n    - glpk                             # [not win]\n    - gmp                              # [not win]\n    - libxml2\n    - r-cli\n    - r-cpp11 >=0.4.7\n    - r-lifecycle\n    - r-magrittr\n    - r-matrix\n    - r-pkgconfig >=2.0.0\n    - r-rlang\n    - r-vctrs\n  run:\n    - r-base\n    - {{ native }}gcc-libs             # [win]\n    - r-cli\n    - r-cpp11 >=0.4.7\n    - r-lifecycle\n    - r-magrittr\n    - r-matrix\n    - r-pkgconfig >=2.0.0\n    - r-rlang\n    - r-vctrs\n\ntest:\n  requires:\n    - r-testthat\n    - r-rgl       # [not ppc64le]\n    - r-vdiffr\n    - r-withr\n  source_files:\n    - tests/\n  commands:\n    - $R -e \"library('igraph')\"                                              # [not win]\n    - $R -e \"testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('igraph')\\\"\"                                              # [win]\n    - \"\\\"%R%\\\" -e \\\"testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)\\\"\"  # [win]\n\nabout:\n  home: https://r.igraph.org/\n  dev_url: https://github.com/igraph/rigraph\n  license: GPL-2.0-or-later\n  summary: Routines for simple graphs and network analysis. It can handle large graphs very well and provides functions for generating random and regular graphs, graph visualization, centrality methods and much more.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - philip-khor\n",
+ "raw_meta_yaml": "{% set version = \"2.0.3\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-igraph\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/igraph_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/igraph/igraph_{{ version }}.tar.gz\n  sha256: 8e8a172d4567219474562cfb1085496be3ab356483c4e88011aca1fc3b2d8f76\n  patches:\n    - patches/0001-conditional-rgl-tests.patch\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  # Checking windows to see if it passes. Uncomment the line if it fails.\n  # skip: true  # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem            # [win]\n    - {{ posix }}sed                   # [win]\n    - {{ posix }}grep                  # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake              # [not win]\n    - {{ posix }}automake-wrapper      # [win]\n    - pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils             # [win]\n    - {{ posix }}zip                   # [win]\n    - cross-r-base {{ r_base }}        # [build_platform != target_platform]\n    - r-cli                            # [build_platform != target_platform]\n    - r-cpp11 >=0.4.7                  # [build_platform != target_platform]\n    - r-lifecycle                      # [build_platform != target_platform]\n    - r-magrittr                       # [build_platform != target_platform]\n    - r-matrix                         # [build_platform != target_platform]\n    - r-pkgconfig >=2.0.0              # [build_platform != target_platform]\n    - r-rlang                          # [build_platform != target_platform]\n    - r-vctrs                          # [build_platform != target_platform]\n  host:\n    - r-base\n    - libblas\n    - liblapack\n    - glpk\n    - gmp\n    - libxml2\n    - r-cli\n    - r-cpp11 >=0.4.7\n    - r-lifecycle\n    - r-magrittr\n    - r-matrix\n    - r-pkgconfig >=2.0.0\n    - r-rlang\n    - r-vctrs\n  run:\n    - r-base\n    - r-cli\n    - r-cpp11 >=0.4.7\n    - r-lifecycle\n    - r-magrittr\n    - r-matrix\n    - r-pkgconfig >=2.0.0\n    - r-rlang\n    - r-vctrs\n\ntest:\n  requires:\n    - r-testthat\n    - r-rgl       # [not ppc64le]\n    - r-vdiffr\n    - r-withr\n  source_files:\n    - tests/\n  commands:\n    - $R -e \"library('igraph')\"                                              # [not win]\n    - $R -e \"testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('igraph')\\\"\"                                              # [win]\n    - \"\\\"%R%\\\" -e \\\"testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)\\\"\"  # [win]\n\nabout:\n  home: https://r.igraph.org/\n  dev_url: https://github.com/igraph/rigraph\n  license: GPL-2.0-or-later\n  summary: Routines for simple graphs and network analysis. It can handle large graphs very well and provides functions for generating random and regular graphs, graph visualization, centrality methods and much more.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - philip-khor\n",
  "req": {
   "__set__": true,
   "elements": [
    "autoconf",
    "automake",
+   "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
+   "coreutils",
    "cxx_compiler_stub",
+   "filesystem",
    "fortran_compiler_stub",
    "glpk",
    "gmp",
+   "grep",
    "libblas",
    "liblapack",
    "libxml2",
+   "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
+   "m2w64_cxx_compiler_stub",
+   "m2w64_fortran_compiler_stub",
    "make",
    "pkg-config",
    "r-base",
@@ -905,7 +938,9 @@
    "r-matrix",
    "r-pkgconfig",
    "r-rlang",
-   "r-vctrs"
+   "r-vctrs",
+   "sed",
+   "zip"
   ]
  },
  "requirements": {
@@ -914,17 +949,29 @@
    "elements": [
     "autoconf",
     "automake",
+    "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
+    "filesystem",
     "fortran_compiler_stub",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "m2w64_fortran_compiler_stub",
     "make",
-    "pkg-config"
+    "pkg-config",
+    "sed",
+    "zip"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "glpk",
@@ -947,6 +994,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
     "r-base",
@@ -977,11 +1025,22 @@
    "elements": [
     "autoconf",
     "automake",
+    "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
+    "filesystem",
     "fortran_compiler_stub",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "m2w64_fortran_compiler_stub",
     "make",
-    "pkg-config"
+    "pkg-config",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -1037,10 +1096,173 @@
   "https://cran.r-project.org/src/contrib/igraph_2.0.3.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/igraph/igraph_2.0.3.tar.gz",
   "https://cran.r-project.org/src/contrib/igraph_2.0.3.tar.gz",
+  "https://cran.r-project.org/src/contrib/Archive/igraph/igraph_2.0.3.tar.gz",
+  "https://cran.r-project.org/src/contrib/igraph_2.0.3.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/igraph/igraph_2.0.3.tar.gz"
  ],
  "version": "2.0.3",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/r-igraph.json"
+ },
+ "win_64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/igraph/rigraph",
+   "home": "https://r.igraph.org/",
+   "license": "GPL-2.0-or-later",
+   "license_family": "GPL3",
+   "license_file": [
+    "/lib/R/share/licenses/GPL-2",
+    "/lib/R/share/licenses/GPL-3"
+   ],
+   "summary": "Routines for simple graphs and network analysis. It can handle large graphs very well and provides functions for generating random and regular graphs, graph visualization, centrality methods and much more."
+  },
+  "build": {
+   "number": "1",
+   "rpaths": [
+    "lib/R/lib/",
+    "lib/"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "conda-forge/r",
+    "philip-khor"
+   ]
+  },
+  "package": {
+   "name": "r-igraph",
+   "version": "2.0.3"
+  },
+  "requirements": {
+   "build": [
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "m2w64_fortran_compiler_stub",
+    "filesystem",
+    "sed",
+    "grep",
+    "autoconf",
+    "automake-wrapper",
+    "pkg-config",
+    "make",
+    "coreutils",
+    "zip"
+   ],
+   "host": [
+    "r-base",
+    "libblas",
+    "liblapack",
+    "glpk",
+    "gmp",
+    "libxml2",
+    "r-cli",
+    "r-cpp11 >=0.4.7",
+    "r-lifecycle",
+    "r-magrittr",
+    "r-matrix",
+    "r-pkgconfig >=2.0.0",
+    "r-rlang",
+    "r-vctrs"
+   ],
+   "run": [
+    "r-base",
+    "r-cli",
+    "r-cpp11 >=0.4.7",
+    "r-lifecycle",
+    "r-magrittr",
+    "r-matrix",
+    "r-pkgconfig >=2.0.0",
+    "r-rlang",
+    "r-vctrs"
+   ]
+  },
+  "source": {
+   "patches": [
+    "patches/0001-conditional-rgl-tests.patch"
+   ],
+   "sha256": "8e8a172d4567219474562cfb1085496be3ab356483c4e88011aca1fc3b2d8f76",
+   "url": [
+    "https://cran.r-project.org/src/contrib/igraph_2.0.3.tar.gz",
+    "https://cran.r-project.org/src/contrib/Archive/igraph/igraph_2.0.3.tar.gz"
+   ]
+  },
+  "test": {
+   "commands": [
+    "\"%R%\" -e \"library('igraph')\"",
+    "\"%R%\" -e \"testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)\""
+   ],
+   "requires": [
+    "r-testthat",
+    "r-rgl",
+    "r-vdiffr",
+    "r-withr"
+   ],
+   "source_files": [
+    "tests/"
+   ]
+  }
+ },
+ "win_64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "autoconf",
+    "automake-wrapper",
+    "coreutils",
+    "filesystem",
+    "grep",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "m2w64_fortran_compiler_stub",
+    "make",
+    "pkg-config",
+    "sed",
+    "zip"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "glpk",
+    "gmp",
+    "libblas",
+    "liblapack",
+    "libxml2",
+    "r-base",
+    "r-cli",
+    "r-cpp11",
+    "r-lifecycle",
+    "r-magrittr",
+    "r-matrix",
+    "r-pkgconfig",
+    "r-rlang",
+    "r-vctrs"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "r-base",
+    "r-cli",
+    "r-cpp11",
+    "r-lifecycle",
+    "r-magrittr",
+    "r-matrix",
+    "r-pkgconfig",
+    "r-rlang",
+    "r-vctrs"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "r-rgl",
+    "r-testthat",
+    "r-vdiffr",
+    "r-withr"
+   ]
+  }
  }
 }
