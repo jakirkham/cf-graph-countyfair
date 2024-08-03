@@ -6,6 +6,8 @@
    "automerge": true
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -36,7 +38,7 @@
    "summary": "Converts between a number of bibliography formats, including 'BibTeX', 'BibLaTeX' and 'Bibentry'.  Includes a port of the 'bibutils' utilities by Chris Putnam <https://sourceforge.net/projects/bibutils/>. Supports all bibliography formats and character encodings implemented in 'bibutils'."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -54,6 +56,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -83,6 +86,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -117,7 +121,7 @@
    "summary": "Converts between a number of bibliography formats, including 'BibTeX', 'BibLaTeX' and 'Bibentry'.  Includes a port of the 'bibutils' utilities by Chris Putnam <https://sourceforge.net/projects/bibutils/>. Supports all bibliography formats and character encodings implemented in 'bibutils'."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -135,6 +139,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -164,6 +169,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -198,7 +204,7 @@
    "summary": "Converts between a number of bibliography formats, including 'BibTeX', 'BibLaTeX' and 'Bibentry'.  Includes a port of the 'bibutils' utilities by Chris Putnam <https://sourceforge.net/projects/bibutils/>. Supports all bibliography formats and character encodings implemented in 'bibutils'."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -216,6 +222,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -245,6 +252,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -279,8 +287,7 @@
    "summary": "Converts between a number of bibliography formats, including 'BibTeX', 'BibLaTeX' and 'Bibentry'.  Includes a port of the 'bibutils' utilities by Chris Putnam <https://sourceforge.net/projects/bibutils/>. Supports all bibliography formats and character encodings implemented in 'bibutils'."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -298,8 +305,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -311,8 +320,7 @@
    ],
    "run": [
     "r-base",
-    "r-xml2",
-    "gcc-libs"
+    "r-xml2"
    ]
   },
   "source": {
@@ -342,7 +350,7 @@
    "summary": "Converts between a number of bibliography formats, including 'BibTeX', 'BibLaTeX' and 'Bibentry'.  Includes a port of the 'bibutils' utilities by Chris Putnam <https://sourceforge.net/projects/bibutils/>. Supports all bibliography formats and character encodings implemented in 'bibutils'."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -360,6 +368,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -389,6 +398,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -423,7 +433,7 @@
    "summary": "Converts between a number of bibliography formats, including 'BibTeX', 'BibLaTeX' and 'Bibentry'.  Includes a port of the 'bibutils' utilities by Chris Putnam <https://sourceforge.net/projects/bibutils/>. Supports all bibliography formats and character encodings implemented in 'bibutils'."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -441,6 +451,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -470,6 +481,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -510,15 +522,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-rbibutils.json"
  },
- "raw_meta_yaml": "{% set version = \"2.2.16\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-rbibutils\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/rbibutils_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/rbibutils/rbibutils_{{ version }}.tar.gz\n  sha256: 9c7c0fba47f63b1749005311c7174b40e72d95c863a67b736a84b8ff375a2aaf\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-xml2                     # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-xml2\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-xml2\n\ntest:\n  commands:\n    - $R -e \"library('rbibutils')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('rbibutils')\\\"\"  # [win]\n\nabout:\n  home: https://geobosh.github.io/rbibutils/\n  dev_url: https://github.com/GeoBosh/rbibutils\n  license: GPL-2.0-only\n  summary: Converts between a number of bibliography formats, including 'BibTeX', 'BibLaTeX' and 'Bibentry'.  Includes a port of the 'bibutils' utilities by Chris Putnam <https://sourceforge.net/projects/bibutils/>. Supports all bibliography formats and character encodings implemented in 'bibutils'.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: rbibutils\n# Type: Package\n# Title: Convert Between Bibliography Formats\n# Version: 1.3\n# Date: 2020-10-02\n# Authors@R: c( person(given = c(\"Georgi\", \"N.\"), family = \"Boshnakov\", role = c(\"aut\", \"cre\"), email = \"georgi.boshnakov@manchester.ac.uk\", comment = \"R port, modifications to bibutils' C code\" ), person(given = \"Chris\", family = \"Putman\", role = \"aut\", comment = \"src/*, author of the bibutils libraries, https://sourceforge.net/projects/bibutils/\"), person(given = \"Richard\", family = \"Mathar\", role = \"ctb\", comment = \"src/addsout.c\"), person(given = \"Johannes\", family = \"Wilm\", role = \"ctb\", comment = \"src/biblatexin.c, src/bltypes.c\") )\n# Description: Converts between a number of bibliography formats, including 'BibTeX', 'BibLaTeX' and 'Bibentry'.  Includes a port of the 'bibutils' utilities by Chris Putnam <https://sourceforge.net/projects/bibutils/>. Supports all bibliography formats and character encodings implemented in 'bibutils'.\n# License: GPL-2\n# URL: https://geobosh.github.io/rbibutils/ (website), https://github.com/GeoBosh/rbibutils (devel)\n# BugReports: https://github.com/GeoBosh/rbibutils/issues\n# Depends: R (>= 2.10)\n# Imports: utils, tools, xml2\n# Encoding: UTF-8\n# LazyData: true\n# NeedsCompilation: yes\n# Suggests: testthat\n# Packaged: 2020-10-02 08:55:20 UTC; georgi\n# Author: Georgi N. Boshnakov [aut, cre] (R port, modifications to bibutils' C code), Chris Putman [aut] (src/*, author of the bibutils libraries, https://sourceforge.net/projects/bibutils/), Richard Mathar [ctb] (src/addsout.c), Johannes Wilm [ctb] (src/biblatexin.c, src/bltypes.c)\n# Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>\n# Repository: CRAN\n# Date/Publication: 2020-10-05 08:40:02 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.2.16\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-rbibutils\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/rbibutils_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/rbibutils/rbibutils_{{ version }}.tar.gz\n  sha256: 9c7c0fba47f63b1749005311c7174b40e72d95c863a67b736a84b8ff375a2aaf\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-xml2                     # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-xml2\n  run:\n    - r-base\n    - r-xml2\n\ntest:\n  commands:\n    - $R -e \"library('rbibutils')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('rbibutils')\\\"\"  # [win]\n\nabout:\n  home: https://geobosh.github.io/rbibutils/\n  dev_url: https://github.com/GeoBosh/rbibutils\n  license: GPL-2.0-only\n  summary: Converts between a number of bibliography formats, including 'BibTeX', 'BibLaTeX' and 'Bibentry'.  Includes a port of the 'bibutils' utilities by Chris Putnam <https://sourceforge.net/projects/bibutils/>. Supports all bibliography formats and character encodings implemented in 'bibutils'.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: rbibutils\n# Type: Package\n# Title: Convert Between Bibliography Formats\n# Version: 1.3\n# Date: 2020-10-02\n# Authors@R: c( person(given = c(\"Georgi\", \"N.\"), family = \"Boshnakov\", role = c(\"aut\", \"cre\"), email = \"georgi.boshnakov@manchester.ac.uk\", comment = \"R port, modifications to bibutils' C code\" ), person(given = \"Chris\", family = \"Putman\", role = \"aut\", comment = \"src/*, author of the bibutils libraries, https://sourceforge.net/projects/bibutils/\"), person(given = \"Richard\", family = \"Mathar\", role = \"ctb\", comment = \"src/addsout.c\"), person(given = \"Johannes\", family = \"Wilm\", role = \"ctb\", comment = \"src/biblatexin.c, src/bltypes.c\") )\n# Description: Converts between a number of bibliography formats, including 'BibTeX', 'BibLaTeX' and 'Bibentry'.  Includes a port of the 'bibutils' utilities by Chris Putnam <https://sourceforge.net/projects/bibutils/>. Supports all bibliography formats and character encodings implemented in 'bibutils'.\n# License: GPL-2\n# URL: https://geobosh.github.io/rbibutils/ (website), https://github.com/GeoBosh/rbibutils (devel)\n# BugReports: https://github.com/GeoBosh/rbibutils/issues\n# Depends: R (>= 2.10)\n# Imports: utils, tools, xml2\n# Encoding: UTF-8\n# LazyData: true\n# NeedsCompilation: yes\n# Suggests: testthat\n# Packaged: 2020-10-02 08:55:20 UTC; georgi\n# Author: Georgi N. Boshnakov [aut, cre] (R port, modifications to bibutils' C code), Chris Putman [aut] (src/*, author of the bibutils libraries, https://sourceforge.net/projects/bibutils/), Richard Mathar [ctb] (src/addsout.c), Johannes Wilm [ctb] (src/biblatexin.c, src/bltypes.c)\n# Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>\n# Repository: CRAN\n# Date/Publication: 2020-10-05 08:40:02 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-xml2",
@@ -531,9 +544,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -543,6 +558,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-xml2"
    ]
@@ -551,7 +567,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-xml2"
    ]
@@ -567,9 +583,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -585,7 +603,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-xml2"
    ]
@@ -625,8 +642,7 @@
    "summary": "Converts between a number of bibliography formats, including 'BibTeX', 'BibLaTeX' and 'Bibentry'.  Includes a port of the 'bibutils' utilities by Chris Putnam <https://sourceforge.net/projects/bibutils/>. Supports all bibliography formats and character encodings implemented in 'bibutils'."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -644,6 +660,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -656,7 +673,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-xml2"
    ]
   },
@@ -680,6 +696,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -695,7 +712,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-xml2"
    ]
