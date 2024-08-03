@@ -28,7 +28,7 @@
    "summary": "Extends the simple k-nearest neighbors algorithm by incorporating numerous kernel functions and a variety of distance metrics. The package takes advantage of 'RcppArmadillo' to speed up the calculation of distances between observations."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -79,6 +80,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -114,8 +116,7 @@
    "summary": "Extends the simple k-nearest neighbors algorithm by incorporating numerous kernel functions and a variety of distance metrics. The package takes advantage of 'RcppArmadillo' to speed up the calculation of distances between observations."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -133,9 +134,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -152,8 +155,7 @@
    "run": [
     "r-base",
     "r-rcpp >=0.12.5",
-    "r-rcpparmadillo",
-    "gcc-libs"
+    "r-rcpparmadillo"
    ]
   },
   "source": {
@@ -180,7 +182,7 @@
    "summary": "Extends the simple k-nearest neighbors algorithm by incorporating numerous kernel functions and a variety of distance metrics. The package takes advantage of 'RcppArmadillo' to speed up the calculation of distances between observations."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -198,6 +200,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -231,6 +234,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -272,18 +276,19 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-kernelknn.json"
  },
- "raw_meta_yaml": "{% set version = \"1.1.5\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-kernelknn\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/KernelKnn_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/KernelKnn/KernelKnn_{{ version }}.tar.gz\n  sha256: 92b1a7e647fcae8e8be790c0fabc70ca1789b1cb48ba032be36db138310e66ac\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp >=0.12.5\n    - r-rcpparmadillo\n    - libgomp                      # [linux]\n    - llvm-openmp                  # [osx]\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp >=0.12.5\n    - r-rcpparmadillo\n\ntest:\n  commands:\n    - $R -e \"library('KernelKnn')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('KernelKnn')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/mlampros/KernelKnn\n  license: MIT\n  license_file: LICENSE\n  summary: Extends the simple k-nearest neighbors algorithm by incorporating numerous kernel functions and a variety of distance metrics. The package takes advantage of 'RcppArmadillo' to speed up the calculation of distances between observations.\n  license_family: MIT\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"1.1.5\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-kernelknn\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/KernelKnn_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/KernelKnn/KernelKnn_{{ version }}.tar.gz\n  sha256: 92b1a7e647fcae8e8be790c0fabc70ca1789b1cb48ba032be36db138310e66ac\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp >=0.12.5\n    - r-rcpparmadillo\n    - libgomp                      # [linux]\n    - llvm-openmp                  # [osx]\n  run:\n    - r-base\n    - r-rcpp >=0.12.5\n    - r-rcpparmadillo\n\ntest:\n  commands:\n    - $R -e \"library('KernelKnn')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('KernelKnn')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/mlampros/KernelKnn\n  license: MIT\n  license_file: LICENSE\n  summary: Extends the simple k-nearest neighbors algorithm by incorporating numerous kernel functions and a variety of distance metrics. The package takes advantage of 'RcppArmadillo' to speed up the calculation of distances between observations.\n  license_family: MIT\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "libgomp",
    "llvm-openmp",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -298,10 +303,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -312,6 +319,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "libgomp",
@@ -326,9 +334,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
-    "gcc-libs",
     "openmp",
     "r-base",
     "r-rcpp",
@@ -346,10 +354,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -369,7 +379,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp >=0.12.5",
     "r-rcpparmadillo"
@@ -401,8 +410,7 @@
    "summary": "Extends the simple k-nearest neighbors algorithm by incorporating numerous kernel functions and a variety of distance metrics. The package takes advantage of 'RcppArmadillo' to speed up the calculation of distances between observations."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -420,6 +428,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -434,7 +443,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp >=0.12.5",
     "r-rcpparmadillo"
    ]
@@ -459,6 +467,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -476,7 +485,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp",
     "r-rcpparmadillo"
