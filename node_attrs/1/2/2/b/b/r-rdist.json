@@ -28,7 +28,7 @@
    "summary": "A common framework for calculating distance matrices."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -80,6 +81,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -119,8 +121,7 @@
    "summary": "A common framework for calculating distance matrices."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -138,9 +139,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -158,8 +161,7 @@
    "run": [
     "r-base",
     "r-rcpp",
-    "r-rcpparmadillo",
-    "gcc-libs"
+    "r-rcpparmadillo"
    ]
   },
   "source": {
@@ -189,7 +191,7 @@
    "summary": "A common framework for calculating distance matrices."
   },
   "build": {
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -207,6 +209,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -241,6 +244,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -283,19 +287,20 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-rdist.json"
  },
- "raw_meta_yaml": "{% set version = '0.0.5' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-rdist\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/rdist_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/rdist/rdist_{{ version }}.tar.gz\n  sha256: 1c40401d9fe285de58911e70946444e0bb3e6f9717886d123c600c17ee6b66c9\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - libblas\n    - libgomp                      # [linux]\n    - llvm-openmp                  # [osx]\n    - r-base\n    - r-rcpp\n    - r-rcpparmadillo\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp\n    - r-rcpparmadillo\n\ntest:\n  commands:\n    - $R -e \"library('rdist')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('rdist')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/blasern/rdist\n  license: GPL-2.0-or-later\n  summary: A common framework for calculating distance matrices.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = '0.0.5' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-rdist\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/rdist_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/rdist/rdist_{{ version }}.tar.gz\n  sha256: 1c40401d9fe285de58911e70946444e0bb3e6f9717886d123c600c17ee6b66c9\n\nbuild:\n  number: 4\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - libblas\n    - libgomp                      # [linux]\n    - llvm-openmp                  # [osx]\n    - r-base\n    - r-rcpp\n    - r-rcpparmadillo\n  run:\n    - r-base\n    - r-rcpp\n    - r-rcpparmadillo\n\ntest:\n  commands:\n    - $R -e \"library('rdist')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('rdist')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/blasern/rdist\n  license: GPL-2.0-or-later\n  summary: A common framework for calculating distance matrices.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "libblas",
    "libgomp",
    "llvm-openmp",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -310,10 +315,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -324,6 +331,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "libblas",
@@ -339,9 +347,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
-    "gcc-libs",
     "openmp",
     "r-base",
     "r-rcpp",
@@ -359,10 +367,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -383,7 +393,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp",
     "r-rcpparmadillo"
@@ -418,8 +427,7 @@
    "summary": "A common framework for calculating distance matrices."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "3",
+   "number": "4",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -437,6 +445,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -452,7 +461,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp",
     "r-rcpparmadillo"
    ]
@@ -477,6 +485,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -495,7 +504,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-rcpp",
     "r-rcpparmadillo"
