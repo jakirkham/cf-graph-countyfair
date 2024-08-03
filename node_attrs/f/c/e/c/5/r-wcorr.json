@@ -27,7 +27,7 @@
    "summary": "Calculates Pearson, Spearman, polychoric, and polyserial correlation coefficients, in weighted or unweighted form. The package implements tetrachoric correlation as a special case of the polychoric and biserial correlation as a specific case of the polyserial."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -84,6 +85,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -126,8 +128,7 @@
    "summary": "Calculates Pearson, Spearman, polychoric, and polyserial correlation coefficients, in weighted or unweighted form. The package implements tetrachoric correlation as a special case of the polychoric and biserial correlation as a specific case of the polyserial."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -146,9 +147,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -169,8 +172,7 @@
     "r-rcpp",
     "r-rcpparmadillo",
     "r-minqa",
-    "r-mnormt",
-    "gcc-libs"
+    "r-mnormt"
    ]
   },
   "source": {
@@ -199,7 +201,7 @@
    "summary": "Calculates Pearson, Spearman, polychoric, and polyserial correlation coefficients, in weighted or unweighted form. The package implements tetrachoric correlation as a special case of the polychoric and biserial correlation as a specific case of the polyserial."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -218,6 +220,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -256,6 +259,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -302,18 +306,19 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-wcorr.json"
  },
- "raw_meta_yaml": "{% set version = \"1.9.8\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-wcorr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/wCorr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/wCorr/wCorr_{{ version }}.tar.gz\n  sha256: 62edf39d864093ba6271dc08804e485122b24c20f643cc6f3f19207c020f4549\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-rcpparmadillo\n    - r-minqa\n    - r-mnormt\n    - libblas\n    - liblapack\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp\n    - r-rcpparmadillo\n    - r-minqa\n    - r-mnormt\n\ntest:\n  commands:\n    - $R -e \"library('wCorr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('wCorr')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=wCorr\n  license: GPL-2.0-only\n  summary: Calculates Pearson, Spearman, polychoric, and polyserial correlation coefficients, in weighted or unweighted form. The package implements tetrachoric correlation as a special case of the polychoric and biserial correlation as a specific case of the polyserial.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - khusmann\n\n# Package: wCorr\n# Type: Package\n# Title: Weighted Correlations\n# Version: 1.9.1\n# Date: 2017-05-17\n# Author: Ahmad Emad & Paul Bailey\n# Maintainer: Paul Bailey <pbailey@air.org>\n# Description: Calculates Pearson, Spearman, polychoric, and polyserial correlation coefficients, in weighted or unweighted form. The package implements tetrachoric correlation as a special case of the polychoric and biserial correlation as a specific case of the polyserial.\n# License: GPL-2\n# BugReports: https://github.com/ahmademad/wCorr/issues\n# Imports: minqa, mnormt, Rcpp, stats\n# Depends: R (>= 3.1.0)\n# RoxygenNote: 6.0.1\n# Suggests: knitr, rmarkdown, lattice, captioner\n# VignetteBuilder: knitr\n# LinkingTo: Rcpp, RcppArmadillo\n# NeedsCompilation: yes\n# Packaged: 2017-05-17 14:03:39 UTC; pdbailey\n# Repository: CRAN\n# Date/Publication: 2017-05-18 03:44:58 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.9.8\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-wcorr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/wCorr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/wCorr/wCorr_{{ version }}.tar.gz\n  sha256: 62edf39d864093ba6271dc08804e485122b24c20f643cc6f3f19207c020f4549\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-rcpparmadillo\n    - r-minqa\n    - r-mnormt\n    - libblas\n    - liblapack\n  run:\n    - r-base\n    - r-rcpp\n    - r-rcpparmadillo\n    - r-minqa\n    - r-mnormt\n\ntest:\n  commands:\n    - $R -e \"library('wCorr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('wCorr')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=wCorr\n  license: GPL-2.0-only\n  summary: Calculates Pearson, Spearman, polychoric, and polyserial correlation coefficients, in weighted or unweighted form. The package implements tetrachoric correlation as a special case of the polychoric and biserial correlation as a specific case of the polyserial.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - khusmann\n\n# Package: wCorr\n# Type: Package\n# Title: Weighted Correlations\n# Version: 1.9.1\n# Date: 2017-05-17\n# Author: Ahmad Emad & Paul Bailey\n# Maintainer: Paul Bailey <pbailey@air.org>\n# Description: Calculates Pearson, Spearman, polychoric, and polyserial correlation coefficients, in weighted or unweighted form. The package implements tetrachoric correlation as a special case of the polychoric and biserial correlation as a specific case of the polyserial.\n# License: GPL-2\n# BugReports: https://github.com/ahmademad/wCorr/issues\n# Imports: minqa, mnormt, Rcpp, stats\n# Depends: R (>= 3.1.0)\n# RoxygenNote: 6.0.1\n# Suggests: knitr, rmarkdown, lattice, captioner\n# VignetteBuilder: knitr\n# LinkingTo: Rcpp, RcppArmadillo\n# NeedsCompilation: yes\n# Packaged: 2017-05-17 14:03:39 UTC; pdbailey\n# Repository: CRAN\n# Date/Publication: 2017-05-18 03:44:58 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "libblas",
    "liblapack",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -330,10 +335,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -344,6 +351,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libblas",
     "liblapack",
@@ -358,8 +366,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-minqa",
     "r-mnormt",
@@ -378,10 +386,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -403,7 +413,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-minqa",
     "r-mnormt",
@@ -439,8 +448,7 @@
    "summary": "Calculates Pearson, Spearman, polychoric, and polyserial correlation coefficients, in weighted or unweighted form. The package implements tetrachoric correlation as a special case of the polychoric and biserial correlation as a specific case of the polyserial."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -459,6 +467,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -477,7 +486,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp",
     "r-rcpparmadillo",
     "r-minqa",
@@ -504,6 +512,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -525,7 +534,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-minqa",
     "r-mnormt",
