@@ -27,7 +27,7 @@
    "summary": "Provided are Computational methods for Immune Cell-type Subsets, including:(1) DCQ (Digital Cell Quantifier) to infer global dynamic changes in immune cell quantities within a complex tissue; and (2) VoCAL (Variation of Cell-type Abundance Loci) a deconvolution-based method that utilizes transcriptome data to infer the quantities of immune-cell types, and then uses these quantitative traits to uncover the underlying DNA loci."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -77,6 +78,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -112,8 +114,7 @@
    "summary": "Provided are Computational methods for Immune Cell-type Subsets, including:(1) DCQ (Digital Cell Quantifier) to infer global dynamic changes in immune cell quantities within a complex tissue; and (2) VoCAL (Variation of Cell-type Abundance Loci) a deconvolution-based method that utilizes transcriptome data to infer the quantities of immune-cell types, and then uses these quantitative traits to uncover the underlying DNA loci."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -132,8 +133,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -147,8 +150,7 @@
    "run": [
     "r-base",
     "r-roxygen2",
-    "r-glmnet",
-    "gcc-libs"
+    "r-glmnet"
    ]
   },
   "source": {
@@ -177,7 +179,7 @@
    "summary": "Provided are Computational methods for Immune Cell-type Subsets, including:(1) DCQ (Digital Cell Quantifier) to infer global dynamic changes in immune cell quantities within a complex tissue; and (2) VoCAL (Variation of Cell-type Abundance Loci) a deconvolution-based method that utilizes transcriptome data to infer the quantities of immune-cell types, and then uses these quantitative traits to uncover the underlying DNA loci."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -196,6 +198,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -227,6 +230,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -266,15 +270,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-comics.json"
  },
- "raw_meta_yaml": "{% set version = '1.0.4' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-comics\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/ComICS_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/ComICS/ComICS_{{ version }}.tar.gz\n  sha256: 0af7901215876f95f309d7da6e633c38e4d7faf04112dd6fd343bc15fc593a2f\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-roxygen2\n    - r-glmnet\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-roxygen2\n    - r-glmnet\n\ntest:\n  commands:\n    - $R -e \"library('ComICS')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('ComICS')\\\"\"  # [win]\n\nabout:\n  home: http://dcq.tau.ac.il/ , http://csgi.tau.ac.il/VoCAL/\n  license: GPL-2.0-only\n  summary: Provided are Computational methods for Immune Cell-type Subsets, including:(1) DCQ\n    (Digital Cell Quantifier) to infer global dynamic changes in immune cell quantities\n    within a complex tissue; and (2) VoCAL (Variation of Cell-type Abundance Loci) a\n    deconvolution-based method that utilizes transcriptome data to infer the quantities\n    of immune-cell types, and then uses these quantitative traits to uncover the underlying\n    DNA loci.\n  license_family: GPL2\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - LorenzoMerotto\n",
+ "raw_meta_yaml": "{% set version = '1.0.4' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-comics\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/ComICS_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/ComICS/ComICS_{{ version }}.tar.gz\n  sha256: 0af7901215876f95f309d7da6e633c38e4d7faf04112dd6fd343bc15fc593a2f\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-roxygen2\n    - r-glmnet\n  run:\n    - r-base\n    - r-roxygen2\n    - r-glmnet\n\ntest:\n  commands:\n    - $R -e \"library('ComICS')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('ComICS')\\\"\"  # [win]\n\nabout:\n  home: http://dcq.tau.ac.il/ , http://csgi.tau.ac.il/VoCAL/\n  license: GPL-2.0-only\n  summary: Provided are Computational methods for Immune Cell-type Subsets, including:(1) DCQ\n    (Digital Cell Quantifier) to infer global dynamic changes in immune cell quantities\n    within a complex tissue; and (2) VoCAL (Variation of Cell-type Abundance Loci) a\n    deconvolution-based method that utilizes transcriptome data to infer the quantities\n    of immune-cell types, and then uses these quantitative traits to uncover the underlying\n    DNA loci.\n  license_family: GPL2\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - LorenzoMerotto\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-glmnet",
@@ -288,9 +293,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -300,6 +307,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-glmnet",
     "r-roxygen2"
@@ -309,7 +317,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-glmnet",
     "r-roxygen2"
@@ -326,9 +334,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -345,7 +355,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-glmnet",
     "r-roxygen2"
@@ -379,8 +388,7 @@
    "summary": "Provided are Computational methods for Immune Cell-type Subsets, including:(1) DCQ (Digital Cell Quantifier) to infer global dynamic changes in immune cell quantities within a complex tissue; and (2) VoCAL (Variation of Cell-type Abundance Loci) a deconvolution-based method that utilizes transcriptome data to infer the quantities of immune-cell types, and then uses these quantitative traits to uncover the underlying DNA loci."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -399,6 +407,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -412,7 +421,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-roxygen2",
     "r-glmnet"
    ]
@@ -437,6 +445,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -453,7 +462,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-glmnet",
     "r-roxygen2"
