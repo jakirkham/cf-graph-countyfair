@@ -27,7 +27,7 @@
    "summary": "Fits bootstrap with univariate spatial regression models using Bootstrap for Rapid Inference on Spatial Covariances (BRISC) for large datasets using nearest neighbor Gaussian processes detailed in Saha and Datta (2018) <doi:10.1002/sta4.184>."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -45,6 +45,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -89,6 +90,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libgomp",
     "make",
@@ -133,8 +135,7 @@
    "summary": "Fits bootstrap with univariate spatial regression models using Bootstrap for Rapid Inference on Spatial Covariances (BRISC) for large datasets using nearest neighbor Gaussian processes detailed in Saha and Datta (2018) <doi:10.1002/sta4.184>."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -152,6 +153,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -160,6 +162,7 @@
     "libgomp",
     "llvm-openmp",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -182,8 +185,7 @@
     "r-rann",
     "r-matrixstats",
     "r-pbapply",
-    "r-rdist",
-    "gcc-libs"
+    "r-rdist"
    ]
   },
   "source": {
@@ -212,7 +214,7 @@
    "summary": "Fits bootstrap with univariate spatial regression models using Bootstrap for Rapid Inference on Spatial Covariances (BRISC) for large datasets using nearest neighbor Gaussian processes detailed in Saha and Datta (2018) <doi:10.1002/sta4.184>."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -230,6 +232,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -274,6 +277,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "llvm-openmp",
     "make",
@@ -322,7 +326,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-brisc.json"
  },
- "raw_meta_yaml": "{% set version = '1.0.5' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-brisc\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/BRISC_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/BRISC/BRISC_{{ version }}.tar.gz\n  sha256: 89e44bf9f684c948c3c581c732fe8b4b27607e7506e3948dc4da3eca06a8f71a\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - libgomp  # [linux]\n    - llvm-openmp  # [osx]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-rann\n    - r-matrixstats\n    - r-pbapply\n    - r-rdist\n    - libblas\n    - liblapack\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rann\n    - r-matrixstats\n    - r-pbapply\n    - r-rdist\n\ntest:\n  commands:\n    - $R -e \"library('BRISC')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('BRISC')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/ArkajyotiSaha/BRISC\n  license: GPL-2.0-or-later\n  summary: Fits bootstrap with univariate spatial regression models using Bootstrap for Rapid\n    Inference on Spatial Covariances (BRISC) for large datasets using nearest neighbor\n    Gaussian processes detailed in Saha and Datta (2018) <doi:10.1002/sta4.184>.\n  license_family: GPL2\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: BRISC\n# Type: Package\n# Title: Fast Inference for Large Spatial Datasets using BRISC\n# Version: 1.0.5\n# Authors@R: c(person(\"Arkajyoti\", \"Saha\", role=c(\"aut\", \"cre\"), email=\"arkajyotisaha93@gmail.com\"), person(\"Abhirup\", \"Datta\", role=\"aut\", email=\"abhidatta@jhu.edu\"), person(\"Jorge\", \"Nocedal\", role=\"ctb\", email=\"j-nocedal@northwestern.edu\"), person(\"Naoaki\", \"Okazaki\", role=\"ctb\", email=\"okazaki@c.titech.ac.jp\"), person(\"Lukas M.\", \"Weber\",  role=\"ctb\", email = \"lukas.weber.edu@gmail.com\"))\n# Maintainer: Arkajyoti Saha <arkajyotisaha93@gmail.com>\n# Author: Arkajyoti Saha [aut, cre], Abhirup Datta [aut], Jorge Nocedal [ctb], Naoaki Okazaki [ctb], Lukas M. Weber [ctb]\n# Depends: R (>= 3.3.0), RANN, parallel, stats, rdist, matrixStats, pbapply, graphics\n# Description: Fits bootstrap with univariate spatial regression models using Bootstrap for Rapid Inference on Spatial Covariances (BRISC) for large datasets using nearest neighbor Gaussian processes detailed in Saha and Datta (2018) <doi:10.1002/sta4.184>.\n# License: GPL (>= 2)\n# URL: https://github.com/ArkajyotiSaha/BRISC\n# BugReports: https://github.com/ArkajyotiSaha/BRISC/issues\n# Encoding: UTF-8\n# NeedsCompilation: yes\n# RoxygenNote: 6.1.1\n# Packaged: 2022-04-28 06:25:59 UTC; asaha\n# Repository: CRAN\n# Date/Publication: 2022-04-29 23:20:17 UTC\n",
+ "raw_meta_yaml": "{% set version = '1.0.5' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-brisc\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/BRISC_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/BRISC/BRISC_{{ version }}.tar.gz\n  sha256: 89e44bf9f684c948c3c581c732fe8b4b27607e7506e3948dc4da3eca06a8f71a\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - libgomp  # [linux]\n    - llvm-openmp  # [osx]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-rann\n    - r-matrixstats\n    - r-pbapply\n    - r-rdist\n    - libblas\n    - liblapack\n  run:\n    - r-base\n    - r-rann\n    - r-matrixstats\n    - r-pbapply\n    - r-rdist\n\ntest:\n  commands:\n    - $R -e \"library('BRISC')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('BRISC')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/ArkajyotiSaha/BRISC\n  license: GPL-2.0-or-later\n  summary: Fits bootstrap with univariate spatial regression models using Bootstrap for Rapid\n    Inference on Spatial Covariances (BRISC) for large datasets using nearest neighbor\n    Gaussian processes detailed in Saha and Datta (2018) <doi:10.1002/sta4.184>.\n  license_family: GPL2\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: BRISC\n# Type: Package\n# Title: Fast Inference for Large Spatial Datasets using BRISC\n# Version: 1.0.5\n# Authors@R: c(person(\"Arkajyoti\", \"Saha\", role=c(\"aut\", \"cre\"), email=\"arkajyotisaha93@gmail.com\"), person(\"Abhirup\", \"Datta\", role=\"aut\", email=\"abhidatta@jhu.edu\"), person(\"Jorge\", \"Nocedal\", role=\"ctb\", email=\"j-nocedal@northwestern.edu\"), person(\"Naoaki\", \"Okazaki\", role=\"ctb\", email=\"okazaki@c.titech.ac.jp\"), person(\"Lukas M.\", \"Weber\",  role=\"ctb\", email = \"lukas.weber.edu@gmail.com\"))\n# Maintainer: Arkajyoti Saha <arkajyotisaha93@gmail.com>\n# Author: Arkajyoti Saha [aut, cre], Abhirup Datta [aut], Jorge Nocedal [ctb], Naoaki Okazaki [ctb], Lukas M. Weber [ctb]\n# Depends: R (>= 3.3.0), RANN, parallel, stats, rdist, matrixStats, pbapply, graphics\n# Description: Fits bootstrap with univariate spatial regression models using Bootstrap for Rapid Inference on Spatial Covariances (BRISC) for large datasets using nearest neighbor Gaussian processes detailed in Saha and Datta (2018) <doi:10.1002/sta4.184>.\n# License: GPL (>= 2)\n# URL: https://github.com/ArkajyotiSaha/BRISC\n# BugReports: https://github.com/ArkajyotiSaha/BRISC/issues\n# Encoding: UTF-8\n# NeedsCompilation: yes\n# RoxygenNote: 6.1.1\n# Packaged: 2022-04-28 06:25:59 UTC; asaha\n# Repository: CRAN\n# Date/Publication: 2022-04-29 23:20:17 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -330,16 +334,17 @@
    "automake",
    "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "grep",
    "libblas",
    "libgomp",
    "liblapack",
    "llvm-openmp",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "pkg-config",
@@ -360,6 +365,7 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
@@ -367,6 +373,7 @@
     "libgomp",
     "llvm-openmp",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -378,6 +385,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "libblas",
@@ -394,9 +402,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
-    "gcc-libs",
     "openmp",
     "r-base",
     "r-matrixstats",
@@ -419,6 +427,7 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
@@ -426,6 +435,7 @@
     "libgomp",
     "llvm-openmp",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -448,7 +458,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-matrixstats",
     "r-pbapply",
@@ -484,8 +493,7 @@
    "summary": "Fits bootstrap with univariate spatial regression models using Bootstrap for Rapid Inference on Spatial Covariances (BRISC) for large datasets using nearest neighbor Gaussian processes detailed in Saha and Datta (2018) <doi:10.1002/sta4.184>."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -503,6 +511,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -525,7 +534,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rann",
     "r-matrixstats",
     "r-pbapply",
@@ -555,6 +563,7 @@
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -577,7 +586,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-matrixstats",
     "r-pbapply",
