@@ -31,7 +31,7 @@
    "summary": "An iterative algorithm for solving a convex formulation of the biclustering problem."
   },
   "build": {
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -78,6 +79,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -114,8 +116,7 @@
    "summary": "An iterative algorithm for solving a convex formulation of the biclustering problem."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -134,8 +135,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -149,8 +152,7 @@
    "run": [
     "r-base",
     "r-matrix",
-    "r-igraph",
-    "gcc-libs"
+    "r-igraph"
    ]
   },
   "source": {
@@ -177,7 +179,7 @@
    "summary": "An iterative algorithm for solving a convex formulation of the biclustering problem."
   },
   "build": {
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -196,6 +198,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -224,6 +227,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -263,15 +267,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-cvxbiclustr.json"
  },
- "raw_meta_yaml": "{% set version = '0.0.1' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-cvxbiclustr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:     {{ cran_mirror }}/src/contrib/Archive/cvxbiclustr/cvxbiclustr_{{ version }}.tar.gz\n  sha256: ae1d5b5a425705aafdd5ac90dfe773534a8a7e89a808089e2b0d9b8dfc2f6702\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 1005\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-matrix\n    - r-igraph\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-matrix\n    - r-igraph\n\ntest:\n  commands:\n    - $R -e \"library('cvxbiclustr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('cvxbiclustr')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=cvxbiclustr\n  license: MIT\n  summary: An iterative algorithm for solving a convex formulation of the biclustering problem.\n  license_family: MIT\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT'\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - PertuyF\n\n# Package: cvxbiclustr\n# Title: Convex Biclustering Algorithm\n# Version: 0.0.1\n# Author: Eric C. Chi, Genevera I. Allen, Richard G. Baraniuk\n# Maintainer: Eric C. Chi <ecchi1105@gmail.com>\n# Description: An iterative algorithm for solving a convex formulation of the biclustering problem.\n# Depends: R (>= 3.1.3), Matrix, igraph,\n# License: MIT + file LICENSE\n# LazyData: true\n# Packaged: 2015-06-27 20:17:28 UTC; ericchi\n# NeedsCompilation: yes\n# Repository: CRAN\n# Date/Publication: 2015-06-28 12:56:52\n",
+ "raw_meta_yaml": "{% set version = '0.0.1' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-cvxbiclustr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:     {{ cran_mirror }}/src/contrib/Archive/cvxbiclustr/cvxbiclustr_{{ version }}.tar.gz\n  sha256: ae1d5b5a425705aafdd5ac90dfe773534a8a7e89a808089e2b0d9b8dfc2f6702\n\nbuild:\n  number: 1006\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-matrix\n    - r-igraph\n  run:\n    - r-base\n    - r-matrix\n    - r-igraph\n\ntest:\n  commands:\n    - $R -e \"library('cvxbiclustr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('cvxbiclustr')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=cvxbiclustr\n  license: MIT\n  summary: An iterative algorithm for solving a convex formulation of the biclustering problem.\n  license_family: MIT\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT'\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - PertuyF\n\n# Package: cvxbiclustr\n# Title: Convex Biclustering Algorithm\n# Version: 0.0.1\n# Author: Eric C. Chi, Genevera I. Allen, Richard G. Baraniuk\n# Maintainer: Eric C. Chi <ecchi1105@gmail.com>\n# Description: An iterative algorithm for solving a convex formulation of the biclustering problem.\n# Depends: R (>= 3.1.3), Matrix, igraph,\n# License: MIT + file LICENSE\n# LazyData: true\n# Packaged: 2015-06-27 20:17:28 UTC; ericchi\n# NeedsCompilation: yes\n# Repository: CRAN\n# Date/Publication: 2015-06-28 12:56:52\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-igraph",
@@ -285,9 +290,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -297,6 +304,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-igraph",
     "r-matrix"
@@ -306,7 +314,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-igraph",
     "r-matrix"
@@ -323,9 +331,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -342,7 +352,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-igraph",
     "r-matrix"
@@ -370,8 +379,7 @@
    "summary": "An iterative algorithm for solving a convex formulation of the biclustering problem."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -390,6 +398,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -403,7 +412,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-matrix",
     "r-igraph"
    ]
@@ -425,6 +433,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -441,7 +450,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-igraph",
     "r-matrix"
