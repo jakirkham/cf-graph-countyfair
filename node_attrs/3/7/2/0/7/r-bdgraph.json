@@ -27,7 +27,7 @@
    "summary": "Statistical tools for Bayesian structure learning in undirected graphical models for continuous, discrete, and mixed data. The package is implemented the recent improvements in the Bayesian graphical models literature, including Mohammadi and Wit (2015) <doi:10.1214/14-BA889>, Mohammadi and Wit (2019) <doi:10.18637/jss.v089.i03>."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -45,6 +45,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -83,6 +84,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -125,8 +127,7 @@
    "summary": "Statistical tools for Bayesian structure learning in undirected graphical models for continuous, discrete, and mixed data. The package is implemented the recent improvements in the Bayesian graphical models literature, including Mohammadi and Wit (2015) <doi:10.1214/14-BA889>, Mohammadi and Wit (2019) <doi:10.18637/jss.v089.i03>."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -144,9 +145,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -169,8 +172,7 @@
     "r-ggplot2",
     "r-igraph",
     "r-proc",
-    "llvm-openmp",
-    "gcc-libs"
+    "llvm-openmp"
    ]
   },
   "source": {
@@ -199,7 +201,7 @@
    "summary": "Statistical tools for Bayesian structure learning in undirected graphical models for continuous, discrete, and mixed data. The package is implemented the recent improvements in the Bayesian graphical models literature, including Mohammadi and Wit (2015) <doi:10.1214/14-BA889>, Mohammadi and Wit (2019) <doi:10.18637/jss.v089.i03>."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -217,6 +219,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -255,6 +258,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -301,19 +305,20 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-bdgraph.json"
  },
- "raw_meta_yaml": "{% set version = \"2.72\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-bdgraph\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/BDgraph_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/BDgraph/BDgraph_{{ version }}.tar.gz\n  sha256: 7cf9cc1bccf2a56b518c88030e00e88217f571afcb250aa95c3bd2771a8b83cd\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - libopenblas\n    - llvm-openmp                # [osx]\n    - _openmp_mutex              # [linux]\n    - r-base\n    - r-ggplot2\n    - r-igraph\n    - r-proc\n  run:\n    - libopenblas\n    - llvm-openmp                # [osx]\n    - _openmp_mutex              # [linux]\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-ggplot2\n    - r-igraph\n    - r-proc\n\ntest:\n  commands:\n    - $R -e \"library('BDgraph')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('BDgraph')\\\"\"  # [win]\n\nabout:\n  home: https://www.uva.nl/profile/a.mohammadi\n  license: GPL-2.0-or-later\n  summary: Statistical tools for Bayesian structure learning in undirected graphical models for continuous, discrete, and mixed data. The package is implemented the recent improvements in the Bayesian graphical models literature, including Mohammadi and Wit (2015) <doi:10.1214/14-BA889>, Mohammadi and Wit (2019) <doi:10.18637/jss.v089.i03>.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: BDgraph\n# Version: 2.62\n# Date: 2019-12-05\n# Title: Bayesian Structure Learning in Graphical Models using Birth-Death MCMC\n# Author: Reza Mohammadi [aut, cre] <https://orcid.org/0000-0001-9538-0648>, Ernst Wit [aut] <https://orcid.org/0000-0002-3671-9610>, Adrian Dobra [ctb]\n# Maintainer: Reza Mohammadi <a.mohammadi@uva.nl>\n# URL: https://www.uva.nl/profile/a.mohammadi\n# Description: Statistical tools for Bayesian structure learning in undirected graphical models for continuous, discrete, and mixed data. The package is implemented the recent improvements in the Bayesian graphical models literature, including Mohammadi and Wit (2015) <doi:10.1214/14-BA889>, Mohammadi and Wit (2019) <doi:10.18637/jss.v089.i03>.\n# Imports: igraph\n# License: GPL (>= 2)\n# Repository: CRAN\n# NeedsCompilation: yes\n# Packaged: 2019-12-05 17:16:34 UTC; reza\n# Date/Publication: 2019-12-05 18:40:10 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.72\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-bdgraph\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/BDgraph_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/BDgraph/BDgraph_{{ version }}.tar.gz\n  sha256: 7cf9cc1bccf2a56b518c88030e00e88217f571afcb250aa95c3bd2771a8b83cd\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - libopenblas\n    - llvm-openmp                # [osx]\n    - _openmp_mutex              # [linux]\n    - r-base\n    - r-ggplot2\n    - r-igraph\n    - r-proc\n  run:\n    - libopenblas\n    - llvm-openmp                # [osx]\n    - _openmp_mutex              # [linux]\n    - r-base\n    - r-ggplot2\n    - r-igraph\n    - r-proc\n\ntest:\n  commands:\n    - $R -e \"library('BDgraph')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('BDgraph')\\\"\"  # [win]\n\nabout:\n  home: https://www.uva.nl/profile/a.mohammadi\n  license: GPL-2.0-or-later\n  summary: Statistical tools for Bayesian structure learning in undirected graphical models for continuous, discrete, and mixed data. The package is implemented the recent improvements in the Bayesian graphical models literature, including Mohammadi and Wit (2015) <doi:10.1214/14-BA889>, Mohammadi and Wit (2019) <doi:10.18637/jss.v089.i03>.\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: BDgraph\n# Version: 2.62\n# Date: 2019-12-05\n# Title: Bayesian Structure Learning in Graphical Models using Birth-Death MCMC\n# Author: Reza Mohammadi [aut, cre] <https://orcid.org/0000-0001-9538-0648>, Ernst Wit [aut] <https://orcid.org/0000-0002-3671-9610>, Adrian Dobra [ctb]\n# Maintainer: Reza Mohammadi <a.mohammadi@uva.nl>\n# URL: https://www.uva.nl/profile/a.mohammadi\n# Description: Statistical tools for Bayesian structure learning in undirected graphical models for continuous, discrete, and mixed data. The package is implemented the recent improvements in the Bayesian graphical models literature, including Mohammadi and Wit (2015) <doi:10.1214/14-BA889>, Mohammadi and Wit (2019) <doi:10.18637/jss.v089.i03>.\n# Imports: igraph\n# License: GPL (>= 2)\n# Repository: CRAN\n# NeedsCompilation: yes\n# Packaged: 2019-12-05 17:16:34 UTC; reza\n# Date/Publication: 2019-12-05 18:40:10 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "_openmp_mutex",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "libopenblas",
    "llvm-openmp",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -329,10 +334,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -344,6 +351,7 @@
    "elements": [
     "_openmp_mutex",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "libopenblas",
@@ -360,9 +368,9 @@
    "elements": [
     "_openmp_mutex",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
-    "gcc-libs",
     "libopenblas",
     "llvm-openmp",
     "openmp",
@@ -383,10 +391,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -409,7 +419,6 @@
    "__set__": true,
    "elements": [
     "_openmp_mutex",
-    "gcc-libs",
     "libopenblas",
     "llvm-openmp",
     "r-base",
@@ -446,8 +455,7 @@
    "summary": "Statistical tools for Bayesian structure learning in undirected graphical models for continuous, discrete, and mixed data. The package is implemented the recent improvements in the Bayesian graphical models literature, including Mohammadi and Wit (2015) <doi:10.1214/14-BA889>, Mohammadi and Wit (2019) <doi:10.18637/jss.v089.i03>."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -465,6 +473,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -482,7 +491,6 @@
    "run": [
     "libopenblas",
     "r-base",
-    "gcc-libs",
     "r-ggplot2",
     "r-igraph",
     "r-proc"
@@ -508,6 +516,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -527,7 +536,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "libopenblas",
     "r-base",
     "r-ggplot2",
