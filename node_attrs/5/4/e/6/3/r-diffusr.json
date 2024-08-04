@@ -28,7 +28,7 @@
    "summary": "Implementation of network diffusion algorithms such as heat diffusion or Markov random walks. Network diffusion algorithms generally spread information in the form of node weights along the edges of a graph to other nodes. These weights can for example be interpreted as temperature, an initial amount of water, the activation of neurons in the brain, or the location of a random surfer in the internet. The information (node weights) is iteratively propagated to other nodes until a equilibrium state or stop criterion occurs."
   },
   "build": {
-   "number": "1004",
+   "number": "1005",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -80,6 +81,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -116,8 +118,7 @@
    "summary": "Implementation of network diffusion algorithms such as heat diffusion or Markov random walks. Network diffusion algorithms generally spread information in the form of node weights along the edges of a graph to other nodes. These weights can for example be interpreted as temperature, an initial amount of water, the activation of neurons in the brain, or the location of a random surfer in the internet. The information (node weights) is iteratively propagated to other nodes until a equilibrium state or stop criterion occurs."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1004",
+   "number": "1005",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -135,9 +136,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -154,8 +157,7 @@
     "r-base",
     "r-rcpp",
     "r-rcppeigen",
-    "r-igraph",
-    "gcc-libs"
+    "r-igraph"
    ]
   },
   "source": {
@@ -182,7 +184,7 @@
    "summary": "Implementation of network diffusion algorithms such as heat diffusion or Markov random walks. Network diffusion algorithms generally spread information in the form of node weights along the edges of a graph to other nodes. These weights can for example be interpreted as temperature, an initial amount of water, the activation of neurons in the brain, or the location of a random surfer in the internet. The information (node weights) is iteratively propagated to other nodes until a equilibrium state or stop criterion occurs."
   },
   "build": {
-   "number": "1004",
+   "number": "1005",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -200,6 +202,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -234,6 +237,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -276,16 +280,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-diffusr.json"
  },
- "raw_meta_yaml": "{% set version = '0.1.4' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-diffusr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/diffusr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/diffusr/diffusr_{{ version }}.tar.gz\n  sha256: 311aa8e3a26a76b736d56e9e390f88c61d1ba87b1cde6edbef81d3350f1a70b8\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 1004\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('m2w64_cxx') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-rcppeigen\n    - r-igraph\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp\n    - r-rcppeigen\n    - r-igraph\n\ntest:\n  commands:\n    - $R -e \"library('diffusr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('diffusr')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/dirmeier/diffusr\n  license: GPL-3.0-or-later\n  summary: Implementation of network diffusion algorithms such as heat diffusion or Markov random\n    walks. Network diffusion algorithms generally spread information in the form of\n    node weights along the edges of a graph to other nodes. These weights can for example\n    be interpreted as temperature, an initial amount of water, the activation of neurons\n    in the brain, or the location of a random surfer in the internet. The information\n    (node weights) is iteratively propagated to other nodes until a equilibrium state\n    or stop criterion occurs.\n  license_family: GPL3\n  license_file: '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: diffusr\n# Type: Package\n# Title: Network Diffusion Algorithms\n# Version: 0.1.4\n# Date: 2018-04-20\n# Authors@R: person(\"Simon\", \"Dirmeier\", email = \"simon.dirmeier@gmx.de\", role = c(\"aut\", \"cre\"))\n# Maintainer: Simon Dirmeier <simon.dirmeier@gmx.de>\n# Description: Implementation of network diffusion algorithms such as heat diffusion or Markov random walks. Network diffusion algorithms generally spread information in the form of node weights along the edges of a graph to other nodes. These weights can for example be interpreted as temperature, an initial amount of water, the activation of neurons in the brain, or the location of a random surfer in the internet. The information (node weights) is iteratively propagated to other nodes until a equilibrium state or stop criterion occurs.\n# URL: https://github.com/dirmeier/diffusr\n# BugReports: https://github.com/dirmeier/diffusr/issues\n# License: GPL (>= 3)\n# Depends: R (>= 3.4)\n# LazyData: TRUE\n# LinkingTo: Rcpp, RcppEigen\n# Imports: Rcpp, igraph, methods\n# Suggests: knitr, rmarkdown, testthat, lintr, Matrix\n# VignetteBuilder: knitr\n# RoxygenNote: 6.0.1\n# SystemRequirements: C++11\n# NeedsCompilation: yes\n# Packaged: 2018-05-17 20:40:50 UTC; simondi\n# Author: Simon Dirmeier [aut, cre]\n# Repository: CRAN\n# Date/Publication: 2018-05-17 21:01:21 UTC\n",
+ "raw_meta_yaml": "{% set version = '0.1.4' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-diffusr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/diffusr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/diffusr/diffusr_{{ version }}.tar.gz\n  sha256: 311aa8e3a26a76b736d56e9e390f88c61d1ba87b1cde6edbef81d3350f1a70b8\n\nbuild:\n  number: 1005\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('m2w64_cxx') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-rcppeigen\n    - r-igraph\n  run:\n    - r-base\n    - r-rcpp\n    - r-rcppeigen\n    - r-igraph\n\ntest:\n  commands:\n    - $R -e \"library('diffusr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('diffusr')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/dirmeier/diffusr\n  license: GPL-3.0-or-later\n  summary: Implementation of network diffusion algorithms such as heat diffusion or Markov random\n    walks. Network diffusion algorithms generally spread information in the form of\n    node weights along the edges of a graph to other nodes. These weights can for example\n    be interpreted as temperature, an initial amount of water, the activation of neurons\n    in the brain, or the location of a random surfer in the internet. The information\n    (node weights) is iteratively propagated to other nodes until a equilibrium state\n    or stop criterion occurs.\n  license_family: GPL3\n  license_file: '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: diffusr\n# Type: Package\n# Title: Network Diffusion Algorithms\n# Version: 0.1.4\n# Date: 2018-04-20\n# Authors@R: person(\"Simon\", \"Dirmeier\", email = \"simon.dirmeier@gmx.de\", role = c(\"aut\", \"cre\"))\n# Maintainer: Simon Dirmeier <simon.dirmeier@gmx.de>\n# Description: Implementation of network diffusion algorithms such as heat diffusion or Markov random walks. Network diffusion algorithms generally spread information in the form of node weights along the edges of a graph to other nodes. These weights can for example be interpreted as temperature, an initial amount of water, the activation of neurons in the brain, or the location of a random surfer in the internet. The information (node weights) is iteratively propagated to other nodes until a equilibrium state or stop criterion occurs.\n# URL: https://github.com/dirmeier/diffusr\n# BugReports: https://github.com/dirmeier/diffusr/issues\n# License: GPL (>= 3)\n# Depends: R (>= 3.4)\n# LazyData: TRUE\n# LinkingTo: Rcpp, RcppEigen\n# Imports: Rcpp, igraph, methods\n# Suggests: knitr, rmarkdown, testthat, lintr, Matrix\n# VignetteBuilder: knitr\n# RoxygenNote: 6.0.1\n# SystemRequirements: C++11\n# NeedsCompilation: yes\n# Packaged: 2018-05-17 20:40:50 UTC; simondi\n# Author: Simon Dirmeier [aut, cre]\n# Repository: CRAN\n# Date/Publication: 2018-05-17 21:01:21 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -301,10 +306,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -315,6 +322,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-igraph",
@@ -326,8 +334,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-igraph",
     "r-rcpp",
@@ -345,10 +353,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -367,7 +377,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-igraph",
     "r-rcpp",
@@ -400,8 +409,7 @@
    "summary": "Implementation of network diffusion algorithms such as heat diffusion or Markov random walks. Network diffusion algorithms generally spread information in the form of node weights along the edges of a graph to other nodes. These weights can for example be interpreted as temperature, an initial amount of water, the activation of neurons in the brain, or the location of a random surfer in the internet. The information (node weights) is iteratively propagated to other nodes until a equilibrium state or stop criterion occurs."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1004",
+   "number": "1005",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -419,6 +427,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -434,7 +443,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp",
     "r-rcppeigen",
     "r-igraph"
@@ -460,6 +468,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -478,7 +487,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-igraph",
     "r-rcpp",

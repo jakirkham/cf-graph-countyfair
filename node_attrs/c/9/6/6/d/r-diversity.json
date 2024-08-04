@@ -27,7 +27,7 @@
    "summary": "Allows the calculation of both genetic diversity partition statistics, genetic differentiation statistics, and locus informativeness for ancestry assignment. It also provides users with various option to calculate bootstrapped 95\\% confidence intervals both across loci, for pairwise population comparisons, and to plot these results interactively. Parallel computing capabilities and pairwise results without bootstrapping are provided. Also calculates F-statistics from Weir and Cockerham (1984). Various plotting features are provided, as well as Chi-square tests of genetic heterogeneity. Functionality for the calculation of various diversity parameters is possible for RAD-seq derived SNP data sets containing thousands of marker loci. A shiny application for the development of microsatellite multiplexes is also available."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -82,6 +83,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -122,8 +124,7 @@
    "summary": "Allows the calculation of both genetic diversity partition statistics, genetic differentiation statistics, and locus informativeness for ancestry assignment. It also provides users with various option to calculate bootstrapped 95\\% confidence intervals both across loci, for pairwise population comparisons, and to plot these results interactively. Parallel computing capabilities and pairwise results without bootstrapping are provided. Also calculates F-statistics from Weir and Cockerham (1984). Various plotting features are provided, as well as Chi-square tests of genetic heterogeneity. Functionality for the calculation of various diversity parameters is possible for RAD-seq derived SNP data sets containing thousands of marker loci. A shiny application for the development of microsatellite multiplexes is also available."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -142,9 +143,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -163,8 +166,7 @@
     "r-rcpp",
     "r-ggplot2",
     "r-qgraph",
-    "r-shiny",
-    "gcc-libs"
+    "r-shiny"
    ]
   },
   "source": {
@@ -193,7 +195,7 @@
    "summary": "Allows the calculation of both genetic diversity partition statistics, genetic differentiation statistics, and locus informativeness for ancestry assignment. It also provides users with various option to calculate bootstrapped 95\\% confidence intervals both across loci, for pairwise population comparisons, and to plot these results interactively. Parallel computing capabilities and pairwise results without bootstrapping are provided. Also calculates F-statistics from Weir and Cockerham (1984). Various plotting features are provided, as well as Chi-square tests of genetic heterogeneity. Functionality for the calculation of various diversity parameters is possible for RAD-seq derived SNP data sets containing thousands of marker loci. A shiny application for the development of microsatellite multiplexes is also available."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -212,6 +214,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -248,6 +251,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -292,16 +296,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-diversity.json"
  },
- "raw_meta_yaml": "{% set version = '1.9.90' %}\n\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-diversity\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/diveRsity_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/diveRsity/diveRsity_{{ version }}.tar.gz\n  sha256: b8f49cdbfbd82805206ad293fcb2dad65b962fb5523059a3e3aecaedf5c0ee86\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 2\n\n  # This is required to make R link correctly on Linux.\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\n# Suggests: xlsx, sendplot, plotrix, parallel, HWxtest\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n\n  host:\n    - r-base\n    - r-rcpp\n    - r-ggplot2\n    - r-qgraph\n    - r-shiny\n\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp\n    - r-ggplot2\n    - r-qgraph\n    - r-shiny\n\ntest:\n  commands:\n    - $R -e \"library('diveRsity')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('diveRsity')\\\"\"  # [win]\n\n\nabout:\n  home: http://diversityinlife.weebly.com/\n  license: GPL-2.0-or-later\n  summary: Allows the calculation of both genetic diversity partition statistics, genetic differentiation\n    statistics, and locus informativeness for ancestry assignment. It also provides\n    users with various option to calculate bootstrapped 95\\% confidence intervals both\n    across loci, for pairwise population comparisons, and to plot these results interactively.\n    Parallel computing capabilities and pairwise results without bootstrapping are provided.\n    Also calculates F-statistics from Weir and Cockerham (1984). Various plotting features\n    are provided, as well as Chi-square tests of genetic heterogeneity. Functionality\n    for the calculation of various diversity parameters is possible for RAD-seq derived\n    SNP data sets containing thousands of marker loci. A shiny application for the development\n    of microsatellite multiplexes is also available.\n  license_family: GPL2\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n    \nextra:\n  recipe-maintainers:\n    - MartinaWeiss\n    - conda-forge/r\n\n# The original CRAN metadata for this package was:\n\n# Package: diveRsity\n# Version: 1.9.90\n# Date: 2017-03-17\n# Title: A Comprehensive, General Purpose Population Genetics Analysis Package\n# Author: Kevin Keenan <kkeenan02@qub.ac.uk>\n# Maintainer: Kevin Keenan <kkeenan02@qub.ac.uk>\n# Description: Allows the calculation of both genetic diversity partition statistics, genetic differentiation statistics, and locus informativeness for ancestry assignment. It also provides users with various option to calculate bootstrapped 95\\% confidence intervals both across loci, for pairwise population comparisons, and to plot these results interactively. Parallel computing capabilities and pairwise results without bootstrapping are provided. Also calculates F-statistics from Weir and Cockerham (1984). Various plotting features are provided, as well as Chi-square tests of genetic heterogeneity. Functionality for the calculation of various diversity parameters is possible for RAD-seq derived SNP data sets containing thousands of marker loci. A shiny application for the development of microsatellite multiplexes is also available.\n# Suggests: xlsx, sendplot, plotrix, parallel, HWxtest\n# Depends: R (>= 3.0.0)\n# Imports: ggplot2, shiny, qgraph, Rcpp, methods, stats, grid\n# LinkingTo: Rcpp\n# Repository: CRAN\n# License: GPL (>= 2)\n# URL: http://diversityinlife.weebly.com/\n# NeedsCompilation: yes\n# Packaged: 2017-04-04 10:05:34 UTC; kkeenan\n# Date/Publication: 2017-04-04 10:59:38 UTC\n",
+ "raw_meta_yaml": "{% set version = '1.9.90' %}\n\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-diversity\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/diveRsity_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/diveRsity/diveRsity_{{ version }}.tar.gz\n  sha256: b8f49cdbfbd82805206ad293fcb2dad65b962fb5523059a3e3aecaedf5c0ee86\n\nbuild:\n  number: 3\n\n  # This is required to make R link correctly on Linux.\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\n# Suggests: xlsx, sendplot, plotrix, parallel, HWxtest\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n\n  host:\n    - r-base\n    - r-rcpp\n    - r-ggplot2\n    - r-qgraph\n    - r-shiny\n\n  run:\n    - r-base\n    - r-rcpp\n    - r-ggplot2\n    - r-qgraph\n    - r-shiny\n\ntest:\n  commands:\n    - $R -e \"library('diveRsity')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('diveRsity')\\\"\"  # [win]\n\n\nabout:\n  home: http://diversityinlife.weebly.com/\n  license: GPL-2.0-or-later\n  summary: Allows the calculation of both genetic diversity partition statistics, genetic differentiation\n    statistics, and locus informativeness for ancestry assignment. It also provides\n    users with various option to calculate bootstrapped 95\\% confidence intervals both\n    across loci, for pairwise population comparisons, and to plot these results interactively.\n    Parallel computing capabilities and pairwise results without bootstrapping are provided.\n    Also calculates F-statistics from Weir and Cockerham (1984). Various plotting features\n    are provided, as well as Chi-square tests of genetic heterogeneity. Functionality\n    for the calculation of various diversity parameters is possible for RAD-seq derived\n    SNP data sets containing thousands of marker loci. A shiny application for the development\n    of microsatellite multiplexes is also available.\n  license_family: GPL2\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2'\n    \nextra:\n  recipe-maintainers:\n    - MartinaWeiss\n    - conda-forge/r\n\n# The original CRAN metadata for this package was:\n\n# Package: diveRsity\n# Version: 1.9.90\n# Date: 2017-03-17\n# Title: A Comprehensive, General Purpose Population Genetics Analysis Package\n# Author: Kevin Keenan <kkeenan02@qub.ac.uk>\n# Maintainer: Kevin Keenan <kkeenan02@qub.ac.uk>\n# Description: Allows the calculation of both genetic diversity partition statistics, genetic differentiation statistics, and locus informativeness for ancestry assignment. It also provides users with various option to calculate bootstrapped 95\\% confidence intervals both across loci, for pairwise population comparisons, and to plot these results interactively. Parallel computing capabilities and pairwise results without bootstrapping are provided. Also calculates F-statistics from Weir and Cockerham (1984). Various plotting features are provided, as well as Chi-square tests of genetic heterogeneity. Functionality for the calculation of various diversity parameters is possible for RAD-seq derived SNP data sets containing thousands of marker loci. A shiny application for the development of microsatellite multiplexes is also available.\n# Suggests: xlsx, sendplot, plotrix, parallel, HWxtest\n# Depends: R (>= 3.0.0)\n# Imports: ggplot2, shiny, qgraph, Rcpp, methods, stats, grid\n# LinkingTo: Rcpp\n# Repository: CRAN\n# License: GPL (>= 2)\n# URL: http://diversityinlife.weebly.com/\n# NeedsCompilation: yes\n# Packaged: 2017-04-04 10:05:34 UTC; kkeenan\n# Date/Publication: 2017-04-04 10:59:38 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -318,10 +323,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -332,6 +339,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-ggplot2",
@@ -344,8 +352,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-ggplot2",
     "r-qgraph",
@@ -364,10 +372,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -387,7 +397,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-ggplot2",
     "r-qgraph",
@@ -423,8 +432,7 @@
    "summary": "Allows the calculation of both genetic diversity partition statistics, genetic differentiation statistics, and locus informativeness for ancestry assignment. It also provides users with various option to calculate bootstrapped 95\\% confidence intervals both across loci, for pairwise population comparisons, and to plot these results interactively. Parallel computing capabilities and pairwise results without bootstrapping are provided. Also calculates F-statistics from Weir and Cockerham (1984). Various plotting features are provided, as well as Chi-square tests of genetic heterogeneity. Functionality for the calculation of various diversity parameters is possible for RAD-seq derived SNP data sets containing thousands of marker loci. A shiny application for the development of microsatellite multiplexes is also available."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -443,6 +451,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -459,7 +468,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp",
     "r-ggplot2",
     "r-qgraph",
@@ -486,6 +494,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -505,7 +514,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-ggplot2",
     "r-qgraph",
