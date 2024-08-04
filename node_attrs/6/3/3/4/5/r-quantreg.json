@@ -6,6 +6,8 @@
    "automerge": true
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -37,7 +39,7 @@
    "summary": "Estimation and inference methods for models of conditional quantiles:  Linear and nonlinear parametric and non-parametric (total variation penalized) models  for conditional quantiles of a univariate response and several methods for handling censored survival data.  Portfolio selection methods based on expected shortfall risk are also included."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -138,7 +140,7 @@
    "summary": "Estimation and inference methods for models of conditional quantiles:  Linear and nonlinear parametric and non-parametric (total variation penalized) models  for conditional quantiles of a univariate response and several methods for handling censored survival data.  Portfolio selection methods based on expected shortfall risk are also included."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -239,7 +241,7 @@
    "summary": "Estimation and inference methods for models of conditional quantiles:  Linear and nonlinear parametric and non-parametric (total variation penalized) models  for conditional quantiles of a univariate response and several methods for handling censored survival data.  Portfolio selection methods based on expected shortfall risk are also included."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -340,8 +342,7 @@
    "summary": "Estimation and inference methods for models of conditional quantiles:  Linear and nonlinear parametric and non-parametric (total variation penalized) models  for conditional quantiles of a univariate response and several methods for handling censored survival data.  Portfolio selection methods based on expected shortfall risk are also included."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -384,8 +385,7 @@
     "r-conquer",
     "r-matrix",
     "r-matrixmodels",
-    "r-sparsem",
-    "gcc-libs"
+    "r-sparsem"
    ]
   },
   "source": {
@@ -415,7 +415,7 @@
    "summary": "Estimation and inference methods for models of conditional quantiles:  Linear and nonlinear parametric and non-parametric (total variation penalized) models  for conditional quantiles of a univariate response and several methods for handling censored survival data.  Portfolio selection methods based on expected shortfall risk are also included."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -516,7 +516,7 @@
    "summary": "Estimation and inference methods for models of conditional quantiles:  Linear and nonlinear parametric and non-parametric (total variation penalized) models  for conditional quantiles of a univariate response and several methods for handling censored survival data.  Portfolio selection methods based on expected shortfall risk are also included."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -623,7 +623,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-quantreg.json"
  },
- "raw_meta_yaml": "{% set version = \"5.98\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-quantreg\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/quantreg_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/quantreg/quantreg_{{ version }}.tar.gz\n  sha256: a98cb259d8cf563f66a25ae8858794e574dd40de6206816ad61b1ffeb9686a61\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}        # [build_platform != target_platform]\n    - r-conquer                        # [build_platform != target_platform]\n    - r-matrix                         # [build_platform != target_platform]\n    - r-sparsem                        # [build_platform != target_platform]\n    - r-matrixmodels                   # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem            # [win]\n    - {{ posix }}make\n    - {{ posix }}sed                   # [win]\n    - {{ posix }}coreutils             # [win]\n    - {{ posix }}zip                   # [win]\n  host:\n    - libblas\n    - liblapack\n    - r-base\n    - r-conquer\n    - r-matrix\n    - r-matrixmodels\n    - r-sparsem\n  run:\n    - r-base\n    - {{ native }}gcc-libs             # [win]\n    - r-conquer\n    - r-matrix\n    - r-matrixmodels\n    - r-sparsem\n\ntest:\n  commands:\n    - $R -e \"library('quantreg')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('quantreg')\\\"\"  # [win]\n\nabout:\n  home: https://www.r-project.org\n  license: GPL-2.0-or-later\n  summary: 'Estimation and inference methods for models of conditional quantiles:  Linear and nonlinear parametric and non-parametric (total variation penalized) models  for conditional quantiles of a univariate response and several methods for handling censored survival data.  Portfolio selection methods based on expected\n    shortfall risk are also included.'\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"5.98\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-quantreg\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/quantreg_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/quantreg/quantreg_{{ version }}.tar.gz\n  sha256: a98cb259d8cf563f66a25ae8858794e574dd40de6206816ad61b1ffeb9686a61\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}        # [build_platform != target_platform]\n    - r-conquer                        # [build_platform != target_platform]\n    - r-matrix                         # [build_platform != target_platform]\n    - r-sparsem                        # [build_platform != target_platform]\n    - r-matrixmodels                   # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('fortran') }}        # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ posix }}filesystem            # [win]\n    - {{ posix }}make\n    - {{ posix }}sed                   # [win]\n    - {{ posix }}coreutils             # [win]\n    - {{ posix }}zip                   # [win]\n  host:\n    - libblas\n    - liblapack\n    - r-base\n    - r-conquer\n    - r-matrix\n    - r-matrixmodels\n    - r-sparsem\n  run:\n    - r-base\n    - r-conquer\n    - r-matrix\n    - r-matrixmodels\n    - r-sparsem\n\ntest:\n  commands:\n    - $R -e \"library('quantreg')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('quantreg')\\\"\"  # [win]\n\nabout:\n  home: https://www.r-project.org\n  license: GPL-2.0-or-later\n  summary: 'Estimation and inference methods for models of conditional quantiles:  Linear and nonlinear parametric and non-parametric (total variation penalized) models  for conditional quantiles of a univariate response and several methods for handling censored survival data.  Portfolio selection methods based on expected\n    shortfall risk are also included.'\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -632,7 +632,6 @@
    "coreutils",
    "filesystem",
    "fortran_compiler_stub",
-   "gcc-libs",
    "libblas",
    "liblapack",
    "m2w64_c_compiler_stub",
@@ -686,7 +685,6 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "fortran_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-conquer",
     "r-matrix",
@@ -732,7 +730,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-conquer",
     "r-matrix",
@@ -775,8 +772,7 @@
    "summary": "Estimation and inference methods for models of conditional quantiles:  Linear and nonlinear parametric and non-parametric (total variation penalized) models  for conditional quantiles of a univariate response and several methods for handling censored survival data.  Portfolio selection methods based on expected shortfall risk are also included."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -813,7 +809,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-conquer",
     "r-matrix",
     "r-matrixmodels",
@@ -862,7 +857,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-conquer",
     "r-matrix",
