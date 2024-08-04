@@ -25,7 +25,7 @@
    "summary": "RStudio is an integrated development environment (IDE) for R"
   },
   "build": {
-   "number": "403",
+   "number": "764",
    "rpaths": [
     "lib/R/lib/",
     "lib/rstudio/lib",
@@ -260,14 +260,15 @@
   ],
   "package": {
    "name": "rstudio",
-   "version": "2023.12.1"
+   "version": "2024.04.2"
   },
   "source": {
    "patches": [
-    "patches/0001-boost-static-libs.patch"
+    "patches/0001-do-not-use-boost-statically.patch",
+    "patches/0002-do-not-install-node.patch"
    ],
-   "sha256": "196d31094d580a74737fbf689d2d0b302da5fec13694aa1d63f8875d3e45e4dd",
-   "url": "https://github.com/rstudio/rstudio/archive/refs/tags/v2023.12.1+402.tar.gz"
+   "sha256": "89b0d6741b6bd4dac52fd8bd9372d4f1919c97dd41056a03c975d0570eaf439e",
+   "url": "https://github.com/rstudio/rstudio/archive/refs/tags/v2024.04.2+764.tar.gz"
   }
  },
  "linux_64_requirements": {
@@ -386,7 +387,7 @@
    "summary": "RStudio is an integrated development environment (IDE) for R"
   },
   "build": {
-   "number": "403",
+   "number": "764",
    "rpaths": [
     "lib/R/lib/",
     "lib/rstudio/lib",
@@ -805,14 +806,15 @@
   ],
   "package": {
    "name": "rstudio",
-   "version": "2023.12.1"
+   "version": "2024.04.2"
   },
   "source": {
    "patches": [
-    "patches/0001-boost-static-libs.patch"
+    "patches/0001-do-not-use-boost-statically.patch",
+    "patches/0002-do-not-install-node.patch"
    ],
-   "sha256": "196d31094d580a74737fbf689d2d0b302da5fec13694aa1d63f8875d3e45e4dd",
-   "url": "https://github.com/rstudio/rstudio/archive/refs/tags/v2023.12.1+402.tar.gz"
+   "sha256": "89b0d6741b6bd4dac52fd8bd9372d4f1919c97dd41056a03c975d0570eaf439e",
+   "url": "https://github.com/rstudio/rstudio/archive/refs/tags/v2024.04.2+764.tar.gz"
   }
  },
  "name": "rstudio",
@@ -828,7 +830,7 @@
    "summary": "RStudio is an integrated development environment (IDE) for R"
   },
   "build": {
-   "number": "403",
+   "number": "764",
    "rpaths": [
     "lib/R/lib/",
     "lib/rstudio/lib",
@@ -1031,14 +1033,15 @@
   ],
   "package": {
    "name": "rstudio",
-   "version": "2023.12.1"
+   "version": "2024.04.2"
   },
   "source": {
    "patches": [
-    "patches/0001-boost-static-libs.patch"
+    "patches/0001-do-not-use-boost-statically.patch",
+    "patches/0002-do-not-install-node.patch"
    ],
-   "sha256": "196d31094d580a74737fbf689d2d0b302da5fec13694aa1d63f8875d3e45e4dd",
-   "url": "https://github.com/rstudio/rstudio/archive/refs/tags/v2023.12.1+402.tar.gz"
+   "sha256": "89b0d6741b6bd4dac52fd8bd9372d4f1919c97dd41056a03c975d0570eaf439e",
+   "url": "https://github.com/rstudio/rstudio/archive/refs/tags/v2024.04.2+764.tar.gz"
   }
  },
  "osx_64_requirements": {
@@ -1144,7 +1147,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/rstudio.json"
  },
- "raw_meta_yaml": "{% set version = \"2023.12.1+402\" %}\n{% set pkg_version = version.split(\"+\")[0] %}\n# reset the below to 0 when bumping upstream build num.\n{% set build = 1 %}\n{% set upstream_build_num = version.split(\"+\")[1] | int %}\n\npackage:\n  name: rstudio\n  version: {{ pkg_version }}\n\nsource:\n  url: https://github.com/rstudio/rstudio/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 196d31094d580a74737fbf689d2d0b302da5fec13694aa1d63f8875d3e45e4dd\n  patches:\n    - patches/0001-boost-static-libs.patch\n\nbuild:\n  number: {{ upstream_build_num + build }}\n  skip: true  # [win]\n  rpaths:\n    - lib/R/lib/\n    - lib/rstudio/lib\n    - lib/\n\noutputs:\n  - name: rstudio-desktop\n    script: build-desktop.sh\n    build:\n      skip: true  # [win]\n      rpaths:\n        - lib/R/lib/\n        - lib/rstudio/lib\n        - lib/\n    requirements:\n      build:\n        - {{ stdlib('c') }}\n        - {{ compiler('cxx') }}\n        - make\n        - cmake\n        - ant\n        - yarn\n        - wget\n        - ripgrep\n        - coreutils  # [osx]\n        - patchelf  # [linux]\n        - unzip\n        - nodejs >=18\n        - {{ cdt('mesa-libgl-devel') }}  # [linux]\n        - {{ cdt('mesa-dri-drivers') }}  # [linux]\n        - {{ cdt('libselinux') }}  # [linux]\n        - {{ cdt('libxdamage') }}  # [linux]\n        - {{ cdt('libxxf86vm') }}  # [linux]\n        - {{ cdt('libxext') }}     # [linux]\n      host:\n        - r-base\n        - r-purrr\n        - r-rmarkdown\n        - r-renv\n        - r-testthat\n        - r-xml2\n        - r-yaml\n        - r-rstudioapi\n        - libxkbcommon  # [linux]\n        - xorg-libxcomposite  # [linux]\n        - xorg-libxcursor  # [linux]\n        - xorg-libxscrnsaver  # [linux]\n        - xorg-libxi  # [linux]\n        - xorg-libxtst  # [linux]\n        - xorg-libxrandr  # [linux]\n        - openjdk\n        - libboost-devel\n        - soci-postgresql\n        - soci-core\n        - soci-sqlite\n        - libpq\n        - qt-main\n        - qt-webengine\n        - libuuid  # [linux]\n        - bzip2\n        - zlib\n        - pango\n        - sqlite\n        - libcups  # [linux]\n        - openssl\n        - hunspell\n        - hunspell-en\n        - pandoc\n        - mathjax <3.0\n        - yaml-cpp <0.7\n        - libjpeg-turbo   # [osx]\n        - libpng  # [osx]\n        - quarto\n      run:\n        - r-base\n        - r-purrr\n        - r-rmarkdown\n        - r-renv\n        - r-testthat\n        - r-xml2\n        - r-yaml\n        - r-rstudioapi\n        - libxkbcommon  # [linux]\n        - libxkbcommon  # [linux]\n        - xorg-libxcomposite  # [linux]\n        - xorg-libxcursor  # [linux]\n        - xorg-libxscrnsaver  # [linux]\n        - xorg-libxi  # [linux]\n        - xorg-libxtst  # [linux]\n        - xorg-libxrandr  # [linux]\n        - openjdk\n        - soci-postgresql\n        - soci-core\n        - soci-sqlite\n        - libpq\n        - qt-main\n        - qt-webengine\n        - libuuid  # [linux]\n        - bzip2\n        - zlib\n        - pango\n        - sqlite\n        - libcups  # [linux]\n        - openssl\n        - hunspell\n        - hunspell-en\n        - pandoc\n        - mathjax <3.0\n        - yaml-cpp <0.7\n        - libjpeg-turbo   # [osx]\n        - libpng  # [osx]\n        - {{ pin_compatible(\"quarto\", max_pin=\"x.x\") }}\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/rstudio/bin/rstudio  # [linux]\n        - sh -c \"xvfb-run -s '-screen 0 1200x800x24' ${PREFIX}/bin/rstudio --no-sandbox --run-diagnostics; cat ~/rstudio-diagnostics/diagnostics-report.txt\"  # [linux]\n        - test -f ${PREFIX}/lib/rstudio/RStudio.app/Contents/MacOS/RStudio  # [osx]\n\nabout:\n  home: https://www.rstudio.com/\n  license: AGPL-3.0-only\n  license_family: GPL\n  license_file: COPYING\n  summary: RStudio is an integrated development environment (IDE) for R\n  description: |\n    RStudio is an integrated development environment (IDE)\n    for R. It includes a console, syntax-highlighting\n    editor that supports direct code execution, as well\n    as tools for plotting, history, debugging and\n    workspace management.\n  doc_url: https://support.rstudio.com/hc/en-us/sections/200107586-Using-RStudio\n  dev_url: https://github.com/rstudio/rstudio\n\n\nextra:\n  recipe-maintainers:\n    - izahn\n    - h-vetinari\n    - wolfv\n  feedstock-name: rstudio\n",
+ "raw_meta_yaml": "{% set version = \"2024.04.2+764\" %}\n{% set pkg_version = version.split(\"+\")[0] %}\n{% set build = 0 %}\n{% set upstream_build_num = version.split(\"+\")[1] | int %}\n\npackage:\n  name: rstudio\n  version: {{ pkg_version }}\n\nsource:\n  url: https://github.com/rstudio/rstudio/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 89b0d6741b6bd4dac52fd8bd9372d4f1919c97dd41056a03c975d0570eaf439e\n  patches:\n    - patches/0001-do-not-use-boost-statically.patch\n    - patches/0002-do-not-install-node.patch\n\nbuild:\n  number: {{ upstream_build_num + build }}\n  skip: true  # [win]\n  rpaths:\n    - lib/R/lib/\n    - lib/rstudio/lib\n    - lib/\n\noutputs:\n  - name: rstudio-desktop\n    script: build-desktop.sh\n    build:\n      skip: true  # [win]\n      rpaths:\n        - lib/R/lib/\n        - lib/rstudio/lib\n        - lib/\n    requirements:\n      build:\n        - {{ stdlib('c') }}\n        - {{ compiler('cxx') }}\n        - make\n        - cmake\n        - ant\n        - yarn\n        - wget\n        - ripgrep\n        - coreutils  # [osx]\n        - patchelf  # [linux]\n        - unzip\n        - nodejs >=18\n        - {{ cdt('mesa-libgl-devel') }}  # [linux]\n        - {{ cdt('mesa-dri-drivers') }}  # [linux]\n        - {{ cdt('libselinux') }}  # [linux]\n        - {{ cdt('libxdamage') }}  # [linux]\n        - {{ cdt('libxxf86vm') }}  # [linux]\n        - {{ cdt('libxext') }}     # [linux]\n      host:\n        - r-base\n        - r-purrr\n        - r-rmarkdown\n        - r-renv\n        - r-testthat\n        - r-xml2\n        - r-yaml\n        - r-rstudioapi\n        - libxkbcommon  # [linux]\n        - xorg-libxcomposite  # [linux]\n        - xorg-libxcursor  # [linux]\n        - xorg-libxscrnsaver  # [linux]\n        - xorg-libxi  # [linux]\n        - xorg-libxtst  # [linux]\n        - xorg-libxrandr  # [linux]\n        - openjdk\n        - libboost-devel\n        - soci-postgresql\n        - soci-core\n        - soci-sqlite\n        - libpq\n        - qt-main\n        - qt-webengine\n        - libuuid  # [linux]\n        - bzip2\n        - zlib\n        - pango\n        - sqlite\n        - libcups  # [linux]\n        - openssl\n        - hunspell\n        - hunspell-en\n        - pandoc\n        - mathjax <3.0\n        - yaml-cpp <0.7\n        - libjpeg-turbo   # [osx]\n        - libpng  # [osx]\n        - quarto\n      run:\n        - r-base\n        - r-purrr\n        - r-rmarkdown\n        - r-renv\n        - r-testthat\n        - r-xml2\n        - r-yaml\n        - r-rstudioapi\n        - libxkbcommon  # [linux]\n        - libxkbcommon  # [linux]\n        - xorg-libxcomposite  # [linux]\n        - xorg-libxcursor  # [linux]\n        - xorg-libxscrnsaver  # [linux]\n        - xorg-libxi  # [linux]\n        - xorg-libxtst  # [linux]\n        - xorg-libxrandr  # [linux]\n        - openjdk\n        - soci-postgresql\n        - soci-core\n        - soci-sqlite\n        - libpq\n        - qt-main\n        - qt-webengine\n        - libuuid  # [linux]\n        - bzip2\n        - zlib\n        - pango\n        - sqlite\n        - libcups  # [linux]\n        - openssl\n        - hunspell\n        - hunspell-en\n        - pandoc\n        - mathjax <3.0\n        - yaml-cpp <0.7\n        - libjpeg-turbo   # [osx]\n        - libpng  # [osx]\n        - {{ pin_compatible(\"quarto\", max_pin=\"x.x\") }}\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/rstudio/bin/rstudio  # [linux]\n        - sh -c \"xvfb-run -s '-screen 0 1200x800x24' ${PREFIX}/bin/rstudio --no-sandbox --run-diagnostics; cat ~/rstudio-diagnostics/diagnostics-report.txt\"  # [linux]\n        - test -f ${PREFIX}/lib/rstudio/RStudio.app/Contents/MacOS/RStudio  # [osx]\n\nabout:\n  home: https://www.rstudio.com/\n  license: AGPL-3.0-only\n  license_family: GPL\n  license_file: COPYING\n  summary: RStudio is an integrated development environment (IDE) for R\n  description: |\n    RStudio is an integrated development environment (IDE)\n    for R. It includes a console, syntax-highlighting\n    editor that supports direct code execution, as well\n    as tools for plotting, history, debugging and\n    workspace management.\n  doc_url: https://support.rstudio.com/hc/en-us/sections/200107586-Using-RStudio\n  dev_url: https://github.com/rstudio/rstudio\n\n\nextra:\n  recipe-maintainers:\n    - izahn\n    - h-vetinari\n    - wolfv\n  feedstock-name: rstudio\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -1424,8 +1427,8 @@
    "elements": []
   }
  },
- "url": "https://github.com/rstudio/rstudio/archive/refs/tags/v2023.12.1+402.tar.gz",
- "version": "2023.12.1",
+ "url": "https://github.com/rstudio/rstudio/archive/refs/tags/v2024.04.2+764.tar.gz",
+ "version": "2024.04.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/rstudio.json"
  }
