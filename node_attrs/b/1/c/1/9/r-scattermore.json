@@ -6,6 +6,8 @@
    "automerge": true
   },
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -17,8 +19,8 @@
    "tooling_branch_name": "main"
   },
   "provider": {
-   "linux_aarch64": "default",
-   "linux_ppc64le": "default"
+   "linux_aarch64": "azure",
+   "linux_ppc64le": "azure"
   },
   "test": "native_and_emulated"
  },
@@ -37,7 +39,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -55,6 +57,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -87,6 +90,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -125,7 +129,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -143,6 +147,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -175,6 +180,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -213,7 +219,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -231,6 +237,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -263,6 +270,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -304,7 +312,7 @@
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -322,9 +330,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -340,8 +350,7 @@
     "r-base",
     "r-ggplot2",
     "r-scales",
-    "gcc-libs",
-    "libwinpthread-git"
+    "gcc-libs"
    ]
   },
   "source": {
@@ -372,7 +381,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -390,6 +399,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -422,6 +432,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -460,7 +471,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -478,6 +489,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -510,6 +522,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -553,17 +566,18 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-scattermore.json"
  },
- "raw_meta_yaml": "{% set version = \"1.2\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-scattermore\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/scattermore_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/scattermore/scattermore_{{ version }}.tar.gz\n  sha256: 5534a87b0bdd1375f0fbffc1a5c980ad64e33a108435a67469b8324b580602d1\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'           # [win]\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-scales                     # [build_platform != target_platform]\n    - r-ggplot2                    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-ggplot2\n    - r-scales\n  run:\n    - r-base\n    - {{ native }}gcc-libs           # [win]\n    - {{ native }}libwinpthread-git  # [win]\n    - r-ggplot2\n    - r-scales\n\ntest:\n  commands:\n    - $R -e \"library('scattermore')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('scattermore')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/exaexa/scattermore\n  doc_url: https://exaexa.github.io/scattermore/\n  license: GPL-3.0-or-later\n  summary: C-based conversion of large scatterplot data to rasters. Speeds up plotting of data with millions of points.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"1.2\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-scattermore\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/scattermore_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/scattermore/scattermore_{{ version }}.tar.gz\n  sha256: 5534a87b0bdd1375f0fbffc1a5c980ad64e33a108435a67469b8324b580602d1\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'           # [win]\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-scales                     # [build_platform != target_platform]\n    - r-ggplot2                    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib('c') }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib('m2w64_c') }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-ggplot2\n    - r-scales\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-ggplot2\n    - r-scales\n\ntest:\n  commands:\n    - $R -e \"library('scattermore')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('scattermore')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/exaexa/scattermore\n  doc_url: https://exaexa.github.io/scattermore/\n  license: GPL-3.0-or-later\n  summary: C-based conversion of large scatterplot data to rasters. Speeds up plotting of data with millions of points.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
    "gcc-libs",
-   "libwinpthread-git",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -578,10 +592,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -592,6 +608,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-ggplot2",
@@ -602,9 +619,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gcc-libs",
-    "libwinpthread-git",
     "r-base",
     "r-ggplot2",
     "r-scales"
@@ -621,10 +638,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -643,7 +662,6 @@
    "__set__": true,
    "elements": [
     "gcc-libs",
-    "libwinpthread-git",
     "r-base",
     "r-ggplot2",
     "r-scales"
@@ -688,7 +706,7 @@
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -706,6 +724,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -721,7 +740,6 @@
    "run": [
     "r-base",
     "gcc-libs",
-    "libwinpthread-git",
     "r-ggplot2",
     "r-scales"
    ]
@@ -746,6 +764,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -764,7 +783,6 @@
    "__set__": true,
    "elements": [
     "gcc-libs",
-    "libwinpthread-git",
     "r-base",
     "r-ggplot2",
     "r-scales"

@@ -33,7 +33,7 @@
    "summary": "Flang is a Fortran compiler targeting LLVM."
   },
   "build": {
-   "number": "4"
+   "number": "5"
   },
   "extra": {
    "feedstock-name": "flang",
@@ -229,7 +229,7 @@
    "summary": "Flang is a Fortran compiler targeting LLVM."
   },
   "build": {
-   "number": "4"
+   "number": "5"
   },
   "extra": {
    "feedstock-name": "flang",
@@ -422,7 +422,7 @@
     "script": "install_flang.bat",
     "test": {
      "commands": [
-      "flang-new %FFLAGS% hello_world.f90",
+      "flang-new %FFLAGS% hello_world.f90 %LDFLAGS%",
       "a.exe",
       "env | grep \"FC=\""
      ],
@@ -500,7 +500,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/flang.json"
  },
- "raw_meta_yaml": "{% set version = \"18.1.8\" %}\n\npackage:\n  name: flang-split\n  version: {{ version }}\n\nsource:\n  url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(\".rc\", \"-rc\") }}.tar.gz\n  sha256: 09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856\n\nbuild:\n  number: 4\n  # intentionally only windows (main target) & linux (debuggability)\n  skip: true  # [osx]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - ninja\n    - mlir =={{ version }}     # [build_platform != target_platform]\n    # for showing CPU info of CI agent\n    - numpy *\n  host:\n    - clangdev =={{ version }}\n    - compiler-rt =={{ version }}\n    - lit =={{ version }}\n    - llvm-openmp =={{ version }}\n    - llvmdev =={{ version }}\n    - mlir =={{ version }}\n    - zlib\n\noutputs:\n  - name: libflang\n    script: install_libflang.sh  # [unix]\n    script: install_libflang.bat  # [win]\n    requirements:\n      build:\n        # for strong run-exports\n        - {{ compiler('c') }}\n        - {{ stdlib('c') }}\n        - {{ compiler('cxx') }}\n      host:\n        - clangdev =={{ version }}\n        - compiler-rt =={{ version }}\n        - llvmdev =={{ version }}\n        - mlir =={{ version }}\n    test:\n      commands:\n        # shared lib on linux\n        - test -f $PREFIX/lib/libFortranRuntime.so              # [linux]\n        # static lib on win (fails to export symbols for shared build)\n        - if not exist %LIBRARY_LIB%\\FortranRuntime.lib exit 1  # [win]\n\n  - name: libfortran-main\n    script: install_libfortran_main.sh  # [unix]\n    script: install_libfortran_main.bat  # [win]\n    requirements:\n      build:\n        # if there's no build env, windows fails with EnvironmentLocationNotFound (what?!)\n        - {{ compiler('c') }}    # [win]\n        - {{ stdlib('c') }}      # [win]\n        - {{ compiler('cxx') }}  # [win]\n      host:\n        # this is just here to have a non-empty host environment\n        - {{ pin_subpackage('libflang', exact=True) }}\n      run:\n        # not sure what we need here\n    test:\n      commands:\n        - test -f $PREFIX/lib/libFortran_main.a                 # [unix]\n        - if not exist %LIBRARY_LIB%\\Fortran_main.lib exit 1    # [win]\n\n  - name: flang\n    script: install_flang.sh  # [unix]\n    script: install_flang.bat  # [win]\n    run_exports:\n      strong:\n        - libflang >={{ version }}\n    requirements:\n      build:\n        - cmake\n        - ninja\n        - sed     # [unix]\n        - m2-sed  # [win]\n        # for strong run-exports\n        - {{ compiler('c') }}\n        - {{ stdlib('c') }}\n        - {{ compiler('cxx') }}\n      host:\n        - clangdev =={{ version }}\n        - compiler-rt =={{ version }}\n        - llvmdev =={{ version }}\n        - mlir =={{ version }}\n        # for required run-exports\n        - llvm =={{ version }}\n        - libclang-cpp =={{ version }}\n        # ninja really wants to find z.lib on win\n        - zlib  # [win]\n        - zstd  # [win]\n        - {{ pin_subpackage('libflang', exact=True) }}\n        - {{ pin_subpackage('libfortran-main', exact=True) }}\n      run:\n        - sysroot_{{ target_platform }} >={{ c_stdlib_version }}    # [linux]\n        - clang =={{ version }}\n        - compiler-rt =={{ version }}   # [win]\n        - lld                           # [win]\n        - {{ pin_subpackage('libflang', exact=True) }}\n        - {{ pin_subpackage('libfortran-main', exact=True) }}\n    test:\n      requires:\n        - {{ compiler('c') }}       # [win]\n        - {{ compiler('cxx') }}     # [win]\n        - grep                      # [unix]\n        - m2-grep                   # [win]\n      files:\n        - hello_world.f90\n      commands:\n        # see naming discussion: https://discourse.llvm.org/t/reviving-rename-flang-new-to-flang/68130/2\n        # - flang hello_world.f90\n        - flang-new $FFLAGS hello_world.f90     # [unix]\n        - flang-new %FFLAGS% hello_world.f90    # [win]\n        - ./a.out   # [unix]\n        - a.exe     # [win]\n        # check if activation worked\n        - env | grep \"FC=\"\n\n  - name: flang_{{ target_platform }}\n    run_exports:\n      strong:\n        - libflang >={{ version }}\n    requirements:\n      - {{ pin_subpackage('flang', exact=True) }}\n    test:\n      commands:\n        - echo \"tested in other outputs\"\n\nabout:\n  home: https://flang.llvm.org\n  license: Apache-2.0\n  license_file: flang/LICENSE.TXT\n  summary: Flang is a Fortran compiler targeting LLVM.\n  dev_url: https://github.com/llvm/llvm-project\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - h-vetinari\n  feedstock-name: flang\n",
+ "raw_meta_yaml": "{% set version = \"18.1.8\" %}\n\npackage:\n  name: flang-split\n  version: {{ version }}\n\nsource:\n  url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(\".rc\", \"-rc\") }}.tar.gz\n  sha256: 09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856\n\nbuild:\n  number: 5\n  # intentionally only windows (main target) & linux (debuggability)\n  skip: true  # [osx]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - ninja\n    - mlir =={{ version }}     # [build_platform != target_platform]\n    # for showing CPU info of CI agent\n    - numpy *\n  host:\n    - clangdev =={{ version }}\n    - compiler-rt =={{ version }}\n    - lit =={{ version }}\n    - llvm-openmp =={{ version }}\n    - llvmdev =={{ version }}\n    - mlir =={{ version }}\n    - zlib\n\noutputs:\n  - name: libflang\n    script: install_libflang.sh  # [unix]\n    script: install_libflang.bat  # [win]\n    requirements:\n      build:\n        # for strong run-exports\n        - {{ compiler('c') }}\n        - {{ stdlib('c') }}\n        - {{ compiler('cxx') }}\n      host:\n        - clangdev =={{ version }}\n        - compiler-rt =={{ version }}\n        - llvmdev =={{ version }}\n        - mlir =={{ version }}\n    test:\n      commands:\n        # shared lib on linux\n        - test -f $PREFIX/lib/libFortranRuntime.so              # [linux]\n        # static lib on win (fails to export symbols for shared build)\n        - if not exist %LIBRARY_LIB%\\FortranRuntime.lib exit 1  # [win]\n\n  - name: libfortran-main\n    script: install_libfortran_main.sh  # [unix]\n    script: install_libfortran_main.bat  # [win]\n    requirements:\n      build:\n        # if there's no build env, windows fails with EnvironmentLocationNotFound (what?!)\n        - {{ compiler('c') }}    # [win]\n        - {{ stdlib('c') }}      # [win]\n        - {{ compiler('cxx') }}  # [win]\n      host:\n        # this is just here to have a non-empty host environment\n        - {{ pin_subpackage('libflang', exact=True) }}\n      run:\n        # not sure what we need here\n    test:\n      commands:\n        - test -f $PREFIX/lib/libFortran_main.a                 # [unix]\n        - if not exist %LIBRARY_LIB%\\Fortran_main.lib exit 1    # [win]\n\n  - name: flang\n    script: install_flang.sh  # [unix]\n    script: install_flang.bat  # [win]\n    run_exports:\n      strong:\n        - libflang >={{ version }}\n    requirements:\n      build:\n        - cmake\n        - ninja\n        - sed     # [unix]\n        - m2-sed  # [win]\n        # for strong run-exports\n        - {{ compiler('c') }}\n        - {{ stdlib('c') }}\n        - {{ compiler('cxx') }}\n      host:\n        - clangdev =={{ version }}\n        - compiler-rt =={{ version }}\n        - llvmdev =={{ version }}\n        - mlir =={{ version }}\n        # for required run-exports\n        - llvm =={{ version }}\n        - libclang-cpp =={{ version }}\n        # ninja really wants to find z.lib on win\n        - zlib  # [win]\n        - zstd  # [win]\n        - {{ pin_subpackage('libflang', exact=True) }}\n        - {{ pin_subpackage('libfortran-main', exact=True) }}\n      run:\n        - sysroot_{{ target_platform }} >={{ c_stdlib_version }}    # [linux]\n        - clang =={{ version }}\n        - compiler-rt =={{ version }}   # [win]\n        - lld                           # [win]\n        - {{ pin_subpackage('libflang', exact=True) }}\n        - {{ pin_subpackage('libfortran-main', exact=True) }}\n    test:\n      requires:\n        - {{ compiler('c') }}       # [win]\n        - {{ compiler('cxx') }}     # [win]\n        - grep                      # [unix]\n        - m2-grep                   # [win]\n      files:\n        - hello_world.f90\n      commands:\n        # see naming discussion: https://discourse.llvm.org/t/reviving-rename-flang-new-to-flang/68130/2\n        # - flang hello_world.f90\n        - flang-new $FFLAGS hello_world.f90             # [unix]\n        - flang-new %FFLAGS% hello_world.f90 %LDFLAGS%  # [win]\n        - ./a.out   # [unix]\n        - a.exe     # [win]\n        # check if activation worked\n        - env | grep \"FC=\"\n\n  - name: flang_{{ target_platform }}\n    run_exports:\n      strong:\n        - libflang >={{ version }}\n    requirements:\n      - {{ pin_subpackage('flang', exact=True) }}\n    test:\n      commands:\n        - echo \"tested in other outputs\"\n\nabout:\n  home: https://flang.llvm.org\n  license: Apache-2.0\n  license_file: flang/LICENSE.TXT\n  summary: Flang is a Fortran compiler targeting LLVM.\n  dev_url: https://github.com/llvm/llvm-project\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - h-vetinari\n  feedstock-name: flang\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -661,7 +661,7 @@
    "summary": "Flang is a Fortran compiler targeting LLVM."
   },
   "build": {
-   "number": "4"
+   "number": "5"
   },
   "extra": {
    "feedstock-name": "flang",
@@ -752,7 +752,7 @@
     "script": "install_flang.bat",
     "test": {
      "commands": [
-      "flang-new %FFLAGS% hello_world.f90",
+      "flang-new %FFLAGS% hello_world.f90 %LDFLAGS%",
       "a.exe",
       "env | grep \"FC=\""
      ],
