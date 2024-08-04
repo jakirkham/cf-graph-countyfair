@@ -39,7 +39,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -129,7 +129,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -219,7 +219,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -308,11 +308,10 @@
    "summary": "C-based conversion of large scatterplot data to rasters. Speeds up plotting of data with millions of points."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -349,8 +348,7 @@
    "run": [
     "r-base",
     "r-ggplot2",
-    "r-scales",
-    "gcc-libs"
+    "r-scales"
    ]
   },
   "source": {
@@ -381,7 +379,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -471,7 +469,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -566,7 +564,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-scattermore.json"
  },
- "raw_meta_yaml": "{% set version = \"1.2\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-scattermore\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/scattermore_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/scattermore/scattermore_{{ version }}.tar.gz\n  sha256: 5534a87b0bdd1375f0fbffc1a5c980ad64e33a108435a67469b8324b580602d1\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'           # [win]\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-scales                     # [build_platform != target_platform]\n    - r-ggplot2                    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib('c') }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib('m2w64_c') }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-ggplot2\n    - r-scales\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-ggplot2\n    - r-scales\n\ntest:\n  commands:\n    - $R -e \"library('scattermore')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('scattermore')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/exaexa/scattermore\n  doc_url: https://exaexa.github.io/scattermore/\n  license: GPL-3.0-or-later\n  summary: C-based conversion of large scatterplot data to rasters. Speeds up plotting of data with millions of points.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"1.2\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-scattermore\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/scattermore_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/scattermore/scattermore_{{ version }}.tar.gz\n  sha256: 5534a87b0bdd1375f0fbffc1a5c980ad64e33a108435a67469b8324b580602d1\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'           # [win]\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-scales                     # [build_platform != target_platform]\n    - r-ggplot2                    # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib('c') }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib('m2w64_c') }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-ggplot2\n    - r-scales\n  run:\n    - r-base\n    - r-ggplot2\n    - r-scales\n\ntest:\n  commands:\n    - $R -e \"library('scattermore')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('scattermore')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/exaexa/scattermore\n  doc_url: https://exaexa.github.io/scattermore/\n  license: GPL-3.0-or-later\n  summary: C-based conversion of large scatterplot data to rasters. Speeds up plotting of data with millions of points.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -575,7 +573,6 @@
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
    "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
@@ -621,7 +618,6 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-ggplot2",
     "r-scales"
@@ -661,7 +657,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-ggplot2",
     "r-scales"
@@ -702,11 +697,10 @@
    "summary": "C-based conversion of large scatterplot data to rasters. Speeds up plotting of data with millions of points."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -739,7 +733,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-ggplot2",
     "r-scales"
    ]
@@ -782,7 +775,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-ggplot2",
     "r-scales"
