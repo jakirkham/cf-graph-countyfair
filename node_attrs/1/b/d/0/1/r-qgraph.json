@@ -27,7 +27,7 @@
    "summary": "Weighted network visualization and analysis, as well as Gaussian graphical model computation. See Epskamp et al. (2012) <doi:10.18637/jss.v048.i04>."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -112,6 +113,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -182,8 +184,7 @@
    "summary": "Weighted network visualization and analysis, as well as Gaussian graphical model computation. See Epskamp et al. (2012) <doi:10.18637/jss.v048.i04>."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -202,9 +203,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -253,8 +256,7 @@
     "r-plyr",
     "r-png",
     "r-psych",
-    "r-reshape2",
-    "gcc-libs"
+    "r-reshape2"
    ]
   },
   "source": {
@@ -283,7 +285,7 @@
    "summary": "Weighted network visualization and analysis, as well as Gaussian graphical model computation. See Epskamp et al. (2012) <doi:10.18637/jss.v048.i04>."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -302,6 +304,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -368,6 +371,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -442,16 +446,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-qgraph.json"
  },
- "raw_meta_yaml": "{% set version = \"1.9.8\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-qgraph\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/qgraph_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/qgraph/qgraph_{{ version }}.tar.gz\n  sha256: 14a81d64f37614a05445408babbb2da5bc53886def8b0c2e4101b06e8b4c01d4\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-hmisc\n    - r-matrix\n    - r-rcpp >=1.0.0\n    - r-abind\n    - r-colorspace\n    - r-corpcor\n    - r-dplyr\n    - r-fdrtool\n    - r-ggplot2\n    - r-glasso\n    - r-gtools\n    - r-igraph\n    - r-jpeg\n    - r-lavaan\n    - r-pbapply\n    - r-plyr\n    - r-png\n    - r-psych\n    - r-reshape2\n\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-hmisc\n    - r-matrix\n    - r-rcpp >=1.0.0\n    - r-abind\n    - r-colorspace\n    - r-corpcor\n    - r-dplyr\n    - r-fdrtool\n    - r-ggplot2\n    - r-glasso\n    - r-gtools\n    - r-igraph\n    - r-jpeg\n    - r-lavaan\n    - r-pbapply\n    - r-plyr\n    - r-png\n    - r-psych\n    - r-reshape2\n\ntest:\n  commands:\n    - $R -e \"library('qgraph')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('qgraph')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=qgraph\n  license: GPL-2.0-only\n  summary: Weighted network visualization and analysis, as well as Gaussian graphical model computation. See Epskamp et al. (2012) <doi:10.18637/jss.v048.i04>.\n\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - izahn\n",
+ "raw_meta_yaml": "{% set version = \"1.9.8\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-qgraph\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/qgraph_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/qgraph/qgraph_{{ version }}.tar.gz\n  sha256: 14a81d64f37614a05445408babbb2da5bc53886def8b0c2e4101b06e8b4c01d4\n\nbuild:\n  number: 1\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-hmisc\n    - r-matrix\n    - r-rcpp >=1.0.0\n    - r-abind\n    - r-colorspace\n    - r-corpcor\n    - r-dplyr\n    - r-fdrtool\n    - r-ggplot2\n    - r-glasso\n    - r-gtools\n    - r-igraph\n    - r-jpeg\n    - r-lavaan\n    - r-pbapply\n    - r-plyr\n    - r-png\n    - r-psych\n    - r-reshape2\n\n  run:\n    - r-base\n    - r-hmisc\n    - r-matrix\n    - r-rcpp >=1.0.0\n    - r-abind\n    - r-colorspace\n    - r-corpcor\n    - r-dplyr\n    - r-fdrtool\n    - r-ggplot2\n    - r-glasso\n    - r-gtools\n    - r-igraph\n    - r-jpeg\n    - r-lavaan\n    - r-pbapply\n    - r-plyr\n    - r-png\n    - r-psych\n    - r-reshape2\n\ntest:\n  commands:\n    - $R -e \"library('qgraph')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('qgraph')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=qgraph\n  license: GPL-2.0-only\n  summary: Weighted network visualization and analysis, as well as Gaussian graphical model computation. See Epskamp et al. (2012) <doi:10.18637/jss.v048.i04>.\n\n  license_family: GPL2\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - izahn\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-abind",
@@ -483,10 +488,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -497,6 +504,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-abind",
     "r-base",
@@ -524,8 +532,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-abind",
     "r-base",
     "r-colorspace",
@@ -559,10 +567,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -597,7 +607,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-abind",
     "r-base",
     "r-colorspace",
@@ -648,8 +657,7 @@
    "summary": "Weighted network visualization and analysis, as well as Gaussian graphical model computation. See Epskamp et al. (2012) <doi:10.18637/jss.v048.i04>."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -668,6 +676,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -699,7 +708,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-hmisc",
     "r-matrix",
     "r-rcpp >=1.0.0",
@@ -741,6 +749,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -775,7 +784,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-abind",
     "r-base",
     "r-colorspace",
