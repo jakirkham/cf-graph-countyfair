@@ -27,7 +27,7 @@
    "summary": "Implements the following approaches for multidimensional scaling (MDS) based on stress minimization using majorization (smacof): ratio/interval/ordinal/spline MDS on symmetric dissimilarity matrices, MDS with external constraints on the configuration, individual differences scaling (idioscal, indscal), MDS with spherical restrictions, and ratio/interval/ordinal/spline unfolding (circular restrictions, row-conditional). Various tools and extensions like jackknife MDS, bootstrap MDS, permutation tests, MDS biplots, gravity models, unidimensional scaling, drift vectors (asymmetric MDS), classical scaling, and Procrustes are implemented as well."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -46,6 +46,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -99,6 +100,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -156,8 +158,7 @@
    "summary": "Implements the following approaches for multidimensional scaling (MDS) based on stress minimization using majorization (smacof): ratio/interval/ordinal/spline MDS on symmetric dissimilarity matrices, MDS with external constraints on the configuration, individual differences scaling (idioscal, indscal), MDS with spherical restrictions, and ratio/interval/ordinal/spline unfolding (circular restrictions, row-conditional). Various tools and extensions like jackknife MDS, bootstrap MDS, permutation tests, MDS biplots, gravity models, unidimensional scaling, drift vectors (asymmetric MDS), classical scaling, and Procrustes are implemented as well."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -176,8 +177,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -213,8 +216,7 @@
     "r-plotrix",
     "r-polynom",
     "r-weights",
-    "r-wordcloud",
-    "gcc-libs"
+    "r-wordcloud"
    ]
   },
   "source": {
@@ -243,7 +245,7 @@
    "summary": "Implements the following approaches for multidimensional scaling (MDS) based on stress minimization using majorization (smacof): ratio/interval/ordinal/spline MDS on symmetric dissimilarity matrices, MDS with external constraints on the configuration, individual differences scaling (idioscal, indscal), MDS with spherical restrictions, and ratio/interval/ordinal/spline unfolding (circular restrictions, row-conditional). Various tools and extensions like jackknife MDS, bootstrap MDS, permutation tests, MDS biplots, gravity models, unidimensional scaling, drift vectors (asymmetric MDS), classical scaling, and Procrustes are implemented as well."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -262,6 +264,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -315,6 +318,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -376,15 +380,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-smacof.json"
  },
- "raw_meta_yaml": "{% set version = \"2.1-6\" %}\n\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-smacof\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/smacof_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/smacof/smacof_{{ version }}.tar.gz\n  sha256: 4a1d58f6f2e8fb5582fd672dc2f6d5784a03702d8c748b972e0be1c4d6dcad1a\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-hmisc\n    - r-mass\n    - r-candisc\n    - r-colorspace\n    - r-doparallel\n    - r-e1071\n    - r-ellipse\n    - r-foreach\n    - r-nnls\n    - r-plotrix\n    - r-polynom\n    - r-weights\n    - r-wordcloud\n\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-hmisc\n    - r-mass\n    - r-candisc\n    - r-colorspace\n    - r-doparallel\n    - r-e1071\n    - r-ellipse\n    - r-foreach\n    - r-nnls\n    - r-plotrix\n    - r-polynom\n    - r-weights\n    - r-wordcloud\n\ntest:\n  commands:\n    - $R -e \"library('smacof')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('smacof')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=smacof\n  license: GPL-3.0-only\n  summary: 'Implements the following approaches for multidimensional scaling (MDS) based on stress minimization using majorization (smacof): ratio/interval/ordinal/spline MDS on symmetric dissimilarity matrices, MDS with external constraints on the configuration, individual differences scaling (idioscal, indscal), MDS with\n    spherical restrictions, and ratio/interval/ordinal/spline unfolding (circular restrictions, row-conditional). Various tools and extensions like jackknife MDS, bootstrap MDS, permutation tests, MDS biplots, gravity models, unidimensional scaling, drift vectors (asymmetric MDS), classical scaling, and Procrustes are implemented\n    as well.'\n\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - izahn\n",
+ "raw_meta_yaml": "{% set version = \"2.1-6\" %}\n\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-smacof\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/smacof_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/smacof/smacof_{{ version }}.tar.gz\n  sha256: 4a1d58f6f2e8fb5582fd672dc2f6d5784a03702d8c748b972e0be1c4d6dcad1a\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-hmisc\n    - r-mass\n    - r-candisc\n    - r-colorspace\n    - r-doparallel\n    - r-e1071\n    - r-ellipse\n    - r-foreach\n    - r-nnls\n    - r-plotrix\n    - r-polynom\n    - r-weights\n    - r-wordcloud\n\n  run:\n    - r-base\n    - r-hmisc\n    - r-mass\n    - r-candisc\n    - r-colorspace\n    - r-doparallel\n    - r-e1071\n    - r-ellipse\n    - r-foreach\n    - r-nnls\n    - r-plotrix\n    - r-polynom\n    - r-weights\n    - r-wordcloud\n\ntest:\n  commands:\n    - $R -e \"library('smacof')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('smacof')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=smacof\n  license: GPL-3.0-only\n  summary: 'Implements the following approaches for multidimensional scaling (MDS) based on stress minimization using majorization (smacof): ratio/interval/ordinal/spline MDS on symmetric dissimilarity matrices, MDS with external constraints on the configuration, individual differences scaling (idioscal, indscal), MDS with\n    spherical restrictions, and ratio/interval/ordinal/spline unfolding (circular restrictions, row-conditional). Various tools and extensions like jackknife MDS, bootstrap MDS, permutation tests, MDS biplots, gravity models, unidimensional scaling, drift vectors (asymmetric MDS), classical scaling, and Procrustes are implemented\n    as well.'\n\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - izahn\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-candisc",
@@ -409,9 +414,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -421,6 +428,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-candisc",
     "r-colorspace",
@@ -441,7 +449,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-candisc",
     "r-colorspace",
@@ -469,9 +477,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -499,7 +509,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-candisc",
     "r-colorspace",
@@ -544,8 +553,7 @@
    "summary": "Implements the following approaches for multidimensional scaling (MDS) based on stress minimization using majorization (smacof): ratio/interval/ordinal/spline MDS on symmetric dissimilarity matrices, MDS with external constraints on the configuration, individual differences scaling (idioscal, indscal), MDS with spherical restrictions, and ratio/interval/ordinal/spline unfolding (circular restrictions, row-conditional). Various tools and extensions like jackknife MDS, bootstrap MDS, permutation tests, MDS biplots, gravity models, unidimensional scaling, drift vectors (asymmetric MDS), classical scaling, and Procrustes are implemented as well."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -564,6 +572,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -588,7 +597,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-hmisc",
     "r-mass",
     "r-candisc",
@@ -624,6 +632,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -651,7 +660,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-candisc",
     "r-colorspace",
