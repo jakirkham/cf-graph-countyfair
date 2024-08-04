@@ -28,7 +28,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -47,6 +47,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -87,6 +88,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -131,11 +133,10 @@
    "summary": "Utility functions for large-scale data. For now, package 'bigutilsr' mainly includes functions for outlier detection and unbiased PCA projection."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -154,9 +155,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -179,8 +182,7 @@
     "r-bigassertr >=0.1.1",
     "r-bigparallelr >=0.2.3",
     "r-nabor",
-    "r-robustbase",
-    "gcc-libs"
+    "r-robustbase"
    ]
   },
   "source": {
@@ -210,7 +212,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -229,6 +231,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -269,6 +272,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -317,16 +321,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-bigutilsr.json"
  },
- "raw_meta_yaml": "{% set version = '0.3.4' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-bigutilsr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/bigutilsr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/bigutilsr/bigutilsr_{{ version }}.tar.gz\n  sha256: b44b458f4b540deff5af1f956d1dbd138f4fc138cd2d77e35e69d873c406d024\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  # This is needed to suppress a warning about R.dll not being found\n  missing_dso_whitelist:\n    - '*/R.dll'            # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-rspectra\n    - r-rcpp\n    - r-bigassertr >=0.1.1\n    - r-bigparallelr >=0.2.3\n    - r-nabor\n    - r-robustbase\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rspectra\n    - r-rcpp\n    - r-bigassertr >=0.1.1\n    - r-bigparallelr >=0.2.3\n    - r-nabor\n    - r-robustbase\n\ntest:\n  commands:\n    - $R -e \"library('bigutilsr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('bigutilsr')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/privefl/bigutilsr\n  license: GPL-3.0-only\n  summary: Utility functions for large-scale data. For now, package 'bigutilsr' mainly includes\n    functions for outlier detection and unbiased PCA projection.\n  license_family: GPL3\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - pettyalex\n\n# Package: bigutilsr\n# Title: Utility Functions for Large-scale Data\n# Version: 0.3.4\n# Date: 2021-04-08\n# Authors@R: person(\"Florian\", \"Prive\", email = \"florian.prive.21@gmail.com\", role = c(\"aut\", \"cre\"))\n# Description: Utility functions for large-scale data. For now, package 'bigutilsr' mainly includes functions for outlier detection and unbiased PCA projection.\n# License: GPL-3\n# Encoding: UTF-8\n# Language: en-US\n# ByteCompile: TRUE\n# RoxygenNote: 7.1.1\n# URL: https://github.com/privefl/bigutilsr\n# BugReports: https://github.com/privefl/bigutilsr/issues\n# LinkingTo: Rcpp\n# Imports: bigassertr (>= 0.1.1), bigparallelr (>= 0.2.3), nabor, Rcpp, robustbase, RSpectra, stats\n# Suggests: covr, Gmedian, mvtnorm, rrcov, spelling, testthat (>= 2.1.0)\n# NeedsCompilation: yes\n# Packaged: 2021-04-08 11:17:27 UTC; au639593\n# Author: Florian Prive [aut, cre]\n# Maintainer: Florian Prive <florian.prive.21@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2021-04-13 22:00:11 UTC\n",
+ "raw_meta_yaml": "{% set version = '0.3.4' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-bigutilsr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/bigutilsr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/bigutilsr/bigutilsr_{{ version }}.tar.gz\n  sha256: b44b458f4b540deff5af1f956d1dbd138f4fc138cd2d77e35e69d873c406d024\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  # This is needed to suppress a warning about R.dll not being found\n  missing_dso_whitelist:\n    - '*/R.dll'            # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-rspectra\n    - r-rcpp\n    - r-bigassertr >=0.1.1\n    - r-bigparallelr >=0.2.3\n    - r-nabor\n    - r-robustbase\n  run:\n    - r-base\n    - r-rspectra\n    - r-rcpp\n    - r-bigassertr >=0.1.1\n    - r-bigparallelr >=0.2.3\n    - r-nabor\n    - r-robustbase\n\ntest:\n  commands:\n    - $R -e \"library('bigutilsr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('bigutilsr')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/privefl/bigutilsr\n  license: GPL-3.0-only\n  summary: Utility functions for large-scale data. For now, package 'bigutilsr' mainly includes\n    functions for outlier detection and unbiased PCA projection.\n  license_family: GPL3\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3'\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - pettyalex\n\n# Package: bigutilsr\n# Title: Utility Functions for Large-scale Data\n# Version: 0.3.4\n# Date: 2021-04-08\n# Authors@R: person(\"Florian\", \"Prive\", email = \"florian.prive.21@gmail.com\", role = c(\"aut\", \"cre\"))\n# Description: Utility functions for large-scale data. For now, package 'bigutilsr' mainly includes functions for outlier detection and unbiased PCA projection.\n# License: GPL-3\n# Encoding: UTF-8\n# Language: en-US\n# ByteCompile: TRUE\n# RoxygenNote: 7.1.1\n# URL: https://github.com/privefl/bigutilsr\n# BugReports: https://github.com/privefl/bigutilsr/issues\n# LinkingTo: Rcpp\n# Imports: bigassertr (>= 0.1.1), bigparallelr (>= 0.2.3), nabor, Rcpp, robustbase, RSpectra, stats\n# Suggests: covr, Gmedian, mvtnorm, rrcov, spelling, testthat (>= 2.1.0)\n# NeedsCompilation: yes\n# Packaged: 2021-04-08 11:17:27 UTC; au639593\n# Author: Florian Prive [aut, cre]\n# Maintainer: Florian Prive <florian.prive.21@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2021-04-13 22:00:11 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -345,10 +350,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -359,6 +366,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-bigassertr",
@@ -373,8 +381,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-bigassertr",
     "r-bigparallelr",
@@ -395,10 +403,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -420,7 +430,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-bigassertr >=0.1.1",
     "r-bigparallelr >=0.2.3",
@@ -458,11 +467,10 @@
    "summary": "Utility functions for large-scale data. For now, package 'bigutilsr' mainly includes functions for outlier detection and unbiased PCA projection."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -481,6 +489,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -499,7 +508,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rspectra",
     "r-rcpp",
     "r-bigassertr >=0.1.1",
@@ -528,6 +536,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -549,7 +558,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-bigassertr",
     "r-bigparallelr",
