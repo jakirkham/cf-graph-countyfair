@@ -29,7 +29,7 @@
    "summary": "The Poisson-lognormal model and variants can be used for a variety of multivariate problems when count data are at play, including principal component analysis for count data (Chiquet, Mariadassou and Robin, 2018 <doi:10.1214/18-AOAS1177>), discriminant analysis and network inference (Chiquet, Mariadassou and Robin, 2018 <http://proceedings.mlr.press/v97/chiquet19a.html>). Implements variational algorithms to fit such models accompanied with a set of functions for visualization and diagnostic."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -49,6 +49,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -119,6 +120,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -195,8 +197,7 @@
    "summary": "The Poisson-lognormal model and variants can be used for a variety of multivariate problems when count data are at play, including principal component analysis for count data (Chiquet, Mariadassou and Robin, 2018 <doi:10.1214/18-AOAS1177>), discriminant analysis and network inference (Chiquet, Mariadassou and Robin, 2018 <http://proceedings.mlr.press/v97/chiquet19a.html>). Implements variational algorithms to fit such models accompanied with a set of functions for visualization and diagnostic."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -216,9 +217,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -271,8 +274,7 @@
     "r-rcpparmadillo",
     "r-rlang",
     "r-tidyr",
-    "r-torch",
-    "gcc-libs"
+    "r-torch"
    ]
   },
   "source": {
@@ -303,7 +305,7 @@
    "summary": "The Poisson-lognormal model and variants can be used for a variety of multivariate problems when count data are at play, including principal component analysis for count data (Chiquet, Mariadassou and Robin, 2018 <doi:10.1214/18-AOAS1177>), discriminant analysis and network inference (Chiquet, Mariadassou and Robin, 2018 <http://proceedings.mlr.press/v97/chiquet19a.html>). Implements variational algorithms to fit such models accompanied with a set of functions for visualization and diagnostic."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -323,6 +325,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -393,6 +396,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -471,18 +475,19 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-plnmodels.json"
  },
- "raw_meta_yaml": "{% set version = \"1.2.0\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-plnmodels\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/PLNmodels_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/PLNmodels/PLNmodels_{{ version }}.tar.gz\n  sha256: 2906588edf06688482aa974ef62d2455eddbef1d4331a46a1d1cc91beff00ebb\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-corrplot\n    - r-dplyr\n    - r-future\n    - r-future.apply\n    - r-ggplot2\n    - r-glassofast\n    - r-gridextra\n    - r-igraph\n    - r-magrittr\n    - r-mass\n    - r-matrix\n    - r-nloptr\n    - r-purrr\n    - r-pscl\n    - r-r6\n    - r-rcpp\n    - r-rcpparmadillo\n    - r-rlang\n    - r-tidyr\n    - r-torch\n    - libblas\n    - liblapack\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-corrplot\n    - r-dplyr\n    - r-future\n    - r-future.apply\n    - r-ggplot2\n    - r-glassofast\n    - r-gridextra\n    - r-igraph\n    - r-magrittr\n    - r-mass\n    - r-matrix\n    - r-nloptr\n    - r-purrr\n    - r-pscl\n    - r-r6\n    - r-rcpp\n    - r-rcpparmadillo\n    - r-rlang\n    - r-tidyr\n    - r-torch\n\ntest:\n  commands:\n    - $R -e \"library('PLNmodels')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('PLNmodels')\\\"\"  # [win]\n\nabout:\n  home: https://pln-team.github.io/PLNmodels/\n  dev_url: https://github.com/pln-team/PLNmodels/\n  doc_url: https://pln-team.github.io/PLNmodels/reference/index.html\n  license: GPL-3.0-or-later\n  summary: The Poisson-lognormal model and variants can be used for a variety of multivariate problems when count data are at play, including principal component analysis for count data (Chiquet, Mariadassou and Robin, 2018 <doi:10.1214/18-AOAS1177>), discriminant analysis and network inference (Chiquet, Mariadassou and\n    Robin, 2018 <http://proceedings.mlr.press/v97/chiquet19a.html>). Implements variational algorithms to fit such models accompanied with a set of functions for visualization and diagnostic.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - jchiquet\n    - cpauvert\n",
+ "raw_meta_yaml": "{% set version = \"1.2.0\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-plnmodels\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/PLNmodels_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/PLNmodels/PLNmodels_{{ version }}.tar.gz\n  sha256: 2906588edf06688482aa974ef62d2455eddbef1d4331a46a1d1cc91beff00ebb\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-corrplot\n    - r-dplyr\n    - r-future\n    - r-future.apply\n    - r-ggplot2\n    - r-glassofast\n    - r-gridextra\n    - r-igraph\n    - r-magrittr\n    - r-mass\n    - r-matrix\n    - r-nloptr\n    - r-purrr\n    - r-pscl\n    - r-r6\n    - r-rcpp\n    - r-rcpparmadillo\n    - r-rlang\n    - r-tidyr\n    - r-torch\n    - libblas\n    - liblapack\n  run:\n    - r-base\n    - r-corrplot\n    - r-dplyr\n    - r-future\n    - r-future.apply\n    - r-ggplot2\n    - r-glassofast\n    - r-gridextra\n    - r-igraph\n    - r-magrittr\n    - r-mass\n    - r-matrix\n    - r-nloptr\n    - r-purrr\n    - r-pscl\n    - r-r6\n    - r-rcpp\n    - r-rcpparmadillo\n    - r-rlang\n    - r-tidyr\n    - r-torch\n\ntest:\n  commands:\n    - $R -e \"library('PLNmodels')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('PLNmodels')\\\"\"  # [win]\n\nabout:\n  home: https://pln-team.github.io/PLNmodels/\n  dev_url: https://github.com/pln-team/PLNmodels/\n  doc_url: https://pln-team.github.io/PLNmodels/reference/index.html\n  license: GPL-3.0-or-later\n  summary: The Poisson-lognormal model and variants can be used for a variety of multivariate problems when count data are at play, including principal component analysis for count data (Chiquet, Mariadassou and Robin, 2018 <doi:10.1214/18-AOAS1177>), discriminant analysis and network inference (Chiquet, Mariadassou and\n    Robin, 2018 <http://proceedings.mlr.press/v97/chiquet19a.html>). Implements variational algorithms to fit such models accompanied with a set of functions for visualization and diagnostic.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - jchiquet\n    - cpauvert\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "libblas",
    "liblapack",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -515,10 +520,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -529,6 +536,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libblas",
     "liblapack",
@@ -559,8 +567,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-corrplot",
     "r-dplyr",
@@ -595,10 +603,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -636,7 +646,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-corrplot",
     "r-dplyr",
@@ -690,8 +699,7 @@
    "summary": "The Poisson-lognormal model and variants can be used for a variety of multivariate problems when count data are at play, including principal component analysis for count data (Chiquet, Mariadassou and Robin, 2018 <doi:10.1214/18-AOAS1177>), discriminant analysis and network inference (Chiquet, Mariadassou and Robin, 2018 <http://proceedings.mlr.press/v97/chiquet19a.html>). Implements variational algorithms to fit such models accompanied with a set of functions for visualization and diagnostic."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -711,6 +719,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -745,7 +754,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-corrplot",
     "r-dplyr",
     "r-future",
@@ -788,6 +796,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -825,7 +834,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-corrplot",
     "r-dplyr",

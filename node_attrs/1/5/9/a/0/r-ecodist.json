@@ -32,7 +32,7 @@
    "summary": "Dissimilarity-based analysis functions including ordination and Mantel test functions, intended for use with spatial and community data."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -51,6 +51,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -81,6 +82,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -117,8 +119,7 @@
    "summary": "Dissimilarity-based analysis functions including ordination and Mantel test functions, intended for use with spatial and community data."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -137,8 +138,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -151,8 +154,7 @@
    ],
    "run": [
     "r-base",
-    "r-igraph",
-    "gcc-libs"
+    "r-igraph"
    ]
   },
   "source": {
@@ -183,7 +185,7 @@
    "summary": "Dissimilarity-based analysis functions including ordination and Mantel test functions, intended for use with spatial and community data."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -202,6 +204,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -232,6 +235,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -270,16 +274,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-ecodist.json"
  },
- "raw_meta_yaml": "{% set version = \"2.1.3\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-ecodist\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/ecodist_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/ecodist/ecodist_{{ version }}.tar.gz\n  sha256: e0a27ead727152d11b0093301983c1d88d7a3ee6a6396268e8581100baf43d98\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ posix }}filesystem      # [win]\n    - {{ posix }}make\n    - {{ posix }}sed             # [win]\n    - {{ posix }}coreutils       # [win]\n    - {{ posix }}zip             # [win]\n  host:\n    - libblas\n    - r-base\n    - r-igraph\n  run:\n    - r-base\n    - {{ native }}gcc-libs       # [win]\n    - r-igraph\n\ntest:\n  commands:\n    - $R -e \"library('ecodist')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('ecodist')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=ecodist\n  dev_url: https://github.com/phiala/ecodist\n  license: GPL-2.0-or-later\n  summary: Dissimilarity-based analysis functions including ordination and Mantel test functions, intended for use with spatial and community data.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - jenzopr\n\n# Package: ecodist\n# Version: 2.0.1\n# Date: 2017-07-12\n# Title: Dissimilarity-Based Functions for Ecological Analysis\n# Authors@R: c(person(\"Sarah\", \"Goslee\", role = c(\"aut\", \"cre\"), email = \"Sarah.Goslee@ars.usda.gov\"), person(\"Dean\", \"Urban\", role = \"aut\"))\n# Author: Sarah Goslee [aut, cre], Dean Urban [aut]\n# Maintainer: Sarah Goslee <Sarah.Goslee@ars.usda.gov>\n# Depends: R (>= 3.0.0)\n# LazyData: true\n# Imports: stats, graphics\n# Suggests: knitr, testthat\n# VignetteBuilder: knitr\n# Description: Dissimilarity-based analysis functions including ordination and Mantel test functions, intended for use with spatial and community data.\n# License: GPL (>= 2)\n# NeedsCompilation: yes\n# Packaged: 2017-07-12 20:54:53 UTC; sarahg\n# Repository: CRAN\n# Date/Publication: 2017-07-13 05:25:44 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.1.3\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-ecodist\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/ecodist_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/ecodist/ecodist_{{ version }}.tar.gz\n  sha256: e0a27ead727152d11b0093301983c1d88d7a3ee6a6396268e8581100baf43d98\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ stdlib(\"m2w64_c\") }}    # [win]\n    - {{ posix }}filesystem      # [win]\n    - {{ posix }}make\n    - {{ posix }}sed             # [win]\n    - {{ posix }}coreutils       # [win]\n    - {{ posix }}zip             # [win]\n  host:\n    - libblas\n    - r-base\n    - r-igraph\n  run:\n    - r-base\n    - r-igraph\n\ntest:\n  commands:\n    - $R -e \"library('ecodist')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('ecodist')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=ecodist\n  dev_url: https://github.com/phiala/ecodist\n  license: GPL-2.0-or-later\n  summary: Dissimilarity-based analysis functions including ordination and Mantel test functions, intended for use with spatial and community data.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - jenzopr\n\n# Package: ecodist\n# Version: 2.0.1\n# Date: 2017-07-12\n# Title: Dissimilarity-Based Functions for Ecological Analysis\n# Authors@R: c(person(\"Sarah\", \"Goslee\", role = c(\"aut\", \"cre\"), email = \"Sarah.Goslee@ars.usda.gov\"), person(\"Dean\", \"Urban\", role = \"aut\"))\n# Author: Sarah Goslee [aut, cre], Dean Urban [aut]\n# Maintainer: Sarah Goslee <Sarah.Goslee@ars.usda.gov>\n# Depends: R (>= 3.0.0)\n# LazyData: true\n# Imports: stats, graphics\n# Suggests: knitr, testthat\n# VignetteBuilder: knitr\n# Description: Dissimilarity-based analysis functions including ordination and Mantel test functions, intended for use with spatial and community data.\n# License: GPL (>= 2)\n# NeedsCompilation: yes\n# Packaged: 2017-07-12 20:54:53 UTC; sarahg\n# Repository: CRAN\n# Date/Publication: 2017-07-13 05:25:44 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "libblas",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-igraph",
@@ -292,9 +297,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -304,6 +311,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "libblas",
     "r-base",
     "r-igraph"
@@ -313,7 +321,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-igraph"
    ]
@@ -329,9 +337,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -348,7 +358,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-igraph"
    ]
@@ -383,8 +392,7 @@
    "summary": "Dissimilarity-based analysis functions including ordination and Mantel test functions, intended for use with spatial and community data."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -403,6 +411,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -416,7 +425,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-igraph"
    ]
   },
@@ -440,6 +448,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -456,7 +465,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-igraph"
    ]

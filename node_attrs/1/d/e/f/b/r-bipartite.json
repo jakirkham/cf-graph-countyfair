@@ -34,7 +34,7 @@
    "summary": "Functions to visualise webs and calculate a series of indices commonly used to describe pattern in (ecological) webs. It focuses on webs consisting of only two levels (bipartite), e.g. pollination webs or predator-prey-webs. Visualisation is important to get an idea of what we are actually looking at, while the indices summarise different aspects of the web's topology. "
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -138,8 +138,7 @@
    "summary": "Functions to visualise webs and calculate a series of indices commonly used to describe pattern in (ecological) webs. It focuses on webs consisting of only two levels (bipartite), e.g. pollination webs or predator-prey-webs. Visualisation is important to get an idea of what we are actually looking at, while the indices summarise different aspects of the web's topology. "
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -184,8 +183,7 @@
     "r-igraph",
     "r-permute",
     "r-sna",
-    "r-vegan",
-    "gcc-libs"
+    "r-vegan"
    ]
   },
   "source": {
@@ -214,7 +212,7 @@
    "summary": "Functions to visualise webs and calculate a series of indices commonly used to describe pattern in (ecological) webs. It focuses on webs consisting of only two levels (bipartite), e.g. pollination webs or predator-prey-webs. Visualisation is important to get an idea of what we are actually looking at, while the indices summarise different aspects of the web's topology. "
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -318,7 +316,7 @@
    "summary": "Functions to visualise webs and calculate a series of indices commonly used to describe pattern in (ecological) webs. It focuses on webs consisting of only two levels (bipartite), e.g. pollination webs or predator-prey-webs. Visualisation is important to get an idea of what we are actually looking at, while the indices summarise different aspects of the web's topology. "
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -427,7 +425,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-bipartite.json"
  },
- "raw_meta_yaml": "{% set version = \"2.20\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-bipartite\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/bipartite_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/bipartite/bipartite_{{ version }}.tar.gz\n  sha256: 86f66ce178db0589c0aa4e51509696bf0fb8a316b06c0edecfd4ce924b32fd71\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-fields                   # [build_platform != target_platform]\n    - r-permute                  # [build_platform != target_platform]\n    - r-vegan                    # [build_platform != target_platform]\n    - r-sna                      # [build_platform != target_platform]\n    - r-igraph                   # [build_platform != target_platform]\n    - r-mass                     # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-mass\n    - r-fields\n    - r-igraph\n    - r-permute\n    - r-sna\n    - r-vegan\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-mass\n    - r-fields\n    - r-igraph\n    - r-permute\n    - r-sna\n    - r-vegan\n\ntest:\n  commands:\n    - $R -e \"library('bipartite')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('bipartite')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/biometry/bipartite\n  license: GPL-2.0-or-later\n  summary: \"Functions to visualise webs and calculate a series of indices commonly used to describe pattern in (ecological) webs. It focuses on webs consisting of only two levels (bipartite), e.g. pollination webs or predator-prey-webs. Visualisation is important to get an idea of what we are actually looking at, while the\n    indices summarise different aspects of the web's topology. \"\n  license_family: GPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: bipartite\n# Type: Package\n# Title: Visualising Bipartite Networks and Calculating Some (Ecological) Indices\n# Version: 2.13\n# Date: 2019-05-21\n# Author: Carsten F. Dormann, Jochen Fruend and Bernd Gruber, with additional code from Stephen Beckett, Mariano Devoto, Jose Iriondo, Tove Opsahl, Rouven Strauss and Diego Vazquez, also based on C-code developed by Nils Bluethgen, Aaron Clauset/Rouven Strauss and Miguel Rodriguez-Girones\n# Maintainer: Carsten F. Dormann <carsten.dormann@biom.uni-freiburg.de>\n# Depends: vegan, sna\n# Imports: fields, igraph, MASS, methods, permute\n# Suggests: knitr\n# LazyData: TRUE\n# ByteCompile: TRUE\n# NeedsCompilation: yes\n# VignetteBuilder: utils\n# URL: https://github.com/biometry/bipartite\n# Description: Functions to visualise webs and calculate a series of indices commonly used to describe pattern in (ecological) webs. It focuses on webs consisting of only two levels (bipartite), e.g. pollination webs or predator-prey-webs. Visualisation is important to get an idea of what we are actually looking at, while the indices summarise different aspects of the web's topology.\n# License: GPL\n# Packaged: 2019-05-21 14:50:53 UTC; Carsten\n# Repository: CRAN\n# Date/Publication: 2019-05-21 17:20:04 UTC\n",
+ "raw_meta_yaml": "{% set version = \"2.20\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-bipartite\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/bipartite_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/bipartite/bipartite_{{ version }}.tar.gz\n  sha256: 86f66ce178db0589c0aa4e51509696bf0fb8a316b06c0edecfd4ce924b32fd71\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-fields                   # [build_platform != target_platform]\n    - r-permute                  # [build_platform != target_platform]\n    - r-vegan                    # [build_platform != target_platform]\n    - r-sna                      # [build_platform != target_platform]\n    - r-igraph                   # [build_platform != target_platform]\n    - r-mass                     # [build_platform != target_platform]\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-mass\n    - r-fields\n    - r-igraph\n    - r-permute\n    - r-sna\n    - r-vegan\n  run:\n    - r-base\n    - r-mass\n    - r-fields\n    - r-igraph\n    - r-permute\n    - r-sna\n    - r-vegan\n\ntest:\n  commands:\n    - $R -e \"library('bipartite')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('bipartite')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/biometry/bipartite\n  license: GPL-2.0-or-later\n  summary: \"Functions to visualise webs and calculate a series of indices commonly used to describe pattern in (ecological) webs. It focuses on webs consisting of only two levels (bipartite), e.g. pollination webs or predator-prey-webs. Visualisation is important to get an idea of what we are actually looking at, while the\n    indices summarise different aspects of the web's topology. \"\n  license_family: GPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: bipartite\n# Type: Package\n# Title: Visualising Bipartite Networks and Calculating Some (Ecological) Indices\n# Version: 2.13\n# Date: 2019-05-21\n# Author: Carsten F. Dormann, Jochen Fruend and Bernd Gruber, with additional code from Stephen Beckett, Mariano Devoto, Jose Iriondo, Tove Opsahl, Rouven Strauss and Diego Vazquez, also based on C-code developed by Nils Bluethgen, Aaron Clauset/Rouven Strauss and Miguel Rodriguez-Girones\n# Maintainer: Carsten F. Dormann <carsten.dormann@biom.uni-freiburg.de>\n# Depends: vegan, sna\n# Imports: fields, igraph, MASS, methods, permute\n# Suggests: knitr\n# LazyData: TRUE\n# ByteCompile: TRUE\n# NeedsCompilation: yes\n# VignetteBuilder: utils\n# URL: https://github.com/biometry/bipartite\n# Description: Functions to visualise webs and calculate a series of indices commonly used to describe pattern in (ecological) webs. It focuses on webs consisting of only two levels (bipartite), e.g. pollination webs or predator-prey-webs. Visualisation is important to get an idea of what we are actually looking at, while the indices summarise different aspects of the web's topology.\n# License: GPL\n# Packaged: 2019-05-21 14:50:53 UTC; Carsten\n# Repository: CRAN\n# Date/Publication: 2019-05-21 17:20:04 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -436,7 +434,6 @@
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
    "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
@@ -490,7 +487,6 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-fields",
     "r-igraph",
@@ -538,7 +534,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-fields",
     "r-igraph",
@@ -578,8 +573,7 @@
    "summary": "Functions to visualise webs and calculate a series of indices commonly used to describe pattern in (ecological) webs. It focuses on webs consisting of only two levels (bipartite), e.g. pollination webs or predator-prey-webs. Visualisation is important to get an idea of what we are actually looking at, while the indices summarise different aspects of the web's topology. "
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -616,7 +610,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-mass",
     "r-fields",
     "r-igraph",
@@ -667,7 +660,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-fields",
     "r-igraph",
