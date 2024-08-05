@@ -38,7 +38,7 @@
     "/opt/X11/lib/libGL.1.dylib",
     "/opt/X11/lib/libglut.3.dylib"
    ],
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libtiff"
    ]
@@ -61,6 +61,7 @@
    "build": [
     "libtool",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -95,6 +96,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -135,7 +137,7 @@
     "/opt/X11/lib/libGL.1.dylib",
     "/opt/X11/lib/libglut.3.dylib"
    ],
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libtiff"
    ]
@@ -158,6 +160,7 @@
    "build": [
     "libtool",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -192,6 +195,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -232,7 +236,7 @@
     "/opt/X11/lib/libGL.1.dylib",
     "/opt/X11/lib/libglut.3.dylib"
    ],
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libtiff"
    ]
@@ -255,6 +259,7 @@
    "build": [
     "libtool",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -289,6 +294,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -329,7 +335,7 @@
     "/opt/X11/lib/libGL.1.dylib",
     "/opt/X11/lib/libglut.3.dylib"
    ],
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libtiff"
    ]
@@ -352,6 +358,7 @@
    "build": [
     "libtool",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "cmake",
@@ -403,7 +410,7 @@
     "/opt/X11/lib/libGL.1.dylib",
     "/opt/X11/lib/libglut.3.dylib"
    ],
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libtiff"
    ]
@@ -426,6 +433,7 @@
    "build": [
     "libtool",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -460,6 +468,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -500,7 +509,7 @@
     "/opt/X11/lib/libGL.1.dylib",
     "/opt/X11/lib/libglut.3.dylib"
    ],
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libtiff"
    ]
@@ -523,6 +532,7 @@
    "build": [
     "libtool",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -557,6 +567,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "make"
@@ -601,11 +612,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libtiff.json"
  },
- "raw_meta_yaml": "{% set version = \"4.6.0\" %}\n\npackage:\n  name: libtiff\n  version: {{ version }}\n\nsource:\n  url: https://download.osgeo.org/libtiff/tiff-{{ version }}.tar.gz\n  sha256: 88b3979e6d5c7e32b50d7ec72fb15af724f6ab2cbf7e10880c360a77e4b5d99a\n  patches:\n    # It seems that a recent patch in tifffile 4.1 may have broken\n    # binary compatibility on windows.\n    # https://gitlab.com/libtiff/libtiff/issues/173\n    # https://github.com/python-pillow/Pillow/issues/4237\n    - patches/use_unix_io.patch\n\nbuild:\n  number: 3\n  # Does a very good job of maintaining compatibility.\n  # Except broke abi between 4.4 and 4.5.0\n  #    https://github.com/conda-forge/libtiff-feedstock/issues/77\n  #    https://abi-laboratory.pro/tracker/timeline/libtiff/\n  run_exports:\n    - {{ pin_subpackage('libtiff', max_pin='x.x') }}\n  missing_dso_whitelist:\n    # Only used by libtiff,bin/tiffgt (a viewer), which is ok.\n    - /opt/X11/lib/libGL.1.dylib\n    - /opt/X11/lib/libglut.3.dylib\n\nrequirements:\n  build:\n    - libtool  # [unix]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake  # [win]\n    - ninja  # [win]\n    - make      # [unix]\n  host:\n    - zlib\n    - libjpeg-turbo\n    - xz\n    - zstd\n    - lerc\n    - libdeflate\n    - libwebp-base  # [linux or osx]\n\ntest:\n  # TODO: enable this after the release. The ABI broke\n  # downstreams:\n  #   - pillow >=8\n  #   - py-opencv >=4\n  #   - tifffile\n  commands:\n    - test ! -f ${PREFIX}/lib/libtiff.a  # [not win]\n    - test ! -f ${PREFIX}/lib/libtiffxx.a  # [not win]\n    - test -f ${PREFIX}/lib/libtiff{{ SHLIB_EXT }}  # [not win]\n    - test -f ${PREFIX}/lib/libtiffxx{{ SHLIB_EXT }}  # [not win]\n    - if not exist %PREFIX%\\\\Library\\\\bin\\\\tiff.dll exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\bin\\\\libtiff.dll exit 1  # [win]\n    # It seems that libtiffxx does not have a dll on windows\n    # https://gitlab.com/libtiff/libtiff/-/merge_requests/338\n    - if not exist %PREFIX%\\\\Library\\\\lib\\\\tiffxx.lib exit 1  # [win]\n\nabout:\n  home: http://www.libtiff.org/\n  license: HPND\n  license_file: LICENSE.md\n  summary: Support for the Tag Image File Format (TIFF).\n  description: |\n    This software provides support for the Tag Image File Format (TIFF), a\n    widely used format for storing image data.\n  doc_url: http://www.libtiff.org/document.html\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - mingwandroid\n    - msarahan\n    - ocefpaf\n    - stuarteberg\n    - hmaarrfk\n",
+ "raw_meta_yaml": "{% set version = \"4.6.0\" %}\n\npackage:\n  name: libtiff\n  version: {{ version }}\n\nsource:\n  url: https://download.osgeo.org/libtiff/tiff-{{ version }}.tar.gz\n  sha256: 88b3979e6d5c7e32b50d7ec72fb15af724f6ab2cbf7e10880c360a77e4b5d99a\n  patches:\n    # It seems that a recent patch in tifffile 4.1 may have broken\n    # binary compatibility on windows.\n    # https://gitlab.com/libtiff/libtiff/issues/173\n    # https://github.com/python-pillow/Pillow/issues/4237\n    - patches/use_unix_io.patch\n\nbuild:\n  number: 4\n  # Does a very good job of maintaining compatibility.\n  # Except broke abi between 4.4 and 4.5.0\n  #    https://github.com/conda-forge/libtiff-feedstock/issues/77\n  #    https://abi-laboratory.pro/tracker/timeline/libtiff/\n  run_exports:\n    - {{ pin_subpackage('libtiff', max_pin='x.x') }}\n  missing_dso_whitelist:\n    # Only used by libtiff,bin/tiffgt (a viewer), which is ok.\n    - /opt/X11/lib/libGL.1.dylib\n    - /opt/X11/lib/libglut.3.dylib\n\nrequirements:\n  build:\n    - libtool  # [unix]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - cmake  # [win]\n    - ninja  # [win]\n    - make      # [unix]\n  host:\n    - zlib\n    - libjpeg-turbo\n    - xz\n    - zstd\n    - lerc\n    - libdeflate\n    - libwebp-base  # [linux or osx]\n\ntest:\n  # TODO: enable this after the release. The ABI broke\n  # downstreams:\n  #   - pillow >=8\n  #   - py-opencv >=4\n  #   - tifffile\n  commands:\n    - test ! -f ${PREFIX}/lib/libtiff.a  # [not win]\n    - test ! -f ${PREFIX}/lib/libtiffxx.a  # [not win]\n    - test -f ${PREFIX}/lib/libtiff{{ SHLIB_EXT }}  # [not win]\n    - test -f ${PREFIX}/lib/libtiffxx{{ SHLIB_EXT }}  # [not win]\n    - if not exist %PREFIX%\\\\Library\\\\bin\\\\tiff.dll exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\bin\\\\libtiff.dll exit 1  # [win]\n    # It seems that libtiffxx does not have a dll on windows\n    # https://gitlab.com/libtiff/libtiff/-/merge_requests/338\n    - if not exist %PREFIX%\\\\Library\\\\lib\\\\tiffxx.lib exit 1  # [win]\n\nabout:\n  home: http://www.libtiff.org/\n  license: HPND\n  license_file: LICENSE.md\n  summary: Support for the Tag Image File Format (TIFF).\n  description: |\n    This software provides support for the Tag Image File Format (TIFF), a\n    widely used format for storing image data.\n  doc_url: http://www.libtiff.org/document.html\n\nextra:\n  recipe-maintainers:\n    - jakirkham\n    - mingwandroid\n    - msarahan\n    - ocefpaf\n    - stuarteberg\n    - hmaarrfk\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "lerc",
@@ -625,6 +637,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libtool",
@@ -636,6 +649,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "lerc",
     "libdeflate",
@@ -650,6 +664,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ]
   },
@@ -664,6 +679,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "libtool",
@@ -711,7 +727,7 @@
     "/opt/X11/lib/libGL.1.dylib",
     "/opt/X11/lib/libglut.3.dylib"
    ],
-   "number": "3",
+   "number": "4",
    "run_exports": [
     "libtiff"
    ]
@@ -733,6 +749,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "ninja"
@@ -766,6 +783,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "ninja"
