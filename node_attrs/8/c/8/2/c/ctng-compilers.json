@@ -304,7 +304,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -946,7 +947,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -1588,7 +1590,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -1605,7 +1608,15 @@
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall cpp_aligned.o -o cpp_aligned --std=c++17 && ./cpp_aligned",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o",
+      "${CXX} tzdb-override.o -o tzdb-override && ./tzdb-override",
+      "${CXX} tzdb.o -o tzdb && ./tzdb",
+      "strace ./tzdb 2>&1 | grep ${CONDA_PREFIX}/lib/../share/zoneinfo/tzdata.zi",
+      "unset PREFIX",
+      "unset CONDA_PREFIX",
+      "./tzdb"
      ],
      "files": [
       "tests"
@@ -2219,7 +2230,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -2856,7 +2868,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -3493,7 +3506,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -3509,7 +3523,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -4130,7 +4146,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -4767,7 +4784,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -5404,7 +5422,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -5420,7 +5439,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -6039,7 +6060,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -6672,7 +6694,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -7305,7 +7328,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -7320,7 +7344,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -7936,7 +7962,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -8566,7 +8593,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -9196,7 +9224,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -9210,7 +9239,9 @@
       "test -f ${PREFIX}/bin/x86_64-w64-mingw32-g++",
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -9830,7 +9861,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -10462,7 +10494,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -11094,7 +11127,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -11110,7 +11144,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -11726,7 +11762,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -12358,7 +12395,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -12990,7 +13028,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -13006,7 +13045,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -13622,7 +13663,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -14254,7 +14296,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -14886,7 +14929,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -14902,7 +14946,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -15527,7 +15573,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -16159,7 +16206,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -16791,7 +16839,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -16807,7 +16856,15 @@
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall cpp_aligned.o -o cpp_aligned --std=c++17 && ./cpp_aligned",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o",
+      "${CXX} tzdb-override.o -o tzdb-override && ./tzdb-override",
+      "${CXX} tzdb.o -o tzdb && ./tzdb",
+      "strace ./tzdb 2>&1 | grep ${CONDA_PREFIX}/lib/../share/zoneinfo/tzdata.zi",
+      "unset PREFIX",
+      "unset CONDA_PREFIX",
+      "./tzdb"
      ],
      "files": [
       "tests"
@@ -17410,7 +17467,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -18035,7 +18093,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -18660,7 +18719,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -18674,7 +18734,9 @@
       "test -f ${PREFIX}/bin/x86_64-w64-mingw32-g++",
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -19071,103 +19133,111 @@
   "source": [
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/12/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/12/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
      "patches/mingw/12/0007-Build-EXTRA_GNATTOOLS-for-Ada.patch",
@@ -19186,7 +19256,7 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/13/0002-Relocate-libintl.patch",
      "patches/mingw/13/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/13/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -19211,7 +19281,8 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
      "patches/mingw/14/0001-missing-__thiscall-attribute-on-builtin-declaration-of-__cxa_thread_atexit.patch",
      "patches/mingw/14/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/14/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -19232,106 +19303,114 @@
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/12/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/12/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
      "patches/mingw/12/0007-Build-EXTRA_GNATTOOLS-for-Ada.patch",
@@ -19350,7 +19429,7 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/13/0002-Relocate-libintl.patch",
      "patches/mingw/13/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/13/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -19375,7 +19454,8 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
      "patches/mingw/14/0001-missing-__thiscall-attribute-on-builtin-declaration-of-__cxa_thread_atexit.patch",
      "patches/mingw/14/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/14/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -19470,7 +19550,8 @@
     "sysroot_linux-64",
     "sysroot_linux-aarch64",
     "sysroot_linux-ppc64le",
-    "sysroot_linux-s390x"
+    "sysroot_linux-s390x",
+    "tzdata"
    ]
   },
   "test": {
@@ -19760,7 +19841,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -20393,7 +20475,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -21026,7 +21109,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -21042,7 +21126,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -21670,7 +21756,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -22308,7 +22395,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -22946,7 +23034,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -22963,7 +23052,15 @@
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall cpp_aligned.o -o cpp_aligned --std=c++17 && ./cpp_aligned",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o",
+      "${CXX} tzdb-override.o -o tzdb-override && ./tzdb-override",
+      "${CXX} tzdb.o -o tzdb && ./tzdb",
+      "strace ./tzdb 2>&1 | grep ${CONDA_PREFIX}/lib/../share/zoneinfo/tzdata.zi",
+      "unset PREFIX",
+      "unset CONDA_PREFIX",
+      "./tzdb"
      ],
      "files": [
       "tests"
@@ -23573,7 +23670,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -24206,7 +24304,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -24839,7 +24938,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -24855,7 +24955,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -25470,7 +25572,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -26099,7 +26202,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -26728,7 +26832,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -26743,7 +26848,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -27355,7 +27462,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -27981,7 +28089,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -28607,7 +28716,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -28621,7 +28731,9 @@
       "test -f ${PREFIX}/bin/x86_64-w64-mingw32-g++",
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -29019,106 +29131,114 @@
   "source": [
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/12/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/12/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
      "patches/mingw/12/0007-Build-EXTRA_GNATTOOLS-for-Ada.patch",
@@ -29137,7 +29257,7 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/13/0002-Relocate-libintl.patch",
      "patches/mingw/13/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/13/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -29162,7 +29282,8 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
      "patches/mingw/14/0001-missing-__thiscall-attribute-on-builtin-declaration-of-__cxa_thread_atexit.patch",
      "patches/mingw/14/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/14/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -29252,7 +29373,8 @@
     "sysroot_linux-64",
     "sysroot_linux-aarch64",
     "sysroot_linux-ppc64le",
-    "sysroot_linux-s390x"
+    "sysroot_linux-s390x",
+    "tzdata"
    ]
   },
   "test": {
@@ -29542,7 +29664,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -30179,7 +30302,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -30816,7 +30940,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -30832,7 +30957,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -31453,7 +31580,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -32090,7 +32218,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -32727,7 +32856,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -32743,7 +32873,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -33374,7 +33506,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -34015,7 +34148,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -34656,7 +34790,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -34673,7 +34808,15 @@
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall cpp_aligned.o -o cpp_aligned --std=c++17 && ./cpp_aligned",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o",
+      "${CXX} tzdb-override.o -o tzdb-override && ./tzdb-override",
+      "${CXX} tzdb.o -o tzdb && ./tzdb",
+      "strace ./tzdb 2>&1 | grep ${CONDA_PREFIX}/lib/../share/zoneinfo/tzdata.zi",
+      "unset PREFIX",
+      "unset CONDA_PREFIX",
+      "./tzdb"
      ],
      "files": [
       "tests"
@@ -35285,7 +35428,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -35918,7 +36062,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -36551,7 +36696,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -36566,7 +36712,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -37182,7 +37330,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -37812,7 +37961,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -38442,7 +38592,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -38456,7 +38607,9 @@
       "test -f ${PREFIX}/bin/x86_64-w64-mingw32-g++",
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -38858,106 +39011,114 @@
   "source": [
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/12/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/12/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
      "patches/mingw/12/0007-Build-EXTRA_GNATTOOLS-for-Ada.patch",
@@ -38976,7 +39137,7 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/13/0002-Relocate-libintl.patch",
      "patches/mingw/13/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/13/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -39001,7 +39162,8 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
      "patches/mingw/14/0001-missing-__thiscall-attribute-on-builtin-declaration-of-__cxa_thread_atexit.patch",
      "patches/mingw/14/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/14/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -39092,7 +39254,8 @@
     "sysroot_linux-64",
     "sysroot_linux-aarch64",
     "sysroot_linux-ppc64le",
-    "sysroot_linux-s390x"
+    "sysroot_linux-s390x",
+    "tzdata"
    ]
   },
   "test": {
@@ -39393,7 +39556,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -40035,7 +40199,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -40677,7 +40842,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -40694,7 +40860,15 @@
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall cpp_aligned.o -o cpp_aligned --std=c++17 && ./cpp_aligned",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o",
+      "${CXX} tzdb-override.o -o tzdb-override && ./tzdb-override",
+      "${CXX} tzdb.o -o tzdb && ./tzdb",
+      "strace ./tzdb 2>&1 | grep ${CONDA_PREFIX}/lib/../share/zoneinfo/tzdata.zi",
+      "unset PREFIX",
+      "unset CONDA_PREFIX",
+      "./tzdb"
      ],
      "files": [
       "tests"
@@ -41308,7 +41482,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -41945,7 +42120,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -42582,7 +42758,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -42598,7 +42775,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -43219,7 +43398,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -43856,7 +44036,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -44493,7 +44674,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -44509,7 +44691,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -45128,7 +45312,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -45761,7 +45946,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -46394,7 +46580,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -46409,7 +46596,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -47025,7 +47214,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -47655,7 +47845,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -48285,7 +48476,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -48299,7 +48491,9 @@
       "test -f ${PREFIX}/bin/x86_64-w64-mingw32-g++",
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -48919,7 +49113,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -49551,7 +49746,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -50183,7 +50379,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -50199,7 +50396,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -50815,7 +51014,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -51447,7 +51647,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -52079,7 +52280,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -52095,7 +52297,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -52711,7 +52915,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -53343,7 +53548,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -53975,7 +54181,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -53991,7 +54198,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -54616,7 +54825,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -55248,7 +55458,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -55880,7 +56091,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -55896,7 +56108,15 @@
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall cpp_aligned.o -o cpp_aligned --std=c++17 && ./cpp_aligned",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o",
+      "${CXX} tzdb-override.o -o tzdb-override && ./tzdb-override",
+      "${CXX} tzdb.o -o tzdb && ./tzdb",
+      "strace ./tzdb 2>&1 | grep ${CONDA_PREFIX}/lib/../share/zoneinfo/tzdata.zi",
+      "unset PREFIX",
+      "unset CONDA_PREFIX",
+      "./tzdb"
      ],
      "files": [
       "tests"
@@ -56499,7 +56719,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -57124,7 +57345,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -57749,7 +57971,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -57763,7 +57986,9 @@
       "test -f ${PREFIX}/bin/x86_64-w64-mingw32-g++",
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -58378,7 +58603,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -59011,7 +59237,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -59644,7 +59871,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -59660,7 +59888,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -60288,7 +60518,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -60926,7 +61157,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -61564,7 +61796,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -61581,7 +61814,15 @@
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall cpp_aligned.o -o cpp_aligned --std=c++17 && ./cpp_aligned",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o",
+      "${CXX} tzdb-override.o -o tzdb-override && ./tzdb-override",
+      "${CXX} tzdb.o -o tzdb && ./tzdb",
+      "strace ./tzdb 2>&1 | grep ${CONDA_PREFIX}/lib/../share/zoneinfo/tzdata.zi",
+      "unset PREFIX",
+      "unset CONDA_PREFIX",
+      "./tzdb"
      ],
      "files": [
       "tests"
@@ -62191,7 +62432,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -62824,7 +63066,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -63457,7 +63700,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -63473,7 +63717,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -64088,7 +64334,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -64717,7 +64964,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -65346,7 +65594,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -65361,7 +65610,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -65973,7 +66224,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -66599,7 +66851,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -67225,7 +67478,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -67239,7 +67493,9 @@
       "test -f ${PREFIX}/bin/x86_64-w64-mingw32-g++",
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -67855,7 +68111,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -68492,7 +68749,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -69129,7 +69387,8 @@
      "run": [
       "gcc_impl_linux-64",
       "sysroot_linux-64",
-      "libstdcxx-devel_linux-64"
+      "libstdcxx-devel_linux-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -69145,7 +69404,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -69766,7 +70027,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -70403,7 +70665,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -71040,7 +71303,8 @@
      "run": [
       "gcc_impl_linux-aarch64",
       "sysroot_linux-aarch64",
-      "libstdcxx-devel_linux-aarch64"
+      "libstdcxx-devel_linux-aarch64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -71056,7 +71320,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -71687,7 +71953,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -72328,7 +72595,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -72969,7 +73237,8 @@
      "run": [
       "gcc_impl_linux-ppc64le",
       "sysroot_linux-ppc64le",
-      "libstdcxx-devel_linux-ppc64le"
+      "libstdcxx-devel_linux-ppc64le",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -72986,7 +73255,15 @@
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall cpp_aligned.o -o cpp_aligned --std=c++17 && ./cpp_aligned",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o",
+      "${CXX} tzdb-override.o -o tzdb-override && ./tzdb-override",
+      "${CXX} tzdb.o -o tzdb && ./tzdb",
+      "strace ./tzdb 2>&1 | grep ${CONDA_PREFIX}/lib/../share/zoneinfo/tzdata.zi",
+      "unset PREFIX",
+      "unset CONDA_PREFIX",
+      "./tzdb"
      ],
      "files": [
       "tests"
@@ -73598,7 +73875,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -74231,7 +74509,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -74864,7 +75143,8 @@
      "run": [
       "gcc_impl_linux-s390x",
       "sysroot_linux-s390x",
-      "libstdcxx-devel_linux-s390x"
+      "libstdcxx-devel_linux-s390x",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -74879,7 +75159,9 @@
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -75495,7 +75777,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -76125,7 +76408,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -76755,7 +77039,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -76769,7 +77054,9 @@
       "test -f ${PREFIX}/bin/x86_64-w64-mingw32-g++",
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o"
      ],
      "files": [
       "tests"
@@ -77392,7 +77679,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -78023,7 +78311,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -78037,7 +78326,15 @@
       "test -f ${PREFIX}/bin/x86_64-w64-mingw32-g++",
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o",
+      "${CXX} tzdb-override.o -o tzdb-override && ./tzdb-override",
+      "${CXX} tzdb.o -o tzdb && ./tzdb",
+      "strace ./tzdb 2>&1 | grep ${CONDA_PREFIX}/lib/../share/zoneinfo/tzdata.zi",
+      "unset PREFIX",
+      "unset CONDA_PREFIX",
+      "./tzdb"
      ],
      "files": [
       "tests"
@@ -78433,103 +78730,111 @@
   "source": [
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/12/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/12/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
      "patches/mingw/12/0007-Build-EXTRA_GNATTOOLS-for-Ada.patch",
@@ -78548,7 +78853,7 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/13/0002-Relocate-libintl.patch",
      "patches/mingw/13/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/13/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -78573,7 +78878,8 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
      "patches/mingw/14/0001-missing-__thiscall-attribute-on-builtin-declaration-of-__cxa_thread_atexit.patch",
      "patches/mingw/14/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/14/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -78594,106 +78900,114 @@
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/12/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/12/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
      "patches/mingw/12/0007-Build-EXTRA_GNATTOOLS-for-Ada.patch",
@@ -78712,7 +79026,7 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/13/0002-Relocate-libintl.patch",
      "patches/mingw/13/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/13/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -78737,7 +79051,8 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
      "patches/mingw/14/0001-missing-__thiscall-attribute-on-builtin-declaration-of-__cxa_thread_atexit.patch",
      "patches/mingw/14/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/14/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -78758,106 +79073,114 @@
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/12/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/12/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
      "patches/mingw/12/0007-Build-EXTRA_GNATTOOLS-for-Ada.patch",
@@ -78876,7 +79199,7 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/13/0002-Relocate-libintl.patch",
      "patches/mingw/13/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/13/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -78901,7 +79224,8 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
      "patches/mingw/14/0001-missing-__thiscall-attribute-on-builtin-declaration-of-__cxa_thread_atexit.patch",
      "patches/mingw/14/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/14/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -78922,106 +79246,114 @@
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0002-cross-compile-older-glibc.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0001-cross-compile-older-glibc.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-12.4.0/gcc-12.4.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-13.3.0/gcc-13.3.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch",
-     "patches/0003-allow-commands-in-main-specfile.patch"
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
+     "patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch",
+     "patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch"
     ],
     "sha256": "a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f",
     "url": "https://ftp.gnu.org/gnu/gcc/gcc-14.1.0/gcc-14.1.0.tar.gz"
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/12/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/12/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
      "patches/mingw/12/0007-Build-EXTRA_GNATTOOLS-for-Ada.patch",
@@ -79040,7 +79372,7 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/13/0002-Relocate-libintl.patch",
      "patches/mingw/13/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/13/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -79065,7 +79397,8 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
      "patches/mingw/14/0001-missing-__thiscall-attribute-on-builtin-declaration-of-__cxa_thread_atexit.patch",
      "patches/mingw/14/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/14/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -79086,7 +79419,7 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/13/0002-Relocate-libintl.patch",
      "patches/mingw/13/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/13/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -79111,7 +79444,8 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
      "patches/mingw/14/0001-missing-__thiscall-attribute-on-builtin-declaration-of-__cxa_thread_atexit.patch",
      "patches/mingw/14/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/14/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -79187,7 +79521,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/ctng-compilers.json"
  },
- "raw_meta_yaml": "{% set version = gcc_version %}\n{% set build_num = 0 %}\n\n{% if gcc_maj_ver is not defined %}\n{% set gcc_maj_ver = 14 %}\n{% endif %}\n\n# libgcc-devel is a noarch: generic package that is built for\n# cross-compilers as well. Instead of skipping for cross-compilers,\n# let's prioritize the native compilers package\n{% if target_platform == cross_target_platform %}\n{% set libgcc_devel_build_num = build_num + 100 %}\n{% else %}\n{% set libgcc_devel_build_num = build_num %}\n{% endif %}\n\n{% if cross_target_platform is not defined %}\n{% set cross_target_platform = \"linux-64\" %}\n{% endif %}\n\n{% if cross_target_platform.startswith(\"win-\") %}\n{% set runtime_suffix = \"\" %}\n{% else %}\n{% set runtime_suffix = \"-ng\" %}\n{% endif %}\n\n\npackage:\n  name: gcc_compilers\n  version: {{ version }}\n\nsource:\n  - url: https://ftp.gnu.org/gnu/gcc/gcc-{{ version }}/gcc-{{ version }}.tar.gz\n    sha256: a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f   # [gcc_version == \"14.1.0\"]\n    sha256: 3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32   # [gcc_version == \"13.3.0\"]\n    sha256: 5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148   # [gcc_version == \"12.4.0\"]\n    patches:\n      {% if cross_target_platform.startswith(\"linux-\") %}\n      - patches/0001-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch\n      {% endif %}\n      - patches/0002-cross-compile-older-glibc.patch   # [cross_target_stdlib_version == \"2.12\" and target_platform != \"linux-64\"]\n      - patches/0003-allow-commands-in-main-specfile.patch\n      {% if cross_target_platform.startswith(\"win-\") %}\n      # for GCC 13: https://github.com/msys2/MINGW-packages/tree/4f1262b4e1072632eccf0958764f90d890b832ac/mingw-w64-gcc\n      # for GCC 14: https://github.com/msys2/MINGW-packages/tree/331bf945d21af562d228ed46bda21c8272d1e76e/mingw-w64-gcc\n      - patches/mingw/{{ gcc_maj_ver }}/0001-missing-__thiscall-attribute-on-builtin-declaration-of-__cxa_thread_atexit.patch   # [gcc_maj_ver == 14]\n      - patches/mingw/{{ gcc_maj_ver }}/0002-Relocate-libintl.patch                                             # [gcc_maj_ver == 13]\n      - patches/mingw/{{ gcc_maj_ver }}/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0005-Windows-Don-t-ignore-native-system-header-dir.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0006-Windows-New-feature-to-allow-overriding.patch                      # [gcc_maj_ver == 13]\n      - patches/mingw/{{ gcc_maj_ver }}/0007-Build-EXTRA_GNATTOOLS-for-Ada.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0008-Prettify-linking-no-undefined.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0011-Enable-shared-gnat-implib.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0012-Handle-spaces-in-path-for-default-manifest.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0014-gcc-9-branch-clone_function_name_1-Retain-any-stdcall-suffix.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0020-libgomp-Don-t-hard-code-MS-printf-attributes.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0021-PR14940-Allow-a-PCH-to-be-mapped-to-a-different-addr.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0140-gcc-diagnostic-color.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0200-add-m-no-align-vector-insn-option-for-i386.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0300-override-builtin-printf-format.patch                               # [gcc_maj_ver == 13]\n      - patches/mingw/{{ gcc_maj_ver }}/2000-enable-rust.patch                                                  # [gcc_maj_ver == 13]\n      - patches/mingw/{{ gcc_maj_ver }}/2001-fix-building-rust-on-mingw-w64.patch\n      - patches/mingw/{{ gcc_maj_ver }}/3001-fix-ice.patch                                                      # [gcc_maj_ver == 14]\n      - patches/mingw/{{ gcc_maj_ver }}/2f7e7bfa3c6327793cdcdcb5c770b93cecd49bd0.patch                          # [gcc_maj_ver == 13]\n      - patches/mingw/{{ gcc_maj_ver }}/3eeb4801d6f45f6250fc77a6d3ab4e0115f8cfdd.patch                          # [gcc_maj_ver == 13]\n      {% endif %}\n\nbuild:\n  number: {{ build_num }}\n  skip: true  # [not (linux or win) or (gcc_maj_ver == 12 and cross_target_platform == \"win-64\") or (win and cross_target_platform != \"win-64\")]\n  detect_binary_files_with_prefix: False\n  ignore_run_exports_from:\n    - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n\nrequirements:\n  build:\n    # Build dependencies are installed in setup_compilers.sh due to\n    # conda-build bugs\n  host:\n    - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n\noutputs:\n  - name: libgcc-devel_{{ cross_target_platform }}\n    script: install-libgcc-devel.sh\n    build:\n      noarch: generic\n      number: {{ libgcc_devel_build_num }}\n      detect_binary_files_with_prefix: False\n      missing_dso_whitelist:\n        - \"*\"\n      ignore_run_exports_from:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      run:\n        - __unix   # [unix]\n        - __win    # [win]\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/crtbegin.o\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libgcc_eh.a\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libgcc.a\n        {% if cross_target_platform.startswith(\"linux-\") %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgcc_s.so\n        {% else %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgcc_s.a\n        {% endif %}\n    about:\n      summary: The GNU C development libraries and object files\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: libstdcxx-devel_{{ cross_target_platform }}\n    script: install-libstdc++-devel.sh\n    build:\n      noarch: generic\n      number: {{ libgcc_devel_build_num }}\n      detect_binary_files_with_prefix: False\n      missing_dso_whitelist:\n        - \"*\"\n      ignore_run_exports_from:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      run:\n        - __unix   # [unix]\n        - __win    # [win]\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libstdc++.a\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libstdc++fs.a\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libsupc++.a\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/include/c++/cstdio\n        {% if cross_target_platform.startswith(\"linux-\") %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libstdc++.so\n        {% else %}\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libstdc++.dll.a\n        {% endif %}\n    about:\n      summary: The GNU C++ headers and development libraries\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: gcc_impl_{{ cross_target_platform }}\n    script: install-gcc.sh\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      missing_dso_whitelist:\n        - '*'\n      ignore_run_exports_from:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n        - {{ pin_subpackage(\"libgomp\", exact=True) }}               # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libstdcxx\" ~ runtime_suffix, exact=True) }}          # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libgcc\" ~ runtime_suffix, exact=True) }}             # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libgfortran\" ~ libgfortran_soname) }}  # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libsanitizer\", exact=True) }}          # [target_platform == cross_target_platform and not win]\n      run:\n        - binutils_impl_{{ cross_target_platform }} >={{ binutils_version }}\n        - {{ pin_subpackage(\"libgcc-devel_\" ~ cross_target_platform, exact=True) }}\n        - {{ pin_subpackage(\"libsanitizer\", exact=True) }}      # [target_platform == cross_target_platform and not win]\n        # libstdcxx-ng is a runtime dep of gcc because LTO requires it.\n        - {{ pin_subpackage(\"libstdcxx\" ~ runtime_suffix, max_pin=None) }}    # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libgcc\" ~ runtime_suffix, max_pin=None) }}       # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libgomp\", max_pin=None) }}         # [target_platform == cross_target_platform]\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    run_exports:\n      # impose this requirement across the build/host boundary\n      strong:\n        - libgcc{{ runtime_suffix }} >={{ gcc_version }}\n    test:\n      requires:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      files:\n        - tests\n      commands:\n        - echo {{ old_triplet }}\n        - echo {{ c_stdlib }}\n        - echo {{ c_stdlib_version }}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgomp.so   # [target_platform == cross_target_platform]\n        - test `readlink ${PREFIX}/{{ triplet }}/lib/libgomp.so` == \"../../lib/libgomp.so\"  # [target_platform == cross_target_platform]\n        - test -f ${PREFIX}/bin/{{ old_triplet }}-gcc\n        - test -f ${PREFIX}/bin/{{ old_triplet }}-cpp\n        - test -f ${PREFIX}/bin/{{ triplet }}-gcc\n        - test -f ${PREFIX}/bin/{{ triplet }}-cpp\n        - test ! -f ${PREFIX}/bin/gcc\n        - test ! -f ${PREFIX}/bin/cpp\n        - CC=$(${PREFIX}/bin/*-gcc -dumpmachine)-gcc\n        - ${CC} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v -Wl,-v -march=native  # [target_platform == cross_target_platform and (x86_64 or s390x)]\n        # This test does not work well with QEMU\n        - ${CC} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v -Wl,-v -mcpu=native   # [target_platform == cross_target_platform and (not x86_64 and not s390x and not ppc64le)]\n        - ${CC} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v -fsanitize=address  # [cross_target_platform != \"win-64\"]\n        - ${CC} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v                     # [cross_target_platform != \"win-64\"]\n        - ${CC} -Wall c_aligned.o -o c_aligned -v && ./c_aligned   # [cross_target_platform == target_platform and cross_target_platform != \"win-64\"]\n        - ${CC} -Wall c_aligned.o -o c_aligned -Wl,-rpath,/foo && {{ triplet }}-readelf -d c_aligned | grep RPATH | grep \"/foo:${PREFIX}/lib\"  # [cross_target_platform == target_platform and cross_target_platform != \"win-64\"]\n        - ${CC} -Wall tests/hello_world.c -c -o hello_world.o -v\n        - ${CC} -Wall hello_world.o -o hello_world -v\n        {% if cross_target_platform.startswith(\"linux-\") %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgcc_s.so\n        - test -f ${PREFIX}/{{ triplet }}/lib/libsanitizer.spec\n        - test -f ${PREFIX}/{{ triplet }}/lib/libasan_preinit.o\n        {% else %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgcc_s.a\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libquadmath.a\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libgomp.a\n        {% endif %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgomp.spec\n    about:\n      summary: GNU C Compiler\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: gcc\n    script: install-symlinks.sh\n    build:\n      skip: true  # [target_platform != cross_target_platform]\n    requirements:\n      host:\n        - gcc_impl_{{ target_platform }} {{ gcc_version }}.*\n      run:\n        - gcc_impl_{{ target_platform }} {{ gcc_version }}.*\n    test:\n      commands:\n        - ${PREFIX}/bin/gcc -v\n        - ${PREFIX}/bin/gcov -v\n    about:\n      summary: GNU C native compiler (symlinks)\n      home: https://github.com/conda-forge/ctng-compilers-feedstock\n      license: BSD-3-Clause\n      license_file: LICENSE\n\n  - name: conda-gcc-specs\n    script: install-conda-specs.sh\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      skip: True  # [cross_target_platform != target_platform]\n    requirements:\n      build:\n      run:\n        - {{ pin_subpackage(\"gcc_impl_\" ~ cross_target_platform, max_pin='x.x.x.x') }}\n    test:\n      files:\n        - tests\n      commands:\n        - specdir=$PREFIX/lib/gcc/{{ triplet }}/{{ gcc_version }}\n        - test -f $specdir/conda.specs\n        - CC=$(${PREFIX}/bin/*-gcc -dumpmachine)-gcc\n        - echo | ${CC} -E -v -x c - |& grep '^Reading specs from' | awk '{print $NF}' | xargs readlink -e | awk -v ORS= '{print $1\":\"}' | grep \"${specdir}/specs:${specdir}/conda.specs:\"\n        - cp tests/libhowdy.h $PREFIX/include/\n        - ${CC} -shared -fpic -o $PREFIX/lib/libhowdy.so tests/libhowdy.c\n        - ${CC} -o howdy-dso tests/howdy-dso.c -lhowdy\n        - ./howdy-dso\n        -    grep RPATH   <({{ triplet }}-readelf -d howdy-dso)\n        - \"! grep RUNPATH <({{ triplet }}-readelf -d howdy-dso)\"\n        - ${CC} -Wl,-enable-new-dtags -o howdy-dso-runpath tests/howdy-dso.c -lhowdy\n        - ./howdy-dso-runpath\n        - \"! grep RPATH   <({{ triplet }}-readelf -d howdy-dso-runpath)\"\n        -    grep RUNPATH <({{ triplet }}-readelf -d howdy-dso-runpath)\n        - echo | ${CC} -E -Wp,-v -x c - |& awk '/include <\\.\\.\\.> search starts/,/^End of search/ {print}' | tail -n2 | head -n1 | grep \"$PREFIX/include\"\n        - echo | ${CC} -isystem \"$PREFIX/include\" -E -Wp,-v -x c - |& awk '/include <\\.\\.\\.> search starts/, /^End of search/ {print}' | head -n2 | tail -n1 | grep \"$PREFIX/include\"\n\n    about:\n      summary: conda-specific specfile for GNU C/C++ Compiler\n      description: |\n          When installed, this optional package provides a specfile that\n          directs gcc (and g++ or gfortran) to automatically:\n            * search for includes in $PREFIX/include\n            * link libraries in $PREFIX/lib\n            * set RPATH to $PREFIX/lib\n            * use RPATH instead of the newer RUNPATH\n          This package is intended to aid usability of the compiler\n          toolchain as a replacement for system-installed compilers.\n          It should not be used in recipes.  Use the 'compiler(<lang>)'\n          jinja function as described on\n          https://conda-forge.org/docs/maintainer/knowledge_base.html#dep-compilers\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n      doc_url: https://gcc.gnu.org/onlinedocs/gcc/Spec-Files.html\n\n  - name: gxx_impl_{{ cross_target_platform }}\n    script: install-g++.sh\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      missing_dso_whitelist:\n        - \"*\"\n      ignore_run_exports_from:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n        # For cpp and crt{i,n}.o\n        - {{ pin_subpackage(\"gcc_impl_\" ~ cross_target_platform, exact=True) }}\n      run:\n        # For cpp and crt{i,n}.o\n        - {{ pin_subpackage(\"gcc_impl_\" ~ cross_target_platform, exact=True) }}\n        # not needed due to pinning above but marks this build as using the new sysroots\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n        - {{ pin_subpackage(\"libstdcxx-devel_\" ~ cross_target_platform, exact=True) }}\n    run_exports:\n      # impose this requirement across the build/host boundary\n      strong:\n        - libstdcxx{{ runtime_suffix }} >={{ gcc_version }}\n    test:\n      requires:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      files:\n        - tests\n      commands:\n        - test -f ${PREFIX}/bin/{{ old_triplet }}-g++\n        - test -f ${PREFIX}/bin/{{ triplet }}-g++\n        - CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++\n        - ${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17    # [cross_target_platform != \"win-64\"]\n        - ${CXX} -Wall cpp_aligned.o -o cpp_aligned --std=c++17 && ./cpp_aligned  # [cross_target_platform == target_platform and cross_target_platform != \"win-64\"]\n        - ${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17\n        - ${CXX} -Wall hello_world.o -o hello_world --std=c++17\n\n    about:\n      summary: GNU C++ Compiler\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: gxx\n    script: install-symlinks.sh\n    build:\n      skip: true  # [target_platform != cross_target_platform]\n    requirements:\n      host:\n        - gxx_impl_{{ target_platform }} {{ gcc_version }}.*\n        - gcc {{ gcc_version }}.*\n      run:\n        - gxx_impl_{{ target_platform }} {{ gcc_version }}.*\n        - gcc {{ gcc_version }}.*\n    test:\n      commands:\n        - ${PREFIX}/bin/g++ -v\n        - ${PREFIX}/bin/gcc -v\n    about:\n      summary: GNU C++ native compiler (symlinks)\n      home: https://github.com/conda-forge/ctng-compilers-feedstock\n      license: BSD-3-Clause\n      license_file: LICENSE\n\n  - name: gfortran_impl_{{ cross_target_platform }}\n    script: install-gfortran.sh\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      missing_dso_whitelist:\n        - \"*\"\n      ignore_run_exports_from:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    requirements:\n      build:\n      host:\n        # For cpp and crt{i,n}.o\n        - {{ pin_subpackage(\"gcc_impl_\" ~ cross_target_platform, exact=True) }}\n        # not needed due to pinning above but marks this build as using the new sysroots\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      run:\n        # For cpp and crt{i,n}.o\n        - gcc_impl_{{ cross_target_platform }} >={{ gcc_version }}\n        - {{ pin_subpackage(\"libgfortran\" ~ libgfortran_soname, max_pin=None) }}  # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libgcc\" ~ runtime_suffix, max_pin=None) }}           # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libstdcxx\" ~ runtime_suffix, max_pin=None) }}        # [target_platform == cross_target_platform]\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    run_exports:\n      # impose this requirement across the build/host boundary\n      strong:\n        - libgfortran{{ libgfortran_soname }} {{ gcc_version }}.*\n        - libgcc{{ runtime_suffix }} >={{ gcc_version }}\n    test:\n      requires:\n        - cmake >=3.11  # [x86_64 or aarch64 or ppc64le]\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      commands:\n        {% if cross_target_platform.startswith(\"linux-\") %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgfortran.so\n        {% else %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgfortran.dll.a\n        {% endif %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgfortran.a\n        - test -f ${PREFIX}/bin/{{ old_triplet }}-gfortran\n        - test -f ${PREFIX}/bin/{{ triplet }}-gfortran\n        - find $PREFIX/lib -iname omp_lib.mod | grep '.'\n        - find $PREFIX/lib -iname omp_lib.h | grep '.'\n        - find $PREFIX/lib -iname ISO_Fortran_binding.h | grep '.'\n        - echo {{ gcc_maj_ver }}\n        - pushd tests/fortomp\n        - sh test_fort.sh   # [target_platform == cross_target_platform and (x86_64 or aarch64 or ppc64le)]\n      files:\n        - tests/fortomp/*\n    about:\n      summary: GNU Fortran Compiler\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: gfortran\n    script: install-symlinks.sh\n    build:\n      skip: true  # [target_platform != cross_target_platform]\n    requirements:\n      host:\n        - gfortran_impl_{{ target_platform }} {{ gcc_version }}.*\n        - gcc_impl_{{ target_platform }} {{ gcc_version }}.*\n        - gcc {{ gcc_version }}.*\n      run:\n        - gfortran_impl_{{ target_platform }} {{ gcc_version }}.*\n        - gcc_impl_{{ target_platform }} {{ gcc_version }}.*\n        - gcc {{ gcc_version }}.*\n    test:\n      commands:\n        - ${PREFIX}/bin/gfortran -v\n        - ${PREFIX}/bin/gcc -v\n    about:\n      summary: GNU Fortran native compiler (symlinks)\n      home: https://github.com/conda-forge/ctng-compilers-feedstock\n      license: BSD-3-Clause\n      license_file: LICENSE\n\n  - name: libstdcxx{{ runtime_suffix }}\n    target: {{ cross_target_platform }}\n    script: install-libstdc++.sh\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      skip: True   # [target_platform != cross_target_platform]\n      missing_dso_whitelist:\n        - \"*\"\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n        - {{ pin_subpackage(\"libgcc\" ~ runtime_suffix, exact=True) }}\n      run:\n        - {{ pin_subpackage(\"libgcc\" ~ runtime_suffix, exact=True) }}\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/libstdc++.so\n    about:\n      summary: The GNU C++ Runtime Library\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: libsanitizer\n    target: {{ cross_target_platform }}\n    script: install-libsanitizer.sh\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}  {{ cross_target_stdlib_version }}\n      run:\n        - libgcc{{ runtime_suffix }} >={{ gcc_version }}\n        - libstdcxx{{ runtime_suffix }} >={{ gcc_version }}\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      skip: True   # [target_platform != cross_target_platform or win]\n      missing_dso_whitelist:\n        - \"*\"\n      run_exports:\n        - libsanitizer {{ gcc_version }}\n    test:\n      requires:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n        - gcc_impl_{{ cross_target_platform }}\n      commands:\n        - test -f ${PREFIX}/lib/libasan.so\n        - file ${PREFIX}/bin/{{ triplet }}-gcc\n        - echo 'void main(){}' | {{ triplet }}-gcc -fsanitize=address -Wl,--fatal-warnings -x c -\n    about:\n      summary: The GCC runtime libraries for sanitizers\n      home: https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: libgomp\n    target: {{ cross_target_platform }}\n    script: install-libgomp.sh\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}  {{ cross_target_stdlib_version }}\n      run:\n        - _libgcc_mutex {{ _libgcc_mutex }}  # [linux64 or ppc64le]\n      run_constrained:\n        - msys2-conda-epoch <0.0a0    # [win]\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      skip: True   # [target_platform != cross_target_platform]\n      missing_dso_whitelist:\n        - \"*\"\n      run_exports:\n        strong:\n          - {{ pin_subpackage(\"_openmp_mutex\", max_pin=None) }}\n    test:\n      requires:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n      commands:\n        - test -f ${PREFIX}/lib/libgomp.so.{{ libgomp_ver }}\n        - test ! -f ${PREFIX}/lib/libgomp.so.{{ libgomp_ver[0:1] }}\n    about:\n      summary: The GCC OpenMP implementation.\n      home: https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: libgcc{{ runtime_suffix }}\n    target: {{ cross_target_platform }}\n    script: install-libgcc-no-gomp.sh\n    requirements:\n      build:\n      host:\n        - {{ pin_subpackage(\"libgomp\", exact=True) }}\n        - {{ pin_subpackage('_openmp_mutex', exact=True) }}\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}  {{ cross_target_stdlib_version }}\n      run:\n        - _libgcc_mutex {{ _libgcc_mutex }}  # [linux64 or ppc64le]\n        - {{ pin_subpackage(\"_openmp_mutex\", max_pin=None) }}\n      run_constrained:\n        - {{ pin_subpackage(\"libgomp\", exact=True) }}\n        - msys2-conda-epoch <0.0a0    # [win]\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      skip: True   # [target_platform != cross_target_platform]\n      missing_dso_whitelist:\n        - \"*\"\n      rpaths_patcher: patchelf\n    test:\n      requires:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n      commands:\n        - test -f ${PREFIX}/lib/libgcc_s.so\n        - test -f ${PREFIX}/lib/libgomp.so.{{ libgomp_ver[0:1] }}\n        - test `readlink ${PREFIX}/lib/libgomp.so.{{ libgomp_ver[0:1] }}` == \"libgomp.so.{{ libgomp_ver }}\"\n    about:\n      summary: The GCC low-level runtime library\n      home: https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: _openmp_mutex\n    script: install-openmp_impl.sh\n    version: {{ openmp_ver }}\n    requirements:\n      build:\n      host:\n        - {{ pin_subpackage('libgomp', exact=True) }}\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}  {{ cross_target_stdlib_version }}\n      run:\n        - _libgcc_mutex {{ _libgcc_mutex }}  # [linux64 or ppc64le]\n        - libgomp >=7.5.0\n      run_constrained:\n        # conflict with previous name\n        - openmp_impl 9999\n        - msys2-conda-epoch <0.0a0    # [win]\n    build:\n      string: 2_gnu\n      skip: True   # [target_platform != cross_target_platform]\n      run_exports:\n        strong:\n          - {{ pin_subpackage(\"_openmp_mutex\", max_pin=None) }}\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/libgomp.so.{{ libgomp_ver[0:1] }}\n        - test `readlink ${PREFIX}/lib/libgomp.so.{{ libgomp_ver[0:1] }}` == \"libgomp.so.{{ libgomp_ver }}\"\n    about:\n      summary: OpenMP Implementation Mutex\n      license: BSD-3-Clause\n      license_file: LICENSE\n      home: https://github.com/conda-forge/ctng-compilers-feedstock\n\n  - name: libgfortran{{ libgfortran_soname }}\n    target: {{ cross_target_platform }}\n    script: install-libgfortran.sh\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      skip: True   # [target_platform != cross_target_platform]\n      missing_dso_whitelist:\n        - \"*\"\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      run:\n        - libgcc{{ runtime_suffix }} >={{ gcc_version }}\n      run_constrained:\n        - libgfortran{{ runtime_suffix }} {{ gcc_version }}\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/libgfortran.so\n    about:\n      summary: The GNU Fortran Runtime Library\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: libgfortran{{ runtime_suffix }}\n    target: {{ cross_target_platform }}\n    build:\n      skip: True   # [target_platform != cross_target_platform]\n      number: {{ build_num }}\n    requirements:\n      run:\n        - {{ pin_subpackage('libgfortran' ~ libgfortran_soname, exact=True) }}\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/libgfortran.so\n    about:\n      summary: The GNU Fortran Runtime Library\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n\nabout:\n  summary: GNU Compiler Collection\n  home: https://gcc.gnu.org/\n  license: GPL-3.0-only WITH GCC-exception-3.1\n  license_file:\n    - COPYING\n    - COPYING.LIB\n    - COPYING3\n    - COPYING3.LIB\n\nextra:\n  feedstock-name: ctng-compilers-feedstock\n  recipe-maintainers:\n    - timsnyder\n    - xhochy\n    - isuruf\n    - beckermr\n",
+ "raw_meta_yaml": "{% set version = gcc_version %}\n{% set build_num = 0 %}\n\n{% if gcc_maj_ver is not defined %}\n{% set gcc_maj_ver = 14 %}\n{% endif %}\n\n# libgcc-devel is a noarch: generic package that is built for\n# cross-compilers as well. Instead of skipping for cross-compilers,\n# let's prioritize the native compilers package\n{% if target_platform == cross_target_platform %}\n{% set libgcc_devel_build_num = build_num + 100 %}\n{% else %}\n{% set libgcc_devel_build_num = build_num %}\n{% endif %}\n\n{% if cross_target_platform is not defined %}\n{% set cross_target_platform = \"linux-64\" %}\n{% endif %}\n\n{% if cross_target_platform.startswith(\"win-\") %}\n{% set runtime_suffix = \"\" %}\n{% else %}\n{% set runtime_suffix = \"-ng\" %}\n{% endif %}\n\n\npackage:\n  name: gcc_compilers\n  version: {{ version }}\n\nsource:\n  - url: https://ftp.gnu.org/gnu/gcc/gcc-{{ version }}/gcc-{{ version }}.tar.gz\n    sha256: a0be066c02775002a0fa65ad3c65fb56a8bfd923d072a26ed148c0439ecdb68f   # [gcc_version == \"14.1.0\"]\n    sha256: 3a2b10cab86e32358fdac871546d57e2700e9bdb5875ef33fff5b601265b9e32   # [gcc_version == \"13.3.0\"]\n    sha256: 5a30de2be740062bb3ddd3fd13c9b1bb4584d8f85616d33f23a713439d714148   # [gcc_version == \"12.4.0\"]\n    patches:\n      - patches/0001-cross-compile-older-glibc.patch   # [cross_target_stdlib_version == \"2.12\" and target_platform != \"linux-64\"]\n      - patches/0002-allow-commands-in-main-specfile.patch\n      - patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch       # [gcc_maj_ver == 14]\n      {% if cross_target_platform.startswith(\"linux-\") %}\n      - patches/0004-add-ldl-to-libstdc___la_LDFLAGS.patch                          # [gcc_maj_ver == 14]\n      - patches/0005-Hardcode-HAVE_ALIGNED_ALLOC-1-in-libstdc-v3-configur.patch\n      {% else %}\n      # for GCC 13: https://github.com/msys2/MINGW-packages/tree/4f1262b4e1072632eccf0958764f90d890b832ac/mingw-w64-gcc\n      # for GCC 14: https://github.com/msys2/MINGW-packages/tree/331bf945d21af562d228ed46bda21c8272d1e76e/mingw-w64-gcc\n      - patches/mingw/{{ gcc_maj_ver }}/0001-missing-__thiscall-attribute-on-builtin-declaration-of-__cxa_thread_atexit.patch   # [gcc_maj_ver == 14]\n      - patches/mingw/{{ gcc_maj_ver }}/0002-Relocate-libintl.patch                                             # [gcc_maj_ver == 13]\n      - patches/mingw/{{ gcc_maj_ver }}/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0005-Windows-Don-t-ignore-native-system-header-dir.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0006-Windows-New-feature-to-allow-overriding.patch                      # [gcc_maj_ver == 13]\n      - patches/mingw/{{ gcc_maj_ver }}/0007-Build-EXTRA_GNATTOOLS-for-Ada.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0008-Prettify-linking-no-undefined.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0011-Enable-shared-gnat-implib.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0012-Handle-spaces-in-path-for-default-manifest.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0014-gcc-9-branch-clone_function_name_1-Retain-any-stdcall-suffix.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0020-libgomp-Don-t-hard-code-MS-printf-attributes.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0021-PR14940-Allow-a-PCH-to-be-mapped-to-a-different-addr.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0140-gcc-diagnostic-color.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0200-add-m-no-align-vector-insn-option-for-i386.patch\n      - patches/mingw/{{ gcc_maj_ver }}/0300-override-builtin-printf-format.patch                               # [gcc_maj_ver == 13]\n      - patches/mingw/{{ gcc_maj_ver }}/2000-enable-rust.patch                                                  # [gcc_maj_ver == 13]\n      - patches/mingw/{{ gcc_maj_ver }}/2001-fix-building-rust-on-mingw-w64.patch\n      - patches/mingw/{{ gcc_maj_ver }}/3001-fix-ice.patch                                                      # [gcc_maj_ver == 14]\n      - patches/mingw/{{ gcc_maj_ver }}/2f7e7bfa3c6327793cdcdcb5c770b93cecd49bd0.patch                          # [gcc_maj_ver == 13]\n      - patches/mingw/{{ gcc_maj_ver }}/3eeb4801d6f45f6250fc77a6d3ab4e0115f8cfdd.patch                          # [gcc_maj_ver == 13]\n      {% endif %}\n\nbuild:\n  number: {{ build_num }}\n  skip: true  # [not (linux or win) or (gcc_maj_ver == 12 and cross_target_platform == \"win-64\") or (win and cross_target_platform != \"win-64\")]\n  detect_binary_files_with_prefix: False\n  ignore_run_exports_from:\n    - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n\nrequirements:\n  build:\n    # Build dependencies are installed in setup_compilers.sh due to\n    # conda-build bugs\n  host:\n    - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n\noutputs:\n  - name: libgcc-devel_{{ cross_target_platform }}\n    script: install-libgcc-devel.sh\n    build:\n      noarch: generic\n      number: {{ libgcc_devel_build_num }}\n      detect_binary_files_with_prefix: False\n      missing_dso_whitelist:\n        - \"*\"\n      ignore_run_exports_from:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      run:\n        - __unix   # [unix]\n        - __win    # [win]\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/crtbegin.o\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libgcc_eh.a\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libgcc.a\n        {% if cross_target_platform.startswith(\"linux-\") %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgcc_s.so\n        {% else %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgcc_s.a\n        {% endif %}\n    about:\n      summary: The GNU C development libraries and object files\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: libstdcxx-devel_{{ cross_target_platform }}\n    script: install-libstdc++-devel.sh\n    build:\n      noarch: generic\n      number: {{ libgcc_devel_build_num }}\n      detect_binary_files_with_prefix: False\n      missing_dso_whitelist:\n        - \"*\"\n      ignore_run_exports_from:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      run:\n        - __unix   # [unix]\n        - __win    # [win]\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libstdc++.a\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libstdc++fs.a\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libsupc++.a\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/include/c++/cstdio\n        {% if cross_target_platform.startswith(\"linux-\") %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libstdc++.so\n        {% else %}\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libstdc++.dll.a\n        {% endif %}\n    about:\n      summary: The GNU C++ headers and development libraries\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: gcc_impl_{{ cross_target_platform }}\n    script: install-gcc.sh\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      missing_dso_whitelist:\n        - '*'\n      ignore_run_exports_from:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n        - {{ pin_subpackage(\"libgomp\", exact=True) }}               # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libstdcxx\" ~ runtime_suffix, exact=True) }}          # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libgcc\" ~ runtime_suffix, exact=True) }}             # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libgfortran\" ~ libgfortran_soname) }}  # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libsanitizer\", exact=True) }}          # [target_platform == cross_target_platform and not win]\n      run:\n        - binutils_impl_{{ cross_target_platform }} >={{ binutils_version }}\n        - {{ pin_subpackage(\"libgcc-devel_\" ~ cross_target_platform, exact=True) }}\n        - {{ pin_subpackage(\"libsanitizer\", exact=True) }}      # [target_platform == cross_target_platform and not win]\n        # libstdcxx-ng is a runtime dep of gcc because LTO requires it.\n        - {{ pin_subpackage(\"libstdcxx\" ~ runtime_suffix, max_pin=None) }}    # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libgcc\" ~ runtime_suffix, max_pin=None) }}       # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libgomp\", max_pin=None) }}         # [target_platform == cross_target_platform]\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    run_exports:\n      # impose this requirement across the build/host boundary\n      strong:\n        - libgcc{{ runtime_suffix }} >={{ gcc_version }}\n    test:\n      requires:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      files:\n        - tests\n      commands:\n        - echo {{ old_triplet }}\n        - echo {{ c_stdlib }}\n        - echo {{ c_stdlib_version }}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgomp.so   # [target_platform == cross_target_platform]\n        - test `readlink ${PREFIX}/{{ triplet }}/lib/libgomp.so` == \"../../lib/libgomp.so\"  # [target_platform == cross_target_platform]\n        - test -f ${PREFIX}/bin/{{ old_triplet }}-gcc\n        - test -f ${PREFIX}/bin/{{ old_triplet }}-cpp\n        - test -f ${PREFIX}/bin/{{ triplet }}-gcc\n        - test -f ${PREFIX}/bin/{{ triplet }}-cpp\n        - test ! -f ${PREFIX}/bin/gcc\n        - test ! -f ${PREFIX}/bin/cpp\n        - CC=$(${PREFIX}/bin/*-gcc -dumpmachine)-gcc\n        - ${CC} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v -Wl,-v -march=native  # [target_platform == cross_target_platform and (x86_64 or s390x)]\n        # This test does not work well with QEMU\n        - ${CC} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v -Wl,-v -mcpu=native   # [target_platform == cross_target_platform and (not x86_64 and not s390x and not ppc64le)]\n        - ${CC} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v -fsanitize=address  # [cross_target_platform != \"win-64\"]\n        - ${CC} -Wall tests/aligned_alloc.c -c -o c_aligned.o -v                     # [cross_target_platform != \"win-64\"]\n        - ${CC} -Wall c_aligned.o -o c_aligned -v && ./c_aligned   # [cross_target_platform == target_platform and cross_target_platform != \"win-64\"]\n        - ${CC} -Wall c_aligned.o -o c_aligned -Wl,-rpath,/foo && {{ triplet }}-readelf -d c_aligned | grep RPATH | grep \"/foo:${PREFIX}/lib\"  # [cross_target_platform == target_platform and cross_target_platform != \"win-64\"]\n        - ${CC} -Wall tests/hello_world.c -c -o hello_world.o -v\n        - ${CC} -Wall hello_world.o -o hello_world -v\n        {% if cross_target_platform.startswith(\"linux-\") %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgcc_s.so\n        - test -f ${PREFIX}/{{ triplet }}/lib/libsanitizer.spec\n        - test -f ${PREFIX}/{{ triplet }}/lib/libasan_preinit.o\n        {% else %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgcc_s.a\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libquadmath.a\n        - test -f ${PREFIX}/lib/gcc/{{ triplet }}/{{ gcc_version }}/libgomp.a\n        {% endif %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgomp.spec\n    about:\n      summary: GNU C Compiler\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: gcc\n    script: install-symlinks.sh\n    build:\n      skip: true  # [target_platform != cross_target_platform]\n    requirements:\n      host:\n        - gcc_impl_{{ target_platform }} {{ gcc_version }}.*\n      run:\n        - gcc_impl_{{ target_platform }} {{ gcc_version }}.*\n    test:\n      commands:\n        - ${PREFIX}/bin/gcc -v\n        - ${PREFIX}/bin/gcov -v\n    about:\n      summary: GNU C native compiler (symlinks)\n      home: https://github.com/conda-forge/ctng-compilers-feedstock\n      license: BSD-3-Clause\n      license_file: LICENSE\n\n  - name: conda-gcc-specs\n    script: install-conda-specs.sh\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      skip: True  # [cross_target_platform != target_platform]\n    requirements:\n      build:\n      run:\n        - {{ pin_subpackage(\"gcc_impl_\" ~ cross_target_platform, max_pin='x.x.x.x') }}\n    test:\n      files:\n        - tests\n      commands:\n        - specdir=$PREFIX/lib/gcc/{{ triplet }}/{{ gcc_version }}\n        - test -f $specdir/conda.specs\n        - CC=$(${PREFIX}/bin/*-gcc -dumpmachine)-gcc\n        - echo | ${CC} -E -v -x c - |& grep '^Reading specs from' | awk '{print $NF}' | xargs readlink -e | awk -v ORS= '{print $1\":\"}' | grep \"${specdir}/specs:${specdir}/conda.specs:\"\n        - cp tests/libhowdy.h $PREFIX/include/\n        - ${CC} -shared -fpic -o $PREFIX/lib/libhowdy.so tests/libhowdy.c\n        - ${CC} -o howdy-dso tests/howdy-dso.c -lhowdy\n        - ./howdy-dso\n        -    grep RPATH   <({{ triplet }}-readelf -d howdy-dso)\n        - \"! grep RUNPATH <({{ triplet }}-readelf -d howdy-dso)\"\n        - ${CC} -Wl,-enable-new-dtags -o howdy-dso-runpath tests/howdy-dso.c -lhowdy\n        - ./howdy-dso-runpath\n        - \"! grep RPATH   <({{ triplet }}-readelf -d howdy-dso-runpath)\"\n        -    grep RUNPATH <({{ triplet }}-readelf -d howdy-dso-runpath)\n        - echo | ${CC} -E -Wp,-v -x c - |& awk '/include <\\.\\.\\.> search starts/,/^End of search/ {print}' | tail -n2 | head -n1 | grep \"$PREFIX/include\"\n        - echo | ${CC} -isystem \"$PREFIX/include\" -E -Wp,-v -x c - |& awk '/include <\\.\\.\\.> search starts/, /^End of search/ {print}' | head -n2 | tail -n1 | grep \"$PREFIX/include\"\n\n    about:\n      summary: conda-specific specfile for GNU C/C++ Compiler\n      description: |\n          When installed, this optional package provides a specfile that\n          directs gcc (and g++ or gfortran) to automatically:\n            * search for includes in $PREFIX/include\n            * link libraries in $PREFIX/lib\n            * set RPATH to $PREFIX/lib\n            * use RPATH instead of the newer RUNPATH\n          This package is intended to aid usability of the compiler\n          toolchain as a replacement for system-installed compilers.\n          It should not be used in recipes.  Use the 'compiler(<lang>)'\n          jinja function as described on\n          https://conda-forge.org/docs/maintainer/knowledge_base.html#dep-compilers\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n      doc_url: https://gcc.gnu.org/onlinedocs/gcc/Spec-Files.html\n\n  - name: gxx_impl_{{ cross_target_platform }}\n    script: install-g++.sh\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      missing_dso_whitelist:\n        - \"*\"\n      ignore_run_exports_from:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n        # For cpp and crt{i,n}.o\n        - {{ pin_subpackage(\"gcc_impl_\" ~ cross_target_platform, exact=True) }}\n      run:\n        # For cpp and crt{i,n}.o\n        - {{ pin_subpackage(\"gcc_impl_\" ~ cross_target_platform, exact=True) }}\n        # not needed due to pinning above but marks this build as using the new sysroots\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n        - {{ pin_subpackage(\"libstdcxx-devel_\" ~ cross_target_platform, exact=True) }}\n        # for C++20 chrono support\n        - tzdata\n    run_exports:\n      # impose this requirement across the build/host boundary\n      strong:\n        - libstdcxx{{ runtime_suffix }} >={{ gcc_version }}\n    test:\n      requires:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      files:\n        - tests\n      commands:\n        - test -f ${PREFIX}/bin/{{ old_triplet }}-g++\n        - test -f ${PREFIX}/bin/{{ triplet }}-g++\n        - CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++\n        - ${CXX} -Wall tests/aligned_alloc.cpp -c -o cpp_aligned.o --std=c++17    # [cross_target_platform != \"win-64\"]\n        - ${CXX} -Wall cpp_aligned.o -o cpp_aligned --std=c++17 && ./cpp_aligned  # [cross_target_platform == target_platform and cross_target_platform != \"win-64\"]\n        - ${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17\n        - ${CXX} -Wall hello_world.o -o hello_world --std=c++17\n\n        # test tzdb integration\n      {% if gcc_maj_ver|int >= 14 %}\n        - ${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o\n        - ${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o\n        {% if target_platform == cross_target_platform %}\n        - ${CXX} tzdb-override.o -o tzdb-override && ./tzdb-override\n        - ${CXX} tzdb.o -o tzdb && ./tzdb\n        - strace ./tzdb 2>&1 | grep ${CONDA_PREFIX}/lib/../share/zoneinfo/tzdata.zi\n        # also test without any environment activation\n        - unset PREFIX\n        - unset CONDA_PREFIX\n        - ./tzdb\n        {% endif %}\n      {% endif %}\n    about:\n      summary: GNU C++ Compiler\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: gxx\n    script: install-symlinks.sh\n    build:\n      skip: true  # [target_platform != cross_target_platform]\n    requirements:\n      host:\n        - gxx_impl_{{ target_platform }} {{ gcc_version }}.*\n        - gcc {{ gcc_version }}.*\n      run:\n        - gxx_impl_{{ target_platform }} {{ gcc_version }}.*\n        - gcc {{ gcc_version }}.*\n    test:\n      commands:\n        - ${PREFIX}/bin/g++ -v\n        - ${PREFIX}/bin/gcc -v\n    about:\n      summary: GNU C++ native compiler (symlinks)\n      home: https://github.com/conda-forge/ctng-compilers-feedstock\n      license: BSD-3-Clause\n      license_file: LICENSE\n\n  - name: gfortran_impl_{{ cross_target_platform }}\n    script: install-gfortran.sh\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      missing_dso_whitelist:\n        - \"*\"\n      ignore_run_exports_from:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    requirements:\n      build:\n      host:\n        # For cpp and crt{i,n}.o\n        - {{ pin_subpackage(\"gcc_impl_\" ~ cross_target_platform, exact=True) }}\n        # not needed due to pinning above but marks this build as using the new sysroots\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      run:\n        # For cpp and crt{i,n}.o\n        - gcc_impl_{{ cross_target_platform }} >={{ gcc_version }}\n        - {{ pin_subpackage(\"libgfortran\" ~ libgfortran_soname, max_pin=None) }}  # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libgcc\" ~ runtime_suffix, max_pin=None) }}           # [target_platform == cross_target_platform]\n        - {{ pin_subpackage(\"libstdcxx\" ~ runtime_suffix, max_pin=None) }}        # [target_platform == cross_target_platform]\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n    run_exports:\n      # impose this requirement across the build/host boundary\n      strong:\n        - libgfortran{{ libgfortran_soname }} {{ gcc_version }}.*\n        - libgcc{{ runtime_suffix }} >={{ gcc_version }}\n    test:\n      requires:\n        - cmake >=3.11  # [x86_64 or aarch64 or ppc64le]\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      commands:\n        {% if cross_target_platform.startswith(\"linux-\") %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgfortran.so\n        {% else %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgfortran.dll.a\n        {% endif %}\n        - test -f ${PREFIX}/{{ triplet }}/lib/libgfortran.a\n        - test -f ${PREFIX}/bin/{{ old_triplet }}-gfortran\n        - test -f ${PREFIX}/bin/{{ triplet }}-gfortran\n        - find $PREFIX/lib -iname omp_lib.mod | grep '.'\n        - find $PREFIX/lib -iname omp_lib.h | grep '.'\n        - find $PREFIX/lib -iname ISO_Fortran_binding.h | grep '.'\n        - echo {{ gcc_maj_ver }}\n        - pushd tests/fortomp\n        - sh test_fort.sh   # [target_platform == cross_target_platform and (x86_64 or aarch64 or ppc64le)]\n      files:\n        - tests/fortomp/*\n    about:\n      summary: GNU Fortran Compiler\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: gfortran\n    script: install-symlinks.sh\n    build:\n      skip: true  # [target_platform != cross_target_platform]\n    requirements:\n      host:\n        - gfortran_impl_{{ target_platform }} {{ gcc_version }}.*\n        - gcc_impl_{{ target_platform }} {{ gcc_version }}.*\n        - gcc {{ gcc_version }}.*\n      run:\n        - gfortran_impl_{{ target_platform }} {{ gcc_version }}.*\n        - gcc_impl_{{ target_platform }} {{ gcc_version }}.*\n        - gcc {{ gcc_version }}.*\n    test:\n      commands:\n        - ${PREFIX}/bin/gfortran -v\n        - ${PREFIX}/bin/gcc -v\n    about:\n      summary: GNU Fortran native compiler (symlinks)\n      home: https://github.com/conda-forge/ctng-compilers-feedstock\n      license: BSD-3-Clause\n      license_file: LICENSE\n\n  - name: libstdcxx{{ runtime_suffix }}\n    target: {{ cross_target_platform }}\n    script: install-libstdc++.sh\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      skip: True   # [target_platform != cross_target_platform]\n      missing_dso_whitelist:\n        - \"*\"\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n        - {{ pin_subpackage(\"libgcc\" ~ runtime_suffix, exact=True) }}\n      run:\n        - {{ pin_subpackage(\"libgcc\" ~ runtime_suffix, exact=True) }}\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/libstdc++.so\n    about:\n      summary: The GNU C++ Runtime Library\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: libsanitizer\n    target: {{ cross_target_platform }}\n    script: install-libsanitizer.sh\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}  {{ cross_target_stdlib_version }}\n      run:\n        - libgcc{{ runtime_suffix }} >={{ gcc_version }}\n        - libstdcxx{{ runtime_suffix }} >={{ gcc_version }}\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      skip: True   # [target_platform != cross_target_platform or win]\n      missing_dso_whitelist:\n        - \"*\"\n      run_exports:\n        - libsanitizer {{ gcc_version }}\n    test:\n      requires:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n        - gcc_impl_{{ cross_target_platform }}\n      commands:\n        - test -f ${PREFIX}/lib/libasan.so\n        - file ${PREFIX}/bin/{{ triplet }}-gcc\n        - echo 'void main(){}' | {{ triplet }}-gcc -fsanitize=address -Wl,--fatal-warnings -x c -\n    about:\n      summary: The GCC runtime libraries for sanitizers\n      home: https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: libgomp\n    target: {{ cross_target_platform }}\n    script: install-libgomp.sh\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}  {{ cross_target_stdlib_version }}\n      run:\n        - _libgcc_mutex {{ _libgcc_mutex }}  # [linux64 or ppc64le]\n      run_constrained:\n        - msys2-conda-epoch <0.0a0    # [win]\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      skip: True   # [target_platform != cross_target_platform]\n      missing_dso_whitelist:\n        - \"*\"\n      run_exports:\n        strong:\n          - {{ pin_subpackage(\"_openmp_mutex\", max_pin=None) }}\n    test:\n      requires:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n      commands:\n        - test -f ${PREFIX}/lib/libgomp.so.{{ libgomp_ver }}\n        - test ! -f ${PREFIX}/lib/libgomp.so.{{ libgomp_ver[0:1] }}\n    about:\n      summary: The GCC OpenMP implementation.\n      home: https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: libgcc{{ runtime_suffix }}\n    target: {{ cross_target_platform }}\n    script: install-libgcc-no-gomp.sh\n    requirements:\n      build:\n      host:\n        - {{ pin_subpackage(\"libgomp\", exact=True) }}\n        - {{ pin_subpackage('_openmp_mutex', exact=True) }}\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}  {{ cross_target_stdlib_version }}\n      run:\n        - _libgcc_mutex {{ _libgcc_mutex }}  # [linux64 or ppc64le]\n        - {{ pin_subpackage(\"_openmp_mutex\", max_pin=None) }}\n      run_constrained:\n        - {{ pin_subpackage(\"libgomp\", exact=True) }}\n        - msys2-conda-epoch <0.0a0    # [win]\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      skip: True   # [target_platform != cross_target_platform]\n      missing_dso_whitelist:\n        - \"*\"\n      rpaths_patcher: patchelf\n    test:\n      requires:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}\n      commands:\n        - test -f ${PREFIX}/lib/libgcc_s.so\n        - test -f ${PREFIX}/lib/libgomp.so.{{ libgomp_ver[0:1] }}\n        - test `readlink ${PREFIX}/lib/libgomp.so.{{ libgomp_ver[0:1] }}` == \"libgomp.so.{{ libgomp_ver }}\"\n    about:\n      summary: The GCC low-level runtime library\n      home: https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: _openmp_mutex\n    script: install-openmp_impl.sh\n    version: {{ openmp_ver }}\n    requirements:\n      build:\n      host:\n        - {{ pin_subpackage('libgomp', exact=True) }}\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }}  {{ cross_target_stdlib_version }}\n      run:\n        - _libgcc_mutex {{ _libgcc_mutex }}  # [linux64 or ppc64le]\n        - libgomp >=7.5.0\n      run_constrained:\n        # conflict with previous name\n        - openmp_impl 9999\n        - msys2-conda-epoch <0.0a0    # [win]\n    build:\n      string: 2_gnu\n      skip: True   # [target_platform != cross_target_platform]\n      run_exports:\n        strong:\n          - {{ pin_subpackage(\"_openmp_mutex\", max_pin=None) }}\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/libgomp.so.{{ libgomp_ver[0:1] }}\n        - test `readlink ${PREFIX}/lib/libgomp.so.{{ libgomp_ver[0:1] }}` == \"libgomp.so.{{ libgomp_ver }}\"\n    about:\n      summary: OpenMP Implementation Mutex\n      license: BSD-3-Clause\n      license_file: LICENSE\n      home: https://github.com/conda-forge/ctng-compilers-feedstock\n\n  - name: libgfortran{{ libgfortran_soname }}\n    target: {{ cross_target_platform }}\n    script: install-libgfortran.sh\n    build:\n      number: {{ build_num }}\n      detect_binary_files_with_prefix: False\n      skip: True   # [target_platform != cross_target_platform]\n      missing_dso_whitelist:\n        - \"*\"\n    requirements:\n      build:\n      host:\n        - {{ cross_target_stdlib }}_{{ cross_target_platform }} {{ cross_target_stdlib_version }}\n      run:\n        - libgcc{{ runtime_suffix }} >={{ gcc_version }}\n      run_constrained:\n        - libgfortran{{ runtime_suffix }} {{ gcc_version }}\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/libgfortran.so\n    about:\n      summary: The GNU Fortran Runtime Library\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n  - name: libgfortran{{ runtime_suffix }}\n    target: {{ cross_target_platform }}\n    build:\n      skip: True   # [target_platform != cross_target_platform]\n      number: {{ build_num }}\n    requirements:\n      run:\n        - {{ pin_subpackage('libgfortran' ~ libgfortran_soname, exact=True) }}\n    test:\n      commands:\n        - test -f ${PREFIX}/lib/libgfortran.so\n    about:\n      summary: The GNU Fortran Runtime Library\n      home: https://gcc.gnu.org/\n      license: GPL-3.0-only WITH GCC-exception-3.1\n\n\nabout:\n  summary: GNU Compiler Collection\n  home: https://gcc.gnu.org/\n  license: GPL-3.0-only WITH GCC-exception-3.1\n  license_file:\n    - COPYING\n    - COPYING.LIB\n    - COPYING3\n    - COPYING3.LIB\n\nextra:\n  feedstock-name: ctng-compilers-feedstock\n  recipe-maintainers:\n    - timsnyder\n    - xhochy\n    - isuruf\n    - beckermr\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -79237,7 +79571,8 @@
    "sysroot_linux-64",
    "sysroot_linux-aarch64",
    "sysroot_linux-ppc64le",
-   "sysroot_linux-s390x"
+   "sysroot_linux-s390x",
+   "tzdata"
   ]
  },
  "requirements": {
@@ -79332,7 +79667,8 @@
     "sysroot_linux-64",
     "sysroot_linux-aarch64",
     "sysroot_linux-ppc64le",
-    "sysroot_linux-s390x"
+    "sysroot_linux-s390x",
+    "tzdata"
    ]
   },
   "test": {
@@ -79542,7 +79878,8 @@
     "sysroot_linux-64",
     "sysroot_linux-aarch64",
     "sysroot_linux-ppc64le",
-    "sysroot_linux-s390x"
+    "sysroot_linux-s390x",
+    "tzdata"
    ]
   },
   "test": {
@@ -79840,7 +80177,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -80471,7 +80809,8 @@
      "run": [
       "gcc_impl_win-64",
       "m2w64-sysroot_win-64",
-      "libstdcxx-devel_win-64"
+      "libstdcxx-devel_win-64",
+      "tzdata"
      ]
     },
     "run_exports": {
@@ -80485,7 +80824,15 @@
       "test -f ${PREFIX}/bin/x86_64-w64-mingw32-g++",
       "CXX=$(${PREFIX}/bin/*-gcc -dumpmachine)-g++",
       "${CXX} -Wall tests/hello_world.cpp -c -o hello_world.o --std=c++17",
-      "${CXX} -Wall hello_world.o -o hello_world --std=c++17"
+      "${CXX} -Wall hello_world.o -o hello_world --std=c++17",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb-override.cpp -c -o tzdb-override.o",
+      "${CXX} -isystem ${PREFIX}/include --std=c++20 -Wall tests/tzdb.cpp -c -o tzdb.o",
+      "${CXX} tzdb-override.o -o tzdb-override && ./tzdb-override",
+      "${CXX} tzdb.o -o tzdb && ./tzdb",
+      "strace ./tzdb 2>&1 | grep ${CONDA_PREFIX}/lib/../share/zoneinfo/tzdata.zi",
+      "unset PREFIX",
+      "unset CONDA_PREFIX",
+      "./tzdb"
      ],
      "files": [
       "tests"
@@ -80877,7 +81224,7 @@
   "source": [
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
      "patches/mingw/13/0002-Relocate-libintl.patch",
      "patches/mingw/13/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/13/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -80902,7 +81249,8 @@
    },
    {
     "patches": [
-     "patches/0003-allow-commands-in-main-specfile.patch",
+     "patches/0002-allow-commands-in-main-specfile.patch",
+     "patches/0003-patch-zoneinfo_dir_override-to-point-to-our-tzdata.patch",
      "patches/mingw/14/0001-missing-__thiscall-attribute-on-builtin-declaration-of-__cxa_thread_atexit.patch",
      "patches/mingw/14/0003-Windows-Follow-Posix-dir-exists-semantics-more-close.patch",
      "patches/mingw/14/0005-Windows-Don-t-ignore-native-system-header-dir.patch",
@@ -80959,7 +81307,8 @@
     "libgomp",
     "libstdcxx",
     "libstdcxx-devel_win-64",
-    "m2w64-sysroot_win-64"
+    "m2w64-sysroot_win-64",
+    "tzdata"
    ]
   },
   "test": {
