@@ -25,7 +25,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -36,40 +36,40 @@
   },
   "package": {
    "name": "tsam",
-   "version": "2.2.1"
+   "version": "2.2.2"
   },
   "requirements": {
    "host": [
-    "pip",
-    "python >=3.0",
-    "setuptools-git"
+    "python >3.0",
+    "setuptools-git",
+    "pip"
    ],
    "run": [
-    "numpy >=1.11.0,<1.24",
-    "pandas >=0.18.1,<2.0",
-    "pyomo >=5.3",
-    "python >=3.0",
+    "python >3.0",
     "scikit-learn >=0.0",
+    "pandas >=0.18.1,<2.0",
+    "numpy >=1.11.0,<1.24",
+    "pyomo >=6.4.3",
+    "networkx",
     "tqdm",
-    "networkx"
+    "highspy"
    ]
   },
   "source": {
-   "sha256": "2118d92d16c13922861cf7afd3d49d2b718e39c748fc547bb4f8b25cdd965bf2",
-   "url": "https://pypi.io/packages/source/t/tsam/tsam-2.2.1.tar.gz"
+   "sha256": "d6187817f7ba99b1dd3d4ec629d16aa5cc596ebfaca8b976d1ab3ae869643c0d",
+   "url": "https://pypi.io/packages/source/t/tsam/tsam-2.2.2.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check",
-    "pytest -n auto test/"
+    "pytest -n auto test/",
+    "pip check"
    ],
    "imports": [
     "tsam"
    ],
    "requires": [
     "pip",
-    "pytest-xdist",
-    "coincbc"
+    "pytest-xdist"
    ],
    "source_files": [
     "."
@@ -92,6 +92,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "highspy",
     "networkx",
     "numpy",
     "pandas",
@@ -104,7 +105,6 @@
   "test": {
    "__set__": true,
    "elements": [
-    "coincbc",
     "pip",
     "pytest-xdist"
    ]
@@ -122,7 +122,7 @@
   "build": {
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -133,40 +133,40 @@
   },
   "package": {
    "name": "tsam",
-   "version": "2.2.1"
+   "version": "2.2.2"
   },
   "requirements": {
    "host": [
-    "pip",
-    "python >=3.0",
-    "setuptools-git"
+    "python >3.0",
+    "setuptools-git",
+    "pip"
    ],
    "run": [
-    "numpy >=1.11.0,<1.24",
-    "pandas >=0.18.1,<2.0",
-    "pyomo >=5.3",
-    "python >=3.0",
+    "python >3.0",
     "scikit-learn >=0.0",
+    "pandas >=0.18.1,<2.0",
+    "numpy >=1.11.0,<1.24",
+    "pyomo >=6.4.3",
+    "networkx",
     "tqdm",
-    "networkx"
+    "highspy"
    ]
   },
   "source": {
-   "sha256": "2118d92d16c13922861cf7afd3d49d2b718e39c748fc547bb4f8b25cdd965bf2",
-   "url": "https://pypi.io/packages/source/t/tsam/tsam-2.2.1.tar.gz"
+   "sha256": "d6187817f7ba99b1dd3d4ec629d16aa5cc596ebfaca8b976d1ab3ae869643c0d",
+   "url": "https://pypi.io/packages/source/t/tsam/tsam-2.2.2.tar.gz"
   },
   "test": {
    "commands": [
-    "pip check",
-    "pytest -n auto test/"
+    "pytest -n auto test/",
+    "pip check"
    ],
    "imports": [
     "tsam"
    ],
    "requires": [
     "pip",
-    "pytest-xdist",
-    "coincbc"
+    "pytest-xdist"
    ],
    "source_files": [
     "."
@@ -187,10 +187,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/tsam.json"
  },
- "raw_meta_yaml": "{% set name = \"tsam\" %}\n{% set version = \"2.2.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/tsam-{{ version }}.tar.gz\n  sha256: 2118d92d16c13922861cf7afd3d49d2b718e39c748fc547bb4f8b25cdd965bf2\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - pip\n    - python >=3.0\n    - setuptools-git\n  run:\n    - numpy >=1.11.0,<1.24\n    - pandas >=0.18.1,<2.0\n    - pyomo >=5.3\n    - python >=3.0\n    - scikit-learn >=0.0\n    - tqdm\n    - networkx\n\ntest:\n  imports:\n    - tsam\n  source_files:\n    - .\n  commands:\n    - pip check\n    - pytest -n auto test/\n  requires:\n    - pip\n    - pytest-xdist\n    - coincbc\n\nabout:\n  home: https://github.com/FZJ-IEK3-VSA/tsam\n  summary: Time series aggregation module (tsam) to create typical periods\n  license: MIT\n  license_file: LICENSE.txt\n  doc_url: https://tsam.readthedocs.io/en/master/\n  dev_url: https://github.com/FZJ-IEK3-VSA/tsam\n\n\nextra:\n  recipe-maintainers:\n    - OfficialCodexplosive\n    - maximilian-hoffmann\n    - julian-belina\n",
+ "raw_meta_yaml": "{% set name = \"tsam\" %}\n{% set version = \"2.2.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/tsam-{{ version }}.tar.gz\n  sha256: d6187817f7ba99b1dd3d4ec629d16aa5cc596ebfaca8b976d1ab3ae869643c0d\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python >3.0\n    - setuptools-git\n    - pip\n  run:\n    - python >3.0\n    - scikit-learn >=0.0\n    - pandas >=0.18.1,<2.0\n    - numpy >=1.11.0,<1.24\n    - pyomo >=6.4.3\n    - networkx\n    - tqdm\n    - highspy\n\ntest:\n  imports:\n    - tsam\n  source_files:\n    - .\n  commands:\n    - pytest -n auto test/\n    - pip check\n  requires:\n    - pip\n    - pytest-xdist\n\nabout:\n  home: https://github.com/FZJ-IEK3-VSA/tsam\n  summary: Time series aggregation module (tsam) to create typical periods\n  license: MIT\n  license_file: LICENSE.txt\n  doc_url: https://tsam.readthedocs.io/en/master/\n  dev_url: https://github.com/FZJ-IEK3-VSA/tsam\n\n\nextra:\n  recipe-maintainers:\n    - OfficialCodexplosive\n    - maximilian-hoffmann\n    - julian-belina\n",
  "req": {
   "__set__": true,
   "elements": [
+   "highspy",
    "networkx",
    "numpy",
    "pandas",
@@ -218,6 +219,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "highspy",
     "networkx",
     "numpy",
     "pandas",
@@ -230,7 +232,6 @@
   "test": {
    "__set__": true,
    "elements": [
-    "coincbc",
     "pip",
     "pytest-xdist"
    ]
@@ -246,18 +247,19 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.0",
+    "python >3.0",
     "setuptools-git"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
+    "highspy",
     "networkx",
     "numpy >=1.11.0,<1.24",
     "pandas >=0.18.1,<2.0",
-    "pyomo >=5.3",
-    "python >=3.0",
+    "pyomo >=6.4.3",
+    "python >3.0",
     "scikit-learn >=0.0",
     "tqdm"
    ]
@@ -265,14 +267,13 @@
   "test": {
    "__set__": true,
    "elements": [
-    "coincbc",
     "pip",
     "pytest-xdist"
    ]
   }
  },
- "url": "https://pypi.io/packages/source/t/tsam/tsam-2.2.1.tar.gz",
- "version": "2.2.1",
+ "url": "https://pypi.io/packages/source/t/tsam/tsam-2.2.2.tar.gz",
+ "version": "2.2.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/tsam.json"
  }
