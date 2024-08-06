@@ -21,7 +21,7 @@
    "summary": "A reaction module for transport simulators based on the geochemical model PHREEQC."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -38,6 +38,7 @@
    "build": [
     "python",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake >=3.20",
     "make",
@@ -54,7 +55,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "pyyaml",
     "yaml-cpp",
     "_openmp_mutex"
@@ -81,6 +81,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -104,7 +105,6 @@
    "__set__": true,
    "elements": [
     "_openmp_mutex",
-    "numpy",
     "python",
     "pyyaml",
     "yaml-cpp"
@@ -125,7 +125,7 @@
    "summary": "A reaction module for transport simulators based on the geochemical model PHREEQC."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -142,6 +142,7 @@
    "build": [
     "python",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake >=3.20",
     "make",
@@ -158,7 +159,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "pyyaml",
     "yaml-cpp",
     "_openmp_mutex",
@@ -190,7 +190,7 @@
    "summary": "A reaction module for transport simulators based on the geochemical model PHREEQC."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -207,6 +207,7 @@
    "build": [
     "python",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake >=3.20",
     "make",
@@ -223,7 +224,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "pyyaml",
     "yaml-cpp",
     "llvm-openmp"
@@ -250,6 +250,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -273,7 +274,6 @@
    "__set__": true,
    "elements": [
     "llvm-openmp",
-    "numpy",
     "python",
     "pyyaml",
     "yaml-cpp"
@@ -301,12 +301,13 @@
  "pr_info": {
   "__lazy_json__": "pr_info/phreeqcrm.json"
  },
- "raw_meta_yaml": "{% set name = \"phreeqcrm\" %}\n{% set version = \"0.0.6\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/phreeqcrm-{{ version }}.tar.gz\n  sha256: 362039be4ecee82ca0401d902de852dd081521f0959789f13fc69695b36daa76\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  build:\n    - python\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake >=3.20\n    - make\n    - ninja\n    - yaml-cpp\n  host:\n    - python\n    - scikit-build-core\n    - swig\n    - numpy\n    - pip\n    - yaml-cpp\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n    - pyyaml\n    - yaml-cpp\n    - _openmp_mutex  # [linux]\n    - llvm-openmp    # [osx]\n\ntest:\n  imports:\n    - phreeqcrm\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/usgs-coupled/phreeqcrm\n  summary: A reaction module for transport simulators based on the geochemical model PHREEQC.\n  license: CC0-1.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - dlparkhurst\n    - scharlton2\n",
+ "raw_meta_yaml": "{% set name = \"phreeqcrm\" %}\n{% set version = \"0.0.6\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/phreeqcrm-{{ version }}.tar.gz\n  sha256: 362039be4ecee82ca0401d902de852dd081521f0959789f13fc69695b36daa76\n\nbuild:\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 1\n\nrequirements:\n  build:\n    - python\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - cmake >=3.20\n    - make\n    - ninja\n    - yaml-cpp\n  host:\n    - python\n    - scikit-build-core\n    - swig\n    - numpy\n    - pip\n    - yaml-cpp\n  run:\n    - python\n    - pyyaml\n    - yaml-cpp\n    - _openmp_mutex  # [linux]\n    - llvm-openmp    # [osx]\n\ntest:\n  imports:\n    - phreeqcrm\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/usgs-coupled/phreeqcrm\n  summary: A reaction module for transport simulators based on the geochemical model PHREEQC.\n  license: CC0-1.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - dlparkhurst\n    - scharlton2\n",
  "req": {
   "__set__": true,
   "elements": [
    "_openmp_mutex",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "llvm-openmp",
@@ -326,6 +327,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -338,6 +340,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "numpy",
@@ -354,10 +357,10 @@
    "elements": [
     "_openmp_mutex",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cxx_compiler_stub",
     "llvm-openmp",
-    "numpy",
     "openmp",
     "python",
     "pyyaml",
@@ -377,6 +380,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake >=3.20",
     "cxx_compiler_stub",
     "make",
@@ -401,7 +405,6 @@
    "elements": [
     "_openmp_mutex",
     "llvm-openmp",
-    "numpy",
     "python",
     "pyyaml",
     "yaml-cpp"
@@ -427,7 +430,7 @@
    "summary": "A reaction module for transport simulators based on the geochemical model PHREEQC."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -444,6 +447,7 @@
    "build": [
     "python",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake >=3.20",
     "make",
@@ -460,7 +464,6 @@
    ],
    "run": [
     "python",
-    "numpy",
     "pyyaml",
     "yaml-cpp"
    ]
@@ -486,6 +489,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make",
@@ -508,7 +512,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python",
     "pyyaml",
     "yaml-cpp"
