@@ -35,7 +35,7 @@
    "summary": "This library contains C decoder/encoder routines for GRIB edition 2."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -52,6 +52,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cmake >=3.15",
       "pkg-config >=0.21",
       "make"
@@ -101,6 +102,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config"
@@ -134,7 +136,7 @@
    "summary": "This library contains C decoder/encoder routines for GRIB edition 2."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -151,6 +153,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cmake >=3.15",
       "pkg-config >=0.21",
       "make"
@@ -200,6 +203,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config"
@@ -233,7 +237,7 @@
    "summary": "This library contains C decoder/encoder routines for GRIB edition 2."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -250,6 +254,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cmake >=3.15",
       "pkg-config >=0.21",
       "make"
@@ -299,6 +304,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config"
@@ -332,7 +338,7 @@
    "summary": "This library contains C decoder/encoder routines for GRIB edition 2."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -349,6 +355,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cmake >=3.15",
       "pkg-config >=0.21",
       "make"
@@ -388,6 +395,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cmake >=3.15",
       "pkg-config >=0.21",
       "make"
@@ -427,6 +435,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cmake >=3.15",
       "pkg-config >=0.21",
       "make"
@@ -466,6 +475,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cmake >=3.15",
       "pkg-config >=0.21",
       "make"
@@ -505,6 +515,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cmake >=3.15",
       "pkg-config >=0.21",
       "make"
@@ -595,7 +606,7 @@
    "summary": "This library contains C decoder/encoder routines for GRIB edition 2."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -612,6 +623,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cmake >=3.15",
       "pkg-config >=0.21",
       "make"
@@ -661,6 +673,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config"
@@ -694,7 +707,7 @@
    "summary": "This library contains C decoder/encoder routines for GRIB edition 2."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -711,6 +724,7 @@
     "requirements": {
      "build": [
       "c_compiler_stub",
+      "c_stdlib_stub",
       "cmake >=3.15",
       "pkg-config >=0.21",
       "make"
@@ -760,6 +774,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "pkg-config"
@@ -804,11 +819,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/g2clib.json"
  },
- "raw_meta_yaml": "{% set name = \"nceplibs-g2c\" %}\n{% set version = \"1.9.0\" %}\n\npackage:\n  name: {{ name|lower }}-split\n  version: {{ version }}\n\nsource:\n  url: https://github.com/NOAA-EMC/NCEPLIBS-g2c/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 5554276e18bdcddf387a08c2dd23f9da310c6598905df6a2a244516c22ded9aa\n\nbuild:\n  number: 0\n\noutputs:\n  - name: {{ name }}\n    script: build_linux.sh      # [not win]\n    script: build_win.bat       # [win]\n    requirements:\n      build:\n        - {{ compiler('c') }}\n        - cmake >=3.15\n        - pkg-config >=0.21\n        - make                  # [not win]\n        - ninja                 # [win]\n      host:\n        - libpng\n        - zlib\n        # list libaec twice to conda-smithy doesn't get confused\n        - libaec\n        - libaec >=1.0.6\n        - openjpeg              # [not win]\n        - jasper                # [win]\n\n    test:\n      commands: &test_commands\n        - test -f ${PREFIX}/lib/libg2c${SHLIB_EXT}  # [not win]\n        - test ! -f ${PREFIX}/lib/libg2c.a  # [not win]\n        - if not exist %LIBRARY_BIN%\\\\g2c.dll exit 1  # [win]\n\n  # old name for the package\n  - name: g2clib\n    requirements:\n      run:\n        - {{ pin_subpackage(name, max_pin='x.x.x.x.x.x') }}\n    test:\n      commands: *test_commands\n\nabout:\n  home: https://github.com/NOAA-EMC/NCEPLIBS-g2c\n  summary: This library contains C decoder/encoder routines for GRIB edition 2.\n  license: LGPL-3.0-only\n  license_file: LICENSE.md\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n    - jhamman\n    - xylar\n    - TimothyCera-NOAA\n    - EricEngle-NOAA\n",
+ "raw_meta_yaml": "{% set name = \"nceplibs-g2c\" %}\n{% set version = \"1.9.0\" %}\n\npackage:\n  name: {{ name|lower }}-split\n  version: {{ version }}\n\nsource:\n  url: https://github.com/NOAA-EMC/NCEPLIBS-g2c/archive/refs/tags/v{{ version }}.tar.gz\n  sha256: 5554276e18bdcddf387a08c2dd23f9da310c6598905df6a2a244516c22ded9aa\n\nbuild:\n  number: 1\n\noutputs:\n  - name: {{ name }}\n    script: build_linux.sh      # [not win]\n    script: build_win.bat       # [win]\n    requirements:\n      build:\n        - {{ compiler('c') }}\n        - {{ stdlib('c') }}     # [not win]\n        - cmake >=3.15\n        - pkg-config >=0.21\n        - make                  # [not win]\n        - ninja                 # [win]\n      host:\n        - libpng\n        - zlib\n        # list libaec twice to conda-smithy doesn't get confused\n        - libaec\n        - libaec >=1.0.6\n        - openjpeg              # [not win]\n        - jasper                # [win]\n\n    test:\n      commands: &test_commands\n        - test -f ${PREFIX}/lib/libg2c${SHLIB_EXT}  # [not win]\n        - test ! -f ${PREFIX}/lib/libg2c.a  # [not win]\n        - if not exist %LIBRARY_BIN%\\\\g2c.dll exit 1  # [win]\n\n  # old name for the package\n  - name: g2clib\n    requirements:\n      run:\n        - {{ pin_subpackage(name, max_pin='x.x.x.x.x.x') }}\n    test:\n      commands: *test_commands\n\nabout:\n  home: https://github.com/NOAA-EMC/NCEPLIBS-g2c\n  summary: This library contains C decoder/encoder routines for GRIB edition 2.\n  license: LGPL-3.0-only\n  license_file: LICENSE.md\n\nextra:\n  recipe-maintainers:\n    - ocefpaf\n    - jhamman\n    - xylar\n    - TimothyCera-NOAA\n    - EricEngle-NOAA\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "jasper",
    "libaec",
@@ -826,6 +842,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make",
     "ninja",
@@ -836,6 +853,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "jasper",
     "libaec",
     "libpng",
@@ -847,6 +865,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "nceplibs-g2c"
    ]
   },
@@ -861,6 +880,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake >=3.15",
     "make",
     "ninja",
@@ -902,7 +922,7 @@
    "summary": "This library contains C decoder/encoder routines for GRIB edition 2."
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
