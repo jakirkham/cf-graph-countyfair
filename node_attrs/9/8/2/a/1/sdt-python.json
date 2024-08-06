@@ -40,12 +40,13 @@
   },
   "package": {
    "name": "sdt-python",
-   "version": "18.3"
+   "version": "19.0.0"
   },
   "requirements": {
    "host": [
     "python",
-    "pip"
+    "pip",
+    "hatch"
    ],
    "run": [
     "python >=3.9",
@@ -64,8 +65,8 @@
    ]
   },
   "source": {
-   "sha256": "be44959e792278a071501c1cb7eff55b75c9e776d6d6edcee7d88fcc9ed64fd9",
-   "url": "https://github.com/schuetzgroup/sdt-python/releases/download/18.3/sdt-python-18.3.tar.gz"
+   "sha256": "fdc48ae4f34b77f509d5952eeb3300d289697349d784edc05af397fd2bd53898",
+   "url": "https://github.com/schuetzgroup/sdt-python/releases/download/19.0.0/sdt_python-19.0.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -110,6 +111,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch",
     "pip",
     "python"
    ]
@@ -172,12 +174,13 @@
   },
   "package": {
    "name": "sdt-python",
-   "version": "18.3"
+   "version": "19.0.0"
   },
   "requirements": {
    "host": [
     "python",
-    "pip"
+    "pip",
+    "hatch"
    ],
    "run": [
     "python >=3.9",
@@ -196,8 +199,8 @@
    ]
   },
   "source": {
-   "sha256": "be44959e792278a071501c1cb7eff55b75c9e776d6d6edcee7d88fcc9ed64fd9",
-   "url": "https://github.com/schuetzgroup/sdt-python/releases/download/18.3/sdt-python-18.3.tar.gz"
+   "sha256": "fdc48ae4f34b77f509d5952eeb3300d289697349d784edc05af397fd2bd53898",
+   "url": "https://github.com/schuetzgroup/sdt-python/releases/download/19.0.0/sdt_python-19.0.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -248,10 +251,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/sdt-python.json"
  },
- "raw_meta_yaml": "# SPDX-FileCopyrightText: 2020 Lukas Schrangl <lukas.schrangl@tuwien.ac.at>\n#\n# SPDX-License-Identifier: BSD-3-Clause\n\n{% set name = \"sdt-python\" %}\n{% set version = \"18.3\" %}\n{% set hash = \"be44959e792278a071501c1cb7eff55b75c9e776d6d6edcee7d88fcc9ed64fd9\" %}\n\npackage:\n    name: {{ name }}\n    version: {{ version }}\n\nsource:\n    url: https://github.com/schuetzgroup/{{ name }}/releases/download/{{ version }}/{{ name }}-{{ version }}.tar.gz\n    sha256: {{ hash }}\n\nbuild:\n    number: 0\n    script: \"{{ PYTHON }} -m pip install . --no-deps -vv\"\n    noarch: python\n\nrequirements:\n    host:\n        - python\n        - pip\n    run:\n        - python >=3.9\n        - numpy >=1.10\n        - pandas\n        - pytables\n        - opencv\n        - pyyaml\n        - imageio >=2.29\n        - numba\n        - pyqt\n        - matplotlib-base\n        - scipy >0.18\n        - tifffile >=2022.2.2\n        - lazy_loader\n\ntest:\n    requires:\n        - python\n        - pytest\n        - trackpy\n        - lmfit\n        - scikit-learn\n        - pims\n        - pywavelets >=0.3.0\n    commands:\n        - pytest -v --ignore=tests/test_gui/ tests  # ignore GUI tests since they segfault on Linux\n    source_files:\n        - tests\n    imports:\n        - sdt\n        - sdt.brightness\n        - sdt.changepoint\n        - sdt.flatfield\n        - sdt.fret\n        - sdt.helper\n        - sdt.image\n        - sdt.io\n        - sdt.loc\n        - sdt.motion\n        - sdt.multicolor\n        - sdt.optimize\n        - sdt.roi\n        - sdt.sim\n        - sdt.spatial\n\nabout:\n    home: https://github.com/schuetzgroup/sdt-python\n    license: BSD-3-Clause\n    license_file:\n        - LICENSES/BSD-3-Clause.txt\n        - LICENSES/CC-BY-4.0.txt\n        - LICENSES/CC0-1.0.txt\n        - LICENSES/MIT.txt\n        - sdt/gui/breeze-icons/COPYING-ICONS\n    summary: \"Tools for fluorescence microscopy data analysis\"\n    dev_url: https://github.com/schuetzgroup/sdt-python\n    doc_url: https://schuetzgroup.github.io/sdt-python\n\nextra:\n    recipe-maintainers:\n        - lschr\n",
+ "raw_meta_yaml": "# SPDX-FileCopyrightText: 2020 Lukas Schrangl <lukas.schrangl@tuwien.ac.at>\n#\n# SPDX-License-Identifier: BSD-3-Clause\n\n{% set name = \"sdt-python\" %}\n{% set version = \"19.0.0\" %}\n{% set hash = \"fdc48ae4f34b77f509d5952eeb3300d289697349d784edc05af397fd2bd53898\" %}\n\npackage:\n    name: {{ name }}\n    version: {{ version }}\n\nsource:\n    url: https://github.com/schuetzgroup/{{ name }}/releases/download/{{ version }}/{{ name.replace(\"-\", \"_\") }}-{{ version }}.tar.gz\n    sha256: {{ hash }}\n\nbuild:\n    number: 0\n    script: \"{{ PYTHON }} -m pip install . --no-deps -vv\"\n    noarch: python\n\nrequirements:\n    host:\n        - python\n        - pip\n        - hatch\n    run:\n        - python >=3.9\n        - numpy >=1.10\n        - pandas\n        - pytables\n        - opencv\n        - pyyaml\n        - imageio >=2.29\n        - numba\n        - pyqt\n        - matplotlib-base\n        - scipy >0.18\n        - tifffile >=2022.2.2\n        - lazy_loader\n\ntest:\n    requires:\n        - python\n        - pytest\n        - trackpy\n        - lmfit\n        - scikit-learn\n        - pims\n        - pywavelets >=0.3.0\n    commands:\n        - pytest -v --ignore=tests/test_gui/ tests  # ignore GUI tests since they segfault on Linux\n    source_files:\n        - tests\n    imports:\n        - sdt\n        - sdt.brightness\n        - sdt.changepoint\n        - sdt.flatfield\n        - sdt.fret\n        - sdt.helper\n        - sdt.image\n        - sdt.io\n        - sdt.loc\n        - sdt.motion\n        - sdt.multicolor\n        - sdt.optimize\n        - sdt.roi\n        - sdt.sim\n        - sdt.spatial\n\nabout:\n    home: https://github.com/schuetzgroup/sdt-python\n    license: BSD-3-Clause\n    license_file:\n        - LICENSES/BSD-3-Clause.txt\n        - LICENSES/CC-BY-4.0.txt\n        - LICENSES/CC0-1.0.txt\n        - LICENSES/MIT.txt\n        - sdt/gui/breeze-icons/COPYING-ICONS\n    summary: \"Tools for fluorescence microscopy data analysis\"\n    dev_url: https://github.com/schuetzgroup/sdt-python\n    doc_url: https://schuetzgroup.github.io/sdt-python\n\nextra:\n    recipe-maintainers:\n        - lschr\n",
  "req": {
   "__set__": true,
   "elements": [
+   "hatch",
    "imageio",
    "lazy_loader",
    "matplotlib-base",
@@ -276,6 +280,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch",
     "pip",
     "python"
    ]
@@ -320,6 +325,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch",
     "pip",
     "python"
    ]
@@ -355,8 +361,8 @@
    ]
   }
  },
- "url": "https://github.com/schuetzgroup/sdt-python/releases/download/18.3/sdt-python-18.3.tar.gz",
- "version": "18.3",
+ "url": "https://github.com/schuetzgroup/sdt-python/releases/download/19.0.0/sdt_python-19.0.0.tar.gz",
+ "version": "19.0.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/sdt-python.json"
  }
