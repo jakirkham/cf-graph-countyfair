@@ -30,7 +30,7 @@
    "summary": "Fast and Safe Tensor serialization"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "PYTHON -m pip install . -vv",
     "cd safetensors && cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses"
    ],
@@ -85,6 +86,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
@@ -123,7 +125,7 @@
    "summary": "Fast and Safe Tensor serialization"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "PYTHON -m pip install . -vv",
     "cd safetensors && cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
@@ -143,6 +145,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses"
    ],
@@ -178,6 +181,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
@@ -216,7 +220,7 @@
    "summary": "Fast and Safe Tensor serialization"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "PYTHON -m pip install . -vv",
     "cd safetensors && cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
@@ -236,6 +240,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses"
    ],
@@ -271,6 +276,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
@@ -309,7 +315,7 @@
    "summary": "Fast and Safe Tensor serialization"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "PYTHON -m pip install . -vv",
     "cd safetensors && cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
@@ -329,6 +335,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses"
    ],
@@ -340,8 +347,7 @@
     "tomli"
    ],
    "run": [
-    "python",
-    "__osx >=10.9"
+    "python"
    ]
   },
   "source": {
@@ -372,7 +378,7 @@
    "summary": "Fast and Safe Tensor serialization"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "PYTHON -m pip install . -vv",
     "cd safetensors && cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
@@ -392,6 +398,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses"
    ],
@@ -403,8 +410,7 @@
     "tomli"
    ],
    "run": [
-    "python",
-    "__osx >=10.9"
+    "python"
    ]
   },
   "source": {
@@ -428,6 +434,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
@@ -445,7 +452,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "python"
    ]
   },
@@ -467,7 +473,7 @@
    "summary": "Fast and Safe Tensor serialization"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "PYTHON -m pip install . -vv",
     "cd safetensors && cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
@@ -487,6 +493,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses"
    ],
@@ -522,6 +529,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
@@ -567,12 +575,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/safetensors.json"
  },
- "raw_meta_yaml": "{% set name = \"safetensors\" %}\n{% set version = \"0.4.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/safetensors-{{ version }}.tar.gz\n  sha256: 2f85fc50c4e07a21e95c24e07460fe6f7e2859d0ce88092838352b798ce711c2\n\nbuild:\n  number: 0\n  script:\n    # PyPy has weird sysconfigdata name\n    - rm -f $PREFIX/lib/pypy$PY_VER/_sysconfigdata.py  # [build_platform != target_platform and target_platform == \"linux-ppc64le\"]\n    - {{ PYTHON }} -m pip install . -vv\n    - cd safetensors && cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - maturin >=1.0,<2.0                     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('rust') }}\n    - cargo-bundle-licenses\n  host:\n    - python\n    - pip\n    - setuptools-rust\n    - maturin >=1.0,<2.0\n    - tomli\n  run:\n    - python\n    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default(\"10.9\") }}  # [osx and x86_64]\n\ntest:\n  imports:\n    - safetensors\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/huggingface/safetensors\n  summary: Fast and Safe Tensor serialization\n  license: Apache-2.0\n  license_file:\n    - LICENSE\n    - THIRDPARTY.yml\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n    - setu4993\n    - xhochy\n",
+ "raw_meta_yaml": "{% set name = \"safetensors\" %}\n{% set version = \"0.4.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/safetensors-{{ version }}.tar.gz\n  sha256: 2f85fc50c4e07a21e95c24e07460fe6f7e2859d0ce88092838352b798ce711c2\n\nbuild:\n  number: 1\n  script:\n    # PyPy has weird sysconfigdata name\n    - rm -f $PREFIX/lib/pypy$PY_VER/_sysconfigdata.py  # [build_platform != target_platform and target_platform == \"linux-ppc64le\"]\n    - {{ PYTHON }} -m pip install . -vv\n    - cd safetensors && cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - maturin >=1.0,<2.0                     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('rust') }}\n    - cargo-bundle-licenses\n  host:\n    - python\n    - pip\n    - setuptools-rust\n    - maturin >=1.0,<2.0\n    - tomli\n  run:\n    - python\n\ntest:\n  imports:\n    - safetensors\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/huggingface/safetensors\n  summary: Fast and Safe Tensor serialization\n  license: Apache-2.0\n  license_file:\n    - LICENSE\n    - THIRDPARTY.yml\n\nextra:\n  recipe-maintainers:\n    - jan-janssen\n    - setu4993\n    - xhochy\n",
  "req": {
   "__set__": true,
   "elements": [
-   "__osx",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cargo-bundle-licenses",
    "maturin",
    "pip",
@@ -587,6 +595,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
@@ -595,6 +604,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "maturin",
     "pip",
     "python",
@@ -605,8 +615,8 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "python"
    ]
   },
@@ -623,6 +633,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
@@ -640,7 +651,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "__osx >=10.9",
     "python"
    ]
   },
@@ -667,7 +677,7 @@
    "summary": "Fast and Safe Tensor serialization"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "script": [
     "PYTHON -m pip install . -vv",
     "cd safetensors && cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
@@ -687,6 +697,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "rust_compiler_stub",
     "cargo-bundle-licenses"
    ],
@@ -722,6 +733,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cargo-bundle-licenses",
     "rust_compiler_stub"
    ]
