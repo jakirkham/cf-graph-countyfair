@@ -5,6 +5,9 @@
   "bot": {
    "automerge": true
   },
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -15,7 +18,8 @@
   },
   "provider": {
    "win": "azure"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "r-jqr",
  "hash_type": "sha256",
@@ -285,6 +289,103 @@
    "elements": []
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "home": "https://github.com/ropensci/jqr",
+   "license": "MIT",
+   "license_family": "MIT",
+   "license_file": [
+    "/lib/R/share/licenses/MIT",
+    "LICENSE"
+   ],
+   "summary": "Client for 'jq', a 'JSON' processor (<https://stedolan.github.io/jq/>),  written in C. 'jq' allows the following with 'JSON' data: index into, parse,  do calculations, cut up and filter, change key names and values, perform  conditionals and comparisons, and more."
+  },
+  "build": {
+   "number": "1",
+   "rpaths": [
+    "lib/R/lib/",
+    "lib/"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "conda-forge/r"
+   ]
+  },
+  "package": {
+   "name": "r-jqr",
+   "version": "1.3.3"
+  },
+  "requirements": {
+   "build": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "autoconf",
+    "automake",
+    "pkg-config",
+    "make"
+   ],
+   "host": [
+    "r-base",
+    "r-lazyeval",
+    "r-magrittr",
+    "jq"
+   ],
+   "run": [
+    "r-base",
+    "r-lazyeval",
+    "r-magrittr",
+    "jq"
+   ]
+  },
+  "source": {
+   "sha256": "bad81aa15a06a23eb07e34042dd8f00192ff80d01541ac3a587d98d3bd01c8f0",
+   "url": [
+    "https://cran.r-project.org/src/contrib/jqr_1.3.3.tar.gz",
+    "https://cran.r-project.org/src/contrib/Archive/jqr/jqr_1.3.3.tar.gz"
+   ]
+  },
+  "test": {
+   "commands": [
+    "$R -e \"library('jqr')\""
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "autoconf",
+    "automake",
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "make",
+    "pkg-config"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "jq",
+    "r-base",
+    "r-lazyeval",
+    "r-magrittr"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "jq",
+    "r-base",
+    "r-lazyeval",
+    "r-magrittr"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -295,12 +396,13 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/r-jqr.json"
  },
- "raw_meta_yaml": "{% set version = \"1.3.3\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-jqr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/jqr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/jqr/jqr_{{ version }}.tar.gz\n  sha256: bad81aa15a06a23eb07e34042dd8f00192ff80d01541ac3a587d98d3bd01c8f0\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-lazyeval\n    - r-magrittr\n    - jq  # [unix]\n  run:\n    - r-base\n    - r-lazyeval\n    - r-magrittr\n    - jq  # [unix]\n\ntest:\n  commands:\n    - $R -e \"library('jqr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('jqr')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/ropensci/jqr\n  license: MIT\n  summary: \"Client for 'jq', a 'JSON' processor (<https://stedolan.github.io/jq/>),  written in C. 'jq' allows the following with 'JSON' data: index into, parse,  do calculations, cut up and filter, change key names and values, perform  conditionals and comparisons, and more.\"\n  license_family: MIT\n\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: jqr\n# Title: Client for 'jq', a 'JSON' Processor\n# Description: Client for 'jq', a 'JSON' processor (<https://stedolan.github.io/jq/>),  written in C. 'jq' allows the following with 'JSON' data: index into, parse,  do calculations, cut up and filter, change key names and values, perform  conditionals and comparisons, and more.\n# Version: 1.1.0\n# Depends: R (>= 3.1.2)\n# License: MIT + file LICENSE\n# Encoding: UTF-8\n# LazyData: true\n# Authors@R: c(person(\"Rich\", \"FitzJohn\", role = \"aut\", email = \"rich.fitzjohn@gmail.com\"), person(\"Jeroen\", \"Ooms\", role = \"aut\", email = \"jeroen@berkeley.edu\"), person(\"Scott\", \"Chamberlain\", role = c(\"aut\", \"cre\"), email = \"myrmecocystus@gmail.com\"), person(\"Stefan Milton Bache\", role = \"aut\", email = \"stefan@stefanbache.dk\"))\n# VignetteBuilder: knitr\n# URL: https://github.com/ropensci/jqr\n# BugReports: https://github.com/ropensci/jqr/issues\n# SystemRequirements: libjq: jq-devel (rpm) or libjq-dev (deb)\n# Imports: magrittr, lazyeval\n# Suggests: roxygen2 (>= 6.1.0), jsonlite, testthat, knitr, rmarkdown\n# RoxygenNote: 6.1.0\n# NeedsCompilation: yes\n# Packaged: 2018-10-22 21:59:33 UTC; sckott\n# Author: Rich FitzJohn [aut], Jeroen Ooms [aut], Scott Chamberlain [aut, cre], Stefan Milton Bache [aut]\n# Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2018-10-22 22:20:55 UTC\n",
+ "raw_meta_yaml": "{% set version = \"1.3.3\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-jqr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/jqr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/jqr/jqr_{{ version }}.tar.gz\n  sha256: bad81aa15a06a23eb07e34042dd8f00192ff80d01541ac3a587d98d3bd01c8f0\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-magrittr                 # [build_platform != target_platform]\n    - r-lazyeval                 # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-lazyeval\n    - r-magrittr\n    - jq  # [unix]\n  run:\n    - r-base\n    - r-lazyeval\n    - r-magrittr\n    - jq  # [unix]\n\ntest:\n  commands:\n    - $R -e \"library('jqr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('jqr')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/ropensci/jqr\n  license: MIT\n  summary: \"Client for 'jq', a 'JSON' processor (<https://stedolan.github.io/jq/>),  written in C. 'jq' allows the following with 'JSON' data: index into, parse,  do calculations, cut up and filter, change key names and values, perform  conditionals and comparisons, and more.\"\n  license_family: MIT\n\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT\n    - LICENSE\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: jqr\n# Title: Client for 'jq', a 'JSON' Processor\n# Description: Client for 'jq', a 'JSON' processor (<https://stedolan.github.io/jq/>),  written in C. 'jq' allows the following with 'JSON' data: index into, parse,  do calculations, cut up and filter, change key names and values, perform  conditionals and comparisons, and more.\n# Version: 1.1.0\n# Depends: R (>= 3.1.2)\n# License: MIT + file LICENSE\n# Encoding: UTF-8\n# LazyData: true\n# Authors@R: c(person(\"Rich\", \"FitzJohn\", role = \"aut\", email = \"rich.fitzjohn@gmail.com\"), person(\"Jeroen\", \"Ooms\", role = \"aut\", email = \"jeroen@berkeley.edu\"), person(\"Scott\", \"Chamberlain\", role = c(\"aut\", \"cre\"), email = \"myrmecocystus@gmail.com\"), person(\"Stefan Milton Bache\", role = \"aut\", email = \"stefan@stefanbache.dk\"))\n# VignetteBuilder: knitr\n# URL: https://github.com/ropensci/jqr\n# BugReports: https://github.com/ropensci/jqr/issues\n# SystemRequirements: libjq: jq-devel (rpm) or libjq-dev (deb)\n# Imports: magrittr, lazyeval\n# Suggests: roxygen2 (>= 6.1.0), jsonlite, testthat, knitr, rmarkdown\n# RoxygenNote: 6.1.0\n# NeedsCompilation: yes\n# Packaged: 2018-10-22 21:59:33 UTC; sckott\n# Author: Rich FitzJohn [aut], Jeroen Ooms [aut], Scott Chamberlain [aut, cre], Stefan Milton Bache [aut]\n# Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2018-10-22 22:20:55 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -416,6 +518,8 @@
   }
  },
  "url": [
+  "https://cran.r-project.org/src/contrib/jqr_1.3.3.tar.gz",
+  "https://cran.r-project.org/src/contrib/Archive/jqr/jqr_1.3.3.tar.gz",
   "https://cran.r-project.org/src/contrib/jqr_1.3.3.tar.gz",
   "https://cran.r-project.org/src/contrib/Archive/jqr/jqr_1.3.3.tar.gz",
   "https://cran.r-project.org/src/contrib/jqr_1.3.3.tar.gz",

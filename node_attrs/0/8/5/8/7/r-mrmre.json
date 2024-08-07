@@ -21,7 +21,7 @@
  "hash_type": "sha256",
  "linux_64_meta_yaml": {
   "about": {
-   "home": "https://cran.r-project.org/web/packages/mRMRe/index.html",
+   "home": "https://cran.r-project.org/package=mRMRe",
    "license": "Artistic-2.0",
    "license_family": "OTHER",
    "license_file": [
@@ -30,7 +30,7 @@
    "summary": "Computes mutual information matrices from continuous, categorical and survival variables, as well as feature selection with minimum redundancy, maximum relevance (mRMR) and a new ensemble mRMR technique."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -48,7 +48,9 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "make"
    ],
    "host": [
     "r-base",
@@ -62,7 +64,6 @@
    ]
   },
   "source": {
-   "fn": "mRMRe_2.1.2.1.tar.gz",
    "sha256": "d53c392e82a437005b71d0e8b97350d0237608fffafe087700fe7f6770167fd9",
    "url": [
     "https://cran.r-project.org/src/contrib/mRMRe_2.1.2.1.tar.gz",
@@ -80,7 +81,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "make"
    ]
   },
   "host": {
@@ -106,7 +109,7 @@
  },
  "meta_yaml": {
   "about": {
-   "home": "https://cran.r-project.org/web/packages/mRMRe/index.html",
+   "home": "https://cran.r-project.org/package=mRMRe",
    "license": "Artistic-2.0",
    "license_family": "OTHER",
    "license_file": [
@@ -115,8 +118,7 @@
    "summary": "Computes mutual information matrices from continuous, categorical and survival variables, as well as feature selection with minimum redundancy, maximum relevance (mRMR) and a new ensemble mRMR technique."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -134,10 +136,16 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "posix",
+    "make",
     "m2w64_c_compiler_stub",
-    "m2w64_cxx_compiler_stub"
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "filesystem",
+    "sed",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -151,7 +159,6 @@
    ]
   },
   "source": {
-   "fn": "mRMRe_2.1.2.1.tar.gz",
    "sha256": "d53c392e82a437005b71d0e8b97350d0237608fffafe087700fe7f6770167fd9",
    "url": [
     "https://cran.r-project.org/src/contrib/mRMRe_2.1.2.1.tar.gz",
@@ -168,7 +175,7 @@
  "name": "r-mrmre",
  "osx_64_meta_yaml": {
   "about": {
-   "home": "https://cran.r-project.org/web/packages/mRMRe/index.html",
+   "home": "https://cran.r-project.org/package=mRMRe",
    "license": "Artistic-2.0",
    "license_family": "OTHER",
    "license_file": [
@@ -177,7 +184,7 @@
    "summary": "Computes mutual information matrices from continuous, categorical and survival variables, as well as feature selection with minimum redundancy, maximum relevance (mRMR) and a new ensemble mRMR technique."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -195,7 +202,9 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "make"
    ],
    "host": [
     "r-base",
@@ -209,7 +218,6 @@
    ]
   },
   "source": {
-   "fn": "mRMRe_2.1.2.1.tar.gz",
    "sha256": "d53c392e82a437005b71d0e8b97350d0237608fffafe087700fe7f6770167fd9",
    "url": [
     "https://cran.r-project.org/src/contrib/mRMRe_2.1.2.1.tar.gz",
@@ -227,7 +235,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cxx_compiler_stub"
+    "c_stdlib_stub",
+    "cxx_compiler_stub",
+    "make"
    ]
   },
   "host": {
@@ -266,18 +276,24 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-mrmre.json"
  },
- "raw_meta_yaml": "{% set version = \"2.1.2.1\" %}\n\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-mrmre\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: mRMRe_{{ version }}.tar.gz\n  url:\n    - {{ cran_mirror }}/src/contrib/mRMRe_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/mRMRe/mRMRe_{{ version }}.tar.gz\n\n  sha256: d53c392e82a437005b71d0e8b97350d0237608fffafe087700fe7f6770167fd9\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - posix                # [win]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ compiler('c') }}        # [not win]\n    - {{ compiler('cxx') }}      # [not win]\n  host:\n    - r-base\n    - r-igraph\n    - r-survival\n  run:\n    - r-base\n    - r-igraph\n    - r-survival\n\n\ntest:\n  commands:\n    - $R -e \"library('mRMRe')\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('mRMRe')\\\"\"  # [win]\n\nabout:\n  home: https://cran.r-project.org/web/packages/mRMRe/index.html\n  license: Artistic-2.0\n  summary: Computes mutual information matrices from continuous, categorical and survival variables, as well as feature selection with minimum redundancy, maximum relevance (mRMR) and a new ensemble mRMR technique.\n  license_family: OTHER\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/Artistic-2.0\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"2.1.2.1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-mrmre\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/mRMRe_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/mRMRe/mRMRe_{{ version }}.tar.gz\n  sha256: d53c392e82a437005b71d0e8b97350d0237608fffafe087700fe7f6770167fd9\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n    - r-igraph                     # [build_platform != target_platform]\n    - r-survival                   # [build_platform != target_platform]\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ compiler('cxx') }}        # [not win]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-igraph\n    - r-survival\n  run:\n    - r-base\n    - r-igraph\n    - r-survival\n\ntest:\n  commands:\n    - $R -e \"library('mRMRe')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('mRMRe')\\\"\"  # [win]\n\nabout:\n  home: https://cran.r-project.org/package=mRMRe\n  license: Artistic-2.0\n  summary: Computes mutual information matrices from continuous, categorical and survival variables, as well as feature selection with minimum redundancy, maximum relevance (mRMR) and a new ensemble mRMR technique.\n  license_family: OTHER\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/Artistic-2.0\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
+   "coreutils",
    "cxx_compiler_stub",
+   "filesystem",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
-   "posix",
+   "make",
    "r-base",
    "r-igraph",
-   "r-survival"
+   "r-survival",
+   "sed",
+   "zip"
   ]
  },
  "requirements": {
@@ -285,16 +301,23 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
+    "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
-    "posix"
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-igraph",
@@ -305,6 +328,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-igraph",
@@ -322,10 +346,16 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
+    "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
-    "posix"
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -363,7 +393,7 @@
  },
  "win_64_meta_yaml": {
   "about": {
-   "home": "https://cran.r-project.org/web/packages/mRMRe/index.html",
+   "home": "https://cran.r-project.org/package=mRMRe",
    "license": "Artistic-2.0",
    "license_family": "OTHER",
    "license_file": [
@@ -372,8 +402,7 @@
    "summary": "Computes mutual information matrices from continuous, categorical and survival variables, as well as feature selection with minimum redundancy, maximum relevance (mRMR) and a new ensemble mRMR technique."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -390,9 +419,14 @@
   },
   "requirements": {
    "build": [
-    "posix",
     "m2w64_c_compiler_stub",
-    "m2w64_cxx_compiler_stub"
+    "m2w64_c_stdlib_stub",
+    "m2w64_cxx_compiler_stub",
+    "filesystem",
+    "make",
+    "sed",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -406,7 +440,6 @@
    ]
   },
   "source": {
-   "fn": "mRMRe_2.1.2.1.tar.gz",
    "sha256": "d53c392e82a437005b71d0e8b97350d0237608fffafe087700fe7f6770167fd9",
    "url": [
     "https://cran.r-project.org/src/contrib/mRMRe_2.1.2.1.tar.gz",
@@ -423,9 +456,14 @@
   "build": {
    "__set__": true,
    "elements": [
+    "coreutils",
+    "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
-    "posix"
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
