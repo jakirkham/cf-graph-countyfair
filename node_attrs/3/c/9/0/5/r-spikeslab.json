@@ -27,7 +27,7 @@
    "summary": "Spike and slab for prediction and variable selection in linear regression models. Uses a generalized elastic net for variable selection."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -45,6 +45,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -76,6 +77,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -111,8 +113,7 @@
    "summary": "Spike and slab for prediction and variable selection in linear regression models. Uses a generalized elastic net for variable selection."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -130,8 +131,10 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "sed",
     "coreutils",
@@ -145,8 +148,7 @@
    "run": [
     "r-base",
     "r-lars",
-    "r-randomforest",
-    "gcc-libs"
+    "r-randomforest"
    ]
   },
   "source": {
@@ -175,7 +177,7 @@
    "summary": "Spike and slab for prediction and variable selection in linear regression models. Uses a generalized elastic net for variable selection."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -193,6 +195,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ],
    "host": [
@@ -224,6 +227,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "make"
    ]
   },
@@ -263,15 +267,16 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-spikeslab.json"
  },
- "raw_meta_yaml": "{% set version = \"1.1.6\" %}\n\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-spikeslab\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/spikeslab_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/spikeslab/spikeslab_{{ version }}.tar.gz\n  sha256: b34606bead4645ef910c1d00da901df1a59a2e8d948c81871b71b77ef47597ea\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 2\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-lars\n    - r-randomforest\n\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-lars\n    - r-randomforest\n\ntest:\n  commands:\n    - $R -e \"library('spikeslab')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('spikeslab')\\\"\"  # [win]\n\nabout:\n  home: http://web.ccs.miami.edu/~hishwaran http://www.kogalur.com\n\n  license: GPL-3.0-or-later\n  summary: Spike and slab for prediction and variable selection in linear regression models. Uses a generalized elastic net for variable selection.\n\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"1.1.6\" %}\n\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-spikeslab\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/spikeslab_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/spikeslab/spikeslab_{{ version }}.tar.gz\n  sha256: b34606bead4645ef910c1d00da901df1a59a2e8d948c81871b71b77ef47597ea\n\nbuild:\n  number: 3\n\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}          # [not win]\n    - {{ stdlib(\"c\") }}            # [not win]\n    - {{ compiler('m2w64_c') }}    # [win]\n    - {{ stdlib(\"m2w64_c\") }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n\n  host:\n    - r-base\n    - r-lars\n    - r-randomforest\n\n  run:\n    - r-base\n    - r-lars\n    - r-randomforest\n\ntest:\n  commands:\n    - $R -e \"library('spikeslab')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('spikeslab')\\\"\"  # [win]\n\nabout:\n  home: http://web.ccs.miami.edu/~hishwaran http://www.kogalur.com\n\n  license: GPL-3.0-or-later\n  summary: Spike and slab for prediction and variable selection in linear regression models. Uses a generalized elastic net for variable selection.\n\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "make",
    "r-base",
    "r-lars",
@@ -285,9 +290,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -297,6 +304,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-lars",
     "r-randomforest"
@@ -306,7 +314,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "gcc-libs",
+    "c_stdlib_stub",
     "r-base",
     "r-lars",
     "r-randomforest"
@@ -323,9 +331,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -342,7 +352,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-lars",
     "r-randomforest"
@@ -376,8 +385,7 @@
    "summary": "Spike and slab for prediction and variable selection in linear regression models. Uses a generalized elastic net for variable selection."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -395,6 +403,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "filesystem",
     "make",
     "sed",
@@ -408,7 +417,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-lars",
     "r-randomforest"
    ]
@@ -433,6 +441,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "make",
     "sed",
     "zip"
@@ -449,7 +458,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-lars",
     "r-randomforest"
