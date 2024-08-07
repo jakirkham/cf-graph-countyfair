@@ -31,7 +31,7 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "python -m pip install . --no-deps -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -44,7 +44,8 @@
   },
   "requirements": {
    "host": [
-    "python >=3.10"
+    "python >=3.10",
+    "pip"
    ],
    "run": [
     "python >=3.10",
@@ -58,8 +59,8 @@
     "openpyxl",
     "tabulate",
     "svgwrite",
+    "pytexit",
     "typer",
-    "nomkl",
     "__unix"
    ]
   },
@@ -70,7 +71,7 @@
   "test": {
    "commands": [
     "cd tests",
-    "pytest -k \"not test_math_docx\""
+    "pytest"
    ],
    "requires": [
     "pytest",
@@ -90,6 +91,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "pip",
     "python"
    ]
   },
@@ -98,13 +100,13 @@
    "elements": [
     "__unix",
     "docxcompose",
-    "nomkl",
     "numpy",
     "openpyxl",
     "pandas",
     "pandoc",
     "pandoc-crossref",
     "pypandoc",
+    "pytexit",
     "python",
     "python-docx",
     "svgwrite",
@@ -134,7 +136,7 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "python -m pip install . --no-deps -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -147,7 +149,8 @@
   },
   "requirements": {
    "host": [
-    "python >=3.10"
+    "python >=3.10",
+    "pip"
    ],
    "run": [
     "python >=3.10",
@@ -161,8 +164,8 @@
     "openpyxl",
     "tabulate",
     "svgwrite",
+    "pytexit",
     "typer",
-    "nomkl",
     "__unix",
     "__win",
     "pywin32"
@@ -175,7 +178,7 @@
   "test": {
    "commands": [
     "cd tests",
-    "pytest -k \"not test_math_docx\""
+    "pytest"
    ],
    "requires": [
     "pytest",
@@ -202,20 +205,21 @@
  "pr_info": {
   "__lazy_json__": "pr_info/paradoc.json"
  },
- "raw_meta_yaml": "{% set name = \"paradoc\" %}\n{% set version = \"0.3.3\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/Krande/paradoc/archive/v{{ version }}.tar.gz\n  sha256: b82ee4c9bc990e339f3341559dd9bd464efb3cf3c7105af5d8ef35920a0b03d4\n\nbuild:\n  noarch: python\n  number: 0\n  script: python -m pip install . --no-deps -vv\n  entry_points:\n    - paradoc=paradoc.cli_app:app\n\nrequirements:\n  host:\n    - python >=3.10\n  run:\n    - python >=3.10\n    - pandoc 3.1.2\n    - pandoc-crossref 0.3.16\n    - pypandoc 1.12\n    - python-docx\n    - docxcompose\n    - numpy\n    - pandas\n    - openpyxl\n    - tabulate\n    - svgwrite\n    #- pytexit # not yet available on conda-forge\n    - typer\n    - nomkl\n    - __unix  # [unix]\n    - __win   # [win]\n    - pywin32  # [win]\ntest:\n  source_files:\n    - tests\n    - files\n  requires:\n    - pytest\n    - pytest-cov\n  commands:\n    - cd tests\n    - pytest -k \"not test_math_docx\"  # test_math_docx is awaiting pytexit on conda-forge\n\nabout:\n  home: https://github.com/krande/paradoc\n  license: \"GPL-3.0-or-later\"\n  license_family: GPL3\n  license_file: LICENSE\n  summary: \"A Python library for Parametric Documentation\"\n\n\nextra:\n  recipe-maintainers:\n    - Krande\n",
+ "raw_meta_yaml": "{% set name = \"paradoc\" %}\n{% set version = \"0.3.3\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/Krande/paradoc/archive/v{{ version }}.tar.gz\n  sha256: b82ee4c9bc990e339f3341559dd9bd464efb3cf3c7105af5d8ef35920a0b03d4\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  entry_points:\n    - paradoc=paradoc.cli_app:app\n\nrequirements:\n  host:\n    - python >=3.10\n    - pip\n  run:\n    - python >=3.10\n    - pandoc 3.1.2\n    - pandoc-crossref 0.3.16\n    - pypandoc 1.12\n    - python-docx\n    - docxcompose\n    - numpy\n    - pandas\n    - openpyxl\n    - tabulate\n    - svgwrite\n    - pytexit\n    - typer\n    - __unix  # [unix]\n    - __win   # [win]\n    - pywin32  # [win]\ntest:\n  source_files:\n    - tests\n    - files\n  requires:\n    - pytest\n    - pytest-cov\n  commands:\n    - cd tests\n    - pytest\n\nabout:\n  home: https://github.com/krande/paradoc\n  license: \"GPL-3.0-or-later\"\n  license_family: GPL3\n  license_file: LICENSE\n  summary: \"A Python library for Parametric Documentation\"\n\n\nextra:\n  recipe-maintainers:\n    - Krande\n",
  "req": {
   "__set__": true,
   "elements": [
    "__unix",
    "__win",
    "docxcompose",
-   "nomkl",
    "numpy",
    "openpyxl",
    "pandas",
    "pandoc",
    "pandoc-crossref",
+   "pip",
    "pypandoc",
+   "pytexit",
    "python",
    "python-docx",
    "pywin32",
@@ -232,6 +236,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "pip",
     "python"
    ]
   },
@@ -241,13 +246,13 @@
     "__unix",
     "__win",
     "docxcompose",
-    "nomkl",
     "numpy",
     "openpyxl",
     "pandas",
     "pandoc",
     "pandoc-crossref",
     "pypandoc",
+    "pytexit",
     "python",
     "python-docx",
     "pywin32",
@@ -273,6 +278,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "pip",
     "python >=3.10"
    ]
   },
@@ -282,13 +288,13 @@
     "__unix",
     "__win",
     "docxcompose",
-    "nomkl",
     "numpy",
     "openpyxl",
     "pandas",
     "pandoc 3.1.2",
     "pandoc-crossref 0.3.16",
     "pypandoc 1.12",
+    "pytexit",
     "python >=3.10",
     "python-docx",
     "pywin32",
@@ -324,7 +330,7 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "python -m pip install . --no-deps -vv"
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -337,7 +343,8 @@
   },
   "requirements": {
    "host": [
-    "python >=3.10"
+    "python >=3.10",
+    "pip"
    ],
    "run": [
     "python >=3.10",
@@ -351,8 +358,8 @@
     "openpyxl",
     "tabulate",
     "svgwrite",
+    "pytexit",
     "typer",
-    "nomkl",
     "__win",
     "pywin32"
    ]
@@ -364,7 +371,7 @@
   "test": {
    "commands": [
     "cd tests",
-    "pytest -k \"not test_math_docx\""
+    "pytest"
    ],
    "requires": [
     "pytest",
@@ -384,6 +391,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "pip",
     "python"
    ]
   },
@@ -392,13 +400,13 @@
    "elements": [
     "__win",
     "docxcompose",
-    "nomkl",
     "numpy",
     "openpyxl",
     "pandas",
     "pandoc",
     "pandoc-crossref",
     "pypandoc",
+    "pytexit",
     "python",
     "python-docx",
     "pywin32",
