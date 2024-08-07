@@ -25,7 +25,7 @@
    "summary": "MRI Simulation toolkit"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -39,6 +39,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -51,8 +52,7 @@
     "xtensor-python >=0.26.0"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -72,6 +72,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -91,7 +92,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -112,7 +112,7 @@
    "summary": "MRI Simulation toolkit"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -126,6 +126,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -138,8 +139,7 @@
     "xtensor-python >=0.26.0"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -168,7 +168,7 @@
    "summary": "MRI Simulation toolkit"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -182,6 +182,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "make"
    ],
@@ -194,8 +195,7 @@
     "xtensor-python >=0.26.0"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -215,6 +215,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -234,7 +235,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -258,10 +258,11 @@
  "pr_info": {
   "__lazy_json__": "pr_info/sycomore.json"
  },
- "raw_meta_yaml": "{% set name = \"sycomore\" %}\n{% set version = \"2.0.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/lamyj/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: fda71837669d1b3edb27cfdc4d39e6707aa37169358dc3efa3983e0e71e3ba0c\n  patches:\n    - fix_ambiguous_symbol.patch\n\nbuild:\n  number: 0\n  skip: true  # [python_impl == 'pypy']\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - cmake\n    - make  # [unix]\n  host:\n    - pybind11\n    - python\n    - numpy >=1.16\n    - xsimd >=10.0.0\n    - xtensor >=0.24.4\n    - xtensor-python >=0.26.0\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - sycomore\n\nabout:\n  home: https://github.com/lamyj/{{ name|lower }}\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: MRI Simulation toolkit\n\n  description: |\n    Sycomore is an MRI simulation toolkit providing isochroma simulation and\n    Extended Phase Graphs (EPG) (both regular and discrete, including 3D).\n    Sycomore is a Python packge in which all computationnaly-intensive\n    operations are run by a C++ backend, providing a very fast runtime.\n  doc_url: https://{{ name|lower }}.readthedocs.io/\n  dev_url: https://github.com/lamyj/{{ name|lower }}\n\nextra:\n  recipe-maintainers:\n    - lamyj\n",
+ "raw_meta_yaml": "{% set name = \"sycomore\" %}\n{% set version = \"2.0.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/lamyj/{{ name }}/archive/v{{ version }}.tar.gz\n  sha256: fda71837669d1b3edb27cfdc4d39e6707aa37169358dc3efa3983e0e71e3ba0c\n  patches:\n    - fix_ambiguous_symbol.patch\n\nbuild:\n  number: 1\n  skip: true  # [python_impl == 'pypy']\n\nrequirements:\n  build:\n    - {{ compiler('cxx') }}\n    - {{ stdlib(\"c\") }}\n    - cmake\n    - make  # [unix]\n  host:\n    - pybind11\n    - python\n    - numpy >=1.16\n    - xsimd >=10.0.0\n    - xtensor >=0.24.4\n    - xtensor-python >=0.26.0\n  run:\n    - python\n\ntest:\n  imports:\n    - sycomore\n\nabout:\n  home: https://github.com/lamyj/{{ name|lower }}\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: MRI Simulation toolkit\n\n  description: |\n    Sycomore is an MRI simulation toolkit providing isochroma simulation and\n    Extended Phase Graphs (EPG) (both regular and discrete, including 3D).\n    Sycomore is a Python packge in which all computationnaly-intensive\n    operations are run by a C++ backend, providing a very fast runtime.\n  doc_url: https://{{ name|lower }}.readthedocs.io/\n  dev_url: https://github.com/lamyj/{{ name|lower }}\n\nextra:\n  recipe-maintainers:\n    - lamyj\n",
  "req": {
   "__set__": true,
   "elements": [
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
    "make",
@@ -277,6 +278,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -285,6 +287,7 @@
   "host": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "numpy",
     "pybind11",
@@ -297,8 +300,8 @@
   "run": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "numpy",
     "python"
    ]
   },
@@ -312,6 +315,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -331,7 +335,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
@@ -357,7 +360,7 @@
    "summary": "MRI Simulation toolkit"
   },
   "build": {
-   "number": "0"
+   "number": "1"
   },
   "extra": {
    "recipe-maintainers": [
@@ -371,6 +374,7 @@
   "requirements": {
    "build": [
     "cxx_compiler_stub",
+    "c_stdlib_stub",
     "cmake"
    ],
    "host": [
@@ -382,8 +386,7 @@
     "xtensor-python >=0.26.0"
    ],
    "run": [
-    "python",
-    "numpy"
+    "python"
    ]
   },
   "source": {
@@ -403,6 +406,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub"
    ]
@@ -421,7 +425,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "numpy",
     "python"
    ]
   },
