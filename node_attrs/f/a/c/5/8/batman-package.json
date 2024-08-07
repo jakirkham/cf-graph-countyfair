@@ -29,7 +29,7 @@
    "summary": "Fast transit light curve modeling"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -43,7 +43,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "numpy",
@@ -56,6 +57,7 @@
    ]
   },
   "source": {
+   "patches": null,
    "sha256": "bcb88925692ccce0bcf1f8775963971f5cf29848f8498bdc47bf1ae6de0fb08e",
    "url": "https://pypi.io/packages/source/b/batman-package/batman-package-2.4.9.tar.gz"
   },
@@ -69,7 +71,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -104,7 +107,7 @@
    "summary": "Fast transit light curve modeling"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -118,7 +121,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "numpy",
@@ -131,6 +135,7 @@
    ]
   },
   "source": {
+   "patches": null,
    "sha256": "bcb88925692ccce0bcf1f8775963971f5cf29848f8498bdc47bf1ae6de0fb08e",
    "url": "https://pypi.io/packages/source/b/batman-package/batman-package-2.4.9.tar.gz"
   },
@@ -153,7 +158,7 @@
    "summary": "Fast transit light curve modeling"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -167,7 +172,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "numpy",
@@ -180,6 +186,7 @@
    ]
   },
   "source": {
+   "patches": null,
    "sha256": "bcb88925692ccce0bcf1f8775963971f5cf29848f8498bdc47bf1ae6de0fb08e",
    "url": "https://pypi.io/packages/source/b/batman-package/batman-package-2.4.9.tar.gz"
   },
@@ -193,7 +200,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -228,7 +236,7 @@
    "summary": "Fast transit light curve modeling"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -242,7 +250,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "numpy",
@@ -255,6 +264,7 @@
    ]
   },
   "source": {
+   "patches": null,
    "sha256": "bcb88925692ccce0bcf1f8775963971f5cf29848f8498bdc47bf1ae6de0fb08e",
    "url": "https://pypi.io/packages/source/b/batman-package/batman-package-2.4.9.tar.gz"
   },
@@ -268,7 +278,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -307,11 +318,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/batman-package.json"
  },
- "raw_meta_yaml": "{% set name = \"batman-package\" %}\n{% set version = \"2.4.9\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: bcb88925692ccce0bcf1f8775963971f5cf29848f8498bdc47bf1ae6de0fb08e\n\nbuild:\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n  host:\n    - numpy\n    - pip\n    - python\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - batman\n\nabout:\n  home: https://github.com/lkreidberg/batman\n  summary: Fast transit light curve modeling\n  license: GPL-3.0-only\n  license_family: GPL\n  license_file: LICENSE.txt\n  description: |\n    The batman package supports calculation of light curves for any radially\n    symmetric stellar limb darkening law, using a new integration algorithm\n    for models that cannot be quickly calculated analytically.\n  doc_url: https://www.cfa.harvard.edu/~lkreidberg/batman/\n  dev_url: https://github.com/lkreidberg/batman\n\nextra:\n  recipe-maintainers:\n    - mwcraig\n",
+ "raw_meta_yaml": "{% set name = \"batman-package\" %}\n{% set version = \"2.4.9\" %}\n\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: bcb88925692ccce0bcf1f8775963971f5cf29848f8498bdc47bf1ae6de0fb08e\n  patches:\n    # Patch from upstream to avoid distutils to be released in 2.5.0\n    - setup.py.patch  # [py>=312]\n    - openmp.py.patch  # [py>=312]\n\nbuild:\n  number: 2\n  script: {{ PYTHON }} -m pip install . -vv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - numpy                                  # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n  host:\n    - numpy\n    - pip\n    - python\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - batman\n\nabout:\n  home: https://github.com/lkreidberg/batman\n  summary: Fast transit light curve modeling\n  license: GPL-3.0-only\n  license_family: GPL\n  license_file: LICENSE.txt\n  description: |\n    The batman package supports calculation of light curves for any radially\n    symmetric stellar limb darkening law, using a new integration algorithm\n    for models that cannot be quickly calculated analytically.\n  doc_url: https://www.cfa.harvard.edu/~lkreidberg/batman/\n  dev_url: https://github.com/lkreidberg/batman\n\nextra:\n  recipe-maintainers:\n    - mwcraig\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "numpy",
    "pip",
    "python"
@@ -321,13 +333,15 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "numpy",
     "pip",
     "python"
@@ -337,6 +351,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "numpy",
     "python"
    ]
@@ -351,7 +366,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -391,7 +407,7 @@
    "summary": "Fast transit light curve modeling"
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "script": "PYTHON -m pip install . -vv"
   },
   "extra": {
@@ -405,7 +421,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "numpy",
@@ -418,6 +435,7 @@
    ]
   },
   "source": {
+   "patches": null,
    "sha256": "bcb88925692ccce0bcf1f8775963971f5cf29848f8498bdc47bf1ae6de0fb08e",
    "url": "https://pypi.io/packages/source/b/batman-package/batman-package-2.4.9.tar.gz"
   },
@@ -431,7 +449,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
