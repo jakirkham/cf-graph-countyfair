@@ -28,7 +28,7 @@
    "summary": "Tools designed to make it easier for users, particularly beginner/intermediate R users to build ordinary least squares regression models. Includes comprehensive regression output, heteroskedasticity tests, collinearity diagnostics, residual diagnostics, measures of influence, model fit assessment and variable selection procedures."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -47,6 +47,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -89,6 +90,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -136,8 +138,7 @@
    "summary": "Tools designed to make it easier for users, particularly beginner/intermediate R users to build ordinary least squares regression models. Includes comprehensive regression output, heteroskedasticity tests, collinearity diagnostics, residual diagnostics, measures of influence, model fit assessment and variable selection procedures."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -156,9 +157,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -183,8 +186,7 @@
     "r-ggplot2",
     "r-goftest",
     "r-gridextra",
-    "r-nortest",
-    "gcc-libs"
+    "r-nortest"
    ]
   },
   "source": {
@@ -214,7 +216,7 @@
    "summary": "Tools designed to make it easier for users, particularly beginner/intermediate R users to build ordinary least squares regression models. Includes comprehensive regression output, heteroskedasticity tests, collinearity diagnostics, residual diagnostics, measures of influence, model fit assessment and variable selection procedures."
   },
   "build": {
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -233,6 +235,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -275,6 +278,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -325,16 +329,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-olsrr.json"
  },
- "raw_meta_yaml": "{% set version = '0.5.3' %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-olsrr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/olsrr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/olsrr/olsrr_{{ version }}.tar.gz\n  sha256: 1e71ca86b4f6a5b8c3fa448ae9ab39d20393befc776d72d9bffa7af0c1920166\n\nbuild:\n  merge_build_host: True  # [win]\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-car\n    - r-data.table\n    - r-ggplot2\n    - r-goftest\n    - r-gridextra\n    - r-nortest\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp\n    - r-car\n    - r-data.table\n    - r-ggplot2\n    - r-goftest\n    - r-gridextra\n    - r-nortest\n\ntest:\n  commands:\n    - $R -e \"library('olsrr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('olsrr')\\\"\"  # [win]\n\nabout:\n  home: https://olsrr.rsquaredacademy.com/, https://github.com/rsquaredacademy/olsrr\n  license: MIT\n  summary: Tools designed to make it easier for users, particularly beginner/intermediate R users\n    to build ordinary least squares regression models. Includes comprehensive regression\n    output, heteroskedasticity tests, collinearity diagnostics, residual diagnostics,\n    measures of influence, model fit assessment and variable selection procedures.\n  license_family: MIT\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT'\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - comatrion\n\n# Package: olsrr\n# Type: Package\n# Title: Tools for Building OLS Regression Models\n# Version: 0.5.3\n# Authors@R: person(\"Aravind\", \"Hebbali\", email = \"hebbali.aravind@gmail.com\", role = c(\"aut\", \"cre\"))\n# Description: Tools designed to make it easier for users, particularly beginner/intermediate R users to build ordinary least squares regression models. Includes comprehensive regression output, heteroskedasticity tests, collinearity diagnostics, residual diagnostics, measures of influence, model fit assessment and variable selection procedures.\n# Depends: R(>= 3.3)\n# Imports: car, data.table, ggplot2, goftest, graphics, gridExtra, nortest, Rcpp, stats, utils\n# Suggests: covr, descriptr, knitr, rmarkdown, testthat, vdiffr, xplorerr\n# License: MIT + file LICENSE\n# URL: https://olsrr.rsquaredacademy.com/, https://github.com/rsquaredacademy/olsrr\n# BugReports: https://github.com/rsquaredacademy/olsrr/issues\n# Encoding: UTF-8\n# LazyData: true\n# VignetteBuilder: knitr\n# RoxygenNote: 6.1.1\n# LinkingTo: Rcpp\n# NeedsCompilation: yes\n# Packaged: 2020-02-10 11:05:37 UTC; HP\n# Author: Aravind Hebbali [aut, cre]\n# Maintainer: Aravind Hebbali <hebbali.aravind@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2020-02-10 12:00:02 UTC\n",
+ "raw_meta_yaml": "{% set version = '0.5.3' %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-olsrr\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/olsrr_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/olsrr/olsrr_{{ version }}.tar.gz\n  sha256: 1e71ca86b4f6a5b8c3fa448ae9ab39d20393befc776d72d9bffa7af0c1920166\n\nbuild:\n  number: 3\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp\n    - r-car\n    - r-data.table\n    - r-ggplot2\n    - r-goftest\n    - r-gridextra\n    - r-nortest\n  run:\n    - r-base\n    - r-rcpp\n    - r-car\n    - r-data.table\n    - r-ggplot2\n    - r-goftest\n    - r-gridextra\n    - r-nortest\n\ntest:\n  commands:\n    - $R -e \"library('olsrr')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('olsrr')\\\"\"  # [win]\n\nabout:\n  home: https://olsrr.rsquaredacademy.com/, https://github.com/rsquaredacademy/olsrr\n  license: MIT\n  summary: Tools designed to make it easier for users, particularly beginner/intermediate R users\n    to build ordinary least squares regression models. Includes comprehensive regression\n    output, heteroskedasticity tests, collinearity diagnostics, residual diagnostics,\n    measures of influence, model fit assessment and variable selection procedures.\n  license_family: MIT\n  license_file:\n    - '{{ environ[\"PREFIX\"] }}/lib/R/share/licenses/MIT'\n    - LICENSE\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - comatrion\n\n# Package: olsrr\n# Type: Package\n# Title: Tools for Building OLS Regression Models\n# Version: 0.5.3\n# Authors@R: person(\"Aravind\", \"Hebbali\", email = \"hebbali.aravind@gmail.com\", role = c(\"aut\", \"cre\"))\n# Description: Tools designed to make it easier for users, particularly beginner/intermediate R users to build ordinary least squares regression models. Includes comprehensive regression output, heteroskedasticity tests, collinearity diagnostics, residual diagnostics, measures of influence, model fit assessment and variable selection procedures.\n# Depends: R(>= 3.3)\n# Imports: car, data.table, ggplot2, goftest, graphics, gridExtra, nortest, Rcpp, stats, utils\n# Suggests: covr, descriptr, knitr, rmarkdown, testthat, vdiffr, xplorerr\n# License: MIT + file LICENSE\n# URL: https://olsrr.rsquaredacademy.com/, https://github.com/rsquaredacademy/olsrr\n# BugReports: https://github.com/rsquaredacademy/olsrr/issues\n# Encoding: UTF-8\n# LazyData: true\n# VignetteBuilder: knitr\n# RoxygenNote: 6.1.1\n# LinkingTo: Rcpp\n# NeedsCompilation: yes\n# Packaged: 2020-02-10 11:05:37 UTC; HP\n# Author: Aravind Hebbali [aut, cre]\n# Maintainer: Aravind Hebbali <hebbali.aravind@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2020-02-10 12:00:02 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -354,10 +359,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -368,6 +375,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-car",
@@ -383,8 +391,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-car",
     "r-data.table",
@@ -406,10 +414,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -432,7 +442,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-car",
     "r-data.table",
@@ -472,8 +481,7 @@
    "summary": "Tools designed to make it easier for users, particularly beginner/intermediate R users to build ordinary least squares regression models. Includes comprehensive regression output, heteroskedasticity tests, collinearity diagnostics, residual diagnostics, measures of influence, model fit assessment and variable selection procedures."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -492,6 +500,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -511,7 +520,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp",
     "r-car",
     "r-data.table",
@@ -541,6 +549,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -563,7 +572,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-car",
     "r-data.table",
