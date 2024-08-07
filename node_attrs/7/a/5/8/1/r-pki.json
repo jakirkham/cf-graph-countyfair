@@ -34,7 +34,7 @@
    "summary": "PKI functions such as verifying certificates, RSA encription and signing which can be used to build PKI infrastructure and perform cryptographic tasks."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -133,8 +133,7 @@
    "summary": "PKI functions such as verifying certificates, RSA encription and signing which can be used to build PKI infrastructure and perform cryptographic tasks."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -174,7 +173,6 @@
    "run": [
     "r-base",
     "r-base64enc",
-    "gcc-libs",
     "openssl"
    ]
   },
@@ -232,6 +230,18 @@
     "folder": "src/win32",
     "sha256": "ecd0c6ffb493dd06707d38b14bb4d8c2288bb7033735606569d8f90f89669d16",
     "url": "https://www.openssl.org/source/openssl-1.0.2u.tar.gz"
+   },
+   {
+    "sha256": "c024e81977b978b705460df96639e3369420bd7e8f4f3242ec796255dc1b7966",
+    "url": [
+     "https://cran.r-project.org/src/contrib/PKI_0.1-14.tar.gz",
+     "https://cran.r-project.org/src/contrib/Archive/PKI/PKI_0.1-14.tar.gz"
+    ]
+   },
+   {
+    "folder": "src/win32",
+    "sha256": "ecd0c6ffb493dd06707d38b14bb4d8c2288bb7033735606569d8f90f89669d16",
+    "url": "https://www.openssl.org/source/openssl-1.0.2u.tar.gz"
    }
   ],
   "test": {
@@ -253,7 +263,7 @@
    "summary": "PKI functions such as verifying certificates, RSA encription and signing which can be used to build PKI infrastructure and perform cryptographic tasks."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -352,7 +362,7 @@
    "summary": "PKI functions such as verifying certificates, RSA encription and signing which can be used to build PKI infrastructure and perform cryptographic tasks."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -456,7 +466,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-pki.json"
  },
- "raw_meta_yaml": "{% set version = \"0.1-14\" %}\n\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-pki\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  - url:\n      - {{ cran_mirror }}/src/contrib/PKI_{{ version }}.tar.gz\n      - {{ cran_mirror }}/src/contrib/Archive/PKI/PKI_{{ version }}.tar.gz\n    sha256: c024e81977b978b705460df96639e3369420bd7e8f4f3242ec796255dc1b7966\n  - url: https://www.openssl.org/source/openssl-1.0.2u.tar.gz  # [win]\n    sha256: ecd0c6ffb493dd06707d38b14bb4d8c2288bb7033735606569d8f90f89669d16  # [win]\n    folder: src/win32  # [win]\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-base64enc                # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n\n  host:\n    - r-base\n    - r-base64enc\n    - {{ native }}openssl\n\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-base64enc\n    - {{ native }}openssl          # [win]\n\ntest:\n  commands:\n    - $R -e \"library('PKI')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('PKI')\\\"\"  # [win]\n\nabout:\n  home: http://www.rforge.net/PKI\n  license: GPL-2.0-or-later\n  summary: PKI functions such as verifying certificates, RSA encription and signing which can be used to build PKI infrastructure and perform cryptographic tasks.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"0.1-14\" %}\n\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-pki\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  - url:\n      - {{ cran_mirror }}/src/contrib/PKI_{{ version }}.tar.gz\n      - {{ cran_mirror }}/src/contrib/Archive/PKI/PKI_{{ version }}.tar.gz\n    sha256: c024e81977b978b705460df96639e3369420bd7e8f4f3242ec796255dc1b7966\n  - url: https://www.openssl.org/source/openssl-1.0.2u.tar.gz  # [win]\n    sha256: ecd0c6ffb493dd06707d38b14bb4d8c2288bb7033735606569d8f90f89669d16  # [win]\n    folder: src/win32  # [win]\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - cross-r-base {{ r_base }}  # [build_platform != target_platform]\n    - r-base64enc                # [build_platform != target_platform]\n    - {{ compiler('c') }}        # [not win]\n    - {{ stdlib(\"c\") }}          # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n\n  host:\n    - r-base\n    - r-base64enc\n    - openssl\n\n  run:\n    - r-base\n    - r-base64enc\n    - openssl          # [win]\n\ntest:\n  commands:\n    - $R -e \"library('PKI')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('PKI')\\\"\"  # [win]\n\nabout:\n  home: http://www.rforge.net/PKI\n  license: GPL-2.0-or-later\n  summary: PKI functions such as verifying certificates, RSA encription and signing which can be used to build PKI infrastructure and perform cryptographic tasks.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -467,7 +477,6 @@
    "c_stdlib_stub",
    "coreutils",
    "filesystem",
-   "gcc-libs",
    "grep",
    "m2w64_c_compiler_stub",
    "m2w64_c_stdlib_stub",
@@ -515,7 +524,6 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "gcc-libs",
     "openssl",
     "r-base",
     "r-base64enc"
@@ -558,7 +566,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "openssl",
     "r-base",
     "r-base64enc"
@@ -588,8 +595,7 @@
    "summary": "PKI functions such as verifying certificates, RSA encription and signing which can be used to build PKI infrastructure and perform cryptographic tasks."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -625,12 +631,23 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-base64enc",
     "openssl"
    ]
   },
   "source": [
+   {
+    "sha256": "c024e81977b978b705460df96639e3369420bd7e8f4f3242ec796255dc1b7966",
+    "url": [
+     "https://cran.r-project.org/src/contrib/PKI_0.1-14.tar.gz",
+     "https://cran.r-project.org/src/contrib/Archive/PKI/PKI_0.1-14.tar.gz"
+    ]
+   },
+   {
+    "folder": "src/win32",
+    "sha256": "ecd0c6ffb493dd06707d38b14bb4d8c2288bb7033735606569d8f90f89669d16",
+    "url": "https://www.openssl.org/source/openssl-1.0.2u.tar.gz"
+   },
    {
     "sha256": "c024e81977b978b705460df96639e3369420bd7e8f4f3242ec796255dc1b7966",
     "url": [
@@ -678,7 +695,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "openssl",
     "r-base",
     "r-base64enc"
