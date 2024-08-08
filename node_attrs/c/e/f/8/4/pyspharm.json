@@ -21,7 +21,7 @@
    "summary": "Provides an object-oriented python interface to the NCAR SPHEREPACK library"
   },
   "build": {
-   "number": "1008"
+   "number": "1009"
   },
   "extra": {
    "recipe-maintainers": [
@@ -36,7 +36,8 @@
   "requirements": {
    "build": [
     "fortran_compiler_stub",
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -48,8 +49,8 @@
    ]
   },
   "source": {
-   "sha256": "726e8884aa598c4e3ee959cd3ca64d4748818ff277b41d48523cd6d70882ceb9",
-   "url": "https://github.com/jswhit/pyspharm/archive/b913aac7a25495caaa253ab4570f50a398e5639c.tar.gz"
+   "sha256": "06baee3b5ce9c6bd262da624dedf4769e9e67583ca655960d50abbc7969add81",
+   "url": "https://github.com/jswhit/pyspharm/archive/e1e9cfef0c9144bad0f480e07926f454bca85a8a.tar.gz"
   },
   "test": {
    "imports": [
@@ -62,6 +63,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -92,7 +94,7 @@
    "summary": "Provides an object-oriented python interface to the NCAR SPHEREPACK library"
   },
   "build": {
-   "number": "1008"
+   "number": "1009"
   },
   "extra": {
    "recipe-maintainers": [
@@ -107,7 +109,8 @@
   "requirements": {
    "build": [
     "fortran_compiler_stub",
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -119,8 +122,8 @@
    ]
   },
   "source": {
-   "sha256": "726e8884aa598c4e3ee959cd3ca64d4748818ff277b41d48523cd6d70882ceb9",
-   "url": "https://github.com/jswhit/pyspharm/archive/b913aac7a25495caaa253ab4570f50a398e5639c.tar.gz"
+   "sha256": "06baee3b5ce9c6bd262da624dedf4769e9e67583ca655960d50abbc7969add81",
+   "url": "https://github.com/jswhit/pyspharm/archive/e1e9cfef0c9144bad0f480e07926f454bca85a8a.tar.gz"
   },
   "test": {
    "imports": [
@@ -137,7 +140,7 @@
    "summary": "Provides an object-oriented python interface to the NCAR SPHEREPACK library"
   },
   "build": {
-   "number": "1008"
+   "number": "1009"
   },
   "extra": {
    "recipe-maintainers": [
@@ -152,7 +155,8 @@
   "requirements": {
    "build": [
     "fortran_compiler_stub",
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "python",
@@ -164,8 +168,8 @@
    ]
   },
   "source": {
-   "sha256": "726e8884aa598c4e3ee959cd3ca64d4748818ff277b41d48523cd6d70882ceb9",
-   "url": "https://github.com/jswhit/pyspharm/archive/b913aac7a25495caaa253ab4570f50a398e5639c.tar.gz"
+   "sha256": "06baee3b5ce9c6bd262da624dedf4769e9e67583ca655960d50abbc7969add81",
+   "url": "https://github.com/jswhit/pyspharm/archive/e1e9cfef0c9144bad0f480e07926f454bca85a8a.tar.gz"
   },
   "test": {
    "imports": [
@@ -178,6 +182,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -214,11 +219,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyspharm.json"
  },
- "raw_meta_yaml": "{% set version = \"1.0.9\" %}\n{% set commit = \"b913aac7a25495caaa253ab4570f50a398e5639c\" %}\n\npackage:\n  name: pyspharm\n  version: {{ version }}\n\nsource:\n  url: https://github.com/jswhit/pyspharm/archive/{{ commit }}.tar.gz\n  sha256: 726e8884aa598c4e3ee959cd3ca64d4748818ff277b41d48523cd6d70882ceb9\n\nbuild:\n  number: 1008\n  skip: True  # [win and py3k or win64]\n\nrequirements:\n  build:\n    - {{ compiler('fortran') }}        # [unix]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ compiler('c') }}        # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n  host:\n    - python\n    - numpy\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - spharm\n\nabout:\n  home: https://github.com/jswhit/pyspharm\n  license: spherepack\n  license_file: LICENSE.spherepack\n  summary: 'Provides an object-oriented python interface to the NCAR SPHEREPACK library'\n\nextra:\n  recipe-maintainers:\n    - ajdawson\n    - ocefpaf\n",
+ "raw_meta_yaml": "{% set version = \"1.0.9\" %}\n{% set commit = \"e1e9cfef0c9144bad0f480e07926f454bca85a8a\" %}\n\npackage:\n  name: pyspharm\n  version: {{ version }}\n\nsource:\n  url: https://github.com/jswhit/pyspharm/archive/{{ commit }}.tar.gz\n  sha256: 06baee3b5ce9c6bd262da624dedf4769e9e67583ca655960d50abbc7969add81\n\nbuild:\n  number: 1009\n  skip: True  # [win and py3k or win64 or py>=312]\n\nrequirements:\n  build:\n    - {{ compiler('fortran') }}  # [not win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - {{ compiler('c') }}  # [not win]\n    - {{ stdlib('c') }}  # [not win]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ stdlib('m2w64_c') }}  # [win]\n  host:\n    - python\n    - numpy\n  run:\n    - python\n    - {{ pin_compatible('numpy') }}\n\ntest:\n  imports:\n    - spharm\n\nabout:\n  home: https://github.com/jswhit/pyspharm\n  license: spherepack\n  license_file: LICENSE.spherepack\n  summary: 'Provides an object-oriented python interface to the NCAR SPHEREPACK library'\n\nextra:\n  recipe-maintainers:\n    - ajdawson\n    - ocefpaf\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "fortran_compiler_stub",
    "numpy",
    "python"
@@ -229,6 +235,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -236,6 +243,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "numpy",
     "python"
@@ -245,6 +253,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "numpy",
     "python"
@@ -261,6 +270,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub"
    ]
   },
@@ -283,7 +293,7 @@
    "elements": []
   }
  },
- "url": "https://github.com/jswhit/pyspharm/archive/b913aac7a25495caaa253ab4570f50a398e5639c.tar.gz",
+ "url": "https://github.com/jswhit/pyspharm/archive/e1e9cfef0c9144bad0f480e07926f454bca85a8a.tar.gz",
  "version": "1.0.9",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pyspharm.json"
