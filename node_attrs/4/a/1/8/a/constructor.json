@@ -34,7 +34,10 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv",
+   "script_env": [
+    "SETUPTOOLS_SCM_PRETEND_VERSION=3.9.2"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -48,12 +51,14 @@
   },
   "package": {
    "name": "constructor",
-   "version": "3.8.1"
+   "version": "3.9.2"
   },
   "requirements": {
    "host": [
     "python >=3.8",
-    "pip"
+    "pip",
+    "setuptools >=70.1",
+    "setuptools-scm >=6.2"
    ],
    "run": [
     "__unix",
@@ -69,8 +74,8 @@
    ]
   },
   "source": {
-   "sha256": "df3bfb0f26d256ac3c10ec30f1e95c13a8f12f58ecaedcb622dea2f860d26f20",
-   "url": "https://github.com/conda/constructor/archive/3.8.1.tar.gz"
+   "sha256": "0ea4f6d563a53ebb03475dc6d2d88d3ab01be4e9d291fd276c79315aa92e5114",
+   "url": "https://github.com/conda/constructor/archive/3.9.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -102,7 +107,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "setuptools-scm"
    ]
   },
   "run": {
@@ -142,7 +149,10 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv",
+   "script_env": [
+    "SETUPTOOLS_SCM_PRETEND_VERSION=3.9.2"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -156,12 +166,14 @@
   },
   "package": {
    "name": "constructor",
-   "version": "3.8.1"
+   "version": "3.9.2"
   },
   "requirements": {
    "host": [
     "python >=3.8",
-    "pip"
+    "pip",
+    "setuptools >=70.1",
+    "setuptools-scm >=6.2"
    ],
    "run": [
     "__unix",
@@ -179,8 +191,8 @@
    ]
   },
   "source": {
-   "sha256": "df3bfb0f26d256ac3c10ec30f1e95c13a8f12f58ecaedcb622dea2f860d26f20",
-   "url": "https://github.com/conda/constructor/archive/3.8.1.tar.gz"
+   "sha256": "0ea4f6d563a53ebb03475dc6d2d88d3ab01be4e9d291fd276c79315aa92e5114",
+   "url": "https://github.com/conda/constructor/archive/3.9.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -219,7 +231,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/constructor.json"
  },
- "raw_meta_yaml": "{% set version = \"3.8.1\" %}\n\npackage:\n  name: constructor\n  version: {{ version }}\n\nsource:\n  url: https://github.com/conda/constructor/archive/{{ version }}.tar.gz\n  sha256: df3bfb0f26d256ac3c10ec30f1e95c13a8f12f58ecaedcb622dea2f860d26f20\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n  entry_points:\n    - constructor = constructor.main:main\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n  run:\n    - __{{ target_os }}\n    # see for the upper conda version constrain https://github.com/conda/constructor/issues/628\n    - conda >=4.6\n    - python >=3.8\n    - ruamel.yaml >=0.11.14,<0.19\n    - conda-standalone\n    - pillow >=3.1\n    - jinja2\n    - nsis >=3.08      # [win]\n  run_constrained:   # [unix]\n    - nsis >=3.08      # [unix]\n\ntest:\n  files:\n    - test_win.bat\n  source_files:\n    - tests\n    # - scripts\n    # - examples\n  requires:\n    - pip\n    - pytest\n    - nsis * *log*  # [win]\n  commands:\n    - pip check\n    - pytest -v tests -k \"not examples\"\n    # Skip for linux-aarch64 because examples use \"main\" channel which has no builds for that platform.\n    # - set \"NSIS_USING_LOG_BUILD=1\"  # [win]\n    # - pytest -v tests/test_examples.py  # [unix and not aarch64]\n    # - test_win.bat  # [win]\n    - constructor -V\n  imports:\n    - constructor\n\nabout:\n  home: http://github.com/conda/constructor\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE.txt\n  summary: create installer from conda packages\n  description: |\n    Constructor is a tool for constructing an installer for a collection of\n    conda packages. It creates an Anaconda-like installer consisting of\n    packages.\n  doc_url: https://conda.io/projects/conda/en/latest/\n  dev_url: https://github.com/conda/constructor\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - jaimergp\n    - jakirkham\n    - jschueller\n    - mbargull\n    - msarahan\n",
+ "raw_meta_yaml": "{% set version = \"3.9.2\" %}\n\npackage:\n  name: constructor\n  version: {{ version }}\n\nsource:\n  url: https://github.com/conda/constructor/archive/{{ version }}.tar.gz\n  sha256: 0ea4f6d563a53ebb03475dc6d2d88d3ab01be4e9d291fd276c79315aa92e5114\n\nbuild:\n  noarch: python\n  number: 0\n  script: {{ PYTHON }} -m pip install . -vv\n  entry_points:\n    - constructor = constructor.main:main\n  script_env:\n    - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n    - setuptools >=70.1\n    - setuptools-scm >=6.2\n  run:\n    - __{{ target_os }}\n    # see for the upper conda version constrain https://github.com/conda/constructor/issues/628\n    - conda >=4.6\n    - python >=3.8\n    - ruamel.yaml >=0.11.14,<0.19\n    - conda-standalone\n    - pillow >=3.1\n    - jinja2\n    - nsis >=3.08      # [win]\n  run_constrained:   # [unix]\n    - nsis >=3.08      # [unix]\n\ntest:\n  files:\n    - test_win.bat\n  source_files:\n    - tests\n    # - scripts\n    # - examples\n  requires:\n    - pip\n    - pytest\n    - nsis * *log*  # [win]\n  commands:\n    - pip check\n    - pytest -v tests -k \"not examples\"\n    # Skip for linux-aarch64 because examples use \"main\" channel which has no builds for that platform.\n    # - set \"NSIS_USING_LOG_BUILD=1\"  # [win]\n    # - pytest -v tests/test_examples.py  # [unix and not aarch64]\n    # - test_win.bat  # [win]\n    - constructor -V\n  imports:\n    - constructor\n\nabout:\n  home: http://github.com/conda/constructor\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE.txt\n  summary: create installer from conda packages\n  description: |\n    Constructor is a tool for constructing an installer for a collection of\n    conda packages. It creates an Anaconda-like installer consisting of\n    packages.\n  doc_url: https://conda.io/projects/conda/en/latest/\n  dev_url: https://github.com/conda/constructor\n\nextra:\n  recipe-maintainers:\n    - isuruf\n    - jaimergp\n    - jakirkham\n    - jschueller\n    - mbargull\n    - msarahan\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -232,7 +244,9 @@
    "pillow",
    "pip",
    "python",
-   "ruamel.yaml"
+   "ruamel.yaml",
+   "setuptools",
+   "setuptools-scm"
   ]
  },
  "requirements": {
@@ -244,7 +258,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "setuptools-scm"
    ]
   },
   "run": {
@@ -280,7 +296,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python >=3.8"
+    "python >=3.8",
+    "setuptools >=70.1",
+    "setuptools-scm >=6.2"
    ]
   },
   "run": {
@@ -306,8 +324,8 @@
    ]
   }
  },
- "url": "https://github.com/conda/constructor/archive/3.8.1.tar.gz",
- "version": "3.8.1",
+ "url": "https://github.com/conda/constructor/archive/3.9.2.tar.gz",
+ "version": "3.9.2",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/constructor.json"
  },
@@ -328,7 +346,10 @@
    ],
    "noarch": "python",
    "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "script": "PYTHON -m pip install . -vv",
+   "script_env": [
+    "SETUPTOOLS_SCM_PRETEND_VERSION=3.9.2"
+   ]
   },
   "extra": {
    "recipe-maintainers": [
@@ -342,12 +363,14 @@
   },
   "package": {
    "name": "constructor",
-   "version": "3.8.1"
+   "version": "3.9.2"
   },
   "requirements": {
    "host": [
     "python >=3.8",
-    "pip"
+    "pip",
+    "setuptools >=70.1",
+    "setuptools-scm >=6.2"
    ],
    "run": [
     "__win",
@@ -361,8 +384,8 @@
    ]
   },
   "source": {
-   "sha256": "df3bfb0f26d256ac3c10ec30f1e95c13a8f12f58ecaedcb622dea2f860d26f20",
-   "url": "https://github.com/conda/constructor/archive/3.8.1.tar.gz"
+   "sha256": "0ea4f6d563a53ebb03475dc6d2d88d3ab01be4e9d291fd276c79315aa92e5114",
+   "url": "https://github.com/conda/constructor/archive/3.9.2.tar.gz"
   },
   "test": {
    "commands": [
@@ -395,7 +418,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "setuptools-scm"
    ]
   },
   "run": {
