@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "pygal",
  "hash_type": "sha256",
@@ -34,6 +38,7 @@
    "version": "3.0.4"
   },
   "requirements": {
+   "build": [],
    "host": [
     "python",
     "pytest-runner",
@@ -110,6 +115,7 @@
    "version": "3.0.4"
   },
   "requirements": {
+   "build": [],
    "host": [
     "python",
     "pytest-runner",
@@ -159,6 +165,7 @@
    "version": "3.0.4"
   },
   "requirements": {
+   "build": [],
    "host": [
     "python",
     "pytest-runner",
@@ -214,6 +221,83 @@
    ]
   }
  },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "home": "https://www.pygal.org/",
+   "license": "LGPL-3.0",
+   "license_file": "COPYING",
+   "summary": "A Python svg graph plotting library"
+  },
+  "build": {
+   "number": "0",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "Matt-BF"
+   ]
+  },
+  "package": {
+   "name": "pygal",
+   "version": "3.0.4"
+  },
+  "requirements": {
+   "build": [],
+   "host": [
+    "python",
+    "pytest-runner",
+    "pip"
+   ],
+   "run": [
+    "python",
+    "importlib_metadata",
+    "lxml"
+   ]
+  },
+  "source": {
+   "sha256": "6c5da33f1041e8b30cbc980f8a34910d9edc584b833240298f6a25df65425289",
+   "url": "https://pypi.io/packages/source/p/pygal/pygal-3.0.4.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "pygal"
+   ],
+   "requires": [
+    "pip"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": []
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "pip",
+    "pytest-runner",
+    "python"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "importlib_metadata",
+    "lxml",
+    "python"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": [
+    "pip"
+   ]
+  }
+ },
  "outputs_names": {
   "__set__": true,
   "elements": [
@@ -224,12 +308,13 @@
  "platforms": [
   "linux_64",
   "osx_64",
+  "osx_arm64",
   "win_64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/pygal.json"
  },
- "raw_meta_yaml": "{% set name = \"pygal\" %}\n{% set version = \"3.0.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pygal-{{ version }}.tar.gz\n  sha256: 6c5da33f1041e8b30cbc980f8a34910d9edc584b833240298f6a25df65425289\n\nbuild:\n  skip: true  # [py2k]\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  host:\n    - python\n    - pytest-runner\n    - pip\n  run:\n    - python\n    - importlib_metadata\n    - lxml\n\ntest:\n  imports:\n    - pygal\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://www.pygal.org/\n  summary: A Python svg graph plotting library\n  license: LGPL-3.0\n  license_file: COPYING\n\nextra:\n  recipe-maintainers:\n    - Matt-BF\n",
+ "raw_meta_yaml": "{% set name = \"pygal\" %}\n{% set version = \"3.0.4\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pygal-{{ version }}.tar.gz\n  sha256: 6c5da33f1041e8b30cbc980f8a34910d9edc584b833240298f6a25df65425289\n\nbuild:\n  skip: true  # [py2k]\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 0\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n  host:\n    - python\n    - pytest-runner\n    - pip\n  run:\n    - python\n    - importlib_metadata\n    - lxml\n\ntest:\n  imports:\n    - pygal\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://www.pygal.org/\n  summary: A Python svg graph plotting library\n  license: LGPL-3.0\n  license_file: COPYING\n\nextra:\n  recipe-maintainers:\n    - Matt-BF\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -323,6 +408,7 @@
    "version": "3.0.4"
   },
   "requirements": {
+   "build": [],
    "host": [
     "python",
     "pytest-runner",
