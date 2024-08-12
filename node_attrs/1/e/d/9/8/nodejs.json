@@ -61,7 +61,7 @@
   },
   "package": {
    "name": "nodejs",
-   "version": "22.5.1"
+   "version": "22.6.0"
   },
   "requirements": {
    "build": [
@@ -93,8 +93,8 @@
     "patches/0002-include-obj-name-in-shared-intermediate.patch",
     "patches/0003-Forward-ceilf-floorf.patch"
    ],
-   "sha256": "4a1b383f6036def4bb183f18e71a10b58784db269f9953618418bbaf47692972",
-   "url": "https://nodejs.org/dist/v22.5.1/node-v22.5.1.tar.gz"
+   "sha256": "af4a8747651385515163db5da0d2e217da15cf7c832672b234128ed5118f086d",
+   "url": "https://nodejs.org/dist/v22.6.0/node-v22.6.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -170,7 +170,7 @@
   },
   "package": {
    "name": "nodejs",
-   "version": "22.5.1"
+   "version": "22.6.0"
   },
   "requirements": {
    "build": [
@@ -202,8 +202,8 @@
     "patches/0002-include-obj-name-in-shared-intermediate.patch",
     "patches/0003-Forward-ceilf-floorf.patch"
    ],
-   "sha256": "4a1b383f6036def4bb183f18e71a10b58784db269f9953618418bbaf47692972",
-   "url": "https://nodejs.org/dist/v22.5.1/node-v22.5.1.tar.gz"
+   "sha256": "af4a8747651385515163db5da0d2e217da15cf7c832672b234128ed5118f086d",
+   "url": "https://nodejs.org/dist/v22.6.0/node-v22.6.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -279,7 +279,7 @@
   },
   "package": {
    "name": "nodejs",
-   "version": "22.5.1"
+   "version": "22.6.0"
   },
   "requirements": {
    "build": [
@@ -307,8 +307,8 @@
   },
   "source": {
    "patches": null,
-   "sha256": "71b74712aa5c6587c428b39d9ec9aa013bfcfa38a2a0ed8e68b3922dda1b69f4",
-   "url": "https://nodejs.org/dist/v22.5.1/node-v22.5.1-win-x64.zip"
+   "sha256": "1fdb0b8e59c98157ba927d51ef7eb050f9459beddc64ebc5a8897b90fd1f46f6",
+   "url": "https://nodejs.org/dist/v22.6.0/node-v22.6.0-win-x64.zip"
   },
   "test": {
    "commands": [
@@ -349,7 +349,7 @@
   },
   "package": {
    "name": "nodejs",
-   "version": "22.5.1"
+   "version": "22.6.0"
   },
   "requirements": {
    "build": [
@@ -380,8 +380,8 @@
     "patches/0002-include-obj-name-in-shared-intermediate.patch",
     "patches/0003-Forward-ceilf-floorf.patch"
    ],
-   "sha256": "4a1b383f6036def4bb183f18e71a10b58784db269f9953618418bbaf47692972",
-   "url": "https://nodejs.org/dist/v22.5.1/node-v22.5.1.tar.gz"
+   "sha256": "af4a8747651385515163db5da0d2e217da15cf7c832672b234128ed5118f086d",
+   "url": "https://nodejs.org/dist/v22.6.0/node-v22.6.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -456,7 +456,7 @@
   },
   "package": {
    "name": "nodejs",
-   "version": "22.5.1"
+   "version": "22.6.0"
   },
   "requirements": {
    "build": [
@@ -487,8 +487,8 @@
     "patches/0002-include-obj-name-in-shared-intermediate.patch",
     "patches/0003-Forward-ceilf-floorf.patch"
    ],
-   "sha256": "4a1b383f6036def4bb183f18e71a10b58784db269f9953618418bbaf47692972",
-   "url": "https://nodejs.org/dist/v22.5.1/node-v22.5.1.tar.gz"
+   "sha256": "af4a8747651385515163db5da0d2e217da15cf7c832672b234128ed5118f086d",
+   "url": "https://nodejs.org/dist/v22.6.0/node-v22.6.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -555,7 +555,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/nodejs.json"
  },
- "raw_meta_yaml": "{% set version = \"22.5.1\" %}\n\n# NODE_MODULE_VERSION set in src/node_version.h\n{% set NODE_MODULE_VERSION = 127 %}\n\npackage:\n  name: nodejs\n  version: {{ version }}\n\nsource:\n  # checksums from https://nodejs.org/dist/vX.Y.Z/SHASUMS256.txt.asc\n  url: https://nodejs.org/dist/v{{ version }}/node-v{{ version }}.tar.gz  # [unix]\n  sha256: 4a1b383f6036def4bb183f18e71a10b58784db269f9953618418bbaf47692972  # [unix]\n  url: https://nodejs.org/dist/v{{ version }}/node-v{{ version }}-win-x64.zip  # [win]\n  sha256: 71b74712aa5c6587c428b39d9ec9aa013bfcfa38a2a0ed8e68b3922dda1b69f4  # [win]\n  patches:\n    - patches/0001-stop-removing-librt.patch  # [not win]\n    - patches/0002-include-obj-name-in-shared-intermediate.patch  # [not win]\n    - patches/0003-Forward-ceilf-floorf.patch  # [not win]\n\nbuild:\n  number: 0\n  # Prefix replacement breaks in the binary embedded configurations.\n  detect_binary_files_with_prefix: false\n  run_exports:\n    - {{ pin_subpackage('nodejs', max_pin='x') }}\n\nrequirements:\n  build:\n    - {{ stdlib('c') }}      # [not win]\n    - {{ compiler('c') }}    # [not win]\n    - {{ compiler('cxx') }}  # [not win]\n    - python 3.8  # [not win]\n    - git  # [linux]\n    - ninja  # [not win]\n    - pkg-config  # [not win]\n\n    # libuv is a bootstrap dependency in js2c\n    # starting with 20.3 (https://github.com/nodejs/node/pull/46997)\n    - libuv\n\n    # need host builds of several lib dependencies\n    # when cross-compiling\n    - icu  # [build_platform != target_platform]\n    - openssl  # [build_platform != target_platform]\n    - zlib  # [build_platform != target_platform]\n  host:\n    - icu  # [not win]\n    - libuv  # [not win]\n    - openssl  # [not win]\n    - zlib  # [not win]\n  run:\n    - icu  # [not win]\n    - libuv  # [not win]\n    - openssl  # [not win]\n    - zlib  # [not win]\n\ntest:\n  commands:\n    - node -h\n    - node -v\n    - npm version\n    - npm install -h\n    - npm config get prefix -g\n    - test $(echo \"console.log(1 + 3)\" | node) == 4  # [not win]\n    - test -f $PREFIX/lib/libnode.{{ NODE_MODULE_VERSION }}.dylib  # [osx]\n    - test -f $PREFIX/lib/libnode.so.{{ NODE_MODULE_VERSION }}  # [linux]\n\nabout:\n  home: https://nodejs.org/\n  license: MIT\n  license_file: LICENSE\n  summary: a platform for easily building fast, scalable network applications\n\nextra:\n  recipe-maintainers:\n    - minrk\n    - msarahan\n    - pelson\n    - blink1073\n    - xhochy\n",
+ "raw_meta_yaml": "{% set version = \"22.6.0\" %}\n\n# NODE_MODULE_VERSION set in src/node_version.h\n{% set NODE_MODULE_VERSION = 127 %}\n\npackage:\n  name: nodejs\n  version: {{ version }}\n\nsource:\n  # checksums from https://nodejs.org/dist/vX.Y.Z/SHASUMS256.txt.asc\n  url: https://nodejs.org/dist/v{{ version }}/node-v{{ version }}.tar.gz  # [unix]\n  sha256: af4a8747651385515163db5da0d2e217da15cf7c832672b234128ed5118f086d  # [unix]\n  url: https://nodejs.org/dist/v{{ version }}/node-v{{ version }}-win-x64.zip  # [win]\n  sha256: 1fdb0b8e59c98157ba927d51ef7eb050f9459beddc64ebc5a8897b90fd1f46f6  # [win]\n  patches:\n    - patches/0001-stop-removing-librt.patch  # [not win]\n    - patches/0002-include-obj-name-in-shared-intermediate.patch  # [not win]\n    - patches/0003-Forward-ceilf-floorf.patch  # [not win]\n\nbuild:\n  number: 0\n  # Prefix replacement breaks in the binary embedded configurations.\n  detect_binary_files_with_prefix: false\n  run_exports:\n    - {{ pin_subpackage('nodejs', max_pin='x') }}\n\nrequirements:\n  build:\n    - {{ stdlib('c') }}      # [not win]\n    - {{ compiler('c') }}    # [not win]\n    - {{ compiler('cxx') }}  # [not win]\n    - python 3.8  # [not win]\n    - git  # [linux]\n    - ninja  # [not win]\n    - pkg-config  # [not win]\n\n    # libuv is a bootstrap dependency in js2c\n    # starting with 20.3 (https://github.com/nodejs/node/pull/46997)\n    - libuv\n\n    # need host builds of several lib dependencies\n    # when cross-compiling\n    - icu  # [build_platform != target_platform]\n    - openssl  # [build_platform != target_platform]\n    - zlib  # [build_platform != target_platform]\n  host:\n    - icu  # [not win]\n    - libuv  # [not win]\n    - openssl  # [not win]\n    - zlib  # [not win]\n  run:\n    - icu  # [not win]\n    - libuv  # [not win]\n    - openssl  # [not win]\n    - zlib  # [not win]\n\ntest:\n  commands:\n    - node -h\n    - node -v\n    - npm version\n    - npm install -h\n    - npm config get prefix -g\n    - test $(echo \"console.log(1 + 3)\" | node) == 4  # [not win]\n    - test -f $PREFIX/lib/libnode.{{ NODE_MODULE_VERSION }}.dylib  # [osx]\n    - test -f $PREFIX/lib/libnode.so.{{ NODE_MODULE_VERSION }}  # [linux]\n\nabout:\n  home: https://nodejs.org/\n  license: MIT\n  license_file: LICENSE\n  summary: a platform for easily building fast, scalable network applications\n\nextra:\n  recipe-maintainers:\n    - minrk\n    - msarahan\n    - pelson\n    - blink1073\n    - xhochy\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -653,8 +653,8 @@
    "elements": []
   }
  },
- "url": "https://nodejs.org/dist/v22.5.1/node-v22.5.1-win-x64.zip",
- "version": "22.5.1",
+ "url": "https://nodejs.org/dist/v22.6.0/node-v22.6.0-win-x64.zip",
+ "version": "22.6.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/nodejs.json"
  },
@@ -683,7 +683,7 @@
   },
   "package": {
    "name": "nodejs",
-   "version": "22.5.1"
+   "version": "22.6.0"
   },
   "requirements": {
    "build": [
@@ -694,8 +694,8 @@
   },
   "source": {
    "patches": null,
-   "sha256": "71b74712aa5c6587c428b39d9ec9aa013bfcfa38a2a0ed8e68b3922dda1b69f4",
-   "url": "https://nodejs.org/dist/v22.5.1/node-v22.5.1-win-x64.zip"
+   "sha256": "1fdb0b8e59c98157ba927d51ef7eb050f9459beddc64ebc5a8897b90fd1f46f6",
+   "url": "https://nodejs.org/dist/v22.6.0/node-v22.6.0-win-x64.zip"
   },
   "test": {
    "commands": [
