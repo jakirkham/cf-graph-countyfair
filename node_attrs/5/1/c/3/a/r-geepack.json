@@ -30,7 +30,7 @@
    "summary": "Generalized estimating equations solver for parameters in mean, scale, and correlation structures, through mean link, scale link, and correlation link. Can also handle clustered categorical responses."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -49,7 +49,8 @@
    "build": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "make"
    ],
    "host": [
     "r-base",
@@ -83,7 +84,8 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "make"
    ]
   },
   "host": {
@@ -120,8 +122,7 @@
    "summary": "Generalized estimating equations solver for parameters in mean, scale, and correlation structures, through mean link, scale link, and correlation link. Can also handle clustered categorical responses."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -141,10 +142,14 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
-    "posix",
+    "make",
     "m2w64_c_compiler_stub",
     "m2w64_c_stdlib_stub",
-    "m2w64_cxx_compiler_stub"
+    "m2w64_cxx_compiler_stub",
+    "filesystem",
+    "sed",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -185,7 +190,7 @@
    "summary": "Generalized estimating equations solver for parameters in mean, scale, and correlation structures, through mean link, scale link, and correlation link. Can also handle clustered categorical responses."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -204,7 +209,8 @@
    "build": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "make"
    ],
    "host": [
     "r-base",
@@ -238,7 +244,8 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
-    "cxx_compiler_stub"
+    "cxx_compiler_stub",
+    "make"
    ]
   },
   "host": {
@@ -279,21 +286,25 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-geepack.json"
  },
- "raw_meta_yaml": "{% set version = \"1.3.11\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-geepack\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - https://cran.r-project.org/src/contrib/geepack_{{ version }}.tar.gz\n    - https://cran.r-project.org/src/contrib/Archive/geepack/geepack_{{ version }}.tar.gz\n  sha256: 29e2f0d314e75de748f33438b5b1282f469d163e29534c61616c257b2955e478\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - posix                # [win]\n    - {{ compiler('c') }}        # [unix]\n    - {{ stdlib(\"c\") }}          # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ stdlib(\"m2w64_c\") }}    # [win]\n    - {{ compiler('cxx') }}        # [unix]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n  host:\n    - r-base\n    - r-mass\n    - r-broom\n    - r-magrittr\n  run:\n    - r-base\n    - r-mass\n    - r-broom\n    - r-magrittr\n\ntest:\n  commands:\n    - $R -e \"library('geepack')\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('geepack')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=geepack\n  license: GPL-3.0-or-later\n  summary: Generalized estimating equations solver for parameters in mean, scale, and correlation structures, through mean link, scale link, and correlation link. Can also handle clustered categorical responses.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"1.3.11\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-geepack\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/geepack_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/geepack/geepack_{{ version }}.tar.gz\n  sha256: 29e2f0d314e75de748f33438b5b1282f469d163e29534c61616c257b2955e478\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}        # [unix]\n    - {{ stdlib(\"c\") }}          # [unix]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ stdlib(\"m2w64_c\") }}    # [win]\n    - {{ compiler('cxx') }}        # [unix]\n    - {{ compiler('m2w64_cxx') }}  # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-mass\n    - r-broom\n    - r-magrittr\n  run:\n    - r-base\n    - r-mass\n    - r-broom\n    - r-magrittr\n\ntest:\n  commands:\n    - $R -e \"library('geepack')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('geepack')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=geepack\n  license: GPL-3.0-or-later\n  summary: Generalized estimating equations solver for parameters in mean, scale, and correlation structures, through mean link, scale link, and correlation link. Can also handle clustered categorical responses.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
    "c_stdlib_stub",
+   "coreutils",
    "cxx_compiler_stub",
+   "filesystem",
    "m2w64_c_compiler_stub",
    "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
-   "posix",
+   "make",
    "r-base",
    "r-broom",
    "r-magrittr",
-   "r-mass"
+   "r-mass",
+   "sed",
+   "zip"
   ]
  },
  "requirements": {
@@ -302,11 +313,15 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
+    "filesystem",
     "m2w64_c_compiler_stub",
     "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
-    "posix"
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -345,11 +360,15 @@
    "elements": [
     "c_compiler_stub",
     "c_stdlib_stub",
+    "coreutils",
     "cxx_compiler_stub",
+    "filesystem",
     "m2w64_c_compiler_stub",
     "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
-    "posix"
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
@@ -398,8 +417,7 @@
    "summary": "Generalized estimating equations solver for parameters in mean, scale, and correlation structures, through mean link, scale link, and correlation link. Can also handle clustered categorical responses."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -416,10 +434,14 @@
   },
   "requirements": {
    "build": [
-    "posix",
     "m2w64_c_compiler_stub",
     "m2w64_c_stdlib_stub",
-    "m2w64_cxx_compiler_stub"
+    "m2w64_cxx_compiler_stub",
+    "filesystem",
+    "make",
+    "sed",
+    "coreutils",
+    "zip"
    ],
    "host": [
     "r-base",
@@ -451,10 +473,14 @@
   "build": {
    "__set__": true,
    "elements": [
+    "coreutils",
+    "filesystem",
     "m2w64_c_compiler_stub",
     "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
-    "posix"
+    "make",
+    "sed",
+    "zip"
    ]
   },
   "host": {
