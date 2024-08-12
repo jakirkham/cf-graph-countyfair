@@ -30,7 +30,7 @@
    "summary": "Functions for calculating semantic similarities between ontological terms or sets of ontological terms based on term information content and assessing statistical significance of similarity in the context of a collection of sets of ontological terms."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -48,6 +48,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -80,6 +81,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -116,8 +118,7 @@
    "summary": "Functions for calculating semantic similarities between ontological terms or sets of ontological terms based on term information content and assessing statistical significance of similarity in the context of a collection of sets of ontological terms."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -135,9 +136,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -152,8 +155,7 @@
    "run": [
     "r-base",
     "r-rcpp >=1.0.0",
-    "r-ontologyindex >=2.0",
-    "gcc-libs"
+    "r-ontologyindex >=2.0"
    ]
   },
   "source": {
@@ -182,7 +184,7 @@
    "summary": "Functions for calculating semantic similarities between ontological terms or sets of ontological terms based on term information content and assessing statistical significance of similarity in the context of a collection of sets of ontological terms."
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -200,6 +202,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -232,6 +235,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -272,16 +276,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-ontologysimilarity.json"
  },
- "raw_meta_yaml": "{% set version = \"2.7\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-ontologysimilarity\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/ontologySimilarity_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/ontologySimilarity/ontologySimilarity_{{ version }}.tar.gz\n  sha256: 57b273087d65501ea45ea8beb5bf169f69f2fd6f60dde2381ceaf68dbb51cf0d\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp >=1.0.0\n    - r-ontologyindex >=2.0\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp >=1.0.0\n    - r-ontologyindex >=2.0\n\ntest:\n  commands:\n    - $R -e \"library('ontologySimilarity')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('ontologySimilarity')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=ontologySimilarity\n  license: GPL-2.0-or-later\n  summary: Functions for calculating semantic similarities between ontological terms or sets of ontological terms based on term information content and assessing statistical significance of similarity in the context of a collection of sets of ontological terms.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: ontologySimilarity\n# Type: Package\n# Title: Functions for Calculating Ontological Similarities\n# Version: 2.2\n# Date: 2016-10-20\n# Author: Daniel Greene\n# Maintainer: Daniel Greene <dg333@cam.ac.uk>\n# Description: Functions for calculating semantic similarities between ontological terms or sets of ontological terms based on term information content and assessing statistical significance of similarity in the context of a collection of sets of ontological terms.\n# License: GPL (>= 2)\n# Imports: Rcpp (>= 0.11.2), ontologyIndex (>= 2.0)\n# LinkingTo: Rcpp\n# Depends: R (>= 3.0.0)\n# Suggests: knitr, paintmap\n# VignetteBuilder: knitr\n# RoxygenNote: 5.0.1\n# NeedsCompilation: yes\n# Packaged: 2016-10-27 16:15:45 UTC; dg333\n# Repository: CRAN\n# Date/Publication: 2016-10-28 01:14:47\n",
+ "raw_meta_yaml": "{% set version = \"2.7\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-ontologysimilarity\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/ontologySimilarity_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/ontologySimilarity/ontologySimilarity_{{ version }}.tar.gz\n  sha256: 57b273087d65501ea45ea8beb5bf169f69f2fd6f60dde2381ceaf68dbb51cf0d\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n  host:\n    - r-base\n    - r-rcpp >=1.0.0\n    - r-ontologyindex >=2.0\n  run:\n    - r-base\n    - r-rcpp >=1.0.0\n    - r-ontologyindex >=2.0\n\ntest:\n  commands:\n    - $R -e \"library('ontologySimilarity')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('ontologySimilarity')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=ontologySimilarity\n  license: GPL-2.0-or-later\n  summary: Functions for calculating semantic similarities between ontological terms or sets of ontological terms based on term information content and assessing statistical significance of similarity in the context of a collection of sets of ontological terms.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n\n# Package: ontologySimilarity\n# Type: Package\n# Title: Functions for Calculating Ontological Similarities\n# Version: 2.2\n# Date: 2016-10-20\n# Author: Daniel Greene\n# Maintainer: Daniel Greene <dg333@cam.ac.uk>\n# Description: Functions for calculating semantic similarities between ontological terms or sets of ontological terms based on term information content and assessing statistical significance of similarity in the context of a collection of sets of ontological terms.\n# License: GPL (>= 2)\n# Imports: Rcpp (>= 0.11.2), ontologyIndex (>= 2.0)\n# LinkingTo: Rcpp\n# Depends: R (>= 3.0.0)\n# Suggests: knitr, paintmap\n# VignetteBuilder: knitr\n# RoxygenNote: 5.0.1\n# NeedsCompilation: yes\n# Packaged: 2016-10-27 16:15:45 UTC; dg333\n# Repository: CRAN\n# Date/Publication: 2016-10-28 01:14:47\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -296,10 +301,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -310,6 +317,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-ontologyindex",
@@ -320,8 +328,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-ontologyindex",
     "r-rcpp"
@@ -338,10 +346,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -359,7 +369,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-ontologyindex >=2.0",
     "r-rcpp >=1.0.0"
@@ -393,8 +402,7 @@
    "summary": "Functions for calculating semantic similarities between ontological terms or sets of ontological terms based on term information content and assessing statistical significance of similarity in the context of a collection of sets of ontological terms."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -412,6 +420,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -426,7 +435,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp >=1.0.0",
     "r-ontologyindex >=2.0"
    ]
@@ -451,6 +459,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -468,7 +477,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-ontologyindex",
     "r-rcpp"
