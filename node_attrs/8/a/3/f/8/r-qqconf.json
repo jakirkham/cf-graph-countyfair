@@ -24,7 +24,7 @@
    "summary": "Provides functionality for creating Quantile-Quantile (QQ) and Probability-Probability (PP) plots with simultaneous testing bands to asses significance of sample deviation from a reference distribution."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -42,6 +42,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -83,6 +84,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -124,8 +126,7 @@
    "summary": "Provides functionality for creating Quantile-Quantile (QQ) and Probability-Probability (PP) plots with simultaneous testing bands to asses significance of sample deviation from a reference distribution."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -143,12 +144,14 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
     "pkg-config",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -169,8 +172,7 @@
     "r-mass >=7.3_50",
     "r-rcpp",
     "r-robustbase >=0.93_4",
-    "fftw >=3.1.2",
-    "gcc-libs"
+    "fftw >=3.1.2"
    ]
   },
   "source": {
@@ -199,7 +201,7 @@
    "summary": "Provides functionality for creating Quantile-Quantile (QQ) and Probability-Probability (PP) plots with simultaneous testing bands to asses significance of sample deviation from a reference distribution."
   },
   "build": {
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -217,6 +219,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "autoconf",
     "automake",
@@ -258,6 +261,7 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "pkg-config"
@@ -303,7 +307,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-qqconf.json"
  },
- "raw_meta_yaml": "{% set version = \"1.3.2\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-qqconf\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/qqconf_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/qqconf/qqconf_{{ version }}.tar.gz\n  sha256: 9405d627adf9447a003e14dac43701ea3e03ee73244038aa4a6e3dd324dd8ea3\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-mass >=7.3_50\n    - r-rcpp\n    - r-robustbase >=0.93_4\n    - fftw >=3.1.2\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-mass >=7.3_50\n    - r-rcpp\n    - r-robustbase >=0.93_4\n    - fftw >=3.1.2\n\ntest:\n  commands:\n    - $R -e \"library('qqconf')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('qqconf')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/eweine/qqconf\n  license: GPL-3.0-only\n  summary: Provides functionality for creating Quantile-Quantile (QQ) and Probability-Probability (PP) plots with simultaneous testing bands to asses significance of sample deviation from a reference distribution.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
+ "raw_meta_yaml": "{% set version = \"1.3.2\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-qqconf\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/qqconf_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/qqconf/qqconf_{{ version }}.tar.gz\n  sha256: 9405d627adf9447a003e14dac43701ea3e03ee73244038aa4a6e3dd324dd8ea3\n\nbuild:\n  number: 2\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}sed               # [win]\n    - {{ posix }}grep              # [win]\n    - {{ posix }}autoconf\n    - {{ posix }}automake          # [not win]\n    - {{ posix }}automake-wrapper  # [win]\n    - {{ posix }}pkg-config\n    - {{ posix }}make\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-mass >=7.3_50\n    - r-rcpp\n    - r-robustbase >=0.93_4\n    - fftw >=3.1.2\n  run:\n    - r-base\n    - r-mass >=7.3_50\n    - r-rcpp\n    - r-robustbase >=0.93_4\n    - fftw >=3.1.2\n\ntest:\n  commands:\n    - $R -e \"library('qqconf')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('qqconf')\\\"\"  # [win]\n\nabout:\n  home: https://github.com/eweine/qqconf\n  license: GPL-3.0-only\n  summary: Provides functionality for creating Quantile-Quantile (QQ) and Probability-Probability (PP) plots with simultaneous testing bands to asses significance of sample deviation from a reference distribution.\n  license_family: GPL3\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -311,13 +315,14 @@
    "automake",
    "automake-wrapper",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "fftw",
    "filesystem",
-   "gcc-libs",
    "grep",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "pkg-config",
@@ -337,11 +342,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -353,6 +360,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fftw",
     "r-base",
@@ -365,9 +373,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "fftw",
-    "gcc-libs",
     "r-base",
     "r-mass",
     "r-rcpp",
@@ -388,11 +396,13 @@
     "automake",
     "automake-wrapper",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -414,7 +424,6 @@
    "__set__": true,
    "elements": [
     "fftw >=3.1.2",
-    "gcc-libs",
     "r-base",
     "r-mass >=7.3_50",
     "r-rcpp",
@@ -449,8 +458,7 @@
    "summary": "Provides functionality for creating Quantile-Quantile (QQ) and Probability-Probability (PP) plots with simultaneous testing bands to asses significance of sample deviation from a reference distribution."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1",
+   "number": "2",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -468,6 +476,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -488,7 +497,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-mass >=7.3_50",
     "r-rcpp",
     "r-robustbase >=0.93_4",
@@ -518,6 +526,7 @@
     "filesystem",
     "grep",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "pkg-config",
@@ -539,7 +548,6 @@
    "__set__": true,
    "elements": [
     "fftw",
-    "gcc-libs",
     "r-base",
     "r-mass",
     "r-rcpp",
