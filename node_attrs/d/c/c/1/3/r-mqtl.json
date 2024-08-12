@@ -30,7 +30,7 @@
    "summary": "mQTL provides a complete QTL analysis pipeline for metabolomic data.  Distinctive features include normalisation using PQN approach, peak alignment   using RSPA approach, dimensionality reduction using SRV approach and finally  QTL mapping using R/qtl package."
   },
   "build": {
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -50,7 +50,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "r-base",
@@ -83,7 +84,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -120,8 +122,7 @@
    "summary": "mQTL provides a complete QTL analysis pipeline for metabolomic data.  Distinctive features include normalisation using PQN approach, peak alignment   using RSPA approach, dimensionality reduction using SRV approach and finally  QTL mapping using R/qtl package."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -142,8 +143,9 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
-    "posix",
-    "m2w64_c_compiler_stub"
+    "c_stdlib_stub",
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub"
    ],
    "host": [
     "r-base",
@@ -185,7 +187,7 @@
    "summary": "mQTL provides a complete QTL analysis pipeline for metabolomic data.  Distinctive features include normalisation using PQN approach, peak alignment   using RSPA approach, dimensionality reduction using SRV approach and finally  QTL mapping using R/qtl package."
   },
   "build": {
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -205,7 +207,8 @@
   },
   "requirements": {
    "build": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ],
    "host": [
     "r-base",
@@ -238,7 +241,8 @@
   "build": {
    "__set__": true,
    "elements": [
-    "c_compiler_stub"
+    "c_compiler_stub",
+    "c_stdlib_stub"
    ]
   },
   "host": {
@@ -279,13 +283,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-mqtl.json"
  },
- "raw_meta_yaml": "{% set version = \"1.0\" %}\n\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-mqtl\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: mQTL_{{ version }}.tar.gz\n  url:\n    - https://cran.r-project.org/src/contrib/mQTL_{{ version }}.tar.gz\n    - https://cran.r-project.org/src/contrib/Archive/mQTL/mQTL_{{ version }}.tar.gz\n  sha256: 21193861fbf2d280f2b7284ba87d68adce515e35fbe4e71821439fa8b14d1b72\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 1005\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - posix                # [win]\n    - {{ compiler('c') }}    # [not win]\n    - {{ compiler('m2w64_c') }}  # [win]\n  host:\n    - r-base\n    - r-mass\n    - r-outliers\n    - r-qtl\n  run:\n    - r-base\n    - r-mass\n    - r-outliers\n    - r-qtl\n\ntest:\n  commands:\n    - $R -e \"library('mQTL')\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('mQTL')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=mQTL\n  license: GPL\n  summary: mQTL provides a complete QTL analysis pipeline for metabolomic data.  Distinctive features include normalisation using PQN approach, peak alignment   using RSPA approach, dimensionality reduction using SRV approach and finally  QTL mapping using R/qtl package.\n  license_family: GPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - MathiasHaudgaard\n    - FrodePedersen\n    - ArneKr\n",
+ "raw_meta_yaml": "{% set version = \"1.0\" %}\n\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-mqtl\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  fn: mQTL_{{ version }}.tar.gz\n  url:\n    - https://cran.r-project.org/src/contrib/mQTL_{{ version }}.tar.gz\n    - https://cran.r-project.org/src/contrib/Archive/mQTL/mQTL_{{ version }}.tar.gz\n  sha256: 21193861fbf2d280f2b7284ba87d68adce515e35fbe4e71821439fa8b14d1b72\n\nbuild:\n  number: 1006\n  rpaths:\n    - lib/R/lib/\n    - lib/\n\nrequirements:\n  build:\n    - {{ compiler('c') }}    # [not win]\n    - {{ stdlib(\"c\") }}      # [not win]\n    - {{ compiler('m2w64_c') }}  # [win]\n    - {{ stdlib(\"m2w64_c\") }}    # [win]\n  host:\n    - r-base\n    - r-mass\n    - r-outliers\n    - r-qtl\n  run:\n    - r-base\n    - r-mass\n    - r-outliers\n    - r-qtl\n\ntest:\n  commands:\n    - $R -e \"library('mQTL')\"  # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('mQTL')\\\"\"  # [win]\n\nabout:\n  home: https://CRAN.R-project.org/package=mQTL\n  license: GPL\n  summary: mQTL provides a complete QTL analysis pipeline for metabolomic data.  Distinctive features include normalisation using PQN approach, peak alignment   using RSPA approach, dimensionality reduction using SRV approach and finally  QTL mapping using R/qtl package.\n  license_family: GPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - MathiasHaudgaard\n    - FrodePedersen\n    - ArneKr\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "m2w64_c_compiler_stub",
-   "posix",
+   "m2w64_c_stdlib_stub",
    "r-base",
    "r-mass",
    "r-outliers",
@@ -297,14 +302,16 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "m2w64_c_compiler_stub",
-    "posix"
+    "m2w64_c_stdlib_stub"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-mass",
     "r-outliers",
@@ -315,6 +322,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "r-base",
     "r-mass",
     "r-outliers",
@@ -332,8 +340,9 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "m2w64_c_compiler_stub",
-    "posix"
+    "m2w64_c_stdlib_stub"
    ]
   },
   "host": {
@@ -382,8 +391,7 @@
    "summary": "mQTL provides a complete QTL analysis pipeline for metabolomic data.  Distinctive features include normalisation using PQN approach, peak alignment   using RSPA approach, dimensionality reduction using SRV approach and finally  QTL mapping using R/qtl package."
   },
   "build": {
-   "merge_build_host": true,
-   "number": "1005",
+   "number": "1006",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -403,8 +411,8 @@
   },
   "requirements": {
    "build": [
-    "posix",
-    "m2w64_c_compiler_stub"
+    "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub"
    ],
    "host": [
     "r-base",
@@ -438,7 +446,7 @@
    "__set__": true,
    "elements": [
     "m2w64_c_compiler_stub",
-    "posix"
+    "m2w64_c_stdlib_stub"
    ]
   },
   "host": {
