@@ -30,7 +30,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -52,6 +52,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -86,6 +87,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -126,11 +128,10 @@
    "summary": "Computes fast (relative to other implementations) approximate Shapley values for any supervised learning model. Shapley values help to explain the predictions from any black box model using ideas from game theory; see Strumbel and Kononenko (2014) <doi:10.1007/s10115-013-0679-x> for details."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -152,9 +153,11 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "sed",
@@ -171,8 +174,7 @@
     "r-base",
     "r-rcpp >=1.0.1",
     "r-rcpparmadillo",
-    "r-foreach",
-    "gcc-libs"
+    "r-foreach"
    ]
   },
   "source": {
@@ -204,7 +206,7 @@
   },
   "build": {
    "missing_dso_whitelist": null,
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -226,6 +228,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ],
@@ -260,6 +263,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make"
    ]
@@ -302,16 +306,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/r-fastshap.json"
  },
- "raw_meta_yaml": "{% set version = \"0.1.1\" %}\n{% set posix = 'm2-' if win else '' %}\n{% set native = 'm2w64-' if win else '' %}\n\npackage:\n  name: r-fastshap\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/fastshap_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/fastshap/fastshap_{{ version }}.tar.gz\n  sha256: 62e10fcd192cbde262db6b6a6395b98da3e7c935b7d4bf692fc8224cf6b4cbc8\n\nbuild:\n  merge_build_host: true  # [win]\n  number: 0\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'           # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-rcpp >=1.0.1\n    - r-rcpparmadillo\n    - r-foreach\n  run:\n    - r-base\n    - {{ native }}gcc-libs         # [win]\n    - r-rcpp >=1.0.1\n    - r-rcpparmadillo\n    - r-foreach\n\ntest:\n  commands:\n    - $R -e \"library('fastshap')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('fastshap')\\\"\"  # [win]\n\nabout:\n  home: https://bgreenwell.github.io/fastshap/\n  dev_url: https://github.com/bgreenwell/fastshap\n  license: GPL-2.0-or-later\n  summary: Computes fast (relative to other implementations) approximate Shapley values for any supervised learning model. Shapley values help to explain the predictions from any black box model using ideas from game theory; see Strumbel and Kononenko (2014) <doi:10.1007/s10115-013-0679-x> for details.\n  license_family: GPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - apeltzer\n    - SMLMS\n    - neslihanky\n    - KaBrrrp\n\n# Package: fastshap\n# Type: Package\n# Title: Fast Approximate Shapley Values\n# Version: 0.1.0\n# Authors@R: person(\"Brandon\", \"Greenwell\", email = \"greenwell.brandon@gmail.com\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-8120-0084\"))\n# Description: Computes fast (relative to other implementations) approximate Shapley values for any supervised learning model. Shapley values help to explain the predictions from any black box model using ideas from game theory; see Strumbel and Kononenko (2014) <doi:10.1007/s10115-013-0679-x> for details.\n# License: GPL (>= 2)\n# URL: https://github.com/bgreenwell/fastshap, https://bgreenwell.github.io/fastshap/\n# BugReports: https://github.com/bgreenwell/fastshap/issues\n# Imports: foreach, Rcpp (>= 1.0.1), utils\n# Enhances: lightgbm, xgboost\n# Suggests: AmesHousing, covr, knitr, ranger, rmarkdown, shapviz (>= 0.8.0), tibble, tinytest (>= 1.4.1)\n# LinkingTo: Rcpp, RcppArmadillo\n# RoxygenNote: 7.2.3\n# Encoding: UTF-8\n# Depends: R (>= 3.6.0)\n# LazyData: true\n# VignetteBuilder: knitr\n# NeedsCompilation: yes\n# Packaged: 2023-05-10 23:50:25 UTC; bgreenwell\n# Author: Brandon Greenwell [aut, cre] (<https://orcid.org/0000-0002-8120-0084>)\n# Maintainer: Brandon Greenwell <greenwell.brandon@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2023-06-06 09:20:02 UTC\n",
+ "raw_meta_yaml": "{% set version = \"0.1.1\" %}\n{% set posix = 'm2-' if win else '' %}\n\npackage:\n  name: r-fastshap\n  version: {{ version|replace(\"-\", \"_\") }}\n\nsource:\n  url:\n    - {{ cran_mirror }}/src/contrib/fastshap_{{ version }}.tar.gz\n    - {{ cran_mirror }}/src/contrib/Archive/fastshap/fastshap_{{ version }}.tar.gz\n  sha256: 62e10fcd192cbde262db6b6a6395b98da3e7c935b7d4bf692fc8224cf6b4cbc8\n\nbuild:\n  number: 1\n  rpaths:\n    - lib/R/lib/\n    - lib/\n  missing_dso_whitelist:\n    - '*/R.dll'           # [win]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [not win]\n    - {{ stdlib(\"c\") }}                # [not win]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ stdlib(\"m2w64_c\") }}          # [win]\n    - {{ compiler('cxx') }}            # [not win]\n    - {{ compiler('m2w64_cxx') }}      # [win]\n    - {{ posix }}filesystem        # [win]\n    - {{ posix }}make\n    - {{ posix }}sed               # [win]\n    - {{ posix }}coreutils         # [win]\n    - {{ posix }}zip               # [win]\n    - cross-r-base {{ r_base }}    # [build_platform != target_platform]\n  host:\n    - r-base\n    - r-rcpp >=1.0.1\n    - r-rcpparmadillo\n    - r-foreach\n  run:\n    - r-base\n    - r-rcpp >=1.0.1\n    - r-rcpparmadillo\n    - r-foreach\n\ntest:\n  commands:\n    - $R -e \"library('fastshap')\"           # [not win]\n    - \"\\\"%R%\\\" -e \\\"library('fastshap')\\\"\"  # [win]\n\nabout:\n  home: https://bgreenwell.github.io/fastshap/\n  dev_url: https://github.com/bgreenwell/fastshap\n  license: GPL-2.0-or-later\n  summary: Computes fast (relative to other implementations) approximate Shapley values for any supervised learning model. Shapley values help to explain the predictions from any black box model using ideas from game theory; see Strumbel and Kononenko (2014) <doi:10.1007/s10115-013-0679-x> for details.\n  license_family: GPL\n  license_file:\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-2\n    - {{ environ[\"PREFIX\"] }}/lib/R/share/licenses/GPL-3\n\nextra:\n  recipe-maintainers:\n    - conda-forge/r\n    - apeltzer\n    - SMLMS\n    - neslihanky\n    - KaBrrrp\n\n# Package: fastshap\n# Type: Package\n# Title: Fast Approximate Shapley Values\n# Version: 0.1.0\n# Authors@R: person(\"Brandon\", \"Greenwell\", email = \"greenwell.brandon@gmail.com\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-8120-0084\"))\n# Description: Computes fast (relative to other implementations) approximate Shapley values for any supervised learning model. Shapley values help to explain the predictions from any black box model using ideas from game theory; see Strumbel and Kononenko (2014) <doi:10.1007/s10115-013-0679-x> for details.\n# License: GPL (>= 2)\n# URL: https://github.com/bgreenwell/fastshap, https://bgreenwell.github.io/fastshap/\n# BugReports: https://github.com/bgreenwell/fastshap/issues\n# Imports: foreach, Rcpp (>= 1.0.1), utils\n# Enhances: lightgbm, xgboost\n# Suggests: AmesHousing, covr, knitr, ranger, rmarkdown, shapviz (>= 0.8.0), tibble, tinytest (>= 1.4.1)\n# LinkingTo: Rcpp, RcppArmadillo\n# RoxygenNote: 7.2.3\n# Encoding: UTF-8\n# Depends: R (>= 3.6.0)\n# LazyData: true\n# VignetteBuilder: knitr\n# NeedsCompilation: yes\n# Packaged: 2023-05-10 23:50:25 UTC; bgreenwell\n# Author: Brandon Greenwell [aut, cre] (<https://orcid.org/0000-0002-8120-0084>)\n# Maintainer: Brandon Greenwell <greenwell.brandon@gmail.com>\n# Repository: CRAN\n# Date/Publication: 2023-06-06 09:20:02 UTC\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "coreutils",
    "cxx_compiler_stub",
    "filesystem",
-   "gcc-libs",
    "m2w64_c_compiler_stub",
+   "m2w64_c_stdlib_stub",
    "m2w64_cxx_compiler_stub",
    "make",
    "r-base",
@@ -327,10 +332,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -341,6 +348,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "r-base",
     "r-foreach",
@@ -352,8 +360,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "gcc-libs",
     "r-base",
     "r-foreach",
     "r-rcpp",
@@ -371,10 +379,12 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "coreutils",
     "cxx_compiler_stub",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -393,7 +403,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-foreach",
     "r-rcpp >=1.0.1",
@@ -430,11 +439,10 @@
    "summary": "Computes fast (relative to other implementations) approximate Shapley values for any supervised learning model. Shapley values help to explain the predictions from any black box model using ideas from game theory; see Strumbel and Kononenko (2014) <doi:10.1007/s10115-013-0679-x> for details."
   },
   "build": {
-   "merge_build_host": true,
    "missing_dso_whitelist": [
     "*/R.dll"
    ],
-   "number": "0",
+   "number": "1",
    "rpaths": [
     "lib/R/lib/",
     "lib/"
@@ -456,6 +464,7 @@
   "requirements": {
    "build": [
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "filesystem",
     "make",
@@ -471,7 +480,6 @@
    ],
    "run": [
     "r-base",
-    "gcc-libs",
     "r-rcpp >=1.0.1",
     "r-rcpparmadillo",
     "r-foreach"
@@ -497,6 +505,7 @@
     "coreutils",
     "filesystem",
     "m2w64_c_compiler_stub",
+    "m2w64_c_stdlib_stub",
     "m2w64_cxx_compiler_stub",
     "make",
     "sed",
@@ -515,7 +524,6 @@
   "run": {
    "__set__": true,
    "elements": [
-    "gcc-libs",
     "r-base",
     "r-foreach",
     "r-rcpp",
