@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "hint-all"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -26,42 +29,19 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0"
+   "number": "0",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "feedstock-name": "service_identity",
    "recipe-maintainers": [
-    "isuruf"
+    "isuruf",
+    "bollwyvl"
    ]
   },
   "outputs": [
    {
-    "build": {
-     "noarch": "python"
-    },
-    "name": "service-identity",
-    "requirements": {
-     "host": [
-      "pip",
-      "python >=2.7",
-      "setuptools >=40.6.0"
-     ],
-     "run": [
-      "attrs >=19.1.0",
-      "cryptography",
-      "pyasn1",
-      "pyasn1-modules",
-      "pyopenssl >=0.12",
-      "python >=2.7",
-      "six"
-     ]
-    },
-    "script": "build_base.sh",
-    "test": {
-     "imports": [
-      "service_identity"
-     ]
-    }
+    "name": "service-identity"
    },
    {
     "build": {
@@ -78,15 +58,110 @@
       "service_identity"
      ]
     }
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "service-identity-with-pyopenssl",
+    "requirements": {
+     "run": [
+      "service-identity",
+      "pyopenssl"
+     ]
+    },
+    "test": {
+     "imports": [
+      "service_identity"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "service-identity-with-idna",
+    "requirements": {
+     "run": [
+      "service-identity",
+      "idna"
+     ]
+    },
+    "test": {
+     "imports": [
+      "service_identity"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "service-identity-with-all",
+    "requirements": {
+     "run": [
+      "service-identity",
+      "service-identity-with-idna",
+      "service-identity-with-pyopenssl"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "coverage run --source=service_identity --branch -m pytest -vv --tb=long --color=yes",
+      "coverage report --show-missing --skip-covered --fail-under=98"
+     ],
+     "imports": [
+      "service_identity"
+     ],
+     "requires": [
+      "coverage",
+      "pip",
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
    }
   ],
   "package": {
-   "name": "service-identity-build",
-   "version": "21.1.0"
+   "name": "service-identity",
+   "version": "24.1.0"
+  },
+  "requirements": {
+   "host": [
+    "hatch-fancy-pypi-readme",
+    "hatch-vcs",
+    "hatchling",
+    "pip",
+    "python >=3.8"
+   ],
+   "run": [
+    "attrs >=19.1.0",
+    "cryptography",
+    "pyasn1",
+    "pyasn1-modules",
+    "python >=3.8"
+   ],
+   "run_constrained": [
+    "service_identity"
+   ]
   },
   "source": {
-   "sha256": "6e6c6086ca271dc11b033d17c3a8bea9f24ebff920c587da090afc9519419d34",
-   "url": "https://pypi.io/packages/source/s/service-identity/service-identity-21.1.0.tar.gz"
+   "sha256": "6829c9d62fb832c2e1c435629b0a8c476e1929881f28bee4d20bc24161009221",
+   "url": "https://pypi.io/packages/source/s/service-identity/service_identity-24.1.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "service_identity"
+   ],
+   "requires": [
+    "pip"
+   ]
   }
  },
  "linux_64_requirements": {
@@ -97,9 +172,11 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch-fancy-pypi-readme",
+    "hatch-vcs",
+    "hatchling",
     "pip",
-    "python",
-    "setuptools"
+    "python"
    ]
   },
   "run": {
@@ -107,17 +184,23 @@
    "elements": [
     "attrs",
     "cryptography",
+    "idna",
     "pyasn1",
     "pyasn1-modules",
     "pyopenssl",
     "python",
     "service-identity",
-    "six"
+    "service-identity-with-idna",
+    "service-identity-with-pyopenssl"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "coverage",
+    "pip",
+    "pytest"
+   ]
   }
  },
  "meta_yaml": {
@@ -133,42 +216,19 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0"
+   "number": "0",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "feedstock-name": "service_identity",
    "recipe-maintainers": [
-    "isuruf"
+    "isuruf",
+    "bollwyvl"
    ]
   },
   "outputs": [
    {
-    "build": {
-     "noarch": "python"
-    },
-    "name": "service-identity",
-    "requirements": {
-     "host": [
-      "pip",
-      "python >=2.7",
-      "setuptools >=40.6.0"
-     ],
-     "run": [
-      "attrs >=19.1.0",
-      "cryptography",
-      "pyasn1",
-      "pyasn1-modules",
-      "pyopenssl >=0.12",
-      "python >=2.7",
-      "six"
-     ]
-    },
-    "script": "build_base.sh",
-    "test": {
-     "imports": [
-      "service_identity"
-     ]
-    }
+    "name": "service-identity"
    },
    {
     "build": {
@@ -185,22 +245,120 @@
       "service_identity"
      ]
     }
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "service-identity-with-pyopenssl",
+    "requirements": {
+     "run": [
+      "service-identity",
+      "pyopenssl"
+     ]
+    },
+    "test": {
+     "imports": [
+      "service_identity"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "service-identity-with-idna",
+    "requirements": {
+     "run": [
+      "service-identity",
+      "idna"
+     ]
+    },
+    "test": {
+     "imports": [
+      "service_identity"
+     ]
+    }
+   },
+   {
+    "build": {
+     "noarch": "generic"
+    },
+    "name": "service-identity-with-all",
+    "requirements": {
+     "run": [
+      "service-identity",
+      "service-identity-with-idna",
+      "service-identity-with-pyopenssl"
+     ]
+    },
+    "test": {
+     "commands": [
+      "pip check",
+      "coverage run --source=service_identity --branch -m pytest -vv --tb=long --color=yes",
+      "coverage report --show-missing --skip-covered --fail-under=98"
+     ],
+     "imports": [
+      "service_identity"
+     ],
+     "requires": [
+      "coverage",
+      "pip",
+      "pytest"
+     ],
+     "source_files": [
+      "tests"
+     ]
+    }
    }
   ],
   "package": {
-   "name": "service-identity-build",
-   "version": "21.1.0"
+   "name": "service-identity",
+   "version": "24.1.0"
+  },
+  "requirements": {
+   "host": [
+    "hatch-fancy-pypi-readme",
+    "hatch-vcs",
+    "hatchling",
+    "pip",
+    "python >=3.8"
+   ],
+   "run": [
+    "attrs >=19.1.0",
+    "cryptography",
+    "pyasn1",
+    "pyasn1-modules",
+    "python >=3.8"
+   ],
+   "run_constrained": [
+    "service_identity"
+   ]
   },
   "source": {
-   "sha256": "6e6c6086ca271dc11b033d17c3a8bea9f24ebff920c587da090afc9519419d34",
-   "url": "https://pypi.io/packages/source/s/service-identity/service-identity-21.1.0.tar.gz"
+   "sha256": "6829c9d62fb832c2e1c435629b0a8c476e1929881f28bee4d20bc24161009221",
+   "url": "https://pypi.io/packages/source/s/service-identity/service_identity-24.1.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "pip check"
+   ],
+   "imports": [
+    "service_identity"
+   ],
+   "requires": [
+    "pip"
+   ]
   }
  },
- "name": "service-identity-build",
+ "name": "service-identity",
  "outputs_names": {
   "__set__": true,
   "elements": [
    "service-identity",
+   "service-identity-with-all",
+   "service-identity-with-idna",
+   "service-identity-with-pyopenssl",
    "service_identity"
   ]
  },
@@ -211,20 +369,24 @@
  "pr_info": {
   "__lazy_json__": "pr_info/service_identity.json"
  },
- "raw_meta_yaml": "{% set name = \"service-identity\" %}\n{% set version = \"21.1.0\" %}\n\npackage:\n  name: {{ name|lower }}-build\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 6e6c6086ca271dc11b033d17c3a8bea9f24ebff920c587da090afc9519419d34\n\nbuild:\n  noarch: python\n  number: 0\n\noutputs:\n  - name: service-identity\n    script: build_base.sh\n    build:\n      noarch: python\n    requirements:\n      host:\n        - pip\n        - python >=2.7\n        - setuptools >=40.6.0\n      run:\n        - attrs >=19.1.0\n        - cryptography\n        - pyasn1\n        - pyasn1-modules\n        - pyopenssl >=0.12\n        - python >=2.7\n        - six\n    test:\n      imports:\n        - service_identity\n\n  - name: service_identity\n    build:\n      noarch: generic\n    requirements:\n      run:\n        - {{ pin_subpackage('service-identity', max_pin=\"x.x.x\") }}\n    test:\n      imports:\n        - service_identity\n\nabout:\n  home: https://github.com/pyca/service-identity\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Service identity verification for pyOpenSSL.\n  description: |\n    service_identity aspires to give you all the tools you need for verifying\n    whether a certificate is valid for the intended purposes.\n  doc_url: https://service-identity.readthedocs.io/en/stable/\n  dev_url: https://github.com/pyca/service-identity\n\nextra:\n  feedstock-name: service_identity\n  recipe-maintainers:\n    - isuruf\n",
+ "raw_meta_yaml": "{% set version = \"24.1.0\" %}\n\n# handle undefined PYTHON in `noarch: generic` outputs\n{% if PYTHON is not defined %}{% set PYTHON = \"$PYTHON\" %}{% endif %}\n\npackage:\n  name: service-identity\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/s/service-identity/service_identity-{{ version }}.tar.gz\n  sha256: 6829c9d62fb832c2e1c435629b0a8c476e1929881f28bee4d20bc24161009221\n\nbuild:\n  number: 0\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n\nrequirements:\n  host:\n    - hatch-fancy-pypi-readme\n    - hatch-vcs\n    - hatchling\n    - pip\n    - python >=3.8\n  run:\n    - attrs >=19.1.0\n    - cryptography\n    - pyasn1\n    - pyasn1-modules\n    - python >=3.8\n  run_constrained:\n    - {{ pin_subpackage(\"service_identity\", max_pin=\"x.x.x\") }}\n\ntest:\n  requires:\n    - pip\n  imports:\n    - service_identity\n  commands:\n    - pip check\n\noutputs:\n  - name: service-identity\n\n  - name: service_identity\n    build:\n      noarch: generic\n    requirements:\n      run:\n        - {{ pin_subpackage(\"service-identity\", max_pin=\"x.x.x\") }}\n    test:\n      imports:\n        - service_identity\n\n  - name: service-identity-with-pyopenssl\n    build:\n      noarch: generic\n    requirements:\n      run:\n        - {{ pin_subpackage(\"service-identity\", max_pin=\"x.x.x\") }}\n        - pyopenssl\n    test:\n      imports:\n        - service_identity\n\n  - name: service-identity-with-idna\n    build:\n      noarch: generic\n    requirements:\n      run:\n        - {{ pin_subpackage(\"service-identity\", max_pin=\"x.x.x\") }}\n        - idna\n    test:\n      imports:\n        - service_identity\n\n  - name: service-identity-with-all\n    build:\n      noarch: generic\n    requirements:\n      run:\n        - {{ pin_subpackage(\"service-identity\", max_pin=\"x.x.x\") }}\n        - {{ pin_subpackage(\"service-identity-with-idna\", max_pin=\"x.x.x\") }}\n        - {{ pin_subpackage(\"service-identity-with-pyopenssl\", max_pin=\"x.x.x\") }}\n    test:\n      source_files:\n        - tests\n      requires:\n        - coverage\n        - pip\n        - pytest\n      imports:\n        - service_identity\n      commands:\n        - pip check\n        - coverage run --source=service_identity --branch -m pytest -vv --tb=long --color=yes\n        - coverage report --show-missing --skip-covered --fail-under=98\n\nabout:\n  home: https://github.com/pyca/service-identity\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: Service identity verification for pyOpenSSL.\n  description: |\n    service_identity aspires to give you all the tools you need for verifying\n    whether a certificate is valid for the intended purposes.\n  doc_url: https://service-identity.readthedocs.io/en/stable/\n  dev_url: https://github.com/pyca/service-identity\n\nextra:\n  feedstock-name: service_identity\n  recipe-maintainers:\n    - isuruf\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
    "attrs",
    "cryptography",
+   "hatch-fancy-pypi-readme",
+   "hatch-vcs",
+   "hatchling",
+   "idna",
    "pip",
    "pyasn1",
    "pyasn1-modules",
    "pyopenssl",
    "python",
    "service-identity",
-   "setuptools",
-   "six"
+   "service-identity-with-idna",
+   "service-identity-with-pyopenssl"
   ]
  },
  "requirements": {
@@ -235,9 +397,11 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch-fancy-pypi-readme",
+    "hatch-vcs",
+    "hatchling",
     "pip",
-    "python",
-    "setuptools"
+    "python"
    ]
   },
   "run": {
@@ -245,17 +409,23 @@
    "elements": [
     "attrs",
     "cryptography",
+    "idna",
     "pyasn1",
     "pyasn1-modules",
     "pyopenssl",
     "python",
     "service-identity",
-    "six"
+    "service-identity-with-idna",
+    "service-identity-with-pyopenssl"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "coverage",
+    "pip",
+    "pytest"
+   ]
   }
  },
  "strong_exports": false,
@@ -267,9 +437,11 @@
   "host": {
    "__set__": true,
    "elements": [
+    "hatch-fancy-pypi-readme",
+    "hatch-vcs",
+    "hatchling",
     "pip",
-    "python >=2.7",
-    "setuptools >=40.6.0"
+    "python >=3.8"
    ]
   },
   "run": {
@@ -277,21 +449,27 @@
    "elements": [
     "attrs >=19.1.0",
     "cryptography",
+    "idna",
     "pyasn1",
     "pyasn1-modules",
-    "pyopenssl >=0.12",
-    "python >=2.7",
+    "pyopenssl",
+    "python >=3.8",
     "service-identity",
-    "six"
+    "service-identity-with-idna",
+    "service-identity-with-pyopenssl"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "coverage",
+    "pip",
+    "pytest"
+   ]
   }
  },
- "url": "https://pypi.io/packages/source/s/service-identity/service-identity-21.1.0.tar.gz",
- "version": "21.1.0",
+ "url": "https://pypi.io/packages/source/s/service-identity/service_identity-24.1.0.tar.gz",
+ "version": "24.1.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/service_identity.json"
  }
