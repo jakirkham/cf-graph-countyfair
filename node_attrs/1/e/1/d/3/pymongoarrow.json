@@ -41,7 +41,7 @@
   },
   "package": {
    "name": "pymongoarrow",
-   "version": "1.5.0"
+   "version": "1.5.1"
   },
   "requirements": {
    "build": [
@@ -62,12 +62,13 @@
    "run": [
     "pymongo >=3.11,<5",
     "pyarrow",
+    "packaging",
     "python"
    ]
   },
   "source": {
-   "sha256": "27233f2bff76b083fc949535231675d330c166a479750e3c2a77246a27b7969d",
-   "url": "https://pypi.io/packages/source/p/pymongoarrow/pymongoarrow-1.5.0.tar.gz"
+   "sha256": "32917d27c547b74dc4f8576d655cf3c86fb062e4d87baa69b54d5c4158bf5d0b",
+   "url": "https://pypi.io/packages/source/p/pymongoarrow/pymongoarrow-1.5.1.tar.gz"
   },
   "test": {
    "commands": null,
@@ -114,6 +115,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "packaging",
     "pyarrow",
     "pymongo",
     "python"
@@ -165,7 +167,7 @@
   },
   "package": {
    "name": "pymongoarrow",
-   "version": "1.5.0"
+   "version": "1.5.1"
   },
   "requirements": {
    "build": [
@@ -186,12 +188,13 @@
    "run": [
     "pymongo >=3.11,<5",
     "pyarrow",
+    "packaging",
     "python"
    ]
   },
   "source": {
-   "sha256": "27233f2bff76b083fc949535231675d330c166a479750e3c2a77246a27b7969d",
-   "url": "https://pypi.io/packages/source/p/pymongoarrow/pymongoarrow-1.5.0.tar.gz"
+   "sha256": "32917d27c547b74dc4f8576d655cf3c86fb062e4d87baa69b54d5c4158bf5d0b",
+   "url": "https://pypi.io/packages/source/p/pymongoarrow/pymongoarrow-1.5.1.tar.gz"
   },
   "test": {
    "commands": null,
@@ -242,7 +245,7 @@
   },
   "package": {
    "name": "pymongoarrow",
-   "version": "1.5.0"
+   "version": "1.5.1"
   },
   "requirements": {
    "build": [
@@ -263,12 +266,13 @@
    "run": [
     "pymongo >=3.11,<5",
     "pyarrow",
+    "packaging",
     "python"
    ]
   },
   "source": {
-   "sha256": "27233f2bff76b083fc949535231675d330c166a479750e3c2a77246a27b7969d",
-   "url": "https://pypi.io/packages/source/p/pymongoarrow/pymongoarrow-1.5.0.tar.gz"
+   "sha256": "32917d27c547b74dc4f8576d655cf3c86fb062e4d87baa69b54d5c4158bf5d0b",
+   "url": "https://pypi.io/packages/source/p/pymongoarrow/pymongoarrow-1.5.1.tar.gz"
   },
   "test": {
    "commands": [
@@ -317,6 +321,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "packaging",
     "pyarrow",
     "pymongo",
     "python"
@@ -351,7 +356,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pymongoarrow.json"
  },
- "raw_meta_yaml": "{% set name = \"pymongoarrow\" %}\n{% set version = \"1.5.0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/p/pymongoarrow/pymongoarrow-{{ version }}.tar.gz\n  sha256: 27233f2bff76b083fc949535231675d330c166a479750e3c2a77246a27b7969d\n\nbuild:\n  number: 0\n  script:\n    - set eux  # [unix]\n    - export MONGO_NO_COPY_LIBARROW=1             # [unix]\n    - export MONGO_LIBARROW_DIR=\"${PREFIX}/lib\"   # [unix]\n    - export MONGO_NO_COPY_LIBBSON=1              # [unix]\n    - export LIBBSON_INSTALL_DIR=\"${PREFIX}\"      # [unix]\n    - export MONGO_CREATE_LIBARROW_SYMLINKS=\"\"    # [unix]\n    - export MONGO_ADD_GLIBCXX_OVERRIDE=\"\"        # [unix]\n    - set MONGO_NO_COPY_LIBARROW=1                # [win]\n    - set \"MONGO_LIBARROW_DIR=%LIBRARY_LIB%\"      # [win]\n    - set MONGO_NO_COPY_LIBBSON=1                 # [win]\n    - set \"LIBBSON_INSTALL_DIR=%LIBRARY_PREFIX%\"  # [win]\n    - {{ PYTHON }} -m pip install . --no-deps -vvv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - libarrow                               # [build_platform != target_platform]\n    - pyarrow                                # [build_platform != target_platform]\n    - libbson                                # [build_platform != target_platform]\n    - pkg-config                             # [build_platform != target_platform]\n    - pip\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n\n  host:\n    - python\n    - libarrow\n    - pyarrow\n    - cython >=0.29\n    - libbson >=1,<2\n    - pip\n    - pkg-config\n\n  run:\n    - pymongo >=3.11,<5\n    - pyarrow\n    - python\n\ntest:\n  source_files:\n    - .\n  files:\n    - run_the_tests.sh\n  requires:\n    - pip\n    - pandas\n    - numpy\n    - pytest\n    # TODO: replace with mongodb install once https://github.com/conda-forge/mongodb-feedstock/pull/72 is resolved\n    - icu\n    - yaml-cpp\n    - boost-cpp\n    - curl\n\n  commands:\n    - bash run_the_tests.sh  # [osx]\n\nabout:\n  home: https://pypi.org/project/pymongoarrow/\n  summary: Tools for using NumPy, Pandas and PyArrow with MongoDB\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - blink1073\n    - ShaneHarvey\n",
+ "raw_meta_yaml": "{% set name = \"pymongoarrow\" %}\n{% set version = \"1.5.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/p/pymongoarrow/pymongoarrow-{{ version }}.tar.gz\n  sha256: 32917d27c547b74dc4f8576d655cf3c86fb062e4d87baa69b54d5c4158bf5d0b\n\nbuild:\n  number: 0\n  script:\n    - set eux  # [unix]\n    - export MONGO_NO_COPY_LIBARROW=1             # [unix]\n    - export MONGO_LIBARROW_DIR=\"${PREFIX}/lib\"   # [unix]\n    - export MONGO_NO_COPY_LIBBSON=1              # [unix]\n    - export LIBBSON_INSTALL_DIR=\"${PREFIX}\"      # [unix]\n    - export MONGO_CREATE_LIBARROW_SYMLINKS=\"\"    # [unix]\n    - export MONGO_ADD_GLIBCXX_OVERRIDE=\"\"        # [unix]\n    - set MONGO_NO_COPY_LIBARROW=1                # [win]\n    - set \"MONGO_LIBARROW_DIR=%LIBRARY_LIB%\"      # [win]\n    - set MONGO_NO_COPY_LIBBSON=1                 # [win]\n    - set \"LIBBSON_INSTALL_DIR=%LIBRARY_PREFIX%\"  # [win]\n    - {{ PYTHON }} -m pip install . --no-deps -vvv\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - cython                                 # [build_platform != target_platform]\n    - libarrow                               # [build_platform != target_platform]\n    - pyarrow                                # [build_platform != target_platform]\n    - libbson                                # [build_platform != target_platform]\n    - pkg-config                             # [build_platform != target_platform]\n    - pip\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n\n  host:\n    - python\n    - libarrow\n    - pyarrow\n    - cython >=0.29\n    - libbson >=1,<2\n    - pip\n    - pkg-config\n\n  run:\n    - pymongo >=3.11,<5\n    - pyarrow\n    - packaging\n    - python\n\ntest:\n  source_files:\n    - .\n  files:\n    - run_the_tests.sh\n  requires:\n    - pip\n    - pandas\n    - numpy\n    - pytest\n    # TODO: replace with mongodb install once https://github.com/conda-forge/mongodb-feedstock/pull/72 is resolved\n    - icu\n    - yaml-cpp\n    - boost-cpp\n    - curl\n\n  commands:\n    - bash run_the_tests.sh  # [osx]\n\nabout:\n  home: https://pypi.org/project/pymongoarrow/\n  summary: Tools for using NumPy, Pandas and PyArrow with MongoDB\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - blink1073\n    - ShaneHarvey\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -361,6 +366,7 @@
    "cython",
    "libarrow",
    "libbson",
+   "packaging",
    "pip",
    "pkg-config",
    "pyarrow",
@@ -399,6 +405,7 @@
     "c_compiler_stub",
     "c_stdlib_stub",
     "cxx_compiler_stub",
+    "packaging",
     "pyarrow",
     "pymongo",
     "python"
@@ -444,6 +451,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "packaging",
     "pyarrow",
     "pymongo >=3.11,<5",
     "python"
@@ -463,8 +471,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/p/pymongoarrow/pymongoarrow-1.5.0.tar.gz",
- "version": "1.5.0",
+ "url": "https://pypi.io/packages/source/p/pymongoarrow/pymongoarrow-1.5.1.tar.gz",
+ "version": "1.5.1",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pymongoarrow.json"
  },
@@ -493,7 +501,7 @@
   },
   "package": {
    "name": "pymongoarrow",
-   "version": "1.5.0"
+   "version": "1.5.1"
   },
   "requirements": {
    "build": [
@@ -514,12 +522,13 @@
    "run": [
     "pymongo >=3.11,<5",
     "pyarrow",
+    "packaging",
     "python"
    ]
   },
   "source": {
-   "sha256": "27233f2bff76b083fc949535231675d330c166a479750e3c2a77246a27b7969d",
-   "url": "https://pypi.io/packages/source/p/pymongoarrow/pymongoarrow-1.5.0.tar.gz"
+   "sha256": "32917d27c547b74dc4f8576d655cf3c86fb062e4d87baa69b54d5c4158bf5d0b",
+   "url": "https://pypi.io/packages/source/p/pymongoarrow/pymongoarrow-1.5.1.tar.gz"
   },
   "test": {
    "commands": null,
@@ -566,6 +575,7 @@
   "run": {
    "__set__": true,
    "elements": [
+    "packaging",
     "pyarrow",
     "pymongo",
     "python"
