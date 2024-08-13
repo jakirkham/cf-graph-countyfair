@@ -113,7 +113,7 @@
   ],
   "package": {
    "name": "pyebsdindex-meta",
-   "version": "0.3.5"
+   "version": "0.3.6"
   },
   "requirements": {
    "host": [
@@ -121,9 +121,9 @@
    ]
   },
   "source": {
-   "fn": "pyebsdindex-0.3.5.tar.gz",
-   "sha256": "3c23e52de368368a277a1adc443a519d687f46e889d1d5c92f269e0bbe9274ca",
-   "url": "https://pypi.io/packages/source/p/pyebsdindex/pyebsdindex-0.3.5.tar.gz"
+   "fn": "pyebsdindex-0.3.6.tar.gz",
+   "sha256": "14b2e696ec373c253095729b098e75f005897466e1e0046e56dac0792db09d9f",
+   "url": "https://pypi.io/packages/source/p/pyebsdindex/pyebsdindex-0.3.6.tar.gz"
   }
  },
  "linux_64_requirements": {
@@ -306,7 +306,8 @@
      ],
      "run": [
       "__osx",
-      "pyebsdindex-base"
+      "pyebsdindex-base",
+      "ray-default"
      ]
     },
     "test": {
@@ -399,7 +400,7 @@
   ],
   "package": {
    "name": "pyebsdindex-meta",
-   "version": "0.3.5"
+   "version": "0.3.6"
   },
   "requirements": {
    "host": [
@@ -407,9 +408,9 @@
    ]
   },
   "source": {
-   "fn": "pyebsdindex-0.3.5.tar.gz",
-   "sha256": "3c23e52de368368a277a1adc443a519d687f46e889d1d5c92f269e0bbe9274ca",
-   "url": "https://pypi.io/packages/source/p/pyebsdindex/pyebsdindex-0.3.5.tar.gz"
+   "fn": "pyebsdindex-0.3.6.tar.gz",
+   "sha256": "14b2e696ec373c253095729b098e75f005897466e1e0046e56dac0792db09d9f",
+   "url": "https://pypi.io/packages/source/p/pyebsdindex/pyebsdindex-0.3.6.tar.gz"
   }
  },
  "name": "pyebsdindex-meta",
@@ -485,7 +486,8 @@
      ],
      "run": [
       "__osx",
-      "pyebsdindex-base"
+      "pyebsdindex-base",
+      "ray-default"
      ]
     },
     "test": {
@@ -507,7 +509,7 @@
   ],
   "package": {
    "name": "pyebsdindex-meta",
-   "version": "0.3.5"
+   "version": "0.3.6"
   },
   "requirements": {
    "host": [
@@ -515,9 +517,9 @@
    ]
   },
   "source": {
-   "fn": "pyebsdindex-0.3.5.tar.gz",
-   "sha256": "3c23e52de368368a277a1adc443a519d687f46e889d1d5c92f269e0bbe9274ca",
-   "url": "https://pypi.io/packages/source/p/pyebsdindex/pyebsdindex-0.3.5.tar.gz"
+   "fn": "pyebsdindex-0.3.6.tar.gz",
+   "sha256": "14b2e696ec373c253095729b098e75f005897466e1e0046e56dac0792db09d9f",
+   "url": "https://pypi.io/packages/source/p/pyebsdindex/pyebsdindex-0.3.6.tar.gz"
   }
  },
  "osx_64_requirements": {
@@ -544,6 +546,7 @@
     "pyebsdindex-base",
     "pyopencl",
     "python",
+    "ray-default",
     "scipy"
    ]
   },
@@ -571,7 +574,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyebsdindex.json"
  },
- "raw_meta_yaml": "{% set version = \"0.3.5\" %}\n\npackage:\n  name: pyebsdindex-meta\n  version: {{ version }}\n\nsource:\n  fn: pyebsdindex-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/p/pyebsdindex/pyebsdindex-{{ version }}.tar.gz\n  sha256: 3c23e52de368368a277a1adc443a519d687f46e889d1d5c92f269e0bbe9274ca\n\nbuild:\n  number: 0\n  noarch: python\n\nrequirements:\n  host:\n    - python\n\noutputs:\n  - name: pyebsdindex-base\n    build:\n      script: {{ PYTHON }} -m pip install . --no-deps -vv\n      noarch: python\n    requirements:\n      host:\n        - python >=3.7\n        - pip\n      run:\n        - __{{ target_os }}\n        - h5py\n        - matplotlib-base\n        - numba >=0.53\n        - numpy\n        - ocl-icd-system  # [linux]\n        - ocl_icd_wrapper_apple  # [osx]\n        - pyopencl\n        - python\n        - scipy\n    test:\n      requires:\n        - pip\n        - pytest\n      imports:\n        - pyebsdindex\n        - pyebsdindex.ebsd_index\n        - pyebsdindex.nlpar\n        - pyebsdindex.pcopt\n        - pyebsdindex.tripletvote\n      commands:\n        - pip check\n        - pytest --pyargs pyebsdindex\n\n  - name: pyebsdindex\n    build:\n      noarch: python\n    requirements:\n      host:\n        - python >=3.7\n      run:\n        - __{{ target_os }}\n        - {{ pin_subpackage('pyebsdindex-base', exact=True) }}\n        - ray-default  # [not osx]\n    test:\n      requires:\n        - pytest\n      imports:\n        - pyebsdindex\n        - pyebsdindex.ebsd_index\n        - pyebsdindex.nlpar\n        - pyebsdindex.pcopt\n        - pyebsdindex.tripletvote\n      commands:\n        - pytest --pyargs pyebsdindex -k \"not test_index_pats_multi\"\n\nabout:\n  home: https://pyebsdindex.readthedocs.io\n  license_file: License\n  license: LicenseRef-PyEBSDIndex\n  summary: Python based tool for Radon based EBSD indexing\n  doc_url: https://pyebsdindex.readthedocs.io\n  dev_url: https://github.com/USNavalResearchLaboratory/PyEBSDIndex\n\nextra:\n  recipe-maintainers:\n    - drowenhorst-nrl\n    - hakonanes\n",
+ "raw_meta_yaml": "{% set version = \"0.3.6\" %}\n\npackage:\n  name: pyebsdindex-meta\n  version: {{ version }}\n\nsource:\n  fn: pyebsdindex-{{ version }}.tar.gz\n  url: https://pypi.io/packages/source/p/pyebsdindex/pyebsdindex-{{ version }}.tar.gz\n  sha256: 14b2e696ec373c253095729b098e75f005897466e1e0046e56dac0792db09d9f\n\nbuild:\n  number: 0\n  noarch: python\n\nrequirements:\n  host:\n    - python\n\noutputs:\n  - name: pyebsdindex-base\n    build:\n      script: {{ PYTHON }} -m pip install . --no-deps -vv\n      noarch: python\n    requirements:\n      host:\n        - python >=3.7\n        - pip\n      run:\n        - __{{ target_os }}\n        - h5py\n        - matplotlib-base\n        - numba >=0.53\n        - numpy\n        - ocl-icd-system  # [linux]\n        - ocl_icd_wrapper_apple  # [osx]\n        - pyopencl\n        - python\n        - scipy\n    test:\n      requires:\n        - pip\n        - pytest\n      imports:\n        - pyebsdindex\n        - pyebsdindex.ebsd_index\n        - pyebsdindex.nlpar\n        - pyebsdindex.pcopt\n        - pyebsdindex.tripletvote\n      commands:\n        - pip check\n        - pytest --pyargs pyebsdindex\n\n  - name: pyebsdindex\n    build:\n      noarch: python\n    requirements:\n      host:\n        - python >=3.7\n      run:\n        - __{{ target_os }}\n        - {{ pin_subpackage('pyebsdindex-base', exact=True) }}\n        - ray-default \n    test:\n      requires:\n        - pytest\n      imports:\n        - pyebsdindex\n        - pyebsdindex.ebsd_index\n        - pyebsdindex.nlpar\n        - pyebsdindex.pcopt\n        - pyebsdindex.tripletvote\n      commands:\n        - pytest --pyargs pyebsdindex -k \"not test_index_pats_multi\"\n\nabout:\n  home: https://pyebsdindex.readthedocs.io\n  license_file: License\n  license: LicenseRef-PyEBSDIndex\n  summary: Python based tool for Radon based EBSD indexing\n  doc_url: https://pyebsdindex.readthedocs.io\n  dev_url: https://github.com/USNavalResearchLaboratory/PyEBSDIndex\n\nextra:\n  recipe-maintainers:\n    - drowenhorst-nrl\n    - hakonanes\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -672,8 +675,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/p/pyebsdindex/pyebsdindex-0.3.5.tar.gz",
- "version": "0.3.5",
+ "url": "https://pypi.io/packages/source/p/pyebsdindex/pyebsdindex-0.3.6.tar.gz",
+ "version": "0.3.6",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/pyebsdindex.json"
  },
@@ -771,7 +774,7 @@
   ],
   "package": {
    "name": "pyebsdindex-meta",
-   "version": "0.3.5"
+   "version": "0.3.6"
   },
   "requirements": {
    "host": [
@@ -779,9 +782,9 @@
    ]
   },
   "source": {
-   "fn": "pyebsdindex-0.3.5.tar.gz",
-   "sha256": "3c23e52de368368a277a1adc443a519d687f46e889d1d5c92f269e0bbe9274ca",
-   "url": "https://pypi.io/packages/source/p/pyebsdindex/pyebsdindex-0.3.5.tar.gz"
+   "fn": "pyebsdindex-0.3.6.tar.gz",
+   "sha256": "14b2e696ec373c253095729b098e75f005897466e1e0046e56dac0792db09d9f",
+   "url": "https://pypi.io/packages/source/p/pyebsdindex/pyebsdindex-0.3.6.tar.gz"
   }
  },
  "win_64_requirements": {
