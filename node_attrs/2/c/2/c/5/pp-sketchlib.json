@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "build_platform": {
+   "osx_arm64": "osx_64"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -9,7 +12,8 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  }
+  },
+  "test": "native_and_emulated"
  },
  "feedstock_name": "pp-sketchlib",
  "hash_type": "sha256",
@@ -42,10 +46,10 @@
    "missing_dso_whitelist": [
     "*/libcuda.*"
    ],
-   "number": "0",
+   "number": "1",
    "script": [
     "export SKETCHLIB_INSTALL=conda",
-    "PYTHON -m pip install . --no-deps -vvv"
+    "PYTHON -m pip install . -vvv"
    ]
   },
   "extra": {
@@ -59,6 +63,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "cuda_compiler_stub",
@@ -109,6 +114,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -177,10 +183,10 @@
    "missing_dso_whitelist": [
     "*/libcuda.*"
    ],
-   "number": "0",
+   "number": "1",
    "script": [
     "export SKETCHLIB_INSTALL=conda",
-    "PYTHON -m pip install . --no-deps -vvv"
+    "PYTHON -m pip install . -vvv"
    ]
   },
   "extra": {
@@ -194,6 +200,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "cuda_compiler_stub",
@@ -271,9 +278,9 @@
    "missing_dso_whitelist": [
     "*/libcuda.*"
    ],
-   "number": "0",
+   "number": "1",
    "script": [
-    "PYTHON -m pip install . --no-deps -vvv"
+    "PYTHON -m pip install . -vvv"
    ]
   },
   "extra": {
@@ -287,6 +294,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "cmake >=3.19",
@@ -336,6 +344,141 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "make"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "eigen",
+    "hdf5",
+    "highfive",
+    "llvm-openmp",
+    "openblas",
+    "pip",
+    "pybind11",
+    "python",
+    "zlib"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": [
+    "docopt",
+    "gfortran_impl_osx-64",
+    "h5py",
+    "libblas",
+    "numpy",
+    "openblas",
+    "python",
+    "scipy",
+    "zlib"
+   ]
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "osx_arm64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/bacpop/pp-sketchlib",
+   "doc_url": "https://poppunk.bacpop.org/",
+   "home": "https://github.com/bacpop/pp-sketchlib",
+   "license": "Apache-2.0 AND MIT AND BSD-3-Clause",
+   "license_file": [
+    "NOTICE",
+    "LICENSE",
+    "LICENSE_highfive",
+    "LICENSE_bindash",
+    "LICENSE_nthash",
+    "LICENSE_kseq",
+    "LICENSE_json.txt",
+    "LICENSE_KMeansRex",
+    "LICENSE_unordered_dense"
+   ],
+   "summary": "Library of sketching functions used by PopPUNK"
+  },
+  "build": {
+   "entry_points": [
+    "sketchlib = pp_sketch.__main__:main"
+   ],
+   "ignore_run_exports": [
+    "cudatoolkit"
+   ],
+   "missing_dso_whitelist": [
+    "*/libcuda.*"
+   ],
+   "number": "1",
+   "script": [
+    "PYTHON -m pip install . -vvv"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "johnlees"
+   ]
+  },
+  "package": {
+   "name": "pp-sketchlib",
+   "version": "2.1.3"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "cmake >=3.19",
+    "make"
+   ],
+   "host": [
+    "python",
+    "pip",
+    "pybind11",
+    "highfive",
+    "zlib",
+    "eigen",
+    "hdf5",
+    "openblas",
+    "llvm-openmp"
+   ],
+   "run": [
+    "python",
+    "numpy",
+    "scipy",
+    "libblas * *openblas",
+    "openblas",
+    "zlib",
+    "h5py",
+    "docopt",
+    "gfortran_impl_osx-64"
+   ]
+  },
+  "source": {
+   "patches": [
+    "0001-Fix-for-type-of-index-on-llvm-compiler.patch"
+   ],
+   "sha256": "093db6840caad909ddb5159ba0a64a4822155e0bc18d2cbabc0c8a5bcf351026",
+   "url": "https://github.com/bacpop/pp-sketchlib/archive/v2.1.3.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "sketchlib --version"
+   ],
+   "imports": [
+    "pp_sketchlib"
+   ]
+  }
+ },
+ "osx_arm64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "make"
@@ -383,16 +526,18 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
-  "osx_64"
+  "osx_64",
+  "osx_arm64"
  ],
  "pr_info": {
   "__lazy_json__": "pr_info/pp-sketchlib.json"
  },
- "raw_meta_yaml": "{% set name = \"pp-sketchlib\" %}\n{% set version = \"2.1.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz\n  sha256: 093db6840caad909ddb5159ba0a64a4822155e0bc18d2cbabc0c8a5bcf351026\n  patches:\n    - 0001-Fix-for-type-of-index-on-llvm-compiler.patch\n\nbuild:\n  number: 0\n  skip: true  # [py<38 or win or cuda_compiler_version in (\"9.2\", \"10.0\", \"10.1\", \"10.2\", \"11.0\")]\n  script:\n    - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != \"None\"]\n    - {{ PYTHON }} -m pip install . --no-deps -vvv\n  missing_dso_whitelist:\n    - '*/libcuda.*'\n  ignore_run_exports:\n    - cudatoolkit\n  entry_points:\n    - sketchlib = pp_sketch.__main__:main\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != \"None\"]\n    - cmake >=3.19\n    - make\n  host:\n    - python\n    - pip\n    - pybind11\n    - highfive\n    - zlib\n    - eigen\n    - hdf5\n    - openblas\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux64]\n  run:\n    - python\n    - numpy\n    - scipy\n    - libblas * *openblas\n    - openblas\n    - zlib\n    - h5py\n    - docopt\n    - libgfortran-ng        # [linux64]\n    - gfortran_impl_osx-64  # [osx]\n\ntest:\n  imports:\n    - pp_sketchlib\n  commands:\n    - sketchlib --version\n\nabout:\n  home: https://github.com/bacpop/pp-sketchlib\n  license: Apache-2.0 AND MIT AND BSD-3-Clause\n  license_file:\n    - NOTICE\n    - LICENSE\n    - LICENSE_highfive\n    - LICENSE_bindash\n    - LICENSE_nthash\n    - LICENSE_kseq\n    - LICENSE_json.txt\n    - LICENSE_KMeansRex\n    - LICENSE_unordered_dense\n  summary: Library of sketching functions used by PopPUNK\n  doc_url: https://poppunk.bacpop.org/\n  dev_url: https://github.com/bacpop/pp-sketchlib\n\nextra:\n  recipe-maintainers:\n    - johnlees\n",
+ "raw_meta_yaml": "{% set name = \"pp-sketchlib\" %}\n{% set version = \"2.1.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/bacpop/{{ name|lower }}/archive/v{{ version }}.tar.gz\n  sha256: 093db6840caad909ddb5159ba0a64a4822155e0bc18d2cbabc0c8a5bcf351026\n  patches:\n    - 0001-Fix-for-type-of-index-on-llvm-compiler.patch\n\nbuild:\n  number: 1\n  skip: true  # [py<38 or win or cuda_compiler_version in (\"9.2\", \"10.0\", \"10.1\", \"10.2\", \"11.0\")]\n  script:\n    - export SKETCHLIB_INSTALL=conda  # [linux64 and cuda_compiler_version != \"None\"]\n    - {{ PYTHON }} -m pip install . -vvv\n  missing_dso_whitelist:\n    - '*/libcuda.*'\n  ignore_run_exports:\n    - cudatoolkit\n  entry_points:\n    - sketchlib = pp_sketch.__main__:main\n\nrequirements:\n  build:\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != \"None\"]\n    - cmake >=3.19\n    - make\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - pybind11                               # [build_platform != target_platform]\n  host:\n    - python\n    - pip\n    - pybind11\n    - highfive\n    - zlib\n    - eigen\n    - hdf5\n    - openblas\n    - llvm-openmp  # [osx]\n    - libgomp      # [linux64]\n  run:\n    - python\n    - numpy\n    - scipy\n    - libblas * *openblas\n    - openblas\n    - zlib\n    - h5py\n    - docopt\n    - libgfortran-ng        # [linux64]\n    - gfortran_impl_osx-64  # [osx]\n\ntest:\n  imports:\n    - pp_sketchlib\n  commands:\n    - sketchlib --version\n\nabout:\n  home: https://github.com/bacpop/pp-sketchlib\n  license: Apache-2.0 AND MIT AND BSD-3-Clause\n  license_file:\n    - NOTICE\n    - LICENSE\n    - LICENSE_highfive\n    - LICENSE_bindash\n    - LICENSE_nthash\n    - LICENSE_kseq\n    - LICENSE_json.txt\n    - LICENSE_KMeansRex\n    - LICENSE_unordered_dense\n  summary: Library of sketching functions used by PopPUNK\n  doc_url: https://poppunk.bacpop.org/\n  dev_url: https://github.com/bacpop/pp-sketchlib\n\nextra:\n  recipe-maintainers:\n    - johnlees\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cuda_compiler_stub",
    "cxx_compiler_stub",
@@ -421,6 +566,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -431,6 +577,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -451,6 +598,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "ctng-compilers",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
@@ -478,6 +626,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake >=3.19",
     "cuda_compiler_stub",
     "cxx_compiler_stub",
