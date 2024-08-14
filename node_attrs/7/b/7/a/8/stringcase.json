@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "hint-all"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -23,8 +26,8 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -37,11 +40,13 @@
   },
   "requirements": {
    "host": [
-    "python",
-    "pip"
+    "pip",
+    "python >=3.6",
+    "setuptools",
+    "wheel"
    ],
    "run": [
-    "python"
+    "python >=3.6"
    ]
   },
   "source": {
@@ -51,6 +56,11 @@
   "test": {
    "imports": [
     "stringcase"
+   ],
+   "requires": [
+    "pip",
+    "pytest",
+    "coverage"
    ]
   }
  },
@@ -63,7 +73,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "wheel"
    ]
   },
   "run": {
@@ -74,7 +86,11 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "coverage",
+    "pip",
+    "pytest"
+   ]
   }
  },
  "meta_yaml": {
@@ -87,8 +103,8 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
@@ -101,11 +117,13 @@
   },
   "requirements": {
    "host": [
-    "python",
-    "pip"
+    "pip",
+    "python >=3.6",
+    "setuptools",
+    "wheel"
    ],
    "run": [
-    "python"
+    "python >=3.6"
    ]
   },
   "source": {
@@ -115,6 +133,11 @@
   "test": {
    "imports": [
     "stringcase"
+   ],
+   "requires": [
+    "pip",
+    "pytest",
+    "coverage"
    ]
   }
  },
@@ -132,12 +155,14 @@
  "pr_info": {
   "__lazy_json__": "pr_info/stringcase.json"
  },
- "raw_meta_yaml": "{% set name = \"stringcase\" %}\n{% set version = \"1.2.0\" %}\n\npackage:\n  name: {{ name }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\n  sha256: 48a06980661908efe8d9d34eab2b6c13aefa2163b3ced26972902e3bdfd87008\n\nbuild:\n  noarch: python\n  number: 0\n  script: \"{{ PYTHON }} -m pip install . -vv\"\n\nrequirements:\n  host:\n    - python\n    - pip\n  run:\n    - python\n\ntest:\n  imports:\n    - stringcase\n\nabout:\n  home: https://github.com/okunishinishi/python-stringcase\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: 'Convert string cases between camel case, pascal case, snake case etc...'\n\nextra:\n  recipe-maintainers:\n    - bollwyvl\n",
+ "raw_meta_yaml": "{% set version = \"1.2.0\" %}\n\npackage:\n  name: stringcase\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/s/stringcase/stringcase-{{ version }}.tar.gz\n  sha256: 48a06980661908efe8d9d34eab2b6c13aefa2163b3ced26972902e3bdfd87008\n\nbuild:\n  noarch: python\n  number: 1\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n\nrequirements:\n  host:\n    - pip\n    - python >=3.6\n    - setuptools\n    - wheel\n  run:\n    - python >=3.6\n\ntest:\n  imports:\n    - stringcase\n  requires:\n    - pip\n    - pytest\n    - coverage\n\nabout:\n  home: https://github.com/okunishinishi/python-stringcase\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: |-\n    Convert string cases between camel case, pascal case, snake case etc...\n\nextra:\n  recipe-maintainers:\n    - bollwyvl\n",
  "req": {
   "__set__": true,
   "elements": [
    "pip",
-   "python"
+   "python",
+   "setuptools",
+   "wheel"
   ]
  },
  "requirements": {
@@ -149,7 +174,9 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python",
+    "setuptools",
+    "wheel"
    ]
   },
   "run": {
@@ -160,7 +187,11 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "coverage",
+    "pip",
+    "pytest"
+   ]
   }
  },
  "strong_exports": false,
@@ -173,18 +204,24 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python >=3.6",
+    "setuptools",
+    "wheel"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "python"
+    "python >=3.6"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "coverage",
+    "pip",
+    "pytest"
+   ]
   }
  },
  "url": "https://pypi.io/packages/source/s/stringcase/stringcase-1.2.0.tar.gz",
