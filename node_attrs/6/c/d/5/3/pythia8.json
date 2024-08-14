@@ -10,10 +10,10 @@
    "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
-  "build_with_mambabuild": false,
   "conda_build": {
    "pkg_format": "2"
   },
+  "conda_build_tool": "conda-build+conda-libmamba-solver",
   "conda_forge_output_validation": true,
   "github": {
    "branch_name": "main",
@@ -32,7 +32,7 @@
    "summary": "A tool for the generation of events in high-energy collisions"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "pythia8 >=8.310,<8.400.0a0"
    ]
@@ -50,6 +50,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "rsync",
@@ -79,6 +80,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "rsync",
@@ -112,7 +114,7 @@
    "summary": "A tool for the generation of events in high-energy collisions"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "pythia8 >=8.310,<8.400.0a0"
    ]
@@ -130,6 +132,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "rsync",
@@ -159,6 +162,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "rsync",
@@ -192,7 +196,7 @@
    "summary": "A tool for the generation of events in high-energy collisions"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "pythia8 >=8.310,<8.400.0a0"
    ]
@@ -210,6 +214,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "rsync",
@@ -239,6 +244,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "rsync",
@@ -272,7 +278,7 @@
    "summary": "A tool for the generation of events in high-energy collisions"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "pythia8 >=8.310,<8.400.0a0"
    ]
@@ -290,6 +296,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "rsync",
@@ -324,7 +331,7 @@
    "summary": "A tool for the generation of events in high-energy collisions"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "pythia8 >=8.310,<8.400.0a0"
    ]
@@ -342,6 +349,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "rsync",
@@ -371,6 +379,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "rsync",
@@ -404,7 +413,7 @@
    "summary": "A tool for the generation of events in high-energy collisions"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "pythia8 >=8.310,<8.400.0a0"
    ]
@@ -422,6 +431,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "cxx_compiler_stub",
     "rsync",
@@ -451,6 +461,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "rsync",
@@ -492,11 +503,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pythia8.json"
  },
- "raw_meta_yaml": "{% set name = \"pythia8\" %}\n{% set file_version = \"8310\" %}\n{% set version = file_version[0] + \".\" + file_version[1:] %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pythia.org/download/pythia83/pythia{{ file_version }}.tgz\n  sha256: 90c811abe7a3d2ffdbf9b4aeab51cf6e0a5a8befb4e3efa806f3d5b9c311e227\n\nbuild:\n  number: 0\n  skip: true  # [win]\n  run_exports:\n    # https://abi-laboratory.pro/?view=timeline&l=root\n    - pythia8 >={{ version }},<{{ version.split('.')[0] }}.{{ (version.split('.')[1][0]|int) + 1 }}00.0a0\n    # Can't use pin_subpackage as X.Y.Z is written as X.YZ\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - rsync\n    - make\n    - sed\n  host:\n    - python\n    - pybind11\n  run:\n    - python\n\ntest:\n  imports:\n    - pythia8\n\nabout:\n  home: http://home.thep.lu.se/Pythia/\n  license: GPL-2.0-only\n  license_file: COPYING\n  summary: A tool for the generation of events in high-energy collisions\n  description: |\n    The Pythia program is a standard tool for the generation of events in\n    high-energy collisions, comprising a coherent set of physics models for\n    the evolution from a few-body hard process to a complex multiparticle\n    final state. It contains a library of hard processes, models for initial-\n    and final-state parton showers, matching and merging methods between hard\n    processes and parton showers, multiparton interactions, beam remnants,\n    string fragmentation and particle decays. It also has a set of utilities\n    and several interfaces to external programs.\n\nextra:\n  recipe-maintainers:\n    - chrisburr\n    - henryiii\n    - ph-ilten\n",
+ "raw_meta_yaml": "{% set name = \"pythia8\" %}\n{% set file_version = \"8310\" %}\n{% set version = file_version[0] + \".\" + file_version[1:] %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pythia.org/download/pythia83/pythia{{ file_version }}.tgz\n  sha256: 90c811abe7a3d2ffdbf9b4aeab51cf6e0a5a8befb4e3efa806f3d5b9c311e227\n\nbuild:\n  number: 1\n  skip: true  # [win]\n  run_exports:\n    # https://abi-laboratory.pro/?view=timeline&l=root\n    - pythia8 >={{ version }},<{{ version.split('.')[0] }}.{{ (version.split('.')[1][0]|int) + 1 }}00.0a0\n    # Can't use pin_subpackage as X.Y.Z is written as X.YZ\n\nrequirements:\n  build:\n    - python                                 # [build_platform != target_platform]\n    - cross-python_{{ target_platform }}     # [build_platform != target_platform]\n    - {{ stdlib('c') }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - rsync\n    - make\n    - sed\n  host:\n    - python\n    - libxcrypt  # [linux and py<39]\n    - pybind11\n  run:\n    - python\n\ntest:\n  imports:\n    - pythia8\n\nabout:\n  home: http://home.thep.lu.se/Pythia/\n  license: GPL-2.0-only\n  license_file: COPYING\n  summary: A tool for the generation of events in high-energy collisions\n  description: |\n    The Pythia program is a standard tool for the generation of events in\n    high-energy collisions, comprising a coherent set of physics models for\n    the evolution from a few-body hard process to a complex multiparticle\n    final state. It contains a library of hard processes, models for initial-\n    and final-state parton showers, matching and merging methods between hard\n    processes and parton showers, multiparton interactions, beam remnants,\n    string fragmentation and particle decays. It also has a set of utilities\n    and several interfaces to external programs.\n\nextra:\n  recipe-maintainers:\n    - chrisburr\n    - henryiii\n    - ph-ilten\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "make",
    "pybind11",
@@ -510,6 +522,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "rsync",
@@ -520,6 +533,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "pybind11",
     "python"
@@ -529,6 +543,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "python"
    ]
@@ -544,6 +559,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "make",
     "rsync",

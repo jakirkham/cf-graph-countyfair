@@ -25,6 +25,7 @@
   },
   "build": {
    "ignore_run_exports": [
+    "libstdcxx",
     "libstdcxx-ng",
     "numpy"
    ],
@@ -33,7 +34,7 @@
     "*/libpthread.so.0",
     "*/libm.so.6"
    ],
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "opentelemac/builds/gnu.dynamic/lib"
    ],
@@ -60,6 +61,7 @@
     "c_stdlib_stub",
     "openmpi",
     "python",
+    "meson",
     "metis",
     "numpy",
     "sed"
@@ -78,16 +80,6 @@
    ]
   },
   "source": [
-   {
-    "folder": "opentelemac",
-    "sha256": "2beb9793fb83d17de31b17f001f985fc30702c151e2ced614f5e0117e8e34aa0",
-    "url": "https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/archive/v8p5r0/telemac-mascaret-v8p5r0.tar.gz"
-   },
-   {
-    "folder": "opentelemac",
-    "sha256": "2beb9793fb83d17de31b17f001f985fc30702c151e2ced614f5e0117e8e34aa0",
-    "url": "https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/archive/v8p5r0/telemac-mascaret-v8p5r0.tar.gz"
-   },
    {
     "folder": "opentelemac",
     "sha256": "2beb9793fb83d17de31b17f001f985fc30702c151e2ced614f5e0117e8e34aa0",
@@ -132,6 +124,7 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
+    "meson",
     "metis",
     "numpy",
     "openmpi",
@@ -171,6 +164,7 @@
   },
   "build": {
    "ignore_run_exports": [
+    "libstdcxx",
     "libstdcxx-ng",
     "numpy"
    ],
@@ -179,7 +173,7 @@
     "*/libpthread.so.0",
     "*/libm.so.6"
    ],
-   "number": "2",
+   "number": "3",
    "rpaths": [
     "opentelemac/builds/gnu.dynamic/lib"
    ],
@@ -206,6 +200,7 @@
     "c_stdlib_stub",
     "openmpi",
     "python",
+    "meson",
     "metis",
     "numpy",
     "sed"
@@ -224,16 +219,6 @@
    ]
   },
   "source": [
-   {
-    "folder": "opentelemac",
-    "sha256": "2beb9793fb83d17de31b17f001f985fc30702c151e2ced614f5e0117e8e34aa0",
-    "url": "https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/archive/v8p5r0/telemac-mascaret-v8p5r0.tar.gz"
-   },
-   {
-    "folder": "opentelemac",
-    "sha256": "2beb9793fb83d17de31b17f001f985fc30702c151e2ced614f5e0117e8e34aa0",
-    "url": "https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/archive/v8p5r0/telemac-mascaret-v8p5r0.tar.gz"
-   },
    {
     "folder": "opentelemac",
     "sha256": "2beb9793fb83d17de31b17f001f985fc30702c151e2ced614f5e0117e8e34aa0",
@@ -280,7 +265,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/opentelemac.json"
  },
- "raw_meta_yaml": "{% set name = \"opentelemac\" %}\n{% set version = \"v8p5r0\" %}\n{% set build = 2 %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/archive/{{ version }}/telemac-mascaret-{{ version }}.tar.gz\n    folder: opentelemac\n    sha256: 2beb9793fb83d17de31b17f001f985fc30702c151e2ced614f5e0117e8e34aa0\n\nbuild:\n  number: {{ build }}\n  skip: true  # [not linux]\n  script_env:\n    - TELEMAC_VERSION={{ version }}\n  missing_dso_whitelist:\n    - '*/libc.so.6'\n    - '*/libpthread.so.0'\n    - '*/libm.so.6'\n  ignore_run_exports:\n    - libstdcxx-ng\n    - numpy\n  rpaths:\n    - opentelemac/builds/gnu.dynamic/lib\n\nrequirements:\n  build:\n    - cross-python_{{ target_platform }}    # [build_platform != target_platform]\n    - python                                # [build_platform != target_platform]\n    - numpy                                 # [build_platform != target_platform]\n  host:\n    - {{ compiler('fortran') }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - openmpi\n    - python\n    - metis\n    - numpy\n    - sed\n  run:\n    - {{ compiler('fortran') }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - openmpi\n    - python\n    - numpy\n    - metis\n    - matplotlib-base\n    - scipy\n    - mpi4py\n\ntest:\n  commands:\n    - config.py\n\nabout:\n  home: http://www.opentelemac.org/\n  license: GPL-3.0-or-later\n  license_file: opentelemac/LICENSE.txt\n  summary: openTelemac\n  description: |\n    The TELEMAC-MASCARET system is an integrated suite of solvers for use in the\n    field of free-surface flow.\n  doc_url: http://wiki.opentelemac.org/doku.php?id=documentation_{{ version }}\n  dev_url: https://gitlab.pam-retd.fr/otm/telemac-mascaret/\n\nextra:\n  recipe-maintainers:\n    - nicogodet\n    - tomsail\n",
+ "raw_meta_yaml": "{% set name = \"opentelemac\" %}\n{% set version = \"v8p5r0\" %}\n{% set build = 3 %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  - url: https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/archive/{{ version }}/telemac-mascaret-{{ version }}.tar.gz\n    folder: opentelemac\n    sha256: 2beb9793fb83d17de31b17f001f985fc30702c151e2ced614f5e0117e8e34aa0\n\nbuild:\n  number: {{ build }}\n  skip: true  # [not linux]\n  script_env:\n    - TELEMAC_VERSION={{ version }}\n  missing_dso_whitelist:\n    - '*/libc.so.6'\n    - '*/libpthread.so.0'\n    - '*/libm.so.6'\n  ignore_run_exports:\n    # don't ignore all run-exports from {{ compiler('cxx') }}, we need libgcc\n    - libstdcxx     # [linux]\n    - libstdcxx-ng  # [linux]\n    - numpy\n  rpaths:\n    - opentelemac/builds/gnu.dynamic/lib\n\nrequirements:\n  build:\n    - cross-python_{{ target_platform }}    # [build_platform != target_platform]\n    - python                                # [build_platform != target_platform]\n    - numpy                                 # [build_platform != target_platform]\n  host:\n    - {{ compiler('fortran') }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - {{ stdlib('c') }}\n    - openmpi\n    - python\n    - meson\n    - metis\n    - numpy\n    - sed\n  run:\n    - {{ compiler('fortran') }}\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - openmpi\n    - python\n    - numpy\n    - metis\n    - matplotlib-base\n    - scipy\n    - mpi4py\n\ntest:\n  commands:\n    - config.py\n\nabout:\n  home: http://www.opentelemac.org/\n  license: GPL-3.0-or-later\n  license_file: opentelemac/LICENSE.txt\n  summary: openTelemac\n  description: |\n    The TELEMAC-MASCARET system is an integrated suite of solvers for use in the\n    field of free-surface flow.\n  doc_url: http://wiki.opentelemac.org/doku.php?id=documentation_{{ version }}\n  dev_url: https://gitlab.pam-retd.fr/otm/telemac-mascaret/\n\nextra:\n  recipe-maintainers:\n    - nicogodet\n    - tomsail\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -289,6 +274,7 @@
    "cxx_compiler_stub",
    "fortran_compiler_stub",
    "matplotlib-base",
+   "meson",
    "metis",
    "mpi4py",
    "numpy",
@@ -310,6 +296,7 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
+    "meson",
     "metis",
     "numpy",
     "openmpi",
@@ -351,6 +338,7 @@
     "c_stdlib_stub",
     "cxx_compiler_stub",
     "fortran_compiler_stub",
+    "meson",
     "metis",
     "numpy",
     "openmpi",
