@@ -3,6 +3,7 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -12,12 +13,6 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
-  },
-  "linux_aarch64": {
-   "enabled": false
-  },
-  "linux_ppc64le": {
-   "enabled": false
   },
   "test": "native_and_emulated"
  },
@@ -41,27 +36,24 @@
   },
   "package": {
    "name": "libsimpleitk",
-   "version": "2.3.1"
+   "version": "2.4.0"
   },
   "requirements": {
    "build": [
     "cmake   >=3.16.3",
     "ninja",
     "lua     5.4.*",
-    "swig    4.0.*",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
-    "libitk-devel  5.3.*"
-   ],
-   "run": [
-    "libitk"
+    "libitk-devel  5.4.*"
    ]
   },
   "source": {
-   "sha256": "7498c1bd3ae8218027c17bcefd2346b16eda6f2a009c0b9f344bd163c4715870",
-   "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.3.1/SimpleITK-2.3.1.tar.gz"
+   "sha256": "bcf9e3b7f944b049728a72ca99d122d3849802626bc41e8ba14b5498cd218df5",
+   "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.4.0/SimpleITK-2.4.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -86,11 +78,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "lua",
-    "ninja",
-    "swig"
+    "ninja"
    ]
   },
   "host": {
@@ -101,9 +93,95 @@
   },
   "run": {
    "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
    "elements": [
-    "libitk"
+    "c_compiler_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "libitk-devel",
+    "ninja"
    ]
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "home": "http://www.simpleitk.org",
+   "license": "Apache-2.0",
+   "license_file": "LICENSE",
+   "summary": "Development headers and libraries for SimpleITK a simplified interface to the Insight Toolkit."
+  },
+  "build": {
+   "number": "1"
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "blowekamp",
+    "zivy"
+   ]
+  },
+  "package": {
+   "name": "libsimpleitk",
+   "version": "2.4.0"
+  },
+  "requirements": {
+   "build": [
+    "cmake   >=3.16.3",
+    "ninja",
+    "lua     5.4.*",
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
+   ],
+   "host": [
+    "libitk-devel  5.4.*"
+   ]
+  },
+  "source": {
+   "sha256": "bcf9e3b7f944b049728a72ca99d122d3849802626bc41e8ba14b5498cd218df5",
+   "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.4.0/SimpleITK-2.4.0.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "test -d $PREFIX/include/SimpleITK*",
+    "cmake -G Ninja -D \"CMAKE_SYSTEM_PREFIX_PATH:FILEPATH=${PREFIX}\" ./Examples",
+    "cmake --build . --config Release"
+   ],
+   "requires": [
+    "cmake",
+    "ninja",
+    "c_compiler_stub",
+    "cxx_compiler_stub",
+    "libitk-devel"
+   ],
+   "source_files": [
+    "Examples"
+   ]
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "cxx_compiler_stub",
+    "lua",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "libitk-devel"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -134,27 +212,24 @@
   },
   "package": {
    "name": "libsimpleitk",
-   "version": "2.3.1"
+   "version": "2.4.0"
   },
   "requirements": {
    "build": [
     "cmake   >=3.16.3",
     "ninja",
     "lua     5.4.*",
-    "swig    4.0.*",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
-    "libitk-devel  5.3.*"
-   ],
-   "run": [
-    "libitk"
+    "libitk-devel  5.4.*"
    ]
   },
   "source": {
-   "sha256": "7498c1bd3ae8218027c17bcefd2346b16eda6f2a009c0b9f344bd163c4715870",
-   "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.3.1/SimpleITK-2.3.1.tar.gz"
+   "sha256": "bcf9e3b7f944b049728a72ca99d122d3849802626bc41e8ba14b5498cd218df5",
+   "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.4.0/SimpleITK-2.4.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -195,27 +270,24 @@
   },
   "package": {
    "name": "libsimpleitk",
-   "version": "2.3.1"
+   "version": "2.4.0"
   },
   "requirements": {
    "build": [
     "cmake   >=3.16.3",
     "ninja",
     "lua     5.4.*",
-    "swig    4.0.*",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
-    "libitk-devel  5.3.*"
-   ],
-   "run": [
-    "libitk"
+    "libitk-devel  5.4.*"
    ]
   },
   "source": {
-   "sha256": "7498c1bd3ae8218027c17bcefd2346b16eda6f2a009c0b9f344bd163c4715870",
-   "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.3.1/SimpleITK-2.3.1.tar.gz"
+   "sha256": "bcf9e3b7f944b049728a72ca99d122d3849802626bc41e8ba14b5498cd218df5",
+   "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.4.0/SimpleITK-2.4.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -240,11 +312,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "lua",
-    "ninja",
-    "swig"
+    "ninja"
    ]
   },
   "host": {
@@ -255,9 +327,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "libitk"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -288,27 +358,24 @@
   },
   "package": {
    "name": "libsimpleitk",
-   "version": "2.3.1"
+   "version": "2.4.0"
   },
   "requirements": {
    "build": [
     "cmake   >=3.16.3",
     "ninja",
     "lua     5.4.*",
-    "swig    4.0.*",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
-    "libitk-devel  5.3.*"
-   ],
-   "run": [
-    "libitk"
+    "libitk-devel  5.4.*"
    ]
   },
   "source": {
-   "sha256": "7498c1bd3ae8218027c17bcefd2346b16eda6f2a009c0b9f344bd163c4715870",
-   "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.3.1/SimpleITK-2.3.1.tar.gz"
+   "sha256": "bcf9e3b7f944b049728a72ca99d122d3849802626bc41e8ba14b5498cd218df5",
+   "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.4.0/SimpleITK-2.4.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -333,11 +400,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "lua",
-    "ninja",
-    "swig"
+    "ninja"
    ]
   },
   "host": {
@@ -348,9 +415,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "libitk"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -372,6 +437,7 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -379,18 +445,17 @@
  "pr_info": {
   "__lazy_json__": "pr_info/libsimpleitk.json"
  },
- "raw_meta_yaml": "{% set test_cmake_args = \"-D \\\"CMAKE_SYSTEM_PREFIX_PATH:FILEPATH=${PREFIX}\\\" ./Examples\" %}  # [not win]\n{% set test_cmake_args = \"-D \\\"CMAKE_SYSTEM_PREFIX_PATH:FILEPATH=%PREFIX%\\\" ./Examples\" %}  # [win]\n{% set name = \"libsimpleitk\" %}\n{% set version = \"2.3.1\" %}\n{% set sha256 = \"7498c1bd3ae8218027c17bcefd2346b16eda6f2a009c0b9f344bd163c4715870\" %}\n\n\n{% set test_cmake_args = \"-D \\\"CMAKE_SYSTEM_PREFIX_PATH:FILEPATH=${PREFIX}\\\" ./Examples\" %}  # [not win]\n{% set test_cmake_args = \"-D \\\"CMAKE_SYSTEM_PREFIX_PATH:FILEPATH=%PREFIX%\\\" ./Examples\" %}  # [win]\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/SimpleITK/SimpleITK/releases/download/v{{ version }}/SimpleITK-{{ version }}.tar.gz\n  sha256: {{ sha256 }}\n\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - cmake   >=3.16.3\n    - ninja\n    - lua     5.4.*\n    - swig    4.0.*\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n\n  host:\n    - libitk-devel  5.3.*\n\n  run:\n    - {{ pin_compatible('libitk', exact=True) }}\n\ntest:\n  requires:\n    - cmake\n    - ninja\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - libitk-devel\n  source_files:\n    - Examples\n  commands:\n    - test -d $PREFIX/include/SimpleITK*                                          # [not win]\n    - if not exist %LIBRARY_INC%\\\\SimpleITK* exit 1                               # [win]\n    - cmake -G Ninja -D \"CMAKE_SYSTEM_PREFIX_PATH:FILEPATH=${PREFIX}\" ./Examples  # [not win]\n    - cmake -G Ninja -D \"CMAKE_SYSTEM_PREFIX_PATH:FILEPATH=%PREFIX%\" -D CMAKE_BUILD_TYPE:STRING=RELEASE ./Examples     # [win]\n    - cmake --build . --config Release\n\nabout:\n  home: http://www.simpleitk.org\n  license: Apache-2.0\n  license_file: LICENSE\n  summary: Development headers and libraries for SimpleITK a simplified interface to the Insight Toolkit.\n\nextra:\n  recipe-maintainers:\n    - blowekamp\n    - zivy\n",
+ "raw_meta_yaml": "{% set version = \"2.4.0\" %}\n\npackage:\n  name: libsimpleitk\n  version: {{ version }}\n\nsource:\n  url: https://github.com/SimpleITK/SimpleITK/releases/download/v{{ version }}/SimpleITK-{{ version }}.tar.gz\n  sha256: bcf9e3b7f944b049728a72ca99d122d3849802626bc41e8ba14b5498cd218df5\n\nbuild:\n  number: 1\n\nrequirements:\n  build:\n    - cmake   >=3.16.3\n    - ninja\n    - lua     5.4.*\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n\n  host:\n    - libitk-devel  5.4.*\n\ntest:\n  requires:\n    - cmake\n    - ninja\n    - {{ compiler(\"c\") }}\n    - {{ compiler(\"cxx\") }}\n    - libitk-devel\n  source_files:\n    - Examples\n  commands:\n    - test -d $PREFIX/include/SimpleITK*                                          # [not win]\n    - if not exist %LIBRARY_INC%\\\\SimpleITK* exit 1                               # [win]\n    - cmake -G Ninja -D \"CMAKE_SYSTEM_PREFIX_PATH:FILEPATH=${PREFIX}\" ./Examples  # [not win]\n    - cmake -G Ninja -D \"CMAKE_SYSTEM_PREFIX_PATH:FILEPATH=%PREFIX%\" -D CMAKE_BUILD_TYPE:STRING=RELEASE ./Examples     # [win]\n    - cmake --build . --config Release\n\nabout:\n  home: http://www.simpleitk.org\n  license: Apache-2.0\n  license_file: LICENSE\n  summary: Development headers and libraries for SimpleITK a simplified interface to the Insight Toolkit.\n\nextra:\n  recipe-maintainers:\n    - blowekamp\n    - zivy\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "cxx_compiler_stub",
-   "libitk",
    "libitk-devel",
    "lua",
-   "ninja",
-   "swig"
+   "ninja"
   ]
  },
  "requirements": {
@@ -398,17 +463,18 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "lua",
-    "ninja",
-    "swig"
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libitk-devel"
    ]
@@ -417,8 +483,8 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
-    "cxx_compiler_stub",
-    "libitk"
+    "c_stdlib_stub",
+    "cxx_compiler_stub"
    ]
   },
   "test": {
@@ -438,24 +504,22 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake   >=3.16.3",
     "cxx_compiler_stub",
     "lua     5.4.*",
-    "ninja",
-    "swig    4.0.*"
+    "ninja"
    ]
   },
   "host": {
    "__set__": true,
    "elements": [
-    "libitk-devel  5.3.*"
+    "libitk-devel  5.4.*"
    ]
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "libitk"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
@@ -468,8 +532,8 @@
    ]
   }
  },
- "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.3.1/SimpleITK-2.3.1.tar.gz",
- "version": "2.3.1",
+ "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.4.0/SimpleITK-2.4.0.tar.gz",
+ "version": "2.4.0",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/libsimpleitk.json"
  },
@@ -491,27 +555,24 @@
   },
   "package": {
    "name": "libsimpleitk",
-   "version": "2.3.1"
+   "version": "2.4.0"
   },
   "requirements": {
    "build": [
     "cmake   >=3.16.3",
     "ninja",
     "lua     5.4.*",
-    "swig    4.0.*",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub"
    ],
    "host": [
-    "libitk-devel  5.3.*"
-   ],
-   "run": [
-    "libitk"
+    "libitk-devel  5.4.*"
    ]
   },
   "source": {
-   "sha256": "7498c1bd3ae8218027c17bcefd2346b16eda6f2a009c0b9f344bd163c4715870",
-   "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.3.1/SimpleITK-2.3.1.tar.gz"
+   "sha256": "bcf9e3b7f944b049728a72ca99d122d3849802626bc41e8ba14b5498cd218df5",
+   "url": "https://github.com/SimpleITK/SimpleITK/releases/download/v2.4.0/SimpleITK-2.4.0.tar.gz"
   },
   "test": {
    "commands": [
@@ -536,11 +597,11 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "cxx_compiler_stub",
     "lua",
-    "ninja",
-    "swig"
+    "ninja"
    ]
   },
   "host": {
@@ -551,9 +612,7 @@
   },
   "run": {
    "__set__": true,
-   "elements": [
-    "libitk"
-   ]
+   "elements": []
   },
   "test": {
    "__set__": true,
