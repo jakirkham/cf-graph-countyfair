@@ -25,6 +25,7 @@
    "entry_points": [
     "nbdev_create_config=nbdev.config:nbdev_create_config",
     "nbdev_update=nbdev.sync:nbdev_update",
+    "nbdev_update_license=nbdev.cli:nbdev_update_license",
     "nbdev_export=nbdev.doclinks:nbdev_export",
     "nbdev_fix=nbdev.merge:nbdev_fix",
     "nbdev_merge=nbdev.merge:nbdev_merge",
@@ -36,12 +37,10 @@
     "nbdev_test=nbdev.test:nbdev_test",
     "nbdev_new=nbdev.cli:nbdev_new",
     "nbdev_migrate=nbdev.migrate:nbdev_migrate",
-    "nbdev_quarto=nbdev.quarto:nbdev_quarto",
     "nbdev_install_quarto=nbdev.quarto:install_quarto",
     "nbdev_install=nbdev.quarto:install",
-    "nbdev_docs=nbdev.quarto:nbdev_quarto",
-    "nbdev_preview=nbdev.quarto:preview",
-    "nbdev_deploy=nbdev.quarto:deploy",
+    "nbdev_docs=nbdev.quarto:nbdev_docs",
+    "nbdev_preview=nbdev.quarto:nbdev_preview",
     "nbdev_prepare=nbdev.quarto:prepare",
     "nbdev_readme=nbdev.quarto:nbdev_readme",
     "nbdev_release_gh=nbdev.release:release_gh",
@@ -51,6 +50,8 @@
     "nbdev_conda=nbdev.release:release_conda",
     "nbdev_release_both=nbdev.release:release_both",
     "nbdev_bump_version=nbdev.release:nbdev_bump_version",
+    "nbdev_requirements=nbdev.release:write_requirements",
+    "nbdev_proc_nbs=nbdev.quarto:nbdev_proc_nbs",
     "nbdev_help=nbdev.cli:chelp"
    ],
    "noarch": "python",
@@ -59,12 +60,13 @@
   },
   "extra": {
    "recipe-maintainers": [
+    "corneliusroemer",
     "thewchan"
    ]
   },
   "package": {
    "name": "nbdev",
-   "version": "2.2.10"
+   "version": "2.3.27"
   },
   "requirements": {
    "host": [
@@ -74,22 +76,24 @@
    "run": [
     "asttokens",
     "astunparse",
-    "execnb >=0.1.2",
-    "fastcore >=1.5.24",
-    "ghapi >=1.0.2",
+    "execnb >=0.1.4",
+    "fastcore >=1.5.27",
     "python >=3.7",
-    "pyyaml"
+    "pyyaml",
+    "watchdog",
+    "ghapi >=1.0.3"
    ]
   },
   "source": {
-   "sha256": "5e1fc8dc21f5fb7ffe0069fc3c396cc3c898a241cff7a7df44b1833b1ef76610",
-   "url": "https://pypi.io/packages/source/n/nbdev/nbdev-2.2.10.tar.gz"
+   "sha256": "bc5efd998e5dcb4d317da191f0bf473e97713a2129889d4042de3684ef4320cb",
+   "url": "https://pypi.io/packages/source/n/nbdev/nbdev-2.3.27.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
     "nbdev_create_config --help",
     "nbdev_update --help",
+    "nbdev_update_license --help",
     "nbdev_export --help",
     "nbdev_fix --help",
     "nbdev_merge --help",
@@ -101,12 +105,10 @@
     "nbdev_test --help",
     "nbdev_new --help",
     "nbdev_migrate --help",
-    "nbdev_quarto --help",
     "nbdev_install_quarto --help",
     "nbdev_install --help",
     "nbdev_docs --help",
     "nbdev_preview --help",
-    "nbdev_deploy --help",
     "nbdev_prepare --help",
     "nbdev_readme --help",
     "nbdev_release_gh --help",
@@ -116,6 +118,8 @@
     "nbdev_conda --help",
     "nbdev_release_both --help",
     "nbdev_bump_version --help",
+    "nbdev_requirements --help",
+    "nbdev_proc_nbs --help",
     "nbdev_help --help"
    ],
    "imports": [
@@ -147,7 +151,8 @@
     "fastcore",
     "ghapi",
     "python",
-    "pyyaml"
+    "pyyaml",
+    "watchdog"
    ]
   },
   "test": {
@@ -169,6 +174,7 @@
    "entry_points": [
     "nbdev_create_config=nbdev.config:nbdev_create_config",
     "nbdev_update=nbdev.sync:nbdev_update",
+    "nbdev_update_license=nbdev.cli:nbdev_update_license",
     "nbdev_export=nbdev.doclinks:nbdev_export",
     "nbdev_fix=nbdev.merge:nbdev_fix",
     "nbdev_merge=nbdev.merge:nbdev_merge",
@@ -180,12 +186,10 @@
     "nbdev_test=nbdev.test:nbdev_test",
     "nbdev_new=nbdev.cli:nbdev_new",
     "nbdev_migrate=nbdev.migrate:nbdev_migrate",
-    "nbdev_quarto=nbdev.quarto:nbdev_quarto",
     "nbdev_install_quarto=nbdev.quarto:install_quarto",
     "nbdev_install=nbdev.quarto:install",
-    "nbdev_docs=nbdev.quarto:nbdev_quarto",
-    "nbdev_preview=nbdev.quarto:preview",
-    "nbdev_deploy=nbdev.quarto:deploy",
+    "nbdev_docs=nbdev.quarto:nbdev_docs",
+    "nbdev_preview=nbdev.quarto:nbdev_preview",
     "nbdev_prepare=nbdev.quarto:prepare",
     "nbdev_readme=nbdev.quarto:nbdev_readme",
     "nbdev_release_gh=nbdev.release:release_gh",
@@ -195,6 +199,8 @@
     "nbdev_conda=nbdev.release:release_conda",
     "nbdev_release_both=nbdev.release:release_both",
     "nbdev_bump_version=nbdev.release:nbdev_bump_version",
+    "nbdev_requirements=nbdev.release:write_requirements",
+    "nbdev_proc_nbs=nbdev.quarto:nbdev_proc_nbs",
     "nbdev_help=nbdev.cli:chelp"
    ],
    "noarch": "python",
@@ -203,12 +209,13 @@
   },
   "extra": {
    "recipe-maintainers": [
+    "corneliusroemer",
     "thewchan"
    ]
   },
   "package": {
    "name": "nbdev",
-   "version": "2.2.10"
+   "version": "2.3.27"
   },
   "requirements": {
    "host": [
@@ -218,22 +225,24 @@
    "run": [
     "asttokens",
     "astunparse",
-    "execnb >=0.1.2",
-    "fastcore >=1.5.24",
-    "ghapi >=1.0.2",
+    "execnb >=0.1.4",
+    "fastcore >=1.5.27",
     "python >=3.7",
-    "pyyaml"
+    "pyyaml",
+    "watchdog",
+    "ghapi >=1.0.3"
    ]
   },
   "source": {
-   "sha256": "5e1fc8dc21f5fb7ffe0069fc3c396cc3c898a241cff7a7df44b1833b1ef76610",
-   "url": "https://pypi.io/packages/source/n/nbdev/nbdev-2.2.10.tar.gz"
+   "sha256": "bc5efd998e5dcb4d317da191f0bf473e97713a2129889d4042de3684ef4320cb",
+   "url": "https://pypi.io/packages/source/n/nbdev/nbdev-2.3.27.tar.gz"
   },
   "test": {
    "commands": [
     "pip check",
     "nbdev_create_config --help",
     "nbdev_update --help",
+    "nbdev_update_license --help",
     "nbdev_export --help",
     "nbdev_fix --help",
     "nbdev_merge --help",
@@ -245,12 +254,10 @@
     "nbdev_test --help",
     "nbdev_new --help",
     "nbdev_migrate --help",
-    "nbdev_quarto --help",
     "nbdev_install_quarto --help",
     "nbdev_install --help",
     "nbdev_docs --help",
     "nbdev_preview --help",
-    "nbdev_deploy --help",
     "nbdev_prepare --help",
     "nbdev_readme --help",
     "nbdev_release_gh --help",
@@ -260,6 +267,8 @@
     "nbdev_conda --help",
     "nbdev_release_both --help",
     "nbdev_bump_version --help",
+    "nbdev_requirements --help",
+    "nbdev_proc_nbs --help",
     "nbdev_help --help"
    ],
    "imports": [
@@ -284,7 +293,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/nbdev.json"
  },
- "raw_meta_yaml": "{% set name = \"nbdev\" %}\n{% set version = \"2.2.10\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/nbdev-{{ version }}.tar.gz\n  sha256: 5e1fc8dc21f5fb7ffe0069fc3c396cc3c898a241cff7a7df44b1833b1ef76610\n\nbuild:\n  noarch: python\n  entry_points:\n    - nbdev_create_config=nbdev.config:nbdev_create_config\n    - nbdev_update=nbdev.sync:nbdev_update\n    - nbdev_export=nbdev.doclinks:nbdev_export\n    - nbdev_fix=nbdev.merge:nbdev_fix\n    - nbdev_merge=nbdev.merge:nbdev_merge\n    - nbdev_trust=nbdev.clean:nbdev_trust\n    - nbdev_clean=nbdev.clean:nbdev_clean\n    - nbdev_install_hooks=nbdev.clean:nbdev_install_hooks\n    - nbdev_filter=nbdev.cli:nbdev_filter\n    - nbdev_sidebar=nbdev.quarto:nbdev_sidebar\n    - nbdev_test=nbdev.test:nbdev_test\n    - nbdev_new=nbdev.cli:nbdev_new\n    - nbdev_migrate=nbdev.migrate:nbdev_migrate\n    - nbdev_quarto=nbdev.quarto:nbdev_quarto\n    - nbdev_install_quarto=nbdev.quarto:install_quarto\n    - nbdev_install=nbdev.quarto:install\n    - nbdev_docs=nbdev.quarto:nbdev_quarto\n    - nbdev_preview=nbdev.quarto:preview\n    - nbdev_deploy=nbdev.quarto:deploy\n    - nbdev_prepare=nbdev.quarto:prepare\n    - nbdev_readme=nbdev.quarto:nbdev_readme\n    - nbdev_release_gh=nbdev.release:release_gh\n    - nbdev_release_git=nbdev.release:release_git\n    - nbdev_changelog=nbdev.release:changelog\n    - nbdev_pypi=nbdev.release:release_pypi\n    - nbdev_conda=nbdev.release:release_conda\n    - nbdev_release_both=nbdev.release:release_both\n    - nbdev_bump_version=nbdev.release:nbdev_bump_version\n    - nbdev_help=nbdev.cli:chelp\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - pip\n    - python >=3.7\n  run:\n    - asttokens\n    - astunparse\n    - execnb >=0.1.2\n    - fastcore >=1.5.24\n    - ghapi >=1.0.2\n    - python >=3.7\n    - pyyaml\n\ntest:\n  imports:\n    - nbdev\n  commands:\n    - pip check\n    - nbdev_create_config --help\n    - nbdev_update --help\n    - nbdev_export --help\n    - nbdev_fix --help\n    - nbdev_merge --help\n    - nbdev_trust --help\n    - nbdev_clean --help\n    - nbdev_install_hooks --help\n    - nbdev_filter --help\n    - nbdev_sidebar --help\n    - nbdev_test --help\n    - nbdev_new --help\n    - nbdev_migrate --help\n    - nbdev_quarto --help\n    - nbdev_install_quarto --help\n    - nbdev_install --help\n    - nbdev_docs --help\n    - nbdev_preview --help\n    - nbdev_deploy --help\n    - nbdev_prepare --help\n    - nbdev_readme --help\n    - nbdev_release_gh --help\n    - nbdev_release_git --help\n    - nbdev_changelog --help\n    - nbdev_pypi --help\n    - nbdev_conda --help\n    - nbdev_release_both --help\n    - nbdev_bump_version --help\n    - nbdev_help --help\n  requires:\n    - pip\n\nabout:\n  home: https://nbdev.fast.ai/\n  dev_url: https://github.com/fastai/nbdev\n  summary: Create delightful software with Jupyter Notebooks\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - thewchan\n",
+ "raw_meta_yaml": "{% set name = \"nbdev\" %}\n{% set version = \"2.3.27\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/nbdev-{{ version }}.tar.gz\n  sha256: bc5efd998e5dcb4d317da191f0bf473e97713a2129889d4042de3684ef4320cb\n\nbuild:\n  noarch: python\n  entry_points:\n    - nbdev_create_config=nbdev.config:nbdev_create_config\n    - nbdev_update=nbdev.sync:nbdev_update\n    - nbdev_update_license=nbdev.cli:nbdev_update_license\n    - nbdev_export=nbdev.doclinks:nbdev_export\n    - nbdev_fix=nbdev.merge:nbdev_fix\n    - nbdev_merge=nbdev.merge:nbdev_merge\n    - nbdev_trust=nbdev.clean:nbdev_trust\n    - nbdev_clean=nbdev.clean:nbdev_clean\n    - nbdev_install_hooks=nbdev.clean:nbdev_install_hooks\n    - nbdev_filter=nbdev.cli:nbdev_filter\n    - nbdev_sidebar=nbdev.quarto:nbdev_sidebar\n    - nbdev_test=nbdev.test:nbdev_test\n    - nbdev_new=nbdev.cli:nbdev_new\n    - nbdev_migrate=nbdev.migrate:nbdev_migrate\n    - nbdev_install_quarto=nbdev.quarto:install_quarto\n    - nbdev_install=nbdev.quarto:install\n    - nbdev_docs=nbdev.quarto:nbdev_docs\n    - nbdev_preview=nbdev.quarto:nbdev_preview\n    - nbdev_prepare=nbdev.quarto:prepare\n    - nbdev_readme=nbdev.quarto:nbdev_readme\n    - nbdev_release_gh=nbdev.release:release_gh\n    - nbdev_release_git=nbdev.release:release_git\n    - nbdev_changelog=nbdev.release:changelog\n    - nbdev_pypi=nbdev.release:release_pypi\n    - nbdev_conda=nbdev.release:release_conda\n    - nbdev_release_both=nbdev.release:release_both\n    - nbdev_bump_version=nbdev.release:nbdev_bump_version\n    - nbdev_requirements=nbdev.release:write_requirements\n    - nbdev_proc_nbs=nbdev.quarto:nbdev_proc_nbs\n    - nbdev_help=nbdev.cli:chelp\n  script: {{ PYTHON }} -m pip install . -vv\n  number: 0\n\nrequirements:\n  host:\n    - pip\n    - python >=3.7\n  run:\n    - asttokens\n    - astunparse\n    - execnb >=0.1.4\n    - fastcore >=1.5.27\n    - python >=3.7\n    - pyyaml\n    - watchdog\n    - ghapi >=1.0.3\n\ntest:\n  imports:\n    - nbdev\n  commands:\n    - pip check\n    - nbdev_create_config --help\n    - nbdev_update --help\n    - nbdev_update_license --help\n    - nbdev_export --help\n    - nbdev_fix --help\n    - nbdev_merge --help\n    - nbdev_trust --help\n    - nbdev_clean --help\n    - nbdev_install_hooks --help\n    - nbdev_filter --help\n    - nbdev_sidebar --help\n    - nbdev_test --help\n    - nbdev_new --help\n    - nbdev_migrate --help\n    - nbdev_install_quarto --help\n    - nbdev_install --help\n    - nbdev_docs --help\n    - nbdev_preview --help\n    - nbdev_prepare --help\n    - nbdev_readme --help\n    - nbdev_release_gh --help\n    - nbdev_release_git --help\n    - nbdev_changelog --help\n    - nbdev_pypi --help\n    - nbdev_conda --help\n    - nbdev_release_both --help\n    - nbdev_bump_version --help\n    - nbdev_requirements --help\n    - nbdev_proc_nbs --help\n    - nbdev_help --help\n  requires:\n    - pip\n\nabout:\n  home: https://nbdev.fast.ai/\n  dev_url: https://github.com/fastai/nbdev\n  summary: Create delightful software with Jupyter Notebooks\n  license: Apache-2.0\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - corneliusroemer\n    - thewchan\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -295,7 +304,8 @@
    "ghapi",
    "pip",
    "python",
-   "pyyaml"
+   "pyyaml",
+   "watchdog"
   ]
  },
  "requirements": {
@@ -319,7 +329,8 @@
     "fastcore",
     "ghapi",
     "python",
-    "pyyaml"
+    "pyyaml",
+    "watchdog"
    ]
   },
   "test": {
@@ -347,11 +358,12 @@
    "elements": [
     "asttokens",
     "astunparse",
-    "execnb >=0.1.2",
-    "fastcore >=1.5.24",
-    "ghapi >=1.0.2",
+    "execnb >=0.1.4",
+    "fastcore >=1.5.27",
+    "ghapi >=1.0.3",
     "python >=3.7",
-    "pyyaml"
+    "pyyaml",
+    "watchdog"
    ]
   },
   "test": {
@@ -361,8 +373,8 @@
    ]
   }
  },
- "url": "https://pypi.io/packages/source/n/nbdev/nbdev-2.2.10.tar.gz",
- "version": "2.2.10",
+ "url": "https://pypi.io/packages/source/n/nbdev/nbdev-2.3.27.tar.gz",
+ "version": "2.3.27",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/nbdev.json"
  }
