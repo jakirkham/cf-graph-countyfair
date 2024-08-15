@@ -34,7 +34,7 @@
   },
   "package": {
    "name": "bitsandbytes",
-   "version": "0.43.2"
+   "version": "0.43.3"
   },
   "requirements": {
    "build": [
@@ -48,6 +48,7 @@
    "host": [
     "python",
     "pip",
+    "setuptools",
     "cuda-version  11.8",
     "scipy",
     "cuda-cudart-dev",
@@ -62,8 +63,8 @@
    ]
   },
   "source": {
-   "sha256": "04418403d4ca81e9a89b28dfadefb0552d9c80b5e4198f5db14038137f90484e",
-   "url": "https://github.com/TimDettmers/bitsandbytes/archive/refs/tags/0.43.2.tar.gz"
+   "sha256": "7a468bc977da19c176cc578954bfd7a3c64182f387a6849e9f0a38d5cba1b4df",
+   "url": "https://github.com/TimDettmers/bitsandbytes/archive/refs/tags/0.43.3.tar.gz"
   },
   "test": {
    "commands": [
@@ -98,7 +99,8 @@
     "libcusparse-dev",
     "pip",
     "python",
-    "scipy"
+    "scipy",
+    "setuptools"
    ]
   },
   "run": {
@@ -134,7 +136,7 @@
   },
   "package": {
    "name": "bitsandbytes",
-   "version": "0.43.2"
+   "version": "0.43.3"
   },
   "requirements": {
    "build": [
@@ -148,6 +150,7 @@
    "host": [
     "python",
     "pip",
+    "setuptools",
     "cuda-version  11.8",
     "scipy",
     "cuda-cudart-dev",
@@ -162,8 +165,8 @@
    ]
   },
   "source": {
-   "sha256": "04418403d4ca81e9a89b28dfadefb0552d9c80b5e4198f5db14038137f90484e",
-   "url": "https://github.com/TimDettmers/bitsandbytes/archive/refs/tags/0.43.2.tar.gz"
+   "sha256": "7a468bc977da19c176cc578954bfd7a3c64182f387a6849e9f0a38d5cba1b4df",
+   "url": "https://github.com/TimDettmers/bitsandbytes/archive/refs/tags/0.43.3.tar.gz"
   },
   "test": {
    "commands": [
@@ -191,7 +194,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/bitsandbytes.json"
  },
- "raw_meta_yaml": "{% set name = \"bitsandbytes\" %}\n{% set version = \"0.43.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  # Don't use the PyPI source tarball as this already contains compiled code.\n  url: https://github.com/TimDettmers/bitsandbytes/archive/refs/tags/{{ version }}.tar.gz\n  sha256: 04418403d4ca81e9a89b28dfadefb0552d9c80b5e4198f5db14038137f90484e\n\nbuild:\n  number: 0\n  string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != \"None\"]\n  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == \"None\"]\n  skip: true  # [not linux]\n  skip: true  # [cuda_compiler_version == \"10.2\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler(\"cuda\") }}                 # [cuda_compiler_version != \"None\"]\n    - cmake\n    - ninja\n  host:\n    - python\n    - pip\n    - cuda-cudart-dev   # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcublas-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusparse-dev   # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-version  {{ cuda_compiler_version }}  # [cuda_compiler_version != \"None\"]\n    - scipy\n  run:\n    - python\n    - pytorch\n    - scipy\n\ntest:\n  imports:\n    - bitsandbytes\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/TimDettmers/bitsandbytes\n  summary: k-bit optimizers and matrix multiplication routines.\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - xhochy\n",
+ "raw_meta_yaml": "{% set name = \"bitsandbytes\" %}\n{% set version = \"0.43.3\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  # Don't use the PyPI source tarball as this already contains compiled code.\n  url: https://github.com/TimDettmers/bitsandbytes/archive/refs/tags/{{ version }}.tar.gz\n  sha256: 7a468bc977da19c176cc578954bfd7a3c64182f387a6849e9f0a38d5cba1b4df\n\nbuild:\n  number: 0\n  string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != \"None\"]\n  string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version == \"None\"]\n  skip: true  # [not linux]\n  skip: true  # [cuda_compiler_version == \"10.2\"]\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - {{ compiler(\"cuda\") }}                 # [cuda_compiler_version != \"None\"]\n    - cmake\n    - ninja\n  host:\n    - python\n    - pip\n    - setuptools\n    - cuda-cudart-dev   # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcublas-dev     # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - libcusparse-dev   # [(cuda_compiler_version or \"\").startswith(\"12\")]\n    - cuda-version  {{ cuda_compiler_version }}  # [cuda_compiler_version != \"None\"]\n    - scipy\n  run:\n    - python\n    - pytorch\n    - scipy\n\ntest:\n  imports:\n    - bitsandbytes\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/TimDettmers/bitsandbytes\n  summary: k-bit optimizers and matrix multiplication routines.\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - xhochy\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -208,7 +211,8 @@
    "pip",
    "python",
    "pytorch",
-   "scipy"
+   "scipy",
+   "setuptools"
   ]
  },
  "requirements": {
@@ -236,7 +240,8 @@
     "libcusparse-dev",
     "pip",
     "python",
-    "scipy"
+    "scipy",
+    "setuptools"
    ]
   },
   "run": {
@@ -281,7 +286,8 @@
     "libcusparse-dev",
     "pip",
     "python",
-    "scipy"
+    "scipy",
+    "setuptools"
    ]
   },
   "run": {
@@ -299,8 +305,8 @@
    ]
   }
  },
- "url": "https://github.com/TimDettmers/bitsandbytes/archive/refs/tags/0.43.2.tar.gz",
- "version": "0.43.2",
+ "url": "https://github.com/TimDettmers/bitsandbytes/archive/refs/tags/0.43.3.tar.gz",
+ "version": "0.43.3",
  "version_pr_info": {
   "__lazy_json__": "version_pr_info/bitsandbytes.json"
  }
