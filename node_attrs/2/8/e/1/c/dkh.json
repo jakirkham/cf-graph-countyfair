@@ -3,6 +3,8 @@
  "branch": "main",
  "conda-forge.yml": {
   "build_platform": {
+   "linux_aarch64": "linux_64",
+   "linux_ppc64le": "linux_64",
    "osx_arm64": "osx_64"
   },
   "conda_build": {
@@ -12,6 +14,10 @@
   "github": {
    "branch_name": "main",
    "tooling_branch_name": "main"
+  },
+  "provider": {
+   "linux_aarch64": "default",
+   "linux_ppc64le": "default"
   },
   "test": "native_and_emulated"
  },
@@ -31,7 +37,7 @@
    "summary": "Wolf, Reiher, and Hess's Douglas-Kroll-Hess (DKH) relativistic correction"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "dkh"
    ]
@@ -48,6 +54,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "fortran_compiler_stub",
     "cmake",
@@ -80,6 +87,177 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "fortran_compiler_stub",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "libblas"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_aarch64_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/psi4/dkh",
+   "home": "http://www.reiher.ethz.ch/software/dkh-x2c.html",
+   "license": "LGPL-3.0-only",
+   "license_family": "LGPL",
+   "license_file": [
+    "COPYING",
+    "COPYING.LESSER"
+   ],
+   "license_url": "https://opensource.org/license/lgpl-3-0/",
+   "summary": "Wolf, Reiher, and Hess's Douglas-Kroll-Hess (DKH) relativistic correction"
+  },
+  "build": {
+   "number": "1",
+   "run_exports": [
+    "dkh"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "loriab",
+    "jturney"
+   ]
+  },
+  "package": {
+   "name": "dkh",
+   "version": "1.2"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "fortran_compiler_stub",
+    "cmake",
+    "ninja"
+   ],
+   "host": [
+    "libblas"
+   ],
+   "run": []
+  },
+  "source": {
+   "sha256": "37a31ce3fe211b62793db6a569c39142bbce37b8b418ca243c41db4329c1711a",
+   "url": "https://github.com/psi4/dkh/archive/319b320.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "ls -l $PREFIX/lib",
+    "ls -l $PREFIX/share/cmake/dkh",
+    "test -f $PREFIX/lib/libdkh$SHLIB_EXT",
+    "test ! -f $PREFIX/lib/libdkh.a",
+    "test -e $PREFIX/include/DKH/DKH_MANGLE.h",
+    "test -e $PREFIX/share/cmake/dkh/dkhConfig.cmake",
+    "ldd -v $PREFIX/lib/libdkh$SHLIB_EXT"
+   ],
+   "requires": null
+  }
+ },
+ "linux_aarch64_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
+    "cmake",
+    "fortran_compiler_stub",
+    "ninja"
+   ]
+  },
+  "host": {
+   "__set__": true,
+   "elements": [
+    "libblas"
+   ]
+  },
+  "run": {
+   "__set__": true,
+   "elements": []
+  },
+  "test": {
+   "__set__": true,
+   "elements": []
+  }
+ },
+ "linux_ppc64le_meta_yaml": {
+  "about": {
+   "dev_url": "https://github.com/psi4/dkh",
+   "home": "http://www.reiher.ethz.ch/software/dkh-x2c.html",
+   "license": "LGPL-3.0-only",
+   "license_family": "LGPL",
+   "license_file": [
+    "COPYING",
+    "COPYING.LESSER"
+   ],
+   "license_url": "https://opensource.org/license/lgpl-3-0/",
+   "summary": "Wolf, Reiher, and Hess's Douglas-Kroll-Hess (DKH) relativistic correction"
+  },
+  "build": {
+   "number": "1",
+   "run_exports": [
+    "dkh"
+   ]
+  },
+  "extra": {
+   "recipe-maintainers": [
+    "loriab",
+    "jturney"
+   ]
+  },
+  "package": {
+   "name": "dkh",
+   "version": "1.2"
+  },
+  "requirements": {
+   "build": [
+    "c_stdlib_stub",
+    "c_compiler_stub",
+    "fortran_compiler_stub",
+    "cmake",
+    "ninja"
+   ],
+   "host": [
+    "libblas"
+   ],
+   "run": []
+  },
+  "source": {
+   "sha256": "37a31ce3fe211b62793db6a569c39142bbce37b8b418ca243c41db4329c1711a",
+   "url": "https://github.com/psi4/dkh/archive/319b320.tar.gz"
+  },
+  "test": {
+   "commands": [
+    "ls -l $PREFIX/lib",
+    "ls -l $PREFIX/share/cmake/dkh",
+    "test -f $PREFIX/lib/libdkh$SHLIB_EXT",
+    "test ! -f $PREFIX/lib/libdkh.a",
+    "test -e $PREFIX/include/DKH/DKH_MANGLE.h",
+    "test -e $PREFIX/share/cmake/dkh/dkhConfig.cmake",
+    "ldd -v $PREFIX/lib/libdkh$SHLIB_EXT"
+   ],
+   "requires": null
+  }
+ },
+ "linux_ppc64le_requirements": {
+  "build": {
+   "__set__": true,
+   "elements": [
+    "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "ninja"
@@ -114,7 +292,7 @@
    "summary": "Wolf, Reiher, and Hess's Douglas-Kroll-Hess (DKH) relativistic correction"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "dkh"
    ]
@@ -131,6 +309,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "fortran_compiler_stub",
     "cmake",
@@ -189,7 +368,7 @@
    "summary": "Wolf, Reiher, and Hess's Douglas-Kroll-Hess (DKH) relativistic correction"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "dkh"
    ]
@@ -206,6 +385,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "fortran_compiler_stub",
     "cmake",
@@ -238,6 +418,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "ninja"
@@ -272,7 +453,7 @@
    "summary": "Wolf, Reiher, and Hess's Douglas-Kroll-Hess (DKH) relativistic correction"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "dkh"
    ]
@@ -289,6 +470,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "c_compiler_stub",
     "fortran_compiler_stub",
     "cmake",
@@ -321,6 +503,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "ninja"
@@ -350,6 +533,8 @@
  "parsing_error": false,
  "platforms": [
   "linux_64",
+  "linux_aarch64",
+  "linux_ppc64le",
   "osx_64",
   "osx_arm64",
   "win_64"
@@ -357,11 +542,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/dkh.json"
  },
- "raw_meta_yaml": "{% set name = \"dkh\" %}\n{% set version = \"1.2\" %}\n{% set sha256 = \"37a31ce3fe211b62793db6a569c39142bbce37b8b418ca243c41db4329c1711a\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/psi4/{{ name|lower }}/archive/319b320.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  run_exports:\n    - {{ pin_subpackage('dkh', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}              # [unix]\n    - {{ compiler('fortran') }}        # [unix]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - cmake\n    - ninja\n  host:\n    - libblas\n  run:\n    # I'm surprised the m2w64 compilers run_exports aren't imposing this: https://github.com/conda-forge/toolchain-feedstock/blob/main/recipe/meta.yaml#L15\n    - m2w64-gcc-libgfortran            # [win]\n\ntest:\n  requires:\n    - m2w64-binutils                                            # [win]   # provides objdump.exe\n  commands:\n    - ls -l $PREFIX/lib                                         # [unix]\n    - ls -l $PREFIX/share/cmake/dkh                             # [unix]\n    - dir %PREFIX%\\\\Library\\\\lib                                # [win]\n    - dir %PREFIX%\\\\Library\\\\share\\\\cmake\\\\dkh                  # [win]\n    # Verify library\n    - test -f $PREFIX/lib/libdkh$SHLIB_EXT                      # [unix]\n    - test ! -f $PREFIX/lib/libdkh.a                            # [unix]\n    - if not exist %PREFIX%\\\\Library\\\\lib\\\\libdkh.dll.a exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\lib\\\\libdkh.lib exit 1    # [win]\n    - if not exist %PREFIX%\\\\Library\\\\bin\\\\libdkh.dll exit 1    # [win]\n    - if exist %PREFIX%\\\\Library\\\\lib\\\\libdkh.a exit 1          # [win]\n    # Verify accessories\n    - test -e $PREFIX/include/DKH/DKH_MANGLE.h                  # [unix]\n    - test -e $PREFIX/share/cmake/dkh/dkhConfig.cmake           # [unix]\n    - if not exist %PREFIX%\\\\Library\\\\include\\\\DKH\\\\DKH_MANGLE.h exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\share\\\\cmake\\\\dkh\\\\dkhConfig.cmake exit 1  # [win]\n    # Inspect linkage\n    - ldd -v $PREFIX/lib/libdkh$SHLIB_EXT                       # [linux and build_platform == target_platform]\n    - otool -L $PREFIX/lib/libdkh$SHLIB_EXT                     # [osx]\n    - objdump.exe -p %PREFIX%\\\\Library\\\\bin\\\\libdkh.dll | findstr /i \"dll\"  # [win]\n\nabout:\n  home: http://www.reiher.ethz.ch/software/dkh-x2c.html\n  dev_url: https://github.com/psi4/dkh\n  license: LGPL-3.0-only\n  license_url: https://opensource.org/license/lgpl-3-0/\n  license_file:\n    - COPYING\n    - COPYING.LESSER\n  license_family: LGPL\n  summary: \"Wolf, Reiher, and Hess's Douglas-Kroll-Hess (DKH) relativistic correction\"\n\nextra:\n  recipe-maintainers:\n    - loriab\n    - jturney\n",
+ "raw_meta_yaml": "{% set name = \"dkh\" %}\n{% set version = \"1.2\" %}\n{% set sha256 = \"37a31ce3fe211b62793db6a569c39142bbce37b8b418ca243c41db4329c1711a\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://github.com/psi4/{{ name|lower }}/archive/319b320.tar.gz\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 1\n  run_exports:\n    - {{ pin_subpackage('dkh', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('c') }}              # [unix]\n    - {{ compiler('fortran') }}        # [unix]\n    - {{ compiler('m2w64_c') }}        # [win]\n    - {{ compiler('m2w64_fortran') }}  # [win]\n    - cmake\n    - ninja\n  host:\n    - libblas\n  run:\n    # I'm surprised the m2w64 compilers run_exports aren't imposing this: https://github.com/conda-forge/toolchain-feedstock/blob/main/recipe/meta.yaml#L15\n    - m2w64-gcc-libgfortran            # [win]\n\ntest:\n  requires:\n    - m2w64-binutils                                            # [win]   # provides objdump.exe\n  commands:\n    - ls -l $PREFIX/lib                                         # [unix]\n    - ls -l $PREFIX/share/cmake/dkh                             # [unix]\n    - dir %PREFIX%\\\\Library\\\\lib                                # [win]\n    - dir %PREFIX%\\\\Library\\\\share\\\\cmake\\\\dkh                  # [win]\n    # Verify library\n    - test -f $PREFIX/lib/libdkh$SHLIB_EXT                      # [unix]\n    - test ! -f $PREFIX/lib/libdkh.a                            # [unix]\n    - if not exist %PREFIX%\\\\Library\\\\lib\\\\libdkh.dll.a exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\lib\\\\libdkh.lib exit 1    # [win]\n    - if not exist %PREFIX%\\\\Library\\\\bin\\\\libdkh.dll exit 1    # [win]\n    - if exist %PREFIX%\\\\Library\\\\lib\\\\libdkh.a exit 1          # [win]\n    # Verify accessories\n    - test -e $PREFIX/include/DKH/DKH_MANGLE.h                  # [unix]\n    - test -e $PREFIX/share/cmake/dkh/dkhConfig.cmake           # [unix]\n    - if not exist %PREFIX%\\\\Library\\\\include\\\\DKH\\\\DKH_MANGLE.h exit 1  # [win]\n    - if not exist %PREFIX%\\\\Library\\\\share\\\\cmake\\\\dkh\\\\dkhConfig.cmake exit 1  # [win]\n    # Inspect linkage\n    - ldd -v $PREFIX/lib/libdkh$SHLIB_EXT                       # [linux and build_platform == target_platform]\n    - otool -L $PREFIX/lib/libdkh$SHLIB_EXT                     # [osx]\n    - objdump.exe -p %PREFIX%\\\\Library\\\\bin\\\\libdkh.dll | findstr /i \"dll\"  # [win]\n\nabout:\n  home: http://www.reiher.ethz.ch/software/dkh-x2c.html\n  dev_url: https://github.com/psi4/dkh\n  license: LGPL-3.0-only\n  license_url: https://opensource.org/license/lgpl-3-0/\n  license_file:\n    - COPYING\n    - COPYING.LESSER\n  license_family: LGPL\n  summary: \"Wolf, Reiher, and Hess's Douglas-Kroll-Hess (DKH) relativistic correction\"\n\nextra:\n  recipe-maintainers:\n    - loriab\n    - jturney\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cmake",
    "fortran_compiler_stub",
    "libblas",
@@ -376,6 +562,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
@@ -387,6 +574,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "libblas"
    ]
@@ -395,6 +583,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "fortran_compiler_stub",
     "m2w64-gcc-libgfortran"
    ]
@@ -412,6 +601,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cmake",
     "fortran_compiler_stub",
     "m2w64_c_compiler_stub",
@@ -457,7 +647,7 @@
    "summary": "Wolf, Reiher, and Hess's Douglas-Kroll-Hess (DKH) relativistic correction"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "dkh"
    ]
@@ -474,6 +664,7 @@
   },
   "requirements": {
    "build": [
+    "c_stdlib_stub",
     "m2w64_c_compiler_stub",
     "m2w64_fortran_compiler_stub",
     "cmake",
@@ -511,6 +702,7 @@
   "build": {
    "__set__": true,
    "elements": [
+    "c_stdlib_stub",
     "cmake",
     "m2w64_c_compiler_stub",
     "m2w64_fortran_compiler_stub",
