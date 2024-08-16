@@ -2,6 +2,9 @@
  "archived": false,
  "branch": "main",
  "conda-forge.yml": {
+  "bot": {
+   "inspection": "update-grayskull"
+  },
   "conda_build": {
    "pkg_format": "2"
   },
@@ -25,13 +28,14 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
     "dschreij",
-    "smathot"
+    "smathot",
+    "xylar"
    ]
   },
   "package": {
@@ -40,11 +44,11 @@
   },
   "requirements": {
    "host": [
-    "pip",
-    "python"
+    "python >=3.8",
+    "pip"
    ],
    "run": [
-    "python"
+    "python >=3.8"
    ]
   },
   "source": {
@@ -52,8 +56,14 @@
    "url": "https://pypi.io/packages/source/p/pyjsparser/pyjsparser-2.7.1.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "pyjsparser"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -77,7 +87,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
@@ -92,13 +104,14 @@
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "PYTHON -m pip install . -vv"
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
     "dschreij",
-    "smathot"
+    "smathot",
+    "xylar"
    ]
   },
   "package": {
@@ -107,11 +120,11 @@
   },
   "requirements": {
    "host": [
-    "pip",
-    "python"
+    "python >=3.8",
+    "pip"
    ],
    "run": [
-    "python"
+    "python >=3.8"
    ]
   },
   "source": {
@@ -119,8 +132,14 @@
    "url": "https://pypi.io/packages/source/p/pyjsparser/pyjsparser-2.7.1.tar.gz"
   },
   "test": {
+   "commands": [
+    "pip check"
+   ],
    "imports": [
     "pyjsparser"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -138,7 +157,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/pyjsparser.json"
  },
- "raw_meta_yaml": "{% set name = \"pyjsparser\" %}\n{% set version = \"2.7.1\" %}\n\npackage:\n  name: \"{{ name|lower }}\"\n  version: \"{{ version }}\"\n\nsource:\n  url: \"https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz\"\n  sha256: be60da6b778cc5a5296a69d8e7d614f1f870faf94e1b1b6ac591f2ad5d729579\n\nbuild:\n  noarch: python\n  number: 0\n  script: \"{{ PYTHON }} -m pip install . -vv\"\n\nrequirements:\n  host:\n    - pip\n    - python\n  run:\n    - python\n\ntest:\n  imports:\n    - pyjsparser\n\nabout:\n  home: \"https://github.com/PiotrDabkowski/pyjsparser\"\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  summary: \"Fast javascript parser (based on esprima.js)\"\n  doc_url: https://github.com/PiotrDabkowski/pyjsparser\n  dev_url: https://github.com/PiotrDabkowski/pyjsparser\n\nextra:\n  recipe-maintainers:\n    - dschreij\n    - smathot\n",
+ "raw_meta_yaml": "{% set name = \"pyjsparser\" %}\n{% set version = \"2.7.1\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyjsparser-{{ version }}.tar.gz\n  sha256: be60da6b778cc5a5296a69d8e7d614f1f870faf94e1b1b6ac591f2ad5d729579\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 1\n\nrequirements:\n  host:\n    - python >=3.8\n    - pip\n  run:\n    - python >=3.8\n\ntest:\n  imports:\n    - pyjsparser\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/PiotrDabkowski/pyjsparser\n  summary: Fast javascript parser (based on esprima.js)\n  license: MIT\n  license_family: MIT\n  license_file: LICENSE\n  doc_url: https://github.com/PiotrDabkowski/pyjsparser\n  dev_url: https://github.com/PiotrDabkowski/pyjsparser\n\nextra:\n  recipe-maintainers:\n    - dschreij\n    - smathot\n    - xylar\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -166,7 +185,9 @@
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
@@ -179,18 +200,20 @@
    "__set__": true,
    "elements": [
     "pip",
-    "python"
+    "python >=3.8"
    ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "python"
+    "python >=3.8"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "url": "https://pypi.io/packages/source/p/pyjsparser/pyjsparser-2.7.1.tar.gz",
