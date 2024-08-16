@@ -16,17 +16,19 @@
  "linux_64_meta_yaml": {
   "about": {
    "home": "https://github.com/Azure/azure-sdk-for-python",
-   "license": "Apache-2.0",
-   "summary": "Microsoft Azure Namespace Package [Internal]"
+   "license": "MIT",
+   "license_file": "LICENSE",
+   "summary": "Microsoft Azure Namespace Package -- Internal"
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "python -m pip install --no-deps --ignore-installed ."
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
-    "Maxyme"
+    "Maxyme",
+    "xylar"
    ]
   },
   "package": {
@@ -34,29 +36,34 @@
    "version": "3.0.2"
   },
   "requirements": {
-   "build": [
-    "python",
-    "setuptools",
-    "pip"
+   "host": [
+    "python >=3.4",
+    "pip",
+    "setuptools"
    ],
    "run": [
-    "python",
-    "setuptools"
+    "python >=3.4"
    ]
   },
   "source": {
-   "fn": "azure-nspkg-3.0.2.zip",
    "sha256": "e7d3cea6af63e667d87ba1ca4f8cd7cb4dfca678e4c55fc1cedb320760e39dd0",
    "url": "https://pypi.io/packages/source/a/azure-nspkg/azure-nspkg-3.0.2.zip"
   },
   "test": {
-   "imports": [
-    "azure"
+   "commands": [
+    "pip check"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
  "linux_64_requirements": {
   "build": {
+   "__set__": true,
+   "elements": []
+  },
+  "host": {
    "__set__": true,
    "elements": [
     "pip",
@@ -64,36 +71,35 @@
     "setuptools"
    ]
   },
-  "host": {
-   "__set__": true,
-   "elements": []
-  },
   "run": {
    "__set__": true,
    "elements": [
-    "python",
-    "setuptools"
+    "python"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "meta_yaml": {
   "about": {
    "home": "https://github.com/Azure/azure-sdk-for-python",
-   "license": "Apache-2.0",
-   "summary": "Microsoft Azure Namespace Package [Internal]"
+   "license": "MIT",
+   "license_file": "LICENSE",
+   "summary": "Microsoft Azure Namespace Package -- Internal"
   },
   "build": {
    "noarch": "python",
-   "number": "0",
-   "script": "python -m pip install --no-deps --ignore-installed ."
+   "number": "1",
+   "script": "PYTHON -m pip install . -vv --no-deps --no-build-isolation"
   },
   "extra": {
    "recipe-maintainers": [
-    "Maxyme"
+    "Maxyme",
+    "xylar"
    ]
   },
   "package": {
@@ -101,24 +107,25 @@
    "version": "3.0.2"
   },
   "requirements": {
-   "build": [
-    "python",
-    "setuptools",
-    "pip"
+   "host": [
+    "python >=3.4",
+    "pip",
+    "setuptools"
    ],
    "run": [
-    "python",
-    "setuptools"
+    "python >=3.4"
    ]
   },
   "source": {
-   "fn": "azure-nspkg-3.0.2.zip",
    "sha256": "e7d3cea6af63e667d87ba1ca4f8cd7cb4dfca678e4c55fc1cedb320760e39dd0",
    "url": "https://pypi.io/packages/source/a/azure-nspkg/azure-nspkg-3.0.2.zip"
   },
   "test": {
-   "imports": [
-    "azure"
+   "commands": [
+    "pip check"
+   ],
+   "requires": [
+    "pip"
    ]
   }
  },
@@ -136,7 +143,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/azure-nspkg.json"
  },
- "raw_meta_yaml": "{% set name = \"azure-nspkg\" %}\n{% set version = \"3.0.2\" %}\n{% set sha256 = \"e7d3cea6af63e667d87ba1ca4f8cd7cb4dfca678e4c55fc1cedb320760e39dd0\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  fn: {{ name }}-{{ version }}.zip\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.zip\n  sha256: {{ sha256 }}\n\nbuild:\n  number: 0\n  noarch: python\n  script: python -m pip install --no-deps --ignore-installed .\n\nrequirements:\n  build:\n    - python\n    - setuptools\n    - pip  \n  run:\n    - python\n    - setuptools\n\ntest:\n  imports:\n    - azure\n\nabout:\n  home: https://github.com/Azure/azure-sdk-for-python\n  license: Apache-2.0\n  summary: 'Microsoft Azure Namespace Package [Internal]'\n\nextra:\n  recipe-maintainers:\n    - Maxyme\n",
+ "raw_meta_yaml": "{% set name = \"azure-nspkg\" %}\n{% set version = \"3.0.2\" %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/azure-nspkg-{{ version }}.zip\n  sha256: e7d3cea6af63e667d87ba1ca4f8cd7cb4dfca678e4c55fc1cedb320760e39dd0\n\nbuild:\n  noarch: python\n  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n  number: 1\n\nrequirements:\n  host:\n    - python >=3.4\n    - pip\n    - setuptools\n  run:\n    - python >=3.4\n\ntest:\n  commands:\n    - pip check\n  requires:\n    - pip\n\nabout:\n  home: https://github.com/Azure/azure-sdk-for-python\n  summary: Microsoft Azure Namespace Package -- Internal\n  license: MIT\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - Maxyme\n    - xylar\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -148,52 +155,54 @@
  "requirements": {
   "build": {
    "__set__": true,
+   "elements": []
+  },
+  "host": {
+   "__set__": true,
    "elements": [
     "pip",
     "python",
     "setuptools"
    ]
   },
-  "host": {
-   "__set__": true,
-   "elements": []
-  },
   "run": {
    "__set__": true,
    "elements": [
-    "python",
-    "setuptools"
+    "python"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "strong_exports": false,
  "total_requirements": {
   "build": {
    "__set__": true,
-   "elements": [
-    "pip",
-    "python",
-    "setuptools"
-   ]
+   "elements": []
   },
   "host": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip",
+    "python >=3.4",
+    "setuptools"
+   ]
   },
   "run": {
    "__set__": true,
    "elements": [
-    "python",
-    "setuptools"
+    "python >=3.4"
    ]
   },
   "test": {
    "__set__": true,
-   "elements": []
+   "elements": [
+    "pip"
+   ]
   }
  },
  "url": "https://pypi.io/packages/source/a/azure-nspkg/azure-nspkg-3.0.2.zip",
