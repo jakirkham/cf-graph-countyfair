@@ -27,8 +27,8 @@
    "summary": "Metapackage to select python implementation"
   },
   "build": {
-   "number": "4",
-   "string": "4_pypy39_pp73",
+   "number": "5",
+   "string": "5_pypy39_pp73",
    "track_features": [
     "native_graalpy",
     "pypy"
@@ -49,8 +49,8 @@
     "python 3.10.* *_cpython",
     "python 3.11.* *_cpython",
     "python 3.12.* *_cpython",
-    "python 3.13.* *_cpython",
-    "python 3.7.* *_cpython",
+    "python 3.13.* *_cp313",
+    "python 3.13.* *_cp313t",
     "python 3.8.* *_cpython",
     "python 3.9.* *_cpython",
     "python 3.10.* *_native230_graalpy",
@@ -92,8 +92,8 @@
    "summary": "Metapackage to select python implementation"
   },
   "build": {
-   "number": "4",
-   "string": "4_pypy39_pp73",
+   "number": "5",
+   "string": "5_pypy39_pp73",
    "track_features": [
     "native_graalpy",
     "pypy"
@@ -114,8 +114,8 @@
     "python 3.10.* *_cpython",
     "python 3.11.* *_cpython",
     "python 3.12.* *_cpython",
-    "python 3.13.* *_cpython",
-    "python 3.7.* *_cpython",
+    "python 3.13.* *_cp313",
+    "python 3.13.* *_cp313t",
     "python 3.8.* *_cpython",
     "python 3.9.* *_cpython",
     "python 3.10.* *_native230_graalpy",
@@ -157,8 +157,8 @@
    "summary": "Metapackage to select python implementation"
   },
   "build": {
-   "number": "4",
-   "string": "4_pypy39_pp73",
+   "number": "5",
+   "string": "5_pypy39_pp73",
    "track_features": [
     "native_graalpy",
     "pypy"
@@ -179,8 +179,8 @@
     "python 3.10.* *_cpython",
     "python 3.11.* *_cpython",
     "python 3.12.* *_cpython",
-    "python 3.13.* *_cpython",
-    "python 3.7.* *_cpython",
+    "python 3.13.* *_cp313",
+    "python 3.13.* *_cp313t",
     "python 3.8.* *_cpython",
     "python 3.9.* *_cpython",
     "python 3.10.* *_native230_graalpy",
@@ -222,8 +222,8 @@
    "summary": "Metapackage to select python implementation"
   },
   "build": {
-   "number": "4",
-   "string": "4_pypy39_pp73",
+   "number": "5",
+   "string": "5_pypy39_pp73",
    "track_features": [
     "native_graalpy",
     "pypy"
@@ -244,8 +244,8 @@
     "python 3.10.* *_cpython",
     "python 3.11.* *_cpython",
     "python 3.12.* *_cpython",
-    "python 3.13.* *_cpython",
-    "python 3.7.* *_cpython",
+    "python 3.13.* *_cp313",
+    "python 3.13.* *_cp313t",
     "python 3.8.* *_cpython",
     "python 3.9.* *_cpython",
     "python 3.10.* *_native230_graalpy",
@@ -270,8 +270,8 @@
    "summary": "Metapackage to select python implementation"
   },
   "build": {
-   "number": "4",
-   "string": "4_pypy39_pp73",
+   "number": "5",
+   "string": "5_pypy39_pp73",
    "track_features": [
     "native_graalpy",
     "pypy"
@@ -292,8 +292,8 @@
     "python 3.10.* *_cpython",
     "python 3.11.* *_cpython",
     "python 3.12.* *_cpython",
-    "python 3.13.* *_cpython",
-    "python 3.7.* *_cpython",
+    "python 3.13.* *_cp313",
+    "python 3.13.* *_cp313t",
     "python 3.8.* *_cpython",
     "python 3.9.* *_cpython",
     "python 3.10.* *_native230_graalpy",
@@ -335,8 +335,8 @@
    "summary": "Metapackage to select python implementation"
   },
   "build": {
-   "number": "4",
-   "string": "4_pypy39_pp73",
+   "number": "5",
+   "string": "5_pypy39_pp73",
    "track_features": [
     "native_graalpy",
     "pypy"
@@ -357,8 +357,8 @@
     "python 3.10.* *_cpython",
     "python 3.11.* *_cpython",
     "python 3.12.* *_cpython",
-    "python 3.13.* *_cpython",
-    "python 3.7.* *_cpython",
+    "python 3.13.* *_cp313",
+    "python 3.13.* *_cp313t",
     "python 3.8.* *_cpython",
     "python 3.9.* *_cpython",
     "python 3.10.* *_native230_graalpy",
@@ -409,7 +409,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/python_abi.json"
  },
- "raw_meta_yaml": "{% set build_num = 4 %}\n{% if python_impl_version is not defined %}\n{% set python_impl_version = \"3.6\" %}\n{% endif %}\n\n\npackage:\n  name: python_abi\n  version: {{ python_version }}\n\nbuild:\n  number: {{ build_num }}\n  string: {{ build_num }}_{{ python_abi_tag }}\n  track_features:         # [python_implementation != \"cpython\"]\n    - pypy                # [python_implementation == \"pypy\"]\n    - native_graalpy      # [python_implementation == \"graalpy\"]\n\nrequirements:\n  run_constrained:\n    # For cpython>=3.13, we will make python package depend on this package.\n    # Therefore there is no need to distinguish freethreading or not in the build string\n    - python {{ python_version }}.* *_cpython                                                      # [python_implementation == \"cpython\"]\n    - python {{ python_version }}.* *_{{ python_impl_version.replace('.', '') }}_pypy              # [python_implementation == \"pypy\"]\n    - python {{ python_version }}.* *_native{{ python_impl_version.replace('.', '') }}_graalpy     # [python_implementation == \"graalpy\"]\n\ntest:\n  commands:\n    - echo \"hello\"\n\nabout:\n  home: https://github.com/conda-forge/python_abi-feedstock\n  summary: Metapackage to select python implementation\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - chrisburr\n    - isuruf\n",
+ "raw_meta_yaml": "{% set build_num = 5 %}\n{% if python_impl_version is not defined %}\n{% set python_impl_version = \"3.8\" %}\n{% endif %}\n\n{% if python_version is not defined %}\n{% set python_version = \"3.8\" %}\n{% endif %}\n\n{% set python_minor = python_version.split(\".\")[1]|int %}\n\npackage:\n  name: python_abi\n  version: {{ python_version }}\n\nbuild:\n  number: {{ build_num }}\n  string: {{ build_num }}_{{ python_abi_tag }}\n  track_features:         # [python_implementation != \"cpython\"]\n    - pypy                # [python_implementation == \"pypy\"]\n    - native_graalpy      # [python_implementation == \"graalpy\"]\n\nrequirements:\n  run_constrained:\n    {% if python_minor >= 13 %}\n    - python {{ python_version }}.* *_{{ python_abi_tag }}                                         # [python_implementation == \"cpython\"]\n    {% else %}\n    - python {{ python_version }}.* *_cpython                                                      # [python_implementation == \"cpython\"]\n    {% endif %}\n    - python {{ python_version }}.* *_{{ python_impl_version.replace('.', '') }}_pypy              # [python_implementation == \"pypy\"]\n    - python {{ python_version }}.* *_native{{ python_impl_version.replace('.', '') }}_graalpy     # [python_implementation == \"graalpy\"]\n\ntest:\n  commands:\n    - echo \"hello\"\n\nabout:\n  home: https://github.com/conda-forge/python_abi-feedstock\n  summary: Metapackage to select python implementation\n  license: BSD-3-Clause\n  license_family: BSD\n  license_file: LICENSE\n\nextra:\n  recipe-maintainers:\n    - chrisburr\n    - isuruf\n",
  "req": {
   "__set__": true,
   "elements": []
@@ -464,8 +464,8 @@
    "summary": "Metapackage to select python implementation"
   },
   "build": {
-   "number": "4",
-   "string": "4_pypy39_pp73",
+   "number": "5",
+   "string": "5_pypy39_pp73",
    "track_features": [
     "native_graalpy",
     "pypy"
@@ -486,8 +486,8 @@
     "python 3.10.* *_cpython",
     "python 3.11.* *_cpython",
     "python 3.12.* *_cpython",
-    "python 3.13.* *_cpython",
-    "python 3.7.* *_cpython",
+    "python 3.13.* *_cp313",
+    "python 3.13.* *_cp313t",
     "python 3.8.* *_cpython",
     "python 3.9.* *_cpython",
     "python 3.10.* *_native230_graalpy",
