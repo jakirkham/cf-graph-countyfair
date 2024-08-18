@@ -25,7 +25,7 @@
    "summary": "Light, fast web server"
   },
   "build": {
-   "number": "3"
+   "number": "4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -43,8 +43,8 @@
     "libtool",
     "perl",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "sysroot_linux-64 2.17",
     "make",
     "automake",
     "autoconf",
@@ -106,13 +106,13 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "m4",
     "make",
     "perl",
-    "pkg-config",
-    "sysroot_linux-64"
+    "pkg-config"
    ]
   },
   "host": {
@@ -171,7 +171,7 @@
    "summary": "Light, fast web server"
   },
   "build": {
-   "number": "3"
+   "number": "4"
   },
   "extra": {
    "recipe-maintainers": [
@@ -189,8 +189,8 @@
     "libtool",
     "perl",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
-    "sysroot_linux-64 2.17",
     "make",
     "automake",
     "autoconf",
@@ -259,7 +259,7 @@
  "pr_info": {
   "__lazy_json__": "pr_info/lighttpd.json"
  },
- "raw_meta_yaml": "{% set major_minor = \"1.4\" %}\n{% set version = major_minor + \".73\" %}\n\npackage:\n  name: lighttpd\n  version: {{ version }}\n\nsource:\n  url: http://download.lighttpd.net/lighttpd/releases-{{ major_minor }}.x/lighttpd-{{ version }}.tar.gz\n  sha256: 816cbec71e8d02d874f1d5c798d76d091a76d5acbeb6e017ba76aeb4263d6995\n\nbuild:\n  number: 3\n  skip: True  # [not linux]\n\nrequirements:\n  build:\n    - pkg-config\n    - libtool\n    - perl  # Needed to run the tests\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - sysroot_linux-64 2.17  # [linux64]\n    - make\n    - automake\n    - autoconf\n    - libtool\n    - m4\n  host:\n    - zlib\n    - bzip2\n    - pcre\n    - pcre2\n    - krb5\n    - openssl\n    - libxml2\n    - sqlite\n    - libuuid\n    - mysql\n    - gnutls\n    - openldap\n    - bzip2\n    - nettle\n    - keyutils\n    - lua\n    - brotli\n    - zstd\n    - libdeflate\n  run:\n    - bzip2\n    - pcre2\n    - krb5\n    - openssl\n    - libxml2\n    - sqlite\n    - libuuid\n    - keyutils\n    - lua\n    - zstd\n    - libdeflate\n\ntest:\n  files:\n    - lighttpd.conf\n  commands:\n    - lighttpd -h\n    - lighttpd -v\n    - lighttpd -t -f lighttpd.conf\n\nabout:\n  home: http://www.lighttpd.net/\n  license: BSD-3-Clause\n  license_file: COPYING\n  summary: Light, fast web server\n  description: |\n    Lighttpd is rapidly redefining the efficiency of a webserver. It is\n    designed and optimized for high performance environments. With a small\n    memory footprint compared to other web-servers, effective management of\n    the cpu-load, and an advanced feature set, lighttpd is the perfect\n    solution for every server that is suffering load problems.\n  doc_url: http://redmine.lighttpd.net/projects/lighttpd/wiki\n  doc_source_url: http://redmine.lighttpd.net/projects/lighttpd/repository/revisions/master/show/doc\n  dev_url: https://github.com/lighttpd\n\nextra:\n  recipe-maintainers:\n    - sdvillal\n    - notestaff\n",
+ "raw_meta_yaml": "{% set major_minor = \"1.4\" %}\n{% set version = major_minor + \".73\" %}\n\npackage:\n  name: lighttpd\n  version: {{ version }}\n\nsource:\n  url: http://download.lighttpd.net/lighttpd/releases-{{ major_minor }}.x/lighttpd-{{ version }}.tar.gz\n  sha256: 816cbec71e8d02d874f1d5c798d76d091a76d5acbeb6e017ba76aeb4263d6995\n\nbuild:\n  number: 4\n  skip: True  # [not linux]\n\nrequirements:\n  build:\n    - pkg-config\n    - libtool\n    - perl  # Needed to run the tests\n    - {{ compiler('c') }}\n    - {{ stdlib(\"c\") }}\n    - {{ compiler('cxx') }}\n    - make\n    - automake\n    - autoconf\n    - libtool\n    - m4\n  host:\n    - zlib\n    - bzip2\n    - pcre\n    - pcre2\n    - krb5\n    - openssl\n    - libxml2\n    - sqlite\n    - libuuid\n    - mysql\n    - gnutls\n    - openldap\n    - bzip2\n    - nettle\n    - keyutils\n    - lua\n    - brotli\n    - zstd\n    - libdeflate\n  run:\n    - bzip2\n    - pcre2\n    - krb5\n    - openssl\n    - libxml2\n    - sqlite\n    - libuuid\n    - keyutils\n    - lua\n    - zstd\n    - libdeflate\n\ntest:\n  files:\n    - lighttpd.conf\n  commands:\n    - lighttpd -h\n    - lighttpd -v\n    - lighttpd -t -f lighttpd.conf\n\nabout:\n  home: http://www.lighttpd.net/\n  license: BSD-3-Clause\n  license_file: COPYING\n  summary: Light, fast web server\n  description: |\n    Lighttpd is rapidly redefining the efficiency of a webserver. It is\n    designed and optimized for high performance environments. With a small\n    memory footprint compared to other web-servers, effective management of\n    the cpu-load, and an advanced feature set, lighttpd is the perfect\n    solution for every server that is suffering load problems.\n  doc_url: http://redmine.lighttpd.net/projects/lighttpd/wiki\n  doc_source_url: http://redmine.lighttpd.net/projects/lighttpd/repository/revisions/master/show/doc\n  dev_url: https://github.com/lighttpd\n\nextra:\n  recipe-maintainers:\n    - sdvillal\n    - notestaff\n",
  "req": {
   "__set__": true,
   "elements": [
@@ -268,6 +268,7 @@
    "brotli",
    "bzip2",
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cxx_compiler_stub",
    "gnutls",
    "keyutils",
@@ -288,7 +289,6 @@
    "perl",
    "pkg-config",
    "sqlite",
-   "sysroot_linux-64",
    "zlib",
    "zstd"
   ]
@@ -300,13 +300,13 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "m4",
     "make",
     "perl",
-    "pkg-config",
-    "sysroot_linux-64"
+    "pkg-config"
    ]
   },
   "host": {
@@ -315,6 +315,7 @@
     "brotli",
     "bzip2",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "gnutls",
     "keyutils",
@@ -322,7 +323,6 @@
     "libdeflate",
     "libuuid",
     "libxml2",
-    "linux-sysroot",
     "lua",
     "mysql",
     "nettle",
@@ -340,13 +340,13 @@
    "elements": [
     "bzip2",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "keyutils",
     "krb5",
     "libdeflate",
     "libuuid",
     "libxml2",
-    "linux-sysroot",
     "lua",
     "openssl",
     "pcre2",
@@ -367,13 +367,13 @@
     "autoconf",
     "automake",
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libtool",
     "m4",
     "make",
     "perl",
-    "pkg-config",
-    "sysroot_linux-64 2.17"
+    "pkg-config"
    ]
   },
   "host": {
