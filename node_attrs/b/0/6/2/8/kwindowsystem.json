@@ -33,7 +33,7 @@
    "summary": "Access to the windowing system"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "kwindowsystem"
    ]
@@ -50,6 +50,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
@@ -89,6 +90,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
@@ -140,7 +142,7 @@
    "summary": "Access to the windowing system"
   },
   "build": {
-   "number": "0",
+   "number": "1",
    "run_exports": [
     "kwindowsystem"
    ]
@@ -157,6 +159,7 @@
   "requirements": {
    "build": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "cmake",
     "make",
@@ -205,11 +208,12 @@
  "pr_info": {
   "__lazy_json__": "pr_info/kwindowsystem.json"
  },
- "raw_meta_yaml": "{% set name = \"kwindowsystem\" %}\n{% set version = \"5.115.0\" %}\n{% set major_minor = \".\".join(version.split(\".\")[:2]) %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://download.kde.org/stable/frameworks/{{ major_minor }}/kwindowsystem-{{ version }}.tar.xz\n  sha256: e0a06b19b5fb3ce534b35ddb1db96911c9452e791c0c650eae77bf59fb355f53\n\nbuild:\n  number: 0\n  skip: true  # [not linux]\n  run_exports:\n    - {{ pin_subpackage('kwindowsystem', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make\n    - pkg-config\n    - extra-cmake-modules >={{ version }}\n    - {{ cdt('mesa-libgl-devel') }}  # [linux]\n    - {{ cdt('mesa-dri-drivers') }}  # [linux]\n    - {{ cdt('libselinux') }}  # [linux]\n    - {{ cdt('libxdamage') }}  # [linux]\n    - {{ cdt('libxxf86vm') }}  # [linux]\n  host:\n    - xorg-libxfixes  # [linux]\n    - xorg-libxext\n    - xorg-libx11\n    - qt\n    - libxcb\n    - xcb-util\n    - xcb-util-wm\n    - xcb-util-keysyms\n    - xorg-libxrender\n  run:\n    - xorg-libxfixes\n    - xorg-libx11\n    - libxcb\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/libKF5WindowSystem.so\n\nabout:\n  home: https://api.kde.org/frameworks/kwindowsystem/html/index.html\n  license: LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT\n  license_file:\n    - LICENSES/LGPL-2.1-only.txt\n    - LICENSES/LGPL-2.1-or-later.txt\n    - LICENSES/LGPL-3.0-only.txt\n    - LICENSES/LicenseRef-KDE-Accepted-LGPL.txt\n    - LICENSES/MIT.txt\n  summary: Access to the windowing system\n  description: |\n    Convenience access to certain properties and features of the windowing system.\n  dev_url: https://cgit.kde.org/kwindowsystem.git/tree\n\nextra:\n  recipe-maintainers:\n    - scopatz\n",
+ "raw_meta_yaml": "{% set name = \"kwindowsystem\" %}\n{% set version = \"5.115.0\" %}\n{% set major_minor = \".\".join(version.split(\".\")[:2]) %}\n\npackage:\n  name: {{ name|lower }}\n  version: {{ version }}\n\nsource:\n  url: https://download.kde.org/stable/frameworks/{{ major_minor }}/kwindowsystem-{{ version }}.tar.xz\n  sha256: e0a06b19b5fb3ce534b35ddb1db96911c9452e791c0c650eae77bf59fb355f53\n\nbuild:\n  number: 1\n  skip: true  # [not linux]\n  run_exports:\n    - {{ pin_subpackage('kwindowsystem', max_pin='x.x') }}\n\nrequirements:\n  build:\n    - {{ compiler('c') }}\n    - {{ stdlib('c') }}\n    - {{ compiler('cxx') }}\n    - cmake\n    - make\n    - pkg-config\n    - extra-cmake-modules >={{ version }}\n    - {{ cdt('mesa-libgl-devel') }}  # [linux]\n    - {{ cdt('mesa-dri-drivers') }}  # [linux]\n    - {{ cdt('libselinux') }}  # [linux]\n    - {{ cdt('libxdamage') }}  # [linux]\n    - {{ cdt('libxxf86vm') }}  # [linux]\n  host:\n    - xorg-libxfixes  # [linux]\n    - xorg-libxext\n    - xorg-libx11\n    - qt\n    - libxcb\n    - xcb-util\n    - xcb-util-wm\n    - xcb-util-keysyms\n    - xorg-libxrender\n  run:\n    - xorg-libxfixes\n    - xorg-libx11\n    - libxcb\n\ntest:\n  commands:\n    - test -f ${PREFIX}/lib/libKF5WindowSystem.so\n\nabout:\n  home: https://api.kde.org/frameworks/kwindowsystem/html/index.html\n  license: LGPL-2.1-only AND LGPL-2.1-or-later AND LGPL-3.0-only AND LicenseRef-KDE-Accepted-LGPL AND MIT\n  license_file:\n    - LICENSES/LGPL-2.1-only.txt\n    - LICENSES/LGPL-2.1-or-later.txt\n    - LICENSES/LGPL-3.0-only.txt\n    - LICENSES/LicenseRef-KDE-Accepted-LGPL.txt\n    - LICENSES/MIT.txt\n  summary: Access to the windowing system\n  description: |\n    Convenience access to certain properties and features of the windowing system.\n  dev_url: https://cgit.kde.org/kwindowsystem.git/tree\n\nextra:\n  recipe-maintainers:\n    - scopatz\n",
  "req": {
   "__set__": true,
   "elements": [
    "c_compiler_stub",
+   "c_stdlib_stub",
    "cdt_stub",
    "cmake",
    "cxx_compiler_stub",
@@ -232,6 +236,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
@@ -244,6 +249,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libxcb",
     "qt",
@@ -260,6 +266,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cxx_compiler_stub",
     "libxcb",
     "xorg-libx11",
@@ -277,6 +284,7 @@
    "__set__": true,
    "elements": [
     "c_compiler_stub",
+    "c_stdlib_stub",
     "cdt_stub",
     "cmake",
     "cxx_compiler_stub",
